@@ -50,7 +50,7 @@ namespace _2DRoguelike
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _spriteBatch.Begin(SpriteSortMode.Texture, BlendState.Additive);
+            _spriteBatch.Begin();
 
             EntityManager.Draw(_spriteBatch);
 
