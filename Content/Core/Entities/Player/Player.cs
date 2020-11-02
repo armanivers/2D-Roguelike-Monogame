@@ -65,6 +65,11 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             //Handle Movement
             Velocity = speed * InputController.GetDirection();
             Position += Velocity;
+            if(Velocity.X != 0 && Velocity.Y != 0)
+            {
+                //solte Random.NextFloat(-0.2f, 0.2f) sein
+                SoundManager.PlayerWalk.Play(0.2f, 0.2f, 0);
+            }
 
             //Vector2.Clamp makes sure the player doesn't go outside of screen
             Position = Vector2.Clamp(Position, Size / 2, Game1.ScreenSize - Size / 2);

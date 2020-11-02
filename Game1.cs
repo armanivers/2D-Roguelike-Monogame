@@ -33,6 +33,7 @@ namespace _2DRoguelike
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             TextureManager.Load(Content);
+            SoundManager.Load(Content);
         }
 
         protected override void Update(GameTime gameTime)

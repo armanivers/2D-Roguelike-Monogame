@@ -25,3 +25,9 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/PlayerElements/playerSheet.png
 
+#begin Assets/Sounds/PlayerSounds/walking_dirt.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/PlayerSounds/walking_dirt.wav
+
