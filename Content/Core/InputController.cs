@@ -10,16 +10,12 @@ namespace _2DRoguelike.Content.Core
     {
         private static KeyboardState keyboardState, lastKeyboardState;
         private static MouseState mouseState, lastMouseState;
-        private static GamePadState gamepadState, lastGamepadState;
-
         public static Vector2 MousePosition { get { return new Vector2(mouseState.X, mouseState.Y); } }
 
         public static void Update()
         {
             keyboardState = Keyboard.GetState();
             mouseState = Mouse.GetState();
-            gamepadState = GamePad.GetState(PlayerIndex.One);
-
         }
 
         public static Vector2 GetDirection()
