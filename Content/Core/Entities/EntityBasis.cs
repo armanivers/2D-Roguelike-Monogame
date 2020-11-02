@@ -37,7 +37,6 @@ namespace _2DRoguelike.Content.Core.Entities
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, Position, null, Color.White, Orientation, Size / 2f, 1f, SpriteEffects.None, 1);
-
         }
     }
 }
