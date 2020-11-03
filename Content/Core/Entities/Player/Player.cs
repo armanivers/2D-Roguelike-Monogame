@@ -16,7 +16,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         private const float playerSpeed = 5;
         // cooldown in seconds!
         private const float attackCooldown = 2;
-        private float cooldown;
+        private float cooldownTimer;
 
         public static Player Instance
         {
@@ -45,7 +45,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             };
             this.animationManager = new AnimationManager(animations.First().Value);
             this.isExpired = false;
-            this.cooldown = 0;
+            this.cooldownTimer = attackCooldown;
         }
         private void DetermineAnimation()
         {
@@ -87,10 +87,15 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
         public void CheckAttacking()
         {
-            if (!InputController.GetMouseClickPosition().Equals(Vector2.Zero) && cooldown > attackCooldown)
+            if (!InputController.GetMouseClickPosition().Equals(Vector2.Zero) && cooldownTimer > attackCooldown)
             {
-                cooldown = 0;
+                cooldownTimer = 0;
                 SoundManager.PlayerAttack.Play(0.2f, 0.2f, 0);
+
+                // create an explosion
+                Explosion e = new Explosion(new Vector2(InputController.MousePosition.X-20, InputController.MousePosition.Y-20));
+                EntityManager.Add(e);
+                e.Explode();
             }
             //Debug.Print("Time= "+cooldown);
         }
@@ -101,7 +106,9 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             DetermineAnimation();
             CheckAttacking();
 
-            cooldown += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            // orientation = (float)Math.Atan2(InputController.GetMousePosition().X, InputController.GetMousePosition().Y);
+
+            cooldownTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             animationManager.Update(gameTime);
         }
