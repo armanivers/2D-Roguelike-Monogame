@@ -11,24 +11,32 @@ namespace _2DRoguelike.Content.Core.Entities
     {
         protected Texture2D texture;
 
-        public Vector2 Position, Velocity;
-
-        public float Orientation;
-
-        //is the entity dead? then shouldn't be drawn anymore + removed
-        public bool IsExpired; 
-
-        //Animation stuff
         protected AnimationManager animationManager;
-        //assign an animation to a word -> for example walk => animation.walk
         protected Dictionary<string, Animation> animations;
+
+        public Vector2 position;
+        public Vector2 Position
+        {
+            get { return position; }
+            set
+            {
+                position = value;
+                if(animationManager!= null)
+                {
+                    animationManager.Position = position;
+                }
+            }
+        }
+
+        public Vector2 Velocity;
+        public float orientation;
+        public bool isExpired;
 
         public Vector2 Size
         {
-            //"collision"
             get
             {
-                return texture == null ? Vector2.Zero : new Vector2(60, 70);
+                return texture == null ? Vector2.Zero : new Vector2(texture.Width, texture.Height);
             }
         }
 
@@ -36,7 +44,16 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Position, null, Color.White, Orientation, Size / 2f, 1f, SpriteEffects.None, 1);
+
+            if (animationManager != null)
+            {
+                animationManager.Draw(spriteBatch);
+            }
+            else if (texture != null)
+            {
+                spriteBatch.Draw(texture, Position, null, Color.White, orientation, Size / 2f, 1f, SpriteEffects.None, 1);
+            }
+            else { throw new Exception("Draw failed, there's a problem with the texture/animationManager!"); };
         }
     }
 }
