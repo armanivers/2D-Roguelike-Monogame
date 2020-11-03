@@ -4,6 +4,7 @@ using _2DRoguelike.Content.Core.Entities.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace _2DRoguelike
 {
@@ -26,6 +27,13 @@ namespace _2DRoguelike
         protected override void Initialize()
         {
             base.Initialize();
+
+            // Play Background Music
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(SoundManager.BackgroundMusic);
+            MediaPlayer.Volume = 0.01f;
+
+
             EntityManager.Add(Player.Instance);
         }
 
@@ -42,6 +50,7 @@ namespace _2DRoguelike
                 Exit();
 
             InputController.Update();
+
             EntityManager.Update(gameTime);
 
             base.Update(gameTime);

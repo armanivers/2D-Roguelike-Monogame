@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace _2DRoguelike.Content.Core
@@ -33,6 +34,23 @@ namespace _2DRoguelike.Content.Core
                 direction.Y += 1;
 
             return direction;
+        }
+
+        public static Vector2 GetMouseClickPosition()
+        {
+            if (mouseState.LeftButton == ButtonState.Pressed)
+            {
+                return MousePosition;
+            }
+            else
+            {
+                return Vector2.Zero;
+            }
+        }
+
+        public static Vector2 GetMousePosition()
+        {
+            return MousePosition;
         }
     }
 }

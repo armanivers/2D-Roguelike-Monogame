@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace _2DRoguelike.Content.Core.Entities
@@ -18,7 +19,11 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public void Play(Animation animation)
         {
-            if (animation == null)
+            /*
+             check whether animation is null OR the animation that should be played is the same as the previous one
+             if yes, then no need to set the timer to 0 again!
+            */
+            if (animation == null ||  animation == this.animation)
             {
                 return;
             }
@@ -39,14 +44,18 @@ namespace _2DRoguelike.Content.Core.Entities
             if (timer > animation.FrameSpeed)
             {
                 timer = 0f;
-                animation.CurrentFrame = 0;
+                animation.CurrentFrame++;
+                if(animation.CurrentFrame >= animation.FrameCount)
+                {
+                    animation.CurrentFrame = 0;
+                }
 
             }
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(animation.Texture, Position, new Rectangle(animation.CurrentFrame * animation.FrameWidth, animation.FrameHeight, animation.FrameWidth, animation.FrameHeight), Color.White);
+            spritebatch.Draw(animation.Texture, Position, new Rectangle(animation.CurrentFrame * animation.FrameWidth, 0, animation.FrameWidth, animation.FrameHeight), Color.White);
         }
     }
 }
