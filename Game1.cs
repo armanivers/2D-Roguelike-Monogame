@@ -13,7 +13,7 @@ namespace _2DRoguelike
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         public static Game1 Instance { get; private set; }
-        public static Viewport Viewport { get { return Instance.GraphicsDevice.Viewport; } }
+        public static Viewport Viewport { get { return Instance.GraphicsDevice.Viewport; } } // wieso ist das eine Variable und keine Methode?
         public static Vector2 ScreenSize { get { return new Vector2(Viewport.Width, Viewport.Height); } }
         public static Game1 Intance { get; private set; }
         public Game1()
