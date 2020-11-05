@@ -81,7 +81,7 @@ namespace _2DRoguelike.Content.Core.Screens
             if (IsActive)
             {
                 // Game Logic
-               
+                InputController.Update();
             }
         }
 
@@ -102,7 +102,6 @@ namespace _2DRoguelike.Content.Core.Screens
             if (input.IsPauseGame(ControllingPlayer) || gamePadDisconnected)
             {
                 ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
-                InputController.Update();
             }
             else
             {

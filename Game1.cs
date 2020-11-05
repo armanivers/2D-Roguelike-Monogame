@@ -61,7 +61,9 @@ namespace _2DRoguelike
 
         protected override void Draw(GameTime gameTime)
         {
+
             _graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
             base.Draw(gameTime);
         }
     }

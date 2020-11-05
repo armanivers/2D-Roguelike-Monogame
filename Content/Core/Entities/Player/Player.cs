@@ -19,7 +19,6 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         //Erstellung der Hitbox 
         private Rectangle hitbox;
 
-
         public static Player Instance
         {
             get
@@ -44,7 +43,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 {"WalkLeft",new Animation(TextureManager.PlayerWalkLeftAxe,9,frameSpeed)},
                 {"WalkRight", new Animation(TextureManager.PlayerWalkRightAxe,9,frameSpeed)},
                 // Todo: idle animation texturesheet erstellen!
-                {"Idle", new Animation(TextureManager.Player,9,frameSpeed*4)}
+                {"Idle", new Animation(TextureManager.Player,1,frameSpeed*4)}
             };
             this.animationManager = new AnimationManager(animations.First().Value);
             this.isExpired = false;
@@ -83,7 +82,16 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         public void CheckMovement()
         {
             Velocity = playerSpeed * InputController.GetDirection();
-            
+            if ((InputController.GetPressedKeys().Intersect<Keys>(new Keys[] { Keys.W, Keys.A, Keys.S, Keys.D }).Count()) > 1)
+                Velocity /= 1.5f;
+
+            // TODO Du bist hässlich
+            Velocity.X = (float)Math.Round((double)Velocity.X);
+            Velocity.Y = (float)Math.Round((double)Velocity.Y);
+
+
+
+            // von float in int
             hitbox.X += (int)Velocity.X;
             hitbox.Y += (int)Velocity.Y;
             if (!new Rectangle(0, 0, (int)Game1.ScreenSize.X, (int)Game1.ScreenSize.Y).Contains(hitbox))

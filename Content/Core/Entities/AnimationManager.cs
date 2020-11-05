@@ -12,6 +12,7 @@ namespace _2DRoguelike.Content.Core.Entities
         private Animation animation;
         private float timer;
         public Vector2 Position { get; set; }
+
         public AnimationManager(Animation animation)
         {
             this.animation = animation;
