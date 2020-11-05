@@ -36,14 +36,15 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         {
             this.Position = new Vector2(2, 2);
             this.texture = TextureManager.Player;
+            float frameSpeed = 0.09f;
             this.animations = new Dictionary<string, Animation>()
             {
-                {"WalkUp", new Animation(TextureManager.PlayerWalkUpAxe,9,0.6f)},
-                {"WalkDown", new Animation(TextureManager.PlayerWalkDownAxe,9,0.15f)},
-                {"WalkLeft",new Animation(TextureManager.PlayerWalkLeftAxe,9,0.15f)},
-                {"WalkRight", new Animation(TextureManager.PlayerWalkRightAxe,9,0.15f)},
+                {"WalkUp", new Animation(TextureManager.PlayerWalkUpAxe,9,frameSpeed)},
+                {"WalkDown", new Animation(TextureManager.PlayerWalkDownAxe,9,frameSpeed)},
+                {"WalkLeft",new Animation(TextureManager.PlayerWalkLeftAxe,9,frameSpeed)},
+                {"WalkRight", new Animation(TextureManager.PlayerWalkRightAxe,9,frameSpeed)},
                 // Todo: idle animation texturesheet erstellen!
-                {"Idle", new Animation(TextureManager.Player,1,0.3f)}
+                {"Idle", new Animation(TextureManager.Player,9,frameSpeed*4)}
             };
             this.animationManager = new AnimationManager(animations.First().Value);
             this.isExpired = false;
