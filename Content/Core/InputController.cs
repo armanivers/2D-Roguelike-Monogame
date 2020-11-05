@@ -37,9 +37,8 @@ namespace _2DRoguelike.Content.Core
             if (kstate.IsKeyDown(Keys.S))
                 direction.Y += 1;
 
-            // wurden mehrere Richtungstasten gedrueckt? → Speed halbieren
-            if ((kstate.GetPressedKeys().Intersect<Keys>(new Keys[] { Keys.W, Keys.A, Keys.S, Keys.D }).Count()) > 1)
-                direction /= 1.5f;
+            // wurden mehrere Richtungstasten gedrueckt? → Nur ein Drittel der Geschwindigkeit gehen (diagonal langsamer)
+
 
             return direction;
         }
@@ -59,6 +58,10 @@ namespace _2DRoguelike.Content.Core
         public static Vector2 GetMousePosition()
         {
             return MousePosition;
+        }
+
+        public static Keys[] GetPressedKeys() {
+            return keyboardState.GetPressedKeys();
         }
     }
 }
