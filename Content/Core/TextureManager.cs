@@ -20,6 +20,14 @@ namespace _2DRoguelike.Content.Core
 
         public static Texture2D Explosion { get; private set; }
 
+        // Font Data
+
+        public static SpriteFont FontArial { get; private set; }
+        
+        // Menu Data
+        public static Texture2D Background { get; private set; }
+        public static Texture2D Blank { get; private set; }
+        public static Texture2D Gradient { get; private set; }
         public static void Load(ContentManager content)
         {
             // Player Data
@@ -31,6 +39,14 @@ namespace _2DRoguelike.Content.Core
 
             // Particle Data
             Explosion = content.Load<Texture2D>("Assets/Graphics/Particles/explosion");
+
+            // Font Data
+            FontArial = content.Load<SpriteFont>("Assets/System/Fonts/Arial");
+
+            // Menu Data
+            Background = content.Load<Texture2D>("Assets/Graphics/Menus/background");
+            Blank = content.Load<Texture2D>("Assets/Graphics/Menus/blank");
+            Gradient = content.Load<Texture2D>("Assets/Graphics/Menus/gradient");
         }
     }
 }
