@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -24,14 +25,20 @@ namespace _2DRoguelike.Content.Core
 
             Vector2 direction = Vector2.Zero;
 
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            
+            KeyboardState kstate = Keyboard.GetState();
+
+            if (kstate.IsKeyDown(Keys.A))
                 direction.X -= 1;
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            if (kstate.IsKeyDown(Keys.D))
                 direction.X += 1;
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            if (kstate.IsKeyDown(Keys.W))
                 direction.Y -= 1;
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            if (kstate.IsKeyDown(Keys.S))
                 direction.Y += 1;
+
+            // wurden mehrere Richtungstasten gedrueckt? → Nur ein Drittel der Geschwindigkeit gehen (diagonal langsamer)
+
 
             return direction;
         }
@@ -51,6 +58,10 @@ namespace _2DRoguelike.Content.Core
         public static Vector2 GetMousePosition()
         {
             return MousePosition;
+        }
+
+        public static Keys[] GetPressedKeys() {
+            return keyboardState.GetPressedKeys();
         }
     }
 }
