@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -17,6 +16,9 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         // cooldown in seconds!
         private const float attackCooldown = 2;
         private float cooldownTimer;
+        //Erstellung der Hitbox 
+        private Rectangle hitbox;
+
 
         public static Player Instance
         {
@@ -42,11 +44,12 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 {"WalkLeft",new Animation(TextureManager.PlayerWalkLeftAxe,9,frameSpeed)},
                 {"WalkRight", new Animation(TextureManager.PlayerWalkRightAxe,9,frameSpeed)},
                 // Todo: idle animation texturesheet erstellen!
-                {"Idle", new Animation(TextureManager.PlayerWalkDownAxe,9,frameSpeed*4)}
+                {"Idle", new Animation(TextureManager.Player,9,frameSpeed*4)}
             };
             this.animationManager = new AnimationManager(animations.First().Value);
             this.isExpired = false;
             this.cooldownTimer = attackCooldown;
+            hitbox = new Rectangle((int)Position.X + 17, (int)Position.Y + 14, 29, 49);
         }
         private void DetermineAnimation()
         {
@@ -67,10 +70,10 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 animationManager.Play(animations["WalkUp"]);
             }
             // Todo: idle animation texturesheet erstellen!
-            //else if(Velocity.X == 0 && Velocity.Y == 0)
-            //{
-            //    animationManager.Play(animations["Idle"]);
-            //}
+            else if(Velocity.X == 0 && Velocity.Y == 0)
+            {
+                animationManager.Play(animations["Idle"]);
+            }
             else
             {
                 animationManager.Stop();
@@ -80,10 +83,18 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         public void CheckMovement()
         {
             Velocity = playerSpeed * InputController.GetDirection();
-            Position += Velocity;
-
-            // Vector2.Clamp makes sure the player doesn't go outside of screen, Minimum = (0,0), Maximum = Screensize minus playerSize
-            Position = Vector2.Clamp(Position, Vector2.Zero, Game1.ScreenSize - Size);
+            
+            hitbox.X += (int)Velocity.X;
+            hitbox.Y += (int)Velocity.Y;
+            if (!new Rectangle(0, 0, (int)Game1.ScreenSize.X, (int)Game1.ScreenSize.Y).Contains(hitbox))
+            {
+                hitbox.X -= (int)Velocity.X;
+                hitbox.Y -= (int)Velocity.Y;
+            }
+            else
+            {
+                Position += Velocity;
+            }
         }
 
         public void CheckAttacking()
