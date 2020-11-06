@@ -23,11 +23,15 @@ namespace _2DRoguelike.Content.Core
         // Font Data
 
         public static SpriteFont FontArial { get; private set; }
-        
+
         // Menu Data
         public static Texture2D Background { get; private set; }
         public static Texture2D Blank { get; private set; }
         public static Texture2D Gradient { get; private set; }
+
+        // Tiles Data
+        public static Texture2D[] tiles { get; private set; }
+        public static int tilesAmount;
         public static void Load(ContentManager content)
         {
             // Player Data
@@ -47,6 +51,14 @@ namespace _2DRoguelike.Content.Core
             Background = content.Load<Texture2D>("Assets/Graphics/Menus/background");
             Blank = content.Load<Texture2D>("Assets/Graphics/Menus/blank");
             Gradient = content.Load<Texture2D>("Assets/Graphics/Menus/gradient");
+
+            // Tiles Data
+            tilesAmount = 2;
+            tiles = new Texture2D[tilesAmount];
+            for (int i = 0; i < tilesAmount; i++)
+            {
+                tiles[i] = content.Load<Texture2D>("Assets/Graphics/WorldElements/Tiles/tile" + i);
+            }
         }
     }
 }

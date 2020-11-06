@@ -13,6 +13,7 @@
 
 using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.Player;
+using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -35,6 +36,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
         private float pauseAlpha;
 
+        private LevelManager levelManager;
         #endregion Fields
 
         #region Initialization
@@ -49,6 +51,8 @@ namespace _2DRoguelike.Content.Core.Screens
         {
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
+
+            levelManager = new LevelManager();
 
             EntityManager.Add(Player.Instance);
 
@@ -117,6 +121,8 @@ namespace _2DRoguelike.Content.Core.Screens
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
 
             spriteBatch.Begin();
+
+            levelManager.Draw(spriteBatch);
 
             EntityManager.Draw(spriteBatch);
 
