@@ -103,11 +103,36 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             }
             else
             {
+                /**TODO: Das muss noch überarbeitet werden: 
+                    Wir überprüfen, ob die TileCollisionHitbox einer der Tiles überprüft
+                    - ein Tile im Array ist 32x32 groß, d.h.:
+                        -Tile1 im Array in currentLevel[0,0] geht von (0,0) bis (31,31)
+                        - Tile2 im Array in currentLevel[0,1] geht von (32,0) bis (63,31) usw.
+                    Also kann man die 4 Eckpunkte der Hitbox / 32 teilen und man erfährt die Indizes für die zu prüfenden Felder
+                        -z.B.: HITBOX KOORDINATEN SIND: 
+                            NW:[83,20]  
+                            NE[112,20]  
+                            SE[112,49]  
+                            SW[83,49]
+                        - teilen wir die Werte durch 32 ergibt das:
+                            NW:[2,0]  
+                            NE[3,0]  
+                            SE[3,1]  
+                            SW[2,1]
+                        - diese 4 Tiles überprüfen wir nun: Ist mindestens einer davon UNPASSABLE: nicht bewegen
+                 */
+                Rectangle tileHitbox = GetTileCollisionHitbox();
+                Debug.Print("DEBUG: Hitbox Coordinates: NW:[{0},{1}]  NE[{2},{3}]  SE[{4},{5}]  SW[{6},{7}]",
+                    tileHitbox.X, tileHitbox.Y,
+                    tileHitbox.X+ tileHitbox.Width, tileHitbox.Y ,
+                    tileHitbox.X+ tileHitbox.Width, tileHitbox.Y + tileHitbox.Height,
+                    tileHitbox.X, tileHitbox.Y + tileHitbox.Height );
+
                 Vector2 temp = Position + Velocity;
                 Debug.Print("X =" + (int)temp.X/32+ " Y=" + (int)temp.Y/32);
                 //if (!LevelManager.currentLevel[(int)temp.X / 16, (int)temp.Y / 16].IsSolid())
                 //{
-                //    Position += Velocity;
+                //     Position += Velocity;
                 //}
                 Position += Velocity;
 
@@ -127,6 +152,10 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 e.Explode();
             }
             //Debug.Print("Time= "+cooldown);
+        }
+
+        public Rectangle GetTileCollisionHitbox() {
+            return new Rectangle(hitbox.X, hitbox.Y + 20, hitbox.Width, hitbox.Height - 20);
         }
 
         public override void Update(GameTime gameTime)
