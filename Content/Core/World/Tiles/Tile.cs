@@ -21,8 +21,27 @@ namespace _2DRoguelike.Content.Core.World.Tiles
             this.texture = TextureManager.tiles[type];
             this.width = 32;
             this.height = 32;
-            this.x = x*width;
-            this.y = y*height;
+            this.x = x*height;
+            this.y = y*width;
+            this.solid = DetermineSolid(type);
+        }
+
+        public bool DetermineSolid(int type)
+        {
+            bool solid = false;
+            switch (type)
+            {
+                case 0:
+                    solid = false;
+                    break;
+                case 1:
+                    solid = true;
+                    break;
+                default:
+                    solid = false;
+                    break;
+            }
+            return solid;
         }
 
         public Boolean IsSolid()

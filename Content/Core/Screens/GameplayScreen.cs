@@ -36,7 +36,6 @@ namespace _2DRoguelike.Content.Core.Screens
 
         private float pauseAlpha;
 
-        private LevelManager levelManager;
         #endregion Fields
 
         #region Initialization
@@ -51,8 +50,6 @@ namespace _2DRoguelike.Content.Core.Screens
         {
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
-
-            levelManager = new LevelManager();
 
             EntityManager.Add(Player.Instance);
 
@@ -75,7 +72,6 @@ namespace _2DRoguelike.Content.Core.Screens
                                                        bool coveredByOtherScreen)
         {
             base.Update(gameTime, otherScreenHasFocus, false);
-            EntityManager.Update(gameTime);
             // Gradually fade in or out depending on whether we are covered by the pause screen.
             if (coveredByOtherScreen)
                 pauseAlpha = Math.Min(pauseAlpha + 1f / 32, 1);
@@ -86,6 +82,7 @@ namespace _2DRoguelike.Content.Core.Screens
             {
                 // Game Logic
                 InputController.Update();
+                EntityManager.Update(gameTime);
             }
         }
 
@@ -106,6 +103,7 @@ namespace _2DRoguelike.Content.Core.Screens
             if (input.IsPauseGame(ControllingPlayer) || gamePadDisconnected)
             {
                 ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
+               
             }
             else
             {
@@ -122,7 +120,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
             spriteBatch.Begin();
 
-            levelManager.Draw(spriteBatch);
+            LevelManager.Draw(spriteBatch);
 
             EntityManager.Draw(spriteBatch);
 

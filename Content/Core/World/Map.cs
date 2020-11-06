@@ -11,17 +11,17 @@ namespace _2DRoguelike.Content.Core.World
         public int width;
         public int height;
 
-        public Map(int width, int height)
+        public Map()
         {
-            this.width = width;
-            this.height = height;
+            this.width = 12;
+            this.height = 13;
             map = loadLevel();
         }
 
         public Tile[,] loadLevel()
         {
     
-            int[,] level1 = new int[7,13]
+            int[,] level1 = new int[12,13]
             {
                 {1,1,1,1,1,1,1,1,1,1,1,1,1},
                 {1,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -29,14 +29,19 @@ namespace _2DRoguelike.Content.Core.World
                 {1,0,0,1,1,1,0,1,1,1,0,0,1},
                 {1,0,0,1,0,0,0,0,1,0,0,0,1},
                 {1,0,0,0,0,0,0,0,0,0,0,0,1},
+                {1,0,0,0,0,0,0,0,0,0,0,0,1},
+                {1,0,0,0,0,0,0,0,0,0,0,0,1},
+                {1,0,0,0,0,0,0,0,0,0,0,0,1},
+                {1,0,0,0,0,0,0,0,0,0,0,0,1},
+                {1,0,0,0,0,0,0,0,0,0,0,0,1},
                 {1,1,1,1,1,1,1,1,1,1,1,1,1}
             };
 
             System.Diagnostics.Debug.Print("Rank = " + level1.Rank + " Length = " + level1.Length);
 
-            Tile[,] result = new Tile[7,13];
+            Tile[,] result = new Tile[12,13];
 
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 12; i++)
             {
                 for(int j = 0; j < 13; j++)
                 {
@@ -46,14 +51,5 @@ namespace _2DRoguelike.Content.Core.World
             return result;
         }
 
-        public void Update()
-        {
-
-        }
-
-        public void Draw()
-        {
-
-        }
     }
 }

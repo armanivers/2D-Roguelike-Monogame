@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using _2DRoguelike.Content.Core.World;
+using _2DRoguelike.Content.Core.World.Tiles;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -33,7 +35,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
         private Player()
         {
-            this.Position = new Vector2(2, 2);
+            this.Position = new Vector2(4, 6);
             this.texture = TextureManager.Player;
             float frameSpeed = 0.09f;
             this.animations = new Dictionary<string, Animation>()
@@ -101,7 +103,14 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             }
             else
             {
+                Vector2 temp = Position + Velocity;
+                Debug.Print("X =" + (int)temp.X/32+ " Y=" + (int)temp.Y/32);
+                //if (!LevelManager.currentLevel[(int)temp.X / 16, (int)temp.Y / 16].IsSolid())
+                //{
+                //    Position += Velocity;
+                //}
                 Position += Velocity;
+
             }
         }
 
