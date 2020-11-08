@@ -32,6 +32,10 @@ namespace _2DRoguelike.Content.Core
         // Tiles Data
         public static Texture2D[] tiles { get; private set; }
         public static int tilesAmount;
+
+        // Debug Data
+        public static Texture2D tileHitboxBorder { get; private set; }
+
         public static void Load(ContentManager content)
         {
             // Player Data
@@ -59,6 +63,9 @@ namespace _2DRoguelike.Content.Core
             {
                 tiles[i] = content.Load<Texture2D>("Assets/Graphics/WorldElements/Tiles/tile" + i);
             }
+
+            // Debug Data
+            tileHitboxBorder = content.Load<Texture2D>("Assets/System/Debug/Hitbox/tileHitBox");
         }
     }
 }

@@ -20,6 +20,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         private float cooldownTimer;
         // Erstellung der Hitbox 
         private Rectangle hitbox;
+        public Rectangle Hitbox { get { return hitbox; }}
 
         public static Player Instance
         {
@@ -121,7 +122,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             {
                 cooldownTimer = 0;
                 SoundManager.PlayerAttack.Play(0.2f, 0.2f, 0);
-
+                Camera.ShakeScreen();
                 // create an explosion
                 Explosion e = new Explosion(new Vector2(InputController.MousePosition.X-20, InputController.MousePosition.Y-20));
                 EntityManager.Add(e);

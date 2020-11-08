@@ -11,6 +11,7 @@
 
 #region Using Statements
 
+using _2DRoguelike.Content.Core.GameDebug;
 using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.Player;
 using _2DRoguelike.Content.Core.World;
@@ -81,7 +82,7 @@ namespace _2DRoguelike.Content.Core.Screens
             if (IsActive)
             {
                 // Game Logic
-                Camera.Update(gameTime, Player.Instance);
+                Camera.Update(Player.Instance);
                 InputController.Update();
                 EntityManager.Update(gameTime);
             }
@@ -124,6 +125,9 @@ namespace _2DRoguelike.Content.Core.Screens
             LevelManager.Draw(spriteBatch);
 
             EntityManager.Draw(spriteBatch);
+
+            // auskommentieren, falls man kein debugmodus will
+            GameDebug.GameDebug.Draw(spriteBatch);
 
             spriteBatch.End();
 

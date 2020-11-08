@@ -9,7 +9,7 @@ namespace _2DRoguelike.Content.Core.Entities
 {
     static class EntityManager
     {
-        static List<EntityBasis> entities = new List<EntityBasis>();
+        public static List<EntityBasis> entities = new List<EntityBasis>();
 
         static bool isUpdating;
         static List<EntityBasis> addedEntities = new List<EntityBasis>();
