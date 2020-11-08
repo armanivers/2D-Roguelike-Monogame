@@ -96,31 +96,17 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             // von float in int
             hitbox.X += (int)Velocity.X;
             hitbox.Y += (int)Velocity.Y;
-            if (!new Rectangle(0, 0, (int)Game1.ScreenSize.X, (int)Game1.ScreenSize.Y).Contains(hitbox))
+
+            // Wenn Bewegung nicht möglich: Hitbox wieder zurücksetzen
+            if (CollidesWithFrameBorder()
+                || CollidesWithSolidTile())
             {
                 hitbox.X -= (int)Velocity.X;
                 hitbox.Y -= (int)Velocity.Y;
             }
             else
             {
-                /**TODO: Das muss noch überarbeitet werden: 
-                    Wir überprüfen, ob die TileCollisionHitbox einer der Tiles überprüft
-                    - ein Tile im Array ist 32x32 groß, d.h.:
-                        -Tile1 im Array in currentLevel[0,0] geht von (0,0) bis (31,31)
-                        - Tile2 im Array in currentLevel[0,1] geht von (32,0) bis (63,31) usw.
-                    Also kann man die 4 Eckpunkte der Hitbox / 32 teilen und man erfährt die Indizes für die zu prüfenden Felder
-                        -z.B.: HITBOX KOORDINATEN SIND: 
-                            NW:[83,20]  
-                            NE[112,20]  
-                            SE[112,49]  
-                            SW[83,49]
-                        - teilen wir die Werte durch 32 ergibt das:
-                            NW:[2,0]  
-                            NE[3,0]  
-                            SE[3,1]  
-                            SW[2,1]
-                        - diese 4 Tiles überprüfen wir nun: Ist mindestens einer davon UNPASSABLE: nicht bewegen
-                 */
+
                 Rectangle tileHitbox = GetTileCollisionHitbox();
                 Debug.Print("DEBUG: Hitbox Coordinates: NW:[{0},{1}]  NE[{2},{3}]  SE[{4},{5}]  SW[{6},{7}]",
                     tileHitbox.X, tileHitbox.Y,
@@ -155,7 +141,62 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         }
 
         public Rectangle GetTileCollisionHitbox() {
-            return new Rectangle(hitbox.X, hitbox.Y + 20, hitbox.Width, hitbox.Height - 20);
+            return new Rectangle(hitbox.X+5, hitbox.Y +5 + 20, hitbox.Width -10 , hitbox.Height -10 - 20);
+        }
+
+        public bool CollidesWithSolidTile() {
+            /**     Wir überprüfen, ob die TileCollisionHitbox einer der Tiles überprüft
+                    - ein Tile im Array ist 32x32 groß, d.h.:
+                        -Tile1 im Array in currentLevel[0,0] geht von (0,0) bis (31,31)
+                        - Tile2 im Array in currentLevel[0,1] geht von (32,0) bis (63,31) usw.
+                    Also kann man die 4 Eckpunkte der Hitbox / 32 teilen und man erfährt die Indizes für die zu prüfenden Felder
+                        -z.B.: HITBOX KOORDINATEN SIND: 
+                            NW:[83,20]  
+                            NE[112,20]  
+                            SE[112,49]  
+                            SW[83,49]
+                        - teilen wir die Werte durch 32 ergibt das:
+                            NW:[2,0]  
+                            NE[3,0]  
+                            SE[3,1]  
+                            SW[2,1]
+                        - diese 4 Tiles überprüfen wir nun: Ist mindestens einer davon UNPASSABLE: nicht bewegen
+                 */
+            Rectangle tileCollisionHitbox = GetTileCollisionHitbox();
+            Point p = new Point(tileCollisionHitbox.X / 32, tileCollisionHitbox.Y / 32);    // NW
+
+            if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
+            {
+                return true;
+            }
+            p = new Point( (tileCollisionHitbox.X + tileCollisionHitbox.Width) / 32, tileCollisionHitbox.Y / 32);   // NE
+
+            if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
+            {
+                return true;
+            }
+            p = new Point(tileCollisionHitbox.X / 32, ( (tileCollisionHitbox.Y + tileCollisionHitbox.Height) / 32) );    // SW
+
+            if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
+            {
+                return true;
+            }
+
+            p = new Point( (tileCollisionHitbox.X + tileCollisionHitbox.Width ) / 32, (( tileCollisionHitbox.Y + tileCollisionHitbox.Height) / 32));    // SE
+            if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
+            {
+                return true;
+            }
+
+            return false;
+
+
+        }
+
+        public bool CollidesWithFrameBorder() {
+            return !new Rectangle(0, 0, (int)Game1.ScreenSize.X, (int)Game1.ScreenSize.Y).Contains(hitbox);
+
+
         }
 
         public override void Update(GameTime gameTime)
