@@ -81,6 +81,7 @@ namespace _2DRoguelike.Content.Core.Screens
             if (IsActive)
             {
                 // Game Logic
+                Camera.Update(gameTime, Player.Instance);
                 InputController.Update();
                 EntityManager.Update(gameTime);
             }
@@ -118,7 +119,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred,BlendState.AlphaBlend,null,null,null,null,Camera.transform);
 
             LevelManager.Draw(spriteBatch);
 

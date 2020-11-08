@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using _2DRoguelike.Content.Core.Entities.Player;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace _2DRoguelike.Content.Core
     {
         private static KeyboardState keyboardState, lastKeyboardState;
         private static MouseState mouseState, lastMouseState;
-        public static Vector2 MousePosition { get { return new Vector2(mouseState.X, mouseState.Y); } }
+        public static Vector2 MousePosition { get { return new Vector2(mouseState.X + Camera.target.X, mouseState.Y + Camera.target.Y); } }
 
         public static void Update()
         {
@@ -23,9 +24,7 @@ namespace _2DRoguelike.Content.Core
         public static Vector2 GetDirection()
         {
 
-            Vector2 direction = Vector2.Zero;
-
-            
+            Vector2 direction = Vector2.Zero;            
             KeyboardState kstate = Keyboard.GetState();
 
             if (kstate.IsKeyDown(Keys.A))
@@ -36,9 +35,6 @@ namespace _2DRoguelike.Content.Core
                 direction.Y -= 1;
             if (kstate.IsKeyDown(Keys.S))
                 direction.Y += 1;
-
-            // wurden mehrere Richtungstasten gedrueckt? → Nur ein Drittel der Geschwindigkeit gehen (diagonal langsamer)
-
 
             return direction;
         }
@@ -53,6 +49,8 @@ namespace _2DRoguelike.Content.Core
             {
                 return Vector2.Zero;
             }
+
+            /* if mouse isn't clicked, return a zero vector */
         }
 
         public static Vector2 GetMousePosition()

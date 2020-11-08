@@ -18,7 +18,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         // cooldown in seconds!
         private const float attackCooldown = 2;
         private float cooldownTimer;
-        //Erstellung der Hitbox 
+        // Erstellung der Hitbox 
         private Rectangle hitbox;
 
         public static Player Instance
@@ -35,17 +35,17 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
         private Player()
         {
-            this.Position = new Vector2(4, 6);
+            this.position = new Vector2(2*32, 5*32);
             this.texture = TextureManager.Player;
             float frameSpeed = 0.09f;
             this.animations = new Dictionary<string, Animation>()
             {
+                // Todo: idle animation texturesheet erstellen!
+                {"Idle", new Animation(TextureManager.Player,1,frameSpeed*4)},
                 {"WalkUp", new Animation(TextureManager.PlayerWalkUpAxe,9,frameSpeed)},
                 {"WalkDown", new Animation(TextureManager.PlayerWalkDownAxe,9,frameSpeed)},
                 {"WalkLeft",new Animation(TextureManager.PlayerWalkLeftAxe,9,frameSpeed)},
-                {"WalkRight", new Animation(TextureManager.PlayerWalkRightAxe,9,frameSpeed)},
-                // Todo: idle animation texturesheet erstellen!
-                {"Idle", new Animation(TextureManager.Player,1,frameSpeed*4)}
+                {"WalkRight", new Animation(TextureManager.PlayerWalkRightAxe,9,frameSpeed)}
             };
             this.animationManager = new AnimationManager(animations.First().Value);
             this.isExpired = false;
@@ -70,7 +70,6 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             {
                 animationManager.Play(animations["WalkUp"]);
             }
-            // Todo: idle animation texturesheet erstellen!
             else if(Velocity.X == 0 && Velocity.Y == 0)
             {
                 animationManager.Play(animations["Idle"]);
@@ -91,37 +90,28 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             Velocity.X = (float)Math.Round((double)Velocity.X);
             Velocity.Y = (float)Math.Round((double)Velocity.Y);
 
-
-
             // von float in int
             hitbox.X += (int)Velocity.X;
             hitbox.Y += (int)Velocity.Y;
 
             // Wenn Bewegung nicht möglich: Hitbox wieder zurücksetzen
-            if (CollidesWithFrameBorder()
-                || CollidesWithSolidTile())
+            // CollidesWithFrameBorder() weggemacht
+            if (CollidesWithSolidTile())
             {
                 hitbox.X -= (int)Velocity.X;
                 hitbox.Y -= (int)Velocity.Y;
             }
             else
             {
-
+                /*
                 Rectangle tileHitbox = GetTileCollisionHitbox();
                 Debug.Print("DEBUG: Hitbox Coordinates: NW:[{0},{1}]  NE[{2},{3}]  SE[{4},{5}]  SW[{6},{7}]",
                     tileHitbox.X, tileHitbox.Y,
                     tileHitbox.X+ tileHitbox.Width, tileHitbox.Y ,
                     tileHitbox.X+ tileHitbox.Width, tileHitbox.Y + tileHitbox.Height,
                     tileHitbox.X, tileHitbox.Y + tileHitbox.Height );
-
-                Vector2 temp = Position + Velocity;
-                Debug.Print("X =" + (int)temp.X/32+ " Y=" + (int)temp.Y/32);
-                //if (!LevelManager.currentLevel[(int)temp.X / 16, (int)temp.Y / 16].IsSolid())
-                //{
-                //     Position += Velocity;
-                //}
+                */
                 Position += Velocity;
-
             }
         }
 
@@ -137,7 +127,6 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 EntityManager.Add(e);
                 e.Explode();
             }
-            //Debug.Print("Time= "+cooldown);
         }
 
         public Rectangle GetTileCollisionHitbox() {
@@ -145,7 +134,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         }
 
         public bool CollidesWithSolidTile() {
-            /**     Wir überprüfen, ob die TileCollisionHitbox einer der Tiles überprüft
+            /*     Wir überprüfen, ob die TileCollisionHitbox einer der Tiles überprüft
                     - ein Tile im Array ist 32x32 groß, d.h.:
                         -Tile1 im Array in currentLevel[0,0] geht von (0,0) bis (31,31)
                         - Tile2 im Array in currentLevel[0,1] geht von (32,0) bis (63,31) usw.
@@ -187,16 +176,11 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             {
                 return true;
             }
-
             return false;
-
-
         }
 
         public bool CollidesWithFrameBorder() {
             return !new Rectangle(0, 0, (int)Game1.ScreenSize.X, (int)Game1.ScreenSize.Y).Contains(hitbox);
-
-
         }
 
         public override void Update(GameTime gameTime)
@@ -204,8 +188,6 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             CheckMovement();
             DetermineAnimation();
             CheckAttacking();
-
-            // orientation = (float)Math.Atan2(InputController.GetMousePosition().X, InputController.GetMousePosition().Y);
 
             cooldownTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
