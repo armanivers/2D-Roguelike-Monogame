@@ -11,8 +11,10 @@
 
 #region Using Statements
 
+using _2DRoguelike.Content.Core.GameDebug;
 using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.Player;
+using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -71,7 +73,6 @@ namespace _2DRoguelike.Content.Core.Screens
                                                        bool coveredByOtherScreen)
         {
             base.Update(gameTime, otherScreenHasFocus, false);
-            EntityManager.Update(gameTime);
             // Gradually fade in or out depending on whether we are covered by the pause screen.
             if (coveredByOtherScreen)
                 pauseAlpha = Math.Min(pauseAlpha + 1f / 32, 1);
@@ -81,7 +82,9 @@ namespace _2DRoguelike.Content.Core.Screens
             if (IsActive)
             {
                 // Game Logic
+                Camera.Update(Player.Instance);
                 InputController.Update();
+                EntityManager.Update(gameTime);
             }
         }
 
@@ -102,6 +105,7 @@ namespace _2DRoguelike.Content.Core.Screens
             if (input.IsPauseGame(ControllingPlayer) || gamePadDisconnected)
             {
                 ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
+               
             }
             else
             {
@@ -116,9 +120,14 @@ namespace _2DRoguelike.Content.Core.Screens
 
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred,BlendState.AlphaBlend,null,null,null,null,Camera.transform);
+
+            LevelManager.Draw(spriteBatch);
 
             EntityManager.Draw(spriteBatch);
+
+            // auskommentieren, falls man kein debugmodus will
+            GameDebug.GameDebug.Draw(spriteBatch);
 
             spriteBatch.End();
 
