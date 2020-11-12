@@ -14,6 +14,13 @@ namespace _2DRoguelike.Content.Core.Entities
         protected AnimationManager animationManager;
         protected Dictionary<string, Animation> animations;
 
+        protected Rectangle hitbox;
+        public Rectangle Hitbox { get { return hitbox; } set { hitbox = value; } }
+
+        public EntityBasis() {
+            isExpired = false;
+        }
+
         public Vector2 position;
         public Vector2 Position
         {

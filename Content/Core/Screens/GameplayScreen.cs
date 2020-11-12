@@ -23,6 +23,7 @@ using Microsoft.Xna.Framework.Media;
 using System;
 using System.Threading;
 using System.Diagnostics;
+using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 
 #endregion Using Statements
 
@@ -53,9 +54,14 @@ namespace _2DRoguelike.Content.Core.Screens
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            EntityManager.Add(Player.Instance);
+            
+            EntityManager.Add(new GreenZombie(LevelManager.maps.getSpawnpoint(),
+                10,2,3));
 
-            Thread.Sleep(1000);
+
+            EntityManager.Add(Player.Instance);
+            Thread.Sleep(500);
+
             ScreenManager.Game.ResetElapsedTime();
         }
 
@@ -70,7 +76,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
         #endregion Initialization
 
-        #region Update and Draw
+       #region Update and Draw
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus,
                                                        bool coveredByOtherScreen)
