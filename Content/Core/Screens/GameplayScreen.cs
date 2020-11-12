@@ -22,8 +22,8 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Threading;
-using System.Diagnostics;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using System.Diagnostics;
 
 #endregion Using Statements
 
@@ -123,7 +123,7 @@ namespace _2DRoguelike.Content.Core.Screens
             }
             else
             {
-
+                
 
             }
         }
