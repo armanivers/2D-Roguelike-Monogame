@@ -67,7 +67,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
         #endregion Initialization
 
-        #region Update and Draw
+       #region Update and Draw
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus,
                                                        bool coveredByOtherScreen)

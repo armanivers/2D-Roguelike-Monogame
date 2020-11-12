@@ -36,7 +36,8 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
         private Player()
         {
-            this.position = new Vector2(2*32, 5*32);
+            //this.position = new Vector2(2*32, 5*32);
+            this.position = LevelManager.maps.getSpawnpoint()*32;
             this.texture = TextureManager.Player;
             float frameSpeed = 0.09f;
             this.animations = new Dictionary<string, Animation>()
@@ -85,34 +86,32 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         {
             Velocity = playerSpeed * InputController.GetDirection();
             if ((InputController.GetPressedKeys().Intersect<Keys>(new Keys[] { Keys.W, Keys.A, Keys.S, Keys.D }).Count()) > 1)
-                Velocity /= 1.5f;
+                Velocity /= 1.3f;
 
-            // TODO Du bist hässlich
             Velocity.X = (float)Math.Round((double)Velocity.X);
             Velocity.Y = (float)Math.Round((double)Velocity.Y);
 
             // von float in int
             hitbox.X += (int)Velocity.X;
-            hitbox.Y += (int)Velocity.Y;
-
             // Wenn Bewegung nicht möglich: Hitbox wieder zurücksetzen
             // CollidesWithFrameBorder() weggemacht
             if (CollidesWithSolidTile())
             {
                 hitbox.X -= (int)Velocity.X;
+                
+            }
+            else
+            {
+                Position += new Vector2(Velocity.X,0);
+            }
+            hitbox.Y += (int)Velocity.Y;
+            if (CollidesWithSolidTile())
+            {
                 hitbox.Y -= (int)Velocity.Y;
             }
             else
             {
-                /*
-                Rectangle tileHitbox = GetTileCollisionHitbox();
-                Debug.Print("DEBUG: Hitbox Coordinates: NW:[{0},{1}]  NE[{2},{3}]  SE[{4},{5}]  SW[{6},{7}]",
-                    tileHitbox.X, tileHitbox.Y,
-                    tileHitbox.X+ tileHitbox.Width, tileHitbox.Y ,
-                    tileHitbox.X+ tileHitbox.Width, tileHitbox.Y + tileHitbox.Height,
-                    tileHitbox.X, tileHitbox.Y + tileHitbox.Height );
-                */
-                Position += Velocity;
+                Position += new Vector2(0, Velocity.Y);
             }
         }
 
@@ -151,7 +150,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                             SE[3,1]  
                             SW[2,1]
                         - diese 4 Tiles überprüfen wir nun: Ist mindestens einer davon UNPASSABLE: nicht bewegen
-                 */
+                */
             Rectangle tileCollisionHitbox = GetTileCollisionHitbox();
             Point p = new Point(tileCollisionHitbox.X / 32, tileCollisionHitbox.Y / 32);    // NW
 
