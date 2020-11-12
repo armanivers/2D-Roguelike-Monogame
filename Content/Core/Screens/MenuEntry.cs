@@ -47,6 +47,12 @@ namespace _2DRoguelike.Content.Core.Screens
         /// each frame in Update.
         /// </summary>
         private Vector2 position;
+        private bool notSelectable;
+
+        public bool Selectable { 
+            get { return notSelectable; } 
+            set { notSelectable = value; } 
+        }
 
         #endregion Fields
 
@@ -97,6 +103,13 @@ namespace _2DRoguelike.Content.Core.Screens
         /// </summary>
         public MenuEntry(string text)
         {
+            this.notSelectable = false;
+            this.text = text;
+        }
+
+        public MenuEntry(string text, bool selectable)
+        {
+            this.notSelectable = selectable;
             this.text = text;
         }
 
@@ -138,7 +151,7 @@ namespace _2DRoguelike.Content.Core.Screens
 #endif
 
             // Draw the selected entry in yellow, otherwise white.
-            Color color = isSelected ? Color.Yellow : Color.White;
+            Color color = isSelected ? Color.Red : Color.White;
 
             // Pulsate the size of the selected menu entry.
             double time = gameTime.TotalGameTime.TotalSeconds;

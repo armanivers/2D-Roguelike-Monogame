@@ -15,6 +15,9 @@ namespace _2DRoguelike.Content.Core.Entities.Player
     {
         private static Player instance;
         private const float playerSpeed = 5;
+        private const double maxHealth = 100;
+        private double currentHealth;
+        private bool isDead;
         // cooldown in seconds!
         private const float attackCooldown = 2;
         private float cooldownTimer;
@@ -36,10 +39,10 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
         private Player()
         {
-            this.position = new Vector2(2*32, 5*32);
-            this.texture = TextureManager.Player;
+            position = new Vector2(2*32, 5*32);
+            texture = TextureManager.Player;
             float frameSpeed = 0.09f;
-            this.animations = new Dictionary<string, Animation>()
+            animations = new Dictionary<string, Animation>()
             {
                 // Todo: idle animation texturesheet erstellen!
                 {"Idle", new Animation(TextureManager.Player,1,frameSpeed*4)},
@@ -48,10 +51,12 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 {"WalkLeft",new Animation(TextureManager.PlayerWalkLeftAxe,9,frameSpeed)},
                 {"WalkRight", new Animation(TextureManager.PlayerWalkRightAxe,9,frameSpeed)}
             };
-            this.animationManager = new AnimationManager(animations.First().Value);
-            this.isExpired = false;
-            this.cooldownTimer = attackCooldown;
+            animationManager = new AnimationManager(animations.First().Value);
+            isExpired = false;
+            cooldownTimer = attackCooldown;
             hitbox = new Rectangle((int)Position.X + 17, (int)Position.Y + 14, 29, 49);
+            currentHealth = 100;
+            isDead = false;
         }
         private void DetermineAnimation()
         {
@@ -127,6 +132,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 Explosion e = new Explosion(new Vector2(InputController.MousePosition.X-20, InputController.MousePosition.Y-20));
                 EntityManager.Add(e);
                 e.Explode();
+                GetHit(101);
             }
         }
 
@@ -182,6 +188,25 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
         public bool CollidesWithFrameBorder() {
             return !new Rectangle(0, 0, (int)Game1.ScreenSize.X, (int)Game1.ScreenSize.Y).Contains(hitbox);
+        }
+
+        public void GetHit(double damage)
+        {
+            currentHealth -= damage;
+            if(currentHealth <= 0)
+            {
+                isDead = true;
+            }
+        }
+
+        public void DeleteInstance()
+        {
+            instance = null;
+        }
+
+        public bool IsDead()
+        {
+            return isDead;
         }
 
         public override void Update(GameTime gameTime)

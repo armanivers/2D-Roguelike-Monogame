@@ -22,6 +22,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Threading;
+using System.Diagnostics;
 
 #endregion Using Statements
 
@@ -55,14 +56,16 @@ namespace _2DRoguelike.Content.Core.Screens
             EntityManager.Add(Player.Instance);
 
             Thread.Sleep(1000);
-
             ScreenManager.Game.ResetElapsedTime();
         }
 
         public override void UnloadContent()
         {
             content.Unload();
-            // TODO: entity.clear() method, so that all entities are deleted/cleared
+            
+            // Unload all entities + delete current Player Intance
+            EntityManager.unloadEntities();
+            Player.Instance.DeleteInstance();
         }
 
         #endregion Initialization
@@ -80,11 +83,16 @@ namespace _2DRoguelike.Content.Core.Screens
                 pauseAlpha = Math.Max(pauseAlpha - 1f / 32, 0);
 
             if (IsActive)
-            {
+            { 
                 // Game Logic
                 Camera.Update(Player.Instance);
                 InputController.Update();
                 EntityManager.Update(gameTime);
+                if (Player.Instance.IsDead())
+                {
+                    //LoadingScreen.Load(ScreenManager, false, null,new GameoverScreen());
+                    ScreenManager.AddScreen(new GameoverScreen(), ControllingPlayer);
+                }
             }
         }
 
@@ -109,7 +117,7 @@ namespace _2DRoguelike.Content.Core.Screens
             }
             else
             {
-                
+
 
             }
         }

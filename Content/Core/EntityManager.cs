@@ -47,5 +47,11 @@ namespace _2DRoguelike.Content.Core.Entities
             foreach (var entity in entities)
                 entity.Draw(spriteBatch);
         }
+
+        public static void unloadEntities()
+        {
+            addedEntities.Clear();
+            entities.Clear();
+        }
     }
 }

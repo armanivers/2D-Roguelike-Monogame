@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 #endregion Using Statements
 
@@ -35,7 +36,7 @@ namespace _2DRoguelike.Content.Core.Screens
         #endregion Fields
 
         #region Properties
-
+        protected bool notEscapable = false;
         /// <summary>
         /// Gets the list of menu entries, so derived classes can add
         /// or change the menu contents.
@@ -77,6 +78,14 @@ namespace _2DRoguelike.Content.Core.Screens
 
                 if (selectedEntry < 0)
                     selectedEntry = menuEntries.Count - 1;
+                if (menuEntries[selectedEntry].Selectable)
+                {
+                    //Debug.Print("Not Selectable");
+                }
+                else
+                {
+                    //Debug.Print("selectable");
+                }
             }
 
             // Move to the next menu entry?
@@ -86,6 +95,15 @@ namespace _2DRoguelike.Content.Core.Screens
 
                 if (selectedEntry >= menuEntries.Count)
                     selectedEntry = 0;
+
+                if (menuEntries[selectedEntry].Selectable)
+                {
+                    //Debug.Print("Not Selectable");
+                }
+                else
+                {
+                    //Debug.Print("selectable");
+                }
             }
 
             // Accept or cancel the menu? We pass in our ControllingPlayer, which may
@@ -99,7 +117,7 @@ namespace _2DRoguelike.Content.Core.Screens
             {
                 OnSelectEntry(selectedEntry, playerIndex);
             }
-            else if (input.IsMenuCancel(ControllingPlayer, out playerIndex))
+            else if (input.IsMenuCancel(ControllingPlayer, out playerIndex) && !notEscapable)
             {
                 OnCancel(playerIndex);
             }
@@ -153,12 +171,13 @@ namespace _2DRoguelike.Content.Core.Screens
                 MenuEntry menuEntry = menuEntries[i];
 
                 // each entry is to be centered horizontally
+                position.Y = ScreenManager.GraphicsDevice.Viewport.Height / 3 + menuEntry.GetHeight(this) * (i*2);
                 position.X = ScreenManager.GraphicsDevice.Viewport.Width / 2 - menuEntry.GetWidth(this) / 2;
 
                 if (ScreenState == ScreenState.TransitionOn)
-                    position.X -= transitionOffset * 256;
+                    position.Y -= transitionOffset * 256;
                 else
-                    position.X += transitionOffset * 512;
+                    position.Y += transitionOffset * 512;
 
                 // set the entry's position
                 menuEntry.Position = position;
