@@ -18,7 +18,8 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         //private Attack rangeAttack; = new RangeAttack();
 
         // cooldown in seconds!
-       
+
+        private bool isDead;
 
         public static Player Instance
         {
@@ -38,9 +39,9 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             // rangeAttack = new RangeAttack(this);
             // meleeAttack = new MeleeAttack(this):
 
-           
-           
             //this.position = new Vector2(2*32, 5*32); bei statischer Map
+
+            isDead = false;
             
             texture = TextureManager.Player;
             float frameSpeed = 0.09f;
@@ -100,6 +101,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 Explosion e = new Explosion(new Vector2(InputController.MousePosition.X-20, InputController.MousePosition.Y-20));
                 EntityManager.Add(e);
                 e.Explode();
+                Kill();
             }
         }
 
@@ -107,6 +109,31 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         {
             base.Update(gameTime);
             CheckAttacking();
+        }
+
+        public void GetHit(int damage)
+        {
+            HealthPoints -= damage;
+            if (HealthPoints <= 0)
+            {
+                isDead = true;
+            }
+        }
+
+        public void Kill()
+        {
+            HealthPoints = 0;
+            isDead = true;
+        }
+
+        public void DeleteInstance()
+        {
+            instance = null;
+        }
+
+        public bool IsDead()
+        {
+            return isDead;
         }
 
         public override void Attack(Attack.AttackMethod attackMethod)
