@@ -17,9 +17,7 @@ namespace _2DRoguelike.Content.Core.Entities
         protected Rectangle hitbox;
         public Rectangle Hitbox { get { return hitbox; } set { hitbox = value; } }
 
-        public EntityBasis() {
-            isExpired = false;
-        }
+        
 
         public Vector2 position;
 
@@ -42,6 +40,10 @@ namespace _2DRoguelike.Content.Core.Entities
         public float orientation;
         public bool isExpired;
 
+        public EntityBasis(Vector2 pos) {
+            this.Position = pos;
+            isExpired = false;
+        }
         public Vector2 Size
         {
             get

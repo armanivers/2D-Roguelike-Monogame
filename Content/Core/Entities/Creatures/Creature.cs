@@ -19,23 +19,21 @@ namespace _2DRoguelike.Content.Core.Entities
         // TODO: Setter fuer die Hitbox fixen (fuer untere Klassen)
         public override Vector2 Position
         {
-            get { return position; }
+            get { return base.position; }
             set
             {
-                position = value;
+                base.position = value;
                 hitbox.X = (int)value.X + 17;
                 hitbox.Y = (int)value.Y + 14;
 
                 if (animationManager != null)
                 {
-                    animationManager.Position = position;
+                    animationManager.Position = base.position;
                 }
             }
         }
 
-        public Creature(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(){
-
-            this.Position = position;
+        public Creature(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position){
             this.maxHealthPoints = maxHealthPoints;
             this.attackCooldown = attackCooldown;
             this.movingSpeed = movingSpeed;

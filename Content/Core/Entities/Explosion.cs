@@ -13,7 +13,7 @@ namespace _2DRoguelike.Content.Core.Entities
         private const float expireTimer = 1;
         private float timer;
         
-        public Explosion(Vector2 position)
+        public Explosion(Vector2 position): base(position)
         {
             this.texture = TextureManager.Explosion;
             this.animations = new Dictionary<string, Animation>()
@@ -21,8 +21,6 @@ namespace _2DRoguelike.Content.Core.Entities
                 {"Explode", new Animation(TextureManager.Explosion,0,6,0.1f)}
             };
             this.animationManager = new AnimationManager(animations.First().Value);
-            this.Position = position;
-            this.isExpired = false;
             this.shouldExplode = false;
             this.timer = 0;
         }

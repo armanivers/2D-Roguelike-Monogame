@@ -97,7 +97,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 //Explosion e = new Explosion(new Vector2(InputController.MousePosition.X, InputController.MousePosition.Y));
                 //EntityManager.Add(e);
                 //e.Explode();
-                Position = (new Vector2(InputController.MousePosition.X+position.X, InputController.MousePosition.Y+position.Y-10));
+                Position = (new Vector2(InputController.MousePosition.X, InputController.MousePosition.Y-10));
                 //Kill();
             }
         }
