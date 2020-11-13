@@ -11,7 +11,7 @@ namespace _2DRoguelike
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
+        public static GraphicsDeviceManager _graphics;
         private ScreenManager screenManager;
 
         private static readonly string[] preloadAssets =
@@ -27,8 +27,8 @@ namespace _2DRoguelike
         {
             _graphics = new GraphicsDeviceManager(this);
 
-            _graphics.PreferredBackBufferWidth = 1920;
-            _graphics.PreferredBackBufferHeight = 1080;
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -46,9 +46,9 @@ namespace _2DRoguelike
 
         protected override void Initialize()
         {
-            _graphics.PreferredBackBufferWidth = 1280;
-            _graphics.PreferredBackBufferHeight = 720;
-            //_graphics.IsFullScreen = true;
+            _graphics.PreferredBackBufferWidth = GameSettings.screenWidth;
+            _graphics.PreferredBackBufferHeight = GameSettings.screenHeight;
+            _graphics.IsFullScreen = GameSettings.fullScreen;
             _graphics.ApplyChanges();
             base.Initialize();
         }
@@ -61,6 +61,9 @@ namespace _2DRoguelike
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            _graphics.PreferredBackBufferWidth = GameSettings.screenWidth;
+            _graphics.PreferredBackBufferWidth = GameSettings.screenHeight;
+
         }
 
         protected override void Draw(GameTime gameTime)

@@ -18,16 +18,11 @@ namespace _2DRoguelike.Content.Core.Screens
     {
         #region Initialization
 
-        private MenuEntry highscoreData;
-        private string data;
-
-        public HighscoreMenuScreen()  : base("Highscore Board")
+        public HighscoreMenuScreen()  : base("Global Leaderboard",true)
         {
             MenuEntry mainMenu = new MenuEntry("Return To Menu");
             GetHighscores();
-            highscoreData = new MenuEntry(data, true);
             mainMenu.Selected += ReturnToMainMenu;
-            MenuEntries.Add(highscoreData);
             MenuEntries.Add(mainMenu);
         }
 
@@ -40,15 +35,8 @@ namespace _2DRoguelike.Content.Core.Screens
             using (WebClient wc = new WebClient())
             {
                 var json = wc.DownloadString("http://latenitearii.ddns.net/2dmonogame/highscore");
-                data = json;
-                Debug.Print(json.ToString());
+                dataString = json;
             }
-        }
-
-        private void StartNewGame(object sender, PlayerIndexEventArgs e)
-        {
-            //ScreenManager.AddScreen(confirmQuitMessageBox, ControllingPlayer);
-            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, new GameplayScreen());
         }
 
         private void ReturnToMainMenu(object sender, PlayerIndexEventArgs e)

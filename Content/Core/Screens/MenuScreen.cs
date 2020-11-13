@@ -16,6 +16,9 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.Reflection.Metadata;
+using Color = Microsoft.Xna.Framework.Color;
 
 #endregion Using Statements
 
@@ -37,6 +40,8 @@ namespace _2DRoguelike.Content.Core.Screens
 
         #region Properties
         protected bool notEscapable = false;
+        protected bool reverse;
+        protected String dataString;
         /// <summary>
         /// Gets the list of menu entries, so derived classes can add
         /// or change the menu contents.
@@ -56,7 +61,15 @@ namespace _2DRoguelike.Content.Core.Screens
         public MenuScreen(string menuTitle)
         {
             this.menuTitle = menuTitle;
+            this.reverse = false;
+            TransitionOnTime = TimeSpan.FromSeconds(0.5);
+            TransitionOffTime = TimeSpan.FromSeconds(0.5);
+        }
 
+        public MenuScreen(string menuTitle, bool reverse)
+        {
+            this.menuTitle = menuTitle;
+            this.reverse = reverse;
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
         }
@@ -187,6 +200,35 @@ namespace _2DRoguelike.Content.Core.Screens
             }
         }
 
+        protected virtual void UpdateMenuEntryLocationsReverse()
+        {
+            float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
+
+            // start at Y = 175; each X value is generated per entry
+            Vector2 position = new Vector2(0f,ScreenManager.GraphicsDevice.Viewport.Height - 175f);
+
+            // update each menu entry's location in turn
+            for (int i = 0; i < menuEntries.Count; i++)
+            {
+                MenuEntry menuEntry = menuEntries[i];
+
+                // each entry is to be centered horizontally
+                position.Y = ScreenManager.GraphicsDevice.Viewport.Height - menuEntry.GetHeight(this) - 50f;
+                position.X = ScreenManager.GraphicsDevice.Viewport.Width / 2 - menuEntry.GetWidth(this) / 2;
+
+                if (ScreenState == ScreenState.TransitionOn)
+                    position.Y += transitionOffset * 256;
+                else
+                    position.Y -= transitionOffset * 512;
+
+                // set the entry's position
+                menuEntry.Position = position;
+
+                // move down for the next entry the size of this entry
+                position.Y -= menuEntry.GetHeight(this);
+            }
+        }
+
         /// <summary>
         /// Updates the menu.
         /// </summary>
@@ -209,8 +251,15 @@ namespace _2DRoguelike.Content.Core.Screens
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
-            // make sure our entries are in the right place before we draw them
-            UpdateMenuEntryLocations();
+            if (reverse)
+            {
+                UpdateMenuEntryLocationsReverse();
+            }
+            else
+            {
+                // make sure our entries are in the right place before we draw them
+                UpdateMenuEntryLocations();
+            }
 
             GraphicsDevice graphics = ScreenManager.GraphicsDevice;
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
@@ -236,10 +285,23 @@ namespace _2DRoguelike.Content.Core.Screens
             // Draw the menu title centered on the screen
             Vector2 titlePosition = new Vector2(graphics.Viewport.Width / 2, 80);
             Vector2 titleOrigin = font.MeasureString(menuTitle) / 2;
-            Color titleColor = new Color(192, 192, 192) * TransitionAlpha;
+
+            Color titleColor = new Color(255, 64, 25) * TransitionAlpha;
+            Color dataColor = new Color(255, 191, 128) * TransitionAlpha;
+
             float titleScale = 1.25f;
+            float dataScale = GameSettings.GetTextScale();
 
             titlePosition.Y -= transitionOffset * 100;
+
+            if (dataString != null)
+            {
+                Vector2 dataPosition = new Vector2(graphics.Viewport.Width / 2, graphics.Viewport.Height/2);
+                Vector2 dataOrigin = font.MeasureString(dataString) / 2;
+                dataPosition.Y -= transitionOffset * 100;
+                spriteBatch.DrawString(font, dataString, dataPosition, dataColor, 0,
+                                   dataOrigin, dataScale, SpriteEffects.None, 0);
+            }
 
             spriteBatch.DrawString(font, menuTitle, titlePosition, titleColor, 0,
                                    titleOrigin, titleScale, SpriteEffects.None, 0);

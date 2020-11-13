@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace _2DRoguelike.Content.Core.Entities.Player
@@ -12,7 +13,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         public static Matrix transform;
         public static Viewport view = Game1.Viewport;
         public static Vector2 target = Player.Instance.Position;
-        public static float zoom = 1.5f;
+        public static float zoom = view.Width * 0.1171875f/100;
 
         // camera shake attributes
         public static bool screenShake;
@@ -38,6 +39,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             screenShake = true;
             shakeRadius = 15;
             shakeStartAngle = 15;
+            Debug.Print("WIDTH = " +view.Width);
         }
 
         public static Vector2 CalculateShake()
@@ -57,11 +59,28 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             return shakeOffset;
         }
 
-        public static void Reset()
+        public static void Unload()
         {
             screenShake = false;
             shakeRadius = 0;
             shakeStartAngle = 0;
+        }
+
+        public static void Load()
+        {
+            //initZoom();
+        }
+        
+        public static void initZoom()
+        {
+            if (GameSettings.fullScreen)
+            {
+                zoom = 2.0f;
+            }
+            else
+            {
+                zoom = 1.5f;
+            }
         }
 
     }

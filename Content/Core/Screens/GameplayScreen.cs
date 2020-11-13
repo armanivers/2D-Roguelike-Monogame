@@ -65,7 +65,7 @@ namespace _2DRoguelike.Content.Core.Screens
         public override void UnloadContent()
         {
             content.Unload();
-            Camera.Reset();
+            Camera.Unload();
             // Unload all entities + delete current Player Intance
             EntityManager.unloadEntities();
             Player.Instance.DeleteInstance();

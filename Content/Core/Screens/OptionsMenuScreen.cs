@@ -9,6 +9,8 @@
 
 #endregion File Description
 
+using System.Diagnostics;
+
 namespace _2DRoguelike.Content.Core.Screens
 {
     /// <summary>
@@ -22,7 +24,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
         private MenuEntry ungulateMenuEntry;
         private MenuEntry languageMenuEntry;
-        private MenuEntry frobnicateMenuEntry;
+        private MenuEntry fullscreenMenuEntry;
         private MenuEntry elfMenuEntry;
 
         private enum Ungulate
@@ -36,8 +38,6 @@ namespace _2DRoguelike.Content.Core.Screens
 
         private static string[] languages = { "C#", "French", "Deoxyribonucleic acid" };
         private static int currentLanguage = 0;
-
-        private static bool frobnicate = true;
 
         private static int elf = 23;
 
@@ -54,7 +54,7 @@ namespace _2DRoguelike.Content.Core.Screens
             // Create our menu entries.
             ungulateMenuEntry = new MenuEntry(string.Empty);
             languageMenuEntry = new MenuEntry(string.Empty);
-            frobnicateMenuEntry = new MenuEntry(string.Empty);
+            fullscreenMenuEntry = new MenuEntry(string.Empty);
             elfMenuEntry = new MenuEntry(string.Empty);
 
             SetMenuEntryText();
@@ -64,14 +64,14 @@ namespace _2DRoguelike.Content.Core.Screens
             // Hook up menu event handlers.
             ungulateMenuEntry.Selected += UngulateMenuEntrySelected;
             languageMenuEntry.Selected += LanguageMenuEntrySelected;
-            frobnicateMenuEntry.Selected += FrobnicateMenuEntrySelected;
+            fullscreenMenuEntry.Selected += FrobnicateMenuEntrySelected;
             elfMenuEntry.Selected += ElfMenuEntrySelected;
             back.Selected += OnCancel;
 
             // Add entries to the menu.
             MenuEntries.Add(ungulateMenuEntry);
             MenuEntries.Add(languageMenuEntry);
-            MenuEntries.Add(frobnicateMenuEntry);
+            MenuEntries.Add(fullscreenMenuEntry);
             MenuEntries.Add(elfMenuEntry);
             MenuEntries.Add(back);
         }
@@ -83,7 +83,7 @@ namespace _2DRoguelike.Content.Core.Screens
         {
             ungulateMenuEntry.Text = "Preferred ungulate: " + currentUngulate;
             languageMenuEntry.Text = "Language: " + languages[currentLanguage];
-            frobnicateMenuEntry.Text = "Frobnicate: " + (frobnicate ? "on" : "off");
+            fullscreenMenuEntry.Text = "Fullscreen: " + (GameSettings.fullScreen ? "on" : "off");
             elfMenuEntry.Text = "elf: " + elf;
         }
 
@@ -119,8 +119,14 @@ namespace _2DRoguelike.Content.Core.Screens
         /// </summary>
         private void FrobnicateMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            frobnicate = !frobnicate;
-
+            if (GameSettings.fullScreen)
+            {
+                GameSettings.SetWindowedMode();
+            }
+            else
+            {
+                GameSettings.SetFullscreen();
+            }
             SetMenuEntryText();
         }
 
