@@ -27,9 +27,9 @@ namespace _2DRoguelike
         {
             _graphics = new GraphicsDeviceManager(this);
 
-            _graphics.PreferredBackBufferWidth = 853;
-            _graphics.PreferredBackBufferHeight = 480;
-            
+            _graphics.PreferredBackBufferWidth = 1920;
+            _graphics.PreferredBackBufferHeight = 1080;
+
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             Instance = this;
@@ -46,6 +46,10 @@ namespace _2DRoguelike
 
         protected override void Initialize()
         {
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
+            //_graphics.IsFullScreen = true;
+            _graphics.ApplyChanges();
             base.Initialize();
         }
 

@@ -9,6 +9,7 @@ namespace _2DRoguelike.Content.Core.GameDebug
     static class GameDebug
     {
         public static HitboxDebug hitboxDebug = new HitboxDebug();
+        public static PlayerDebug playerDebug = new PlayerDebug();
 
         public static void Update()
         {
@@ -17,7 +18,10 @@ namespace _2DRoguelike.Content.Core.GameDebug
 
         public static void Draw(SpriteBatch spriteBatch)
         {
-            hitboxDebug.Draw(spriteBatch);
+
+            //hitboxDebug.Draw(spriteBatch);
+            //playerDebug.Draw(spriteBatch);
+
         }
     }
 }

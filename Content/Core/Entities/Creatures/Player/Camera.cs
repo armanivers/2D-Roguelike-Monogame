@@ -11,7 +11,8 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         // camera view attributes
         public static Matrix transform;
         public static Viewport view = Game1.Viewport;
-        public static Vector2 target;
+        public static Vector2 target = Player.Instance.Position;
+        public static float zoom = 1.5f;
 
         // camera shake attributes
         public static bool screenShake;
@@ -21,12 +22,27 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
         public static void Update(Player player) 
         {
-            target = new Vector2(player.Position.X + (player.Size.X / 2) - 400, player.Position.Y + (player.Size.Y/2) - 200);
+            Vector2 shakeOffset = CalculateShake();
+            var shakeOffsetMultiplier = Matrix.CreateTranslation(shakeOffset.X, shakeOffset.Y, 0);
 
-            var offset = Matrix.CreateTranslation(new Vector3(-target.X, -target.Y, 0));
+            var target = Matrix.CreateTranslation(new Vector3(-player.Position.X - (player.Size.X / 2), -player.Position.Y - (player.Size.Y / 2), 0));
+            var zoomFactor = Matrix.CreateScale(zoom);
+            var translationMatrix = Matrix.CreateTranslation(new Vector3(view.Width * 0.5f, view.Height * 0.5f, 0));
 
-            Vector2 shakeOffset = new Vector2(0, 0);
+            transform = target *  zoomFactor *  translationMatrix * shakeOffsetMultiplier;
+        } 
 
+        // evtl. paramter fur raid + angle angeben lassen
+        public static void ShakeScreen()
+        {
+            screenShake = true;
+            shakeRadius = 15;
+            shakeStartAngle = 15;
+        }
+
+        public static Vector2 CalculateShake()
+        {
+            var shakeOffset = new Vector2(0, 0);
             if (screenShake)
             {
                 shakeOffset = new Vector2((float)(Math.Sin(shakeStartAngle) * shakeRadius), (float)(Math.Cos(shakeStartAngle) * shakeRadius));
@@ -38,18 +54,14 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                     screenShake = false;
                 }
             }
+            return shakeOffset;
+        }
 
-            var shakeOffsetMultiplier = Matrix.CreateTranslation(shakeOffset.X, shakeOffset.Y, 0);
-
-            transform = Matrix.CreateScale(new Vector3(1, 1, 0)) * offset * shakeOffsetMultiplier;
-        } 
-
-        // evtl. paramter fur raid + angle angeben lassen
-        public static void ShakeScreen()
+        public static void Reset()
         {
-            screenShake = true;
-            shakeRadius = 15;
-            shakeStartAngle = 15;
+            screenShake = false;
+            shakeRadius = 0;
+            shakeStartAngle = 0;
         }
 
     }

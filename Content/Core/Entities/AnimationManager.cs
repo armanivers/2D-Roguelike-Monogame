@@ -56,7 +56,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(animation.Texture, Position, new Rectangle(animation.CurrentFrame * animation.FrameWidth, 0, animation.FrameWidth, animation.FrameHeight), Color.White);
+            spritebatch.Draw(animation.Texture, Position, new Rectangle(animation.CurrentFrame * animation.FrameWidth, animation.yOffest, animation.FrameWidth, animation.FrameHeight), Color.White);
         }
     }
 }

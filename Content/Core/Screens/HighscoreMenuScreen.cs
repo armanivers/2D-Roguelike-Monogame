@@ -21,7 +21,7 @@ namespace _2DRoguelike.Content.Core.Screens
         private MenuEntry highscoreData;
         private string data;
 
-        public HighscoreMenuScreen()  : base("Game Over")
+        public HighscoreMenuScreen()  : base("Highscore Board")
         {
             MenuEntry mainMenu = new MenuEntry("Return To Menu");
             GetHighscores();
@@ -39,7 +39,7 @@ namespace _2DRoguelike.Content.Core.Screens
         {
             using (WebClient wc = new WebClient())
             {
-                var json = wc.DownloadString("http://latenitearii.ddns.net/dashboard/data");
+                var json = wc.DownloadString("http://latenitearii.ddns.net/2dmonogame/highscore");
                 data = json;
                 Debug.Print(json.ToString());
             }

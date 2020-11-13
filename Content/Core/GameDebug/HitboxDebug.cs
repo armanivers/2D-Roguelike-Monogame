@@ -16,26 +16,34 @@ namespace _2DRoguelike.Content.Core.GameDebug
             // TODO
         }
 
-        // TODO: fur alle entities definieren, das heisst getTileCollisonHitbox() methode + Hitbox Property in EntityBasis erstellen und dann foreach Schleife!
         public void Draw(SpriteBatch spriteBatch)
         {
-            Player p = Player.Instance;
+            //Player p = Player.Instance;
                 
-            // TileCollisionBox                
-            var borderTexture = TextureManager.tileHitboxBorder;
+            foreach(var p in EntityManager.entities)
+            {
+                // TileCollisionBox                
+                var borderTexture = TextureManager.tileHitboxBorder;
 
-            var r = p.GetTileCollisionHitbox();
-            spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, borderWith, r.Height), Color.Red); // 
-            spriteBatch.Draw(borderTexture, new Rectangle(r.Right, r.Top, borderWith, r.Height), Color.Red); // 
-            spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, r.Width, borderWith), Color.Red); // 
-            spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Bottom, r.Width, borderWith), Color.Red); // 
+                if (p is Creature)
+                {
+                    var t = ((Creature)p).GetTileCollisionHitbox();
+                    spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Top, borderWith, t.Height), Color.Red); // Top
+                    spriteBatch.Draw(borderTexture, new Rectangle(t.Right, t.Top, borderWith, t.Height), Color.Red); // 
+                    spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Top, t.Width, borderWith), Color.Red); // 
+                    spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Bottom, t.Width, borderWith), Color.Red); // Bottom
+                }
 
-            //Entity Hitbox
-            r = p.Hitbox;
-            spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, borderWith, r.Height), Color.Blue); // 
-            spriteBatch.Draw(borderTexture, new Rectangle(r.Right, r.Top, borderWith, r.Height), Color.Blue); // 
-            spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, r.Width, borderWith), Color.Blue); //   
-            spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Bottom, r.Width, borderWith), Color.Blue); // Bottom
+                //Entity Hitbox
+                var r = p.Hitbox;
+                spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, borderWith, r.Height), Color.Blue); // Top
+                spriteBatch.Draw(borderTexture, new Rectangle(r.Right, r.Top, borderWith, r.Height), Color.Blue); // 
+                spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, r.Width, borderWith), Color.Blue); //   
+                spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Bottom, r.Width, borderWith), Color.Blue); // Bottom
+            }
+
+
+            
         }
 
         // wird update ueberhaupt gebraucht?

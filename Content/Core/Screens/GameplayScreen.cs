@@ -54,10 +54,7 @@ namespace _2DRoguelike.Content.Core.Screens
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            
-            EntityManager.Add(new GreenZombie(LevelManager.maps.getSpawnpoint(),
-                10,2,3));
-
+            EntityManager.Add(new GreenZombie(WorldGenerator.spawn, 10, 2, 3));
 
             EntityManager.Add(Player.Instance);
             Thread.Sleep(500);
@@ -68,7 +65,7 @@ namespace _2DRoguelike.Content.Core.Screens
         public override void UnloadContent()
         {
             content.Unload();
-            
+            Camera.Reset();
             // Unload all entities + delete current Player Intance
             EntityManager.unloadEntities();
             Player.Instance.DeleteInstance();
@@ -137,13 +134,17 @@ namespace _2DRoguelike.Content.Core.Screens
             spriteBatch.Begin(SpriteSortMode.Deferred,BlendState.AlphaBlend,null,null,null,null,Camera.transform);
 
             LevelManager.Draw(spriteBatch);
-
             EntityManager.Draw(spriteBatch);
 
-            // auskommentieren, falls man kein debugmodus will
-            GameDebug.GameDebug.Draw(spriteBatch);
+            GameDebug.GameDebug.hitboxDebug.Draw(spriteBatch);
 
             spriteBatch.End();
+
+            // seperate sprite batch begin+end which isn't attached to an active 2D Camera
+            spriteBatch.Begin();
+            GameDebug.GameDebug.playerDebug.Draw(spriteBatch);
+            spriteBatch.End();
+
 
             if (TransitionPosition > 0 || pauseAlpha > 0)
             {

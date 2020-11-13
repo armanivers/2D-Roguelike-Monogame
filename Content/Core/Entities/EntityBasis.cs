@@ -22,12 +22,15 @@ namespace _2DRoguelike.Content.Core.Entities
         }
 
         public Vector2 position;
-        public Vector2 Position
+
+        // TODO: Setter fuer die Hitbox fixen (fuer untere Klassen), Bsp Klasse Creature
+        public virtual Vector2 Position
         {
             get { return position; }
             set
             {
                 position = value;
+
                 if(animationManager!= null)
                 {
                     animationManager.Position = position;

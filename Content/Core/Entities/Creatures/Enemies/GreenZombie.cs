@@ -16,11 +16,11 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             animations = new Dictionary<string, Animation>()
             {
                 // Todo: idle animation texturesheet erstellen!
-                {"Idle", new Animation(TextureManager.Player,1,frameSpeed*4)},
-                {"WalkUp", new Animation(TextureManager.PlayerWalkUpAxe,9,frameSpeed)},
-                {"WalkDown", new Animation(TextureManager.PlayerWalkDownAxe,9,frameSpeed)},
-                {"WalkLeft",new Animation(TextureManager.PlayerWalkLeftAxe,9,frameSpeed)},
-                {"WalkRight", new Animation(TextureManager.PlayerWalkRightAxe,9,frameSpeed)}
+                {"Idle", new Animation(TextureManager.Player,0,1,frameSpeed*4)},
+                {"WalkUp", new Animation(TextureManager.PlayerWalkUpAxe,0,9,frameSpeed)},
+                {"WalkDown", new Animation(TextureManager.PlayerWalkDownAxe,0,9,frameSpeed)},
+                {"WalkLeft",new Animation(TextureManager.PlayerWalkLeftAxe,0,9,frameSpeed)},
+                {"WalkRight", new Animation(TextureManager.PlayerWalkRightAxe,0,9,frameSpeed)}
             };
             animationManager = new AnimationManager(animations.First().Value);
         }

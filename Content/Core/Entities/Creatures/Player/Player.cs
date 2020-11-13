@@ -19,8 +19,6 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
         // cooldown in seconds!
 
-        private bool isDead;
-
         public static Player Instance
         {
             get
@@ -40,19 +38,17 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             // meleeAttack = new MeleeAttack(this):
 
             //this.position = new Vector2(2*32, 5*32); bei statischer Map
-
-            isDead = false;
             
             texture = TextureManager.Player;
             float frameSpeed = 0.09f;
             animations = new Dictionary<string, Animation>()
             {
                 // Todo: idle animation texturesheet erstellen!
-                {"Idle", new Animation(TextureManager.Player,1,frameSpeed*4)},
-                {"WalkUp", new Animation(TextureManager.PlayerWalkUpAxe,9,frameSpeed)},
-                {"WalkDown", new Animation(TextureManager.PlayerWalkDownAxe,9,frameSpeed)},
-                {"WalkLeft",new Animation(TextureManager.PlayerWalkLeftAxe,9,frameSpeed)},
-                {"WalkRight", new Animation(TextureManager.PlayerWalkRightAxe,9,frameSpeed)}
+                {"Idle", new Animation(TextureManager.Player,0,1,frameSpeed*4)},
+                {"WalkUp", new Animation(TextureManager.ZombieBrownWalk,0,9,frameSpeed)},
+                {"WalkLeft",new Animation(TextureManager.ZombieBrownWalk,1,9,frameSpeed)},
+                {"WalkDown", new Animation(TextureManager.ZombieBrownWalk,2,9,frameSpeed)},
+                {"WalkRight", new Animation(TextureManager.ZombieBrownWalk,3,9,frameSpeed)}
             };
             animationManager = new AnimationManager(animations.First().Value);
             
@@ -98,10 +94,11 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 SoundManager.PlayerAttack.Play(0.2f, 0.2f, 0);
                 Camera.ShakeScreen();
                 // create an explosion
-                Explosion e = new Explosion(new Vector2(InputController.MousePosition.X-20, InputController.MousePosition.Y-20));
-                EntityManager.Add(e);
-                e.Explode();
-                Kill();
+                //Explosion e = new Explosion(new Vector2(InputController.MousePosition.X, InputController.MousePosition.Y));
+                //EntityManager.Add(e);
+                //e.Explode();
+                Position = (new Vector2(InputController.MousePosition.X+position.X, InputController.MousePosition.Y+position.Y-10));
+                //Kill();
             }
         }
 
@@ -116,14 +113,14 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             HealthPoints -= damage;
             if (HealthPoints <= 0)
             {
-                isDead = true;
+                dead = true;
             }
         }
 
         public void Kill()
         {
             HealthPoints = 0;
-            isDead = true;
+            dead = true;
         }
 
         public void DeleteInstance()
@@ -133,7 +130,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
         public bool IsDead()
         {
-            return isDead;
+            return dead;
         }
 
         public override void Attack(Attack.AttackMethod attackMethod)

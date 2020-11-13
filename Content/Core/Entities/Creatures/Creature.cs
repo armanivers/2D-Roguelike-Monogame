@@ -14,13 +14,30 @@ namespace _2DRoguelike.Content.Core.Entities
 
         protected readonly float movingSpeed;
         public float speedModifier = 1;
+        protected bool dead;
 
-        
+        // TODO: Setter fuer die Hitbox fixen (fuer untere Klassen)
+        public override Vector2 Position
+        {
+            get { return position; }
+            set
+            {
+                position = value;
+                hitbox.X = (int)value.X + 17;
+                hitbox.Y = (int)value.Y + 14;
+
+                if (animationManager != null)
+                {
+                    animationManager.Position = position;
+                }
+            }
+        }
 
         public Creature(int maxHealthPoints, float attackCooldown, float movingSpeed) : base(){
             this.maxHealthPoints = maxHealthPoints;
             this.attackCooldown = attackCooldown;
             this.movingSpeed = movingSpeed;
+            this.dead = false;
         }
 
 

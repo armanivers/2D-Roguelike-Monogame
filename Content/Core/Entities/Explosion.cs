@@ -18,7 +18,7 @@ namespace _2DRoguelike.Content.Core.Entities
             this.texture = TextureManager.Explosion;
             this.animations = new Dictionary<string, Animation>()
             {
-                {"Explode", new Animation(TextureManager.Explosion,6,0.1f)}
+                {"Explode", new Animation(TextureManager.Explosion,0,6,0.1f)}
             };
             this.animationManager = new AnimationManager(animations.First().Value);
             this.Position = position;

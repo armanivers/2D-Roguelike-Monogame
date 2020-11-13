@@ -9,19 +9,21 @@ namespace _2DRoguelike.Content.Core.Entities
     {
         public int CurrentFrame { get; set; }
         public int FrameCount { get; private set; }
-        public int FrameHeight { get { return Texture.Height; } }
+        public int FrameHeight { get { return 64; } }
         public float FrameSpeed { get; set; }
         public int FrameWidth { get { return Texture.Width / FrameCount; } }
         public bool isLooping { get; set; }
         public Texture2D Texture { get; private set; }
+        public int yOffest;
 
-        public Animation(Texture2D texture, int frameCount,float frameSpeed)
+        public Animation(Texture2D texture, int yOffest, int frameCount,float frameSpeed)
         {
             Texture = texture;
             FrameCount = frameCount;
             isLooping = true;
             // lower FrameSpeed means faster Animation
             FrameSpeed = frameSpeed;
+            this.yOffest = yOffest * FrameHeight;
         }
     }
 }

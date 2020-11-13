@@ -1,5 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.Entities.Player;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,11 @@ namespace _2DRoguelike.Content.Core
     {
         private static KeyboardState keyboardState, lastKeyboardState;
         private static MouseState mouseState, lastMouseState;
-        public static Vector2 MousePosition { get { return new Vector2(mouseState.X + Camera.target.X, mouseState.Y + Camera.target.Y); } }
+        public static Vector2 MousePosition { 
+            get { 
+                return new Vector2((mouseState.X-Game1.Viewport.Width/2)/ Camera.zoom + Camera.target.X, (mouseState.Y- Game1.Viewport.Height / 2)/Camera.zoom + Camera.target.Y); 
+            } 
+        }
 
         public static void Update()
         {

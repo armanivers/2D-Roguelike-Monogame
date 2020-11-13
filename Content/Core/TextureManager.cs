@@ -16,6 +16,10 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D PlayerWalkLeftAxe { get; private set; }
         public static Texture2D PlayerWalkRightAxe { get; private set; }
 
+        // Enemy Data
+        // Brown Zombie
+        public static Texture2D ZombieBrownWalk { get; private set; }
+
         // Particle Data
 
         public static Texture2D Explosion { get; private set; }
@@ -44,6 +48,10 @@ namespace _2DRoguelike.Content.Core
             PlayerWalkDownAxe = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk_axe_front");
             PlayerWalkLeftAxe = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk_axe_left");
             PlayerWalkRightAxe = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk_axe_right");
+
+            // Enemy Data
+            // Zombie Brown
+            ZombieBrownWalk = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/zombie_brown_walk");
 
             // Particle Data
             Explosion = content.Load<Texture2D>("Assets/Graphics/Particles/explosion");
