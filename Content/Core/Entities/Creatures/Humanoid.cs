@@ -9,7 +9,7 @@ namespace _2DRoguelike.Content.Core.Entities
     abstract class Humanoid: Creature
     {
 
-        public Humanoid(Vector2 position,int maxHealthPoints, float attackCooldown, float movingSpeed) : base(maxHealthPoints, attackCooldown, movingSpeed){
+        public Humanoid(Vector2 position,int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position, maxHealthPoints, attackCooldown, movingSpeed){
             Hitbox = new Rectangle((int)Position.X + 17, (int)Position.Y + 14, 29, 49);
             // alle Humanoids besitzen gleiche Hitbox
         }

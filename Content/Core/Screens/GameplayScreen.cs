@@ -54,7 +54,7 @@ namespace _2DRoguelike.Content.Core.Screens
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            EntityManager.Add(new GreenZombie(WorldGenerator.spawn, 10, 2, 3));
+            EntityManager.Add(new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint(), 10, 2, 3));
 
             EntityManager.Add(Player.Instance);
             Thread.Sleep(500);

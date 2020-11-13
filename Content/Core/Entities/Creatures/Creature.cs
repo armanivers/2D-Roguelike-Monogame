@@ -33,7 +33,9 @@ namespace _2DRoguelike.Content.Core.Entities
             }
         }
 
-        public Creature(int maxHealthPoints, float attackCooldown, float movingSpeed) : base(){
+        public Creature(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(){
+
+            this.Position = position;
             this.maxHealthPoints = maxHealthPoints;
             this.attackCooldown = attackCooldown;
             this.movingSpeed = movingSpeed;

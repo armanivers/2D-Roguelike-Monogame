@@ -16,7 +16,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 
         public Enemy(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
         {
-            position = LevelManager.maps.getSpawnpoint() * 32;
+            
         }
 
         public override void Update(GameTime gameTime)

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace _2DRoguelike.Content.Core.World
@@ -95,7 +96,15 @@ namespace _2DRoguelike.Content.Core.World
                     int nbs = countAliveNeighbours(boolmap, x, y);
                     if (nbs == 0)
                     {
-                        return new Vector2((float)x, (float)y);
+                        // x und y sind hier nur die Positionen der Map. Bei der Rückgabe müssen berücksichtigt werden:
+                        // Position auf Screen (*32) und TileCollisionHitbox (Ecke oben links davon als Spawnpunkt)
+                        //float tileCollisionHitboxOffsetX = 17+5; // Hitbox: 17 + TileCollisionHitbox: 5
+                        //float tileCollisionHitboxOffsetY = 14 + 25; // Hitbox: 14 + TileCollisionHitbox: 25
+
+                        Vector2 ret = new Vector2((float)(x*32-17-5), (float)(y*32-14-25));
+                        Debug.WriteLine("Koordinaten auf Map: " + new Vector2((float)x, (float)y) 
+                            +  "\nKoordinaten auf Screen: " + ret);
+                        return ret;
                     }
                     else if (nbs < 6)
                     {

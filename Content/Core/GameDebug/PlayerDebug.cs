@@ -9,22 +9,27 @@ namespace _2DRoguelike.Content.Core.GameDebug
 {
     class PlayerDebug
     {
-        private Vector2 playerPosition;
+        private Vector2 playerPositionOnScreen;
+        private Vector2 playerPositionOnMap;
         private Vector2 mousePosition;
         public PlayerDebug()
         { 
-            playerPosition = new Vector2(0, 0);
-            mousePosition = new Vector2(0, 40);
+            playerPositionOnScreen = new Vector2(0, 0);
+            playerPositionOnMap = new Vector2(0, 40);
+            mousePosition = new Vector2(0, 80);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
 
             spriteBatch.DrawString(TextureManager.FontArial, 
-                "X: " + (int)Player.Instance.Position.X/32 + " Y:" + (int)Player.Instance.Position.Y/32,
-                playerPosition, Color.White);
+                "Position Player auf Screen: {X: " + (int)Player.Instance.Position.X + " Y:" + (int)Player.Instance.Position.Y + "}",
+                playerPositionOnScreen, Color.White);
             spriteBatch.DrawString(TextureManager.FontArial,
-                "X: " + (int)InputController.MousePosition.X + " Y:" + (int)InputController.MousePosition.Y,
+            "Position Player auf Map: {X: " + (int)(Player.Instance.GetTileCollisionHitbox().X / 32) + " Y:" + (int)(Player.Instance.GetTileCollisionHitbox().Y / 32) + "}",
+                playerPositionOnMap, Color.White);
+            spriteBatch.DrawString(TextureManager.FontArial,
+                "Position Maus auf Screen: {X: " + (int)InputController.MousePosition.X + " Y:" + (int)InputController.MousePosition.Y + "}",
                 mousePosition, Color.White);
         }
     }
