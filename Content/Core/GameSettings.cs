@@ -6,18 +6,18 @@ namespace _2DRoguelike.Content.Core
 {
     static class GameSettings
     {
-        public static int screenWidth = 1280;
-        public static int screenHeight = 720;
+        public static int screenWidth;
+        public static int screenHeight;
 
-        public static bool fullScreen = false;
+        public static bool fullScreen;
 
         public static void SetFullscreen()
         {
             fullScreen = true;
             Game1._graphics.PreferredBackBufferWidth = 1920;
-            Game1._graphics.PreferredBackBufferHeight= 1080;
+            Game1._graphics.PreferredBackBufferHeight = 1080;
             screenWidth = 1920;
-            screenWidth = 1080;
+            screenHeight = 1080;
             Game1._graphics.ToggleFullScreen();
             Game1._graphics.ApplyChanges();
         }
@@ -28,7 +28,7 @@ namespace _2DRoguelike.Content.Core
             Game1._graphics.PreferredBackBufferWidth = 1280;
             Game1._graphics.PreferredBackBufferHeight = 720;
             screenWidth = 1280;
-            screenWidth = 720;
+            screenHeight = 720;
             Game1._graphics.ToggleFullScreen();
             Game1._graphics.ApplyChanges();
         }

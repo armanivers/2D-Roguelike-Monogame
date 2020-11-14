@@ -11,9 +11,9 @@ namespace _2DRoguelike.Content.Core.Entities.Player
     {
         // camera view attributes
         public static Matrix transform;
-        public static Viewport view = Game1.Viewport;
-        public static Vector2 target = Player.Instance.Position;
-        public static float zoom = view.Width * 0.1171875f/100;
+        //public static Viewport view = Game1.Viewport;
+        //public static Player player = Player.Instance;
+        public static float zoom;
 
         // camera shake attributes
         public static bool screenShake;
@@ -23,12 +23,17 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
         public static void Update(Player player) 
         {
+            initZoom();
+
             Vector2 shakeOffset = CalculateShake();
             var shakeOffsetMultiplier = Matrix.CreateTranslation(shakeOffset.X, shakeOffset.Y, 0);
 
             var target = Matrix.CreateTranslation(new Vector3(-player.Position.X - (player.Size.X / 2), -player.Position.Y - (player.Size.Y / 2), 0));
+            
             var zoomFactor = Matrix.CreateScale(zoom);
-            var translationMatrix = Matrix.CreateTranslation(new Vector3(view.Width * 0.5f, view.Height * 0.5f, 0));
+
+            // instead of gameSettings the actual viewport should be used, but its buggy??
+            var translationMatrix = Matrix.CreateTranslation(new Vector3(GameSettings.screenWidth * 0.5f, GameSettings.screenHeight* 0.5f, 0));
 
             transform = target *  zoomFactor *  translationMatrix * shakeOffsetMultiplier;
         } 
@@ -39,7 +44,6 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             screenShake = true;
             shakeRadius = 15;
             shakeStartAngle = 15;
-            Debug.Print("WIDTH = " +view.Width);
         }
 
         public static Vector2 CalculateShake()
@@ -64,11 +68,6 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             screenShake = false;
             shakeRadius = 0;
             shakeStartAngle = 0;
-        }
-
-        public static void Load()
-        {
-            //initZoom();
         }
         
         public static void initZoom()

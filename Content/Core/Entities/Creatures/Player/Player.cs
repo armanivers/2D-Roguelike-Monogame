@@ -94,10 +94,10 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 SoundManager.PlayerAttack.Play(0.2f, 0.2f, 0);
                 Camera.ShakeScreen();
                 // create an explosion
-                //Explosion e = new Explosion(new Vector2(InputController.MousePosition.X, InputController.MousePosition.Y));
-                //EntityManager.Add(e);
-                //e.Explode();
-                Position = (new Vector2(InputController.MousePosition.X, InputController.MousePosition.Y-10));
+                Explosion e = new Explosion(new Vector2(InputController.MousePosition.X, InputController.MousePosition.Y));
+                EntityManager.Add(e);
+                e.Explode();
+                //Position = (new Vector2(InputController.MousePosition.X-32, InputController.MousePosition.Y-32));
                 //Kill();
             }
         }

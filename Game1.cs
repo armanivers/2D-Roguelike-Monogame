@@ -27,8 +27,8 @@ namespace _2DRoguelike
         {
             _graphics = new GraphicsDeviceManager(this);
 
-            _graphics.PreferredBackBufferWidth = 1280;
-            _graphics.PreferredBackBufferHeight = 720;
+            _graphics.PreferredBackBufferWidth = GameSettings.screenWidth;
+            _graphics.PreferredBackBufferHeight = GameSettings.screenHeight;
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -46,6 +46,7 @@ namespace _2DRoguelike
 
         protected override void Initialize()
         {
+            GameSettings.SetWindowedMode();
             _graphics.PreferredBackBufferWidth = GameSettings.screenWidth;
             _graphics.PreferredBackBufferHeight = GameSettings.screenHeight;
             _graphics.IsFullScreen = GameSettings.fullScreen;
@@ -61,9 +62,6 @@ namespace _2DRoguelike
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            _graphics.PreferredBackBufferWidth = GameSettings.screenWidth;
-            _graphics.PreferredBackBufferWidth = GameSettings.screenHeight;
-
         }
 
         protected override void Draw(GameTime gameTime)

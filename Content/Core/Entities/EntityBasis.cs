@@ -17,10 +17,12 @@ namespace _2DRoguelike.Content.Core.Entities
         protected Rectangle hitbox;
         public Rectangle Hitbox { get { return hitbox; } set { hitbox = value; } }
 
-        
-
         public Vector2 position;
-
+        public EntityBasis(Vector2 pos)
+        {
+            Position = pos;
+            isExpired = false;
+        }
         // TODO: Setter fuer die Hitbox fixen (fuer untere Klassen), Bsp Klasse Creature
         public virtual Vector2 Position
         {
@@ -40,10 +42,7 @@ namespace _2DRoguelike.Content.Core.Entities
         public float orientation;
         public bool isExpired;
 
-        public EntityBasis(Vector2 pos) {
-            this.Position = pos;
-            isExpired = false;
-        }
+        
         public Vector2 Size
         {
             get

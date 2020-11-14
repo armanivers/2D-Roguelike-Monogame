@@ -65,10 +65,10 @@ namespace _2DRoguelike.Content.Core.Screens
         public override void UnloadContent()
         {
             content.Unload();
-            Camera.Unload();
             // Unload all entities + delete current Player Intance
             EntityManager.unloadEntities();
             Player.Instance.DeleteInstance();
+            Camera.Unload();
         }
 
         #endregion Initialization
@@ -135,14 +135,15 @@ namespace _2DRoguelike.Content.Core.Screens
 
             LevelManager.Draw(spriteBatch);
             EntityManager.Draw(spriteBatch);
-
             GameDebug.GameDebug.hitboxDebug.Draw(spriteBatch);
 
             spriteBatch.End();
 
             // seperate sprite batch begin+end which isn't attached to an active 2D Camera
             spriteBatch.Begin();
+
             GameDebug.GameDebug.playerDebug.Draw(spriteBatch);
+
             spriteBatch.End();
 
 

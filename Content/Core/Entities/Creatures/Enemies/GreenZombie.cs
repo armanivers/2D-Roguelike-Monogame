@@ -43,7 +43,7 @@ public override void Update(GameTime gameTime)
                     // rangeAttack.startAttack();
                     break;
             */
-            }
+        }
 
 
 

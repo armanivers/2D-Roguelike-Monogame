@@ -29,7 +29,7 @@ namespace _2DRoguelike.Content.Core.GameDebug
             "Position Player auf Map: {X: " + (int)(Player.Instance.GetTileCollisionHitbox().X / 32) + " Y:" + (int)(Player.Instance.GetTileCollisionHitbox().Y / 32) + "}",
                 playerPositionOnMap, Color.White);
             spriteBatch.DrawString(TextureManager.FontArial,
-                "Position Maus auf Screen: {X: " + (int)InputController.MousePosition.X + " Y:" + (int)InputController.MousePosition.Y + "}",
+                "Position Maus auf Map: {X: " + (int)InputController.MousePosition.X/32 + " Y:" + (int)InputController.MousePosition.Y/32 + "}",
                 mousePosition, Color.White);
         }
     }

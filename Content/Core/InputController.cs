@@ -15,8 +15,8 @@ namespace _2DRoguelike.Content.Core
         private static KeyboardState keyboardState, lastKeyboardState;
         private static MouseState mouseState, lastMouseState;
         public static Vector2 MousePosition { 
-            get { 
-                return new Vector2((mouseState.X-Game1.Viewport.Width/2)/ Camera.zoom + Camera.target.X, (mouseState.Y- Game1.Viewport.Height / 2)/Camera.zoom + Camera.target.Y); 
+            get {
+                return Vector2.Transform(new Vector2(mouseState.X, mouseState.Y), Matrix.Invert(Camera.transform));
             } 
         }
 

@@ -12,9 +12,11 @@ namespace _2DRoguelike.Content.Core.Entities
         private bool shouldExplode;
         private const float expireTimer = 1;
         private float timer;
-        
+
         public Explosion(Vector2 position): base(position)
         {
+            Hitbox = new Rectangle((int)position.X-16, (int)position.Y-16, 32, 32);
+            
             this.texture = TextureManager.Explosion;
             this.animations = new Dictionary<string, Animation>()
             {
@@ -39,7 +41,7 @@ namespace _2DRoguelike.Content.Core.Entities
                 animationManager.Play(animations["Explode"]);
             }
 
-            if(timer > expireTimer)
+            if (timer > expireTimer)
             {
                 this.isExpired = true;
             }
