@@ -24,6 +24,7 @@ using System;
 using System.Threading;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using System.Diagnostics;
+using _2DRoguelike.Content.Core.UI;
 
 #endregion Using Statements
 
@@ -39,6 +40,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
         private float pauseAlpha;
 
+    
         #endregion Fields
 
         #region Initialization
@@ -86,11 +88,12 @@ namespace _2DRoguelike.Content.Core.Screens
                 pauseAlpha = Math.Max(pauseAlpha - 1f / 32, 0);
 
             if (IsActive)
-            { 
-                // Game Logic
+            {
+                // Game 
                 Camera.Update(Player.Instance);
                 InputController.Update();
                 EntityManager.Update(gameTime);
+                UIManager.Update(gameTime);
                 if (Player.Instance.IsDead())
                 {
                     //LoadingScreen.Load(ScreenManager, false, null,new GameoverScreen());
@@ -142,6 +145,8 @@ namespace _2DRoguelike.Content.Core.Screens
             // seperate sprite batch begin+end which isn't attached to an active 2D Camera
             spriteBatch.Begin();
 
+            // UI Elements
+            UIManager.Draw(spriteBatch);
             GameDebug.GameDebug.playerDebug.Draw(spriteBatch);
 
             spriteBatch.End();

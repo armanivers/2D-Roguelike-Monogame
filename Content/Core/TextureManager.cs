@@ -24,6 +24,9 @@ namespace _2DRoguelike.Content.Core
 
         public static Texture2D Explosion { get; private set; }
 
+        // Projectile Data
+        public static Texture2D Arrow { get; private set; }
+
         // Font Data
 
         public static SpriteFont FontArial { get; private set; }
@@ -32,6 +35,10 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D Background { get; private set; }
         public static Texture2D Blank { get; private set; }
         public static Texture2D Gradient { get; private set; }
+
+        // UI Data
+        public static Texture2D healthBarEmpty { get; private set; }
+        public static Texture2D healthBarRed { get; private set; }
 
         // Tiles Data
         public static Texture2D[] tiles { get; private set; }
@@ -56,6 +63,9 @@ namespace _2DRoguelike.Content.Core
             // Particle Data
             Explosion = content.Load<Texture2D>("Assets/Graphics/Particles/explosion");
 
+            // Projectile Data
+            Arrow = content.Load<Texture2D>("Assets/Graphics/Projectiles/Arrow");
+
             // Font Data
             FontArial = content.Load<SpriteFont>("Assets/System/Fonts/Arial");
 
@@ -63,6 +73,10 @@ namespace _2DRoguelike.Content.Core
             Background = content.Load<Texture2D>("Assets/Graphics/Menus/background");
             Blank = content.Load<Texture2D>("Assets/Graphics/Menus/blank");
             Gradient = content.Load<Texture2D>("Assets/Graphics/Menus/gradient");
+
+            // UI Data
+            healthBarEmpty = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/EmptyBar");
+            healthBarRed = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/RedBar");
 
             // Tiles Data
             tilesAmount = 2;

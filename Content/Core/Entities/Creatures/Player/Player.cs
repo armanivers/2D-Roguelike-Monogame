@@ -1,13 +1,9 @@
-﻿using _2DRoguelike.Content.Core.World;
-using _2DRoguelike.Content.Core.World.Tiles;
+﻿using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
+using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace _2DRoguelike.Content.Core.Entities.Player
 {
@@ -25,7 +21,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             {
                 if (instance == null)
                 {
-                    instance = new Player(LevelManager.maps.getSpawnpoint(), 100, 2, 5);
+                    instance = new Player(LevelManager.maps.getSpawnpoint(), 100, 0.4f, 5);
                 }
                 return instance;
             }
@@ -92,12 +88,13 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             {
                 CooldownTimer = 0;
                 SoundManager.PlayerAttack.Play(0.2f, 0.2f, 0);
-                Camera.ShakeScreen();
+
                 // create an explosion
-                Explosion e = new Explosion(new Vector2(InputController.MousePosition.X, InputController.MousePosition.Y));
-                EntityManager.Add(e);
-                e.Explode();
-                //Position = (new Vector2(InputController.MousePosition.X-32, InputController.MousePosition.Y-32));
+                //Explosion e = new Explosion();
+                //EntityManager.Add(e);
+                Arrow a = new Arrow();
+                EntityManager.Add(a);
+                //Position = (new Vector2(InputController.MousePosition.X-32, InputController.MousePosition.Y-48));
                 //Kill();
             }
         }
@@ -108,29 +105,9 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             CheckAttacking();
         }
 
-        public void GetHit(int damage)
-        {
-            HealthPoints -= damage;
-            if (HealthPoints <= 0)
-            {
-                dead = true;
-            }
-        }
-
-        public void Kill()
-        {
-            HealthPoints = 0;
-            dead = true;
-        }
-
         public void DeleteInstance()
         {
             instance = null;
-        }
-
-        public bool IsDead()
-        {
-            return dead;
         }
 
         public override void Attack(Attack.AttackMethod attackMethod)

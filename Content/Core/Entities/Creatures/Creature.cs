@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities
 {
     abstract class Creature: EntityBasis
     {
-        protected readonly int maxHealthPoints;
-        protected int HealthPoints { get; set; }
+        public readonly int maxHealthPoints;
+        public int HealthPoints { get; private set; }
         public readonly float attackCooldown;
         public float CooldownTimer { get; set; }
-
+        
         protected readonly float movingSpeed;
         public float speedModifier = 1;
         protected bool dead;
@@ -35,12 +32,11 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public Creature(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position){
             this.maxHealthPoints = maxHealthPoints;
+            this.HealthPoints = maxHealthPoints;
             this.attackCooldown = attackCooldown;
             this.movingSpeed = movingSpeed;
             this.dead = false;
         }
-
-
 
         public Rectangle GetTileCollisionHitbox()
         {
@@ -62,10 +58,27 @@ namespace _2DRoguelike.Content.Core.Entities
             animationManager.Update(gameTime);
         }
 
+        public void GetHit(int damage)
+        {
+            HealthPoints -= damage;
+            System.Diagnostics.Debug.Print("Got Hit!");
+            if (HealthPoints <= 0)
+            {
+                dead = true;
+            }
+        }
+
+        public void Kill()
+        {
+            HealthPoints = 0;
+            dead = true;
+        }
+
+        public bool IsDead()
+        {
+            return dead;
+        }
         public abstract void Attack(Attack.AttackMethod attackMethod); 
-            
 
-
-        
     }
 }

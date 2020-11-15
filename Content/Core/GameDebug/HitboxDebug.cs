@@ -11,16 +11,17 @@ namespace _2DRoguelike.Content.Core.GameDebug
     class HitboxDebug
     {
         private int borderWith = 3;
-        public HitboxDebug()
-        {
-            // TODO
-        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //Player p = Player.Instance;
-                
-            foreach(var p in EntityManager.entities)
+            // Mouse Targeting Line
+            var origin = Player.Instance.Hitbox;
+            Vector2 target = InputController.MousePosition;
+            DrawLine(spriteBatch, target, new Vector2(origin.X+16,origin.Y+16),Color.Gainsboro, 5);
+
+            //Entity Hitboxes
+
+            foreach (var p in EntityManager.entities)
             {
                 // TileCollisionBox                
                 var borderTexture = TextureManager.tileHitboxBorder;
@@ -41,15 +42,20 @@ namespace _2DRoguelike.Content.Core.GameDebug
                 spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, r.Width, borderWith), Color.Blue); //   
                 spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Bottom, r.Width, borderWith), Color.Blue); // Bottom
             }
-
-
-            
         }
 
-        // wird update ueberhaupt gebraucht?
-        public void Update()
+        public void DrawLine(SpriteBatch spriteBatch, Vector2 from, Vector2 to, Color color, int width = 1)
         {
+            Rectangle rect = new Rectangle((int)from.X, (int)from.Y, (int)(to - from).Length() + width, width);
+            Vector2 vector = Vector2.Normalize(from - to);
+            float angle = (float)Math.Acos(Vector2.Dot(vector, -Vector2.UnitX));
+            Vector2 origin = Vector2.Zero;
 
+            if (from.Y > to.Y)
+                angle = MathHelper.TwoPi - angle;
+
+            spriteBatch.Draw(TextureManager.tileHitboxBorder, rect, null, color, angle, origin, SpriteEffects.None, 0);
         }
+
     }
 }

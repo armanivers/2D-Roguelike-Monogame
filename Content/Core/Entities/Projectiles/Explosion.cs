@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
+using _2DRoguelike.Content.Core.Entities.Player;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,6 @@ namespace _2DRoguelike.Content.Core.Entities
     class Explosion : Projectile
     {
 
-        private bool shouldExplode;
         private const float expireTimer = 3;
         private float timer;
 
@@ -26,25 +26,39 @@ namespace _2DRoguelike.Content.Core.Entities
                 {"Explode", new Animation(TextureManager.Explosion,0,6,0.1f)}
             };
             this.animationManager = new AnimationManager(animations.First().Value);
-
-            this.shouldExplode = false;
             this.timer = 0;
         }
 
-        public void Explode()
-        { 
-            this.shouldExplode = true;
+        private void Explode()
+        {
+            this.isExpired = true;
             SoundManager.Explosion.Play(0.2f, 0.2f, 0);
+            Camera.ShakeScreen();
+
+        }
+
+        public void checkCollision()
+        {
+            foreach(var livingEntity in EntityManager.entities)
+            {
+                if(livingEntity is Creature && livingEntity != Player.Player.Instance) //&& livingEntity != Player.Player.Instance
+                {
+                    if (this.hitbox.Intersects(livingEntity.Hitbox))
+                    {
+                        ((Creature)livingEntity).GetHit(1);
+                        Explode();
+                    }
+                }
+            }
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (shouldExplode)
-            {
-                timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                animationManager.Play(animations["Explode"]);
-                Position += Velocity * speed;
-            }
+            checkCollision();
+
+            timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            animationManager.Play(animations["Explode"]);
+            Position += Velocity * speed;
 
             if (timer > expireTimer)
             {

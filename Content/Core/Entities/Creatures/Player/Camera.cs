@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 namespace _2DRoguelike.Content.Core.Entities.Player
 {
@@ -12,7 +8,6 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         // camera view attributes
         public static Matrix transform;
         //public static Viewport view = Game1.Viewport;
-        //public static Player player = Player.Instance;
         public static float zoom;
 
         // camera shake attributes

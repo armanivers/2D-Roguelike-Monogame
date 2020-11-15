@@ -18,6 +18,7 @@ namespace _2DRoguelike.Content.Core.Screens
         public GameoverScreen()  : base("Game Over")
         {
             notEscapable = true;
+
             // Create our menu entries.
             MenuEntry newGame = new MenuEntry("Start New Game");
             MenuEntry mainMenu = new MenuEntry("Return To Menu");

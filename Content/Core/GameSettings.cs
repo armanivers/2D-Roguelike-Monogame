@@ -19,7 +19,7 @@ namespace _2DRoguelike.Content.Core
             screenWidth = 1920;
             screenHeight = 1080;
             Game1._graphics.ToggleFullScreen();
-            Game1._graphics.ApplyChanges();
+            //Game1._graphics.ApplyChanges();
         }
 
         public static void SetWindowedMode()
@@ -30,7 +30,7 @@ namespace _2DRoguelike.Content.Core
             screenWidth = 1280;
             screenHeight = 720;
             Game1._graphics.ToggleFullScreen();
-            Game1._graphics.ApplyChanges();
+            //Game1._graphics.ApplyChanges();
         }
 
         public static float GetTextScale()

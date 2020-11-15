@@ -18,10 +18,15 @@ namespace _2DRoguelike.Content.Core.Entities
         public Rectangle Hitbox { get { return hitbox; } set { hitbox = value; } }
 
         public Vector2 position;
+        public Vector2 Velocity;
+        public float orientation;
+        public bool isExpired;
+
         public EntityBasis(Vector2 pos)
         {
             Position = pos;
             isExpired = false;
+            orientation = 0;
         }
         // TODO: Setter fuer die Hitbox fixen (fuer untere Klassen), Bsp Klasse Creature
         public virtual Vector2 Position
@@ -38,11 +43,6 @@ namespace _2DRoguelike.Content.Core.Entities
             }
         }
 
-        public Vector2 Velocity;
-        public float orientation;
-        public bool isExpired;
-
-        
         public Vector2 Size
         {
             get
@@ -55,6 +55,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            
 
             if (animationManager != null)
             {
@@ -62,7 +63,7 @@ namespace _2DRoguelike.Content.Core.Entities
             }
             else if (texture != null)
             {
-                spriteBatch.Draw(texture, Position, null, Color.White, orientation, Size / 2f, 1f, SpriteEffects.None, 1);
+                spriteBatch.Draw(texture, Position, null, Color.White, orientation, Size/2, 1f, SpriteEffects.None, 0);
             }
             else { throw new Exception("Draw failed, there's a problem with the texture/animationManager!"); };
         }

@@ -30,5 +30,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Assets\Graphics\Particles\" />
+    <Folder Include="Content\Assets\Graphics\Projectiles\" />
   </ItemGroup>
 </Project>
