@@ -12,8 +12,8 @@ namespace _2DRoguelike.Content.Core
 {
     static class InputController
     {
-        private static KeyboardState keyboardState, lastKeyboardState;
-        private static MouseState mouseState, lastMouseState;
+        public static KeyboardState keyboardState, lastKeyboardState;
+        public static MouseState mouseState, lastMouseState;
         public static Vector2 MousePosition { 
             get {
                 return Vector2.Transform(new Vector2(mouseState.X, mouseState.Y), Matrix.Invert(Camera.transform));
@@ -44,9 +44,13 @@ namespace _2DRoguelike.Content.Core
             return direction;
         }
 
+        public static bool IsMousePressed() {
+            return mouseState.LeftButton == ButtonState.Pressed;
+        }
+
         public static Vector2 GetMouseClickPosition()
         {
-            if (mouseState.LeftButton == ButtonState.Pressed)
+            if (IsMousePressed())
             {
                 return MousePosition;
             }

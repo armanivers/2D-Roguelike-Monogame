@@ -7,9 +7,13 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.UI
 {
-    static class UIManager
+    class UIManager
     {
-        private static HealthBar healthBar = new HealthBar(Player.Instance);
+
+
+        public static HealthBar healthBar;
+
+
 
         public static void Update(GameTime gameTime)
         {

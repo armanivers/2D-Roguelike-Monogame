@@ -17,7 +17,7 @@ namespace _2DRoguelike.Content.Core.Entities
        
         public override void Move()
         {
-            Velocity = movingSpeed * speedModifier * GetDirection();
+            Velocity = movingSpeed * SpeedModifier * GetDirection();
             if (MultipleDirections(GetDirection()))
                 Velocity /= 1.3f;
 
@@ -50,6 +50,51 @@ namespace _2DRoguelike.Content.Core.Entities
             }
         }
 
+        
+
+        protected override void DetermineAnimation(Dictionary<string, Animation> animations, ActionCommand action)
+        {
+            // TODO: In Humanoid verschieben, damit für alle gleichgültig
+
+            switch (action)
+            {
+                case ActionCommand.MOVE:
+                    // Gehen
+                    if (Velocity.X > 0)
+                    {
+                        animationManager.Play(animations["WalkRight"]);
+                    }
+                    else if (Velocity.X < 0)
+                    {
+                        animationManager.Play(animations["WalkLeft"]);
+                    }
+                    else if (Velocity.Y > 0)
+                    {
+                        animationManager.Play(animations["WalkDown"]);
+                    }
+                    else if (Velocity.Y < 0)
+                    {
+                        animationManager.Play(animations["WalkUp"]);
+                    }
+                    else if (Velocity.X == 0 && Velocity.Y == 0)
+                    {
+                        animationManager.Play(animations["Idle"]);
+                    }
+                    break;
+                case ActionCommand.ATTACK:
+                    // Angriff
+                    // TODO: Art des Angriffes bestimmen
+
+                    // TODO: Richtung bestimmen (Arri)
+                    animationManager.Play(animations["ShootRight"]);
+                    break;
+                default: 
+                    animationManager.Stop();
+                    break;
+            }
+
+
+        }
 
         public bool CollidesWithSolidTile()
         {

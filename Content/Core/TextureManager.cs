@@ -10,11 +10,18 @@ namespace _2DRoguelike.Content.Core
     {
         // Player Data
         // Idee: Animationen in ein Array speicher, dann mit [0] auf animation walkup und [1] animation walkdown zugreifen?
+        //TODO: Nur ein Spritesheet verwenden
         public static Texture2D Player { get; private set; }
+        public static Texture2D PlayerWalkAxe { get; private set; }
         public static Texture2D PlayerWalkUpAxe { get; private set; }
         public static Texture2D PlayerWalkDownAxe { get; private set; }
         public static Texture2D PlayerWalkLeftAxe { get; private set; }
         public static Texture2D PlayerWalkRightAxe { get; private set; }
+
+
+        public static Texture2D PlayerShoot { get; private set; }
+        
+        
 
         // Enemy Data
         // Brown Zombie
@@ -55,6 +62,8 @@ namespace _2DRoguelike.Content.Core
             PlayerWalkDownAxe = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk_axe_front");
             PlayerWalkLeftAxe = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk_axe_left");
             PlayerWalkRightAxe = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk_axe_right");
+
+            PlayerShoot = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_shoot");
 
             // Enemy Data
             // Zombie Brown

@@ -14,11 +14,10 @@ namespace _2DRoguelike.Content.Core.Entities
         private const float expireTimer = 3;
         private float timer;
 
-        public Explosion(): base(new Vector2(Player.Player.Instance.Hitbox.X-16, Player.Player.Instance.Hitbox.Y-16),16,16)
+        public Explosion(): base(new Vector2(Player.Player.Instance.Hitbox.X-16, Player.Player.Instance.Hitbox.Y-16),16,16, 7f)
         {
             this.Hitbox = new Rectangle((int)Position.X+16, (int)Position.Y+16, 32, 32);
             this.Velocity = Vector2.Normalize(InputController.MousePosition - new Vector2(hitbox.X,hitbox.Y));
-            this.speed = 7f;
 
             this.texture = TextureManager.Explosion;
             animations = new Dictionary<string, Animation>()
@@ -58,7 +57,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             animationManager.Play(animations["Explode"]);
-            Position += Velocity * speed;
+            Position += Velocity * flyingSpeed*SpeedModifier;
 
             if (timer > expireTimer)
             {

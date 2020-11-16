@@ -45,34 +45,9 @@ public override void Update(GameTime gameTime)
             */
         }
 
-
-
-        protected override void DetermineAnimation()
+        protected override ActionCommand DetermineAction()
         {
-            if (Velocity.X > 0)
-            {
-                animationManager.Play(animations["WalkRight"]);
-            }
-            else if (Velocity.X < 0)
-            {
-                animationManager.Play(animations["WalkLeft"]);
-            }
-            else if (Velocity.Y > 0)
-            {
-                animationManager.Play(animations["WalkDown"]);
-            }
-            else if (Velocity.Y < 0)
-            {
-                animationManager.Play(animations["WalkUp"]);
-            }
-            else if (Velocity.X == 0 && Velocity.Y == 0)
-            {
-                animationManager.Play(animations["Idle"]);
-            }
-            else
-            {
-                animationManager.Stop();
-            }
+            return ActionCommand.MOVE;
         }
     }
 }

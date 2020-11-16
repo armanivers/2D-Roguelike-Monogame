@@ -15,6 +15,7 @@ namespace _2DRoguelike.Content.Core.UI
         private int fullWidth;
         private int currentWidth;
 
+
         private Texture2D healthbarContainer;
         private Texture2D healthBar;
 
@@ -29,7 +30,7 @@ namespace _2DRoguelike.Content.Core.UI
             position = new Vector2(GameSettings.screenWidth / 2 - healthbarContainer.Width / 2, 30);
             textPosition = new Vector2(GameSettings.screenWidth / 2 - 10, 30);
             fullWidth = healthBar.Width;
-            currentHealth = fullWidth;
+            currentWidth = fullWidth;
             currentHealth = player.HealthPoints;
         }
 
@@ -38,13 +39,14 @@ namespace _2DRoguelike.Content.Core.UI
             currentHealth = target.HealthPoints;
 
             // funktioniert nicht??
-            // currentWidth = (currentHealth / 100) * fullWidth;
+            currentWidth = (int)(   ( (double)(currentHealth) / 100) * fullWidth );
+            Debug.WriteLine("target.HealthPoints: {3}\ncurrentHealth: {0}\ncurrentWidth: {1}\n fullWidth. {2}\n---------------", currentHealth, currentWidth, fullWidth,target.HealthPoints);
             // bei draw von healthbar sollte currentWidth statt currentHealth sein!
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(healthbarContainer, position, Color.White);
-            spriteBatch.Draw(healthBar, position,new Rectangle(0,0, currentHealth, healthBar.Height), Color.White);
+            spriteBatch.Draw(healthBar, position,new Rectangle(0,0, currentWidth, healthBar.Height), Color.White);
             spriteBatch.DrawString(TextureManager.FontArial, ""+currentHealth, textPosition, Color.White);
         }
 

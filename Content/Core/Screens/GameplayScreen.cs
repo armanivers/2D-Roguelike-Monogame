@@ -56,9 +56,13 @@ namespace _2DRoguelike.Content.Core.Screens
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            EntityManager.Add(new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint(), 10, 2, 3));
+            // EntityBasis Konstruktor fügt automatisch zur EntityManager.entities hinzu
+            new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint(), 10, 2, 3);
+            new Player(LevelManager.maps.getSpawnpoint(), 100, 0.4f, 5);
 
-            EntityManager.Add(Player.Instance);
+            UIManager.healthBar = new HealthBar(Player.Instance);
+
+
             Thread.Sleep(500);
 
             ScreenManager.Game.ResetElapsedTime();
@@ -138,7 +142,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
             LevelManager.Draw(spriteBatch);
             EntityManager.Draw(spriteBatch);
-            GameDebug.GameDebug.hitboxDebug.Draw(spriteBatch);
+            // GameDebug.GameDebug.hitboxDebug.Draw(spriteBatch);
 
             spriteBatch.End();
 
@@ -147,7 +151,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
             // UI Elements
             UIManager.Draw(spriteBatch);
-            GameDebug.GameDebug.playerDebug.Draw(spriteBatch);
+            // GameDebug.GameDebug.playerDebug.Draw(spriteBatch);
 
             spriteBatch.End();
 

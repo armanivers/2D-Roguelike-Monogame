@@ -38,11 +38,11 @@ namespace _2DRoguelike.Content.Core.GameDebug
             //wird sauberer gemacht wenn ich die winkel verstehe
             var differenz = InputController.MousePosition - Player.Instance.Position;
             var angle = Math.Atan2(differenz.X, differenz.Y);
-            angle = MathHelper.ToDegrees((float)angle);
-            if(angle < 0)
-            {
-                angle = 360 - (-angle);
-            }
+            //angle = MathHelper.ToDegrees((float)angle);
+            //if(angle < 0)
+            //{
+            //    angle = 360 - (-angle);
+            //}
             spriteBatch.DrawString(TextureManager.FontArial, "Winkel des Mauses: " +
                 angle, anglePosition,Color.White);
         }
