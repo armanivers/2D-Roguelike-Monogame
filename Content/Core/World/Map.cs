@@ -9,13 +9,12 @@ namespace _2DRoguelike.Content.Core.World
 {
     abstract class Map
     {
+        public char[,] charmap;
         public bool[,] boolmap;
         public Tile[,] map;
         public int width;
         public int height;
 
-        
-        
         #region TestMap
         /*
         public Map()
@@ -57,19 +56,16 @@ namespace _2DRoguelike.Content.Core.World
         }
         */
         #endregion TestMap
-        
-     
+
         public Map(int width, int height)
         {
             this.width = width;
             this.height = height;
-            
-            
         }
         public Map()
         {
-            width = 128;
-            height = 128;           
+            width = 64;
+            height = 64;           
         }
         public abstract Vector2 getSpawnpoint();
 
@@ -85,7 +81,28 @@ namespace _2DRoguelike.Content.Core.World
             }
             return result;
         }
-        
-        
+        public Tile[,] fillTile(char[,] level)
+        {
+            Tile[,] result = new Tile[level.GetLength(0), level.GetLength(1)];
+            for (int i = 0; i < level.GetLength(0); i++)
+            {
+                for (int j = 0; j < level.GetLength(1); j++)
+                {
+                    if(level[i, j].Equals('#') || level[i, j].Equals('!'))
+                    {
+                        result[i, j] = new Tile(true, i, j);
+                    }
+                    else
+                    {
+                        result[i, j] = new Tile(false, i, j);
+                    }
+
+                        
+                }
+            }
+            return result;
+        }
+
+
     }
 }

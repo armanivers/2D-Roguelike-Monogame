@@ -10,7 +10,7 @@ namespace _2DRoguelike.Content.Core.World
 {
     static class LevelManager
     {
-        public static Map maps = new CaveMap();
+        public static Map maps = new DungeonMap();
 
         public static Tile[,] currentLevel = maps.map;
 
