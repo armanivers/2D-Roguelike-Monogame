@@ -95,7 +95,7 @@ namespace _2DRoguelike.Content.Core.Entities
                     else if (angle > 2 && angle < 3){
                         animationManager.Play(animations["ShootUp"]);
                     } 
-                    else if(angle < -3 && angle > -2)
+                    else if(angle > -3 && angle < -2)
                     {
                         animationManager.Play(animations["ShootUp"]);
                     }

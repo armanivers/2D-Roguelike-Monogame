@@ -18,6 +18,7 @@ namespace _2DRoguelike.Content.Core.UI
 
         private Texture2D healthbarContainer;
         private Texture2D healthBar;
+        private float scalingFactor;
 
         private Vector2 position;
         private Vector2 textPosition;
@@ -25,9 +26,10 @@ namespace _2DRoguelike.Content.Core.UI
         public HealthBar(Player player)
         {
             target = player;
+            scalingFactor = 1.5f;
             healthbarContainer = TextureManager.healthBarEmpty;
             healthBar = TextureManager.healthBarRed;
-            position = new Vector2(GameSettings.screenWidth / 2 - healthbarContainer.Width / 2, 30);
+            position = new Vector2(GameSettings.screenWidth / 2 - healthbarContainer.Width*scalingFactor/2, 30);
             textPosition = new Vector2(GameSettings.screenWidth / 2 - 10, 30);
             fullWidth = healthBar.Width;
             currentWidth = fullWidth;
@@ -36,17 +38,24 @@ namespace _2DRoguelike.Content.Core.UI
 
         public void Update(GameTime gameTime)
         {
+            if (InputController.keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.B))
+            {
+                scalingFactor += 0.1f;
+                position = new Vector2(GameSettings.screenWidth / 2 - healthbarContainer.Width * scalingFactor / 2, 30);
+            }
+            if (InputController.keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.C))
+            {
+                scalingFactor -= 0.1f;
+                position = new Vector2(GameSettings.screenWidth / 2 - healthbarContainer.Width * scalingFactor / 2, 30);
+            }
             currentHealth = target.HealthPoints;
-
-            // funktioniert nicht??
             currentWidth = (int)(   ( (double)(currentHealth) / 100) * fullWidth );
-            Debug.WriteLine("target.HealthPoints: {3}\ncurrentHealth: {0}\ncurrentWidth: {1}\n fullWidth. {2}\n---------------", currentHealth, currentWidth, fullWidth,target.HealthPoints);
-            // bei draw von healthbar sollte currentWidth statt currentHealth sein!
+            //Debug.WriteLine("target.HealthPoints: {3}\ncurrentHealth: {0}\ncurrentWidth: {1}\n fullWidth. {2}\n---------------", currentHealth, currentWidth, fullWidth,target.HealthPoints);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(healthbarContainer, position, Color.White);
-            spriteBatch.Draw(healthBar, position,new Rectangle(0,0, currentWidth, healthBar.Height), Color.White);
+            spriteBatch.Draw(healthbarContainer, position, null,Color.White,0, Vector2.Zero, scalingFactor, SpriteEffects.None,0);
+            spriteBatch.Draw(healthBar, position,new Rectangle(0,0, currentWidth, healthBar.Height), Color.White,0, Vector2.Zero, scalingFactor,SpriteEffects.None,0);
             spriteBatch.DrawString(TextureManager.FontArial, ""+currentHealth, textPosition, Color.White);
         }
 

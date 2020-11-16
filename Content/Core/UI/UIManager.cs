@@ -9,11 +9,7 @@ namespace _2DRoguelike.Content.Core.UI
 {
     class UIManager
     {
-
-
         public static HealthBar healthBar;
-
-
 
         public static void Update(GameTime gameTime)
         {
