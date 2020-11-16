@@ -35,9 +35,10 @@ namespace _2DRoguelike.Content.Core.GameDebug
                 "Position Maus auf Map: {X: " + (int)InputController.MousePosition.X/32 + " Y:" + (int)InputController.MousePosition.Y/32 + "}",
                 mousePosition, Color.White);
 
-            //wird sauberer gemacht wenn ich die winkel verstehe
+            // Winkel Berechnung
             var differenz = InputController.MousePosition - Player.Instance.Position;
             var angle = Math.Atan2(differenz.X, differenz.Y);
+            // Umwandlung Radian -> Degree
             //angle = MathHelper.ToDegrees((float)angle);
             //if(angle < 0)
             //{

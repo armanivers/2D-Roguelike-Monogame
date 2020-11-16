@@ -85,8 +85,27 @@ namespace _2DRoguelike.Content.Core.Entities
                     // Angriff
                     // TODO: Art des Angriffes bestimmen
 
-                    // TODO: Richtung bestimmen (Arri)
-                    animationManager.Play(animations["ShootRight"]);
+                    var differenz = InputController.MousePosition - Position;
+                    var angle = Math.Atan2(differenz.X, differenz.Y);
+
+                    if (angle > 1 && angle < 2)
+                    {
+                        animationManager.Play(animations["ShootRight"]);
+                    }
+                    else if (angle > 2 && angle < 3){
+                        animationManager.Play(animations["ShootUp"]);
+                    } 
+                    else if(angle < -3 && angle > -2)
+                    {
+                        animationManager.Play(animations["ShootUp"]);
+                    }
+                    else if(angle > -1 && angle < 1)
+                    {
+                        animationManager.Play(animations["ShootDown"]);
+                    }
+                    else if(angle < -1 && angle > -2){
+                        animationManager.Play(animations["ShootLeft"]);
+                    }
                     break;
                 default: 
                     animationManager.Stop();

@@ -142,7 +142,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
             LevelManager.Draw(spriteBatch);
             EntityManager.Draw(spriteBatch);
-            // GameDebug.GameDebug.hitboxDebug.Draw(spriteBatch);
+            //GameDebug.GameDebug.hitboxDebug.Draw(spriteBatch);
 
             spriteBatch.End();
 
@@ -151,7 +151,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
             // UI Elements
             UIManager.Draw(spriteBatch);
-            // GameDebug.GameDebug.playerDebug.Draw(spriteBatch);
+            GameDebug.GameDebug.playerDebug.Draw(spriteBatch);
 
             spriteBatch.End();
 
