@@ -14,7 +14,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
 
         public Arrow() : base(new Vector2(Player.Player.Instance.Hitbox.X+16, Player.Player.Instance.Hitbox.Y+16), -7, +5)
         {
-            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, 32, 13);
+            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y,13, 13);
             this.Velocity = Vector2.Normalize(InputController.MousePosition - Position);
             this.orientation = (float)Math.Atan2(Velocity.Y, Velocity.X);
             this.speed = 1f;
