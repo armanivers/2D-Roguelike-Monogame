@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.World.Tiles;
+using _DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,7 +10,7 @@ namespace _2DRoguelike.Content.Core.World
 {
     static class LevelManager
     {
-        public static Map maps = new Map();
+        public static Map maps = new CaveMap();
 
         public static Tile[,] currentLevel = maps.map;
 
