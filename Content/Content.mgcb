@@ -157,6 +157,30 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/Projectiles/Arrow.png
 
+#begin Assets/Graphics/UI/EnemeyUI/enemyBar.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/UI/EnemeyUI/enemyBar.png
+
+#begin Assets/Graphics/UI/EnemeyUI/enemyBarContainer.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/UI/EnemeyUI/enemyBarContainer.png
+
 #begin Assets/Graphics/UI/PlayerUI/EmptyBar.png
 /importer:TextureImporter
 /processor:TextureProcessor

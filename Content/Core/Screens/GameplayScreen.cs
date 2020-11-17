@@ -57,11 +57,12 @@ namespace _2DRoguelike.Content.Core.Screens
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
             // EntityBasis Konstruktor fügt automatisch zur EntityManager.entities hinzu
-            new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint(), 10, 2, 3);
+            new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint(), 100, 2, 3);
             new Player(LevelManager.maps.getSpawnpoint(), 100, 2f, 5);
 
             UIManager.healthBar = new HealthBar(Player.Instance);
             UIManager.skillBar = new Skillbar(Player.Instance);
+            UIManager.mobHealthBars = new MobHealthBars();
 
             Thread.Sleep(500);
 
@@ -142,8 +143,8 @@ namespace _2DRoguelike.Content.Core.Screens
 
             LevelManager.Draw(spriteBatch);
             EntityManager.Draw(spriteBatch);
-            //GameDebug.GameDebug.hitboxDebug.Draw(spriteBatch);
-
+            GameDebug.GameDebug.hitboxDebug.Draw(spriteBatch);
+            UIManager.DrawDynamic(spriteBatch);
             spriteBatch.End();
 
             // seperate sprite batch begin+end which isn't attached to an active 2D Camera

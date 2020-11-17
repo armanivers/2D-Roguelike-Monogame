@@ -11,17 +11,25 @@ namespace _2DRoguelike.Content.Core.UI
     {
         public static HealthBar healthBar;
         public static Skillbar skillBar;
+        public static MobHealthBars mobHealthBars;
 
         public static void Update(GameTime gameTime)
         {
             healthBar.Update(gameTime);
             skillBar.Update(gameTime);
+            mobHealthBars.Update(gameTime);
         }
         public static void Draw(SpriteBatch spriteBatch)
         {
             healthBar.Draw(spriteBatch);
             skillBar.Draw(spriteBatch);
         }
+
+        public static void DrawDynamic(SpriteBatch spriteBatch)
+        {
+            mobHealthBars.Draw(spriteBatch);
+        }
+
 
 
     }

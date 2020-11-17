@@ -4,10 +4,12 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core
 {
-    static class GameSettings
+    class GameSettings
     {
         public static int screenWidth;
         public static int screenHeight;
+        public static int backgroundMusicLevel;
+        public static int soundeffectsLevel;
 
         public static bool fullScreen;
 

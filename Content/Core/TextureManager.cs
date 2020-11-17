@@ -48,6 +48,8 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D healthBarRed { get; private set; }
         public static Texture2D skillbar { get; private set; }
         public static Texture2D slotUsed { get; private set; }
+        public static Texture2D EnemyBarContainer { get; private set; }
+        public static Texture2D EnemyBar { get; private set; }
         // Tiles Data
         public static Texture2D[] tiles { get; private set; }
         public static int tilesAmount;
@@ -89,6 +91,8 @@ namespace _2DRoguelike.Content.Core
             healthBarRed = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/RedBar");
             skillbar = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/skillbar");
             slotUsed = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/slotUsed");
+            EnemyBarContainer = content.Load<Texture2D>("Assets/Graphics/UI/EnemeyUI/enemyBarContainer");
+            EnemyBar = content.Load<Texture2D>("Assets/Graphics/UI/EnemeyUI/enemyBar");
 
             // Tiles Data
             tilesAmount = 2;
