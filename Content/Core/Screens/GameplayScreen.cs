@@ -58,10 +58,10 @@ namespace _2DRoguelike.Content.Core.Screens
 
             // EntityBasis Konstruktor fügt automatisch zur EntityManager.entities hinzu
             new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint(), 10, 2, 3);
-            new Player(LevelManager.maps.getSpawnpoint(), 100, 0.4f, 5);
+            new Player(LevelManager.maps.getSpawnpoint(), 100, 2f, 5);
 
             UIManager.healthBar = new HealthBar(Player.Instance);
-
+            UIManager.skillBar = new Skillbar(Player.Instance);
 
             Thread.Sleep(500);
 
