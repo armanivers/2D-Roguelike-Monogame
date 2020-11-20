@@ -11,7 +11,7 @@ namespace _2DRoguelike.Content.Core.Entities
     {
         private Animation animation;
         private float timer;
-        private bool running;
+        private bool running = true;
 
         public Vector2 Position { get; set; }
 
@@ -34,7 +34,7 @@ namespace _2DRoguelike.Content.Core.Entities
             this.animation = newAnimation;
             newAnimation.CurrentFrame = 0;
             timer = 0f;
-            running = true;
+            running=true;
         }
 
         public void Stop()

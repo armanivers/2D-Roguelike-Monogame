@@ -13,7 +13,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public Actions.Action PerformedAction;
         public string LastAnimation { get; set; }
-        private bool LockedAnimation;
+        private bool LockedAnimation = false;
 
         public Vector2 LineOfSight { get; set; }
 
@@ -129,10 +129,14 @@ namespace _2DRoguelike.Content.Core.Entities
             }
 
             Debug.WriteLine(animationIdentifier);
+
             if (animationManager != null)
-                animationManager.Play(animations[animationIdentifier]);
-            if (animationManager.IsPrioritized())
-                LockedAnimation = true;
+            {     
+                    animationManager.Play(animations[animationIdentifier]);
+                    if (animationManager.IsPrioritized())
+                        LockedAnimation = true;             
+            }
+
         }
 
 

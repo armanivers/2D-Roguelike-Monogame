@@ -26,10 +26,10 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
                 {"WalkRight", new Animation(TextureManager.ZombieBrownWalk,3,9,frameSpeed)},
                 
 
-                 {"ShootUp", new Animation(TextureManager.ZombieShoot,0,13,(frameSpeed *=0.3f),false)},
-                {"ShootLeft",new Animation(TextureManager.ZombieShoot,1,13,frameSpeed, false)},
-                {"ShootDown", new Animation(TextureManager.ZombieShoot,2,13,frameSpeed, false)},
-                {"ShootRight", new Animation(TextureManager.ZombieShoot,3,13,frameSpeed, false)}
+                 {"ShootUp", new Animation(TextureManager.ZombieShoot,0,13,(frameSpeed *=0.3f),false, true)},
+                {"ShootLeft",new Animation(TextureManager.ZombieShoot,1,13,frameSpeed, false, true)},
+                {"ShootDown", new Animation(TextureManager.ZombieShoot,2,13,frameSpeed, false, true)},
+                {"ShootRight", new Animation(TextureManager.ZombieShoot,3,13,frameSpeed, false, true)}
             };
             animationManager = new AnimationManager(animations.First().Value);
         }
