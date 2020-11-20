@@ -13,7 +13,7 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Assets/Graphics/EnemyElements/ZombieBrown/zombie_brown_walk.png
+#begin Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_idle.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -23,7 +23,31 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Graphics/EnemyElements/ZombieBrown/zombie_brown_walk.png
+/build:Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_idle.png
+
+#begin Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_shoot.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_shoot.png
+
+#begin Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_walk.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_walk.png
 
 #begin Assets/Graphics/Menus/background.png
 /importer:TextureImporter
@@ -73,7 +97,7 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/Particles/explosion.png
 
-#begin Assets/Graphics/PlayerElements/playerSheet_default.png
+#begin Assets/Graphics/PlayerElements/playerSheet_idle.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -83,7 +107,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Graphics/PlayerElements/playerSheet_default.png
+/build:Assets/Graphics/PlayerElements/playerSheet_idle.png
 
 #begin Assets/Graphics/PlayerElements/playerSheet_shoot.png
 /importer:TextureImporter
@@ -97,7 +121,7 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/PlayerElements/playerSheet_shoot.png
 
-#begin Assets/Graphics/PlayerElements/playerSheet_walk_axe_back.png
+#begin Assets/Graphics/PlayerElements/playerSheet_walk_axe.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -107,43 +131,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Graphics/PlayerElements/playerSheet_walk_axe_back.png
-
-#begin Assets/Graphics/PlayerElements/playerSheet_walk_axe_front.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Assets/Graphics/PlayerElements/playerSheet_walk_axe_front.png
-
-#begin Assets/Graphics/PlayerElements/playerSheet_walk_axe_left.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Assets/Graphics/PlayerElements/playerSheet_walk_axe_left.png
-
-#begin Assets/Graphics/PlayerElements/playerSheet_walk_axe_right.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Assets/Graphics/PlayerElements/playerSheet_walk_axe_right.png
+/build:Assets/Graphics/PlayerElements/playerSheet_walk_axe.png
 
 #begin Assets/Graphics/Projectiles/Arrow.png
 /importer:TextureImporter

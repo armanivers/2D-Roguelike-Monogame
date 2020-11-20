@@ -5,7 +5,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.Entities
 {
-    class Animation
+    public class Animation
     {
         public int CurrentFrame { get; set; }
         public int FrameCount { get; private set; }
@@ -13,14 +13,19 @@ namespace _2DRoguelike.Content.Core.Entities
         public float FrameSpeed { get; set; }
         public int FrameWidth { get { return Texture.Width / FrameCount; } }
         public bool isLooping { get; set; }
+        
+        public bool Prioritized { get; set; }
         public Texture2D Texture { get; private set; }
         public int yOffest;
 
-        public Animation(Texture2D texture, int yOffest, int frameCount,float frameSpeed)
+
+
+        public Animation(Texture2D texture, int yOffest, int frameCount,float frameSpeed, bool isLoop = true, bool priority = false)
         {
             Texture = texture;
             FrameCount = frameCount;
-            isLooping = true;
+            isLooping = isLoop;
+            Prioritized = priority;
             // lower FrameSpeed means faster Animation
             FrameSpeed = frameSpeed;
             this.yOffest = yOffest * FrameHeight;

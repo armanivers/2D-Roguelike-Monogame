@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using Microsoft.Xna.Framework;
+using Action = _2DRoguelike.Content.Core.Entities.Actions.Action;
 
 namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 {
@@ -11,16 +13,23 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
     {
         public GreenZombie(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
         {
-            texture = TextureManager.Player;
+            texture = TextureManager.PlayerIdle;
             float frameSpeed = 0.09f;
             animations = new Dictionary<string, Animation>()
             {
-                // Todo: idle animation texturesheet erstellen!
-                {"Idle", new Animation(TextureManager.Player,0,1,frameSpeed*4)},
-                {"WalkUp", new Animation(TextureManager.PlayerWalkUpAxe,0,9,frameSpeed)},
-                {"WalkDown", new Animation(TextureManager.PlayerWalkDownAxe,0,9,frameSpeed)},
-                {"WalkLeft",new Animation(TextureManager.PlayerWalkLeftAxe,0,9,frameSpeed)},
-                {"WalkRight", new Animation(TextureManager.PlayerWalkRightAxe,0,9,frameSpeed)}
+                
+                // Gehen und Idle
+                {"Idle", new Animation(TextureManager.ZombieBrownIdle,2,6,frameSpeed*2.5f)},
+                {"WalkUp", new Animation(TextureManager.ZombieBrownWalk,0,9,frameSpeed)},
+                {"WalkLeft",new Animation(TextureManager.ZombieBrownWalk,1,9,frameSpeed)},
+                {"WalkDown", new Animation(TextureManager.ZombieBrownWalk,2,9,frameSpeed)},
+                {"WalkRight", new Animation(TextureManager.ZombieBrownWalk,3,9,frameSpeed)},
+                
+
+                 {"ShootUp", new Animation(TextureManager.ZombieShoot,0,13,(frameSpeed *=0.3f),false)},
+                {"ShootLeft",new Animation(TextureManager.ZombieShoot,1,13,frameSpeed, false)},
+                {"ShootDown", new Animation(TextureManager.ZombieShoot,2,13,frameSpeed, false)},
+                {"ShootRight", new Animation(TextureManager.ZombieShoot,3,13,frameSpeed, false)}
             };
             animationManager = new AnimationManager(animations.First().Value);
         }
@@ -31,7 +40,7 @@ public override void Update(GameTime gameTime)
             // TODO: Zeichnen etc.
         }
 
-        public override void Attack(Attack.AttackMethod attackMethod)
+        public override void Attack()
         {
             /*
             switch (attackMethod)
@@ -45,9 +54,10 @@ public override void Update(GameTime gameTime)
             */
         }
 
-        protected override ActionCommand DetermineAction()
+        public override Action DetermineAction()
         {
-            return ActionCommand.MOVE;
+            // TODO: Anhand von Fakten, wie Status, position, playerPosition, blickfeld etc. eine Action erzeugen
+            return new Move(this);
         }
     }
 }

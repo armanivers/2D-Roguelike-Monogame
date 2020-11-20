@@ -11,12 +11,9 @@ namespace _2DRoguelike.Content.Core
         // Player Data
         // Idee: Animationen in ein Array speicher, dann mit [0] auf animation walkup und [1] animation walkdown zugreifen?
         //TODO: Nur ein Spritesheet verwenden
-        public static Texture2D Player { get; private set; }
-        public static Texture2D PlayerWalkAxe { get; private set; }
-        public static Texture2D PlayerWalkUpAxe { get; private set; }
-        public static Texture2D PlayerWalkDownAxe { get; private set; }
-        public static Texture2D PlayerWalkLeftAxe { get; private set; }
-        public static Texture2D PlayerWalkRightAxe { get; private set; }
+        public static Texture2D PlayerIdle { get; private set; }
+        public static Texture2D PlayerWalk { get; private set; }
+        
 
 
         public static Texture2D PlayerShoot { get; private set; }
@@ -26,6 +23,8 @@ namespace _2DRoguelike.Content.Core
         // Enemy Data
         // Brown Zombie
         public static Texture2D ZombieBrownWalk { get; private set; }
+        public static Texture2D ZombieBrownIdle { get; private set; }
+        public static Texture2D ZombieShoot { get; set; }
 
         // Particle Data
 
@@ -60,18 +59,16 @@ namespace _2DRoguelike.Content.Core
         public static void Load(ContentManager content)
         {
             // Player Data
-            Player = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_default");
-            PlayerWalkUpAxe = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk_axe_back");
-            PlayerWalkDownAxe = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk_axe_front");
-            PlayerWalkLeftAxe = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk_axe_left");
-            PlayerWalkRightAxe = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk_axe_right");
+            PlayerIdle = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_idle");
+            PlayerWalk = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk_axe");
 
             PlayerShoot = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_shoot");
 
             // Enemy Data
             // Zombie Brown
-            ZombieBrownWalk = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/zombie_brown_walk");
-
+            ZombieBrownWalk = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_walk");
+            ZombieBrownIdle = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_idle");
+            ZombieShoot = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_shoot");
             // Particle Data
             Explosion = content.Load<Texture2D>("Assets/Graphics/Particles/explosion");
 

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities
 {
-    abstract class Creature: EntityBasis
+    public abstract class Creature: EntityBasis
     {
 
         public enum ActionCommand { 
@@ -16,9 +17,9 @@ namespace _2DRoguelike.Content.Core.Entities
         public readonly float attackCooldown;
         public float CooldownTimer { get; set; }
         
-        protected readonly float movingSpeed;
-        protected float SpeedModifier { get; set; }
-        protected bool dead;
+        public readonly float movingSpeed;
+        public float SpeedModifier { get; set; }
+        public bool dead;
 
         // TODO: Setter fuer die Hitbox fixen (fuer untere Klassen)
         public override Vector2 Position
@@ -53,42 +54,26 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public abstract void Move();
 
-        // Erst wierd Aktion bestimmt, dann wird Animation bestimmt
+        // Erst wird Aktion bestimmt, dann wird Animation bestimmt
 
-        public bool CheckAttacking() // ist NICHT die Attack() Methode, normalerweise boolean
+        public bool IsAttacking()
         {
-            return CooldownTimer > attackCooldown;
+            return CooldownTimer <= attackCooldown;
         }
-        protected abstract ActionCommand DetermineAction();
-        protected abstract void DetermineAnimation(Dictionary<string, Animation> animations, ActionCommand action);
+        protected abstract void DetermineAnimation(Dictionary<string, Animation> animations);
 
         public override void Update(GameTime gameTime)
         {
-
-            Move();
-            ActionCommand action = DetermineAction();
-
-            //
-            if (action == ActionCommand.ATTACK && CheckAttacking())
-                Attack(Entities.Attack.AttackMethod.RANGE_ATTACK);
-            
-            DetermineAnimation(animations, action);
-
-
-            if(CooldownTimer <= attackCooldown)
-                CooldownTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            animationManager.Update(gameTime);
+            // Die Änderungen in Humanoid müssen bald teilweise hier eingefügt werden
         }
 
-        public void GetHit(int damage)
+        public void DeductHealthPoints(int damage)
         {
             HealthPoints -= damage;
             System.Diagnostics.Debug.Print("Got Hit!");
             if (HealthPoints <= 0)
             {
-                HealthPoints = 0;
-                dead = true;
+                Kill();
             }
         }
 
@@ -102,7 +87,7 @@ namespace _2DRoguelike.Content.Core.Entities
         {
             return dead;
         }
-        public abstract void Attack(Attack.AttackMethod attackMethod); 
+        public abstract void Attack(); 
 
     }
 }

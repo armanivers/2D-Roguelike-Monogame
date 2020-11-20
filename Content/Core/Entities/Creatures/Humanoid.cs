@@ -1,119 +1,141 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities
 {
-    abstract class Humanoid: Creature
+    public abstract class Humanoid : Creature
     {
 
-        public Humanoid(Vector2 position,int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position, maxHealthPoints, attackCooldown, movingSpeed){
+
+        public Actions.Action PerformedAction;
+        public string LastAnimation { get; set; }
+        private bool LockedAnimation;
+
+        public Vector2 LineOfSight { get; set; }
+
+        public Humanoid(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
+        {
             Hitbox = new Rectangle((int)Position.X + 17, (int)Position.Y + 14, 29, 49);
             // alle Humanoids besitzen gleiche Hitbox
         }
 
-       
+
         public override void Move()
         {
-            Velocity = movingSpeed * SpeedModifier * GetDirection();
-            if (MultipleDirections(GetDirection()))
-                Velocity /= 1.3f;
+            Acceleration = movingSpeed * SpeedModifier * GetDirection();
+            if (MutipleDirections(GetDirection()))
+                Acceleration /= 1.3f;
 
-            Velocity.X = (float)Math.Round((double)Velocity.X);
-            Velocity.Y = (float)Math.Round((double)Velocity.Y);
+            Acceleration.X = (float)Math.Round((double)Acceleration.X);
+            Acceleration.Y = (float)Math.Round((double)Acceleration.Y);
 
             // von float in int
-            hitbox.X += (int)Velocity.X;
+            hitbox.X += (int)Acceleration.X;
             // Wenn Bewegung nicht möglich: Hitbox wieder zurücksetzen
             // CollidesWithFrameBorder() weggemacht
             if (CollidesWithSolidTile())
             {
-                hitbox.X -= (int)Velocity.X;
+                hitbox.X -= (int)Acceleration.X;
 
             }
             else
             {
-                Position += new Vector2(Velocity.X, 0);
+                Position += new Vector2(Acceleration.X, 0);
             }
 
 
-            hitbox.Y += (int)Velocity.Y;
+            hitbox.Y += (int)Acceleration.Y;
             if (CollidesWithSolidTile())
             {
-                hitbox.Y -= (int)Velocity.Y;
+                hitbox.Y -= (int)Acceleration.Y;
             }
             else
             {
-                Position += new Vector2(0, Velocity.Y);
+                Position += new Vector2(0, Acceleration.Y);
             }
         }
 
-        
 
-        protected override void DetermineAnimation(Dictionary<string, Animation> animations, ActionCommand action)
+
+        protected override void DetermineAnimation(Dictionary<string, Animation> animations)
         {
-            // TODO: In Humanoid verschieben, damit für alle gleichgültig
+            // Angriff
+            // TODO: Art des Angriffes bestimmen
 
-            switch (action)
+            if (this is Player.Player && InputController.IsMousePressed())
             {
-                case ActionCommand.MOVE:
-                    // Gehen
-                    if (Velocity.X > 0)
-                    {
-                        animationManager.Play(animations["WalkRight"]);
-                    }
-                    else if (Velocity.X < 0)
-                    {
-                        animationManager.Play(animations["WalkLeft"]);
-                    }
-                    else if (Velocity.Y > 0)
-                    {
-                        animationManager.Play(animations["WalkDown"]);
-                    }
-                    else if (Velocity.Y < 0)
-                    {
-                        animationManager.Play(animations["WalkUp"]);
-                    }
-                    else if (Velocity.X == 0 && Velocity.Y == 0)
-                    {
-                        animationManager.Play(animations["Idle"]);
-                    }
-                    break;
-                case ActionCommand.ATTACK:
-                    // Angriff
-                    // TODO: Art des Angriffes bestimmen
+                var differenz = InputController.MousePosition - Position;
+                var angle = Math.Atan2(differenz.X, differenz.Y);
 
-                    var differenz = InputController.MousePosition - Position;
-                    var angle = Math.Atan2(differenz.X, differenz.Y);
+                if (angle > 1 && angle < 2)
+                {
+                    animationManager.Play(animations["ShootRight"]);
+                }
+                else if (angle > 2 && angle < 3)
+                {
+                    animationManager.Play(animations["ShootUp"]);
+                }
+                else if (angle > -3 && angle < -2)
+                {
+                    animationManager.Play(animations["ShootUp"]);
+                }
+                else if (angle > -1 && angle < 1)
+                {
+                    animationManager.Play(animations["ShootDown"]);
+                }
+                else if (angle < -1 && angle > -2)
+                {
+                    animationManager.Play(animations["ShootLeft"]);
+                }
+            }
+            else
+            {
+                if (Acceleration.X > 0)
+                {
+                    animationManager.Play(animations["WalkRight"]);
+                }
+                else if (Acceleration.X < 0)
+                {
+                    animationManager.Play(animations["WalkLeft"]);
+                }
+                else if (Acceleration.Y > 0)
+                {
+                    animationManager.Play(animations["WalkDown"]);
+                }
+                else if (Acceleration.Y < 0)
+                {
+                    animationManager.Play(animations["WalkUp"]);
+                }
+                else if (Acceleration.X == 0 && Acceleration.Y == 0)
+                {
+                    animationManager.Play(animations["Idle"]);
+                }
+                else animationManager.Stop();
+            }
+        }
 
-                    if (angle > 1 && angle < 2)
-                    {
-                        animationManager.Play(animations["ShootRight"]);
-                    }
-                    else if (angle > 2 && angle < 3){
-                        animationManager.Play(animations["ShootUp"]);
-                    } 
-                    else if(angle > -3 && angle < -2)
-                    {
-                        animationManager.Play(animations["ShootUp"]);
-                    }
-                    else if(angle > -1 && angle < 1)
-                    {
-                        animationManager.Play(animations["ShootDown"]);
-                    }
-                    else if(angle < -1 && angle > -2){
-                        animationManager.Play(animations["ShootLeft"]);
-                    }
-                    break;
-                default: 
-                    animationManager.Stop();
-                    break;
+        // stattdessen in Creature aufrufen: selectNextAnimation
+        public void SetAnimation(String animationIdentifier)
+        {
+            if (LockedAnimation)
+            {
+                if (!animationManager.IsRunning())
+                    LockedAnimation = false;
+                else return;
             }
 
-
+            Debug.WriteLine(animationIdentifier);
+            if (animationManager != null)
+                animationManager.Play(animations[animationIdentifier]);
+            if (animationManager.IsPrioritized())
+                LockedAnimation = true;
         }
+
+
 
         public bool CollidesWithSolidTile()
         {
@@ -167,17 +189,32 @@ namespace _2DRoguelike.Content.Core.Entities
             return !new Rectangle(0, 0, (int)Game1.ScreenSize.X, (int)Game1.ScreenSize.Y).Contains(hitbox);
         }
 
-        protected bool MultipleDirections(Vector2 direction) {
+        //protected abstract void SetDirection() { 
+
+        //}
+
+        public abstract Vector2 GetDirection();
+        // Player: Prüfen mit Tastatur
+        // Enemies: Ermitteln mit KI-Ausgabe
+        public bool MutipleDirections(Vector2 direction)
+        {
             return direction.X != 0 && direction.Y != 0;
         }
 
-        protected abstract Vector2 GetDirection();
-        // Player: Prüfen mit Tastatur
-        // Enemies: Ermitteln mit KI-Ausgabe
+        public abstract Actions.Action DetermineAction();
+
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            //base.Update(gameTime);
+            PerformedAction = DetermineAction();
+            PerformedAction.ExecuteAction();
+
+            SetAnimation(PerformedAction.ChooseAnimation());
+            // TODO: Method updateStats()
+            if (CooldownTimer <= attackCooldown)
+                CooldownTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            animationManager.Update(gameTime);
         }
     }
 }

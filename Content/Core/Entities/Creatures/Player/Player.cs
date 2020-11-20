@@ -1,4 +1,5 @@
-﻿using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
+﻿using _2DRoguelike.Content.Core.Entities.Actions;
+using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -36,34 +37,31 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
             //this.position = new Vector2(2*32, 5*32); bei statischer Map
             instance = this;
-            texture = TextureManager.Player;
+            texture = TextureManager.PlayerIdle;
             float frameSpeed = 0.09f;
             animations = new Dictionary<string, Animation>()
             {
-                // Todo: idle animation texturesheet erstellen!
-                {"Idle", new Animation(TextureManager.Player,0,1,frameSpeed*4)},
-                {"WalkUp", new Animation(TextureManager.ZombieBrownWalk,0,9,frameSpeed)},
-                {"WalkLeft",new Animation(TextureManager.ZombieBrownWalk,1,9,frameSpeed)},
-                {"WalkDown", new Animation(TextureManager.ZombieBrownWalk,2,9,frameSpeed)},
-                {"WalkRight", new Animation(TextureManager.ZombieBrownWalk,3,9,frameSpeed)},
+                {"Idle", new Animation(TextureManager.PlayerIdle,2,6,frameSpeed*2.5f)},
+                {"WalkUp", new Animation(TextureManager.PlayerWalk,0,9,frameSpeed)},
+                {"WalkLeft",new Animation(TextureManager.PlayerWalk,1,9,frameSpeed)},
+                {"WalkDown", new Animation(TextureManager.PlayerWalk,2,9,frameSpeed)},
+                {"WalkRight", new Animation(TextureManager.PlayerWalk,3,9,frameSpeed)},
                 
                 // Pfeil schießen
-                {"ShootUp", new Animation(TextureManager.PlayerShoot,0,13,(frameSpeed *=0.3f))},
-                {"ShootLeft",new Animation(TextureManager.PlayerShoot,1,13,frameSpeed)},
-                {"ShootDown", new Animation(TextureManager.PlayerShoot,2,13,frameSpeed)},
-                {"ShootRight", new Animation(TextureManager.PlayerShoot,3,13,frameSpeed)}
+                {"ShootUp", new Animation(TextureManager.PlayerShoot,0,13,(frameSpeed *=0.3f), false, true)},
+                {"ShootLeft",new Animation(TextureManager.PlayerShoot,1,13,frameSpeed, false, true)},
+                {"ShootDown", new Animation(TextureManager.PlayerShoot,2,13,frameSpeed, false, true)},
+                {"ShootRight", new Animation(TextureManager.PlayerShoot,3,13,frameSpeed, false, true)}
             };
-            animationManager = new AnimationManager(animations.First().Value);
+            animationManager = new AnimationManager(animations["Idle"]);
             
         }
-        
 
-        protected override Vector2 GetDirection()
-        {
-            return InputController.GetDirection();
+        public override Vector2 GetDirection()
+        {  
+            return 
+                LineOfSight = InputController.GetDirection();
         }
-
-        
 
         public override void Update(GameTime gameTime)
         {
@@ -77,7 +75,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             instance = null;
         }
 
-        public override void Attack(Attack.AttackMethod attackMethod)
+        public override void Attack()
         {
             CooldownTimer = 0;
             SoundManager.PlayerAttack.Play(0.2f, 0.2f, 0);
@@ -106,21 +104,12 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             }*/
         }
 
-        protected override ActionCommand DetermineAction()
+        public override Action DetermineAction()
         {
-            // Wenn "battleMode" (Angriff findet gerade statt): Action ändert sich nicht
+            if (InputController.IsMousePressed() && !IsAttacking())
+                return new RangeAttack(this);
+            return new Move(this);
 
-
-            // Je nach Keyinputs wird eine Action bestimmt
-
-
-            if (InputController.IsMousePressed() /* || Melee-Knop gedrückt */) {
-                // if (CheckAttacking()) 
-                    return ActionCommand.ATTACK;
-                
-            }
-            // if(InputController.GetDirection() != Vector2.Zero)
-            return ActionCommand.MOVE;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 {
     abstract class Enemy : Humanoid
     {
-        protected override Vector2 GetDirection()
+        public override Vector2 GetDirection()
         {
             // TODO: KI nach Angaben fragen
             return new Vector2(0, 0);

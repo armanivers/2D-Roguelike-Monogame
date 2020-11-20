@@ -23,7 +23,10 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             Vector2 shakeOffset = CalculateShake();
             var shakeOffsetMultiplier = Matrix.CreateTranslation(shakeOffset.X, shakeOffset.Y, 0);
 
-            var target = Matrix.CreateTranslation(new Vector3(-player.Position.X - (player.Size.X / 2), -player.Position.Y - (player.Size.Y / 2), 0));
+            const int idleSheetFrameCount_Width = 6;
+            const int idleSheetFrameCount_Height = 4;
+
+            var target = Matrix.CreateTranslation(new Vector3(-player.Position.X - (player.Size.X/ idleSheetFrameCount_Width / 2), -player.Position.Y - (player.Size.Y/ idleSheetFrameCount_Height / 2), 0));
             
             var zoomFactor = Matrix.CreateScale(zoom);
 

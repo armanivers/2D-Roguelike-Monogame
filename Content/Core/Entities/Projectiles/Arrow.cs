@@ -16,29 +16,32 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
         public Arrow() : base(new Vector2(Player.Player.Instance.Hitbox.X+16, Player.Player.Instance.Hitbox.Y+16), -7, +5, 10f)
         {
             this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y,13, 13);
-            this.Velocity = Vector2.Normalize(InputController.MousePosition - Position);
-            this.orientation = (float)Math.Atan2(Velocity.Y, Velocity.X);
+            this.Acceleration = Vector2.Normalize(InputController.MousePosition - Position);
+            this.rotation = (float)Math.Atan2(Acceleration.Y, Acceleration.X);
             this.texture = TextureManager.Arrow;
             this.timer = 0;
         }
 
         public void checkCollision()
         {
-            foreach (var livingEntity in EntityManager.entities)
+            if (!Player.Player.Instance.hitbox.Contains(Hitbox))
             {
-                //&& livingEntity != Player.Player.Instance pruefen damit das projectile dem spieler keinen schaden gibt
-                if (livingEntity is Creature  && livingEntity != Player.Player.Instance)
+                foreach (var livingEntity in EntityManager.entities)
                 {
-                    if (hitbox.Intersects(livingEntity.Hitbox))
+                    //&& livingEntity != Player.Player.Instance pruefen damit das projectile dem spieler keinen schaden gibt
+                    if (livingEntity is Creature && livingEntity != Player.Player.Instance)
                     {
-                        ((Creature)livingEntity).GetHit(15);
-                        isExpired = true;
-                    }
-                    else if (CollidesWithSolidTile())
-                    {
-                        SpeedModifier = 0f;
-                        //Velocity = Vector2.Zero;
-                       // isExpired = true; // Mittels expireTimer gelöst
+                        if (hitbox.Intersects(livingEntity.Hitbox))
+                        {
+                            ((Creature)livingEntity).DeductHealthPoints(15);
+                            isExpired = true;
+                        }
+                        else if (CollidesWithSolidTile())
+                        {
+                            SpeedModifier = 0f;
+                            //Velocity = Vector2.Zero;
+                            // isExpired = true; // Mittels expireTimer gelöst
+                        }
                     }
                 }
             }
@@ -96,7 +99,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
             checkCollision();
 
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position += Velocity * flyingSpeed * SpeedModifier;
+            Position += Acceleration * flyingSpeed * SpeedModifier;
             
             if (timer > expireTimer)
             {
