@@ -10,9 +10,16 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         public Protect(Humanoid callInst) : base(callInst, new ProtectAnimationIdentifier("SpellcastRight", "SpellcastLeft", "SpellcastDown", "SpellcastUp"))
         {
         }
+
+        
+
         public override void UseAbility()
         {
             // TODO: Hier die Logik für den Ablauf einfügen
+            throw new NotImplementedException();
+        }
+        public override void SetLineOfSight()
+        {
             throw new NotImplementedException();
         }
     }

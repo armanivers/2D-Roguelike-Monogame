@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Actions
 {
@@ -12,9 +13,9 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         public override string ChooseAnimation(Humanoid CallingInstance)
         {
             // TODO: AnimationString bestimmen anhand von MousePosition
-            string ret = PrintMouseDirection(CallingInstance);
-            
-            return ret == "" ? "Idle" : "Shoot" + ret;
+            return "Shoot" + PrintLineOfSight(CallingInstance);
+
+
         }
     }
 }

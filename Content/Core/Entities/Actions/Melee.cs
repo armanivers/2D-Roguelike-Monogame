@@ -15,5 +15,11 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
             // TODO: Ausführen der Logik für den Angriff
             throw new NotImplementedException();
         }
+
+        public override void SetLineOfSight()
+        {
+            // TODO: Wohin schaut die Creature jetzt?
+            throw new NotImplementedException();
+        }
     }
 }

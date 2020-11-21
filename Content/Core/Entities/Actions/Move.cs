@@ -13,12 +13,14 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         public override void ExecuteAction()
         {
             Walk();
+            SetLineOfSight();
         }
 
         public void Walk() {
             // TODO: Ausführen der Logik für die Bewegung
-
-            CallingInstance.Acceleration = CallingInstance.movingSpeed * CallingInstance.SpeedModifier * CallingInstance.GetDirection();
+            Vector2 direction = CallingInstance.GetDirection();
+            
+            CallingInstance.Acceleration = CallingInstance.movingSpeed * CallingInstance.SpeedModifier * direction;
             if (CallingInstance.MutipleDirections(CallingInstance.GetDirection()))
                 CallingInstance.Acceleration /= 1.3f;
 
@@ -49,6 +51,12 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
             {
                 CallingInstance.Position += new Vector2(0, CallingInstance.Acceleration.Y);
             }
+
+            
+        }
+
+        public override void SetLineOfSight() {
+            CallingInstance.SetLineOfSight(CallingInstance.GetDirection());
         }
     }
 }

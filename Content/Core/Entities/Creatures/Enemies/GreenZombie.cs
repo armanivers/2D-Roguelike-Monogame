@@ -13,13 +13,19 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
     {
         public GreenZombie(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
         {
-            texture = TextureManager.PlayerIdle;
+            texture = TextureManager.ZombieBrownIdle;
             float frameSpeed = 0.09f;
             animations = new Dictionary<string, Animation>()
             {
                 
-                // Gehen und Idle
-                {"Idle", new Animation(TextureManager.ZombieBrownIdle,2,6,frameSpeed*2.5f)},
+               
+                // Idle
+                {"IdleUp", new Animation(TextureManager.ZombieBrownIdle,0,6,frameSpeed*2.5f)},
+                {"IdleLeft", new Animation(TextureManager.ZombieBrownIdle,1,6,frameSpeed*2.5f)},
+                {"IdleDown", new Animation(TextureManager.ZombieBrownIdle,2,6,frameSpeed*2.5f)},
+                {"IdleRight", new Animation(TextureManager.ZombieBrownIdle,3,6,frameSpeed*2.5f)},
+                
+                // Laufbewegung
                 {"WalkUp", new Animation(TextureManager.ZombieBrownWalk,0,9,frameSpeed)},
                 {"WalkLeft",new Animation(TextureManager.ZombieBrownWalk,1,9,frameSpeed)},
                 {"WalkDown", new Animation(TextureManager.ZombieBrownWalk,2,9,frameSpeed)},
@@ -31,27 +37,12 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
                 {"ShootDown", new Animation(TextureManager.ZombieShoot,2,13,frameSpeed, false, true)},
                 {"ShootRight", new Animation(TextureManager.ZombieShoot,3,13,frameSpeed, false, true)}
             };
-            animationManager = new AnimationManager(animations.First().Value);
+            animationManager = new AnimationManager(animations["IdleDown"]);
         }
 
-public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            // TODO: Zeichnen etc.
-        }
-
-        public override void Attack()
-        {
-            /*
-            switch (attackMethod)
-            {
-                case Entities.Attack.AttackMethod.MELEE:
-                    // meleeAttack.startAttack();
-                    break;
-                case Entities.Attack.AttackMethod.RANGE_ATTACK:
-                    // rangeAttack.startAttack();
-                    break;
-            */
         }
 
         public override Action DetermineAction()

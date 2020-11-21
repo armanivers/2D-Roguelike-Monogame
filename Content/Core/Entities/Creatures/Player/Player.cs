@@ -41,7 +41,13 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             float frameSpeed = 0.09f;
             animations = new Dictionary<string, Animation>()
             {
-                {"Idle", new Animation(TextureManager.PlayerIdle,2,6,frameSpeed*2.5f)},
+                // Idle
+                {"IdleUp", new Animation(TextureManager.PlayerIdle,0,6,frameSpeed*2.5f)},
+                {"IdleLeft", new Animation(TextureManager.PlayerIdle,1,6,frameSpeed*2.5f)},
+                {"IdleDown", new Animation(TextureManager.PlayerIdle,2,6,frameSpeed*2.5f)},
+                {"IdleRight", new Animation(TextureManager.PlayerIdle,3,6,frameSpeed*2.5f)},
+                
+                // Laufbewegung
                 {"WalkUp", new Animation(TextureManager.PlayerWalk,0,9,frameSpeed)},
                 {"WalkLeft",new Animation(TextureManager.PlayerWalk,1,9,frameSpeed)},
                 {"WalkDown", new Animation(TextureManager.PlayerWalk,2,9,frameSpeed)},
@@ -53,55 +59,45 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 {"ShootDown", new Animation(TextureManager.PlayerShoot,2,13,frameSpeed, false, true)},
                 {"ShootRight", new Animation(TextureManager.PlayerShoot,3,13,frameSpeed, false, true)}
             };
-            animationManager = new AnimationManager(animations["Idle"]);
-            
-        }
+            animationManager = new AnimationManager(animations["IdleDown"]);
 
-        public override Vector2 GetDirection()
-        {  
-            return 
-                LineOfSight = InputController.GetDirection();
         }
-
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-            //if (CheckAttacking()) 
-            //    Attack(Entities.Attack.AttackMethod.RANGE_ATTACK);
-        }
-
         public void DeleteInstance()
         {
             instance = null;
         }
-
-        public override void Attack()
+        
+        public override Vector2 GetDirection()
         {
-            CooldownTimer = 0;
-            SoundManager.PlayerAttack.Play(0.2f, 0.2f, 0);
+            return InputController.GetDirection();
+        }
 
-            // animations["ShootRight"].Play
-
-            // create an explosion
-            //Explosion e = new Explosion();
-            //EntityManager.Add(e);
-            Arrow a = new Arrow();
-            //Position = (new Vector2(InputController.MousePosition.X-32, InputController.MousePosition.Y-48));
-            //Kill();
-
-
-            // ------ Zacks Notizen
-
-            /* 
-            switch (attackMethod)
+        public Vector2 GetDirectionToMouse()
+        {
+            var differenz = InputController.MousePosition - Position;
+            var angle = System.Math.Atan2(differenz.X, differenz.Y);
+            if (angle > 1 && angle < 2)
             {
-                case Entities.Attack.AttackMethod.MELEE:
-                    // meleeAttack.startAttack();
-                    break;
-                case Entities.Attack.AttackMethod.RANGE_ATTACK:
-                    // rangeAttack.startAttack();
-                    break;
-            }*/
+                return new Vector2(1, 0);
+            }
+            else if (angle > 2 && angle < 3)
+            {
+                return new Vector2(0, -1);
+            }
+            else if (angle > -3 && angle < -2)
+            {
+
+                return new Vector2(0, -1);
+            }
+            else if (angle > -1 && angle < 1)
+            {
+                return new Vector2(0, 1);
+            }
+            else if (angle < -1 && angle > -2)
+            {
+                return new Vector2(-1, 0);
+            }
+            return Vector2.Zero;
         }
 
         public override Action DetermineAction()
@@ -110,6 +106,14 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 return new RangeAttack(this);
             return new Move(this);
 
+        }
+
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            //if (CheckAttacking()) 
+            //    Attack(Entities.Attack.AttackMethod.RANGE_ATTACK);
         }
     }
 }

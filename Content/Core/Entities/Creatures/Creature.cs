@@ -52,9 +52,6 @@ namespace _2DRoguelike.Content.Core.Entities
             return new Rectangle(hitbox.X + 5, hitbox.Y + 5 + 20, hitbox.Width - 10, hitbox.Height - 10 - 20);
         }
 
-        public abstract void Move();
-
-        // Erst wird Aktion bestimmt, dann wird Animation bestimmt
 
         public bool IsAttacking()
         {
@@ -64,7 +61,8 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public override void Update(GameTime gameTime)
         {
-            // Die Änderungen in Humanoid müssen bald teilweise hier eingefügt werden
+            /** TODO: Vorerst wurde alles in Humanoid eingefügt
+            Die Änderungen in Humanoid müssen bald teilweise hier eingefügt werden */
         }
 
         public void DeductHealthPoints(int damage)
@@ -80,6 +78,7 @@ namespace _2DRoguelike.Content.Core.Entities
         public void Kill()
         {
             HealthPoints = 0;
+            // TODO: Hurt abspielen
             dead = true;
         }
 
@@ -87,7 +86,6 @@ namespace _2DRoguelike.Content.Core.Entities
         {
             return dead;
         }
-        public abstract void Attack(); 
 
     }
 }

@@ -23,42 +23,9 @@ namespace _2DRoguelike.Content.Core.Entities
             // alle Humanoids besitzen gleiche Hitbox
         }
 
+        // ----------------------------------
 
-        public override void Move()
-        {
-            Acceleration = movingSpeed * SpeedModifier * GetDirection();
-            if (MutipleDirections(GetDirection()))
-                Acceleration /= 1.3f;
-
-            Acceleration.X = (float)Math.Round((double)Acceleration.X);
-            Acceleration.Y = (float)Math.Round((double)Acceleration.Y);
-
-            // von float in int
-            hitbox.X += (int)Acceleration.X;
-            // Wenn Bewegung nicht möglich: Hitbox wieder zurücksetzen
-            // CollidesWithFrameBorder() weggemacht
-            if (CollidesWithSolidTile())
-            {
-                hitbox.X -= (int)Acceleration.X;
-
-            }
-            else
-            {
-                Position += new Vector2(Acceleration.X, 0);
-            }
-
-
-            hitbox.Y += (int)Acceleration.Y;
-            if (CollidesWithSolidTile())
-            {
-                hitbox.Y -= (int)Acceleration.Y;
-            }
-            else
-            {
-                Position += new Vector2(0, Acceleration.Y);
-            }
-        }
-
+        public abstract Actions.Action DetermineAction();
 
 
         protected override void DetermineAnimation(Dictionary<string, Animation> animations)
@@ -118,7 +85,6 @@ namespace _2DRoguelike.Content.Core.Entities
             }
         }
 
-        // stattdessen in Creature aufrufen: selectNextAnimation
         public void SetAnimation(String animationIdentifier)
         {
             if (LockedAnimation)
@@ -131,15 +97,26 @@ namespace _2DRoguelike.Content.Core.Entities
             Debug.WriteLine(animationIdentifier);
 
             if (animationManager != null)
-            {     
-                    animationManager.Play(animations[animationIdentifier]);
-                    if (animationManager.IsPrioritized())
-                        LockedAnimation = true;             
+            {
+                animationManager.Play(animations[animationIdentifier]);
+                if (animationManager.IsPrioritized())
+                    LockedAnimation = true;
             }
 
         }
+        public void SetLineOfSight(Vector2 direction)
+        {
+            if (direction != Vector2.Zero)
+                LineOfSight = direction;
+        }
+        public abstract Vector2 GetDirection();
+        // Player: Prüfen mit Tastatur
+        // Enemies: Ermitteln mit KI-Ausgabe
 
-
+        public bool MutipleDirections(Vector2 direction)
+        {
+            return direction.X != 0 && direction.Y != 0;
+        }
 
         public bool CollidesWithSolidTile()
         {
@@ -192,21 +169,6 @@ namespace _2DRoguelike.Content.Core.Entities
         {
             return !new Rectangle(0, 0, (int)Game1.ScreenSize.X, (int)Game1.ScreenSize.Y).Contains(hitbox);
         }
-
-        //protected abstract void SetDirection() { 
-
-        //}
-
-        public abstract Vector2 GetDirection();
-        // Player: Prüfen mit Tastatur
-        // Enemies: Ermitteln mit KI-Ausgabe
-        public bool MutipleDirections(Vector2 direction)
-        {
-            return direction.X != 0 && direction.Y != 0;
-        }
-
-        public abstract Actions.Action DetermineAction();
-
 
         public override void Update(GameTime gameTime)
         {

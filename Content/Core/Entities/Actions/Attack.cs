@@ -12,6 +12,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         public override void ExecuteAction()
         {
             CommenceAttack();
+            SetLineOfSight();
         }
         public abstract void CommenceAttack();
     }

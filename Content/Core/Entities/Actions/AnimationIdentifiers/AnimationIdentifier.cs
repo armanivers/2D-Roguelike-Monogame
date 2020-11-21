@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Actions
 {
@@ -45,6 +46,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         /// </summary>
         protected string PrintLineOfSight(Humanoid CallingInstance) {
             // returnt "Up", "Down", "Left", "Right" anhand von LineOfSight
+            
             if (CallingInstance.LineOfSight.X > 0)
                 return "Right";
             else if (CallingInstance.LineOfSight.X < 0)
@@ -53,7 +55,8 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
                 return "Down";
             else if (CallingInstance.LineOfSight.Y < 0)
                 return "Up";
-            return "";
+            // Default
+            return "Down";
         }
 
 

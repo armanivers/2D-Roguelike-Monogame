@@ -14,34 +14,34 @@ namespace _2DRoguelike.Content.Core.GameDebug
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            // Mouse Targeting Line
-            var origin = Player.Instance.Hitbox;
-            Vector2 target = InputController.MousePosition;
-            DrawLine(spriteBatch, target, new Vector2(origin.X+16,origin.Y+16),Color.Gainsboro, 5);
+            //// Mouse Targeting Line
+            //var origin = Player.Instance.Hitbox;
+            //Vector2 target = InputController.MousePosition;
+            //DrawLine(spriteBatch, target, new Vector2(origin.X+16,origin.Y+16),Color.Gainsboro, 5);
 
-            //Entity Hitboxes
+            ////Entity Hitboxes
 
-            foreach (var p in EntityManager.entities)
-            {
-                // TileCollisionBox                
-                var borderTexture = TextureManager.tileHitboxBorder;
+            //foreach (var p in EntityManager.entities)
+            //{
+            //    // TileCollisionBox                
+            //    var borderTexture = TextureManager.tileHitboxBorder;
 
-                if (p is Creature)
-                {
-                    var t = ((Creature)p).GetTileCollisionHitbox();
-                    spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Top, borderWith, t.Height), Color.Red); // Top
-                    spriteBatch.Draw(borderTexture, new Rectangle(t.Right, t.Top, borderWith, t.Height), Color.Red); // 
-                    spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Top, t.Width, borderWith), Color.Red); // 
-                    spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Bottom, t.Width, borderWith), Color.Red); // Bottom
-                }
+            //    if (p is Creature)
+            //    {
+            //        var t = ((Creature)p).GetTileCollisionHitbox();
+            //        spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Top, borderWith, t.Height), Color.Red); // Top
+            //        spriteBatch.Draw(borderTexture, new Rectangle(t.Right, t.Top, borderWith, t.Height), Color.Red); // 
+            //        spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Top, t.Width, borderWith), Color.Red); // 
+            //        spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Bottom, t.Width, borderWith), Color.Red); // Bottom
+            //    }
 
-                //Entity Hitbox
-                var r = p.Hitbox;
-                spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, borderWith, r.Height), Color.Blue); // Top
-                spriteBatch.Draw(borderTexture, new Rectangle(r.Right, r.Top, borderWith, r.Height), Color.Blue); // 
-                spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, r.Width, borderWith), Color.Blue); //   
-                spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Bottom, r.Width, borderWith), Color.Blue); // Bottom
-            }
+            //    //Entity Hitbox
+            //    var r = p.Hitbox;
+            //    spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, borderWith, r.Height), Color.Blue); // Top
+            //    spriteBatch.Draw(borderTexture, new Rectangle(r.Right, r.Top, borderWith, r.Height), Color.Blue); // 
+            //    spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, r.Width, borderWith), Color.Blue); //   
+            //    spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Bottom, r.Width, borderWith), Color.Blue); // Bottom
+            //}
         }
 
         public void DrawLine(SpriteBatch spriteBatch, Vector2 from, Vector2 to, Color color, int width = 1)
