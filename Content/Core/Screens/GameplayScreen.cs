@@ -100,6 +100,7 @@ namespace _2DRoguelike.Content.Core.Screens
                 InputController.Update();
                 EntityManager.Update(gameTime);
                 UIManager.Update(gameTime);
+                LevelManager.Update(Player.Instance);
                 if (Player.Instance.IsDead())
                 {
                     //LoadingScreen.Load(ScreenManager, false, null,new GameoverScreen());

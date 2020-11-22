@@ -1,4 +1,5 @@
-﻿using _2DRoguelike.Content.Core.World.Tiles;
+﻿using _2DRoguelike.Content.Core.Entities.Player;
+using _2DRoguelike.Content.Core.World.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,14 @@ namespace _2DRoguelike.Content.Core.World
 {
     abstract class Map
     {
+        public Tile[,] map;
         public char[,] charmap;
         public bool[,] boolmap;
-        public Tile[,] map;
+        public Room[,] roommap;
+        public int currentroomx;
+        public int currentroomy;
+        public int nextroomx;
+        public int nextroomy;
         public int width;
         public int height;
 
@@ -61,13 +67,22 @@ namespace _2DRoguelike.Content.Core.World
         {
             this.width = width;
             this.height = height;
+            currentroomx = 0;
+            currentroomy = 0;
         }
         public Map()
         {
             width = 64;
-            height = 64;           
+            height = 64;        
         }
         public abstract Vector2 getSpawnpoint();
+        public void Update(Player player)
+        {
+            if (!roommap[currentroomy, currentroomx].roomhitbox.Contains(player.GetTileCollisionHitbox()))
+            {
+
+            }
+        }
 
         public Tile[,] fillTile(bool[,] level)
         {
@@ -88,16 +103,14 @@ namespace _2DRoguelike.Content.Core.World
             {
                 for (int j = 0; j < level.GetLength(1); j++)
                 {
-                    if(level[i, j].Equals('#') || level[i, j].Equals('!'))
+                    if(level[i, j].Equals(RoomObject.Wall) || level[i, j].Equals(RoomObject.Corner))
                     {
                         result[i, j] = new Tile(true, i, j);
                     }
                     else
                     {
                         result[i, j] = new Tile(false, i, j);
-                    }
-
-                        
+                    } 
                 }
             }
             return result;

@@ -7,8 +7,10 @@ namespace _DRoguelike.Content.Core.World
     class DungeonMap : Map
     {
         public Vector2 spawnpoint;
+        Room room;
         static Random rndState = new Random();
         static int rnd(int x) => rndState.Next() % x;
+        
         public DungeonMap():base()
         {
             charmap = new char[width,height];
