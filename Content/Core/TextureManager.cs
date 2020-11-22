@@ -13,18 +13,15 @@ namespace _2DRoguelike.Content.Core
         //TODO: Nur ein Spritesheet verwenden
         public static Texture2D PlayerIdle { get; private set; }
         public static Texture2D PlayerWalk { get; private set; }
-        
-
-
         public static Texture2D PlayerShoot { get; private set; }
-        
-        
+        public static Texture2D PlayerHurt { get; set; }
 
-        // Enemy Data
+        /// Enemy Data
         // Brown Zombie
         public static Texture2D ZombieBrownWalk { get; private set; }
         public static Texture2D ZombieBrownIdle { get; private set; }
         public static Texture2D ZombieShoot { get; set; }
+        public static Texture2D ZombieHurt { get; set; }
 
         // Particle Data
 
@@ -61,14 +58,17 @@ namespace _2DRoguelike.Content.Core
             // Player Data
             PlayerIdle = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_idle");
             PlayerWalk = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk_axe");
-
             PlayerShoot = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_shoot");
+            PlayerHurt = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_hurt");
 
             // Enemy Data
             // Zombie Brown
             ZombieBrownWalk = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_walk");
             ZombieBrownIdle = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_idle");
             ZombieShoot = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_shoot");
+            ZombieHurt = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_hurt");
+
+
             // Particle Data
             Explosion = content.Load<Texture2D>("Assets/Graphics/Particles/explosion");
 

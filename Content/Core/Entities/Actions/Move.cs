@@ -28,29 +28,22 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
             CallingInstance.Acceleration.Y = (float)Math.Round((double)CallingInstance.Acceleration.Y);
 
             // von float in int
-            CallingInstance.hitbox.X += (int)CallingInstance.Acceleration.X;
+            CallingInstance.Position += new Vector2((int)CallingInstance.Acceleration.X,0);
             // Wenn Bewegung nicht möglich: Hitbox wieder zurücksetzen
             // CollidesWithFrameBorder() weggemacht
             if (CallingInstance.CollidesWithSolidTile())
             {
-                CallingInstance.hitbox.X -= (int)CallingInstance.Acceleration.X;
-
-            }
-            else
-            {
-                CallingInstance.Position += new Vector2(CallingInstance.Acceleration.X, 0);
+                CallingInstance.Position -= new Vector2((int)CallingInstance.Acceleration.X, 0);
             }
 
 
-            CallingInstance.hitbox.Y += (int)CallingInstance.Acceleration.Y;
+
+            CallingInstance.Position += new Vector2(0,(int)CallingInstance.Acceleration.Y);
             if (CallingInstance.CollidesWithSolidTile())
             {
-                CallingInstance.hitbox.Y -= (int)CallingInstance.Acceleration.Y;
+                CallingInstance.Position -= new Vector2(0, (int)CallingInstance.Acceleration.Y);
             }
-            else
-            {
-                CallingInstance.Position += new Vector2(0, CallingInstance.Acceleration.Y);
-            }
+            
 
             
         }

@@ -59,7 +59,7 @@ namespace _2DRoguelike.Content.Core.Screens
             // EntityBasis Konstruktor fügt automatisch zur EntityManager.entities hinzu
             new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint()+new Vector2(5*32,5*32), 50, 2, 3);
             new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32,3 * 32), 100, 2, 3);
-            new Player(LevelManager.maps.getSpawnpoint(), 100, 2f, 5);
+            new Player(new Vector2(0,0)/*LevelManager.maps.getSpawnpoint()*/, 100, 2f, 5);
 
             UIManager.healthBar = new HealthBar(Player.Instance);
             UIManager.skillBar = new Skillbar(Player.Instance);
@@ -100,7 +100,7 @@ namespace _2DRoguelike.Content.Core.Screens
                 InputController.Update();
                 EntityManager.Update(gameTime);
                 UIManager.Update(gameTime);
-                if (Player.Instance.IsDead())
+                if (Player.Instance.GameOver())
                 {
                     //LoadingScreen.Load(ScreenManager, false, null,new GameoverScreen());
                     ScreenManager.AddScreen(new GameoverScreen(), ControllingPlayer);

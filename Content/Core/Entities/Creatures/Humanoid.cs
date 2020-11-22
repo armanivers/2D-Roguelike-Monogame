@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 
@@ -120,7 +121,10 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public bool CollidesWithSolidTile()
         {
-            /*     Wir überprüfen, ob die TileCollisionHitbox einer der Tiles überprüft
+            // Update: Code ist nun allgemeingültig für Entities mit größeren TileCollision-Hitboxen
+
+            #region Explanation
+                        /*     Wir überprüfen, ob die TileCollisionHitbox einer der Tiles überprüft
                     - ein Tile im Array ist 32x32 groß, d.h.:
                         -Tile1 im Array in currentLevel[0,0] geht von (0,0) bis (31,31)
                         - Tile2 im Array in currentLevel[0,1] geht von (32,0) bis (63,31) usw.
@@ -135,9 +139,33 @@ namespace _2DRoguelike.Content.Core.Entities
                             NE[3,0]  
                             SE[3,1]  
                             SW[2,1]
-                        - diese 4 Tiles überprüfen wir nun: Ist mindestens einer davon UNPASSABLE: nicht bewegen
+                        - in diesen Intervallen wird die Map nun überprüft: mindestens EINE solida Wand? Kollision
                 */
+            #endregion
+
+
             Rectangle tileCollisionHitbox = GetTileCollisionHitbox();
+            int levelWidth = LevelManager.currentLevel.GetLength(0);
+            int levelHeight = LevelManager.currentLevel.GetLength(1);
+            // Handling von NullPointer-Exception
+            int northWest = tileCollisionHitbox.X < 0 ? 0 : tileCollisionHitbox.X / 32;
+            int northEast = (tileCollisionHitbox.X + tileCollisionHitbox.Width) / 32 >= levelWidth ? levelWidth - 1 : (tileCollisionHitbox.X + tileCollisionHitbox.Width) / 32;
+            int southWest = tileCollisionHitbox.Y < 0 ? 0 : tileCollisionHitbox.Y / 32;
+            int southEast = (tileCollisionHitbox.Y + tileCollisionHitbox.Height) / 32 >= levelHeight ? levelHeight - 1 : (tileCollisionHitbox.Y + tileCollisionHitbox.Height) / 32;
+
+
+            for (int x = northWest;x <= northEast;x++)
+            {
+                for (int y = southWest;y <= southEast;y++)
+                {
+                    if (LevelManager.currentLevel[x, y].IsSolid())
+                        return true;
+                }
+            }
+            return false;
+
+            #region AlterCode
+             /*Alter Code:
             Point p = new Point(tileCollisionHitbox.X / 32, tileCollisionHitbox.Y / 32);    // NW
 
             if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
@@ -162,7 +190,9 @@ namespace _2DRoguelike.Content.Core.Entities
             {
                 return true;
             }
-            return false;
+            return false;*/
+            #endregion
+           
         }
 
         public bool CollidesWithFrameBorder()
@@ -173,13 +203,34 @@ namespace _2DRoguelike.Content.Core.Entities
         public override void Update(GameTime gameTime)
         {
             //base.Update(gameTime);
-            PerformedAction = DetermineAction();
-            PerformedAction.ExecuteAction();
 
-            SetAnimation(PerformedAction.ChooseAnimation());
-            // TODO: Method updateStats()
-            if (CooldownTimer <= attackCooldown)
-                CooldownTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            // Nur zum testen
+            if (InputController.keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.K))
+                if (this is Enemy)
+                    Kill();
+            if (InputController.keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.X))
+                if (this is Player.Player)
+                    Kill();
+
+
+            if (IsDead())
+            {
+                LockedAnimation = false;
+                SetAnimation("Die");
+                if (!animationManager.IsRunning())
+                    isExpired = true;
+            }
+            else
+            {
+                PerformedAction = DetermineAction();
+                PerformedAction.ExecuteAction();
+
+                SetAnimation(PerformedAction.ChooseAnimation());
+                // TODO: Method updateStats()
+                if (CooldownTimer <= attackCooldown)
+                    CooldownTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
             animationManager.Update(gameTime);
         }
     }
