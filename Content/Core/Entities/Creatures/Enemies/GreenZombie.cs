@@ -31,11 +31,14 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
                 {"WalkDown", new Animation(TextureManager.ZombieBrownWalk,2,9,frameSpeed)},
                 {"WalkRight", new Animation(TextureManager.ZombieBrownWalk,3,9,frameSpeed)},
                 
-
+                // Schießen
                  {"ShootUp", new Animation(TextureManager.ZombieShoot,0,13,(frameSpeed *=0.3f),false, true)},
                 {"ShootLeft",new Animation(TextureManager.ZombieShoot,1,13,frameSpeed, false, true)},
                 {"ShootDown", new Animation(TextureManager.ZombieShoot,2,13,frameSpeed, false, true)},
-                {"ShootRight", new Animation(TextureManager.ZombieShoot,3,13,frameSpeed, false, true)}
+                {"ShootRight", new Animation(TextureManager.ZombieShoot,3,13,frameSpeed, false, true)},
+
+                // Todesanimation
+                {"Die", new Animation(TextureManager.ZombieHurt,0,6,frameSpeed*2f, false, true)}
             };
             animationManager = new AnimationManager(animations["IdleDown"]);
         }

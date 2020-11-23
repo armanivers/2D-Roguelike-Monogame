@@ -57,7 +57,10 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 {"ShootUp", new Animation(TextureManager.PlayerShoot,0,13,(frameSpeed *=0.3f), false, true)},
                 {"ShootLeft",new Animation(TextureManager.PlayerShoot,1,13,frameSpeed, false, true)},
                 {"ShootDown", new Animation(TextureManager.PlayerShoot,2,13,frameSpeed, false, true)},
-                {"ShootRight", new Animation(TextureManager.PlayerShoot,3,13,frameSpeed, false, true)}
+                {"ShootRight", new Animation(TextureManager.PlayerShoot,3,13,frameSpeed, false, true)},
+
+                 // Todesanimation
+                {"Die", new Animation(TextureManager.PlayerHurt,0,6,frameSpeed*2f, false, true)}
             };
             animationManager = new AnimationManager(animations["IdleDown"]);
 
@@ -108,12 +111,15 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
         }
 
-
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             //if (CheckAttacking()) 
             //    Attack(Entities.Attack.AttackMethod.RANGE_ATTACK);
+        }
+
+        public bool GameOver() {
+            return isExpired;
         }
     }
 }

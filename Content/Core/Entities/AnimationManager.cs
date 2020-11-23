@@ -40,7 +40,9 @@ namespace _2DRoguelike.Content.Core.Entities
         public void Stop()
         {
             timer = 0f;
-            animation.CurrentFrame = 0;
+            // auf dem letzten Frame stehenbleiben
+            animation.CurrentFrame--;
+            // animation.CurrentFrame = 0;
         }
 
         public bool IsRunning()
@@ -69,7 +71,7 @@ namespace _2DRoguelike.Content.Core.Entities
                             running = false;
                             Stop();
 
-                        }
+                        }else
                         animation.CurrentFrame = 0;
                     }
                 }

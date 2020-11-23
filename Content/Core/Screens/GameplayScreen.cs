@@ -1,4 +1,4 @@
-#region File Description
+ï»¿#region File Description
 
 //-----------------------------------------------------------------------------
 // GameplayScreen.cs
@@ -56,7 +56,7 @@ namespace _2DRoguelike.Content.Core.Screens
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            // EntityBasis Konstruktor fügt automatisch zur EntityManager.entities hinzu
+            // EntityBasis Konstruktor fï¿½gt automatisch zur EntityManager.entities hinzu
             new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint()+new Vector2(5*32,5*32), 50, 2, 3);
             new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32,3 * 32), 100, 2, 3);
             new Player(LevelManager.maps.getSpawnpoint()*new Vector2(32), 100, 2f, 5);
@@ -101,7 +101,7 @@ namespace _2DRoguelike.Content.Core.Screens
                 EntityManager.Update(gameTime);
                 UIManager.Update(gameTime);
                 LevelManager.Update(Player.Instance);
-                if (Player.Instance.IsDead())
+                if (Player.Instance.GameOver())
                 {
                     //LoadingScreen.Load(ScreenManager, false, null,new GameoverScreen());
                     ScreenManager.AddScreen(new GameoverScreen(), ControllingPlayer);

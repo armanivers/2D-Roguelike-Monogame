@@ -13,9 +13,9 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
         private const float expireTimer = 3;
         private float timer;
 
-        public Arrow() : base(new Vector2(Player.Player.Instance.Hitbox.X+16, Player.Player.Instance.Hitbox.Y+16), -7, +5, 10f)
+        public Arrow() : base(new Vector2(Player.Player.Instance.Hitbox.X + 16, Player.Player.Instance.Hitbox.Y + 16), -7, +5, 10f)
         {
-            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y,13, 13);
+            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, 13, 13);
             this.Acceleration = Vector2.Normalize(InputController.MousePosition - Position);
             this.rotation = (float)Math.Atan2(Acceleration.Y, Acceleration.X);
             this.texture = TextureManager.Arrow;
@@ -26,72 +26,83 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
         {
             if (!Player.Player.Instance.hitbox.Contains(Hitbox))
             {
-                foreach (var livingEntity in EntityManager.entities)
+                if (CollidesWithSolidTile())
                 {
-                    //&& livingEntity != Player.Player.Instance pruefen damit das projectile dem spieler keinen schaden gibt
-                    if (livingEntity is Creature && livingEntity != Player.Player.Instance)
+                    SpeedModifier = 0f;
+                    //Velocity = Vector2.Zero;
+                    // isExpired = true; // Mittels expireTimer gelöst
+                }
+                else
+                {
+                    foreach (var livingEntity in EntityManager.entities)
                     {
-                        if (hitbox.Intersects(livingEntity.Hitbox))
+                        //&& livingEntity != Player.Player.Instance pruefen damit das projectile dem spieler keinen schaden gibt
+                        if (livingEntity is Creature && livingEntity != Player.Player.Instance)
                         {
-                            ((Creature)livingEntity).DeductHealthPoints(15);
-                            isExpired = true;
-                        }
-                        else if (CollidesWithSolidTile())
-                        {
-                            SpeedModifier = 0f;
-                            //Velocity = Vector2.Zero;
-                            // isExpired = true; // Mittels expireTimer gelöst
+                            if (hitbox.Intersects(livingEntity.Hitbox))
+                            {
+                                ((Creature)livingEntity).DeductHealthPoints(15);
+                                isExpired = true;
+                            }
+
                         }
                     }
                 }
+
             }
         }
 
         public bool CollidesWithSolidTile()
         {
-            /*     Wir überprüfen, ob die TileCollisionHitbox einer der Tiles überprüft
-                    - ein Tile im Array ist 32x32 groß, d.h.:
-                        -Tile1 im Array in currentLevel[0,0] geht von (0,0) bis (31,31)
-                        - Tile2 im Array in currentLevel[0,1] geht von (32,0) bis (63,31) usw.
-                    Also kann man die 4 Eckpunkte der Hitbox / 32 teilen und man erfährt die Indizes für die zu prüfenden Felder
-                        -z.B.: HITBOX KOORDINATEN SIND: 
-                            NW:[83,20]  
-                            NE[112,20]  
-                            SE[112,49]  
-                            SW[83,49]
-                        - teilen wir die Werte durch 32 ergibt das:
-                            NW:[2,0]  
-                            NE[3,0]  
-                            SE[3,1]  
-                            SW[2,1]
-                        - diese 4 Tiles überprüfen wir nun: Ist mindestens einer davon UNPASSABLE: nicht bewegen
-                */
-            Rectangle arrowHitbox = Hitbox;
-            Point p = new Point(arrowHitbox.X / 32, arrowHitbox.Y / 32);    // NW
 
-            if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
-            {
-                return true;
-            }
-            p = new Point((arrowHitbox.X + arrowHitbox.Width) / 32, arrowHitbox.Y / 32);   // NE
+            int levelWidth = LevelManager.currentLevel.GetLength(0);
+            int levelHeight = LevelManager.currentLevel.GetLength(1);
+            // Handling von NullPointer-Exception
+            int northWest = Hitbox.X < 0 ? 0 : Hitbox.X / 32;
+            int northEast = (Hitbox.X + Hitbox.Width) / 32 >= levelWidth ? levelWidth - 1 : (Hitbox.X + Hitbox.Width) / 32;
+            int southWest = Hitbox.Y < 0 ? 0 : Hitbox.Y / 32;
+            int southEast = (Hitbox.Y + Hitbox.Height) / 32 >= levelHeight ? levelHeight - 1 : (Hitbox.Y + Hitbox.Height) / 32;
 
-            if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
-            {
-                return true;
-            }
-            p = new Point(arrowHitbox.X / 32, ((arrowHitbox.Y + arrowHitbox.Height) / 32));    // SW
 
-            if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
+            for (int x = northWest; x <= northEast; x++)
             {
-                return true;
-            }
-
-            p = new Point((arrowHitbox.X + arrowHitbox.Width) / 32, ((arrowHitbox.Y + arrowHitbox.Height) / 32));    // SE
-            if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
-            {
-                return true;
+                for (int y = southWest; y <= southEast; y++)
+                {
+                    if (LevelManager.currentLevel[x, y].IsSolid())
+                        return true;
+                }
             }
             return false;
+
+
+            #region AlterCode
+            //Point p = new Point(arrowHitbox.X / 32, arrowHitbox.Y / 32);    // NW
+
+            //if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
+            //{
+            //    return true;
+            //}
+            //p = new Point((arrowHitbox.X + arrowHitbox.Width) / 32, arrowHitbox.Y / 32);   // NE
+
+            //if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
+            //{
+            //    return true;
+            //}
+            //p = new Point(arrowHitbox.X / 32, ((arrowHitbox.Y + arrowHitbox.Height) / 32));    // SW
+
+            //if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
+            //{
+            //    return true;
+            //}
+
+            //p = new Point((arrowHitbox.X + arrowHitbox.Width) / 32, ((arrowHitbox.Y + arrowHitbox.Height) / 32));    // SE
+            //if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
+            //{
+            //    return true;
+            //}
+            //return false;
+            #endregion
+
         }
 
         public override void Update(GameTime gameTime)
@@ -100,7 +111,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
 
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Acceleration * flyingSpeed * SpeedModifier;
-            
+
             if (timer > expireTimer)
             {
                 this.isExpired = true;
