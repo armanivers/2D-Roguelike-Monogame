@@ -80,8 +80,48 @@ namespace _2DRoguelike.Content.Core.World
         {
             if (!roommap[currentroomy, currentroomx].roomhitbox.Contains(player.GetTileCollisionHitbox()))
             {
-
+                nextroomx = 1;
+                nextroomy = 0;
+                map=fillTile(CombineRooms(CardinalDirection.East));
             }
+            else
+            {
+                map=fillTile(roommap[currentroomy, currentroomx].room);
+                width = roommap[currentroomy, currentroomx].width;
+                height = roommap[currentroomy, currentroomx].height;
+            }
+        }
+        public char[,] CombineRooms(CardinalDirection direction)
+        {
+            Room current = roommap[currentroomy, currentroomx];
+            Room next = roommap[nextroomy, nextroomx];
+            char[,] returnvalue=null;
+            switch (direction)
+            {
+                case CardinalDirection.East:
+                    if (current.height > next.height)
+                    {
+                        returnvalue = new char[current.height,current.width+next.width];
+                    }else returnvalue = new char[next.height, current.width + next.width];
+                    for (int y = 0; y < current.height; y++)
+                    {
+                        for (int x = 0; x <current.width; x++)
+                        {
+                            returnvalue[y, x] = current.room[y, x];
+                        }
+                    }
+                    for (int y = 0; y < next.height; y++)
+                    {
+                        for (int x = 0; x < next.width; x++)
+                        {
+                            returnvalue[y, x+current.width] = next.room[y, x];
+                        }
+                    }
+                    break;
+            }
+            height = returnvalue.GetLength(0);
+            width = returnvalue.GetLength(1);
+            return returnvalue;
         }
 
         public Tile[,] fillTile(bool[,] level)

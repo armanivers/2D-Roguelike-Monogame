@@ -23,9 +23,9 @@ namespace _2DRoguelike.Content.Core.World
             doors= rndState.Next(2, 4);
             width = rnd(32)+5;
             height= rnd(32)+5;
-            roomhitbox = new Rectangle(31, 31, width-1, height-1);
+            roomhitbox = new Rectangle(31, 31, (height-2)*32,(width-2)*32);
             room = new char[height, width];
-            spawnpoint = new Vector2((float)rnd(height-2)+1, (float)rnd(width - 2)+1);
+            spawnpoint = new Vector2((float)rnd(width - 2)+1,(float)rnd(height-2)+1);
             fillRoom();
         }
         public Room(int width,int height)
@@ -33,8 +33,8 @@ namespace _2DRoguelike.Content.Core.World
             doors = rnd(4);
             this.width = width;
             this.height = height;
-            room = new char[width, height];
-            spawnpoint = new Vector2((float)rnd(height - 2)+1, (float)rnd(width - 2)+1);
+            room = new char[height, width];
+            spawnpoint = new Vector2((float)rnd(width - 2)+1,(float)rnd(height - 2)+1);
             fillRoom();
         }
         public void fillRoom()

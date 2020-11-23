@@ -17,7 +17,7 @@ namespace _2DRoguelike.Content.Core.Entities
         public Rectangle hitbox;
         public Rectangle Hitbox { get { return hitbox; } set { hitbox = value; } }
 
-        public Vector2 position;       
+        protected Vector2 position;       
         public virtual Vector2 Position
         {
             get { return position; }
