@@ -10,21 +10,29 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
 {
     class Arrow : Projectile
     {
-        private const float expireTimer = 3;
+        private Humanoid shootingEntity;
         private float timer;
+        private const int DAMAGE = 15;
+        private const float EXPIRATION_TIMER = 3;
+        private const float SPEED = 10f;
 
-        public Arrow() : base(new Vector2(Player.Player.Instance.Hitbox.X + 16, Player.Player.Instance.Hitbox.Y + 16), -7, +5, 10f)
+        public Arrow(Humanoid creat) : base(new Vector2(creat.Hitbox.X + 16, creat.Hitbox.Y + 16), -7, +5, SPEED)
         {
+            shootingEntity = creat;
             this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, 13, 13);
-            this.Acceleration = Vector2.Normalize(InputController.MousePosition - Position);
+            this.Acceleration = Vector2.Normalize(GetDirection());
             this.rotation = (float)Math.Atan2(Acceleration.Y, Acceleration.X);
             this.texture = TextureManager.Arrow;
             this.timer = 0;
         }
 
+        private Vector2 GetDirection() {
+            return shootingEntity.GetAttackDirection() - Position;
+        }
+
         public void checkCollision()
         {
-            if (!Player.Player.Instance.hitbox.Contains(Hitbox))
+            if (!WithinOwnHitbox())
             {
                 if (CollidesWithSolidTile())
                 {
@@ -34,21 +42,36 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
                 }
                 else
                 {
-                    foreach (var livingEntity in EntityManager.entities)
-                    {
-                        //&& livingEntity != Player.Player.Instance pruefen damit das projectile dem spieler keinen schaden gibt
-                        if (livingEntity is Creature && livingEntity != Player.Player.Instance)
-                        {
-                            if (hitbox.Intersects(livingEntity.Hitbox))
-                            {
-                                ((Creature)livingEntity).DeductHealthPoints(15);
-                                isExpired = true;
-                            }
-
-                        }
-                    }
+                    HittingLogic();
                 }
 
+            }
+        }
+
+        private bool WithinOwnHitbox() {
+            return shootingEntity.Hitbox.Contains(hitbox);
+        }
+
+        private void HittingLogic() {
+            if (shootingEntity is Player.Player) {
+                // TODO: ERSETZEN Durch EnemyList des Raumes
+
+                foreach (var enemy in EntityManager.entities)
+                {
+                    if (enemy is Enemies.Enemy)
+                    { 
+                    if (hitbox.Intersects(enemy.Hitbox))
+                        {
+                            ((Enemies.Enemy)enemy).DeductHealthPoints(DAMAGE);
+                            isExpired = true;
+                        }
+                    } 
+                }     
+            } else if (shootingEntity is Enemies.Enemy) {
+                if (hitbox.Intersects(Player.Player.Instance.Hitbox)) {
+                    Player.Player.Instance.DeductHealthPoints(DAMAGE);
+                    isExpired = true;
+                }
             }
         }
 
@@ -112,7 +135,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Acceleration * flyingSpeed * SpeedModifier;
 
-            if (timer > expireTimer)
+            if (timer > EXPIRATION_TIMER)
             {
                 this.isExpired = true;
             }

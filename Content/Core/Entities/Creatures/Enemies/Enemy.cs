@@ -14,6 +14,18 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             return new Vector2(0, 0);
         }
 
+        public override Vector2 GetAttackDirection()
+        {
+            // TODO: Position zum Player bestimmen
+            return Player.Player.Instance.Position;
+        }
+
+        public override Vector2 getAttackLineOfSight()
+        {
+            // TODO: Blickrichtung nach Angriff bestimmen
+            return new Vector2(1, 0);
+        }
+
         public Enemy(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
         {
             

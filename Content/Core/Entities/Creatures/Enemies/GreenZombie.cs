@@ -38,7 +38,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
                 {"ShootRight", new Animation(TextureManager.ZombieShoot,3,13,frameSpeed, false, true)},
 
                 // Todesanimation
-                {"Die", new Animation(TextureManager.ZombieHurt,0,6,frameSpeed*2f, false, true)}
+                {"Die", new Animation(TextureManager.ZombieHurt,0,6,frameSpeed*4f, false, true)}
             };
             animationManager = new AnimationManager(animations["IdleDown"]);
         }
@@ -48,9 +48,15 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             base.Update(gameTime);
         }
 
+        
         public override Action DetermineAction()
         {
             // TODO: Anhand von Fakten, wie Status, position, playerPosition, blickfeld etc. eine Action erzeugen
+            
+            // Für Testzwecke, hier findet eigentlich entscheidung der KI statt
+            if (/*InputController.IsRightMouseButtonPressed() &&*/ !IsAttacking()) {
+                return new RangeAttack(this);
+            }
             return new Move(this);
         }
     }

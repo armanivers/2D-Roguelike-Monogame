@@ -14,8 +14,14 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public readonly int maxHealthPoints;
         public int HealthPoints { get; private set; }
+
+        // TODO: Dieser CooldownTimer gilt aktuell für ALLE Angriffsarten → Für jede Angriffsart eigenen Cooldown erstellen
+        // (bessere Alternative überlegen, damit nicht immer ein neues Attribut hinzugefügt werden muss)
         public readonly float attackCooldown;
         public float CooldownTimer { get; set; }
+        
+        // TODO: Einen ALLGEMEINEN attacking-Timer, damit nicht während eines Angriffes ein anderer Angriff gestartet werden kann
+        // (die Angriffe haben aber dennoch eigene unabhängige Cooldowns (z.B. Melee hat kürzeren Cooldown))
         
         public readonly float movingSpeed;
         public float SpeedModifier { get; set; }
@@ -57,7 +63,8 @@ namespace _2DRoguelike.Content.Core.Entities
         {
             return CooldownTimer <= attackCooldown;
         }
-        protected abstract void DetermineAnimation(Dictionary<string, Animation> animations);
+        
+        // Deprecated:  protected abstract void DetermineAnimation(Dictionary<string, Animation> animations);
 
         public override void Update(GameTime gameTime)
         {

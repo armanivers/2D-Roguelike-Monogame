@@ -15,22 +15,22 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
             // TODO: Ausführen der Logik für den Angriff
             CallingInstance.CooldownTimer = 0;
             SoundManager.PlayerAttack.Play(0.2f, 0.2f, 0);
+            Arrow a = new Arrow(CallingInstance);
 
-            // animations["ShootRight"].Play
-
-            // create an explosion
+            /*Arris Notizen:
+              // create an explosion
             //Explosion e = new Explosion();
             //EntityManager.Add(e);
             Arrow a = new Arrow();
             //Position = (new Vector2(InputController.MousePosition.X-32, InputController.MousePosition.Y-48));
             //Kill();
-
+             */
         }
 
         public override void SetLineOfSight()
         {
             if (CallingInstance is Player.Player)
-                CallingInstance.SetLineOfSight(((Player.Player)CallingInstance).GetDirectionToMouse());
+                CallingInstance.SetLineOfSight(((Player.Player)CallingInstance).GetAttackDirection());
             else
                 // Enemies: Schauen in die Richtung, in die sie schießen (wenn nur 4 Richtungen)
                 CallingInstance.SetLineOfSight(CallingInstance.GetDirection());

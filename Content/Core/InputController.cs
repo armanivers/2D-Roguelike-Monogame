@@ -43,10 +43,19 @@ namespace _2DRoguelike.Content.Core
 
             return direction;
         }
-
         public static bool IsMousePressed() {
+            return IsLeftMouseButtonPressed() || IsRightMouseButtonPressed();
+        }
+
+        public static bool IsLeftMouseButtonPressed() {
             return mouseState.LeftButton == ButtonState.Pressed;
         }
+
+        public static bool IsRightMouseButtonPressed() {
+            return mouseState.RightButton == ButtonState.Pressed;
+        }
+
+
 
         public static Vector2 GetMouseClickPosition()
         {

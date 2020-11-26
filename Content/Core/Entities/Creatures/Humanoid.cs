@@ -14,8 +14,10 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public Actions.Action PerformedAction;
         public string LastAnimation { get; set; }
-        private bool LockedAnimation = false;
+        private bool lockedAnimation = false;
 
+        private const int TIME_BEFORE_DISAPPEARING = 100;
+        private int disappearingTimer = 0;
         public Vector2 LineOfSight { get; set; }
 
         public Humanoid(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
@@ -28,13 +30,13 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public abstract Actions.Action DetermineAction();
 
-
-        protected override void DetermineAnimation(Dictionary<string, Animation> animations)
+        /*Deprecated (wird in Action.ChooseAnimation geregelt):
+          protected override void DetermineAnimation(Dictionary<string, Animation> animations)
         {
             // Angriff
             // TODO: Art des Angriffes bestimmen
 
-            if (this is Player.Player && InputController.IsMousePressed())
+            if (this is Player.Player && InputController.IsLeftMouseButtonPressed())
             {
                 var differenz = InputController.MousePosition - Position;
                 var angle = Math.Atan2(differenz.X, differenz.Y);
@@ -84,14 +86,14 @@ namespace _2DRoguelike.Content.Core.Entities
                 }
                 else animationManager.Stop();
             }
-        }
+        }*/
 
         public void SetAnimation(String animationIdentifier)
         {
-            if (LockedAnimation)
+            if (lockedAnimation)
             {
                 if (!animationManager.IsRunning())
-                    LockedAnimation = false;
+                    lockedAnimation = false;
                 else return;
             }
 
@@ -101,18 +103,31 @@ namespace _2DRoguelike.Content.Core.Entities
             {
                 animationManager.Play(animations[animationIdentifier]);
                 if (animationManager.IsPrioritized())
-                    LockedAnimation = true;
+                    lockedAnimation = true;
             }
 
         }
+         
+
         public void SetLineOfSight(Vector2 direction)
         {
             if (direction != Vector2.Zero)
                 LineOfSight = direction;
         }
         public abstract Vector2 GetDirection();
+        // Für Bewegungen
         // Player: Prüfen mit Tastatur
         // Enemies: Ermitteln mit KI-Ausgabe
+
+        public abstract Vector2 GetAttackDirection();
+        // Für Angriffe
+        // Player: Prüfen mit Mausposition
+        // Enemies: Ermitteln mit Player-Position
+
+        public abstract Vector2 getAttackLineOfSight();
+        // Für Blickrichtung nach Angriff
+        // Player: Prüfen mit Mausposition
+        // Enemies: Ermitteln mit Player-Position
 
         public bool MutipleDirections(Vector2 direction)
         {
@@ -204,21 +219,19 @@ namespace _2DRoguelike.Content.Core.Entities
         {
             //base.Update(gameTime);
 
-            // Nur zum testen
+            #region Testinputs
             if (InputController.keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.K))
                 if (this is Enemy)
                     Kill();
             if (InputController.keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.X))
                 if (this is Player.Player)
                     Kill();
+            #endregion
 
 
             if (IsDead())
             {
-                LockedAnimation = false;
-                SetAnimation("Die");
-                if (!animationManager.IsRunning())
-                    isExpired = true;
+                CommenceKillLogic();
             }
             else
             {
@@ -233,5 +246,25 @@ namespace _2DRoguelike.Content.Core.Entities
 
             animationManager.Update(gameTime);
         }
+
+        private void CommenceKillLogic() {
+            // Priorität von Dieing-Animation geht über andere
+            lockedAnimation = false;
+            SetAnimation("Die");
+            if (!animationManager.IsRunning())
+            {
+                if (disappearingTimer < TIME_BEFORE_DISAPPEARING) disappearingTimer++;
+                else 
+                Disappear();
+            }
+                
+        }
+
+        protected virtual void Disappear() {
+            // TODO: Für Enemies: Loot droppen und EXP geben
+            isExpired = true;
+        }
     }
+
+    
 }

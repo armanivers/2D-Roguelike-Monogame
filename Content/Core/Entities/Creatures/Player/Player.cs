@@ -60,7 +60,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 {"ShootRight", new Animation(TextureManager.PlayerShoot,3,13,frameSpeed, false, true)},
 
                  // Todesanimation
-                {"Die", new Animation(TextureManager.PlayerHurt,0,6,frameSpeed*2f, false, true)}
+                {"Die", new Animation(TextureManager.PlayerHurt,0,6,frameSpeed*4f, false, true)}
             };
             animationManager = new AnimationManager(animations["IdleDown"]);
 
@@ -75,7 +75,12 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             return InputController.GetDirection();
         }
 
-        public Vector2 GetDirectionToMouse()
+        public override Vector2 GetAttackDirection()
+        {
+            return InputController.MousePosition;
+        }
+
+        public override Vector2 getAttackLineOfSight()
         {
             var differenz = InputController.MousePosition - Position;
             var angle = System.Math.Atan2(differenz.X, differenz.Y);
@@ -105,8 +110,10 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
         public override Action DetermineAction()
         {
-            if (InputController.IsMousePressed() && !IsAttacking())
+            if (InputController.IsLeftMouseButtonPressed() && !IsAttacking())
                 return new RangeAttack(this);
+            /*else if (InputController.IsRightMouseButtonPressed() && !IsAttacking())
+                return new Melee(this);*/
             return new Move(this);
 
         }
