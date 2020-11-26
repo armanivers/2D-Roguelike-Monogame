@@ -15,5 +15,11 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
             SetLineOfSight();
         }
         public abstract void CommenceAttack();
+
+        public override void SetLineOfSight()
+        {
+            // Player und Enemies: Schauen in die Richtung, in die sie angreifen
+            CallingInstance.SetLineOfSight(CallingInstance.GetAttackLineOfSight());
+        }
     }
 }

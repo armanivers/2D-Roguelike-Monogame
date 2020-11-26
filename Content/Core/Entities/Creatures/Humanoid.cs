@@ -124,7 +124,7 @@ namespace _2DRoguelike.Content.Core.Entities
         // Player: Prüfen mit Mausposition
         // Enemies: Ermitteln mit Player-Position
 
-        public abstract Vector2 getAttackLineOfSight();
+        public abstract Vector2 GetAttackLineOfSight();
         // Für Blickrichtung nach Angriff
         // Player: Prüfen mit Mausposition
         // Enemies: Ermitteln mit Player-Position

@@ -54,7 +54,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             // TODO: Anhand von Fakten, wie Status, position, playerPosition, blickfeld etc. eine Action erzeugen
             
             // Für Testzwecke, hier findet eigentlich entscheidung der KI statt
-            if (/*InputController.IsRightMouseButtonPressed() &&*/ !IsAttacking()) {
+            if (!IsAttacking()) {
                 return new RangeAttack(this);
             }
             return new Move(this);

@@ -53,6 +53,12 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 {"WalkDown", new Animation(TextureManager.PlayerWalk,2,9,frameSpeed)},
                 {"WalkRight", new Animation(TextureManager.PlayerWalk,3,9,frameSpeed)},
                 
+                // Melee-Angriff
+                {"SlashUp", new Animation(TextureManager.PlayerSlash,0,6,(frameSpeed *=0.5f), false, true)},
+                {"SlashLeft",new Animation(TextureManager.PlayerSlash,1,6,frameSpeed, false, true)},
+                {"SlashDown", new Animation(TextureManager.PlayerSlash,2,6,frameSpeed, false, true)},
+                {"SlashRight", new Animation(TextureManager.PlayerSlash,3,6,frameSpeed, false, true)},
+
                 // Pfeil schießen
                 {"ShootUp", new Animation(TextureManager.PlayerShoot,0,13,(frameSpeed *=0.3f), false, true)},
                 {"ShootLeft",new Animation(TextureManager.PlayerShoot,1,13,frameSpeed, false, true)},
@@ -80,7 +86,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             return InputController.MousePosition;
         }
 
-        public override Vector2 getAttackLineOfSight()
+        public override Vector2 GetAttackLineOfSight()
         {
             var differenz = InputController.MousePosition - Position;
             var angle = System.Math.Atan2(differenz.X, differenz.Y);
@@ -112,8 +118,8 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         {
             if (InputController.IsLeftMouseButtonPressed() && !IsAttacking())
                 return new RangeAttack(this);
-            /*else if (InputController.IsRightMouseButtonPressed() && !IsAttacking())
-                return new Melee(this);*/
+            if(InputController.IsRightMouseButtonPressed() && !IsAttacking())
+                return new Melee(this);
             return new Move(this);
 
         }

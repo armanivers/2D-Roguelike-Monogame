@@ -42,7 +42,6 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         
         /// <summary>
         /// Diese Methode dann verwenden, wenn die Blickrichtung des Spielers relevant ist.
-        /// NICHT, wenn Richtung von anderen Faktoren abhängt, wie z.B. Mauszeiger
         /// </summary>
         protected string PrintLineOfSight(Humanoid CallingInstance) {
             // returnt "Up", "Down", "Left", "Right" anhand von LineOfSight

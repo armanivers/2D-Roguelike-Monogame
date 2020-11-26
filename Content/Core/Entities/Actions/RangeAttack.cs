@@ -27,15 +27,6 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
              */
         }
 
-        public override void SetLineOfSight()
-        {
-            if (CallingInstance is Player.Player)
-                CallingInstance.SetLineOfSight(((Player.Player)CallingInstance).GetAttackDirection());
-            else
-                // Enemies: Schauen in die Richtung, in die sie schießen (wenn nur 4 Richtungen)
-                CallingInstance.SetLineOfSight(CallingInstance.GetDirection());
-                // Bei ALLEN Richtungen: wie bei Player dann Richtung beréchnen
-
-        }
+       
     }
 }

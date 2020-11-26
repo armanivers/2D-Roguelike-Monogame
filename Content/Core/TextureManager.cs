@@ -13,8 +13,9 @@ namespace _2DRoguelike.Content.Core
         //TODO: Nur ein Spritesheet verwenden
         public static Texture2D PlayerIdle { get; private set; }
         public static Texture2D PlayerWalk { get; private set; }
+        public static Texture2D PlayerSlash { get; private set; }
         public static Texture2D PlayerShoot { get; private set; }
-        public static Texture2D PlayerHurt { get; set; }
+        public static Texture2D PlayerHurt { get; private set; }
 
         /// Enemy Data
         // Brown Zombie
@@ -58,6 +59,7 @@ namespace _2DRoguelike.Content.Core
             // Player Data
             PlayerIdle = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_idle");
             PlayerWalk = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk_axe");
+            PlayerSlash = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_slash");
             PlayerShoot = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_shoot");
             PlayerHurt = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_hurt");
 

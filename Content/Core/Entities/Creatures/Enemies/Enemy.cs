@@ -20,7 +20,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             return Player.Player.Instance.Position;
         }
 
-        public override Vector2 getAttackLineOfSight()
+        public override Vector2 GetAttackLineOfSight()
         {
             // TODO: Blickrichtung nach Angriff bestimmen
             return new Vector2(1, 0);

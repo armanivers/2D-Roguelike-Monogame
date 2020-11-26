@@ -14,8 +14,6 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         {
             // TODO: AnimationString bestimmen anhand von MousePosition
             return "Shoot" + PrintLineOfSight(CallingInstance);
-
-
         }
     }
 }
