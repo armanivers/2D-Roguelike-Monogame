@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using _2DRoguelike.Content.Core.Entities.Player;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 
@@ -142,6 +143,11 @@ namespace _DRoguelike.Content.Core.World
                 }
             }
             return newMap;
+        }
+
+        public override void Update(Player player)
+        {
+            throw new NotImplementedException();
         }
     }
 }

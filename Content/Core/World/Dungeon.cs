@@ -1,20 +1,21 @@
-﻿using System;
-using _2DRoguelike.Content.Core.Entities.Player;
-using _2DRoguelike.Content.Core.World;
+﻿using _2DRoguelike.Content.Core.Entities.Player;
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace _DRoguelike.Content.Core.World
+namespace _2DRoguelike.Content.Core.World
 {
-    class DungeonMap : Map
+    class Dungeon : Map
     {
         public Vector2 spawnpoint;
         Room room;
         static Random rndState = new Random();
         static int rnd(int x) => rndState.Next() % x;
-        
-        public DungeonMap():base()
+
+        public Dungeon() : base()
         {
-            charmap = new char[width,height];
+            charmap = new char[width, height];
             spawnpoint = new Vector2((float)(height * 32 - 17 - 5), (float)(width * 32 - 14 - 25));
             // init the map
             for (int y = 0; y < height; y++)
@@ -26,14 +27,14 @@ namespace _DRoguelike.Content.Core.World
 
             for (int j = 0; j < 5000; j++)
                 addRoom(start: false);
-            map =fillTile(charmap);
+            map = fillTile(charmap);
         }
 
         public override Vector2 getSpawnpoint()
         {
             return spawnpoint;
         }
-       
+
 
         public void addRoom(bool start)
         {
@@ -112,6 +113,5 @@ namespace _DRoguelike.Content.Core.World
         public override void Update(Player player)
         {
         }
-        
     }
 }

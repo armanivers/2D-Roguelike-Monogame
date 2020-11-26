@@ -11,5 +11,6 @@ namespace _2DRoguelike.Content.Core.World
         public const char Wall = '#';
         public const char EmptySpace = '.';
         public const char Spawnpoint = '€';
+        public const char None = ' ';
     }
 }
