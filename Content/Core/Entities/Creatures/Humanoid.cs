@@ -10,7 +10,8 @@ namespace _2DRoguelike.Content.Core.Entities
 {
     public abstract class Humanoid : Creature
     {
-
+        // Für ATTACK Debug
+        public Rectangle AttackHitbox;
 
         public Actions.Action PerformedAction;
         public string LastAnimation { get; set; }

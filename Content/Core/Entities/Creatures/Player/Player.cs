@@ -38,35 +38,40 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             //this.position = new Vector2(2*32, 5*32); bei statischer Map
             instance = this;
             texture = TextureManager.PlayerIdle;
-            float frameSpeed = 0.09f;
+
+            const bool NO_LOOP = false;
+            const bool PRIORITIZED = true;
+            const bool REVERSE = true;
+            const float frameSpeed = 0.09f;
+            float tmpFrameSpeed;
             animations = new Dictionary<string, Animation>()
             {
                 // Idle
-                {"IdleUp", new Animation(TextureManager.PlayerIdle,0,6,frameSpeed*2.5f)},
-                {"IdleLeft", new Animation(TextureManager.PlayerIdle,1,6,frameSpeed*2.5f)},
-                {"IdleDown", new Animation(TextureManager.PlayerIdle,2,6,frameSpeed*2.5f)},
-                {"IdleRight", new Animation(TextureManager.PlayerIdle,3,6,frameSpeed*2.5f)},
+                {"IdleUp", new Animation(TextureManager.PlayerIdle,0,6,tmpFrameSpeed=frameSpeed*2.5f)},
+                {"IdleLeft", new Animation(TextureManager.PlayerIdle,1,6,tmpFrameSpeed)},
+                {"IdleDown", new Animation(TextureManager.PlayerIdle,2,6,tmpFrameSpeed)},
+                {"IdleRight", new Animation(TextureManager.PlayerIdle,3,6,tmpFrameSpeed)},
                 
                 // Laufbewegung
-                {"WalkUp", new Animation(TextureManager.PlayerWalk,0,9,frameSpeed)},
-                {"WalkLeft",new Animation(TextureManager.PlayerWalk,1,9,frameSpeed)},
-                {"WalkDown", new Animation(TextureManager.PlayerWalk,2,9,frameSpeed)},
-                {"WalkRight", new Animation(TextureManager.PlayerWalk,3,9,frameSpeed)},
+                {"WalkUp", new Animation(TextureManager.PlayerWalk,0,9,tmpFrameSpeed=frameSpeed)},
+                {"WalkLeft",new Animation(TextureManager.PlayerWalk,1,9,tmpFrameSpeed)},
+                {"WalkDown", new Animation(TextureManager.PlayerWalk,2,9,tmpFrameSpeed)},
+                {"WalkRight", new Animation(TextureManager.PlayerWalk,3,9,tmpFrameSpeed)},
                 
-                // Melee-Angriff
-                {"SlashUp", new Animation(TextureManager.PlayerSlash,0,6,(frameSpeed *=0.5f), false, true)},
-                {"SlashLeft",new Animation(TextureManager.PlayerSlash,1,6,frameSpeed, false, true)},
-                {"SlashDown", new Animation(TextureManager.PlayerSlash,2,6,frameSpeed, false, true)},
-                {"SlashRight", new Animation(TextureManager.PlayerSlash,3,6,frameSpeed, false, true)},
+                 // Melee-Angriff
+                {"SlashUp", new Animation(TextureManager.PlayerSlash,0,6,(tmpFrameSpeed=frameSpeed*0.5f), NO_LOOP, PRIORITIZED, REVERSE)},
+                {"SlashLeft",new Animation(TextureManager.PlayerSlash,1,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
+                {"SlashDown", new Animation(TextureManager.PlayerSlash,2,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
+                {"SlashRight", new Animation(TextureManager.PlayerSlash,3,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
 
-                // Pfeil schießen
-                {"ShootUp", new Animation(TextureManager.PlayerShoot,0,13,(frameSpeed *=0.3f), false, true)},
-                {"ShootLeft",new Animation(TextureManager.PlayerShoot,1,13,frameSpeed, false, true)},
-                {"ShootDown", new Animation(TextureManager.PlayerShoot,2,13,frameSpeed, false, true)},
-                {"ShootRight", new Animation(TextureManager.PlayerShoot,3,13,frameSpeed, false, true)},
+                // Pfeil Schießen
+                 {"ShootUp", new Animation(TextureManager.PlayerShoot,0,13,(tmpFrameSpeed=frameSpeed*0.3f),NO_LOOP, PRIORITIZED)},
+                {"ShootLeft",new Animation(TextureManager.PlayerShoot,1,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
+                {"ShootDown", new Animation(TextureManager.PlayerShoot,2,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
+                {"ShootRight", new Animation(TextureManager.PlayerShoot,3,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
 
-                 // Todesanimation
-                {"Die", new Animation(TextureManager.PlayerHurt,0,6,frameSpeed*4f, false, true)}
+                // Todesanimation
+                {"Die", new Animation(TextureManager.PlayerHurt,0,6,frameSpeed*2f, NO_LOOP, PRIORITIZED)}
             };
             animationManager = new AnimationManager(animations["IdleDown"]);
 
@@ -88,7 +93,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
         public override Vector2 GetAttackLineOfSight()
         {
-            var differenz = InputController.MousePosition - Position;
+            var differenz = InputController.MousePosition - new Vector2(Hitbox.X+Hitbox.Width/2,Hitbox.Y+Hitbox.Height/2);
             var angle = System.Math.Atan2(differenz.X, differenz.Y);
             if (angle > 1 && angle < 2)
             {
@@ -127,8 +132,6 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            //if (CheckAttacking()) 
-            //    Attack(Entities.Attack.AttackMethod.RANGE_ATTACK);
         }
 
         public bool GameOver() {

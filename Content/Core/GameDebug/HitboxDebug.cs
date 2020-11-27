@@ -11,7 +11,7 @@ namespace _2DRoguelike.Content.Core.GameDebug
     class HitboxDebug
     {
         private int borderWith = 3;
-        const bool DEBUG = true;
+        public static bool DEBUG = true;
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -35,6 +35,14 @@ namespace _2DRoguelike.Content.Core.GameDebug
                         spriteBatch.Draw(borderTexture, new Rectangle(t.Right, t.Top, borderWith, t.Height), Color.Red); // 
                         spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Top, t.Width, borderWith), Color.Red); // 
                         spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Bottom, t.Width, borderWith), Color.Red); // Bottom
+
+                        // TEST
+                        // ATTACK Hitbox
+                        t = ((Humanoid)p).AttackHitbox;
+                        spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Top, borderWith, t.Height), Color.White); // Top
+                        spriteBatch.Draw(borderTexture, new Rectangle(t.Right, t.Top, borderWith, t.Height), Color.White); // 
+                        spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Top, t.Width, borderWith), Color.White); // 
+                        spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Bottom, t.Width, borderWith), Color.White); // Bottom
                     }
 
                     //Entity Hitbox
@@ -43,6 +51,8 @@ namespace _2DRoguelike.Content.Core.GameDebug
                     spriteBatch.Draw(borderTexture, new Rectangle(r.Right, r.Top, borderWith, r.Height), Color.Blue); // 
                     spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, r.Width, borderWith), Color.Blue); //   
                     spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Bottom, r.Width, borderWith), Color.Blue); // Bottom
+
+                  
                 }
             }
 

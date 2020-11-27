@@ -7,6 +7,8 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.Entities
 {
+    /* TODO: Animationen, die rückwärts spielen müssen anders abgespielt werden:
+    */
     public class AnimationManager
     {
         private Animation animation;
@@ -32,7 +34,7 @@ namespace _2DRoguelike.Content.Core.Entities
                 return;
             }
             this.animation = newAnimation;
-            newAnimation.CurrentFrame = 0;
+            newAnimation.CurrentFrame = !animation.Reverse ? 0 : animation.FrameCount - 1 ;
             timer = 0f;
             running=true;
         }
@@ -41,8 +43,8 @@ namespace _2DRoguelike.Content.Core.Entities
         {
             timer = 0f;
             // auf dem letzten Frame stehenbleiben
-            animation.CurrentFrame--;
-            // animation.CurrentFrame = 0;
+            animation.CurrentFrame+= !animation.Reverse ? -1 : 1;
+            
         }
 
         public bool IsRunning()
@@ -62,18 +64,25 @@ namespace _2DRoguelike.Content.Core.Entities
                 if (timer > animation.FrameSpeed)
                 {
                     timer = 0f;
-                    animation.CurrentFrame++;
-                    if (animation.CurrentFrame >= animation.FrameCount)
-                    // Hier kommt das isLppoing zum Zuge
-                    {
-                        if (!animation.isLooping)
-                        {
-                            running = false;
-                            Stop();
+                    animation.CurrentFrame+= !animation.Reverse ? 1 : -1;
 
-                        }else
-                        animation.CurrentFrame = 0;
+
+                    { if(!animation.Reverse ? animation.CurrentFrame>=animation.FrameCount: animation.CurrentFrame < 0)
+                        {
+                         // Hier kommt das isLppoing zum Zuge
+                        {
+                            if (!animation.isLooping)
+                            {
+                                running = false;
+                                Stop();
+
+                            }
+                            else
+                                animation.CurrentFrame = !animation.Reverse ? 0 : animation.FrameCount - 1;
+                            }
+                        }   
                     }
+                   
                 }
 
             }

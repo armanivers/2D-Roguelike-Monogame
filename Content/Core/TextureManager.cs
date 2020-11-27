@@ -21,8 +21,9 @@ namespace _2DRoguelike.Content.Core
         // Brown Zombie
         public static Texture2D ZombieBrownWalk { get; private set; }
         public static Texture2D ZombieBrownIdle { get; private set; }
-        public static Texture2D ZombieShoot { get; set; }
-        public static Texture2D ZombieHurt { get; set; }
+        public static Texture2D ZombieBrownSlash { get; private set; }
+        public static Texture2D ZombieBrownShoot { get; set; }
+        public static Texture2D ZombieBrownHurt { get; set; }
 
         // Particle Data
 
@@ -67,8 +68,9 @@ namespace _2DRoguelike.Content.Core
             // Zombie Brown
             ZombieBrownWalk = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_walk");
             ZombieBrownIdle = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_idle");
-            ZombieShoot = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_shoot");
-            ZombieHurt = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_hurt");
+            ZombieBrownSlash = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_slash");
+            ZombieBrownShoot = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_shoot");
+            ZombieBrownHurt = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_hurt");
 
 
             // Particle Data
