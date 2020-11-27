@@ -8,108 +8,134 @@ namespace _2DRoguelike.Content.Core.World
 {
     class Dungeon : Map
     {
+        List<Room> roomlist;
+        public const int NumRooms = 10;
         public Vector2 spawnpoint;
-        Room room;
-        static Random rndState = new Random();
-        static int rnd(int x) => rndState.Next() % x;
-
         public Dungeon() : base()
         {
+            roomlist = new List<Room>();
             charmap = new char[width, height];
-            spawnpoint = new Vector2((float)(height * 32 - 17 - 5), (float)(width * 32 - 14 - 25));
-            // init the map
-            for (int y = 0; y < height; y++)
-                for (int x = 0; x < width; x++)
-                    charmap[y, x] = ' ';
-
-            // generate
-            addRoom(start: true);
-
-            for (int j = 0; j < 5000; j++)
-                addRoom(start: false);
+            Generate();
             map = fillTile(charmap);
+        }
+        public void Generate()
+        {
+            Room previousRoom = new Room();
+            for(int i = 0; i < NumRooms; i++)
+            {
+                Room room = new Room();
+                do
+                {
+                    room.XPos =Map.Random.Next(0, width - room.Width);
+                    room.YPos =Map.Random.Next(0, height - room.Height);
+                }while(!avoidRoomCollision(room));
+                room2Map(room);
+                if (i > 0)
+                {
+                    int startX = Math.Min(room.CentreX, previousRoom.CentreX);
+                    int startY = Math.Min(room.CentreY, previousRoom.CentreY);
+                    int endX = Math.Max(room.CentreX, previousRoom.CentreX);
+                    int endY = Math.Max(room.CentreY, previousRoom.CentreY);
+
+                    if (Map.Random.Next(1) == 0)
+                    {
+                        for (int x = startX; x < endX; x++)
+                        {
+                            
+                            if (charmap[x, previousRoom.CentreY] != RoomObject.EmptySpace)
+                            {
+                                charmap[x, previousRoom.CentreY] = RoomObject.EmptySpace;
+                                if (charmap[x, previousRoom.CentreY+1] != RoomObject.Wall)
+                                {
+                                    charmap[x, previousRoom.CentreY + 1] = RoomObject.EmptySpace;
+                                } 
+                            }
+                        }
+                        for (int y = startY; y < endY + 1; y++)
+                        {
+                            
+                            if (charmap[room.CentreX, y] != RoomObject.EmptySpace)
+                            {
+                                charmap[room.CentreX, y] = RoomObject.EmptySpace;
+                                if (charmap[room.CentreX+1, y] != RoomObject.Wall)
+                                {
+                                    charmap[room.CentreX + 1, y] = RoomObject.EmptySpace;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int y = startY; y < endY + 1; y++)
+                        {
+                            
+                            if (charmap[previousRoom.CentreX, y] != RoomObject.EmptySpace)
+                            {
+                                charmap[previousRoom.CentreX, y] = RoomObject.EmptySpace;
+                                if (charmap[previousRoom.CentreX, y] != RoomObject.Wall)
+                                {
+                                    charmap[previousRoom.CentreX + 1, y] = RoomObject.EmptySpace;
+                                }
+                            }
+                        }
+
+                        for (int x = startX; x < endX; x++)
+                        {
+                            
+                            if (charmap[x, room.CentreY]!=RoomObject.EmptySpace)
+                            {
+                                charmap[x, room.CentreY] = RoomObject.EmptySpace;
+                                if (charmap[x, room.CentreY] != RoomObject.Wall)
+                                {
+                                    charmap[x, room.CentreY + 1] = RoomObject.EmptySpace;
+                                }
+                            }
+                        }
+                            
+                    }
+                }
+                roomlist.Add(room);
+                previousRoom = room;
+            }
+        }
+        public void HorizontalLine()
+        {
+
+        }
+        public void VerticalLine()
+        {
+
+        }
+        public void room2Map(Room room)
+        {
+            for (int y = room.YPos; y < room.YPos + room.Height; y++)
+            {
+                for (int x = room.XPos; x < room.XPos + room.Width; x++)
+                {
+                    charmap[x, y] = room.room[x - room.XPos, y - room.YPos];
+                }
+            }
+        }
+        public bool avoidRoomCollision(Room room)
+        {
+            for (int y=room.YPos;y< room.YPos + room.Height;y++)
+            {
+                for (int x = room.XPos; x < room.XPos + room.Width; x++)
+                {
+                    if(charmap[x, y] != 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
 
         public override Vector2 getSpawnpoint()
         {
-            return spawnpoint;
+            Room room = roomlist[1];
+            return new Vector2((float)room.CentreX, (float)room.CentreY);
         }
-
-
-        public void addRoom(bool start)
-        {
-            int w = rnd(10) + 5;
-            int h = rnd(6) + 3;
-            int rx = rnd(width - w - 2) + 1;
-            int ry = rnd(height - h - 2) + 1;
-
-            int doorCount = 0, doorX = 0, doorY = 0;
-
-            // generate a door
-            if (!start)
-            {
-                // See if we can process this tile
-                for (int y = ry - 1; y < ry + h + 2; y++)
-                    for (int x = rx - 1; x < rx + w + 2; x++)
-                        if (charmap[y, x] == '.')
-                            return;
-
-                // find candidate tiles for the door
-                for (int y = ry - 1; y < ry + h + 2; y++)
-                    for (int x = rx - 1; x < rx + w + 2; x++)
-                    {
-                        bool s = x < rx || x > rx + w;
-                        bool t = y < ry || y > ry + h;
-                        if ((s ^ t) && charmap[y, x] == '#')
-                        {
-                            ++doorCount;
-                            if (rnd(doorCount) == 0)
-                            {
-                                doorX = x;
-                                doorY = y;
-                            }
-                        }
-                    }
-
-
-                if (doorCount == 0)
-                    return;
-            }
-
-            // generate a room
-            for (int y = ry - 1; y < ry + h + 2; y++)
-                for (int x = rx - 1; x < rx + w + 2; x++)
-                {
-                    bool s = x < rx || x > rx + w;
-                    bool t = y < ry || y > ry + h;
-                    if (s && t)
-                        charmap[y, x] = '!'; // avoid generation of doors at corners
-                    else if (s ^ t)
-                        charmap[y, x] = '#';
-                    else
-                        charmap[y, x] = '.';
-                }
-
-            // place the door
-            if (doorCount > 0)
-                charmap[doorY, doorX] = '+';
-
-            if (start)
-            {
-                charmap[rnd(h) + ry, rnd(w) + rx] = '@';
-                spawnpoint = new Vector2((float)(rnd(h) + ry * 32 - 17 - 5), (float)(rnd(w) + rx * 32 - 14 - 25));
-            }
-            else
-            {
-                // place other objects
-                for (int j = 0; j < (rnd(6) + 1); j++)
-                {
-                    char thing = rnd(4) == 0 ? '$' : (char)(65 + rnd(62));
-                    charmap[rnd(h) + ry, rnd(w) + rx] = thing;
-                }
-            }
-        }
-
         public override void Update(Player player)
         {
         }

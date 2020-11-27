@@ -9,41 +9,36 @@ namespace _2DRoguelike.Content.Core.World
     class Room
     {
         public char[,] room { get; }
-        public int width;
-        public int height;
-        public Rectangle roomhitbox;
-        public Rectangle insideroomhitbox;
-        public Vector2 doornorth;
-        public Vector2 dooreast;
-        public Vector2 doorsouth;
-        public Vector2 doorwest;
-        public Vector2 spawnpoint { get; }
-        //Ramdon Generator
-        static Random rndState = new Random();
-        static int rnd(int maxgenetated) => rndState.Next() % maxgenetated;//Returns integer between 0 and maxgenetated
+        public int Width;
+        public int Height;
+        public int XPos { get; set; }
+        public int YPos { get; set; }
+        public int CentreX { get { return XPos + (Width / 2); } }
+        public int CentreY { get { return YPos + (Height / 2); } }
 
+        public Rectangle roomhitbox;
         public Room()
         {
-            width = rnd(10)+5;
-            height= rnd(10)+5;
-            room = new char[width,height];
+            Width = Map.Random.Next(7, 32);
+            Height= Map.Random.Next(7, 32);
+            room = new char[Width,Height];
             fillRoom();
         }
         public Room(int width,int height)
         {
-            this.width = width;
-            this.height = height;
+            this.Width = width;
+            this.Height = height;
             room = new char[width, height];
             fillRoom();
         }
         public void fillRoom()
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < Height; y++)
             {
-                for (int x = 0; x < width; x++)
+                for (int x = 0; x < Width; x++)
                 {
-                    bool s = x < 1 || x > width - 2;
-                    bool t = y < 1 || y > height-2;
+                    bool s = x < 1 || x > Width - 2;
+                    bool t = y < 1 || y > Height-2;
                     if (s && t)
                         room[x, y] = RoomObject.Corner; // avoid generation of doors at corners
                     else if (s ^ t)

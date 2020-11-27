@@ -15,7 +15,8 @@ namespace _2DRoguelike.Content.Core.World
         public bool[,] boolmap;
         public int width;
         public int height;
-
+        public static readonly Random Random = new Random();
+        public static int rnd(int x) => Random.Next() % x;
         #region TestMap
         /*
         public Map()
@@ -90,7 +91,7 @@ namespace _2DRoguelike.Content.Core.World
             {
                 for (int j = 0; j < level.GetLength(1); j++)
                 {
-                    if(level[i, j].Equals(RoomObject.Wall) || level[i, j].Equals(RoomObject.Corner))
+                    if(level[i, j].Equals(RoomObject.Wall) || level[i, j].Equals(RoomObject.Corner)|| level[i, j]==0)
                     {
                         result[i, j] = new Tile(true, i, j);
                     }
