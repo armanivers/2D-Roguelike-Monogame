@@ -80,7 +80,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         {
             instance = null;
         }
-        
+
         public override Vector2 GetDirection()
         {
             return InputController.GetDirection();
@@ -93,7 +93,7 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
         public override Vector2 GetAttackLineOfSight()
         {
-            var differenz = InputController.MousePosition - new Vector2(Hitbox.X+Hitbox.Width/2,Hitbox.Y+Hitbox.Height/2);
+            var differenz = InputController.MousePosition - new Vector2(Hitbox.X + Hitbox.Width / 2, Hitbox.Y + Hitbox.Height / 2);
             var angle = System.Math.Atan2(differenz.X, differenz.Y);
             if (angle > 1 && angle < 2)
             {
@@ -121,9 +121,13 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
         public override Action DetermineAction()
         {
+            // TODO: Waffenauswahl mit Num oder Scroll
+
             if (InputController.IsLeftMouseButtonPressed() && !IsAttacking())
+                // TODO: if(weapon.rangeAttack) return RangeAttack else return Melee ...
+
                 return new RangeAttack(this);
-            if(InputController.IsRightMouseButtonPressed() && !IsAttacking())
+            if (InputController.IsRightMouseButtonPressed() && !IsAttacking())
                 return new Melee(this);
             return new Move(this);
 
@@ -134,7 +138,8 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             base.Update(gameTime);
         }
 
-        public bool GameOver() {
+        public bool GameOver()
+        {
             return isExpired;
         }
     }

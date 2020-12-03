@@ -236,6 +236,7 @@ namespace _2DRoguelike.Content.Core.Entities
             }
             else
             {
+                
                 PerformedAction = DetermineAction();
                 PerformedAction.ExecuteAction();
 
