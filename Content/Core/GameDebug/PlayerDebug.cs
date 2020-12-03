@@ -13,18 +13,19 @@ namespace _2DRoguelike.Content.Core.GameDebug
         private Vector2 playerPositionOnMap;
         private Vector2 mousePosition;
         private Vector2 anglePosition;
-
+        private Vector2 currentWeaponPosition;
         public PlayerDebug()
         { 
             playerPositionOnScreen = new Vector2(0, 0);
             playerPositionOnMap = new Vector2(0, 40);
             mousePosition = new Vector2(0, 80);
             anglePosition = new Vector2(0, 120);
+            currentWeaponPosition = new Vector2(0, 160);
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
             spriteBatch.DrawString(TextureManager.FontArial, 
                 "Position Player auf Screen: {X: " + (int)Player.Instance.Position.X + " Y:" + (int)Player.Instance.Position.Y + "}",
                 playerPositionOnScreen, Color.White);
@@ -48,6 +49,9 @@ namespace _2DRoguelike.Content.Core.GameDebug
             //}
             spriteBatch.DrawString(TextureManager.FontArial, "Winkel des Mauses: " +
                 angle, anglePosition,Color.White);
+            spriteBatch.DrawString(TextureManager.FontArial, "Waffe: " +
+                Player.Instance.CurrentWeapon?.ToString(), currentWeaponPosition, Color.White);
+
         }
 
         public void DrawLine(SpriteBatch spriteBatch, Vector2 from, Vector2 to, Color color, int width = 1)

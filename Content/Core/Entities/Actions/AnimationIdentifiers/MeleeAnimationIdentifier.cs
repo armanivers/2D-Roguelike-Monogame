@@ -12,7 +12,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
 
         public override string ChooseAnimation(Humanoid CallingInstance)
         {
-            Debug.WriteLine("Slash" + PrintLineOfSight(CallingInstance));
+            // Debug.WriteLine("Slash" + PrintLineOfSight(CallingInstance));
             // TODO: AnimationString bestimmen anhand von LineOfSight
             return "Slash" + PrintLineOfSight(CallingInstance);
         }

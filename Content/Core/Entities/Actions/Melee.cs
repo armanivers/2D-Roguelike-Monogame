@@ -16,8 +16,8 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
 
         public override void CommenceAttack()
         {
-            CallingInstance.CooldownTimer = CallingInstance.attackCooldown*0.75f;
-            SoundManager.PlayerAttack.Play(0.2f, 0.2f, 0);
+            CallingInstance.AttackTimeSpanTimer = 0;
+            SoundManager.MeleeWeaponSwing.Play(0.2f, 0.2f, 0);
             // TODO: Melee-Weapon als eigenes Objekt erstellen, wie mit Arrow → dieser kümmert sich um Hits und expired nach einer gewissen Zeit
 
 

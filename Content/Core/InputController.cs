@@ -22,7 +22,9 @@ namespace _2DRoguelike.Content.Core
 
         public static void Update()
         {
+            lastKeyboardState = keyboardState;
             keyboardState = Keyboard.GetState();
+            lastMouseState = mouseState;
             mouseState = Mouse.GetState();
         }
 
@@ -43,23 +45,46 @@ namespace _2DRoguelike.Content.Core
 
             return direction;
         }
-        public static bool IsMousePressed() {
+
+
+        public static bool IsMouseButtonPressed()
+        {
             return IsLeftMouseButtonPressed() || IsRightMouseButtonPressed();
+        }
+        public static bool IsMouseButtonHeld() {
+            return IsLeftMouseButtonHeld() || IsRightMouseButtonHeld();
         }
 
         public static bool IsLeftMouseButtonPressed() {
-            return mouseState.LeftButton == ButtonState.Pressed;
+            return IsLeftMouseButtonHeld() && lastMouseState.LeftButton != ButtonState.Pressed;
         }
 
+        public static bool IsLeftMouseButtonHeld()
+        {
+            return mouseState.LeftButton == ButtonState.Pressed;
+        }      
         public static bool IsRightMouseButtonPressed() {
+            return IsRightMouseButtonHeld() &&  lastMouseState.RightButton != ButtonState.Pressed;
+        }
+
+        public static bool IsRightMouseButtonHeld()
+        {
             return mouseState.RightButton == ButtonState.Pressed;
+        }
+
+        public static bool IsKeyDown(Keys key) {
+            return keyboardState.IsKeyDown(key);
+        }
+
+        public static bool IsKeyPressed(Keys key) {
+            return IsKeyDown(key) && !lastKeyboardState.IsKeyDown(key);
         }
 
 
 
         public static Vector2 GetMouseClickPosition()
         {
-            if (IsMousePressed())
+            if (IsMouseButtonHeld())
             {
                 return MousePosition;
             }

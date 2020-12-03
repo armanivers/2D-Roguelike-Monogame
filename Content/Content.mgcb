@@ -325,11 +325,23 @@
 /processorParam:Quality=Best
 /build:Assets/Sounds/ParticleSFX/explosion.wav
 
+#begin Assets/Sounds/PlayerSounds/equip.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/PlayerSounds/equip.wav
+
 #begin Assets/Sounds/PlayerSounds/walking_dirt.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Assets/Sounds/PlayerSounds/walking_dirt.wav
+
+#begin Assets/Sounds/PlayerSounds/Whoosh2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/PlayerSounds/Whoosh2.wav
 
 #begin Assets/System/Debug/Hitbox/tileHitBox.png
 /importer:TextureImporter

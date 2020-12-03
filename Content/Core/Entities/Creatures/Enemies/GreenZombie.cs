@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.Entities.Weapons;
 using Microsoft.Xna.Framework;
 using Action = _2DRoguelike.Content.Core.Entities.Actions.Action;
 
@@ -11,8 +12,14 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 {
     class GreenZombie : Enemy
     {
-        public GreenZombie(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
+        const int WEAPON_SLOT_CNT = 2; // 0: ShortRange / 1: LongRange
+        public GreenZombie(Vector2 position, int maxHealthPoints, float movingSpeed, float attackCooldown = 0.2f ) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
         {
+            WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
+
+            WeaponInventory[0] = new Axe(1.2f);
+            WeaponInventory[1] = new Bow(1.5f);
+
             texture = TextureManager.ZombieBrownIdle;
 
             const bool NO_LOOP = false;
@@ -63,9 +70,19 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             // TODO: Anhand von Fakten, wie Status, position, playerPosition, blickfeld etc. eine Action erzeugen
             
             // Für Testzwecke, hier findet eigentlich entscheidung der KI statt
-            if (!IsAttacking()) {
-                //return new RangeAttack(this);
+            if (!IsAttacking()){
+                if (!WeaponInventory[1].InUsage())
+                {
+                    WeaponInventory[1].CooldownTimer = 0;
+                    return new RangeAttack(this);
+
+                }
+                else if (!WeaponInventory[0].InUsage())
+                {
+                    WeaponInventory[0].CooldownTimer = 0;
                 return new Melee(this);
+
+                }
             }
             return new Move(this);
         }

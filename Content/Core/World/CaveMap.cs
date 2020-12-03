@@ -50,8 +50,7 @@ namespace _DRoguelike.Content.Core.World
                         //float tileCollisionHitboxOffsetY = 14 + 25; // Hitbox: 14 + TileCollisionHitbox: 25
 
                         Vector2 ret = new Vector2((float)(x * 32 - 17 - 5), (float)(y * 32 - 14 - 25));
-                        Debug.WriteLine("Koordinaten auf Map: " + new Vector2((float)x, (float)y)
-                            + "\nKoordinaten auf Screen: " + ret);
+                        //Debug.WriteLine("Koordinaten auf Map: " + new Vector2((float)x, (float)y) + "\nKoordinaten auf Screen: " + ret);
                         return ret;
                     }
                     else if (nbs < 6)

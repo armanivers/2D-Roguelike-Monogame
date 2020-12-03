@@ -13,8 +13,8 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         public override void CommenceAttack()
         {
             // TODO: Ausführen der Logik für den Angriff
-            CallingInstance.CooldownTimer = 0;
-            SoundManager.PlayerAttack.Play(0.2f, 0.2f, 0);
+            CallingInstance.AttackTimeSpanTimer = 0;
+            SoundManager.ShootArrow.Play(0.2f, 0.2f, 0);
             Arrow a = new Arrow(CallingInstance);
 
             /*Arris Notizen:

@@ -1,5 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
+using _2DRoguelike.Content.Core.Entities.Weapons;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -12,10 +13,55 @@ namespace _2DRoguelike.Content.Core.Entities.Player
     class Player : Humanoid
     {
         private static Player instance;
-        //private Attack meleeAttack;
-        //private Attack rangeAttack; = new RangeAttack();
 
-        // cooldown in seconds!
+        const int WEAPON_SLOT_CNT = 5;
+        public int WeaponsInPosession;
+        private int currentWeaponPos = 0;
+       
+        public int CurrentWeaponPos
+        {
+            get { return currentWeaponPos; }
+            set
+            {
+                currentWeaponPos = value;
+            }
+        }
+
+       
+
+        private Weapon currentWeapon;
+        public Weapon CurrentWeapon { get => currentWeapon; set => currentWeapon = value; }
+
+        private bool HasWeaponInSlot(int pos)
+        {    
+            return WeaponInventory[pos] != null;
+        }
+
+        private void SetNextWeapon(bool backwards = false) {
+            // Nächste gültige Position im Array ermitteln
+
+            int currentPos = CurrentWeaponPos;
+            do
+            {
+                currentPos = currentPos + (!backwards ? 1 : -1);
+                if (backwards && currentPos < 0) currentPos = WEAPON_SLOT_CNT - 1;
+                else if (currentPos >= WEAPON_SLOT_CNT) currentPos = 0;
+                Debug.WriteLine("---Position: " + currentPos);
+            } while (!HasWeaponInSlot(currentPos));
+            ChangeCurrentWeaponSlot(currentPos);
+        }
+
+        public bool ChangeCurrentWeaponSlot(int value)
+        {
+            if (HasWeaponInSlot(value))
+            {
+                CurrentWeaponPos = value;
+                CurrentWeapon = WeaponInventory[CurrentWeaponPos];
+                SoundManager.EquipWeapon.Play(0.2f, 0.2f, 0);
+                return true;
+            }
+            return false;
+        }
 
         public static Player Instance
         {
@@ -29,14 +75,19 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             }
         }
 
-        public Player(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
-        {
-            // TODO:
-            // rangeAttack = new RangeAttack(this);
-            // meleeAttack = new MeleeAttack(this):
+       
+
+        public Player(Vector2 position, int maxHealthPoints, float movingSpeed, float attackCooldown = 0.2f ) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
+        { 
 
             //this.position = new Vector2(2*32, 5*32); bei statischer Map
             instance = this;
+            WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
+
+            AddToWeaponInventory(new Axe());
+            AddToWeaponInventory(new Bow());
+            ChangeCurrentWeaponSlot(0); 
+
             texture = TextureManager.PlayerIdle;
 
             const bool NO_LOOP = false;
@@ -121,26 +172,59 @@ namespace _2DRoguelike.Content.Core.Entities.Player
 
         public override Action DetermineAction()
         {
-            // TODO: Waffenauswahl mit Num oder Scroll
+            if (InputController.IsMouseButtonPressed() && !IsAttacking() && CanAttack())
+            // TODO: if(weapon.rangeAttack) return RangeAttack else return Melee ...
+            {
+                if (CurrentWeapon is Bow) {
+                    CurrentWeapon.CooldownTimer = 0;
+                                return new RangeAttack(this);
 
-            if (InputController.IsLeftMouseButtonPressed() && !IsAttacking())
-                // TODO: if(weapon.rangeAttack) return RangeAttack else return Melee ...
+                }
+                if (CurrentWeapon is Axe) {
+                    CurrentWeapon.CooldownTimer = 0;
 
-                return new RangeAttack(this);
-            if (InputController.IsRightMouseButtonPressed() && !IsAttacking())
-                return new Melee(this);
+                    return new Melee(this);
+
+                }
+            }
             return new Move(this);
 
         }
 
         public override void Update(GameTime gameTime)
         {
+            UpdateCurrentWeaponPos();
             base.Update(gameTime);
         }
 
         public bool GameOver()
         {
             return isExpired;
+        }
+
+        public override void AddToWeaponInventory(Weapon weapon)
+        {
+            if (WeaponsInPosession >= WEAPON_SLOT_CNT)
+                return;
+            WeaponInventory[WeaponsInPosession++] = weapon;
+        }
+
+        public bool CanAttack()
+        {
+            return !IsAttacking() && !CurrentWeapon.InUsage();
+        }
+
+        public void UpdateCurrentWeaponPos() {
+            // TODO: Hier anhand von Eingaben prüfen, ob Waffenwechsel stattgefunden hat
+            // Beispiele: Num 1 - WEAPON_SLOT_CNT und Scrollen
+            if (InputController.IsKeyPressed(Keys.PageUp))
+                SetNextWeapon();
+            else if (InputController.IsKeyPressed(Keys.PageDown))
+                SetNextWeapon(true);
+            else if (InputController.IsKeyPressed(Keys.NumPad0))
+                ChangeCurrentWeaponSlot(0);
+            else if (InputController.IsKeyPressed(Keys.NumPad1))
+                ChangeCurrentWeaponSlot(1);
         }
     }
 }

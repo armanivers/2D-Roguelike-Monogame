@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using _2DRoguelike.Content.Core.Entities.Weapons;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 
@@ -8,6 +9,21 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 {
     abstract class Enemy : Humanoid
     {
+
+
+        public Enemy(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
+        {
+ 
+        }
+
+        public override void AddToWeaponInventory(Weapon weapon)
+        {
+            if (weapon is ShortRange)
+                WeaponInventory[0] = weapon;
+            else
+                WeaponInventory[1] = weapon;
+        }
+
         public override Vector2 GetDirection()
         {
             // TODO: KI nach Angaben fragen
@@ -50,9 +66,10 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             return Vector2.Zero;
         }
 
-        public Enemy(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
+        public bool CanAttack(int weaponPos)
         {
-            
+            // Check, ob bestimmte Waffe gerade genutzt
+            return !IsAttacking() && !WeaponInventory[weaponPos].InUsage();
         }
 
         public override void Update(GameTime gameTime)

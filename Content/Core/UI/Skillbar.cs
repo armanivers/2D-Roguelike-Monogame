@@ -41,7 +41,7 @@ namespace _2DRoguelike.Content.Core.UI
 
         public void Update(GameTime gameTime)
         {
-            var cooldown = target.CooldownTimer;
+            var cooldown = target.AttackTimeSpanTimer;
             slotCurrentHeight = usedSlotTexture.Height - cooldown*9;
         }
         public void Draw(SpriteBatch spriteBatch)
