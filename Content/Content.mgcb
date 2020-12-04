@@ -13,6 +13,222 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Assets/Graphics/EnemyElements/Skeleton/skeleton_hurt/skeletonSheet_hurt.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Skeleton/skeleton_hurt/skeletonSheet_hurt.png
+
+#begin Assets/Graphics/EnemyElements/Skeleton/skeleton_idle/skeletonSheet_idle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Skeleton/skeleton_idle/skeletonSheet_idle.png
+
+#begin Assets/Graphics/EnemyElements/Skeleton/skeleton_shoot/skeletonSheet_shoot.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Skeleton/skeleton_shoot/skeletonSheet_shoot.png
+
+#begin Assets/Graphics/EnemyElements/Skeleton/skeleton_slash/skeletonSlash_dagger/skeletonSheet_slash_dagger.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Skeleton/skeleton_slash/skeletonSlash_dagger/skeletonSheet_slash_dagger.png
+
+#begin Assets/Graphics/EnemyElements/Skeleton/skeleton_slash/skeletonSlash_fist/skeletonSheet_slash_fist.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Skeleton/skeleton_slash/skeletonSlash_fist/skeletonSheet_slash_fist.png
+
+#begin Assets/Graphics/EnemyElements/Skeleton/skeleton_spellcast/skeletonSheet_spellcast.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Skeleton/skeleton_spellcast/skeletonSheet_spellcast.png
+
+#begin Assets/Graphics/EnemyElements/Skeleton/skeleton_walk/skeletonWalk_dagger/skeletonSheet_walk_dagger.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Skeleton/skeleton_walk/skeletonWalk_dagger/skeletonSheet_walk_dagger.png
+
+#begin Assets/Graphics/EnemyElements/Skeleton/skeleton_walk/skeletonWalk_fist/skeletonSheet_walk_fist.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Skeleton/skeleton_walk/skeletonWalk_fist/skeletonSheet_walk_fist.png
+
+#begin Assets/Graphics/EnemyElements/Wizard/wizard_hurt/wizardSheet_hurt.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Wizard/wizard_hurt/wizardSheet_hurt.png
+
+#begin Assets/Graphics/EnemyElements/Wizard/wizard_idle/wizardSheet_idle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Wizard/wizard_idle/wizardSheet_idle.png
+
+#begin Assets/Graphics/EnemyElements/Wizard/wizard_shoot/wizardSheet_shoot.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Wizard/wizard_shoot/wizardSheet_shoot.png
+
+#begin Assets/Graphics/EnemyElements/Wizard/wizard_slash/wizardSlash_dagger/wizardSheet_slash_dagger.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Wizard/wizard_slash/wizardSlash_dagger/wizardSheet_slash_dagger.png
+
+#begin Assets/Graphics/EnemyElements/Wizard/wizard_slash/wizardSlash_fist/wizardSheet_slash_fist.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Wizard/wizard_slash/wizardSlash_fist/wizardSheet_slash_fist.png
+
+#begin Assets/Graphics/EnemyElements/Wizard/wizard_spellcast/wizardSheet_spellcast.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Wizard/wizard_spellcast/wizardSheet_spellcast.png
+
+#begin Assets/Graphics/EnemyElements/Wizard/wizard_thrust/wizardSheet_thrust_cane.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Wizard/wizard_thrust/wizardSheet_thrust_cane.png
+
+#begin Assets/Graphics/EnemyElements/Wizard/wizard_walk/wizardWalk_cane/wizardSheet_walk_cane.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Wizard/wizard_walk/wizardWalk_cane/wizardSheet_walk_cane.png
+
+#begin Assets/Graphics/EnemyElements/Wizard/wizard_walk/wizardWalk_dagger/wizardSheet_walk_dagger.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Wizard/wizard_walk/wizardWalk_dagger/wizardSheet_walk_dagger.png
+
+#begin Assets/Graphics/EnemyElements/Wizard/wizard_walk/wizardWalk_fist/wizardSheet_walk_fist.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/Wizard/wizard_walk/wizardWalk_fist/wizardSheet_walk_fist.png
+
 #begin Assets/Graphics/EnemyElements/ZombieBrown/brownZombie_hurt/brownZombieSheet_hurt.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -96,6 +312,90 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/EnemyElements/ZombieBrown/brownZombie_walk/brownZombieWalk_fist/brownZombieSheet_walk_fist.png
+
+#begin Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_hurt/greenZombieSheet_hurt.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_hurt/greenZombieSheet_hurt.png
+
+#begin Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_idle/greenZombieSheet_idle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_idle/greenZombieSheet_idle.png
+
+#begin Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_shoot/greenZombieSheet_shoot.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_shoot/greenZombieSheet_shoot.png
+
+#begin Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_slash/greenZombieSlash_fist/greenZombieSheet_slash_fist.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_slash/greenZombieSlash_fist/greenZombieSheet_slash_fist.png
+
+#begin Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_spellcast/greenZombieSheet_spellcast.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_spellcast/greenZombieSheet_spellcast.png
+
+#begin Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_thrust/greenZombieSheet_thrust.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_thrust/greenZombieSheet_thrust.png
+
+#begin Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_walk/greenZombieWalk_fist/greenZombieSheet_walk_fist.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_walk/greenZombieWalk_fist/greenZombieSheet_walk_fist.png
 
 #begin Assets/Graphics/Menus/background.png
 /importer:TextureImporter

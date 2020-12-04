@@ -31,6 +31,34 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D ZombieBrown_Slash_Fist { get; private set; }
         public static Texture2D ZombieBrown_Walk_Fist { get; private set; }
 
+        // Green Zombie
+        public static Texture2D ZombieGreen_Hurt { get; set; }
+        public static Texture2D ZombieGreen_Idle { get; private set; }
+        public static Texture2D ZombieGreen_Shoot { get; set; }
+        public static Texture2D ZombieGreen_Slash_Fist { get; private set; }
+        public static Texture2D ZombieGreen_Walk_Fist { get; private set; }
+
+
+        // Skeleton
+        public static Texture2D Skeleton_Hurt { get; set; }
+        public static Texture2D Skeleton_Idle { get; private set; }
+        public static Texture2D Skeleton_Shoot { get; set; }
+        public static Texture2D Skeleton_Slash_Dagger { get; private set; }
+        public static Texture2D Skeleton_Slash_Fist { get; private set; }
+        public static Texture2D Skeleton_Walk_Fist { get; private set; }
+        public static Texture2D Skeleton_Walk_Dagger { get; private set; }
+
+
+        // Wizard
+        public static Texture2D Wizard_Hurt { get; set; }
+        public static Texture2D Wizard_Idle { get; private set; }
+        public static Texture2D Wizard_Shoot { get; set; }
+        public static Texture2D Wizard_Slash_Dagger { get; private set; }
+        public static Texture2D Wizard_Slash_Fist { get; private set; }
+        public static Texture2D Wizard_Walk_Cane { get; private set; }
+        public static Texture2D Wizard_Walk_Dagger { get; private set; }
+        public static Texture2D Wizard_Walk_Fist { get; private set; }
+
         // Particle Data
 
         public static Texture2D Explosion { get; private set; }
@@ -39,7 +67,6 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D Arrow { get; private set; }
 
         // Font Data
-
         public static SpriteFont FontArial { get; private set; }
 
         // Menu Data
@@ -85,6 +112,31 @@ namespace _2DRoguelike.Content.Core
             ZombieBrown_Slash_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombie_slash/brownZombieSlash_fist/brownZombieSheet_slash_fist");
             ZombieBrown_Walk_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombie_walk/brownZombieWalk_fist/brownZombieSheet_walk_fist");
 
+            // Zombie Green
+            ZombieGreen_Hurt = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_hurt/greenZombieSheet_hurt");
+            ZombieGreen_Idle = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_idle/greenZombieSheet_idle");
+            ZombieGreen_Shoot = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_shoot/greenZombieSheet_shoot");
+            ZombieGreen_Slash_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_slash/greenZombieSlash_fist/greenZombieSheet_slash_fist");
+            ZombieGreen_Walk_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_walk/greenZombieWalk_fist/greenZombieSheet_walk_fist");
+
+            // Skeleton
+            Skeleton_Hurt = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Skeleton/skeleton_hurt/skeletonSheet_hurt");
+            Skeleton_Idle = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Skeleton/skeleton_idle/skeletonSheet_idle");
+            Skeleton_Shoot = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Skeleton/skeleton_shoot/skeletonSheet_shoot");
+            Skeleton_Slash_Dagger = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Skeleton/skeleton_slash/skeletonSlash_dagger/skeletonSheet_slash_dagger");
+            Skeleton_Slash_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Skeleton/skeleton_slash/skeletonSlash_fist/skeletonSheet_slash_fist");
+            Skeleton_Walk_Dagger = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Skeleton/skeleton_walk/skeletonWalk_dagger/skeletonSheet_walk_dagger");
+            Skeleton_Walk_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Skeleton/skeleton_walk/skeletonWalk_fist/skeletonSheet_walk_fist");
+
+            // Wizard
+            Wizard_Hurt = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Wizard/wizard_hurt/wizardSheet_hurt");
+            Wizard_Idle = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Wizard/wizard_idle/wizardSheet_idle");
+            Wizard_Shoot = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Wizard/wizard_shoot/wizardSheet_shoot");
+            Wizard_Slash_Dagger = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Wizard/wizard_slash/wizardSlash_dagger/wizardSheet_slash_dagger");
+            Wizard_Slash_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Wizard/wizard_slash/wizardSlash_fist/wizardSheet_slash_fist");
+            Wizard_Walk_Cane = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Wizard/wizard_walk/wizardWalk_cane/wizardSheet_walk_cane");
+            Wizard_Walk_Dagger = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Wizard/wizard_walk/wizardWalk_dagger/wizardSheet_walk_dagger");
+            Wizard_Walk_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Wizard/wizard_walk/wizardWalk_fist/wizardSheet_walk_fist");
 
             // Particle Data
             Explosion = content.Load<Texture2D>("Assets/Graphics/Particles/explosion");
