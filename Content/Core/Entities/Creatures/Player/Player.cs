@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace _2DRoguelike.Content.Core.Entities.Player
+namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 {
     class Player : Humanoid
     {
@@ -26,11 +26,6 @@ namespace _2DRoguelike.Content.Core.Entities.Player
                 currentWeaponPos = value;
             }
         }
-
-       
-
-        private Weapon currentWeapon;
-        public Weapon CurrentWeapon { get => currentWeapon; set => currentWeapon = value; }
 
         private bool HasWeaponInSlot(int pos)
         {    
@@ -84,8 +79,10 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             instance = this;
             WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
 
-            AddToWeaponInventory(new Axe());
-            AddToWeaponInventory(new Bow());
+            AddToWeaponInventory(new Fist(this));
+            AddToWeaponInventory(new Dagger(this));
+            AddToWeaponInventory(new Axe(this));
+            AddToWeaponInventory(new Bow(this));
             ChangeCurrentWeaponSlot(0); 
 
             texture = TextureManager.PlayerIdle;
@@ -175,12 +172,12 @@ namespace _2DRoguelike.Content.Core.Entities.Player
             if (InputController.IsMouseButtonPressed() && !IsAttacking() && CanAttack())
             // TODO: if(weapon.rangeAttack) return RangeAttack else return Melee ...
             {
-                if (CurrentWeapon is Bow) {
+                if (CurrentWeapon is LongRange) {
                     CurrentWeapon.CooldownTimer = 0;
                                 return new RangeAttack(this);
 
                 }
-                if (CurrentWeapon is Axe) {
+                if (CurrentWeapon is ShortRange) {
                     CurrentWeapon.CooldownTimer = 0;
 
                     return new Melee(this);
@@ -217,9 +214,9 @@ namespace _2DRoguelike.Content.Core.Entities.Player
         public void UpdateCurrentWeaponPos() {
             // TODO: Hier anhand von Eingaben prüfen, ob Waffenwechsel stattgefunden hat
             // Beispiele: Num 1 - WEAPON_SLOT_CNT und Scrollen
-            if (InputController.IsKeyPressed(Keys.PageUp))
+            if (InputController.IsKeyPressed(Keys.PageUp) || InputController.IsMouseScrolledDown())
                 SetNextWeapon();
-            else if (InputController.IsKeyPressed(Keys.PageDown))
+            else if (InputController.IsKeyPressed(Keys.PageDown) || InputController.IsMouseScrolledUp())
                 SetNextWeapon(true);
             else if (InputController.IsKeyPressed(Keys.NumPad0))
                 ChangeCurrentWeaponSlot(0);

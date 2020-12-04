@@ -1,4 +1,4 @@
-﻿using _2DRoguelike.Content.Core.Entities.Player;
+﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.GameDebug;
 using _2DRoguelike.Content.Core.World.Tiles;
 using _DRoguelike.Content.Core.World;
@@ -12,7 +12,7 @@ namespace _2DRoguelike.Content.Core.World
 {
     static class LevelManager
     {
-        public static Map maps = new TestMap(24,24);
+       public static Map maps = new TestMap(24,24);
         //public static Map maps = new Dungeon();
         public static Tile[,] currentLevel = maps.map;
 

@@ -6,6 +6,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
 {
     public abstract class Weapon : InventoryItem
     {
+        protected int weaponDamage; 
         private float weaponCooldown;
         protected float WeaponCooldown { get => weaponCooldown; set => weaponCooldown = value; }
         
@@ -13,9 +14,12 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         public float CooldownTimer { get => cooldownTimer; set => cooldownTimer = value; }
 
         
-        public Weapon(float weaponCooldown) {
+        public Weapon(Humanoid Owner, int weaponDamage, float weaponCooldown): base(Owner) {
+            this.weaponDamage = weaponDamage;
             WeaponCooldown = weaponCooldown;
         }
+
+        public abstract void UseWeapon();
 
         public bool InUsage() { 
             return CooldownTimer <= WeaponCooldown;

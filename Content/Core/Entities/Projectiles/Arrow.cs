@@ -53,7 +53,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
         }
 
         private void HittingLogic() {
-            if (shootingEntity is Player.Player) {
+            if (shootingEntity is ControllingPlayer.Player) {
                 // TODO: ERSETZEN Durch EnemyList des Raumes
 
                 foreach (var enemy in EntityManager.entities)
@@ -68,8 +68,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
                     } 
                 }     
             } else if (shootingEntity is Enemies.Enemy) {
-                if (hitbox.Intersects(Player.Player.Instance.Hitbox)) {
-                    Player.Player.Instance.DeductHealthPoints(DAMAGE);
+                if (hitbox.Intersects(ControllingPlayer.Player.Instance.Hitbox)) {
+                    ControllingPlayer.Player.Instance.DeductHealthPoints(DAMAGE);
                     isExpired = true;
                 }
             }

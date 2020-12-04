@@ -15,7 +15,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
             // TODO: Ausführen der Logik für den Angriff
             CallingInstance.AttackTimeSpanTimer = 0;
             SoundManager.ShootArrow.Play(0.2f, 0.2f, 0);
-            Arrow a = new Arrow(CallingInstance);
+            CallingInstance.CurrentWeapon.UseWeapon();
 
             /*Arris Notizen:
               // create an explosion

@@ -23,8 +23,8 @@ namespace _2DRoguelike.Content.Core.Entities
         public Vector2 LineOfSight { get; set; }
 
         public Weapon[] WeaponInventory;
-
-        public Humanoid(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
+        public Weapon CurrentWeapon { get; set; }
+        public Humanoid(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
         {
             Hitbox = new Rectangle((int)Position.X + 17, (int)Position.Y + 14, 29, 49);
             // alle Humanoids besitzen gleiche Hitbox
@@ -228,7 +228,7 @@ namespace _2DRoguelike.Content.Core.Entities
                 if (this is Enemy)
                     Kill();
             if (InputController.keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.X))
-                if (this is Player.Player)
+                if (this is ControllingPlayer.Player)
                     Kill();
             #endregion
 

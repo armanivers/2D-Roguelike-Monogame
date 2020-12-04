@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace _2DRoguelike.Content.Core.Entities.Player
+namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 {
     static class Camera
     {
