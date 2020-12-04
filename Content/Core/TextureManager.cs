@@ -10,20 +10,26 @@ namespace _2DRoguelike.Content.Core
     {
         // Player Data
         // Idee: Animationen in ein Array speicher, dann mit [0] auf animation walkup und [1] animation walkdown zugreifen?
-        //TODO: Nur ein Spritesheet verwenden
-        public static Texture2D PlayerIdle { get; private set; }
-        public static Texture2D PlayerWalk { get; private set; }
-        public static Texture2D PlayerSlash { get; private set; }
-        public static Texture2D PlayerShoot { get; private set; }
-        public static Texture2D PlayerHurt { get; private set; }
+
+        public static Texture2D Player_Hurt { get; private set; }
+        public static Texture2D Player_Idle { get; private set; }
+        public static Texture2D Player_Shoot { get; private set; }
+        public static Texture2D Player_Slash_Axe { get; private set; }
+        public static Texture2D Player_Slash_Dagger { get; private set; }
+        public static Texture2D Player_Slash_Fist { get; private set; }
+
+        public static Texture2D Player_Walk_Axe { get; private set; }
+        public static Texture2D Player_Walk_Dagger { get; private set; }
+        public static Texture2D Player_Walk_Fist { get; private set; }
+        public static Texture2D Player_Walk_Spear{ get; private set; }
 
         /// Enemy Data
         // Brown Zombie
-        public static Texture2D ZombieBrownWalk { get; private set; }
-        public static Texture2D ZombieBrownIdle { get; private set; }
-        public static Texture2D ZombieBrownSlash { get; private set; }
-        public static Texture2D ZombieBrownShoot { get; set; }
-        public static Texture2D ZombieBrownHurt { get; set; }
+        public static Texture2D ZombieBrown_Hurt { get; set; } 
+        public static Texture2D ZombieBrown_Idle { get; private set; }  
+        public static Texture2D ZombieBrown_Shoot { get; set; }   
+        public static Texture2D ZombieBrown_Slash_Fist { get; private set; }
+        public static Texture2D ZombieBrown_Walk_Fist { get; private set; }
 
         // Particle Data
 
@@ -58,19 +64,26 @@ namespace _2DRoguelike.Content.Core
         public static void Load(ContentManager content)
         {
             // Player Data
-            PlayerIdle = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_idle");
-            PlayerWalk = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk_axe");
-            PlayerSlash = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_slash");
-            PlayerShoot = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_shoot");
-            PlayerHurt = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_hurt");
+            Player_Hurt = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_hurt/playerSheet_hurt");
+            Player_Idle = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_idle/playerSheet_idle");
+            Player_Shoot = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_shoot/playerSheet_shoot");
+            
+            Player_Walk_Axe = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk/playerWalk_axe/playerSheet_walk_axe");
+            Player_Walk_Dagger = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk/playerWalk_dagger/playerSheet_walk_dagger");
+            Player_Walk_Fist = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk/playerWalk_fist/playerSheet_walk_fist");
+            Player_Walk_Spear = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk/playerWalk_spear/playerSheet_walk_spear");
+
+            Player_Slash_Axe = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_slash/playerSlash_axe/playerSheet_slash_axe");
+            Player_Slash_Dagger = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_slash/playerSlash_dagger/playerSheet_slash_dagger");
+            Player_Slash_Fist = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_slash/playerSlash_fist/playerSheet_slash_fist");
 
             // Enemy Data
             // Zombie Brown
-            ZombieBrownWalk = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_walk");
-            ZombieBrownIdle = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_idle");
-            ZombieBrownSlash = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_slash");
-            ZombieBrownShoot = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_shoot");
-            ZombieBrownHurt = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombieSheet_hurt");
+            ZombieBrown_Hurt = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombie_hurt/brownZombieSheet_hurt");
+            ZombieBrown_Idle = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombie_idle/brownZombieSheet_idle");
+            ZombieBrown_Shoot = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombie_shoot/brownZombieSheet_shoot");
+            ZombieBrown_Slash_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombie_slash/brownZombieSlash_fist/brownZombieSheet_slash_fist");
+            ZombieBrown_Walk_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/ZombieBrown/brownZombie_walk/brownZombieWalk_fist/brownZombieSheet_walk_fist");
 
 
             // Particle Data

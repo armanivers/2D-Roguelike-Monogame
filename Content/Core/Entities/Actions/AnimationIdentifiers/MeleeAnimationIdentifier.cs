@@ -14,7 +14,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         {
             // Debug.WriteLine("Slash" + PrintLineOfSight(CallingInstance));
             // TODO: AnimationString bestimmen anhand von LineOfSight
-            return "Slash" + PrintLineOfSight(CallingInstance);
+            return "Slash" + PrintLineOfSight(CallingInstance) + "_" + CallingInstance.CurrentWeapon.ToString();
         }
     }
 }

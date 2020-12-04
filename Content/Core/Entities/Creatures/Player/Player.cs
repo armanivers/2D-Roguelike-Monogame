@@ -85,7 +85,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             AddToWeaponInventory(new Bow(this));
             ChangeCurrentWeaponSlot(0); 
 
-            texture = TextureManager.PlayerIdle;
+            texture = TextureManager.Player_Idle;
 
             const bool NO_LOOP = false;
             const bool PRIORITIZED = true;
@@ -95,31 +95,51 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             animations = new Dictionary<string, Animation>()
             {
                 // Idle
-                {"IdleUp", new Animation(TextureManager.PlayerIdle,0,6,tmpFrameSpeed=frameSpeed*2.5f)},
-                {"IdleLeft", new Animation(TextureManager.PlayerIdle,1,6,tmpFrameSpeed)},
-                {"IdleDown", new Animation(TextureManager.PlayerIdle,2,6,tmpFrameSpeed)},
-                {"IdleRight", new Animation(TextureManager.PlayerIdle,3,6,tmpFrameSpeed)},
+                {"IdleUp", new Animation(TextureManager.Player_Idle,0,6,tmpFrameSpeed=frameSpeed*2.5f)},
+                {"IdleLeft", new Animation(TextureManager.Player_Idle,1,6,tmpFrameSpeed)},
+                {"IdleDown", new Animation(TextureManager.Player_Idle,2,6,tmpFrameSpeed)},
+                {"IdleRight", new Animation(TextureManager.Player_Idle,3,6,tmpFrameSpeed)},
                 
                 // Laufbewegung
-                {"WalkUp", new Animation(TextureManager.PlayerWalk,0,9,tmpFrameSpeed=frameSpeed)},
-                {"WalkLeft",new Animation(TextureManager.PlayerWalk,1,9,tmpFrameSpeed)},
-                {"WalkDown", new Animation(TextureManager.PlayerWalk,2,9,tmpFrameSpeed)},
-                {"WalkRight", new Animation(TextureManager.PlayerWalk,3,9,tmpFrameSpeed)},
-                
-                 // Melee-Angriff
-                {"SlashUp", new Animation(TextureManager.PlayerSlash,0,6,(tmpFrameSpeed=frameSpeed*0.5f), NO_LOOP, PRIORITIZED, REVERSE)},
-                {"SlashLeft",new Animation(TextureManager.PlayerSlash,1,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
-                {"SlashDown", new Animation(TextureManager.PlayerSlash,2,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
-                {"SlashRight", new Animation(TextureManager.PlayerSlash,3,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
+                {"WalkUp_Axe", new Animation(TextureManager.Player_Walk_Axe,0,9,tmpFrameSpeed=frameSpeed)},
+                {"WalkLeft_Axe",new Animation(TextureManager.Player_Walk_Axe,1,9,tmpFrameSpeed)},
+                {"WalkDown_Axe", new Animation(TextureManager.Player_Walk_Axe,2,9,tmpFrameSpeed)},
+                {"WalkRight_Axe", new Animation(TextureManager.Player_Walk_Axe,3,9,tmpFrameSpeed)},
 
+                {"WalkUp_Fist", new Animation(TextureManager.Player_Walk_Fist,0,9,tmpFrameSpeed=frameSpeed)},
+                {"WalkLeft_Fist",new Animation(TextureManager.Player_Walk_Fist,1,9,tmpFrameSpeed)},
+                {"WalkDown_Fist", new Animation(TextureManager.Player_Walk_Fist,2,9,tmpFrameSpeed)},
+                {"WalkRight_Fist", new Animation(TextureManager.Player_Walk_Fist,3,9,tmpFrameSpeed)},
+
+                {"WalkUp_Dagger", new Animation(TextureManager.Player_Walk_Dagger,0,9,tmpFrameSpeed=frameSpeed)},
+                {"WalkLeft_Dagger",new Animation(TextureManager.Player_Walk_Dagger,1,9,tmpFrameSpeed)},
+                {"WalkDown_Dagger", new Animation(TextureManager.Player_Walk_Dagger,2,9,tmpFrameSpeed)},
+                {"WalkRight_Dagger", new Animation(TextureManager.Player_Walk_Dagger,3,9,tmpFrameSpeed)},
+                
+                 // Melee-            
+                {"SlashUp_Axe", new Animation(TextureManager.Player_Slash_Axe,0,6,(tmpFrameSpeed=frameSpeed*0.5f), NO_LOOP, PRIORITIZED, REVERSE)},
+                {"SlashLeft_Axe",new Animation(TextureManager.Player_Slash_Axe,1,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
+                {"SlashDown_Axe", new Animation(TextureManager.Player_Slash_Axe,2,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
+                {"SlashRight_Axe", new Animation(TextureManager.Player_Slash_Axe,3,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
+
+                {"SlashUp_Dagger", new Animation(TextureManager.Player_Slash_Dagger,0,6,(tmpFrameSpeed=frameSpeed*0.5f), NO_LOOP, PRIORITIZED, REVERSE)},
+                {"SlashLeft_Dagger",new Animation(TextureManager.Player_Slash_Dagger,1,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
+                {"SlashDown_Dagger", new Animation(TextureManager.Player_Slash_Dagger,2,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
+                {"SlashRight_Dagger", new Animation(TextureManager.Player_Slash_Dagger,3,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
+
+                {"SlashUp_Fist", new Animation(TextureManager.Player_Slash_Fist,0,6,(tmpFrameSpeed=frameSpeed*0.5f), NO_LOOP, PRIORITIZED, REVERSE)},
+                {"SlashLeft_Fist",new Animation(TextureManager.Player_Slash_Fist,1,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
+                {"SlashDown_Fist", new Animation(TextureManager.Player_Slash_Fist,2,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
+                {"SlashRight_Fist", new Animation(TextureManager.Player_Slash_Fist,3,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
+                
                 // Pfeil Schießen
-                 {"ShootUp", new Animation(TextureManager.PlayerShoot,0,13,(tmpFrameSpeed=frameSpeed*0.3f),NO_LOOP, PRIORITIZED)},
-                {"ShootLeft",new Animation(TextureManager.PlayerShoot,1,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
-                {"ShootDown", new Animation(TextureManager.PlayerShoot,2,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
-                {"ShootRight", new Animation(TextureManager.PlayerShoot,3,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
+                {"ShootUp", new Animation(TextureManager.Player_Shoot,0,13,(tmpFrameSpeed=frameSpeed*0.3f),NO_LOOP, PRIORITIZED)},
+                {"ShootLeft",new Animation(TextureManager.Player_Shoot,1,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
+                {"ShootDown", new Animation(TextureManager.Player_Shoot,2,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
+                {"ShootRight", new Animation(TextureManager.Player_Shoot,3,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
 
                 // Todesanimation
-                {"Die", new Animation(TextureManager.PlayerHurt,0,6,frameSpeed*2f, NO_LOOP, PRIORITIZED)}
+                {"Die", new Animation(TextureManager.Player_Hurt,0,6,frameSpeed*2f, NO_LOOP, PRIORITIZED)}
             };
             animationManager = new AnimationManager(animations["IdleDown"]);
 

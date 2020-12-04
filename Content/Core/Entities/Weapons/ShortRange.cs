@@ -21,7 +21,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
 
             Rectangle OwnerHitbox = Owner.Hitbox;
 
-            Vector2 attackDirection = Owner.GetAttackDirection();
+            Vector2 attackDirection = new Vector2(Owner.GetAttackDirection().X - OwnerHitbox.Width * rangeMultiplierX/2, Owner.GetAttackDirection().Y - OwnerHitbox.Height * 0.8f * rangeMultiplierY/2);
 
             Vector2 attackHitboxRangeUpperLeft = new Vector2(OwnerHitbox.X - OwnerHitbox.Width * rangeMultiplierX, OwnerHitbox.Y - OwnerHitbox.Height * 0.8f * rangeMultiplierY);
             Vector2 attackHitboxRangeDownRight = new Vector2(OwnerHitbox.X + OwnerHitbox.Width, OwnerHitbox.Y + OwnerHitbox.Height);
