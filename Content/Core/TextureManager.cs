@@ -96,7 +96,7 @@ namespace _2DRoguelike.Content.Core
             EnemyBar = content.Load<Texture2D>("Assets/Graphics/UI/EnemeyUI/enemyBar");
 
             // Tiles Data
-            tilesAmount = 2;
+            tilesAmount = 3;
             tiles = new Texture2D[tilesAmount];
             for (int i = 0; i < tilesAmount; i++)
             {

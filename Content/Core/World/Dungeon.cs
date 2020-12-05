@@ -24,11 +24,16 @@ namespace _2DRoguelike.Content.Core.World
             for(int i = 0; i < NumRooms; i++)
             {
                 Room room = new Room();
+                
                 do
                 {
-                    room.XPos =Map.Random.Next(0, width - room.Width);
-                    room.YPos =Map.Random.Next(0, height - room.Height);
+                    room.setXPos(Map.Random.Next(0, width - room.Width));
+                    room.setYPos(Map.Random.Next(0, height - room.Height));
                 }while(!avoidRoomCollision(room));
+                if (i == NumRooms - 1)
+                {
+                    room.setExit();
+                }
                 room2Map(room);
                 if (i > 0)
                 {
@@ -98,14 +103,6 @@ namespace _2DRoguelike.Content.Core.World
                 previousRoom = room;
             }
         }
-        public void HorizontalLine()
-        {
-
-        }
-        public void VerticalLine()
-        {
-
-        }
         public void room2Map(Room room)
         {
             for (int y = room.YPos; y < room.YPos + room.Height; y++)
@@ -138,6 +135,19 @@ namespace _2DRoguelike.Content.Core.World
         }
         public override void Update(Player player)
         {
+            for(int i = 0; i < NumRooms; i++)
+            {
+                if (player.hitbox.Intersects(roomlist[i].roomhitbox))
+                {
+                    if (roomlist[i].exitroom)
+                    {
+                        if((int)player.Position.X/32==roomlist[i].XExit && (int)player.Position.Y/32 == roomlist[i].YExit)
+                        {
+                            LevelManager.NextLevel(player);
+                        }
+                    }
+                }
+            }
         }
     }
 }

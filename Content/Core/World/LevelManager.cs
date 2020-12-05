@@ -12,12 +12,34 @@ namespace _2DRoguelike.Content.Core.World
 {
     static class LevelManager
     {
-        public static Map maps = new TestMap(24,24);
-        //public static Map maps = new Dungeon();
-        public static Tile[,] currentLevel = maps.map;
+        //public static Map maps = new TestMap(24,24);
+        public const int numLevel = 3;
+        public static int level = 0;
+        private static List<Map> levelList;
 
+
+        public static Map maps;
+        public static Tile[,] currentLevel ;
+        public static void LoadContent()
+        {
+            levelList = new List<Map>();
+            levelList.Add(new Dungeon());
+            levelList.Add(new TestMap(24,24));
+            levelList.Add(new Dungeon());
+            maps = levelList[level];
+            currentLevel = maps.map;
+        }
+        public static void NextLevel(Player player)
+        {
+            int x=level;
+            level = x + 1;
+            player.Position = levelList[level].getSpawnpoint()*new Vector2(32);
+            maps = levelList[level];
+            currentLevel = maps.map;
+        }
         public static void Update(Player player)
         {
+            maps.Update(player);
         }
         public static void Draw(SpriteBatch spriteBatch)
         {
