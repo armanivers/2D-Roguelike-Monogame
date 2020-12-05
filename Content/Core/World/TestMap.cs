@@ -12,6 +12,7 @@ namespace _2DRoguelike.Content.Core.World
         public TestMap(int width, int height):base(width,height)
         {
             room = new Room(width, height);
+            room.setExit();
             dottedArea(width/2,height/2);
             placeTables(6, 17);
             placelabyrinth();
@@ -72,6 +73,10 @@ namespace _2DRoguelike.Content.Core.World
 
         public override void Update(Player player)
         {
+          if (player.hitbox.Intersects(room.exithitbox))
+          {
+               LevelManager.NextLevel(player);
+          }
         }
     }
 }

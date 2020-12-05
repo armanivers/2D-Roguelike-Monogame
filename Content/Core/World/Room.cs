@@ -12,6 +12,7 @@ namespace _2DRoguelike.Content.Core.World
         public int Width;
         public int Height;
         public Rectangle roomhitbox { get; set; }
+        public Rectangle exithitbox { get; set; }
         public int XPos;
         public void setXPos(int value)
         {
@@ -83,6 +84,7 @@ namespace _2DRoguelike.Content.Core.World
             room[XExit, YExit] = RoomObject.Exit;
             XExit = (XExit + XPos);
             YExit = (YExit + YPos);
+            exithitbox = new Rectangle(XExit*32,YExit*32,32,32);
         }
     }
 }

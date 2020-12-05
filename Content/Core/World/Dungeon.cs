@@ -141,7 +141,7 @@ namespace _2DRoguelike.Content.Core.World
                 {
                     if (roomlist[i].exitroom)
                     {
-                        if((int)player.Position.X/32==roomlist[i].XExit && (int)player.Position.Y/32 == roomlist[i].YExit)
+                        if(player.hitbox.Intersects(roomlist[i].exithitbox))
                         {
                             LevelManager.NextLevel(player);
                         }

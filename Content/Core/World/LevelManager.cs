@@ -12,7 +12,6 @@ namespace _2DRoguelike.Content.Core.World
 {
     static class LevelManager
     {
-        //public static Map maps = new TestMap(24,24);
         public const int numLevel = 3;
         public static int level = 0;
         private static List<Map> levelList;
@@ -23,8 +22,8 @@ namespace _2DRoguelike.Content.Core.World
         public static void LoadContent()
         {
             levelList = new List<Map>();
+            levelList.Add(new TestMap(24, 24));
             levelList.Add(new Dungeon());
-            levelList.Add(new TestMap(24,24));
             levelList.Add(new Dungeon());
             maps = levelList[level];
             currentLevel = maps.map;
