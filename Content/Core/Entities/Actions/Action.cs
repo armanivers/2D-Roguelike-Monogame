@@ -19,6 +19,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
 
         public abstract void SetLineOfSight();
 
+        // TODO: Attack-Animation anhand der Waffe mitbestimmen
         public string ChooseAnimation() {
             String ret = AnimationIdentif.ChooseAnimation(CallingInstance);
             //if(CallingInstance is Player.Player) Debug.WriteLine(ret);

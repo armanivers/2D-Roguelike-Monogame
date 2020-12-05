@@ -1,4 +1,4 @@
-﻿using _2DRoguelike.Content.Core.Entities.Player;
+﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,41 +13,49 @@ namespace _2DRoguelike.Content.Core.GameDebug
         private Vector2 playerPositionOnMap;
         private Vector2 mousePosition;
         private Vector2 anglePosition;
+        private Vector2 currentWeaponPosition;
 
+        const Boolean DEBUG = true;
         public PlayerDebug()
         { 
             playerPositionOnScreen = new Vector2(0, 0);
             playerPositionOnMap = new Vector2(0, 40);
             mousePosition = new Vector2(0, 80);
             anglePosition = new Vector2(0, 120);
+            currentWeaponPosition = new Vector2(0, 160);
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
-            spriteBatch.DrawString(TextureManager.FontArial, 
+            if (DEBUG)
+            {
+                spriteBatch.DrawString(TextureManager.FontArial,
                 "Position Player auf Screen: {X: " + (int)Player.Instance.Position.X + " Y:" + (int)Player.Instance.Position.Y + "}",
                 playerPositionOnScreen, Color.White);
-            spriteBatch.DrawString(TextureManager.FontArial,
-            "Position Player auf Map: {X: " + (int)(Player.Instance.GetTileCollisionHitbox().X / 32) + " Y:" + (int)(Player.Instance.GetTileCollisionHitbox().Y / 32) + "}",
-                playerPositionOnMap, Color.White);
-            spriteBatch.DrawString(TextureManager.FontArial,
-                "Position Maus auf Map: {X: " + (int)InputController.MousePosition.X/32 + " Y:" + (int)InputController.MousePosition.Y/32 + "}",
-                mousePosition, Color.White);
+                spriteBatch.DrawString(TextureManager.FontArial,
+                "Position Player auf Map: {X: " + (int)(Player.Instance.GetTileCollisionHitbox().X / 32) + " Y:" + (int)(Player.Instance.GetTileCollisionHitbox().Y / 32) + "}",
+                    playerPositionOnMap, Color.White);
+                spriteBatch.DrawString(TextureManager.FontArial,
+                    "Position Maus auf Map: {X: " + (int)InputController.MousePosition.X / 32 + " Y:" + (int)InputController.MousePosition.Y / 32 + "}",
+                    mousePosition, Color.White);
 
-            // Winkel Berechnung
+                // Winkel Berechnung
 
-            var differenz = InputController.MousePosition - Player.Instance.Position;
-            var angle = Math.Atan2(differenz.X, differenz.Y);
-            // Umwandlung Radian -> Degree
+                var differenz = InputController.MousePosition - Player.Instance.Position;
+                var angle = Math.Atan2(differenz.X, differenz.Y);
+                // Umwandlung Radian -> Degree
 
-            //angle = MathHelper.ToDegrees((float)angle);
-            //if(angle < 0)
-            //{
-            //    angle = 360 - (-angle);
-            //}
-            spriteBatch.DrawString(TextureManager.FontArial, "Winkel des Mauses: " +
-                angle, anglePosition,Color.White);
+                //angle = MathHelper.ToDegrees((float)angle);
+                //if(angle < 0)
+                //{
+                //    angle = 360 - (-angle);
+                //}
+                spriteBatch.DrawString(TextureManager.FontArial, "Winkel des Mauses: " +
+                    angle, anglePosition, Color.White);
+                spriteBatch.DrawString(TextureManager.FontArial, "Waffe: " +
+                    Player.Instance.CurrentWeapon?.ToString(), currentWeaponPosition, Color.White);
+            }
         }
 
         public void DrawLine(SpriteBatch spriteBatch, Vector2 from, Vector2 to, Color color, int width = 1)

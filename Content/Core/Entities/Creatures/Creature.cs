@@ -17,8 +17,8 @@ namespace _2DRoguelike.Content.Core.Entities
 
         // TODO: Dieser CooldownTimer gilt aktuell für ALLE Angriffsarten → Für jede Angriffsart eigenen Cooldown erstellen
         // (bessere Alternative überlegen, damit nicht immer ein neues Attribut hinzugefügt werden muss)
-        public readonly float attackCooldown;
-        public float CooldownTimer { get; set; }
+        public readonly float attackTimespan;
+        public float AttackTimeSpanTimer { get; set; }
         
         // TODO: Einen ALLGEMEINEN attacking-Timer, damit nicht während eines Angriffes ein anderer Angriff gestartet werden kann
         // (die Angriffe haben aber dennoch eigene unabhängige Cooldowns (z.B. Melee hat kürzeren Cooldown))
@@ -44,10 +44,10 @@ namespace _2DRoguelike.Content.Core.Entities
             }
         }
 
-        public Creature(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position){
+        public Creature(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position){
             this.maxHealthPoints = maxHealthPoints;
             HealthPoints = maxHealthPoints;
-            this.attackCooldown = attackCooldown;
+            this.attackTimespan = attackTimespan;
             this.movingSpeed = movingSpeed;
             dead = false;
             SpeedModifier = 1;
@@ -61,11 +61,10 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public bool IsAttacking()
         {
-            return CooldownTimer <= attackCooldown;
+            // TODO: attackExecution Timer implementieren. CooldownTimer ist fuer Weapons wichtig
+            return AttackTimeSpanTimer <= attackTimespan;
         }
         
-        // Deprecated:  protected abstract void DetermineAnimation(Dictionary<string, Animation> animations);
-
         public override void Update(GameTime gameTime)
         {
             /** TODO: Vorerst wurde alles in Humanoid eingefügt

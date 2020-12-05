@@ -13,7 +13,10 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
             // TODO: AnimationString bestimmen anhand von LineOfSight
             if(CallingInstance.GetDirection() == Vector2.Zero)
                 return "Idle" + PrintLineOfSight(CallingInstance);
-            return "Walk" + PrintLineOfSight(CallingInstance);
+            String ret = "Walk" + PrintLineOfSight(CallingInstance) + "_" + CallingInstance.CurrentWeapon.ToString();
+            if (!CallingInstance.AnimationExists(ret))
+                ret = ret.Substring(0, ret.Length - CallingInstance.CurrentWeapon.ToString().Length) + "Fist";
+            return ret;
         }
     }
 }

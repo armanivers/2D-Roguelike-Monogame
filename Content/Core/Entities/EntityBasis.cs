@@ -70,7 +70,9 @@ namespace _2DRoguelike.Content.Core.Entities
             else { throw new Exception("Draw failed, there's a problem with the texture/animationManager!"); };
         }
 
-
+        public bool AnimationExists(String animationIdent) {
+            return animations.ContainsKey(animationIdent);
+        }
 
     }
 }

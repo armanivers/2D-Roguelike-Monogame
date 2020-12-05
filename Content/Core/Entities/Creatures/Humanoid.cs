@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.Entities.Weapons;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 
@@ -21,7 +22,9 @@ namespace _2DRoguelike.Content.Core.Entities
         private int disappearingTimer = 0;
         public Vector2 LineOfSight { get; set; }
 
-        public Humanoid(Vector2 position, int maxHealthPoints, float attackCooldown, float movingSpeed) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
+        public Weapon[] WeaponInventory;
+        public Weapon CurrentWeapon { get; set; }
+        public Humanoid(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
         {
             Hitbox = new Rectangle((int)Position.X + 17, (int)Position.Y + 14, 29, 49);
             // alle Humanoids besitzen gleiche Hitbox
@@ -29,6 +32,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         // ----------------------------------
 
+        public abstract void AddToWeaponInventory(Weapon weapon);
         public abstract Actions.Action DetermineAction();
 
         /*Deprecated (wird in Action.ChooseAnimation geregelt):
@@ -98,7 +102,7 @@ namespace _2DRoguelike.Content.Core.Entities
                 else return;
             }
 
-            Debug.WriteLine(animationIdentifier);
+            // Debug.WriteLine(animationIdentifier);
 
             if (animationManager != null)
             {
@@ -109,7 +113,6 @@ namespace _2DRoguelike.Content.Core.Entities
 
         }
          
-
         public void SetLineOfSight(Vector2 direction)
         {
             if (direction != Vector2.Zero)
@@ -225,7 +228,7 @@ namespace _2DRoguelike.Content.Core.Entities
                 if (this is Enemy)
                     Kill();
             if (InputController.keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.X))
-                if (this is Player.Player)
+                if (this is ControllingPlayer.Player)
                     Kill();
             #endregion
 
@@ -236,13 +239,20 @@ namespace _2DRoguelike.Content.Core.Entities
             }
             else
             {
+                float elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                foreach (Weapon w in WeaponInventory) {
+                    w?.UpdateCooldownTimer(elapsedTime);
+                }
+
+                if (AttackTimeSpanTimer <= attackTimespan)
+                    AttackTimeSpanTimer += elapsedTime;
                 PerformedAction = DetermineAction();
                 PerformedAction.ExecuteAction();
 
                 SetAnimation(PerformedAction.ChooseAnimation());
                 // TODO: Method updateStats()
-                if (CooldownTimer <= attackCooldown)
-                    CooldownTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                
             }
 
             animationManager.Update(gameTime);

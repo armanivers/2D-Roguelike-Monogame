@@ -1,5 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
-using _2DRoguelike.Content.Core.Entities.Player;
+using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace _2DRoguelike.Content.Core.Entities
         private const float expireTimer = 3;
         private float timer;
 
-        public Explosion(): base(new Vector2(Player.Player.Instance.Hitbox.X-16, Player.Player.Instance.Hitbox.Y-16),16,16, 7f)
+        public Explosion(): base(new Vector2(ControllingPlayer.Player.Instance.Hitbox.X-16, ControllingPlayer.Player.Instance.Hitbox.Y-16),16,16, 7f)
         {
             this.Hitbox = new Rectangle((int)Position.X+16, (int)Position.Y+16, 32, 32);
             this.Acceleration = Vector2.Normalize(InputController.MousePosition - new Vector2(hitbox.X,hitbox.Y));
@@ -40,7 +40,7 @@ namespace _2DRoguelike.Content.Core.Entities
         {
             foreach(var livingEntity in EntityManager.entities)
             {
-                if(livingEntity is Creature && livingEntity != Player.Player.Instance) //&& livingEntity != Player.Player.Instance
+                if(livingEntity is Creature && livingEntity != ControllingPlayer.Player.Instance) //&& livingEntity != Player.Player.Instance
                 {
                     if (this.hitbox.Intersects(livingEntity.Hitbox))
                     {

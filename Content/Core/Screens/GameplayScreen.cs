@@ -13,7 +13,7 @@
 
 using _2DRoguelike.Content.Core.GameDebug;
 using _2DRoguelike.Content.Core.Entities;
-using _2DRoguelike.Content.Core.Entities.Player;
+using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -57,9 +57,11 @@ namespace _2DRoguelike.Content.Core.Screens
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
             LevelManager.LoadContent();
             // EntityBasis Konstruktor f�gt automatisch zur EntityManager.entities hinzu
-            new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() * new Vector2(32) + new Vector2( -32, 32), 50, 2, 3);
-            new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() * new Vector2(32) + new Vector2(32, 32), 100, 2, 3);
-            new Player(LevelManager.maps.getSpawnpoint()*new Vector2(32), 100, 2f, 5);
+            new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32,3 * 32), 100,  3);
+            new BrownZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint()+new Vector2(5*32,5*32), 50,  3);
+            new Skeleton(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 7 * 32), 100, 3);
+            new Wizard(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 9 * 32), 100, 3);
+            new Player(LevelManager.maps.getSpawnpoint()*new Vector2(32), 100, 5);
 
             UIManager.healthBar = new HealthBar(Player.Instance);
             UIManager.skillBar = new Skillbar(Player.Instance);

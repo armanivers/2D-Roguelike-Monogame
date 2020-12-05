@@ -1,5 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities;
-using _2DRoguelike.Content.Core.Entities.Player;
+using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
