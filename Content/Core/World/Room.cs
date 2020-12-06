@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,7 @@ namespace _2DRoguelike.Content.Core.World
         public char[,] room { get; }
         public int Width;
         public int Height;
+        public int roomsize { get; set; }
         public Rectangle roomhitbox { get; set; }
         public Rectangle exithitbox { get; set; }
         public int XPos;
@@ -39,25 +41,36 @@ namespace _2DRoguelike.Content.Core.World
         public int XExit { get; set; }
         public int YExit { get; set; }
 
+
+
+
         //TODO enemies list
+        public int enemies;
+        public List<Enemy> enemylist;
         //TODO spawnpoints
+
         //TODO entities
 
-        
+
         public Room()
         {
             Width = Map.Random.Next(7, 24);
             Height= Map.Random.Next(7, 24);
+            roomsize = (Width - 1) * (Height - 1);
             room = new char[Width,Height];
+            enemylist = new List<Enemy>();
             fillRoom();
+            //placeEnemies();
         }
         public Room(int width,int height)
         {
             this.Width = width;
             this.Height = height;
-            roomhitbox = new Rectangle(0, 0, Width, Height);
+            roomsize = (Width - 1) * (Height - 1);
             room = new char[width, height];
+            enemylist = new List<Enemy>();
             fillRoom();
+            //placeEnemies();
         }
         public void fillRoom()
         {
@@ -76,10 +89,57 @@ namespace _2DRoguelike.Content.Core.World
                 }
             }
         }
+        public void placeEnemies()
+        {
+            //Kleinstmöglicher raum 6*6=36
+            //Größstmöglicher Raum 24*24=576
+            //Kleiner Raum:36-191= 4 Gegner
+            //Mittlerer Raum:192-383= 6 Gegner
+            //Großer Raum:384-576= 8 Gegner
+
+            if (roomsize < 192)
+            {
+                enemies = 4;
+            }else if (roomsize < 384)
+            {
+                enemies = 6;
+            }
+            else
+            {
+                enemies = 8;
+            }
+            for(int i = 0; i < enemies; i++)
+            {
+                Vector2 enemyspawnpoint;
+                do
+                {
+                    enemyspawnpoint = new Vector2(Map.Random.Next(2, Width - 2), Map.Random.Next(2, Height - 2));
+                } while (room[(int)enemyspawnpoint.X, (int)enemyspawnpoint.Y] != RoomObject.EmptySpace);
+                int enemytype = Map.Random.Next(0, 3);
+                switch (enemytype)
+                {
+                    case 0:
+                        enemylist.Add(new BrownZombie(enemyspawnpoint, 100, 3));
+                        break;
+                    case 1:
+                        enemylist.Add(new GreenZombie(enemyspawnpoint, 100, 3));
+                        break;
+                    case 2:
+                        enemylist.Add(new Skeleton(enemyspawnpoint, 100, 3));
+                        break;
+                    case 3:
+                        enemylist.Add(new Wizard(enemyspawnpoint, 100, 3));
+                        break;
+                }
+            }
+        }
         public void setExit()
         {
-            XExit = (Map.Random.Next(1,Width-2));
-            YExit = (Map.Random.Next(1, Height - 2));
+            do
+            {
+                XExit = (Map.Random.Next(1, Width - 2));
+                YExit = (Map.Random.Next(1, Height - 2));
+            } while (room[XExit, YExit]!=RoomObject.EmptySpace);
             exitroom = true;
             room[XExit, YExit] = RoomObject.Exit;
             XExit = (XExit + XPos);
