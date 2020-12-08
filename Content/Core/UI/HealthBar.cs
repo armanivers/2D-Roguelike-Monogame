@@ -38,16 +38,16 @@ namespace _2DRoguelike.Content.Core.UI
 
         public void Update(GameTime gameTime)
         {
-            if (InputController.keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.B))
-            {
-                scalingFactor += 0.1f;
-                position = new Vector2(GameSettings.screenWidth / 2 - healthbarContainer.Width * scalingFactor / 2, 30);
-            }
-            if (InputController.keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.C))
-            {
-                scalingFactor -= 0.1f;
-                position = new Vector2(GameSettings.screenWidth / 2 - healthbarContainer.Width * scalingFactor / 2, 30);
-            }
+            //if (InputController.keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.B))
+            //{
+            //    scalingFactor += 0.1f;
+            //    position = new Vector2(GameSettings.screenWidth / 2 - healthbarContainer.Width * scalingFactor / 2, 30);
+            //}
+            //if (InputController.keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.C))
+            //{
+            //    scalingFactor -= 0.1f;
+            //    position = new Vector2(GameSettings.screenWidth / 2 - healthbarContainer.Width * scalingFactor / 2, 30);
+            //}
             currentHealth = target.HealthPoints;
             currentWidth = (int)(   ( (double)(currentHealth) / 100) * fullWidth );
             //Debug.WriteLine("target.HealthPoints: {3}\ncurrentHealth: {0}\ncurrentWidth: {1}\n fullWidth. {2}\n---------------", currentHealth, currentWidth, fullWidth,target.HealthPoints);

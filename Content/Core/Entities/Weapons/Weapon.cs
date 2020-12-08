@@ -8,7 +8,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
     {
         protected int weaponDamage; 
         private float weaponCooldown;
-        protected float WeaponCooldown { get => weaponCooldown; set => weaponCooldown = value; }
+        public float WeaponCooldown { get => weaponCooldown; set => weaponCooldown = value; }
         
         private float cooldownTimer=0;
         public float CooldownTimer { get => cooldownTimer; set => cooldownTimer = value; }
