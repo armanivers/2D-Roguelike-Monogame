@@ -55,13 +55,11 @@ namespace _2DRoguelike.Content.Core.UI
             public float maxCooldown { get; }
             public float currentCooldown { get; }
             public float weaponSlotHeight { get; }
-            public int index { get; }
-            public WeaponCooldownData(Boolean unlocked, float maxCooldown, float currentCooldown,int index)
+            public WeaponCooldownData(Boolean unlocked, float maxCooldown, float currentCooldown)
             {
                 this.unlocked = unlocked;
                 this.maxCooldown = maxCooldown;
                 this.currentCooldown = currentCooldown;
-                this.index = index;
                 if (unlocked)
                 {
                     var timerPercentage = currentCooldown / maxCooldown;
@@ -78,19 +76,17 @@ namespace _2DRoguelike.Content.Core.UI
         public void Update(GameTime gameTime)
         {
             currentWeapon = target.CurrentWeaponPos;
-            int index = 0;
             weaponData.Clear();
             foreach(var weapon in target.WeaponInventory)
             {
                 if (weapon != null)
                 {
-                    weaponData.Add(new WeaponCooldownData(true, weapon.WeaponCooldown, weapon.CooldownTimer,index));
+                    weaponData.Add(new WeaponCooldownData(true, weapon.WeaponCooldown, weapon.CooldownTimer));
                 }
                 else
                 {
-                    weaponData.Add(new WeaponCooldownData(false, -1, -1,index));
+                    weaponData.Add(new WeaponCooldownData(false, -1, -1));
                 }
-                index++;
             }
 
             // 100% = usedSlotTexture.Height
@@ -112,15 +108,15 @@ namespace _2DRoguelike.Content.Core.UI
             spriteBatch.Draw(usedSlotTexture, new Vector2(usedSlotPosition.X+(50*currentWeapon), usedSlotPosition.Y-30), new Rectangle((int)usedSlotPosition.Y, (int)usedSlotPosition.X, usedSlotTexture.Width, (int)10), Color.Blue, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
             
             //cooldowns of weapons
-            foreach(var cooldownInfo in weaponData)
+
+            for(int i = 0; i < weaponData.Count; i++)
             {
-                if(cooldownInfo.unlocked)
+                if (weaponData[i].unlocked)
                 {
-                    spriteBatch.Draw(usedSlotTexture, new Vector2(usedSlotPosition.X + (50 * cooldownInfo.index), usedSlotPosition.Y), new Rectangle((int)usedSlotPosition.Y, (int)usedSlotPosition.X, usedSlotTexture.Width, (int)cooldownInfo.weaponSlotHeight), Color.White * 0.5f, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
+                    spriteBatch.Draw(usedSlotTexture, new Vector2(usedSlotPosition.X + (50 * i), usedSlotPosition.Y), new Rectangle((int)usedSlotPosition.Y, (int)usedSlotPosition.X, usedSlotTexture.Width, (int)weaponData[i].weaponSlotHeight), Color.White * 0.5f, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
                 }
                 //else ein X zeichnen 
             }
-
         }
 
     }
