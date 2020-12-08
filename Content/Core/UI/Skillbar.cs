@@ -62,7 +62,7 @@ namespace _2DRoguelike.Content.Core.UI
                 this.currentCooldown = currentCooldown;
                 if (unlocked)
                 {
-                    var timerPercentage = currentCooldown / maxCooldown;
+                    var timerPercentage = 1 - currentCooldown / maxCooldown ; // (1 -) used to revert the red effect, means red highlight only when weapon in cooldown
                     weaponSlotHeight = timerPercentage * 18; //textureheight = 18 stattdessen usedSlotTexture.Height!!!! sollten keine hardgecodede werte sein
                 }
                 else
