@@ -26,6 +26,7 @@ namespace _2DRoguelike.Content.Core.UI
         private float xOffset;
         private float yOffset;
 
+        // TODO: add item not unlocked Texture(red cross) + item selected texutre (frame/bubble)
 
         //current selected weapon
         private int currentWeapon;

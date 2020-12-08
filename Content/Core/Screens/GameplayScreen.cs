@@ -40,6 +40,8 @@ namespace _2DRoguelike.Content.Core.Screens
 
         private float pauseAlpha;
 
+        private Gameplay gameplay;
+
     
         #endregion Fields
 
@@ -49,24 +51,15 @@ namespace _2DRoguelike.Content.Core.Screens
         {
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
+            gameplay = new Gameplay();
         }
 
         public override void LoadContent()
         {
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
-            LevelManager.LoadContent();
-            // EntityBasis Konstruktor f�gt automatisch zur EntityManager.entities hinzu
-            new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32,3 * 32), 100,  3);
-            new BrownZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint()+new Vector2(5*32,5*32), 50,  3);
-            new Skeleton(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 7 * 32), 100, 3);
-            new Wizard(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 9 * 32), 100, 3);
-            new Player(LevelManager.maps.getSpawnpoint()*new Vector2(32), 100, 5);
 
-            UIManager.healthBar = new HealthBar(Player.Instance);
-            UIManager.skillBar = new Skillbar(Player.Instance);
-            UIManager.mobHealthBars = new MobHealthBars();
-            
+            gameplay.LoadContent();
 
             Thread.Sleep(500);
 
@@ -76,10 +69,8 @@ namespace _2DRoguelike.Content.Core.Screens
         public override void UnloadContent()
         {
             content.Unload();
-            // Unload all entities + delete current Player Intance
-            EntityManager.unloadEntities();
-            Player.Instance.DeleteInstance();
-            Camera.Unload();
+
+            gameplay.UnloadContent();
         }
 
         #endregion Initialization
@@ -98,13 +89,10 @@ namespace _2DRoguelike.Content.Core.Screens
 
             if (IsActive)
             {
-                // Game 
-                Camera.Update(Player.Instance);
-                InputController.Update();
-                EntityManager.Update(gameTime);
-                UIManager.Update(gameTime);
-                LevelManager.Update(Player.Instance);
-                if (Player.Instance.GameOver())
+
+                gameplay.Update(gameTime);
+
+                if (gameplay.gameOver)
                 {
                     //LoadingScreen.Load(ScreenManager, false, null,new GameoverScreen());
                     ScreenManager.AddScreen(new GameoverScreen(), ControllingPlayer);
@@ -144,23 +132,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
 
-            spriteBatch.Begin(SpriteSortMode.Deferred,BlendState.AlphaBlend,null,null,null,null,Camera.transform);
-
-            LevelManager.Draw(spriteBatch);
-            EntityManager.Draw(spriteBatch);
-            GameDebug.GameDebug.hitboxDebug.Draw(spriteBatch);
-            UIManager.DrawDynamic(spriteBatch);
-            spriteBatch.End();
-
-            // seperate sprite batch begin+end which isn't attached to an active 2D Camera
-            spriteBatch.Begin();
-
-            // UI Elements
-            UIManager.Draw(spriteBatch);
-            GameDebug.GameDebug.playerDebug.Draw(spriteBatch);
-
-            spriteBatch.End();
-
+            gameplay.Draw(spriteBatch);
 
             if (TransitionPosition > 0 || pauseAlpha > 0)
             {
