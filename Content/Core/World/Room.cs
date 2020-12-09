@@ -116,6 +116,7 @@ namespace _2DRoguelike.Content.Core.World
                     enemyspawnpoint = new Vector2(Map.Random.Next(2, Width - 2), Map.Random.Next(2, Height - 2));
                 } while (room[(int)enemyspawnpoint.X, (int)enemyspawnpoint.Y] != RoomObject.EmptySpace);
                 int enemytype = Map.Random.Next(0, 3);
+                //TODO Factorie Methode erstellen
                 switch (enemytype)
                 {
                     case 0:
