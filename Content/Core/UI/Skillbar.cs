@@ -19,10 +19,10 @@ namespace _2DRoguelike.Content.Core.UI
         private Texture2D redCrossSlotTexture;
         private Texture2D selectedItemFrame;
 
+        private float itemFrameWidth;
+
         public Texture2D usedSlotTexture;
         private Vector2 usedSlotPosition;
-        private float slotFullHeight;
-        private float slotCurrentHeight;
 
         private float scalingFactor;
 
@@ -40,17 +40,19 @@ namespace _2DRoguelike.Content.Core.UI
         {
             target = player;
             scalingFactor = 2.2f;
+            
             skillbarTexture = TextureManager.skillbar;
             skillbarPosition = new Vector2(GameSettings.screenWidth / 2 - skillbarTexture.Width * scalingFactor / 2, GameSettings.screenHeight-skillbarTexture.Height * scalingFactor - 30);
+            
             redCrossSlotTexture = TextureManager.redSlotCross;
             usedSlotTexture = TextureManager.slotUsed;
             selectedItemFrame = TextureManager.selectedItemFame;
+            
             xOffset = 11;
             yOffset = 16;
+            itemFrameWidth = 50;
+            
             usedSlotPosition = new Vector2(skillbarPosition.X+xOffset,skillbarPosition.Y+yOffset);
-
-            slotFullHeight = usedSlotTexture.Height;
-            slotCurrentHeight = slotFullHeight;
 
             weaponData = new List<WeaponCooldownData>();
         }
@@ -82,6 +84,7 @@ namespace _2DRoguelike.Content.Core.UI
         public void Update(GameTime gameTime)
         {
             currentWeapon = target.CurrentWeaponPos;
+
             weaponData.Clear();
             foreach(var weapon in target.WeaponInventory)
             {
@@ -111,7 +114,7 @@ namespace _2DRoguelike.Content.Core.UI
             spriteBatch.Draw(skillbarTexture, skillbarPosition, null, Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
 
             //selected weapon icon (TODO: little bubble on top maybe or frame around weapon)
-            spriteBatch.Draw(selectedItemFrame, new Vector2(usedSlotPosition.X+(45*currentWeapon), usedSlotPosition.Y-17), null,Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
+            spriteBatch.Draw(selectedItemFrame, new Vector2(usedSlotPosition.X-10+(currentWeapon* itemFrameWidth), usedSlotPosition.Y-16), null,Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
             
             //cooldowns of weapons
 
@@ -119,11 +122,11 @@ namespace _2DRoguelike.Content.Core.UI
             {
                 if (weaponData[i].unlocked)
                 {
-                    spriteBatch.Draw(usedSlotTexture, new Vector2(usedSlotPosition.X + (50 * i), usedSlotPosition.Y), new Rectangle((int)usedSlotPosition.Y, (int)usedSlotPosition.X, usedSlotTexture.Width, (int)weaponData[i].weaponSlotHeight), Color.White * 0.5f, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
+                    spriteBatch.Draw(usedSlotTexture, new Vector2(usedSlotPosition.X + (itemFrameWidth * i), usedSlotPosition.Y), new Rectangle((int)usedSlotPosition.Y, (int)usedSlotPosition.X, usedSlotTexture.Width, (int)weaponData[i].weaponSlotHeight), Color.White * 0.5f, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
                 }
                 else
                 {
-                    spriteBatch.Draw(redCrossSlotTexture, new Vector2(usedSlotPosition.X + (50 * i), usedSlotPosition.Y), null, Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
+                    spriteBatch.Draw(redCrossSlotTexture, new Vector2(usedSlotPosition.X + (itemFrameWidth * i), usedSlotPosition.Y), null, Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
                 }
             }
         }

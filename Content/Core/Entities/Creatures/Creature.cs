@@ -77,11 +77,14 @@ namespace _2DRoguelike.Content.Core.Entities
         public void DeductHealthPoints(int damage)
         {
             HealthPoints -= damage;
-            DisplayDamageTaken();
             System.Diagnostics.Debug.Print("Got Hit!");
             if (HealthPoints <= 0)
             {
                 Kill();
+            }
+            if(!dead)
+            {
+                DisplayDamageTaken();
             }
         }
 
