@@ -13,6 +13,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         static bool isUpdating;
         static List<EntityBasis> addedEntities = new List<EntityBasis>();
+        // TODO: Nur für die Raumübergreifenden Entities nutzen ,wie z.B. Projectiles und Loot
 
         public static int Count { get { return entities.Count; } }
 

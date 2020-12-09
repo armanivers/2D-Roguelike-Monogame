@@ -35,14 +35,14 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         public override Vector2 GetAttackDirection()
         {
             // TODO: Position zum Player bestimmen
-            return new Vector2(Player.Instance.Hitbox.X + Player.Instance.Hitbox.Width / 2, Player.Instance.Hitbox.Y +Player.Instance.Hitbox.Height / 2);
+            return new Vector2(Player.Instance.HitboxCenter.X, Player.Instance.HitboxCenter.Y);
         }
 
         public override Vector2 GetAttackLineOfSight()
         {
             // TODO: Blickrichtung nach Angriff bestimmen
-            var differenz = new Vector2(ControllingPlayer.Player.Instance.Hitbox.X + ControllingPlayer.Player.Instance.Hitbox.Width / 2, ControllingPlayer.Player.Instance.Hitbox.Y + ControllingPlayer.Player.Instance.Hitbox.Height / 2)
-                - new Vector2(Hitbox.X + Hitbox.Width / 2, Hitbox.Y + Hitbox.Height / 2);
+            var differenz = new Vector2(Player.Instance.HitboxCenter.X, Player.Instance.HitboxCenter.Y)
+                - new Vector2(HitboxCenter.X, HitboxCenter.Y);
             var angle = System.Math.Atan2(differenz.X, differenz.Y);
             if (angle > 1 && angle < 2)
             {

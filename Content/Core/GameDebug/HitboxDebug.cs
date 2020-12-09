@@ -11,7 +11,7 @@ namespace _2DRoguelike.Content.Core.GameDebug
     class HitboxDebug
     {
         private int borderWith = 3;
-        public static bool DEBUG = true;
+        public static bool DEBUG = false;
 
         public void Draw(SpriteBatch spriteBatch)
         {

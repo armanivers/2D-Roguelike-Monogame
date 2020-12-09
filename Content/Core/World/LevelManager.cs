@@ -18,7 +18,7 @@ namespace _2DRoguelike.Content.Core.World
 
 
         public static Map maps;
-        public static Tile[,] currentLevel ;
+        public static Tile[,] currentLevel;
         public static void LoadContent()
         {
             levelList = new List<Map>();
