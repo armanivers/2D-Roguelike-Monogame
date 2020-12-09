@@ -6,6 +6,9 @@ namespace _2DRoguelike.Content.Core.Entities
 {
     public abstract class Creature: EntityBasis
     {
+        private bool hurtTimerStart;
+        private float hurtTimer;
+        private const int hurtTimerLimit = 2;
 
         public enum ActionCommand { 
             MOVE,
@@ -74,10 +77,31 @@ namespace _2DRoguelike.Content.Core.Entities
         public void DeductHealthPoints(int damage)
         {
             HealthPoints -= damage;
+            DisplayDamageTaken();
             System.Diagnostics.Debug.Print("Got Hit!");
             if (HealthPoints <= 0)
             {
                 Kill();
+            }
+        }
+
+        public void DisplayDamageTaken()
+        {
+            colour = Color.Red;
+            hurtTimerStart = true;
+            hurtTimer = 0;
+        }
+
+        public void RefreshDamageTakenTimer()
+        {
+            if(hurtTimerStart)
+            {
+                if (hurtTimer >= hurtTimerLimit)
+                {
+                    colour = Color.White;
+                    hurtTimerStart = false;
+                }
+                hurtTimer += 0.1f;
             }
         }
 

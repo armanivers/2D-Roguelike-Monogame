@@ -220,7 +220,9 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public override void Update(GameTime gameTime)
         {
-            //base.Update(gameTime);
+            // base.Update(gameTime);
+            // hier sollte das in creature sein, also base.update() aufrufen, momentan auskommentiert?
+            RefreshDamageTakenTimer();
 
             #region Testinputs
             if (InputController.keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.K))
