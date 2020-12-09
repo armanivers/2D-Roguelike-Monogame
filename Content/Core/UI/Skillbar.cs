@@ -16,6 +16,8 @@ namespace _2DRoguelike.Content.Core.UI
         private Texture2D skillbarTexture;
         private Vector2 skillbarPosition;
 
+        private Texture2D redCrossSlotTexture;
+
         public Texture2D usedSlotTexture;
         private Vector2 usedSlotPosition;
         private float slotFullHeight;
@@ -39,6 +41,7 @@ namespace _2DRoguelike.Content.Core.UI
             scalingFactor = 2.2f;
             skillbarTexture = TextureManager.skillbar;
             skillbarPosition = new Vector2(GameSettings.screenWidth / 2 - skillbarTexture.Width * scalingFactor / 2, GameSettings.screenHeight-skillbarTexture.Height * scalingFactor - 30);
+            redCrossSlotTexture = TextureManager.redSlotCross;
             usedSlotTexture = TextureManager.slotUsed;
             xOffset = 11;
             yOffset = 16;
@@ -51,11 +54,11 @@ namespace _2DRoguelike.Content.Core.UI
 
         public struct WeaponCooldownData
         {
-            public Boolean unlocked { get; }
+            public bool unlocked { get; }
             public float maxCooldown { get; }
             public float currentCooldown { get; }
             public float weaponSlotHeight { get; }
-            public WeaponCooldownData(Boolean unlocked, float maxCooldown, float currentCooldown)
+            public WeaponCooldownData(bool unlocked, float maxCooldown, float currentCooldown)
             {
                 this.unlocked = unlocked;
                 this.maxCooldown = maxCooldown;
@@ -115,7 +118,10 @@ namespace _2DRoguelike.Content.Core.UI
                 {
                     spriteBatch.Draw(usedSlotTexture, new Vector2(usedSlotPosition.X + (50 * i), usedSlotPosition.Y), new Rectangle((int)usedSlotPosition.Y, (int)usedSlotPosition.X, usedSlotTexture.Width, (int)weaponData[i].weaponSlotHeight), Color.White * 0.5f, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
                 }
-                //else ein X zeichnen 
+                else
+                {
+                    spriteBatch.Draw(redCrossSlotTexture, new Vector2(usedSlotPosition.X + (50 * i), usedSlotPosition.Y), null, Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
+                }
             }
         }
 

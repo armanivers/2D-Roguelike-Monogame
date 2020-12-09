@@ -128,7 +128,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
         public override void Draw(GameTime gameTime)
         {
-            ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,Color.CornflowerBlue, 0, 0);
+            ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,Color.Black, 0, 0);
 
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
 
