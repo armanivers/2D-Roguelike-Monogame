@@ -56,7 +56,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
             if (shootingEntity is ControllingPlayer.Player) {
                 // TODO: ERSETZEN Durch EnemyList des Raumes
 
-                foreach (var enemy in EntityManager.entities)
+                foreach (var enemy in EntityManager.creatures)
                 {
                     if (enemy is Enemies.Enemy)
                     { 

@@ -1,24 +1,9 @@
-#region File Description
-
-//-----------------------------------------------------------------------------
-// OptionsMenuScreen.cs
-//
-// Microsoft XNA Community Game Platform
-// Copyright (C) Microsoft Corporation. All rights reserved.
-//-----------------------------------------------------------------------------
-
-#endregion File Description
-
 using System;
 using System.Diagnostics;
 
 namespace _2DRoguelike.Content.Core.Screens
 {
-    /// <summary>
-    /// The options screen is brought up over the top of the main menu
-    /// screen, and gives the user a chance to configure the game
-    /// in various hopefully useful ways.
-    /// </summary>
+
     internal class OptionsMenuScreen : MenuScreen
     {
         #region Fields
@@ -32,10 +17,13 @@ namespace _2DRoguelike.Content.Core.Screens
         //bg music
         private MenuEntry backgroundMusicLevel;
 
-        private MenuEntry soundOptions;
-
         //sfx 
         private MenuEntry soundeffectsLevel;
+
+        private MenuEntry soundOptions;
+
+        // Debug
+        private MenuEntry debugMode;
 
         private enum Ungulate
         {
@@ -68,11 +56,14 @@ namespace _2DRoguelike.Content.Core.Screens
 
             fullscreenMenuEntry = new MenuEntry(string.Empty);
 
-            //bg music
+            // bg music
             backgroundMusicLevel = new MenuEntry(string.Empty);
-            //sfx
+            // sfx
             soundeffectsLevel = new MenuEntry(string.Empty);
             soundOptions = new MenuEntry(string.Empty);
+
+            // debug mode
+            debugMode = new MenuEntry(string.Empty);
 
             SetMenuEntryText();
 
@@ -89,6 +80,8 @@ namespace _2DRoguelike.Content.Core.Screens
             soundeffectsLevel.Selected += EnableDisableSoundeffects;
             soundOptions.Selected += OnSoundOptionsSelected;
 
+            debugMode.Selected += SwitchDebugMode;
+
             back.Selected += OnCancel;
 
             // Add entries to the menu.
@@ -102,13 +95,13 @@ namespace _2DRoguelike.Content.Core.Screens
             MenuEntries.Add(backgroundMusicLevel);
             MenuEntries.Add(soundeffectsLevel);
 
-            MenuEntries.Add(soundOptions);
+            // debug mode
+            MenuEntries.Add(debugMode);
 
+            // sound options
+            MenuEntries.Add(soundOptions);
         }
 
-        /// <summary>
-        /// Fills in the latest values for the options screen menu text.
-        /// </summary>
         private void SetMenuEntryText()
         {
             ungulateMenuEntry.Text = "Preferred ungulate: " + currentUngulate;
@@ -118,6 +111,7 @@ namespace _2DRoguelike.Content.Core.Screens
             backgroundMusicLevel.Text = "Background Music: " + (GameSettings.BackgroundMusicEnabled() ? "on" : "off");
             soundeffectsLevel.Text = "SoundEffects: " + (GameSettings.SoundEffectsEnabled() ? "on" : "off");
             soundOptions.Text = "Sound Options";
+            debugMode.Text = "Debug Mode: " + (GameSettings.DEBUG ? "on" : "off");
         }
 
         #endregion Initialization
@@ -204,9 +198,11 @@ namespace _2DRoguelike.Content.Core.Screens
             ScreenManager.AddScreen(new SoundOptionsMenuScreen(), e.PlayerIndex);
         }
 
-        /// <summary>
-        /// Event handler for when the Elf menu entry is selected.
-        /// </summary>
+        private void SwitchDebugMode(object sender, PlayerIndexEventArgs e)
+        {
+            GameSettings.SwitchDebugMode();
+            SetMenuEntryText();
+        }
         private void ElfMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             elf++;

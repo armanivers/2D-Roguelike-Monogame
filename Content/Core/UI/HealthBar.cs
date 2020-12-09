@@ -59,5 +59,11 @@ namespace _2DRoguelike.Content.Core.UI
             spriteBatch.DrawString(TextureManager.FontArial, ""+currentHealth, textPosition, Color.White);
         }
 
+        public void ForceResolutionUpdate()
+        {
+            position = new Vector2(GameSettings.screenWidth / 2 - healthbarContainer.Width * scalingFactor / 2, 30);
+            textPosition = new Vector2(GameSettings.screenWidth / 2 - 10, 30);
+        }
+
     }
 }

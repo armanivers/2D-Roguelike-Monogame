@@ -219,14 +219,11 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         public void CheckLootCollision()
         {
             // TODO: mit LevelManager.currentroom.entities ersetzen 
-            foreach(var loot in EntityManager.entities)
+            foreach(var loot in EntityManager.loots)
             {
-                if(loot is Potion)
-                {
-                    if(hitbox.Intersects(loot.hitbox))
-                    {
-                        ((Potion)loot).OnContact();
-                    }
+                if(hitbox.Intersects(loot.hitbox))    
+                {    
+                   loot.OnContact(); 
                 }
             }
         }

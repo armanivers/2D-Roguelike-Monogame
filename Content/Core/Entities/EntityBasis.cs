@@ -53,7 +53,6 @@ namespace _2DRoguelike.Content.Core.Entities
             Position = pos;
             isExpired = false;
             rotation = 0;
-            EntityManager.Add(this);
         }
         // TODO: Setter fuer die Hitbox fixen (fuer untere Klassen), Bsp Klasse Creature
 

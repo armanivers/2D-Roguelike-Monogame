@@ -40,7 +40,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             {
                 // TODO: ERSETZEN Durch EnemyList des Raumes
 
-                foreach (var enemy in EntityManager.entities)
+                foreach (var enemy in EntityManager.creatures)
                 {
                     if (enemy is Enemy)
                     {

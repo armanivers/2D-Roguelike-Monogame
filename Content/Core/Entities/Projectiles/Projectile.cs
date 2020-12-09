@@ -30,6 +30,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
 
         public Projectile(Vector2 pos,int xHitboxOffset, int yHitboxOffset, float speed) : base(pos)
         {
+            EntityManager.AddProjectileEntity(this);
             this.xHitboxOffset = xHitboxOffset;
             this.yHitboxOffset = yHitboxOffset;
             flyingSpeed = speed;

@@ -30,7 +30,14 @@ namespace _2DRoguelike.Content.Core.UI
             mobHealthBars.Draw(spriteBatch);
         }
 
-
+        public static void ForceResolutionUpdate()
+        {
+            if(healthBar != null && skillBar != null)
+            {
+                healthBar.ForceResolutionUpdate();
+                skillBar.ForceResolutionUpdate();
+            }
+        }
 
     }
 }

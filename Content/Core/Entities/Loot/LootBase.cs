@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Loot
 {
-    public abstract class Loot: EntityBasis
+    public abstract class LootBase: EntityBasis
     {
         // how much should the loot object float up/down compared to its original spawn position
         private float floatOffset;
@@ -16,7 +16,8 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
         // controls floating speed
         private float floatingSpeed;
 
-        public Loot(Vector2 pos):base(pos) {
+        public LootBase(Vector2 pos):base(pos) {
+            EntityManager.AddLootEntity(this);
             basePosition = pos;
             floatOffset = 3f;
             floatingSpeed = 0.1f;

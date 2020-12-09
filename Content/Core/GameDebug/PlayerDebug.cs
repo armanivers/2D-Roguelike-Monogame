@@ -15,7 +15,7 @@ namespace _2DRoguelike.Content.Core.GameDebug
         private Vector2 anglePosition;
         private Vector2 currentWeaponPosition;
 
-        const Boolean DEBUG = true;
+        const bool DEBUG = true;
         public PlayerDebug()
         { 
             playerPositionOnScreen = new Vector2(0, 0);

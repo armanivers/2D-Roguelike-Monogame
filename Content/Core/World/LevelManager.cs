@@ -40,6 +40,12 @@ namespace _2DRoguelike.Content.Core.World
         {
             maps.Update(player);
         }
+
+        public static void UnloadContent()
+        {
+            level = 0;
+            levelList.Clear();
+        }
         public static void Draw(SpriteBatch spriteBatch)
         {
             for (int j = 0; j < maps.height; j++)

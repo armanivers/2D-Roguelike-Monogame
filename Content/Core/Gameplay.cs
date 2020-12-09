@@ -15,10 +15,8 @@ namespace _2DRoguelike.Content.Core
     class Gameplay
     {
         public bool gameOver;
-
         public Gameplay()
         {
-            //default
         }
 
         public void LoadContent()
@@ -42,9 +40,10 @@ namespace _2DRoguelike.Content.Core
         public void UnloadContent()
         {
             // Unload all entities + delete current Player Intance
-            EntityManager.unloadEntities();
+            EntityManager.UnloadEntities();
             Player.Instance.DeleteInstance();
             Camera.Unload();
+            LevelManager.UnloadContent();
         }
 
         public void Update(GameTime gameTime)
@@ -69,8 +68,13 @@ namespace _2DRoguelike.Content.Core
 
             LevelManager.Draw(spriteBatch);
             EntityManager.Draw(spriteBatch);
-            GameDebug.GameDebug.hitboxDebug.Draw(spriteBatch);
             UIManager.DrawDynamic(spriteBatch);
+
+            if (GameSettings.DEBUG)
+            {
+                GameDebug.GameDebug.DrawDynamic(spriteBatch);
+            }
+
             spriteBatch.End();
 
             // seperate sprite batch begin+end which isn't attached to an active 2D Camera
@@ -78,7 +82,11 @@ namespace _2DRoguelike.Content.Core
 
             // UI Elements
             UIManager.Draw(spriteBatch);
-            GameDebug.GameDebug.playerDebug.Draw(spriteBatch);
+
+            if (GameSettings.DEBUG)
+            {
+                GameDebug.GameDebug.DrawStatic(spriteBatch);
+            }
 
             spriteBatch.End();
         }

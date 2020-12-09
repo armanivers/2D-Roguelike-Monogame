@@ -49,7 +49,7 @@ namespace _2DRoguelike.Content.Core.UI
         public void Update(GameTime gameTime)
         {
             mobData.Clear();
-            foreach (EntityBasis e in EntityManager.entities)
+            foreach (EntityBasis e in EntityManager.creatures)
             {
                 if (e is Enemy)
                 {

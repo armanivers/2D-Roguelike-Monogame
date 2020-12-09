@@ -83,6 +83,8 @@ namespace _2DRoguelike.Content.Core.UI
 
         public void Update(GameTime gameTime)
         {
+            skillbarPosition = new Vector2(GameSettings.screenWidth / 2 - skillbarTexture.Width * scalingFactor / 2, GameSettings.screenHeight - skillbarTexture.Height * scalingFactor - 30);
+
             currentWeapon = target.CurrentWeaponPos;
 
             weaponData.Clear();
@@ -129,6 +131,12 @@ namespace _2DRoguelike.Content.Core.UI
                     spriteBatch.Draw(redCrossSlotTexture, new Vector2(usedSlotPosition.X + (itemFrameWidth * i), usedSlotPosition.Y), null, Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
                 }
             }
+        }
+
+        public void ForceResolutionUpdate()
+        {
+            skillbarPosition = new Vector2(GameSettings.screenWidth / 2 - skillbarTexture.Width * scalingFactor / 2, GameSettings.screenHeight - skillbarTexture.Height * scalingFactor - 30);
+            usedSlotPosition = new Vector2(skillbarPosition.X + xOffset, skillbarPosition.Y + yOffset);
         }
 
     }
