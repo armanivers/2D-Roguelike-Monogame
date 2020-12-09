@@ -17,6 +17,7 @@ namespace _2DRoguelike.Content.Core.UI
         private Vector2 skillbarPosition;
 
         private Texture2D redCrossSlotTexture;
+        private Texture2D selectedItemFrame;
 
         public Texture2D usedSlotTexture;
         private Vector2 usedSlotPosition;
@@ -43,9 +44,11 @@ namespace _2DRoguelike.Content.Core.UI
             skillbarPosition = new Vector2(GameSettings.screenWidth / 2 - skillbarTexture.Width * scalingFactor / 2, GameSettings.screenHeight-skillbarTexture.Height * scalingFactor - 30);
             redCrossSlotTexture = TextureManager.redSlotCross;
             usedSlotTexture = TextureManager.slotUsed;
+            selectedItemFrame = TextureManager.selectedItemFame;
             xOffset = 11;
             yOffset = 16;
             usedSlotPosition = new Vector2(skillbarPosition.X+xOffset,skillbarPosition.Y+yOffset);
+
             slotFullHeight = usedSlotTexture.Height;
             slotCurrentHeight = slotFullHeight;
 
@@ -108,7 +111,7 @@ namespace _2DRoguelike.Content.Core.UI
             spriteBatch.Draw(skillbarTexture, skillbarPosition, null, Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
 
             //selected weapon icon (TODO: little bubble on top maybe or frame around weapon)
-            spriteBatch.Draw(usedSlotTexture, new Vector2(usedSlotPosition.X+(50*currentWeapon), usedSlotPosition.Y-30), new Rectangle((int)usedSlotPosition.Y, (int)usedSlotPosition.X, usedSlotTexture.Width, (int)10), Color.Blue, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
+            spriteBatch.Draw(selectedItemFrame, new Vector2(usedSlotPosition.X+(45*currentWeapon), usedSlotPosition.Y-17), null,Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
             
             //cooldowns of weapons
 
