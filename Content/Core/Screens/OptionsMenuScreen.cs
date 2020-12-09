@@ -9,6 +9,7 @@
 
 #endregion File Description
 
+using System;
 using System.Diagnostics;
 
 namespace _2DRoguelike.Content.Core.Screens
@@ -24,8 +25,19 @@ namespace _2DRoguelike.Content.Core.Screens
 
         private MenuEntry ungulateMenuEntry;
         private MenuEntry languageMenuEntry;
-        private MenuEntry fullscreenMenuEntry;
         private MenuEntry elfMenuEntry;
+
+        private MenuEntry fullscreenMenuEntry;
+        
+        //bg music
+        private MenuEntry backgroundMusicLevel;
+        private MenuEntry bgDecrease;
+        private MenuEntry bgIncrease;
+
+        //sfx 
+        private MenuEntry soundeffectsLevel;
+        private MenuEntry sfxDecrease;
+        private MenuEntry sfxIncrease;
 
         private enum Ungulate
         {
@@ -38,7 +50,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
         private static string[] languages = { "C#", "French", "Deoxyribonucleic acid" };
         private static int currentLanguage = 0;
-
+        
         private static int elf = 23;
 
         #endregion Fields
@@ -54,8 +66,19 @@ namespace _2DRoguelike.Content.Core.Screens
             // Create our menu entries.
             ungulateMenuEntry = new MenuEntry(string.Empty);
             languageMenuEntry = new MenuEntry(string.Empty);
-            fullscreenMenuEntry = new MenuEntry(string.Empty);
             elfMenuEntry = new MenuEntry(string.Empty);
+
+            fullscreenMenuEntry = new MenuEntry(string.Empty);
+
+            //bg music
+            backgroundMusicLevel = new MenuEntry(string.Empty);
+            bgIncrease = new MenuEntry(string.Empty);
+            bgDecrease = new MenuEntry(string.Empty);
+
+            //sfx
+            soundeffectsLevel = new MenuEntry(string.Empty);
+            sfxIncrease = new MenuEntry(string.Empty);
+            sfxDecrease = new MenuEntry(string.Empty);
 
             SetMenuEntryText();
 
@@ -64,16 +87,36 @@ namespace _2DRoguelike.Content.Core.Screens
             // Hook up menu event handlers.
             ungulateMenuEntry.Selected += UngulateMenuEntrySelected;
             languageMenuEntry.Selected += LanguageMenuEntrySelected;
-            fullscreenMenuEntry.Selected += FrobnicateMenuEntrySelected;
             elfMenuEntry.Selected += ElfMenuEntrySelected;
+
+            fullscreenMenuEntry.Selected += FrobnicateMenuEntrySelected;
+
+            //bg music
+            bgDecrease.Selected += DecreaseBackgroundMusicLevel;
+            bgIncrease.Selected += IncreaseBackgroundMusicLevel;
+
+            //sfx
+            sfxDecrease.Selected += DecreaseSoundEffectsLevel;
+            sfxIncrease.Selected += IncreaseSoundEffectsLevel;
+
             back.Selected += OnCancel;
 
             // Add entries to the menu.
-            MenuEntries.Add(ungulateMenuEntry);
-            MenuEntries.Add(languageMenuEntry);
+            //MenuEntries.Add(ungulateMenuEntry);
+            //MenuEntries.Add(languageMenuEntry);
+            //MenuEntries.Add(elfMenuEntry);
+
             MenuEntries.Add(fullscreenMenuEntry);
-            MenuEntries.Add(elfMenuEntry);
-            MenuEntries.Add(back);
+
+            //bg music
+            MenuEntries.Add(backgroundMusicLevel);
+            MenuEntries.Add(bgDecrease);
+            MenuEntries.Add(bgIncrease);
+
+            //sfx
+            MenuEntries.Add(soundeffectsLevel);
+            MenuEntries.Add(sfxDecrease);
+            MenuEntries.Add(sfxIncrease);
         }
 
         /// <summary>
@@ -85,6 +128,12 @@ namespace _2DRoguelike.Content.Core.Screens
             languageMenuEntry.Text = "Language: " + languages[currentLanguage];
             fullscreenMenuEntry.Text = "Fullscreen: " + (GameSettings.fullScreen ? "on" : "off");
             elfMenuEntry.Text = "elf: " + elf;
+            backgroundMusicLevel.Text = String.Format("Background Music: {0:0} %", GameSettings.backgroundMusicLevel*100);
+            soundeffectsLevel.Text = String.Format("Soundeffects: {0:0} %", GameSettings.soundeffectsLevel*100);
+            bgDecrease.Text = "-";
+            bgIncrease.Text = "+";
+            sfxDecrease.Text = "-";
+            sfxIncrease.Text = "+";
         }
 
         #endregion Initialization
@@ -128,6 +177,30 @@ namespace _2DRoguelike.Content.Core.Screens
                 GameSettings.SetFullscreen();
             }
             SetMenuEntryText();
+        }
+
+        private void DecreaseBackgroundMusicLevel(object sender, PlayerIndexEventArgs e)
+        {
+            GameSettings.DecreaseBackgroundMusic();
+            SetMenuEntryText();
+        }
+
+        private void IncreaseBackgroundMusicLevel(object sender, PlayerIndexEventArgs e)
+        {
+            GameSettings.IncreaseBackgroundMusic();
+            SetMenuEntryText();
+        }
+
+        private void DecreaseSoundEffectsLevel(object sender, PlayerIndexEventArgs e)
+        {
+            GameSettings.DecreaseSoundEffectLevel();
+            SetMenuEntryText();
+        }
+        private void IncreaseSoundEffectsLevel(object sender, PlayerIndexEventArgs e)
+        {
+            GameSettings.IncreaseSoundEffectLevel();
+            SetMenuEntryText();
+
         }
 
         /// <summary>

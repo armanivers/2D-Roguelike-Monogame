@@ -8,8 +8,8 @@ namespace _2DRoguelike.Content.Core
     {
         public static int screenWidth;
         public static int screenHeight;
-        public static int backgroundMusicLevel;
-        public static int soundeffectsLevel;
+        public static float backgroundMusicLevel = 0.2f;
+        public static float soundeffectsLevel = 0.2f;
 
         public static bool fullScreen;
 
@@ -44,6 +44,42 @@ namespace _2DRoguelike.Content.Core
             else
             {
                 return 0.6f;
+            }
+        }
+
+        public static void DecreaseBackgroundMusic()
+        {
+            backgroundMusicLevel -= 0.1f;
+            if (backgroundMusicLevel <= 0)
+            {
+                backgroundMusicLevel = 0;
+            }
+        }
+
+        public static void IncreaseBackgroundMusic()
+        {
+            backgroundMusicLevel += 0.1f;
+            if (backgroundMusicLevel >= 1)
+            {
+                backgroundMusicLevel = 1;
+            }
+        }
+
+        public static void DecreaseSoundEffectLevel()
+        {
+            soundeffectsLevel -= 0.1f;
+            if(soundeffectsLevel < 0)
+            {
+                soundeffectsLevel = 0;
+            }
+        }
+
+        public static void IncreaseSoundEffectLevel()
+        {
+            soundeffectsLevel += 0.1f;
+            if (soundeffectsLevel > 1)
+            {
+                soundeffectsLevel = 1;
             }
         }
 

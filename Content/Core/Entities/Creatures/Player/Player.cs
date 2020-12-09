@@ -53,7 +53,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             {
                 CurrentWeaponPos = value;
                 CurrentWeapon = WeaponInventory[CurrentWeaponPos];
-                SoundManager.EquipWeapon.Play(0.2f, 0.2f, 0);
+                SoundManager.EquipWeapon.Play(GameSettings.soundeffectsLevel, 0.2f, 0);
                 return true;
             }
             return false;
