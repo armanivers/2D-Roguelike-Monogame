@@ -22,12 +22,14 @@ namespace _2DRoguelike.Content.Core.UI
 
         public struct MobData
         {
-            public MobData(Vector2 position, int maxHealth, int currentWidth)
+            public MobData(Vector2 position, int maxHealth, int currentWidth, float transparency)
             {
+                Transparency = transparency;
                 this.position = position;
                 this.maxHealth = maxHealth;
                 this.currentWidth = currentWidth;
             }
+            public float Transparency { get; }
             public Vector2 position { get; }
             public int maxHealth { get; }
             public int currentWidth { get; }
@@ -40,32 +42,35 @@ namespace _2DRoguelike.Content.Core.UI
             healthbarContainerTexture = TextureManager.EnemyBarContainer;
             healthbarTexture = TextureManager.EnemyBar;
             scalingFactor = 0.2f;
-            fullwidth = (int)(healthbarTexture.Width );
+            fullwidth = (int)(healthbarTexture.Width);
             mobData = new List<MobData>();
         }
 
         public void Update(GameTime gameTime)
         {
             mobData.Clear();
-            foreach(EntityBasis e in EntityManager.entities)
+            foreach (EntityBasis e in EntityManager.entities)
             {
-                if(e is Enemy)
+                if (e is Enemy)
                 {
 
                     var maxHealth = ((Humanoid)e).maxHealthPoints;
                     var hp = ((Humanoid)e).HealthPoints;
                     var currentWidth = (int)(((double)(hp) / maxHealth) * fullwidth);
-                    mobData.Add(new MobData(e.Position, maxHealth, currentWidth));
+                    mobData.Add(new MobData(e.Position, maxHealth, currentWidth, e.transparency));
                 }
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            for(int i = 0; i < mobData.Count; i++)
+            for (int i = 0; i < mobData.Count; i++)
             {
-                spriteBatch.Draw(healthbarTexture, mobData[i].position, null, Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
-                spriteBatch.Draw(healthbarContainerTexture, mobData[i].position, new Rectangle(0, 0, mobData[i].currentWidth, fullwidth), Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
+                if (mobData[i].Transparency > 0)
+                {
+                    spriteBatch.Draw(healthbarTexture, mobData[i].position, null, Color.White * mobData[i].Transparency, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
+                    spriteBatch.Draw(healthbarContainerTexture, mobData[i].position, new Rectangle(0, 0, mobData[i].currentWidth, fullwidth), Color.White * mobData[i].Transparency, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
+                }
             }
         }
 

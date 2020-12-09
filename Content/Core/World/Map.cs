@@ -69,6 +69,7 @@ namespace _2DRoguelike.Content.Core.World
             width = 96;
             height = 96;     
         }
+
         public abstract Vector2 getSpawnpoint();
         public abstract void Update(Player player);
 

@@ -11,6 +11,7 @@ namespace _2DRoguelike.Content.Core.Entities
     */
     public class AnimationManager
     {
+        private EntityBasis entity;
         private Animation animation;
         private float timer;
         private bool running = true;
@@ -18,8 +19,9 @@ namespace _2DRoguelike.Content.Core.Entities
         public Vector2 Position { get; set; }
 
 
-        public AnimationManager(Animation animation)
+        public AnimationManager(EntityBasis entity, Animation animation)
         {
+            this.entity = entity;
             this.animation = animation;
         }
 
@@ -90,7 +92,8 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(animation.Texture, Position, new Rectangle(animation.CurrentFrame * animation.FrameWidth, animation.yOffest, animation.FrameWidth, animation.FrameHeight), Color.White);
+            if (entity.transparency > 0)
+                spritebatch.Draw(animation.Texture, Position, new Rectangle(animation.CurrentFrame * animation.FrameWidth, animation.yOffest, animation.FrameWidth, animation.FrameHeight), entity.colour*entity.transparency);
         }
     }
 }

@@ -69,7 +69,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
                 // Todesanimation
                 {"Die", new Animation(TextureManager.Wizard_Hurt,0,6,FRAME_SPEED*2f, NO_LOOP, PRIORITIZED)}
             };
-            animationManager = new AnimationManager(animations["IdleDown"]);
+            animationManager = new AnimationManager(this,animations["IdleDown"]);
         }
 
         public override void Update(GameTime gameTime)

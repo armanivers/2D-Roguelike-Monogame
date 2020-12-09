@@ -142,7 +142,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 // Todesanimation
                 {"Die", new Animation(TextureManager.Player_Hurt,0,6,frameSpeed*2f, NO_LOOP, PRIORITIZED)}
             };
-            animationManager = new AnimationManager(animations["IdleDown"]);
+            animationManager = new AnimationManager(this,animations["IdleDown"]);
 
         }
         public void DeleteInstance()
@@ -162,7 +162,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
         public override Vector2 GetAttackLineOfSight()
         {
-            var differenz = InputController.MousePosition - new Vector2(Hitbox.X + Hitbox.Width / 2, Hitbox.Y + Hitbox.Height / 2);
+            var differenz = InputController.MousePosition - new Vector2(HitboxCenter.X,HitboxCenter.Y);
             var angle = System.Math.Atan2(differenz.X, differenz.Y);
             if (angle > 1 && angle < 2)
             {

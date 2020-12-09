@@ -19,6 +19,8 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         {
             // TODO: Angemessene AttackTimespan für jede Waffe wählen (Animationsdauer)
 
+            // TODO: Von Hitbox.Center aus gehen, Angriffsrichtung bestimmen, und evtl. Width und Height tauschen
+
             Rectangle OwnerHitbox = Owner.Hitbox;
 
             Vector2 attackDirection = new Vector2(Owner.GetAttackDirection().X - OwnerHitbox.Width * rangeMultiplierX/2, Owner.GetAttackDirection().Y - OwnerHitbox.Height * 0.8f * rangeMultiplierY/2);

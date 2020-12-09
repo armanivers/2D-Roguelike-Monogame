@@ -172,7 +172,6 @@ namespace _2DRoguelike.Content.Core.Entities
             int southWest = tileCollisionHitbox.Y < 0 ? 0 : tileCollisionHitbox.Y / 32;
             int southEast = (tileCollisionHitbox.Y + tileCollisionHitbox.Height) / 32 >= levelHeight ? levelHeight - 1 : (tileCollisionHitbox.Y + tileCollisionHitbox.Height) / 32;
 
-
             for (int x = northWest;x <= northEast;x++)
             {
                 for (int y = southWest;y <= southEast;y++)
@@ -264,7 +263,10 @@ namespace _2DRoguelike.Content.Core.Entities
             SetAnimation("Die");
             if (!animationManager.IsRunning())
             {
-                if (disappearingTimer < TIME_BEFORE_DISAPPEARING) disappearingTimer++;
+                if (disappearingTimer < TIME_BEFORE_DISAPPEARING) {
+                    transparency-=0.01f;
+                    disappearingTimer++;
+                }
                 else 
                 Disappear();
             }

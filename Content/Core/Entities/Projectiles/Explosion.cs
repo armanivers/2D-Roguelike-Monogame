@@ -24,7 +24,7 @@ namespace _2DRoguelike.Content.Core.Entities
             {
                 {"Explode", new Animation(TextureManager.Explosion,0,6,0.1f)}
             };
-            this.animationManager = new AnimationManager(animations.First().Value);
+            this.animationManager = new AnimationManager(this,animations.First().Value);
             this.timer = 0;
         }
 
