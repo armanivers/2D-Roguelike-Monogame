@@ -1,6 +1,7 @@
 ﻿using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
@@ -13,7 +14,7 @@ namespace _2DRoguelike.Content.Core
 {
     class Gameplay
     {
-        public Boolean gameOver;
+        public bool gameOver;
 
         public Gameplay()
         {
@@ -29,7 +30,9 @@ namespace _2DRoguelike.Content.Core
             new Skeleton(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 7 * 32), 100, 3);
             new Wizard(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 9 * 32), 100, 3);
             new Player(LevelManager.maps.getSpawnpoint() * new Vector2(32), 100, 5);
-
+            
+            new HealthPotion(LevelManager.maps.getSpawnpoint() + new Vector2(8 * 32, 5 * 32));
+            
             UIManager.healthBar = new HealthBar(Player.Instance);
             UIManager.skillBar = new Skillbar(Player.Instance);
             UIManager.mobHealthBars = new MobHealthBars();

@@ -12,7 +12,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
     {
         private Humanoid shootingEntity;
         private float timer;
-        private const int DAMAGE = 500;
+        private const int DAMAGE = 10;
         private const float EXPIRATION_TIMER = 3;
         private const float SPEED = 10f;
 

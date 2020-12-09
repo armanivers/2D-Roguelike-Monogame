@@ -14,7 +14,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
         public override void Update(GameTime gameTime)
         {
             // TODO: Implementierung von Verhalten des Loots
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

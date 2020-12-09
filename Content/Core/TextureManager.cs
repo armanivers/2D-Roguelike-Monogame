@@ -9,7 +9,6 @@ namespace _2DRoguelike.Content.Core
     static class TextureManager
     {
         // Player Data
-        // Idee: Animationen in ein Array speicher, dann mit [0] auf animation walkup und [1] animation walkdown zugreifen?
 
         public static Texture2D Player_Hurt { get; private set; }
         public static Texture2D Player_Idle { get; private set; }
@@ -65,6 +64,9 @@ namespace _2DRoguelike.Content.Core
 
         // Projectile Data
         public static Texture2D Arrow { get; private set; }
+
+        // Potion Data
+        public static Texture2D HealthPotion { get; private set; }
 
         // Font Data
         public static SpriteFont FontArial { get; private set; }
@@ -143,6 +145,9 @@ namespace _2DRoguelike.Content.Core
 
             // Projectile Data
             Arrow = content.Load<Texture2D>("Assets/Graphics/Projectiles/Arrow");
+
+            // Potion Data
+            HealthPotion = content.Load<Texture2D>("Assets/Graphics/LootElements/Potions/HealthPotion");
 
             // Font Data
             FontArial = content.Load<SpriteFont>("Assets/System/Fonts/Arial");

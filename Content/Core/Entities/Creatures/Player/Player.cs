@@ -1,5 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
+using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Weapons;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
@@ -211,7 +212,23 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         public override void Update(GameTime gameTime)
         {
             UpdateCurrentWeaponPos();
+            CheckLootCollision();
             base.Update(gameTime);
+        }
+
+        public void CheckLootCollision()
+        {
+            // TODO: mit LevelManager.currentroom.entities ersetzen 
+            foreach(var loot in EntityManager.entities)
+            {
+                if(loot is Potion)
+                {
+                    if(hitbox.Intersects(loot.hitbox))
+                    {
+                        ((Potion)loot).OnContact();
+                    }
+                }
+            }
         }
 
         public bool GameOver()

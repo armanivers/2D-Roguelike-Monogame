@@ -81,6 +81,15 @@ namespace _2DRoguelike.Content.Core.Entities
             }
         }
 
+        public void AddHealthPoints(int health)
+        {
+            HealthPoints += health;
+            if(HealthPoints > 100)
+            {
+                HealthPoints = 100;
+            }
+        }
+
         public void Kill()
         {
             HealthPoints = 0;
