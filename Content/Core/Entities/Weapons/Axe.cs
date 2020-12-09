@@ -13,7 +13,9 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         const float RANGE_MULTIPLIER_Y = 1f;
 
         public Axe(Humanoid Owner, float damageMultiplier = 1f, float cooldownMultiplier = 1f) : base(Owner, RANGE_MULTIPLIER_X, RANGE_MULTIPLIER_Y, 
-            (int)(DAMAGE*damageMultiplier),AXE_COOLDOWN * cooldownMultiplier) { }
+            (int)(DAMAGE*damageMultiplier),AXE_COOLDOWN * cooldownMultiplier) {
+            INVENTORY_SLOT = 3;
+        }
 
         public override string ToString()
         {

@@ -10,7 +10,9 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         const float BOW_COOLDOWN = 1.5f;
         const int DAMAGE = 30;
 
-        public Bow(Humanoid Owner,float damageMultiplier = 1f, float cooldownMultiplier = 1f) : base(Owner,(int)(DAMAGE * damageMultiplier), BOW_COOLDOWN * cooldownMultiplier) { }
+        public Bow(Humanoid Owner,float damageMultiplier = 1f, float cooldownMultiplier = 1f) : base(Owner,(int)(DAMAGE * damageMultiplier), BOW_COOLDOWN * cooldownMultiplier) {
+            INVENTORY_SLOT = 2;
+        }
 
         public override void UseWeapon()
         {

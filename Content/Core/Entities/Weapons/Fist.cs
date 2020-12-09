@@ -13,7 +13,9 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
 
         public Fist(Humanoid Owner, float damageMultiplier = 1f, float cooldownMultiplier = 1f) : base(Owner, RANGE_MULTIPLIER_X, RANGE_MULTIPLIER_Y,
             (int)(DAMAGE * damageMultiplier), FIST_COOLDOWN * cooldownMultiplier)
-        { }
+        {
+            INVENTORY_SLOT = 0;
+        }
 
         public override string ToString()
         {

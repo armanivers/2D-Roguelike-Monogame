@@ -13,7 +13,8 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         private float cooldownTimer=0;
         public float CooldownTimer { get => cooldownTimer; set => cooldownTimer = value; }
 
-        
+        public int INVENTORY_SLOT;
+
         public Weapon(Humanoid Owner, int weaponDamage, float weaponCooldown): base(Owner) {
             this.weaponDamage = weaponDamage;
             WeaponCooldown = weaponCooldown;

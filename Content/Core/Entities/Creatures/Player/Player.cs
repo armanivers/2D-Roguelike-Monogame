@@ -240,7 +240,8 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         {
             if (WeaponsInPosession >= WEAPON_SLOT_CNT)
                 return;
-            WeaponInventory[WeaponsInPosession++] = weapon;
+            WeaponInventory[weapon.INVENTORY_SLOT] = weapon;
+            WeaponsInPosession++;
         }
 
         public bool CanAttack()
