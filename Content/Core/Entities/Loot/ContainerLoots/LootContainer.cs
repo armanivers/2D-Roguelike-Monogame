@@ -24,9 +24,6 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            // 3 sekunden  = 0% => 0
-            // 1.5 sek = 50% => 0.5
-            // 0 sek = 100% => 1
             if(!closed)
             {
                 transparency -= 0.01f;
@@ -37,6 +34,11 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
             {
                 OpenContainer();
             }
+        }
+
+        public override void OnContact()
+        {
+            closed = false;
         }
 
         public abstract void OpenContainer();

@@ -15,11 +15,6 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
             this.dropList = dropList;
         }
 
-        public override void OnContact()
-        {
-            closed = false;
-        }
-
         public override void OpenContainer()
         {
             // drop all items from the provided droplist

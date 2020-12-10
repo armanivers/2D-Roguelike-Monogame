@@ -20,8 +20,6 @@ namespace _2DRoguelike.Content.Core.UI
 
         public int fullwidth;
 
-        public int healthText;
-
         public struct MobData
         {
             public MobData(Vector2 position, int maxHealth, int currentWidth, int currentHealth,float transparency)
@@ -74,10 +72,9 @@ namespace _2DRoguelike.Content.Core.UI
                 {
                     spriteBatch.Draw(healthbarTexture, mobData[i].position, null, Color.White * mobData[i].Transparency, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
                     spriteBatch.Draw(healthbarContainerTexture, mobData[i].position, new Rectangle(0, 0, mobData[i].currentWidth, fullwidth), Color.White * mobData[i].Transparency, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
-                    //spriteBatch.DrawString(TextureManager.FontArial,mobData[i].currentHealth.ToString(), 
-                    //    new Vector2(mobData[i].position.X + TextureManager.FontArial.MeasureString(mobData[i].currentHealth.ToString()).X*0.5f/2 ,
-                    //    mobData[i].position.Y), Color.White, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
-                    //spriteBatch.DrawString(TextureManager.FontArial, "" + mobData[i].currentHealth, mobData[i].position, Color.White);
+                    spriteBatch.DrawString(TextureManager.FontArial,mobData[i].currentHealth.ToString(), 
+                        new Vector2(mobData[i].position.X +25 ,
+                        mobData[i].position.Y), Color.White, 0, Vector2.Zero, 0.35f, SpriteEffects.None, 0);
                 }
             }
         }
