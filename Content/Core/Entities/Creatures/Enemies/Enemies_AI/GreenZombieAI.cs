@@ -30,7 +30,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                  */
                 if (!agent.WeaponInventory[0].InUsage())
                 {
-                    if (SimulateMeleeAttack()) {
+                    if (SimulateMeleeAttack())
+                    {
                         agent.WeaponInventory[0].CooldownTimer = 0;
                         agent.CurrentWeapon = agent.WeaponInventory[0];
                         return new Melee(agent);
@@ -43,7 +44,10 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
         public override Vector2 DeterminePath()
         {
-            throw new NotImplementedException();
+            const int DETECTION_RANGE = 8 * 32;
+            if (WithinRange(DETECTION_RANGE))
+                return Vector2.Normalize(agent.GetAttackDirection() - agent.Position);
+            return Vector2.Zero;
         }
 
     }

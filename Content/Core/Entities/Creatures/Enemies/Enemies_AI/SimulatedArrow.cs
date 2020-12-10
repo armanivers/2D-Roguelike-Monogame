@@ -28,9 +28,10 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
         public Vector2 Acceleration;
 
-        public SimulatedArrow(Enemy enemy) {
+        public SimulatedArrow(Enemy enemy, Vector2 pos)
+        {
             this.enemy = enemy;
-            position = enemy.Position;
+            position = pos;
             Hitbox = new Rectangle((int)Position.X, (int)Position.Y, 13, 13);
             Acceleration = Vector2.Normalize(enemy.GetAttackDirection() - Position);
         }
@@ -42,10 +43,14 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             {
                 if (CollidesWithSolidTile())
                     return false;
-                if (Hitbox.Intersects(ControllingPlayer.Player.Instance.Hitbox))
+                if (!Hitbox.Intersects(enemy.Hitbox))
                 {
-                    return true;
+                    if (Hitbox.Intersects(ControllingPlayer.Player.Instance.Hitbox))
+                    {
+                        return true;
+                    }
                 }
+
                 Position += Acceleration * flyingSpeed * speedModifier;
             }
             return false;

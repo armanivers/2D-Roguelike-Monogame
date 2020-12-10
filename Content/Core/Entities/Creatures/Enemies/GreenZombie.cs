@@ -20,6 +20,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 
             WeaponInventory[0] = new Fist(this, 1f, 2.2f);
             WeaponInventory[1] = new Bow(this, 0.7f, 1.5f);
+            CurrentWeapon = WeaponInventory[0];
 
             texture = TextureManager.ZombieGreen_Idle;
 
@@ -71,5 +72,11 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         {
             return ai.DetermineAction();
         }
+        public override Vector2 GetDirection()
+        {
+            return ai.DeterminePath();
+            //return Vector2.Zero;
+        }
+
     }
 }

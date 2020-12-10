@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace _2DRoguelike.Content.Core.GameDebug
@@ -18,7 +19,7 @@ namespace _2DRoguelike.Content.Core.GameDebug
         public void Draw(SpriteBatch spriteBatch)
         {
             if (DEBUG)
-            { 
+            {
                 // Mouse Targeting Line
                 var origin = Player.Instance.Hitbox;
                 Vector2 target = InputController.MousePosition;

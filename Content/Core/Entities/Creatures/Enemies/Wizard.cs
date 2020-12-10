@@ -18,7 +18,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
 
             WeaponInventory[0] = new Fist(this, 1f, 2.2f);
-            WeaponInventory[1] = new Bow(this, 0.7f, 1.5f);
+            WeaponInventory[1] = new Bow(this, 0.2f, 1.5f);
+            CurrentWeapon = WeaponInventory[0];
 
             texture = TextureManager.Wizard_Idle;
 

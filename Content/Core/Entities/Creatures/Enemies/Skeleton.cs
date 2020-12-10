@@ -19,7 +19,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
 
             WeaponInventory[0] = new Fist(this, 1f, 2.2f);
-            WeaponInventory[1] = new Bow(this, 0.7f, 1.5f);
+            WeaponInventory[1] = new Bow(this, 0.3f, 1.5f);
+            CurrentWeapon = WeaponInventory[0];
 
             texture = TextureManager.Skeleton_Idle;
 
@@ -80,6 +81,11 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         public override Action DetermineAction()
         {
             return ai.DetermineAction();
+        }
+
+        public override Vector2 GetDirection()
+        {
+            return ai.DeterminePath();
         }
     }
 }

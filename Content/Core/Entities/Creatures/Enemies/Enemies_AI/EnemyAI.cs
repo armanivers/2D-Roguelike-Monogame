@@ -19,9 +19,9 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         public abstract Vector2 DeterminePath();
 
 
-        protected bool SimulateArrowAttack()
+        protected bool SimulateArrowAttack(Vector2 pos)
         {
-            SimulatedArrow simulatedArrow = new SimulatedArrow(agent);
+            SimulatedArrow simulatedArrow = new SimulatedArrow(agent, pos);
             return simulatedArrow.TestForImpact();
         }
 
@@ -31,6 +31,14 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             agent.AttackRangeHitbox = effectiveRange;
 
             return (effectiveRange.Intersects(Player.Instance.Hitbox));
+        }
+
+        protected bool WithinRange(int radius) {
+            Rectangle surroundingRectangle = new Rectangle((int)(agent.HitboxCenter.X - radius), (int)(agent.HitboxCenter.Y - radius), radius*2, radius*2);
+            if (surroundingRectangle.Contains(Player.Instance.Hitbox))
+                return true;
+            return false;
+
         }
     }
 }
