@@ -138,6 +138,35 @@ namespace _2DRoguelike.Content.Core.Entities
             return direction.X != 0 && direction.Y != 0;
         }
 
+        public Vector2 CalculateDirection(double angle) {
+            // East
+            if ((angle > 0 && angle < 0.785) || (angle < 0 && angle > -0.785))
+            {
+                return new Vector2(1, 0);
+            }
+
+            // North
+            else if (angle < -0.785 && angle > -2.356)
+            {
+
+                return new Vector2(0, -1);
+            }
+
+            // West
+            else if ((angle > 2.356 && angle < 3.141) || (angle < -2.356 && angle > -3.141))
+            {
+                return new Vector2(-1, 0);
+            }
+
+            // South
+            else if (angle > 0.785 && angle < 2.356)
+            {
+                return new Vector2(0, 1);
+            }
+
+
+            return Vector2.Zero;
+        }
         public bool CollidesWithSolidTile()
         {
             // Update: Code ist nun allgemeingültig für Entities mit größeren TileCollision-Hitboxen

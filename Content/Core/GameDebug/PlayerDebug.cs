@@ -42,8 +42,8 @@ namespace _2DRoguelike.Content.Core.GameDebug
 
                 // Winkel Berechnung
 
-                var differenz = InputController.MousePosition - Player.Instance.Position;
-                var angle = Math.Atan2(differenz.X, differenz.Y);
+                var differenz = InputController.MousePosition - new Vector2(Player.Instance.HitboxCenter.X, Player.Instance.HitboxCenter.Y);
+                var angle = Math.Atan2(differenz.Y, differenz.X);
                 // Umwandlung Radian -> Degree
 
                 //angle = MathHelper.ToDegrees((float)angle);

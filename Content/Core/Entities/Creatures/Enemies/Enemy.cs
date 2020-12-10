@@ -50,29 +50,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             // TODO: Blickrichtung nach Angriff bestimmen
             var differenz = new Vector2(Player.Instance.HitboxCenter.X, Player.Instance.HitboxCenter.Y)
                 - new Vector2(HitboxCenter.X, HitboxCenter.Y);
-            var angle = System.Math.Atan2(differenz.X, differenz.Y);
-            if (angle > 1 && angle < 2)
-            {
-                return new Vector2(1, 0);
-            }
-            else if (angle > 2 && angle < 3)
-            {
-                return new Vector2(0, -1);
-            }
-            else if (angle > -3 && angle < -2)
-            {
-
-                return new Vector2(0, -1);
-            }
-            else if (angle > -1 && angle < 1)
-            {
-                return new Vector2(0, 1);
-            }
-            else if (angle < -1 && angle > -2)
-            {
-                return new Vector2(-1, 0);
-            }
-            return Vector2.Zero;
+            var angle = System.Math.Atan2(differenz.Y, differenz.X);
+            return CalculateDirection(angle);
         }
 
         public bool CanAttack(int weaponPos)

@@ -59,7 +59,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 currentPos = currentPos + (!backwards ? 1 : -1);
                 if (backwards && currentPos < 0) currentPos = WEAPON_SLOT_CNT - 1;
                 else if (currentPos >= WEAPON_SLOT_CNT) currentPos = 0;
-                Debug.WriteLine("---Position: " + currentPos);
+                // Debug.WriteLine("---Position: " + currentPos);
             } while (!HasWeaponInSlot(currentPos));
             ChangeCurrentWeaponSlot(currentPos);
         }
@@ -196,29 +196,11 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         public override Vector2 GetAttackLineOfSight()
         {
             var differenz = InputController.MousePosition - new Vector2(HitboxCenter.X,HitboxCenter.Y);
-            var angle = System.Math.Atan2(differenz.X, differenz.Y);
-            if (angle > 1 && angle < 2)
-            {
-                return new Vector2(1, 0);
-            }
-            else if (angle > 2 && angle < 3)
-            {
-                return new Vector2(0, -1);
-            }
-            else if (angle > -3 && angle < -2)
-            {
+            var angle = System.Math.Atan2(differenz.Y, differenz.X);
 
-                return new Vector2(0, -1);
-            }
-            else if (angle > -1 && angle < 1)
-            {
-                return new Vector2(0, 1);
-            }
-            else if (angle < -1 && angle > -2)
-            {
-                return new Vector2(-1, 0);
-            }
-            return Vector2.Zero;
+            return CalculateDirection(angle);
+
+
         }
 
         public override Action DetermineAction()
