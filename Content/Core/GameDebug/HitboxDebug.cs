@@ -1,5 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -35,6 +36,13 @@ namespace _2DRoguelike.Content.Core.GameDebug
                         // Melee Hitbox
                         t = ((Humanoid)p).AttackHitbox;
                         DrawRectangleHitbox(t, spriteBatch, Color.White);
+
+                        // Melee Range Hitbox
+                        if (p is Enemy) { 
+                            t = ((Enemy)p).AttackRangeHitbox;
+                            DrawRectangleHitbox(t, spriteBatch, Color.Violet);
+                        }
+                            
                     }
                     // Creature Hitbox
                     DrawRectangleHitbox(p.Hitbox,spriteBatch,Color.Blue);

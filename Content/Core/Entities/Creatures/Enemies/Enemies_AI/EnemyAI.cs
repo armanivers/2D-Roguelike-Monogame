@@ -1,6 +1,8 @@
 ﻿
 using _2DRoguelike.Content.Core.Entities.Actions;
+using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
+using _2DRoguelike.Content.Core.Entities.Weapons;
 using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
@@ -21,6 +23,14 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         {
             SimulatedArrow simulatedArrow = new SimulatedArrow(agent);
             return simulatedArrow.TestForImpact();
+        }
+
+        protected bool SimulateMeleeAttack() {
+            Rectangle effectiveRange = ((ShortRange)agent.WeaponInventory[0]).GetEffectiveRange();
+            // Für Debug
+            agent.AttackRangeHitbox = effectiveRange;
+
+            return (effectiveRange.Intersects(Player.Instance.Hitbox));
         }
     }
 }

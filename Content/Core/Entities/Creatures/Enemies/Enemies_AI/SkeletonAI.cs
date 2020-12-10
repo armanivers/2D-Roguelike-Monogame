@@ -27,7 +27,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                         return new RangeAttack(agent);
                     }
                 }
-                //else if (!agent.WeaponInventory[0].InUsage())
+                // if (!agent.WeaponInventory[0].InUsage())
                 //{
                 //    agent.WeaponInventory[0].CooldownTimer = 0;
                 //    agent.CurrentWeapon = agent.WeaponInventory[0];

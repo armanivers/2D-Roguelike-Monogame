@@ -16,7 +16,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         {
             if (!agent.IsAttacking())
             {
-                if (!agent.WeaponInventory[1].InUsage())
+                /*if (!agent.WeaponInventory[1].InUsage())
                 {
 
                     // Check, ob Pfeil treffen würde
@@ -27,12 +27,16 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                         return new RangeAttack(agent);
                     }
                 }
-                //else if (!agent.WeaponInventory[0].InUsage())
-                //{
-                //    agent.WeaponInventory[0].CooldownTimer = 0;
-                //    agent.CurrentWeapon = agent.WeaponInventory[0];
-                //    return new Melee(agent);
-                //}
+                 */
+                if (!agent.WeaponInventory[0].InUsage())
+                {
+                    if (SimulateMeleeAttack()) {
+                        agent.WeaponInventory[0].CooldownTimer = 0;
+                        agent.CurrentWeapon = agent.WeaponInventory[0];
+                        return new Melee(agent);
+                    }
+
+                }
             }
             return new Move(agent);
         }

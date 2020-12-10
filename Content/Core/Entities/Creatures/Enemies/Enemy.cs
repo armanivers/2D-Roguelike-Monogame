@@ -15,6 +15,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
     {
 
         public EnemyAI ai;
+        // Für ATTACK-Range Debug
+        public Rectangle AttackRangeHitbox;
         public Enemy(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
         {
         }
