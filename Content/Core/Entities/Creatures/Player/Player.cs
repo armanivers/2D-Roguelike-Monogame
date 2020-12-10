@@ -301,7 +301,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             {
                 if(hitbox.Intersects(loot.hitbox))    
                 {     
-                    if(loot is LootContainer && !((LootContainer)loot).Closed) 
+                    if(loot is LootContainer && ((LootContainer)loot).Closed) 
                     { 
                         interactableContainers.Add((LootContainer)loot);    
                         canInteract = true;
@@ -324,6 +324,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                     lootContainer.OnContact();
                 }
             }
+            interactableContainers.Clear();
         }
 
         public bool GameOver()

@@ -15,6 +15,7 @@ namespace _2DRoguelike.Content.Core.UI
 
         private Vector2 tooltipPosition;
         private float scalingFactor;
+        private float visibility;
 
         private bool interactable;
 
@@ -25,7 +26,7 @@ namespace _2DRoguelike.Content.Core.UI
         {
             target = player;
             scalingFactor = 2.2f;
-
+            visibility = 0;
             tooltipPosition = new Vector2(GameSettings.screenWidth / 2 - interactWithContainerLength/2, GameSettings.screenHeight/2+60);
         }
 
@@ -33,19 +34,31 @@ namespace _2DRoguelike.Content.Core.UI
         {
             interactable = target.canInteract;
 
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            if(interactable)
+            if (interactable)
             {
-                spriteBatch.DrawString(TextureManager.FontArial, interactWithContainer, tooltipPosition, Color.White);
+                if (visibility < 1)
+                {
+                    visibility += 0.1f;
+                }
+            }
+            else
+            {
+                if (visibility > 0)
+                {
+                    visibility -= 0.1f;
+                }
             }
 
         }
 
-        public void ForceResolutionUpdate()
+        public void Draw(SpriteBatch spriteBatch)
         {
+            if (visibility > 0)
+                spriteBatch.DrawString(TextureManager.FontArial, interactWithContainer, tooltipPosition, Color.White * visibility);
+        }
+
+        public void ForceResolutionUpdate()
+        { 
             tooltipPosition = new Vector2(GameSettings.screenWidth / 2 - interactWithContainerLength / 2, GameSettings.screenHeight / 2 + 60);
         }
 

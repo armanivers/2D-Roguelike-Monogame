@@ -10,7 +10,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
     {
         // kann genutzt werden um z.B. eine Animation abzuspielen
         protected bool closed;
-        public bool Closed { get; }
+        public bool Closed { get { return closed; } }
 
         protected float timeToOpen;
         protected float openingTimer;
