@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI;
 using _2DRoguelike.Content.Core.Entities.Weapons;
 using _2DRoguelike.Content.Core.World;
 
@@ -10,13 +11,12 @@ using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 {
-    abstract class Enemy : Humanoid
+    public abstract class Enemy : Humanoid
     {
 
-
+        public EnemyAI ai;
         public Enemy(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
         {
- 
         }
 
         public override void AddToWeaponInventory(Weapon weapon)
@@ -35,19 +35,17 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 
         public override Vector2 GetDirection()
         {
-            // TODO: KI nach Angaben fragen
-            return new Vector2(0, 0);
+            //return ai.DeterminePath();
+            return Vector2.Zero;
         }
 
         public override Vector2 GetAttackDirection()
         {
-            // TODO: Position zum Player bestimmen
             return new Vector2(Player.Instance.HitboxCenter.X, Player.Instance.HitboxCenter.Y);
         }
 
         public override Vector2 GetAttackLineOfSight()
         {
-            // TODO: Blickrichtung nach Angriff bestimmen
             var differenz = new Vector2(Player.Instance.HitboxCenter.X, Player.Instance.HitboxCenter.Y)
                 - new Vector2(HitboxCenter.X, HitboxCenter.Y);
             var angle = System.Math.Atan2(differenz.Y, differenz.X);

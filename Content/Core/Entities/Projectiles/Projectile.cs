@@ -7,8 +7,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
 {
     abstract class Projectile : EntityBasis
     {
-        protected readonly float flyingSpeed;
-        protected float SpeedModifier { get; set; }
+        public readonly float flyingSpeed;
+        public float SpeedModifier { get; set; }
 
         protected int xHitboxOffset;
         protected int yHitboxOffset;

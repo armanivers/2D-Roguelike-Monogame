@@ -4,17 +4,19 @@ using System.Linq;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI;
 using _2DRoguelike.Content.Core.Entities.Weapons;
 using Microsoft.Xna.Framework;
 using Action = _2DRoguelike.Content.Core.Entities.Actions.Action;
 
 namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 {
-    class BrownZombie : Enemy
+    public class BrownZombie : Enemy
     {
         const int WEAPON_SLOT_CNT = 2; // 0: ShortRange / 1: LongRange
         public BrownZombie(Vector2 position, int maxHealthPoints, float movingSpeed, float attackTimespan = 0.4f ) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
         {
+            ai = new BrownZombieAI(this);
             WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
 
             WeaponInventory[0] = new Fist(this,1f, 2.2f);
@@ -65,28 +67,17 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             base.Update(gameTime);
         }
 
-        
+        public override Vector2 GetDirection()
+        {
+            // TODO: KI nach Angaben fragen
+            return new Vector2(0, 0);
+        }
+
         public override Action DetermineAction()
         {
             // TODO: Anhand von Fakten, wie Status, position, playerPosition, blickfeld etc. eine Action erzeugen
-            
-            // Für Testzwecke, hier findet eigentlich entscheidung der KI statt
-            if (!IsAttacking()){
-                // TODO: 
-                if (!WeaponInventory[1].InUsage())
-                {
-                    WeaponInventory[1].CooldownTimer = 0;
-                    CurrentWeapon = WeaponInventory[1];
-                    return new RangeAttack(this);
-                }
-                else if (!WeaponInventory[0].InUsage())
-                {
-                    WeaponInventory[0].CooldownTimer = 0;
-                    CurrentWeapon = WeaponInventory[0];
-                    return new Melee(this);
-                }
-            }
-            return new Move(this);
+
+            return ai.DetermineAction();
         }
     }
 }

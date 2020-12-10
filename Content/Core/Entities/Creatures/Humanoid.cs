@@ -112,7 +112,7 @@ namespace _2DRoguelike.Content.Core.Entities
             }
 
         }
-         
+
         public void SetLineOfSight(Vector2 direction)
         {
             if (direction != Vector2.Zero)
@@ -138,30 +138,32 @@ namespace _2DRoguelike.Content.Core.Entities
             return direction.X != 0 && direction.Y != 0;
         }
 
-        public Vector2 CalculateDirection(double angle) {
-            // East
-            if ((angle > 0 && angle < 0.785) || (angle < 0 && angle > -0.785))
-            {
-                return new Vector2(1, 0);
-            }
+        public Vector2 CalculateDirection(double angle)
+        {
 
             // North
-            else if (angle < -0.785 && angle > -2.356)
+            if (angle < -0.785 && angle > -2.356)
             {
 
                 return new Vector2(0, -1);
-            }
-
-            // West
-            else if ((angle > 2.356 && angle < 3.141) || (angle < -2.356 && angle > -3.141))
-            {
-                return new Vector2(-1, 0);
             }
 
             // South
             else if (angle > 0.785 && angle < 2.356)
             {
                 return new Vector2(0, 1);
+            }
+
+            // East
+            else if ((angle > 0 && angle < 0.785) || (angle < 0 && angle > -0.785))
+            {
+                return new Vector2(1, 0);
+            }
+
+            // West
+            else if ((angle > 2.356 && angle < 3.141) || (angle < -2.356 && angle > -3.141))
+            {
+                return new Vector2(-1, 0);
             }
 
 
@@ -172,23 +174,23 @@ namespace _2DRoguelike.Content.Core.Entities
             // Update: Code ist nun allgemeingültig für Entities mit größeren TileCollision-Hitboxen
 
             #region Explanation
-                        /*     Wir überprüfen, ob die TileCollisionHitbox einer der Tiles überprüft
-                    - ein Tile im Array ist 32x32 groß, d.h.:
-                        -Tile1 im Array in currentLevel[0,0] geht von (0,0) bis (31,31)
-                        - Tile2 im Array in currentLevel[0,1] geht von (32,0) bis (63,31) usw.
-                    Also kann man die 4 Eckpunkte der Hitbox / 32 teilen und man erfährt die Indizes für die zu prüfenden Felder
-                        -z.B.: HITBOX KOORDINATEN SIND: 
-                            NW:[83,20]  
-                            NE[112,20]  
-                            SE[112,49]  
-                            SW[83,49]
-                        - teilen wir die Werte durch 32 ergibt das:
-                            NW:[2,0]  
-                            NE[3,0]  
-                            SE[3,1]  
-                            SW[2,1]
-                        - in diesen Intervallen wird die Map nun überprüft: mindestens EINE solida Wand? Kollision
-                */
+            /*     Wir überprüfen, ob die TileCollisionHitbox einer der Tiles überprüft
+        - ein Tile im Array ist 32x32 groß, d.h.:
+            -Tile1 im Array in currentLevel[0,0] geht von (0,0) bis (31,31)
+            - Tile2 im Array in currentLevel[0,1] geht von (32,0) bis (63,31) usw.
+        Also kann man die 4 Eckpunkte der Hitbox / 32 teilen und man erfährt die Indizes für die zu prüfenden Felder
+            -z.B.: HITBOX KOORDINATEN SIND: 
+                NW:[83,20]  
+                NE[112,20]  
+                SE[112,49]  
+                SW[83,49]
+            - teilen wir die Werte durch 32 ergibt das:
+                NW:[2,0]  
+                NE[3,0]  
+                SE[3,1]  
+                SW[2,1]
+            - in diesen Intervallen wird die Map nun überprüft: mindestens EINE solida Wand? Kollision
+    */
             #endregion
 
 
@@ -201,9 +203,9 @@ namespace _2DRoguelike.Content.Core.Entities
             int southWest = tileCollisionHitbox.Y < 0 ? 0 : tileCollisionHitbox.Y / 32;
             int southEast = (tileCollisionHitbox.Y + tileCollisionHitbox.Height) / 32 >= levelHeight ? levelHeight - 1 : (tileCollisionHitbox.Y + tileCollisionHitbox.Height) / 32;
 
-            for (int x = northWest;x <= northEast;x++)
+            for (int x = northWest; x <= northEast; x++)
             {
-                for (int y = southWest;y <= southEast;y++)
+                for (int y = southWest; y <= southEast; y++)
                 {
                     if (LevelManager.currentLevel[x, y].IsSolid())
                         return true;
@@ -212,34 +214,34 @@ namespace _2DRoguelike.Content.Core.Entities
             return false;
 
             #region AlterCode
-             /*Alter Code:
-            Point p = new Point(tileCollisionHitbox.X / 32, tileCollisionHitbox.Y / 32);    // NW
+            /*Alter Code:
+           Point p = new Point(tileCollisionHitbox.X / 32, tileCollisionHitbox.Y / 32);    // NW
 
-            if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
-            {
-                return true;
-            }
-            p = new Point((tileCollisionHitbox.X + tileCollisionHitbox.Width) / 32, tileCollisionHitbox.Y / 32);   // NE
+           if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
+           {
+               return true;
+           }
+           p = new Point((tileCollisionHitbox.X + tileCollisionHitbox.Width) / 32, tileCollisionHitbox.Y / 32);   // NE
 
-            if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
-            {
-                return true;
-            }
-            p = new Point(tileCollisionHitbox.X / 32, ((tileCollisionHitbox.Y + tileCollisionHitbox.Height) / 32));    // SW
+           if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
+           {
+               return true;
+           }
+           p = new Point(tileCollisionHitbox.X / 32, ((tileCollisionHitbox.Y + tileCollisionHitbox.Height) / 32));    // SW
 
-            if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
-            {
-                return true;
-            }
+           if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
+           {
+               return true;
+           }
 
-            p = new Point((tileCollisionHitbox.X + tileCollisionHitbox.Width) / 32, ((tileCollisionHitbox.Y + tileCollisionHitbox.Height) / 32));    // SE
-            if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
-            {
-                return true;
-            }
-            return false;*/
+           p = new Point((tileCollisionHitbox.X + tileCollisionHitbox.Width) / 32, ((tileCollisionHitbox.Y + tileCollisionHitbox.Height) / 32));    // SE
+           if (!(p.X >= LevelManager.currentLevel.GetLength(0) || p.Y >= LevelManager.currentLevel.GetLength(1)) && LevelManager.currentLevel[p.X, p.Y].IsSolid())
+           {
+               return true;
+           }
+           return false;*/
             #endregion
-           
+
         }
 
         public bool CollidesWithFrameBorder()
@@ -270,7 +272,8 @@ namespace _2DRoguelike.Content.Core.Entities
             else
             {
                 float elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-                foreach (Weapon w in WeaponInventory) {
+                foreach (Weapon w in WeaponInventory)
+                {
                     w?.UpdateCooldownTimer(elapsedTime);
                 }
 
@@ -282,32 +285,35 @@ namespace _2DRoguelike.Content.Core.Entities
                 SetAnimation(PerformedAction.ChooseAnimation());
                 // TODO: Method updateStats()
 
-                
+
             }
 
             animationManager.Update(gameTime);
         }
 
-        private void CommenceKillLogic() {
+        private void CommenceKillLogic()
+        {
             // Priorität von Dieing-Animation geht über andere
             lockedAnimation = false;
             SetAnimation("Die");
             if (!animationManager.IsRunning())
             {
-                if (disappearingTimer < TIME_BEFORE_DISAPPEARING) {
-                    transparency-=0.01f;
+                if (disappearingTimer < TIME_BEFORE_DISAPPEARING)
+                {
+                    transparency -= 0.01f;
                     disappearingTimer++;
                 }
-                else 
-                Disappear();
+                else
+                    Disappear();
             }
-                
+
         }
 
-        protected virtual void Disappear() {
+        protected virtual void Disappear()
+        {
             // TODO: Für Enemies: Loot droppen und EXP geben
-            
-            if(this is Enemy)
+
+            if (this is Enemy)
             {
                 ((Enemy)this).DropExperiencePoints();
             }
@@ -315,5 +321,5 @@ namespace _2DRoguelike.Content.Core.Entities
         }
     }
 
-    
+
 }
