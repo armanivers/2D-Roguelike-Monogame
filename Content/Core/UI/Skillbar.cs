@@ -83,8 +83,6 @@ namespace _2DRoguelike.Content.Core.UI
 
         public void Update(GameTime gameTime)
         {
-            skillbarPosition = new Vector2(GameSettings.screenWidth / 2 - skillbarTexture.Width * scalingFactor / 2, GameSettings.screenHeight - skillbarTexture.Height * scalingFactor - 30);
-
             currentWeapon = target.CurrentWeaponPos;
 
             weaponData.Clear();

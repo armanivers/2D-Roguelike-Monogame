@@ -277,6 +277,11 @@ namespace _2DRoguelike.Content.Core.Entities
 
         protected virtual void Disappear() {
             // TODO: Für Enemies: Loot droppen und EXP geben
+            
+            if(this is Enemy)
+            {
+                ((Enemy)this).DropExperiencePoints();
+            }
             isExpired = true;
         }
     }

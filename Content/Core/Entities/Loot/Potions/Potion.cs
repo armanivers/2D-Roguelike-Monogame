@@ -7,7 +7,10 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 {
     public abstract class Potion : LootBase
     {
-        public Potion(Vector2 pos) : base(pos) { }
+        public Potion(Vector2 pos) : base(pos) {
+            floatable = true;
+        }
         public abstract void ActivateEffect();
+
     }
 }

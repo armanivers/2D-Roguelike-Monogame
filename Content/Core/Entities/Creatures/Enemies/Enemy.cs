@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Weapons;
@@ -24,6 +25,12 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
                 WeaponInventory[0] = weapon;
             else
                 WeaponInventory[1] = weapon;
+        }
+
+        public void DropExperiencePoints()
+        {
+            var xp = new Random().Next(1,5);
+            Player.Instance.AddExperiencePoints(xp);
         }
 
         public override Vector2 GetDirection()

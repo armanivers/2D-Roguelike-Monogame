@@ -1,7 +1,9 @@
 ﻿using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
+using _2DRoguelike.Content.Core.Entities.Loot.WeaponLoots;
 using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
@@ -29,11 +31,21 @@ namespace _2DRoguelike.Content.Core
             new Wizard(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 9 * 32), 100, 3);
             new Player(LevelManager.maps.getSpawnpoint() * new Vector2(32), 100, 5);
             
-            new HealthPotion(LevelManager.maps.getSpawnpoint() + new Vector2(8 * 32, 5 * 32));
-            
+            new HealthPotion(LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 13 * 32));
+            new ExperiencePotion(LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 11 * 32));
+
+            new AxeLoot(LevelManager.maps.getSpawnpoint() + new Vector2(6 * 32, 15 * 32));
+            new BowLoot(LevelManager.maps.getSpawnpoint() + new Vector2(8 * 32, 15 * 32));
+            new DaggerLoot(LevelManager.maps.getSpawnpoint() + new Vector2(10 * 32, 15 * 32));
+
+            new LootBag(LevelManager.maps.getSpawnpoint() + new Vector2(6 * 32, 21 * 32),null);
+            new Chest(LevelManager.maps.getSpawnpoint() + new Vector2(3 * 32, 22 * 32), null);
+
             UIManager.healthBar = new HealthBar(Player.Instance);
             UIManager.skillBar = new Skillbar(Player.Instance);
             UIManager.mobHealthBars = new MobHealthBars();
+            UIManager.experienceBar = new ExperienceBar(Player.Instance);
+            UIManager.toolTip = new ToolTip(Player.Instance);
 
             gameOver = false;
         }
@@ -81,7 +93,7 @@ namespace _2DRoguelike.Content.Core
             spriteBatch.Begin();
 
             // UI Elements
-            UIManager.Draw(spriteBatch);
+            UIManager.DrawStatic(spriteBatch);
 
             if (GameSettings.DEBUG)
             {

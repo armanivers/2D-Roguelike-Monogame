@@ -15,7 +15,7 @@ namespace _2DRoguelike.Content.Core.Entities
             ATTACK
         }
 
-        public readonly int maxHealthPoints;
+        public int maxHealthPoints;
         public int HealthPoints { get; private set; }
 
         // TODO: Dieser CooldownTimer gilt aktuell für ALLE Angriffsarten → Für jede Angriffsart eigenen Cooldown erstellen
@@ -112,9 +112,9 @@ namespace _2DRoguelike.Content.Core.Entities
         public void AddHealthPoints(int health)
         {
             HealthPoints += health;
-            if(HealthPoints > 100)
+            if(HealthPoints > maxHealthPoints)
             {
-                HealthPoints = 100;
+                HealthPoints = maxHealthPoints;
             }
         }
 

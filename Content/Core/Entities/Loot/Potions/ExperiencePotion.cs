@@ -8,21 +8,19 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 {
-    public class HealthPotion : Potion
+    public class ExperiencePotion : Potion
     {
-        private int healthModifier;
-        // timer nur fur z.B. Regeneration wenn es ueber einen Zeitraum hinaus wirkt
-        private float timer;
+        private int experienceModifier;
 
-        public HealthPotion(Vector2 pos) : base(pos)
+        public ExperiencePotion(Vector2 pos) : base(pos)
         {
-            healthModifier = 20;
-            texture = TextureManager.HealthPotion;
+            experienceModifier = 15;
+            texture = TextureManager.ExperiencePotion;
         }
 
         public override void ActivateEffect()
         {
-            Player.Instance.AddHealthPoints(healthModifier);
+            Player.Instance.AddExperiencePoints(experienceModifier);
         }
 
         public override void OnContact()

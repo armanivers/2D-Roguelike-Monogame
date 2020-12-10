@@ -59,7 +59,6 @@ namespace _2DRoguelike.Content.Core
             return mouseState.ScrollWheelValue > previousMouseState.ScrollWheelValue;
         }
 
-
         public static bool IsMouseButtonPressed()
         {
             return IsLeftMouseButtonPressed() || IsRightMouseButtonPressed();

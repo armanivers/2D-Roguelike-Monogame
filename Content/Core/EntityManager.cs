@@ -11,19 +11,27 @@ namespace _2DRoguelike.Content.Core.Entities
 {
     static class EntityManager
     {
-        public static List<EntityBasis> creatures = new List<EntityBasis>();
 
+        public static bool isUpdatingLoot;
+        public static List<LootBase> addedLoot = new List<LootBase>();
         public static List<LootBase> loots = new List<LootBase>();
+
+        public static bool isUpdatingProjectile;
+        public static List<Projectile> addedProjectile = new List<Projectile>();
         public static List<Projectile> projectiles = new List<Projectile>();
 
-        static bool isUpdating;
-        static List<EntityBasis> addedEntities = new List<EntityBasis>();
+        public static bool isUpdatingCreature;
+        public static List<EntityBasis> creatures = new List<EntityBasis>();
+        public static List<EntityBasis> addedEntities = new List<EntityBasis>();
 
-        public static int Count { get { return creatures.Count; } }
+        public static int CreaturesCount { get { return creatures.Count; } }
+        public static int ProjectilesCount { get { return projectiles.Count; } }
+        public static int LootsCount { get { return loots.Count; } }
+
 
         public static void AddCreatureEntity(EntityBasis entity)
         {
-            if (!isUpdating)
+            if (!isUpdatingCreature)
                 creatures.Add(entity);
             else
                 addedEntities.Add(entity);
@@ -31,33 +39,48 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public static void AddLootEntity(LootBase loot)
         {
-            loots.Add(loot);
+            if (!isUpdatingLoot)
+                loots.Add(loot);
+            else
+                addedLoot.Add(loot);
         }
 
         public static void AddProjectileEntity(Projectile projectile)
         {
-            projectiles.Add(projectile);
+            if (!isUpdatingProjectile)
+                projectiles.Add(projectile);
+            else
+                addedProjectile.Add(projectile);
         }
 
         public static void Update(GameTime gameTime)
         {
-            isUpdating = true;
-
+            isUpdatingCreature = true;
             foreach (var entity in creatures)
                 entity.Update(gameTime);
+            isUpdatingCreature = false;
 
-            isUpdating = false;
 
+            isUpdatingLoot = true;
             foreach (var loot in loots)
                 loot.Update(gameTime);
+            isUpdatingLoot = false;
 
+            isUpdatingProjectile = true;
             foreach (var projectile in projectiles)
                 projectile.Update(gameTime);
+            isUpdatingProjectile = false;
 
             foreach (var entity in addedEntities)
                 creatures.Add(entity);
+            foreach (var loot in addedLoot)
+                loots.Add(loot);
+            foreach (var projectile in addedProjectile)
+                projectiles.Add(projectile);
 
             addedEntities.Clear();
+            addedLoot.Clear();
+            addedProjectile.Clear();
 
             // remove any expired entities.
             creatures = creatures.Where(x => !x.isExpired).ToList();
@@ -80,6 +103,9 @@ namespace _2DRoguelike.Content.Core.Entities
         public static void UnloadEntities()
         {
             addedEntities.Clear();
+            addedLoot.Clear();
+            addedProjectile.Clear();
+
             creatures.Clear();
             projectiles.Clear();
             loots.Clear();
