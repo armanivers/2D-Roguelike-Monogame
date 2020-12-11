@@ -24,7 +24,7 @@ namespace _2DRoguelike.Content.Core.World
             for(int i = 0; i < NumRooms; i++)
             {
                 Room room = new Room();
-                
+                //TODO 
                 do
                 {
                     room.setXPos(Map.Random.Next(0, width - room.Width));
