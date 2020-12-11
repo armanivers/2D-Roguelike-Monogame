@@ -11,17 +11,15 @@ namespace _2DRoguelike.Content.Core.GameDebug
         public static HitboxDebug hitboxDebug = new HitboxDebug();
         public static PlayerDebug playerDebug = new PlayerDebug();
 
-        public static void Update()
+        public static void DrawStatic(SpriteBatch spritebatch)
         {
-
+            playerDebug.Draw(spritebatch);
         }
 
-        public static void Draw(SpriteBatch spriteBatch)
+        public static void DrawDynamic(SpriteBatch spriteBatch)
         {
-
-            //hitboxDebug.Draw(spriteBatch);
-            //playerDebug.Draw(spriteBatch);
-
+            hitboxDebug.Draw(spriteBatch);
         }
+
     }
 }

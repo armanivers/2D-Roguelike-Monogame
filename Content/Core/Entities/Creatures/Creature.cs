@@ -6,13 +6,16 @@ namespace _2DRoguelike.Content.Core.Entities
 {
     public abstract class Creature: EntityBasis
     {
+        private bool hurtTimerStart;
+        private float hurtTimer;
+        private const int hurtTimerLimit = 2;
 
         public enum ActionCommand { 
             MOVE,
             ATTACK
         }
 
-        public readonly int maxHealthPoints;
+        public int maxHealthPoints;
         public int HealthPoints { get; private set; }
 
         // TODO: Dieser CooldownTimer gilt aktuell für ALLE Angriffsarten → Für jede Angriffsart eigenen Cooldown erstellen
@@ -45,6 +48,7 @@ namespace _2DRoguelike.Content.Core.Entities
         }
 
         public Creature(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position){
+            EntityManager.AddCreatureEntity(this);
             this.maxHealthPoints = maxHealthPoints;
             HealthPoints = maxHealthPoints;
             this.attackTimespan = attackTimespan;
@@ -79,14 +83,38 @@ namespace _2DRoguelike.Content.Core.Entities
             {
                 Kill();
             }
+            if(!dead)
+            {
+                DisplayDamageTaken();
+            }
+        }
+
+        public void DisplayDamageTaken()
+        {
+            colour = Color.Red;
+            hurtTimerStart = true;
+            hurtTimer = 0;
+        }
+
+        public void RefreshDamageTakenTimer()
+        {
+            if(hurtTimerStart)
+            {
+                if (hurtTimer >= hurtTimerLimit)
+                {
+                    colour = Color.White;
+                    hurtTimerStart = false;
+                }
+                hurtTimer += 0.1f;
+            }
         }
 
         public void AddHealthPoints(int health)
         {
             HealthPoints += health;
-            if(HealthPoints > 100)
+            if(HealthPoints > maxHealthPoints)
             {
-                HealthPoints = 100;
+                HealthPoints = maxHealthPoints;
             }
         }
 

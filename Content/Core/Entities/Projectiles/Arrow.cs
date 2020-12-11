@@ -1,4 +1,5 @@
-﻿using _2DRoguelike.Content.Core.World;
+﻿using _2DRoguelike.Content.Core.Entities.Weapons;
+using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,14 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
     {
         private Humanoid shootingEntity;
         private float timer;
-        private const int DAMAGE = 10;
+        private int DAMAGE;
         private const float EXPIRATION_TIMER = 3;
         private const float SPEED = 10f;
 
         public Arrow(Humanoid creat) : base(new Vector2(creat.Hitbox.X + 16, creat.Hitbox.Y + 16), -7, +5, SPEED)
         {
             shootingEntity = creat;
+            DAMAGE = ((Bow)shootingEntity.CurrentWeapon).weaponDamage;
             this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, 13, 13);
             this.Acceleration = Vector2.Normalize(GetDirection());
             this.rotation = (float)Math.Atan2(Acceleration.Y, Acceleration.X);
@@ -49,14 +51,14 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
         }
 
         private bool WithinOwnHitbox() {
-            return shootingEntity.Hitbox.Contains(hitbox);
+            return shootingEntity.Hitbox.Intersects(hitbox);
         }
 
         private void HittingLogic() {
             if (shootingEntity is ControllingPlayer.Player) {
                 // TODO: ERSETZEN Durch EnemyList des Raumes
 
-                foreach (var enemy in EntityManager.entities)
+                foreach (var enemy in EntityManager.creatures)
                 {
                     if (enemy is Enemies.Enemy)
                     { 

@@ -30,7 +30,7 @@ namespace _2DRoguelike.Content.Core.UI
             healthbarContainer = TextureManager.healthBarEmpty;
             healthBar = TextureManager.healthBarRed;
             position = new Vector2(GameSettings.screenWidth / 2 - healthbarContainer.Width*scalingFactor/2, 30);
-            textPosition = new Vector2(GameSettings.screenWidth / 2 - 10, 30);
+            textPosition = new Vector2(GameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString(""+player.HealthPoints).X/2, 30);
             fullWidth = healthBar.Width;
             currentWidth = fullWidth;
             currentHealth = player.HealthPoints;
@@ -50,6 +50,7 @@ namespace _2DRoguelike.Content.Core.UI
             //}
             currentHealth = target.HealthPoints;
             currentWidth = (int)(   ( (double)(currentHealth) / 100) * fullWidth );
+            textPosition = new Vector2(GameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("" + currentHealth).X / 2, 30);
             //Debug.WriteLine("target.HealthPoints: {3}\ncurrentHealth: {0}\ncurrentWidth: {1}\n fullWidth. {2}\n---------------", currentHealth, currentWidth, fullWidth,target.HealthPoints);
         }
         public void Draw(SpriteBatch spriteBatch)
@@ -57,6 +58,12 @@ namespace _2DRoguelike.Content.Core.UI
             spriteBatch.Draw(healthbarContainer, position, null,Color.White,0, Vector2.Zero, scalingFactor, SpriteEffects.None,0);
             spriteBatch.Draw(healthBar, position,new Rectangle(0,0, currentWidth, healthBar.Height), Color.White,0, Vector2.Zero, scalingFactor,SpriteEffects.None,0);
             spriteBatch.DrawString(TextureManager.FontArial, ""+currentHealth, textPosition, Color.White);
+        }
+
+        public void ForceResolutionUpdate()
+        {
+            position = new Vector2(GameSettings.screenWidth / 2 - healthbarContainer.Width * scalingFactor / 2, 30);
+            textPosition = new Vector2(GameSettings.screenWidth / 2 - 10, 30);
         }
 
     }

@@ -65,8 +65,20 @@ namespace _2DRoguelike.Content.Core
         // Projectile Data
         public static Texture2D Arrow { get; private set; }
 
+        // Loot Data
+
         // Potion Data
         public static Texture2D HealthPotion { get; private set; }
+        public static Texture2D ExperiencePotion { get; private set; }
+
+        // Weapon Loot Data
+        public static Texture2D LootAxe { get; private set; }
+        public static Texture2D LootBow { get; private set; }
+        public static Texture2D LootDagger { get; private set; }
+
+        // Loot Container Data
+        public static Texture2D LootBag { get; private set; }
+        public static Texture2D LootChest { get; private set; }
 
         // Font Data
         public static SpriteFont FontArial { get; private set; }
@@ -81,6 +93,7 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D healthBarRed { get; private set; }
         public static Texture2D skillbar { get; private set; }
         public static Texture2D slotUsed { get; private set; }
+        public static Texture2D selectedItemFame { get; private set; }
         public static Texture2D redSlotCross { get; private set; }
         public static Texture2D EnemyBarContainer { get; private set; }
         public static Texture2D EnemyBar { get; private set; }
@@ -144,11 +157,24 @@ namespace _2DRoguelike.Content.Core
             // Particle Data
             Explosion = content.Load<Texture2D>("Assets/Graphics/Particles/explosion");
 
-            // Projectile Data
-            Arrow = content.Load<Texture2D>("Assets/Graphics/Projectiles/Arrow");
+            // Loot Data
+
+            // Loot Weapon Data
+
+            LootAxe = content.Load<Texture2D>("Assets/Graphics/LootElements/Weapons/LootAxe");
+            LootBow = content.Load<Texture2D>("Assets/Graphics/LootElements/Weapons/LootBow");
+            LootDagger = content.Load<Texture2D>("Assets/Graphics/LootElements/Weapons/LootDagger");
 
             // Potion Data
             HealthPotion = content.Load<Texture2D>("Assets/Graphics/LootElements/Potions/HealthPotion");
+            ExperiencePotion = content.Load<Texture2D>("Assets/Graphics/LootElements/Potions/ExperiencePotion");
+
+            // Loot Container Data
+            LootBag = content.Load<Texture2D>("Assets/Graphics/LootElements/Containers/LootBag");
+            LootChest = content.Load<Texture2D>("Assets/Graphics/LootElements/Containers/LootChest");
+
+            // Projectile Data
+            Arrow = content.Load<Texture2D>("Assets/Graphics/Projectiles/Arrow");
 
             // Font Data
             FontArial = content.Load<SpriteFont>("Assets/System/Fonts/Arial");
@@ -163,6 +189,7 @@ namespace _2DRoguelike.Content.Core
             healthBarRed = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/RedBar");
             skillbar = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/skillbar");
             slotUsed = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/slotUsed");
+            selectedItemFame = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/selectedItemFrame");
             redSlotCross = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/RedSlotCross");
             EnemyBarContainer = content.Load<Texture2D>("Assets/Graphics/UI/EnemeyUI/enemyBarContainer");
             EnemyBar = content.Load<Texture2D>("Assets/Graphics/UI/EnemeyUI/enemyBar");

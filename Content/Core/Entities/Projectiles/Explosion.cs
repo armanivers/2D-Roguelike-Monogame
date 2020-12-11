@@ -38,7 +38,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public void checkCollision()
         {
-            foreach(var livingEntity in EntityManager.entities)
+            foreach(var livingEntity in EntityManager.creatures)
             {
                 if(livingEntity is Creature && livingEntity != ControllingPlayer.Player.Instance) //&& livingEntity != Player.Player.Instance
                 {

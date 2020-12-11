@@ -18,6 +18,23 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         const int WEAPON_SLOT_CNT = 5;
         public int WeaponsInPosession;
         private int currentWeaponPos = 0;
+
+        public bool canInteract;
+        private List<LootContainer> interactableContainers;
+
+        private readonly int MAX_LEVEL = 5;
+        public int currentXPLevel;
+        private int currentXP;
+        // ExperiencePoints needed to levelup at each level -> IMPORANT: xp cap amount needs to be atleast the amount of MAX_LEVEL 
+        private List<int> xpCap;
+        public int CurrentXP
+        {
+            get { return currentXP; }
+            private set
+            {
+                currentXP = value;
+            }
+        }
        
         public int CurrentWeaponPos
         {
@@ -42,7 +59,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 currentPos = currentPos + (!backwards ? 1 : -1);
                 if (backwards && currentPos < 0) currentPos = WEAPON_SLOT_CNT - 1;
                 else if (currentPos >= WEAPON_SLOT_CNT) currentPos = 0;
-                Debug.WriteLine("---Position: " + currentPos);
+                // Debug.WriteLine("---Position: " + currentPos);
             } while (!HasWeaponInSlot(currentPos));
             ChangeCurrentWeaponSlot(currentPos);
         }
@@ -74,16 +91,32 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
        
 
         public Player(Vector2 position, int maxHealthPoints, float movingSpeed, float attackCooldown = 0.2f ) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
-        { 
+        {
 
             //this.position = new Vector2(2*32, 5*32); bei statischer Map
+
+            canInteract = false;
+            interactableContainers = new List<LootContainer>();
+
+            currentXP = currentXPLevel = 0;
+
+            xpCap = new List<int>();
+            // Number of xp caps needs to be same or bigger than MAX_LEVEL
+            xpCap.Add(10);
+            xpCap.Add(20);
+            xpCap.Add(20);
+            xpCap.Add(30);
+            xpCap.Add(35);
+
             instance = this;
             WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
-
             AddToWeaponInventory(new Fist(this));
+            // add weapons manually
+            /* 
             AddToWeaponInventory(new Dagger(this));
             AddToWeaponInventory(new Axe(this));
             AddToWeaponInventory(new Bow(this));
+            */
             ChangeCurrentWeaponSlot(0); 
 
             texture = TextureManager.Player_Idle;
@@ -163,29 +196,11 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         public override Vector2 GetAttackLineOfSight()
         {
             var differenz = InputController.MousePosition - new Vector2(HitboxCenter.X,HitboxCenter.Y);
-            var angle = System.Math.Atan2(differenz.X, differenz.Y);
-            if (angle > 1 && angle < 2)
-            {
-                return new Vector2(1, 0);
-            }
-            else if (angle > 2 && angle < 3)
-            {
-                return new Vector2(0, -1);
-            }
-            else if (angle > -3 && angle < -2)
-            {
+            var angle = System.Math.Atan2(differenz.Y, differenz.X);
 
-                return new Vector2(0, -1);
-            }
-            else if (angle > -1 && angle < 1)
-            {
-                return new Vector2(0, 1);
-            }
-            else if (angle < -1 && angle > -2)
-            {
-                return new Vector2(-1, 0);
-            }
-            return Vector2.Zero;
+            return CalculateDirection(angle);
+
+
         }
 
         public override Action DetermineAction()
@@ -213,22 +228,85 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         {
             UpdateCurrentWeaponPos();
             CheckLootCollision();
+            InteractWithObject();
             base.Update(gameTime);
+        }
+
+        public void AddExperiencePoints(int xp)
+        {
+            CurrentXP += xp;
+            
+            if (currentXPLevel >= MAX_LEVEL)
+                return;
+
+            if(currentXP >= xpCap[currentXPLevel]){
+                while (currentXPLevel < MAX_LEVEL && currentXP >= xpCap[currentXPLevel])
+                {
+                    currentXPLevel++;
+                    DetermineLevelupAward(currentXPLevel);
+                    // add remaining xp after levelup to next level
+                    currentXP = currentXP - xpCap[currentXPLevel - 1];
+                    // play levelup sound + particle effect + (maybe reward: weapon/hp heal)
+                }
+            }
+        }
+
+        public void DetermineLevelupAward(int level)
+        {
+            switch(level)
+            {
+                case 1:
+                    // Level 1 award = increase max hp by 20
+                    maxHealthPoints += 20;
+                    break;
+                case 2:
+                    maxHealthPoints += 50;
+                    break;
+                case 3:
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void CheckLootCollision()
         {
+            /* schoener wenn interaktion mit Container in seperate Methode geprueft wird, jedoch wenn wir interaktion und collision
+             gleichzeitig pruefen, muessen wir die Loot liste nicht doppelt durchgehen, IDEE: liste mit container/objekte die interactable sind
+            */
+
+            canInteract = false;
+            interactableContainers.Clear();
+
             // TODO: mit LevelManager.currentroom.entities ersetzen 
-            foreach(var loot in EntityManager.entities)
+            foreach (var loot in EntityManager.loots)
             {
-                if(loot is Potion)
-                {
-                    if(hitbox.Intersects(loot.hitbox))
-                    {
-                        ((Potion)loot).OnContact();
+                if(hitbox.Intersects(loot.hitbox))    
+                {     
+                    if(loot is LootContainer && ((LootContainer)loot).Closed) 
+                    { 
+                        interactableContainers.Add((LootContainer)loot);    
+                        canInteract = true;
                     }
+                    else
+                    {
+                        loot.OnContact();
+                    }
+
                 }
             }
+        }
+
+        public void InteractWithObject()
+        {
+            if(InputController.IsKeyPressed(Keys.F))
+            {
+                foreach (var lootContainer in interactableContainers)
+                {
+                    lootContainer.OnContact();
+                }
+            }
+            interactableContainers.Clear();
         }
 
         public bool GameOver()
@@ -240,8 +318,13 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         {
             if (WeaponsInPosession >= WEAPON_SLOT_CNT)
                 return;
-            WeaponInventory[weapon.INVENTORY_SLOT] = weapon;
-            WeaponsInPosession++;
+
+            if (WeaponInventory[weapon.INVENTORY_SLOT] == null)
+            {
+                WeaponInventory[weapon.INVENTORY_SLOT] = weapon;
+                WeaponsInPosession++;
+            }
+
         }
 
         public bool CanAttack()
@@ -260,6 +343,10 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 ChangeCurrentWeaponSlot(0);
             else if (InputController.IsKeyPressed(Keys.NumPad1))
                 ChangeCurrentWeaponSlot(1);
+            else if (InputController.IsKeyPressed(Keys.NumPad2))
+                ChangeCurrentWeaponSlot(2);
+            else if (InputController.IsKeyPressed(Keys.NumPad3))
+                ChangeCurrentWeaponSlot(3);
         }
     }
 }

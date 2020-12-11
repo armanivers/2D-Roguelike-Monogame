@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _2DRoguelike.Content.Core.UI;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,12 +7,18 @@ namespace _2DRoguelike.Content.Core
 {
     class GameSettings
     {
+        public static bool fullScreen;
+
         public static int screenWidth;
         public static int screenHeight;
+        
         public static float backgroundMusicLevel = 0.2f;
+        public static float prevBackgroundMusicLevel;
         public static float soundeffectsLevel = 0.2f;
+        public static float prevSoundeffectsLevel;
 
-        public static bool fullScreen;
+        public static bool DEBUG = true;
+
 
         public static void SetFullscreen()
         {
@@ -21,6 +28,7 @@ namespace _2DRoguelike.Content.Core
             screenWidth = 1920;
             screenHeight = 1080;
             Game1._graphics.ToggleFullScreen();
+            UIManager.ForceResolutionUpdate();
             //Game1._graphics.ApplyChanges();
         }
 
@@ -32,6 +40,7 @@ namespace _2DRoguelike.Content.Core
             screenWidth = 1280;
             screenHeight = 720;
             Game1._graphics.ToggleFullScreen();
+            UIManager.ForceResolutionUpdate();
             //Game1._graphics.ApplyChanges();
         }
 
@@ -74,6 +83,15 @@ namespace _2DRoguelike.Content.Core
             }
         }
 
+        public static bool SoundEffectsEnabled()
+        {
+            if(soundeffectsLevel > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public static void IncreaseSoundEffectLevel()
         {
             soundeffectsLevel += 0.1f;
@@ -81,6 +99,46 @@ namespace _2DRoguelike.Content.Core
             {
                 soundeffectsLevel = 1;
             }
+        }
+
+        public static bool BackgroundMusicEnabled()
+        {
+            if (backgroundMusicLevel > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static void MuteUnmuteSoundEffects()
+        {
+            if (SoundEffectsEnabled())
+            {
+                prevSoundeffectsLevel = soundeffectsLevel;
+                soundeffectsLevel = 0;
+            }
+            else
+            {
+                soundeffectsLevel = prevSoundeffectsLevel; 
+            }
+        }
+
+        public static void MuteUnmuteBackgroundMusic()
+        {
+            if (BackgroundMusicEnabled())
+            {
+                prevBackgroundMusicLevel = backgroundMusicLevel;
+                backgroundMusicLevel = 0;
+            }
+            else
+            {
+                backgroundMusicLevel = prevBackgroundMusicLevel;
+            }
+        }
+
+        public static void SwitchDebugMode()
+        {
+            DEBUG = !DEBUG;
         }
 
         public static void SaveSettings()

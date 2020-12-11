@@ -9,8 +9,8 @@ namespace _2DRoguelike.Content.Core.Entities
 {
     public abstract class EntityBasis
     {
-        public Color colour = Color.White;
-        public float transparency = 1f;
+        public Color colour;
+        public float transparency;
 
         protected Texture2D texture;
 
@@ -53,7 +53,8 @@ namespace _2DRoguelike.Content.Core.Entities
             Position = pos;
             isExpired = false;
             rotation = 0;
-            EntityManager.Add(this);
+            colour = Color.White;
+            transparency = 1f;
         }
         // TODO: Setter fuer die Hitbox fixen (fuer untere Klassen), Bsp Klasse Creature
 

@@ -12,17 +12,22 @@ namespace _2DRoguelike.Content.Core.UI
         public static HealthBar healthBar;
         public static Skillbar skillBar;
         public static MobHealthBars mobHealthBars;
-
+        public static ExperienceBar experienceBar;
+        public static ToolTip toolTip;
         public static void Update(GameTime gameTime)
         {
             healthBar.Update(gameTime);
             skillBar.Update(gameTime);
             mobHealthBars.Update(gameTime);
+            experienceBar.Update(gameTime);
+            toolTip.Update(gameTime);
         }
-        public static void Draw(SpriteBatch spriteBatch)
+        public static void DrawStatic(SpriteBatch spriteBatch)
         {
             healthBar.Draw(spriteBatch);
             skillBar.Draw(spriteBatch);
+            experienceBar.Draw(spriteBatch);
+            toolTip.Draw(spriteBatch);
         }
 
         public static void DrawDynamic(SpriteBatch spriteBatch)
@@ -30,7 +35,16 @@ namespace _2DRoguelike.Content.Core.UI
             mobHealthBars.Draw(spriteBatch);
         }
 
-
+        public static void ForceResolutionUpdate()
+        {
+            if(healthBar != null && skillBar != null && experienceBar != null && toolTip != null)
+            {
+                healthBar.ForceResolutionUpdate();
+                skillBar.ForceResolutionUpdate();
+                experienceBar.ForceResolutionUpdate();
+                toolTip.ForceResolutionUpdate();
+            }
+        }
 
     }
 }

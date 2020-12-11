@@ -6,7 +6,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
 {
     public abstract class Weapon : InventoryItem
     {
-        protected int weaponDamage; 
+        public int weaponDamage;
         private float weaponCooldown;
         public float WeaponCooldown { get => weaponCooldown; set => weaponCooldown = value; }
         

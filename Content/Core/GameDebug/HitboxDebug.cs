@@ -1,61 +1,73 @@
 ﻿using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace _2DRoguelike.Content.Core.GameDebug
 {
     class HitboxDebug
     {
-        private int borderWith = 3;
-        public static bool DEBUG = false;
+        private int borderWidth = 3;
+        public static bool DEBUG = true;
+        public Texture2D borderTexture = TextureManager.tileHitboxBorder;
 
         public void Draw(SpriteBatch spriteBatch)
         {
             if (DEBUG)
-            { // Mouse Targeting Line
+            {
+                // Mouse Targeting Line
                 var origin = Player.Instance.Hitbox;
                 Vector2 target = InputController.MousePosition;
                 DrawLine(spriteBatch, target, new Vector2(origin.X + 16, origin.Y + 16), Color.Gainsboro, 5);
 
-                //Entity Hitboxes
-
-                foreach (var p in EntityManager.entities)
+                // Creature and Melee Hit Hitboxes
+                foreach (var p in EntityManager.creatures)
                 {
-                    // TileCollisionBox                
-                    var borderTexture = TextureManager.tileHitboxBorder;
-
+                    // Creature TileCollisionHitbox                
                     if (p is Creature)
                     {
                         var t = ((Creature)p).GetTileCollisionHitbox();
-                        spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Top, borderWith, t.Height), Color.Red); // Top
-                        spriteBatch.Draw(borderTexture, new Rectangle(t.Right, t.Top, borderWith, t.Height), Color.Red); // 
-                        spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Top, t.Width, borderWith), Color.Red); // 
-                        spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Bottom, t.Width, borderWith), Color.Red); // Bottom
+                        DrawRectangleHitbox(t, spriteBatch, Color.Red);
 
-                        // TEST
-                        // ATTACK Hitbox
+                        // Melee Hitbox
                         t = ((Humanoid)p).AttackHitbox;
-                        spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Top, borderWith, t.Height), Color.White); // Top
-                        spriteBatch.Draw(borderTexture, new Rectangle(t.Right, t.Top, borderWith, t.Height), Color.White); // 
-                        spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Top, t.Width, borderWith), Color.White); // 
-                        spriteBatch.Draw(borderTexture, new Rectangle(t.Left, t.Bottom, t.Width, borderWith), Color.White); // Bottom
+                        DrawRectangleHitbox(t, spriteBatch, Color.White);
+
+                        // Melee Range Hitbox
+                        if (p is Enemy) { 
+                            t = ((Enemy)p).AttackRangeHitbox;
+                            DrawRectangleHitbox(t, spriteBatch, Color.Violet);
+                        }
+                            
                     }
+                    // Creature Hitbox
+                    DrawRectangleHitbox(p.Hitbox,spriteBatch,Color.Blue);
+                }
 
-                    //Entity Hitbox
-                    var r = p.Hitbox;
-                    spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, borderWith, r.Height), Color.Blue); // Top
-                    spriteBatch.Draw(borderTexture, new Rectangle(r.Right, r.Top, borderWith, r.Height), Color.Blue); // 
-                    spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, r.Width, borderWith), Color.Blue); //   
-                    spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Bottom, r.Width, borderWith), Color.Blue); // Bottom
+                foreach(var p in EntityManager.projectiles)
+                {
+                    DrawRectangleHitbox(p.hitbox, spriteBatch, Color.Blue);
+                }
 
-                  
+                foreach(var l in EntityManager.loots)
+                {
+                    DrawRectangleHitbox(l.hitbox, spriteBatch, Color.Blue);
                 }
             }
 
+        }
+
+        public void DrawRectangleHitbox(Rectangle r,SpriteBatch spriteBatch,Color color)
+        {
+            spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, borderWidth, r.Height), color); // Top
+            spriteBatch.Draw(borderTexture, new Rectangle(r.Right, r.Top, borderWidth, r.Height), color); // 
+            spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, r.Width, borderWidth), color); //   
+            spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Bottom, r.Width, borderWidth), color); // Bottom
         }
 
         public void DrawLine(SpriteBatch spriteBatch, Vector2 from, Vector2 to, Color color, int width = 1)

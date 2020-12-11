@@ -5,9 +5,12 @@ using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Loot
 {
-    public abstract class InventoryLoot : Loot
+    public abstract class InventoryLoot : LootBase
     {
-        public InventoryLoot(Vector2 pos) : base(pos) { }
+        public InventoryLoot(Vector2 pos) : base(pos) {
+            EntityManager.AddLootEntity(this);
+
+        }
     
     
     }

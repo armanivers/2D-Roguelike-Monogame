@@ -42,7 +42,13 @@ namespace _2DRoguelike.Content.Core.World
             maps.Update(player);
             playerposition = player.HitboxCenter;
         }
-        /*public static void Draw(SpriteBatch spriteBatch)
+
+        public static void UnloadContent()
+        {
+            level = 0;
+            levelList.Clear();
+        }
+        public static void Draw(SpriteBatch spriteBatch)
         {
             float visibility = 1.0f;
             for (int j = 0; j < maps.height; j++)
