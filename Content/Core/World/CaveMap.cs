@@ -15,7 +15,7 @@ namespace _DRoguelike.Content.Core.World
         Random random = new Random();
         int simulationsteps = 2;
 
-        public CaveMap():base()
+        public CaveMap() : base()
         {
             boolmap = initialiseMap(new bool[width, height]);
             for (int i = 0; i < simulationsteps; i++)

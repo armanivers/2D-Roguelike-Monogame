@@ -15,19 +15,19 @@ namespace _2DRoguelike.Content.Core.World.Tiles
         private bool solid;
         public int x;
         public int y;
-        public Tile(int type,int x, int y)
+        public Tile(int type, int x, int y)
         {
             this.type = type;
             this.texture = TextureManager.tiles[type];
             this.width = 32;
             this.height = 32;
-            this.x = x*height;
-            this.y = y*width;
+            this.x = x * height;
+            this.y = y * width;
             this.solid = DetermineSolid(type);
         }
         public Tile(bool type, int x, int y)
         {
-            this.type = type?1:0;
+            this.type = type ? 1 : 0;
             this.texture = TextureManager.tiles[this.type];
             this.width = 32;
             this.height = 32;

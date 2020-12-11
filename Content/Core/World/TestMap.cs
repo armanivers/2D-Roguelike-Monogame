@@ -9,11 +9,11 @@ namespace _2DRoguelike.Content.Core.World
     class TestMap : Map
     {
         Room room;
-        public TestMap(int width, int height):base(width,height)
+        public TestMap(int width, int height) : base(width, height)
         {
             room = new Room(width, height);
             room.setExit();
-            dottedArea(width/2,height/2);
+            dottedArea(width / 2, height / 2);
             placeTables(6, 17);
             placelabyrinth();
             placeTables(3, 15);
@@ -21,15 +21,15 @@ namespace _2DRoguelike.Content.Core.World
         }
         public void placelabyrinth()
         {
-            for (int y = 1; y < height/2; y++)
+            for (int y = 1; y < height / 2; y++)
             {
-                for (int x = width/2; x < width - 1; x++)
+                for (int x = width / 2; x < width - 1; x++)
                 {
                     if (y % 2 == 0)
                     {
                         room.room[x, y] = RoomObject.Wall;
                     }
-                    else if (x == width / 2 && y!=1 &&y!= height / 2-3 )
+                    else if (x == width / 2 && y != 1 && y != height / 2 - 3)
                     {
                         room.room[x, y] = RoomObject.Wall;
                     }
@@ -40,11 +40,11 @@ namespace _2DRoguelike.Content.Core.World
             room.room[22, 6] = RoomObject.EmptySpace;
             room.room[13, 8] = RoomObject.EmptySpace;
         }
-        public void dottedArea(int x_start,int y_start)
+        public void dottedArea(int x_start, int y_start)
         {
-            for (int y=y_start;y<height-1;y++)
+            for (int y = y_start; y < height - 1; y++)
             {
-                for (int x=x_start;x<width-1;x++)
+                for (int x = x_start; x < width - 1; x++)
                 {
                     if (y % 2 == 0)
                     {
@@ -58,9 +58,9 @@ namespace _2DRoguelike.Content.Core.World
         }
         public void placeTables(int x_start, int y_start)
         {
-            for (int y = y_start; y < y_start+3; y++)
+            for (int y = y_start; y < y_start + 3; y++)
             {
-                for (int x = x_start; x < x_start +2; x++)
+                for (int x = x_start; x < x_start + 2; x++)
                 {
                     room.room[x, y] = RoomObject.Wall;
                 }
@@ -73,10 +73,10 @@ namespace _2DRoguelike.Content.Core.World
 
         public override void Update(Player player)
         {
-          if (player.hitbox.Intersects(room.exithitbox))
-          {
-               LevelManager.NextLevel(player);
-          }
+            if (player.hitbox.Intersects(room.exithitbox))
+            {
+                LevelManager.NextLevel(player);
+            }
         }
     }
 }

@@ -67,7 +67,7 @@ namespace _2DRoguelike.Content.Core.World
         public Map()
         {
             width = 96;
-            height = 96;     
+            height = 96;
         }
 
         public abstract Vector2 getSpawnpoint();
@@ -92,7 +92,7 @@ namespace _2DRoguelike.Content.Core.World
             {
                 for (int j = 0; j < level.GetLength(1); j++)
                 {
-                    if(level[i, j].Equals(RoomObject.Wall) || level[i, j].Equals(RoomObject.Corner)|| level[i, j]==0)
+                    if (level[i, j].Equals(RoomObject.Wall) || level[i, j].Equals(RoomObject.Corner) || level[i, j] == 0)
                     {
                         result[i, j] = new Tile(true, i, j);
                     }
@@ -103,7 +103,7 @@ namespace _2DRoguelike.Content.Core.World
                     else
                     {
                         result[i, j] = new Tile(false, i, j);
-                    } 
+                    }
                 }
             }
             return result;

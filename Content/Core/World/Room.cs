@@ -20,7 +20,7 @@ namespace _2DRoguelike.Content.Core.World
         public void setXPos(int value)
         {
             XPos = value;
-            roomhitbox = new Rectangle(value*32, roomhitbox.Y, (Width-1)*32, (Height-1)*32);
+            roomhitbox = new Rectangle(value * 32, roomhitbox.Y, (Width - 1) * 32, (Height - 1) * 32);
         }
         public int getXPos()
         {
@@ -30,7 +30,7 @@ namespace _2DRoguelike.Content.Core.World
         public void setYPos(int value)
         {
             YPos = value;
-            roomhitbox = new Rectangle(roomhitbox.X,value*32, (Width-1)*32, (Height-1)*32);
+            roomhitbox = new Rectangle(roomhitbox.X, value * 32, (Width - 1) * 32, (Height - 1) * 32);
         }
         public int getYPos()
         {
@@ -52,13 +52,13 @@ namespace _2DRoguelike.Content.Core.World
         public Room()
         {
             Width = Map.Random.Next(7, 24);
-            Height= Map.Random.Next(7, 24);
+            Height = Map.Random.Next(7, 24);
             roomsize = (Width - 1) * (Height - 1);
-            room = new char[Width,Height];
+            room = new char[Width, Height];
             enemylist = new List<Enemy>();
             fillRoom();
         }
-        public Room(int width,int height)
+        public Room(int width, int height)
         {
             this.Width = width;
             this.Height = height;
@@ -74,7 +74,7 @@ namespace _2DRoguelike.Content.Core.World
                 for (int x = 0; x < Width; x++)
                 {
                     bool s = x < 1 || x > Width - 2;
-                    bool t = y < 1 || y > Height-2;
+                    bool t = y < 1 || y > Height - 2;
                     if (s && t)
                         room[x, y] = RoomObject.Corner; // avoid generation of doors at corners
                     else if (s ^ t)
@@ -95,7 +95,8 @@ namespace _2DRoguelike.Content.Core.World
             if (roomsize < 192)
             {
                 enemies = 2;
-            }else if (roomsize < 384)
+            }
+            else if (roomsize < 384)
             {
                 enemies = 4;
             }
@@ -103,7 +104,7 @@ namespace _2DRoguelike.Content.Core.World
             {
                 enemies = 6;
             }
-            for(int i = 0; i < enemies; i++)
+            for (int i = 0; i < enemies; i++)
             {
                 Vector2 enemyspawnpoint;
                 do
@@ -122,12 +123,12 @@ namespace _2DRoguelike.Content.Core.World
             {
                 XExit = (Map.Random.Next(1, Width - 2));
                 YExit = (Map.Random.Next(1, Height - 2));
-            } while (room[XExit, YExit]!=RoomObject.EmptySpace);
+            } while (room[XExit, YExit] != RoomObject.EmptySpace);
             exitroom = true;
             room[XExit, YExit] = RoomObject.Exit;
             XExit = (XExit + XPos);
             YExit = (YExit + YPos);
-            exithitbox = new Rectangle(XExit*32,YExit*32,32,32);
+            exithitbox = new Rectangle(XExit * 32, YExit * 32, 32, 32);
         }
     }
 }
