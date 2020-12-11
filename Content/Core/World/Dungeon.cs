@@ -102,6 +102,10 @@ namespace _2DRoguelike.Content.Core.World
                 roomlist.Add(room);
                 previousRoom = room;
             }
+            /*foreach(Room room in roomlist)
+            {
+                room.placeEnemies();
+            }*/
         }
         public void room2Map(Room room)
         {

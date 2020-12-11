@@ -50,8 +50,8 @@ namespace _2DRoguelike.Content.Core.World
         }
         public static void Draw(SpriteBatch spriteBatch)
         {
-            //DrawWithVisibility(spriteBatch, 0.25f, 15);
-            //DrawWithVisibility(spriteBatch, 0.5f, 10);
+            //DrawWithVisibility(spriteBatch, 0.25f, 15,15);
+            //DrawWithVisibility(spriteBatch, 0.5f, 10, 10);
             DrawWithVisibility(spriteBatch, 1.0f, 15,10);
         }
         private static void DrawWithVisibility(SpriteBatch spriteBatch, float visibility, int Xvisiblerange,int Yvisiblerange)

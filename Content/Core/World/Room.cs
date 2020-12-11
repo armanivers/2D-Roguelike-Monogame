@@ -1,4 +1,5 @@
-﻿using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+﻿using _2DRoguelike.Content.Core.Entities;
+using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -41,16 +42,12 @@ namespace _2DRoguelike.Content.Core.World
         public int XExit { get; set; }
         public int YExit { get; set; }
 
-
-
-
-        //TODO enemies list
+        //enemies list
         public int enemies;
         public List<Enemy> enemylist;
-        //TODO spawnpoints
 
         //TODO entities
-
+        public List<EntityBasis> entitylist;
 
         public Room()
         {
@@ -60,7 +57,6 @@ namespace _2DRoguelike.Content.Core.World
             room = new char[Width,Height];
             enemylist = new List<Enemy>();
             fillRoom();
-            //placeEnemies();
         }
         public Room(int width,int height)
         {
@@ -70,7 +66,6 @@ namespace _2DRoguelike.Content.Core.World
             room = new char[width, height];
             enemylist = new List<Enemy>();
             fillRoom();
-            //placeEnemies();
         }
         public void fillRoom()
         {
@@ -99,14 +94,14 @@ namespace _2DRoguelike.Content.Core.World
 
             if (roomsize < 192)
             {
-                enemies = 4;
+                enemies = 2;
             }else if (roomsize < 384)
             {
-                enemies = 6;
+                enemies = 4;
             }
             else
             {
-                enemies = 8;
+                enemies = 6;
             }
             for(int i = 0; i < enemies; i++)
             {
@@ -115,23 +110,10 @@ namespace _2DRoguelike.Content.Core.World
                 {
                     enemyspawnpoint = new Vector2(Map.Random.Next(2, Width - 2), Map.Random.Next(2, Height - 2));
                 } while (room[(int)enemyspawnpoint.X, (int)enemyspawnpoint.Y] != RoomObject.EmptySpace);
+                enemyspawnpoint.X += (float)XPos;
+                enemyspawnpoint.Y += (float)YPos;
                 int enemytype = Map.Random.Next(0, 3);
-                //TODO Factorie Methode erstellen
-                switch (enemytype)
-                {
-                    case 0:
-                        enemylist.Add(new BrownZombie(enemyspawnpoint, 100, 3));
-                        break;
-                    case 1:
-                        enemylist.Add(new GreenZombie(enemyspawnpoint, 100, 3));
-                        break;
-                    case 2:
-                        enemylist.Add(new Skeleton(enemyspawnpoint, 100, 3));
-                        break;
-                    case 3:
-                        enemylist.Add(new Wizard(enemyspawnpoint, 100, 3));
-                        break;
-                }
+                enemylist.Add(EnemyFactory.CreateRandomEnemy(enemyspawnpoint));
             }
         }
         public void setExit()
