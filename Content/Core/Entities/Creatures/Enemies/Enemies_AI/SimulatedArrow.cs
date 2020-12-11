@@ -8,7 +8,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 {
     public class SimulatedArrow
     {
-        public Enemy enemy;
+        public Enemy shootingEntity;
         public Rectangle Hitbox = Rectangle.Empty;
         protected int xHitboxOffset;
         protected int yHitboxOffset;
@@ -28,12 +28,14 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
         public Vector2 Acceleration;
 
-        public SimulatedArrow(Enemy enemy, Vector2 pos)
+        public SimulatedArrow(Enemy shootingEntity)
         {
-            this.enemy = enemy;
-            position = pos;
+            this.shootingEntity = shootingEntity;
+            position = new Vector2(shootingEntity.Hitbox.X + 16, shootingEntity.Hitbox.Y + 16);
             Hitbox = new Rectangle((int)Position.X, (int)Position.Y, 13, 13);
-            Acceleration = Vector2.Normalize(enemy.GetAttackDirection() - Position);
+            xHitboxOffset = -7;
+            yHitboxOffset = 5;
+            Acceleration = Vector2.Normalize(shootingEntity.GetAttackDirection() - Position);
         }
 
         public bool TestForImpact()
@@ -43,7 +45,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             {
                 if (CollidesWithSolidTile())
                     return false;
-                if (!Hitbox.Intersects(enemy.Hitbox))
+                if (!Hitbox.Intersects(shootingEntity.Hitbox))
                 {
                     if (Hitbox.Intersects(ControllingPlayer.Player.Instance.Hitbox))
                     {

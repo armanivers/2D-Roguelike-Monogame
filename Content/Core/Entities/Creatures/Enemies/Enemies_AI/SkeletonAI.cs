@@ -10,6 +10,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 {
     public class SkeletonAI : EnemyAI
     {
+
         public SkeletonAI(Skeleton agent) : base(agent)
         {
         }
@@ -21,7 +22,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                 {
 
                     // Check, ob Pfeil treffen würde
-                    if (SimulateArrowAttack(agent.Position))
+                    if (SimulateArrowAttack())
                     {
                         agent.WeaponInventory[1].CooldownTimer = 0;
                         agent.CurrentWeapon = agent.WeaponInventory[1];
@@ -40,16 +41,21 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
         public override Vector2 DeterminePath()
         {
-            if (!SimulateArrowAttack(agent.Position))
-                return Vector2.Normalize(agent.GetAttackDirection() - agent.Position);
-            else
+            // TODO: Der schmale Grad zwischen Fliehen und Suchen ist buggy
+            const int FLEEING_RANGE = 4 * 32;
+            if (WithinRange(FLEEING_RANGE))
             {
-                if(WithinRange(4
-                    *32))
-                    return Vector2.Negate(Vector2.Normalize(agent.GetAttackDirection() - agent.Position));
-                return Vector2.Zero;
+                Debug.WriteLine("Modus: Fliehen");
+                return Vector2.Negate(Vector2.Normalize(agent.GetAttackDirection() - agent.Position));
             }
-        }
+            else if (!SimulateArrowAttack())
+            {
+                Debug.WriteLine("Modus: Suchen");
+                return Vector2.Normalize(agent.GetAttackDirection() - agent.Position);
+            }
 
+            Debug.WriteLine("Modus: Zielen");
+            return Vector2.Zero;
+        }
     }
 }

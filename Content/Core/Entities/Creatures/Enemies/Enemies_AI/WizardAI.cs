@@ -20,7 +20,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                 {
 
                     // Check, ob Pfeil treffen würde
-                    if (SimulateArrowAttack(agent.Position))
+                    if (SimulateArrowAttack())
                     {
                         agent.WeaponInventory[1].CooldownTimer = 0;
                         agent.CurrentWeapon = agent.WeaponInventory[1];

@@ -1,4 +1,5 @@
 ﻿
+using System;
 using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
@@ -15,13 +16,13 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             this.agent = agent;
         }
 
-        public abstract Action DetermineAction();
+        public abstract Actions.Action DetermineAction();
         public abstract Vector2 DeterminePath();
 
 
-        protected bool SimulateArrowAttack(Vector2 pos)
+        protected bool SimulateArrowAttack()
         {
-            SimulatedArrow simulatedArrow = new SimulatedArrow(agent, pos);
+            SimulatedArrow simulatedArrow = new SimulatedArrow(agent);
             return simulatedArrow.TestForImpact();
         }
 
@@ -34,11 +35,12 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         }
 
         protected bool WithinRange(int radius) {
-            Rectangle surroundingRectangle = new Rectangle((int)(agent.HitboxCenter.X - radius), (int)(agent.HitboxCenter.Y - radius), radius*2, radius*2);
-            if (surroundingRectangle.Contains(Player.Instance.Hitbox))
-                return true;
-            return false;
-
+            return (Vector2.DistanceSquared(agent.Position, Player.Instance.Position) <= Math.Pow(radius, 2));
+           
+            //Rectangle surroundingRectangle = new Rectangle((int)(agent.HitboxCenter.X - radius), (int)(agent.HitboxCenter.Y - radius), radius*2, radius*2);
+           // if (surroundingRectangle.Contains(Player.Instance.Hitbox))
+           //     return true;
+           // return false;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
     public class Dagger : ShortRange
     {
         const float DAGGER_COOLDOWN = 0.4f;
-        const int DAMAGE = 33;
+        const int DAMAGE = 34;
         const float RANGE_MULTIPLIER_X = 0.9f;
         const float RANGE_MULTIPLIER_Y = 0.9f;
 
