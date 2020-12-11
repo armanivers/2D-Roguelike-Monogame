@@ -50,27 +50,6 @@ namespace _2DRoguelike.Content.Core.World
         }
         public static void Draw(SpriteBatch spriteBatch)
         {
-            float visibility = 1.0f;
-            for (int j = 0; j < maps.height; j++)
-            {
-                for (int i = 0; i < maps.width; i++)
-                {
-                    
-                    if (j*32 >playerposition.Y+5*32 || i * 32 > playerposition.X + 5 * 32 )
-                    {
-                        visibility = 0.0f;
-                    }
-                    if(j * 32 < playerposition.Y - 6 * 32 ||i * 32 < playerposition.X - 6 * 32)
-                    {
-                        visibility = 0.0f;
-                    }
-                    spriteBatch.Draw(currentLevel[i, j].texture, new Rectangle(currentLevel[i, j].x, currentLevel[i, j].y, currentLevel[i, j].width, currentLevel[i, j].height), Color.White*visibility);
-                    visibility = 1.0f;
-                }
-            }
-        }*/
-        public static void Draw(SpriteBatch spriteBatch)
-        {
             //DrawWithVisibility(spriteBatch, 0.25f, 15);
             //DrawWithVisibility(spriteBatch, 0.5f, 10);
             DrawWithVisibility(spriteBatch, 1.0f, 15,10);
