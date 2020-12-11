@@ -35,7 +35,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         }
 
         protected bool WithinRange(int radius) {
-            return (Vector2.DistanceSquared(agent.Position, Player.Instance.Position) <= Math.Pow(radius, 2));
+            return (Vector2.DistanceSquared(agent.HitboxCenter, Player.Instance.HitboxCenter) <= Math.Pow(radius, 2));
            
             //Rectangle surroundingRectangle = new Rectangle((int)(agent.HitboxCenter.X - radius), (int)(agent.HitboxCenter.Y - radius), radius*2, radius*2);
            // if (surroundingRectangle.Contains(Player.Instance.Hitbox))
