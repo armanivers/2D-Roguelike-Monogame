@@ -240,6 +240,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 return;
 
             if(currentXP >= xpCap[currentXPLevel]){
+                StatiscticsManager.LevelUp();
                 while (currentXPLevel < MAX_LEVEL && currentXP >= xpCap[currentXPLevel])
                 {
                     currentXPLevel++;
@@ -316,13 +317,21 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
         public override void AddToWeaponInventory(Weapon weapon)
         {
+            // sollte nicht vorkommen
             if (WeaponsInPosession >= WEAPON_SLOT_CNT)
+            {
                 return;
+            }
 
             if (WeaponInventory[weapon.INVENTORY_SLOT] == null)
             {
                 WeaponInventory[weapon.INVENTORY_SLOT] = weapon;
                 WeaponsInPosession++;
+                StatiscticsManager.NewWeaponRecieved();
+            }
+            else
+            {
+                StatiscticsManager.WeaponRecieved();
             }
 
         }

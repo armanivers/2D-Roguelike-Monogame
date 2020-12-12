@@ -42,6 +42,8 @@ namespace _2DRoguelike.Content.Core.Screens
         protected bool notEscapable = false;
         protected bool reverse;
         protected String dataString;
+        protected bool customMenu = false;
+        protected int customSelectEntry;
         /// <summary>
         /// Gets the list of menu entries, so derived classes can add
         /// or change the menu contents.
@@ -74,6 +76,18 @@ namespace _2DRoguelike.Content.Core.Screens
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
         }
 
+        public MenuScreen(string menuTitle, bool customMenu, int customSelectedEntry)
+        {
+            this.menuTitle = menuTitle;
+
+            this.customMenu = customMenu;
+            this.customSelectEntry = customSelectedEntry;
+
+
+            TransitionOnTime = TimeSpan.FromSeconds(0.5);
+            TransitionOffTime = TimeSpan.FromSeconds(0.5);
+        }
+
         #endregion Initialization
 
         #region Handle Input
@@ -85,11 +99,11 @@ namespace _2DRoguelike.Content.Core.Screens
         public override void HandleInput(InputState input)
         {
             // Move to the previous menu entry?
-            if (input.IsMenuUp(ControllingPlayer))
+            if (!MenuEntries[selectedEntry].Selectable || input.IsMenuUp(ControllingPlayer))
             {
                 selectedEntry--;
 
-                if (selectedEntry < 0)
+                if (selectedEntry < 0 || selectedEntry < customSelectEntry)
                     selectedEntry = menuEntries.Count - 1;
                 if (menuEntries[selectedEntry].Selectable)
                 {
@@ -102,12 +116,20 @@ namespace _2DRoguelike.Content.Core.Screens
             }
 
             // Move to the next menu entry?
-            if (input.IsMenuDown(ControllingPlayer))
+            if (!MenuEntries[selectedEntry].Selectable || input.IsMenuDown(ControllingPlayer))
             {
                 selectedEntry++;
 
                 if (selectedEntry >= menuEntries.Count)
-                    selectedEntry = 0;
+                    if (customMenu)
+                    {
+                        selectedEntry = customSelectEntry;
+                    }
+                    else
+                    {
+                        selectedEntry = 0;
+                    }
+                    
 
                 if (menuEntries[selectedEntry].Selectable)
                 {

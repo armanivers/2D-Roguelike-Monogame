@@ -9,7 +9,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
     {
         public InventoryLoot(Vector2 pos) : base(pos) {
             EntityManager.AddLootEntity(this);
-
+            floatingSpeed = 0.05f;
         }
     
     

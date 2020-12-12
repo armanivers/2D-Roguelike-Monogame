@@ -14,6 +14,7 @@ namespace _2DRoguelike.Content.Core.UI
         public static MobHealthBars mobHealthBars;
         public static ExperienceBar experienceBar;
         public static ToolTip toolTip;
+        public static Highscore highscore;
         public static void Update(GameTime gameTime)
         {
             healthBar.Update(gameTime);
@@ -21,6 +22,7 @@ namespace _2DRoguelike.Content.Core.UI
             mobHealthBars.Update(gameTime);
             experienceBar.Update(gameTime);
             toolTip.Update(gameTime);
+            highscore.Update(gameTime);
         }
         public static void DrawStatic(SpriteBatch spriteBatch)
         {
@@ -28,6 +30,7 @@ namespace _2DRoguelike.Content.Core.UI
             skillBar.Draw(spriteBatch);
             experienceBar.Draw(spriteBatch);
             toolTip.Draw(spriteBatch);
+            highscore.Draw(spriteBatch);
         }
 
         public static void DrawDynamic(SpriteBatch spriteBatch)
@@ -37,12 +40,13 @@ namespace _2DRoguelike.Content.Core.UI
 
         public static void ForceResolutionUpdate()
         {
-            if(healthBar != null && skillBar != null && experienceBar != null && toolTip != null)
+            if(healthBar != null && skillBar != null && experienceBar != null && toolTip != null && highscore != null)
             {
                 healthBar.ForceResolutionUpdate();
                 skillBar.ForceResolutionUpdate();
                 experienceBar.ForceResolutionUpdate();
                 toolTip.ForceResolutionUpdate();
+                highscore.ForceResolutionUpdate();
             }
         }
 

@@ -781,6 +781,42 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/UI/PlayerUI/slotUsed.png
 
+#begin Assets/Graphics/WorldElements/FOV1080p.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/WorldElements/FOV1080p.png
+
+#begin Assets/Graphics/WorldElements/FOV720p.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/WorldElements/FOV720p.png
+
+#begin Assets/Graphics/WorldElements/Shadow.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/WorldElements/Shadow.png
+
 #begin Assets/Graphics/WorldElements/Tiles/ladder.png
 /importer:TextureImporter
 /processor:TextureProcessor

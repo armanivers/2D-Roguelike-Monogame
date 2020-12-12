@@ -25,7 +25,7 @@ namespace _2DRoguelike.Content.Core.Entities
         public static List<EntityBasis> addedEntities = new List<EntityBasis>();
 
         public static int CreaturesCount { get { return creatures.Count; } }
-        public static int ProjectilesCount { get { return projectiles.Count; } }
+        public static int ProjectilesCount { get { return projectiles.Count; } } 
         public static int LootsCount { get { return loots.Count; } }
 
 
@@ -90,11 +90,11 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public static void Draw(SpriteBatch spriteBatch)
         {
-            foreach (var entity in creatures)
-                entity.Draw(spriteBatch);
-
             foreach (var loot in loots)
                 loot.Draw(spriteBatch);
+
+            foreach (var entity in creatures)
+                entity.Draw(spriteBatch);
 
             foreach (var projectile in projectiles)
                 projectile.Draw(spriteBatch);

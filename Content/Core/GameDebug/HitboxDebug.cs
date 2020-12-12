@@ -18,13 +18,16 @@ namespace _2DRoguelike.Content.Core.GameDebug
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (DEBUG)
+
+            if (GameSettings.showMouse)
             {
                 // Mouse Targeting Line
                 var origin = Player.Instance.Hitbox;
                 Vector2 target = InputController.MousePosition;
                 DrawLine(spriteBatch, target, new Vector2(origin.X + 16, origin.Y + 16), Color.Gainsboro, 5);
+            }
 
+            if (GameSettings.showHitbox) {
                 // Creature and Melee Hit Hitboxes
                 foreach (var p in EntityManager.creatures)
                 {
@@ -39,22 +42,23 @@ namespace _2DRoguelike.Content.Core.GameDebug
                         DrawRectangleHitbox(t, spriteBatch, Color.White);
 
                         // Melee Range Hitbox
-                        if (p is Enemy) { 
+                        if (p is Enemy)
+                        {
                             t = ((Enemy)p).AttackRangeHitbox;
                             DrawRectangleHitbox(t, spriteBatch, Color.Violet);
                         }
-                            
+
                     }
                     // Creature Hitbox
-                    DrawRectangleHitbox(p.Hitbox,spriteBatch,Color.Blue);
+                    DrawRectangleHitbox(p.Hitbox, spriteBatch, Color.Blue);
                 }
 
-                foreach(var p in EntityManager.projectiles)
+                foreach (var p in EntityManager.projectiles)
                 {
                     DrawRectangleHitbox(p.hitbox, spriteBatch, Color.Blue);
                 }
 
-                foreach(var l in EntityManager.loots)
+                foreach (var l in EntityManager.loots)
                 {
                     DrawRectangleHitbox(l.hitbox, spriteBatch, Color.Blue);
                 }
@@ -62,7 +66,7 @@ namespace _2DRoguelike.Content.Core.GameDebug
 
         }
 
-        public void DrawRectangleHitbox(Rectangle r,SpriteBatch spriteBatch,Color color)
+        public void DrawRectangleHitbox(Rectangle r, SpriteBatch spriteBatch, Color color)
         {
             spriteBatch.Draw(borderTexture, new Rectangle(r.Left, r.Top, borderWidth, r.Height), color); // Top
             spriteBatch.Draw(borderTexture, new Rectangle(r.Right, r.Top, borderWidth, r.Height), color); // 

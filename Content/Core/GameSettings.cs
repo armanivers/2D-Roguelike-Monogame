@@ -19,6 +19,37 @@ namespace _2DRoguelike.Content.Core
 
         public static bool DEBUG = true;
 
+        // debug cheats
+
+        public static bool godMode = true;
+        public static bool showHitbox = true;
+        public static bool showMouse = true;
+        public static bool playerDebug = true;
+        public static bool attackHitbox = true;
+        
+        public static void SwitchGodMode()
+        {
+            godMode = !godMode;
+        }
+        public static void SwitchShowHitbox()
+        {
+            showHitbox = !showHitbox;
+        }
+
+        public static void SwitchShowMouse()
+        {
+            showMouse = !showMouse;
+        }
+
+        public static void SwitchPlayerDebug()
+        {
+            playerDebug = !playerDebug;
+        }
+
+        public static void SwitchAttackHitox()
+        {
+            attackHitbox = !attackHitbox;
+        }
 
         public static void SetFullscreen()
         {

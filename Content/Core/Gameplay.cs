@@ -23,6 +23,7 @@ namespace _2DRoguelike.Content.Core
 
         public void LoadContent()
         {
+            StatiscticsManager.InitializeScore();
             LevelManager.LoadContent();
             // EntityBasis Konstruktor f�gt automatisch zur EntityManager.entities hinzu
             new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 3 * 32), 100, 3);
@@ -46,6 +47,8 @@ namespace _2DRoguelike.Content.Core
             UIManager.mobHealthBars = new MobHealthBars();
             UIManager.experienceBar = new ExperienceBar(Player.Instance);
             UIManager.toolTip = new ToolTip(Player.Instance);
+            UIManager.highscore = new Highscore();
+
 
             gameOver = false;
         }
@@ -56,6 +59,7 @@ namespace _2DRoguelike.Content.Core
             Player.Instance.DeleteInstance();
             Camera.Unload();
             LevelManager.UnloadContent();
+            StatiscticsManager.ClearScore();
         }
 
         public void Update(GameTime gameTime)
@@ -92,6 +96,15 @@ namespace _2DRoguelike.Content.Core
             // seperate sprite batch begin+end which isn't attached to an active 2D Camera
             spriteBatch.Begin();
 
+            // fake FOV
+            if(GameSettings.fullScreen)
+            {
+                spriteBatch.Draw(TextureManager.FOV1080p, Vector2.Zero, Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(TextureManager.FOV720p, Vector2.Zero, Color.White);
+            }
             // UI Elements
             UIManager.DrawStatic(spriteBatch);
 
@@ -99,7 +112,6 @@ namespace _2DRoguelike.Content.Core
             {
                 GameDebug.GameDebug.DrawStatic(spriteBatch);
             }
-
             spriteBatch.End();
         }
     }

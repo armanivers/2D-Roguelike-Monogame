@@ -28,7 +28,7 @@ namespace _2DRoguelike.Content.Core.GameDebug
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (DEBUG)
+            if (GameSettings.playerDebug)
             {
                 spriteBatch.DrawString(TextureManager.FontArial,
                 "Position Player auf Screen: {X: " + (int)Player.Instance.Position.X + " Y:" + (int)Player.Instance.Position.Y + "}",

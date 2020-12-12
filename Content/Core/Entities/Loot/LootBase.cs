@@ -21,14 +21,19 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
 
         public LootBase(Vector2 pos):base(pos) {
             EntityManager.AddLootEntity(this);
+            
             // we are using 32x32px loot items drop texturs 
             Hitbox = new Rectangle((int)Position.X - 16, (int)Position.Y - 16, 32, 32);
             basePosition = pos;
+            
             floatOffset = 3f;
             floatingSpeed = 0.1f;
             floatUp = true;
             floatable = true;
- 
+
+            shadow = true;
+            shadowOffset = new Vector2(0, 10);
+            shadowPosition = pos - shadowOffset;
         }
 
         public abstract void OnContact();

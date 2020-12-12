@@ -29,6 +29,8 @@ namespace _2DRoguelike.Content.Core.Screens
         #region Fields
 
         private string message;
+        private string line1;
+        private string line2;
         private Texture2D gradientTexture;
 
         #endregion Fields
@@ -57,11 +59,11 @@ namespace _2DRoguelike.Content.Core.Screens
         /// </summary>
         public MessageBoxScreen(string message, bool includeUsageText)
         {
-            const string usageText = "\nA button, Space, Enter = ok" +
-                                     "\nB button, Esc = cancel";
+            line1 = "Space Or Enter To Accept";
+            line2 =  "ESC To Cancel";
 
             if (includeUsageText)
-                this.message = message + usageText;
+                this.message = message;
             else
                 this.message = message;
 
@@ -139,14 +141,33 @@ namespace _2DRoguelike.Content.Core.Screens
             Vector2 textSize = font.MeasureString(message);
             Vector2 textPosition = (viewportSize - textSize) / 2;
 
+            //line 1 and 2
+            Vector2 line1Size = font.MeasureString(line1);
+            Vector2 textPosition1 = (viewportSize - line1Size)/2;
+            textPosition1.Y += line1Size.Y+textSize.Y;
+
+            Vector2 line2Size = font.MeasureString(line2);
+            Vector2 textPosition2 = (viewportSize - line2Size)/2;
+            textPosition2.Y += line2Size.Y + line1Size.Y+textSize.Y;
+
             // The background includes a border somewhat larger than the text itself.
             const int hPad = 32;
             const int vPad = 16;
-
+            
+            // Rectangle of box
             Rectangle backgroundRectangle = new Rectangle((int)textPosition.X - hPad,
                                                           (int)textPosition.Y - vPad,
                                                           (int)textSize.X + hPad * 2,
-                                                          (int)textSize.Y + vPad * 2);
+                                                          (int)textSize.Y*4 + vPad * 2);
+
+            // Rectangle of accept or maybe "selected" shadow?
+            Rectangle acceptRectangle = new Rectangle((int)textPosition1.X,
+                                                         (int)textPosition1.Y,
+                                                         (int)line1Size.X,
+                                                         (int)line1Size.Y);
+
+
+            // Rectangle of deny
 
             // Fade the popup alpha during transitions.
             Color color = Color.White * TransitionAlpha;
@@ -155,9 +176,12 @@ namespace _2DRoguelike.Content.Core.Screens
 
             // Draw the background rectangle.
             spriteBatch.Draw(gradientTexture, backgroundRectangle, color);
+            //spriteBatch.Draw(gradientTexture, acceptRectangle, Color.Yellow);
 
             // Draw the message box text.
             spriteBatch.DrawString(font, message, textPosition, color);
+            spriteBatch.DrawString(font, line1, textPosition1, color);
+            spriteBatch.DrawString(font, line2, textPosition2, color);
 
             spriteBatch.End();
         }

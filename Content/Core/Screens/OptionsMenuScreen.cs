@@ -23,7 +23,7 @@ namespace _2DRoguelike.Content.Core.Screens
         private MenuEntry soundOptions;
 
         // Debug
-        private MenuEntry debugMode;
+        private MenuEntry debugModeOptions;
 
         private enum Ungulate
         {
@@ -63,7 +63,7 @@ namespace _2DRoguelike.Content.Core.Screens
             soundOptions = new MenuEntry(string.Empty);
 
             // debug mode
-            debugMode = new MenuEntry(string.Empty);
+            debugModeOptions = new MenuEntry(String.Empty);
 
             SetMenuEntryText();
 
@@ -80,7 +80,7 @@ namespace _2DRoguelike.Content.Core.Screens
             soundeffectsLevel.Selected += EnableDisableSoundeffects;
             soundOptions.Selected += OnSoundOptionsSelected;
 
-            debugMode.Selected += SwitchDebugMode;
+            debugModeOptions.Selected += OnDebugmodeOptionsSelected;
 
             back.Selected += OnCancel;
 
@@ -96,7 +96,7 @@ namespace _2DRoguelike.Content.Core.Screens
             MenuEntries.Add(soundeffectsLevel);
 
             // debug mode
-            MenuEntries.Add(debugMode);
+            MenuEntries.Add(debugModeOptions);
 
             // sound options
             MenuEntries.Add(soundOptions);
@@ -111,7 +111,7 @@ namespace _2DRoguelike.Content.Core.Screens
             backgroundMusicLevel.Text = "Background Music: " + (GameSettings.BackgroundMusicEnabled() ? "on" : "off");
             soundeffectsLevel.Text = "SoundEffects: " + (GameSettings.SoundEffectsEnabled() ? "on" : "off");
             soundOptions.Text = "Sound Options";
-            debugMode.Text = "Debug Mode: " + (GameSettings.DEBUG ? "on" : "off");
+            debugModeOptions.Text = "Debug Options";
         }
 
         #endregion Initialization
@@ -198,10 +198,9 @@ namespace _2DRoguelike.Content.Core.Screens
             ScreenManager.AddScreen(new SoundOptionsMenuScreen(), e.PlayerIndex);
         }
 
-        private void SwitchDebugMode(object sender, PlayerIndexEventArgs e)
+        private void OnDebugmodeOptionsSelected(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.SwitchDebugMode();
-            SetMenuEntryText();
+            ScreenManager.AddScreen(new DebugmodeOptionsMenusScreen(), e.PlayerIndex);
         }
         private void ElfMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {

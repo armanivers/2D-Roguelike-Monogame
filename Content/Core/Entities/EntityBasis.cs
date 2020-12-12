@@ -12,6 +12,10 @@ namespace _2DRoguelike.Content.Core.Entities
         public Color colour;
         public float transparency;
 
+        public bool shadow;
+        public Vector2 shadowPosition;
+        public Vector2 shadowOffset;
+
         protected Texture2D texture;
 
         protected AnimationManager animationManager;
@@ -55,6 +59,7 @@ namespace _2DRoguelike.Content.Core.Entities
             rotation = 0;
             colour = Color.White;
             transparency = 1f;
+            shadow = false;
         }
         // TODO: Setter fuer die Hitbox fixen (fuer untere Klassen), Bsp Klasse Creature
 
@@ -64,6 +69,8 @@ namespace _2DRoguelike.Content.Core.Entities
         public virtual void Draw(SpriteBatch spriteBatch)
         {
 
+            if (shadow)
+                spriteBatch.Draw(TextureManager.Shadow, shadowPosition, null, Color.White*0.7f*transparency, 0, Size / 2 - new Vector2(0, 35), 1f, SpriteEffects.None, 0);
 
             if (animationManager != null)
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities
@@ -77,6 +78,12 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public void DeductHealthPoints(int damage)
         {
+
+            if(this is Player)
+            {
+                if (GameSettings.godMode) return;
+            }
+
             HealthPoints -= damage;
             System.Diagnostics.Debug.Print("Got Hit!");
             if (HealthPoints <= 0)

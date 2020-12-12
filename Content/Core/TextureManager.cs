@@ -79,7 +79,7 @@ namespace _2DRoguelike.Content.Core
         // Loot Container Data
         public static Texture2D LootBag { get; private set; }
         public static Texture2D LootChest { get; private set; }
-
+        public static Texture2D Shadow { get; private set; }
         // Font Data
         public static SpriteFont FontArial { get; private set; }
 
@@ -87,6 +87,9 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D Background { get; private set; }
         public static Texture2D Blank { get; private set; }
         public static Texture2D Gradient { get; private set; }
+
+        public static Texture2D FOV1080p { get; private set; }
+        public static Texture2D FOV720p { get; private set; }
 
         // UI Data
         public static Texture2D healthBarEmpty { get; private set; }
@@ -173,6 +176,8 @@ namespace _2DRoguelike.Content.Core
             LootBag = content.Load<Texture2D>("Assets/Graphics/LootElements/Containers/LootBag");
             LootChest = content.Load<Texture2D>("Assets/Graphics/LootElements/Containers/LootChest");
 
+            Shadow = content.Load<Texture2D>("Assets/Graphics/WorldElements/Shadow");
+
             // Projectile Data
             Arrow = content.Load<Texture2D>("Assets/Graphics/Projectiles/Arrow");
 
@@ -183,6 +188,8 @@ namespace _2DRoguelike.Content.Core
             Background = content.Load<Texture2D>("Assets/Graphics/Menus/background");
             Blank = content.Load<Texture2D>("Assets/Graphics/Menus/blank");
             Gradient = content.Load<Texture2D>("Assets/Graphics/Menus/gradient");
+            FOV1080p = content.Load<Texture2D>("Assets/Graphics/WorldElements/FOV1080p");
+            FOV720p = content.Load<Texture2D>("Assets/Graphics/WorldElements/FOV720p");
 
             // UI Data
             healthBarEmpty = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/EmptyBar");
