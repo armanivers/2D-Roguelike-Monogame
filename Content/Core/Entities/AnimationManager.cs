@@ -93,7 +93,20 @@ namespace _2DRoguelike.Content.Core.Entities
         public void Draw(SpriteBatch spritebatch)
         {
             if (entity.transparency > 0)
-                spritebatch.Draw(animation.Texture, Position, new Rectangle(animation.CurrentFrame * animation.FrameWidth, animation.yOffest, animation.FrameWidth, animation.FrameHeight), entity.colour*entity.transparency);
+                //spritebatch.Draw(animation.Texture, Position, new Rectangle(animation.CurrentFrame * animation.FrameWidth, animation.yOffest, animation.FrameWidth, animation.FrameHeight), entity.colour*entity.transparency);
+            
+            spritebatch.Draw(animation.Texture,
+                Position,
+                new Rectangle(animation.CurrentFrame * animation.FrameWidth, animation.yOffest, animation.FrameWidth, animation.FrameHeight), 
+                entity.colour * entity.transparency,
+                0f,
+                Vector2.Zero,
+                entity.scaleFactor,
+                SpriteEffects.None, 0
+                );
+            
+            
+            //spriteBatch.Draw(texture, Position, null, colour * transparency, rotation, Size / 2, scaleFactor, SpriteEffects.None, 0);
         }
     }
 }

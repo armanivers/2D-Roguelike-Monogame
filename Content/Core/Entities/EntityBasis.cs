@@ -11,6 +11,7 @@ namespace _2DRoguelike.Content.Core.Entities
     {
         public Color colour;
         public float transparency;
+        public float scaleFactor = 1.5f; // Default für alle, nicht hier ändern
 
         public bool shadow;
         public Vector2 shadowPosition;
@@ -79,7 +80,7 @@ namespace _2DRoguelike.Content.Core.Entities
             else if (texture != null)
             {
                 if (transparency > 0)
-                    spriteBatch.Draw(texture, Position, null, colour * transparency, rotation, Size / 2, 1f, SpriteEffects.None, 0);
+                    spriteBatch.Draw(texture, Position, null, colour * transparency, rotation, Size / 2, scaleFactor, SpriteEffects.None, 0);
             }
             else { throw new Exception("Draw failed, there's a problem with the texture/animationManager!"); };
         }

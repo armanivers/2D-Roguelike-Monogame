@@ -29,7 +29,12 @@
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Assets\Graphics\EnemyElements\Skeleton\" />
+    <Folder Include="Content\Assets\Graphics\EnemyElements\Wizard\" />
+    <Folder Include="Content\Assets\Graphics\EnemyElements\ZombieBrown\" />
+    <Folder Include="Content\Assets\Graphics\EnemyElements\ZombieGreen\" />
     <Folder Include="Content\Assets\Graphics\Particles\" />
+    <Folder Include="Content\Assets\Graphics\PlayerElements\" />
     <Folder Include="Content\Assets\Graphics\Projectiles\" />
   </ItemGroup>
 </Project>

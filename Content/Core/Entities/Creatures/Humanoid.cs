@@ -26,7 +26,8 @@ namespace _2DRoguelike.Content.Core.Entities
         public Weapon CurrentWeapon { get; set; }
         public Humanoid(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
         {
-            Hitbox = new Rectangle((int)Position.X + 17, (int)Position.Y + 14, 29, 49);
+            // scaleFactor = 1f;
+            Hitbox = new Rectangle((int)(Position.X + 17*scaleFactor), (int)(Position.Y + 14*scaleFactor), (int)(29*scaleFactor), (int)(49*scaleFactor));
             // alle Humanoids besitzen gleiche Hitbox
         }
 
@@ -35,63 +36,7 @@ namespace _2DRoguelike.Content.Core.Entities
         public abstract void AddToWeaponInventory(Weapon weapon);
         public abstract Actions.Action DetermineAction();
 
-        /*Deprecated (wird in Action.ChooseAnimation geregelt):
-          protected override void DetermineAnimation(Dictionary<string, Animation> animations)
-        {
-            // Angriff
-            // TODO: Art des Angriffes bestimmen
-
-            if (this is Player.Player && InputController.IsLeftMouseButtonPressed())
-            {
-                var differenz = InputController.MousePosition - Position;
-                var angle = Math.Atan2(differenz.X, differenz.Y);
-
-                if (angle > 1 && angle < 2)
-                {
-                    animationManager.Play(animations["ShootRight"]);
-                }
-                else if (angle > 2 && angle < 3)
-                {
-                    animationManager.Play(animations["ShootUp"]);
-                }
-                else if (angle > -3 && angle < -2)
-                {
-                    animationManager.Play(animations["ShootUp"]);
-                }
-                else if (angle > -1 && angle < 1)
-                {
-                    animationManager.Play(animations["ShootDown"]);
-                }
-                else if (angle < -1 && angle > -2)
-                {
-                    animationManager.Play(animations["ShootLeft"]);
-                }
-            }
-            else
-            {
-                if (Acceleration.X > 0)
-                {
-                    animationManager.Play(animations["WalkRight"]);
-                }
-                else if (Acceleration.X < 0)
-                {
-                    animationManager.Play(animations["WalkLeft"]);
-                }
-                else if (Acceleration.Y > 0)
-                {
-                    animationManager.Play(animations["WalkDown"]);
-                }
-                else if (Acceleration.Y < 0)
-                {
-                    animationManager.Play(animations["WalkUp"]);
-                }
-                else if (Acceleration.X == 0 && Acceleration.Y == 0)
-                {
-                    animationManager.Play(animations["Idle"]);
-                }
-                else animationManager.Stop();
-            }
-        }*/
+       
 
         public void SetAnimation(String animationIdentifier)
         {

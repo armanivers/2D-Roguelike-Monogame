@@ -18,8 +18,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
             set
             {
                 base.position = value;
-                hitbox.X = (int)value.X + xHitboxOffset;
-                hitbox.Y = (int)value.Y + xHitboxOffset;
+                hitbox.X = (int)(value.X + xHitboxOffset*scaleFactor);
+                hitbox.Y = (int)(value.Y + xHitboxOffset*scaleFactor);
 
                 if (animationManager != null)
                 {
