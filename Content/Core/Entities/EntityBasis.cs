@@ -11,7 +11,7 @@ namespace _2DRoguelike.Content.Core.Entities
     {
         public Color colour;
         public float transparency;
-        public float scaleFactor = 1.5f; // Default für alle, nicht hier ändern
+        public float scaleFactor = 1f; // Default für alle, nicht hier ändern
 
         public bool shadow;
         public Vector2 shadowPosition;
