@@ -21,7 +21,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
         {
             shootingEntity = creat;
             DAMAGE = ((Bow)shootingEntity.CurrentWeapon).weaponDamage;
-            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, 13, 13);
+            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(13*scaleFactor), (int)(13*scaleFactor));
             this.Acceleration = Vector2.Normalize(GetDirection());
             this.rotation = (float)Math.Atan2(Acceleration.Y, Acceleration.X);
             this.texture = TextureManager.Arrow;

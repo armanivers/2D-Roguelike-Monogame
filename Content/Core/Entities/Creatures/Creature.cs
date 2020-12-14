@@ -38,8 +38,8 @@ namespace _2DRoguelike.Content.Core.Entities
             set
             {
                 base.position = value;
-                hitbox.X = (int)value.X + 17;
-                hitbox.Y = (int)value.Y + 14;
+                hitbox.X = (int)(value.X + 17*scaleFactor);
+                hitbox.Y = (int)(value.Y + 14*scaleFactor);
 
                 if (animationManager != null)
                 {
