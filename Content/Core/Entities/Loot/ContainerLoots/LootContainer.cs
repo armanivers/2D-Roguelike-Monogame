@@ -14,6 +14,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 
         protected float timeToOpen;
         protected float openingTimer;
+        public String currentAnimation = "Chest_Idle";
 
         public LootContainer(Vector2 pos,int timeToOpen) : base(pos) {
             this.closed = true;
@@ -23,7 +24,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 
         public override void Update(GameTime gameTime)
         {
-            SetAnimation("Chest_Idle");
+            SetAnimation(currentAnimation);
             animationManager?.Update(gameTime);
             base.Update(gameTime);
             if(!closed)
@@ -41,6 +42,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         public override void OnContact()
         {
             StatiscticsManager.LootOpen();
+            currentAnimation = "Chest_Open";
             closed = false;
         }
 

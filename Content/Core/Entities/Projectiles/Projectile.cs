@@ -14,16 +14,16 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
         protected int yHitboxOffset;
         public override Vector2 Position
         {
-            get { return base.position; }
+            get { return base.Position; }
             set
             {
-                base.position = value;
+                base.Position = value;
                 hitbox.X = (int)(value.X + xHitboxOffset*scaleFactor);
                 hitbox.Y = (int)(value.Y + xHitboxOffset*scaleFactor);
 
                 if (animationManager != null)
                 {
-                    animationManager.Position = base.position;
+                    animationManager.Position = base.Position;
                 }
             }
         }

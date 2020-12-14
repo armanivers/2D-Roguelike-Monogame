@@ -50,19 +50,19 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
         {
             if (floatUp)
             {
-                position.Y += floatingSpeed;
+                Position += new Vector2(0,floatingSpeed);
             }
             else
             {
-                position.Y -= floatingSpeed;
+                Position -= new Vector2(0,floatingSpeed);
             }
 
-            if (position.Y > basePosition.Y + floatOffset)
+            if (Position.Y > basePosition.Y + floatOffset)
             {
                 floatUp = false;
 
             }
-            if (position.Y < basePosition.Y - floatOffset)
+            if (Position.Y < basePosition.Y - floatOffset)
             {
                 floatUp = true;
             }

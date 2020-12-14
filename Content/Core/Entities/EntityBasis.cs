@@ -27,9 +27,9 @@ namespace _2DRoguelike.Content.Core.Entities
         private bool lockedAnimation = false;
         public Vector2 HitboxCenter { get { return new Vector2(Hitbox.X + Hitbox.Width / 2, Hitbox.Y + Hitbox.Height / 2); } }
 
-        protected Vector2 position;
-        public virtual Vector2 Position
-        {
+        private Vector2 position;
+
+        public virtual Vector2 Position {
             get { return position; }
             set
             {
@@ -48,6 +48,7 @@ namespace _2DRoguelike.Content.Core.Entities
                 return texture == null ? Vector2.Zero : new Vector2(texture.Width, texture.Height);
             }
         }
+
 
         public Vector2 Acceleration;
         public float rotation;
@@ -71,6 +72,7 @@ namespace _2DRoguelike.Content.Core.Entities
         {
 
             if (shadow)
+                // Size / 2: Was, wenn die Textur ein sheet ist (breite größer, als das gezeichnete???)
                 spriteBatch.Draw(TextureManager.Shadow, shadowPosition, null, Color.White*0.7f*transparency, 0, Size / 2 - new Vector2(0, 35), 1f, SpriteEffects.None, 0);
 
             if (animationManager != null)
@@ -80,6 +82,7 @@ namespace _2DRoguelike.Content.Core.Entities
             else if (texture != null)
             {
                 if (transparency > 0)
+                    // Size / 2: Origin in der Mitte muss geeinigt werden wann!!!
                     spriteBatch.Draw(texture, Position, null, colour * transparency, rotation, Size / 2, scaleFactor, SpriteEffects.None, 0);
             }
             else { throw new Exception("Draw failed, there's a problem with the texture/animationManager!"); };
