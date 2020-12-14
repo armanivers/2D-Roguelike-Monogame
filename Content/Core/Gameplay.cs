@@ -40,7 +40,7 @@ namespace _2DRoguelike.Content.Core
             new DaggerLoot(LevelManager.maps.getSpawnpoint() + new Vector2(10 * 32, 15 * 32));
 
             new LootBag(LevelManager.maps.getSpawnpoint() + new Vector2(6 * 32, 21 * 32),null);
-            new Chest(LevelManager.maps.getSpawnpoint() + new Vector2(3 * 32, 22 * 32), null);
+            new Chest(new Vector2(1 * 32, 1 * 32), null);
 
             UIManager.healthBar = new HealthBar(Player.Instance);
             UIManager.skillBar = new Skillbar(Player.Instance);

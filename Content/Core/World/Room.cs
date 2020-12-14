@@ -1,5 +1,8 @@
 ﻿using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots;
+using _2DRoguelike.Content.Core.Entities.Loot.Potions;
+using _2DRoguelike.Content.Core.Entities.Loot.WeaponLoots;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -56,6 +59,7 @@ namespace _2DRoguelike.Content.Core.World
             roomsize = (Width - 1) * (Height - 1);
             room = new char[Width, Height];
             enemylist = new List<Enemy>();
+            entitylist = new List<EntityBasis>();
             fillRoom();
         }
         public Room(int width, int height)
@@ -94,7 +98,15 @@ namespace _2DRoguelike.Content.Core.World
 
             if (roomsize < 192)
             {
-                enemies = 2;
+                enemies = 0;
+                Vector2 chestspawnpoint;
+                do
+                {
+                    chestspawnpoint = new Vector2(Map.Random.Next(2, Width - 2), Map.Random.Next(2, Height - 2));
+                } while (room[(int)chestspawnpoint.X, (int)chestspawnpoint.Y] != RoomObject.EmptySpace);
+                chestspawnpoint.X += XPos;
+                chestspawnpoint.Y += YPos;
+                entitylist.Add(new Chest(chestspawnpoint*new Vector2(32),null));
             }
             else if (roomsize < 384)
             {
@@ -109,11 +121,10 @@ namespace _2DRoguelike.Content.Core.World
                 Vector2 enemyspawnpoint;
                 do
                 {
-                    enemyspawnpoint = new Vector2(Map.Random.Next(2, Width - 2), Map.Random.Next(2, Height - 2));
+                    enemyspawnpoint = new Vector2(Map.Random.Next(5, Width - 6), Map.Random.Next(5, Height - 6));
                 } while (room[(int)enemyspawnpoint.X, (int)enemyspawnpoint.Y] != RoomObject.EmptySpace);
                 enemyspawnpoint.X += (float)XPos;
                 enemyspawnpoint.Y += (float)YPos;
-                int enemytype = Map.Random.Next(0, 3);
                 enemylist.Add(EnemyFactory.CreateRandomEnemy(enemyspawnpoint));
             }
         }

@@ -16,7 +16,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             {
                 returnvalue = new BrownZombie(spawnpoint * new Vector2(32), 100, 3);
             }
-            else if (randomvalue <= 35)
+            else if (randomvalue <= 70)
             {
                 returnvalue = new GreenZombie(spawnpoint * new Vector2(32), 100, 3);
             }

@@ -23,7 +23,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public Rectangle hitbox; // Problem: bei protected: erlaubt nicht Änderung von Hitbox-Koordinaten
         public Rectangle Hitbox { get { return hitbox; } set { hitbox = value; } }
-
+        private bool lockedAnimation = false;
         public Vector2 HitboxCenter { get { return new Vector2(Hitbox.X + Hitbox.Width / 2, Hitbox.Y + Hitbox.Height / 2); } }
 
         protected Vector2 position;
@@ -88,6 +88,24 @@ namespace _2DRoguelike.Content.Core.Entities
         {
             return animations.ContainsKey(animationIdent);
         }
+        public void SetAnimation(String animationIdentifier)
+        {
+            if (lockedAnimation)
+            {
+                if (!animationManager.IsRunning())
+                    lockedAnimation = false;
+                else return;
+            }
 
+            // Debug.WriteLine(animationIdentifier);
+
+            if (animationManager != null)
+            {
+                animationManager.Play(animations[animationIdentifier]);
+                if (animationManager.IsPrioritized())
+                    lockedAnimation = true;
+            }
+
+        }
     }
 }

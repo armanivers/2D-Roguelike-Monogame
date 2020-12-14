@@ -26,7 +26,6 @@ namespace _2DRoguelike.Content.Core.World
             for (int i = 0; i < NumRooms; i++)
             {
                 Room room = new Room();
-                //TODO 
                 int roomfindingtries = 0;
                 do
                 {

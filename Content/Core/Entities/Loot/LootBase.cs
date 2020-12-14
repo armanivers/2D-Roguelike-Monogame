@@ -23,7 +23,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
             EntityManager.AddLootEntity(this);
             
             // we are using 32x32px loot items drop texturs 
-            Hitbox = new Rectangle((int)Position.X - 16, (int)Position.Y - 16, 32, 32);
+            Hitbox = new Rectangle((int)Position.X, (int)Position.Y, 32, 32);
             basePosition = pos;
             
             floatOffset = 3f;

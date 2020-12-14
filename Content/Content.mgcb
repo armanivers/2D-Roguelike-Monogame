@@ -397,6 +397,30 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/EnemyElements/ZombieGreen/greenZombie_walk/greenZombieWalk_fist/greenZombieSheet_walk_fist.png
 
+#begin Assets/Graphics/LootElements/Containers/chest_animation.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/LootElements/Containers/chest_animation.png
+
+#begin Assets/Graphics/LootElements/Containers/chest_open_animation.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/LootElements/Containers/chest_open_animation.png
+
 #begin Assets/Graphics/LootElements/Containers/LootBag.png
 /importer:TextureImporter
 /processor:TextureProcessor

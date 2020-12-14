@@ -20,13 +20,13 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D Player_Walk_Axe { get; private set; }
         public static Texture2D Player_Walk_Dagger { get; private set; }
         public static Texture2D Player_Walk_Fist { get; private set; }
-        public static Texture2D Player_Walk_Spear{ get; private set; }
+        public static Texture2D Player_Walk_Spear { get; private set; }
 
         /// Enemy Data
         // Brown Zombie
-        public static Texture2D ZombieBrown_Hurt { get; set; } 
-        public static Texture2D ZombieBrown_Idle { get; private set; }  
-        public static Texture2D ZombieBrown_Shoot { get; set; }   
+        public static Texture2D ZombieBrown_Hurt { get; set; }
+        public static Texture2D ZombieBrown_Idle { get; private set; }
+        public static Texture2D ZombieBrown_Shoot { get; set; }
         public static Texture2D ZombieBrown_Slash_Fist { get; private set; }
         public static Texture2D ZombieBrown_Walk_Fist { get; private set; }
 
@@ -79,6 +79,8 @@ namespace _2DRoguelike.Content.Core
         // Loot Container Data
         public static Texture2D LootBag { get; private set; }
         public static Texture2D LootChest { get; private set; }
+        public static Texture2D LootChest_Animation_Idle { get; private set; }
+        public static Texture2D Lootchest_Animation_Open { get; private set; }
         public static Texture2D Shadow { get; private set; }
         // Font Data
         public static SpriteFont FontArial { get; private set; }
@@ -113,7 +115,7 @@ namespace _2DRoguelike.Content.Core
             Player_Hurt = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_hurt/playerSheet_hurt");
             Player_Idle = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_idle/playerSheet_idle");
             Player_Shoot = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_shoot/playerSheet_shoot");
-            
+
             Player_Walk_Axe = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk/playerWalk_axe/playerSheet_walk_axe");
             Player_Walk_Dagger = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk/playerWalk_dagger/playerSheet_walk_dagger");
             Player_Walk_Fist = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_walk/playerWalk_fist/playerSheet_walk_fist");
@@ -175,6 +177,8 @@ namespace _2DRoguelike.Content.Core
             // Loot Container Data
             LootBag = content.Load<Texture2D>("Assets/Graphics/LootElements/Containers/LootBag");
             LootChest = content.Load<Texture2D>("Assets/Graphics/LootElements/Containers/LootChest");
+            LootChest_Animation_Idle = content.Load<Texture2D>("Assets/Graphics/LootElements/Containers/chest_animation");
+            Lootchest_Animation_Open = content.Load<Texture2D>("Assets/Graphics/LootElements/Containers/chest_open_animation");
 
             Shadow = content.Load<Texture2D>("Assets/Graphics/WorldElements/Shadow");
 

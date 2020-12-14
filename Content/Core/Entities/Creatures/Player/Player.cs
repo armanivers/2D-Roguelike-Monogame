@@ -176,7 +176,6 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 {"Die", new Animation(TextureManager.Player_Hurt,0,6,frameSpeed*2f, NO_LOOP, PRIORITIZED)}
             };
             animationManager = new AnimationManager(this,animations["IdleDown"]);
-
         }
         public void DeleteInstance()
         {

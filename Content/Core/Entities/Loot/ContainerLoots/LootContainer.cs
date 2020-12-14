@@ -23,6 +23,8 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 
         public override void Update(GameTime gameTime)
         {
+            SetAnimation("Chest_Idle");
+            animationManager?.Update(gameTime);
             base.Update(gameTime);
             if(!closed)
             {
