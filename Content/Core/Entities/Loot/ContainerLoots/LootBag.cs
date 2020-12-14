@@ -8,7 +8,10 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 {
     public class LootBag : LootContainer
     {
-        public LootBag(Vector2 pos,List<InventoryItem> dropList) : base(pos,1)
+        private const float TIME_TO_OPEN = 0.5f;
+
+        public LootBag(Vector2 pos, List<InventoryItem> dropList) : base(pos, TIME_TO_OPEN)
+
         {
             texture = TextureManager.LootBag;
             this.dropList = dropList;

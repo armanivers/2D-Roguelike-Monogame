@@ -8,10 +8,11 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 {
     public class Chest : LootContainer
     {
-        public Chest(Vector2 pos, List<InventoryItem> dropList) : base(pos, 2)
+        private List<InventoryItem> dropList;
+        private const float TIME_TO_OPEN = 1f;
+        public Chest(Vector2 pos, List<InventoryItem> dropList) : base(pos, TIME_TO_OPEN)
         {
-            // TODO: Einigung für Origin setzen
-            Hitbox = new Rectangle((int)(Position.X  * scaleFactor), (int)(Position.Y * scaleFactor), (int)(32 * scaleFactor), (int)(32 * scaleFactor));
+
             //texture = TextureManager.LootChest;
             animations = new Dictionary<string, Animation>()
             {
@@ -22,13 +23,18 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
             animationManager.Position = pos;
             floatable = false;
             this.dropList = dropList;
+
+
+            //timeToOpen = AnimationDuration("Chest_Open");
         }
 
         public override void OpenContainer()
         {
             // drop all items from the provided droplist
-            new AxeLoot(Position+new Vector2(Hitbox.Width/2,Hitbox.Height/2));
+            new AxeLoot(Position);
             isExpired = true;
         }
+
+
     }
 }

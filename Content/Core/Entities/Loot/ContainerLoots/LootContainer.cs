@@ -12,12 +12,17 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         protected bool closed;
         public bool Closed { get { return closed; } }
 
+        private const float DISAPPEARING_SPEED = 0.01f;
+
         protected float timeToOpen;
         protected float openingTimer;
-        public String currentAnimation = "Chest_Idle";
+
+        public string currentAnimation = "Chest_Idle";
+
         protected List<InventoryItem> dropList;
 
-        public LootContainer(Vector2 pos,int timeToOpen) : base(pos) {
+        public LootContainer(Vector2 pos, float timeToOpen) : base(pos)
+        {
             this.closed = true;
             this.timeToOpen = timeToOpen;
             this.openingTimer = 0;
@@ -28,16 +33,16 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
             SetAnimation(currentAnimation);
             animationManager?.Update(gameTime);
             base.Update(gameTime);
-            if(!closed)
+            if (!closed)
             {
-                transparency -= 0.01f;
+                transparency -= DISAPPEARING_SPEED;
                 openingTimer += 0.01f;
+                if (openingTimer >= timeToOpen)
+                {
+                    OpenContainer();
+                }
             }
 
-            if(openingTimer >= timeToOpen)
-            {
-                OpenContainer();
-            }
         }
 
         public override void OnContact()

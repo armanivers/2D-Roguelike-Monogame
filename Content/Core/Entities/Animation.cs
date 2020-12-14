@@ -18,13 +18,13 @@ namespace _2DRoguelike.Content.Core.Entities
         public bool Prioritized { get; set; }
         public bool Reverse { get; set; }
         public Texture2D Texture { get; private set; }
-        
+
 
         public int yOffest;
 
 
 
-        public Animation(Texture2D texture, int yOffest, int frameCount,float frameSpeed, bool isLoop = true, bool priority = false, bool reverse=false,int FrameHeight=64)
+        public Animation(Texture2D texture, int yOffest, int frameCount, float frameSpeed, bool isLoop = true, bool priority = false, bool reverse = false, int FrameHeight = 64)
         {
             this.FrameHeight = FrameHeight;
             Texture = texture;

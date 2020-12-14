@@ -19,17 +19,18 @@ namespace _2DRoguelike.Content.Core.Entities
 
         protected Texture2D texture;
 
+        private bool lockedAnimation = false;
         protected AnimationManager animationManager;
         protected Dictionary<string, Animation> animations;
 
         public Rectangle hitbox; // Problem: bei protected: erlaubt nicht Änderung von Hitbox-Koordinaten
         public Rectangle Hitbox { get { return hitbox; } set { hitbox = value; } }
-        private bool lockedAnimation = false;
         public Vector2 HitboxCenter { get { return new Vector2(Hitbox.X + Hitbox.Width / 2, Hitbox.Y + Hitbox.Height / 2); } }
 
         private Vector2 position;
 
-        public virtual Vector2 Position {
+        public virtual Vector2 Position
+        {
             get { return position; }
             set
             {
@@ -73,7 +74,9 @@ namespace _2DRoguelike.Content.Core.Entities
 
             if (shadow)
                 // Size / 2: Was, wenn die Textur ein sheet ist (breite größer, als das gezeichnete???)
-                spriteBatch.Draw(TextureManager.Shadow, shadowPosition, null, Color.White*0.7f*transparency, 0, Size / 2 - new Vector2(0, 35), 1f, SpriteEffects.None, 0);
+                spriteBatch.Draw(TextureManager.Shadow, shadowPosition, null, Color.White * 0.45f * transparency, 0,
+                    new Vector2(0, -35),
+                    scaleFactor, SpriteEffects.None, 0);
 
             if (animationManager != null)
             {
@@ -83,7 +86,7 @@ namespace _2DRoguelike.Content.Core.Entities
             {
                 if (transparency > 0)
                     // Size / 2: Origin in der Mitte muss geeinigt werden wann!!!
-                    spriteBatch.Draw(texture, Position, null, colour * transparency, rotation, Size / 2, scaleFactor, SpriteEffects.None, 0);
+                    spriteBatch.Draw(texture, Position, null, colour * transparency, rotation, Vector2.Zero, scaleFactor, SpriteEffects.None, 0);
             }
             else { throw new Exception("Draw failed, there's a problem with the texture/animationManager!"); };
         }
@@ -91,6 +94,12 @@ namespace _2DRoguelike.Content.Core.Entities
         public bool AnimationExists(String animationIdent)
         {
             return animations.ContainsKey(animationIdent);
+        }
+
+        public int AnimationDuration(String animation)
+        {
+            Debug.WriteLine(animations[animation].FrameCount * (int)animations[animation].FrameSpeed * 100);
+            return animations[animation].FrameCount * (int)animations[animation].FrameSpeed * 100;
         }
         public void SetAnimation(String animationIdentifier)
         {

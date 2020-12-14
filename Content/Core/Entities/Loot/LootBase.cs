@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Loot
 {
-    public abstract class LootBase: EntityBasis
+    public abstract class LootBase : EntityBasis
     {
         // how much should the loot object float up/down compared to its original spawn position
         protected float floatOffset;
@@ -15,17 +15,18 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
         protected bool floatUp;
         // controls floating speed
         protected float floatingSpeed;
-        
+
         // should this loot object float or not
         protected bool floatable;
 
-        public LootBase(Vector2 pos):base(pos) {
+        public LootBase(Vector2 pos) : base(pos)
+        {
             EntityManager.AddLootEntity(this);
-            
+
             // we are using 32x32px loot items drop texturs 
-            Hitbox = new Rectangle((int)(Position.X - 16*scaleFactor), (int)(Position.Y - 16*scaleFactor), (int)(32*scaleFactor), (int)(32*scaleFactor));
+            Hitbox = new Rectangle((int)(Position.X), (int)(Position.Y), (int)(32 * scaleFactor), (int)(32 * scaleFactor));
             basePosition = pos;
-            
+
             floatOffset = 3f;
             floatingSpeed = 0.1f;
             floatUp = true;
@@ -40,7 +41,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
 
         public override void Update(GameTime gameTime)
         {
-            if(floatable)
+            if (floatable)
             {
                 Float();
             }
@@ -50,11 +51,11 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
         {
             if (floatUp)
             {
-                Position += new Vector2(0,floatingSpeed);
+                Position += new Vector2(0, floatingSpeed);
             }
             else
             {
-                Position -= new Vector2(0,floatingSpeed);
+                Position -= new Vector2(0, floatingSpeed);
             }
 
             if (Position.Y > basePosition.Y + floatOffset)
