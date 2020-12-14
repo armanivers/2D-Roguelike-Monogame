@@ -8,7 +8,6 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 {
     public class Chest : LootContainer
     {
-        private List<InventoryItem> dropList;
         public Chest(Vector2 pos, List<InventoryItem> dropList) : base(pos, 2)
         {
             // TODO: Einigung für Origin setzen
@@ -28,7 +27,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         public override void OpenContainer()
         {
             // drop all items from the provided droplist
-            new AxeLoot(Position);
+            new AxeLoot(Position+new Vector2(Hitbox.Width/2,Hitbox.Height/2));
             isExpired = true;
         }
     }

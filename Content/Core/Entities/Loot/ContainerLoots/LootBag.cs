@@ -8,7 +8,6 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 {
     public class LootBag : LootContainer
     {
-        private List<InventoryItem> dropList;
         public LootBag(Vector2 pos,List<InventoryItem> dropList) : base(pos,1)
         {
             texture = TextureManager.LootBag;

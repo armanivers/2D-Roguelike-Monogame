@@ -15,6 +15,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         protected float timeToOpen;
         protected float openingTimer;
         public String currentAnimation = "Chest_Idle";
+        protected List<InventoryItem> dropList;
 
         public LootContainer(Vector2 pos,int timeToOpen) : base(pos) {
             this.closed = true;
