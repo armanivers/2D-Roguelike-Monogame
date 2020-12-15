@@ -90,8 +90,8 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D Blank { get; private set; }
         public static Texture2D Gradient { get; private set; }
 
-        public static Texture2D FOV1080p { get; private set; }
-        public static Texture2D FOV720p { get; private set; }
+        public static Texture2D Fog { get; private set; }
+        public static Texture2D FOV { get; private set; }
 
         // UI Data
         public static Texture2D healthBarEmpty { get; private set; }
@@ -192,8 +192,8 @@ namespace _2DRoguelike.Content.Core
             Background = content.Load<Texture2D>("Assets/Graphics/Menus/background");
             Blank = content.Load<Texture2D>("Assets/Graphics/Menus/blank");
             Gradient = content.Load<Texture2D>("Assets/Graphics/Menus/gradient");
-            FOV1080p = content.Load<Texture2D>("Assets/Graphics/WorldElements/FOV1080p");
-            FOV720p = content.Load<Texture2D>("Assets/Graphics/WorldElements/FOV720p");
+            Fog = content.Load<Texture2D>("Assets/Graphics/WorldElements/Fog");
+            FOV = content.Load<Texture2D>("Assets/Graphics/WorldElements/FOV");
 
             // UI Data
             healthBarEmpty = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/EmptyBar");

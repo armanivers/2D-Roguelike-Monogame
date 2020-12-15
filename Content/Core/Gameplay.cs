@@ -96,14 +96,18 @@ namespace _2DRoguelike.Content.Core
             // seperate sprite batch begin+end which isn't attached to an active 2D Camera
             spriteBatch.Begin();
 
-            // fake FOV
+            // FOV + Fog
             if(GameSettings.fullScreen)
             {
-                spriteBatch.Draw(TextureManager.FOV1080p, Vector2.Zero, Color.White);
+                // FOV Texture = 720p , so for 1080p it needs upscaling of 1.5
+                spriteBatch.Draw(TextureManager.FOV, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 1.5f, SpriteEffects.None, 0);
+                // Fog Texture = 720p, so for 1080p it needs upscaling of 1.5
+                spriteBatch.Draw(TextureManager.Fog, Vector2.Zero, null, Color.White * 0.3f, 0, Vector2.Zero, 1.5f, SpriteEffects.None, 0);
             }
             else
             {
-                spriteBatch.Draw(TextureManager.FOV720p, Vector2.Zero, Color.White);
+                spriteBatch.Draw(TextureManager.FOV, Vector2.Zero, null,Color.White,0,Vector2.Zero,1f,SpriteEffects.None,0);
+                spriteBatch.Draw(TextureManager.Fog, Vector2.Zero, null, Color.White * 0.3f, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
             }
             // UI Elements
             UIManager.DrawStatic(spriteBatch);

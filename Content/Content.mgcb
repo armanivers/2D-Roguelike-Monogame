@@ -817,7 +817,7 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/UI/PlayerUI/slotUsed.png
 
-#begin Assets/Graphics/WorldElements/FOV1080p.png
+#begin Assets/Graphics/WorldElements/Fog.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -827,9 +827,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Graphics/WorldElements/FOV1080p.png
+/build:Assets/Graphics/WorldElements/Fog.png
 
-#begin Assets/Graphics/WorldElements/FOV720p.png
+#begin Assets/Graphics/WorldElements/FOV.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -839,7 +839,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Graphics/WorldElements/FOV720p.png
+/build:Assets/Graphics/WorldElements/FOV.png
 
 #begin Assets/Graphics/WorldElements/Shadow.png
 /importer:TextureImporter

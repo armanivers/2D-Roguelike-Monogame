@@ -40,14 +40,13 @@ namespace _2DRoguelike.Content.Core.UI
 
         public static void ForceResolutionUpdate()
         {
-            if(healthBar != null && skillBar != null && experienceBar != null && toolTip != null && highscore != null)
-            {
-                healthBar.ForceResolutionUpdate();
-                skillBar.ForceResolutionUpdate();
-                experienceBar.ForceResolutionUpdate();
-                toolTip.ForceResolutionUpdate();
-                highscore.ForceResolutionUpdate();
-            }
+
+                healthBar?.ForceResolutionUpdate();
+                skillBar?.ForceResolutionUpdate();
+                experienceBar?.ForceResolutionUpdate();
+                toolTip?.ForceResolutionUpdate();
+                highscore?.ForceResolutionUpdate();
+            
         }
 
     }
