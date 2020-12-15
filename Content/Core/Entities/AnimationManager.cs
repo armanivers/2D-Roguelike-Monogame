@@ -15,6 +15,7 @@ namespace _2DRoguelike.Content.Core.Entities
         private Animation animation;
         private float timer;
         private bool running = true;
+        private bool reverse;
 
         public Vector2 Position { get; set; }
 
@@ -23,6 +24,8 @@ namespace _2DRoguelike.Content.Core.Entities
         {
             this.entity = entity;
             this.animation = animation;
+            this.Position = entity.Position;
+            reverse = animation.Reverse;
         }
 
         public void Play(Animation newAnimation)
