@@ -27,7 +27,7 @@ namespace _2DRoguelike.Content.Core.Entities
         public Humanoid(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
         {
             // scaleFactor = 1f;
-            Hitbox = new Rectangle((int)(Position.X + 17*scaleFactor), (int)(Position.Y + 14*scaleFactor), (int)(29*scaleFactor), (int)(49*scaleFactor));
+            Hitbox = new Rectangle((int)(Position.X + 17*ScaleFactor), (int)(Position.Y + 14*ScaleFactor), (int)(29*ScaleFactor), (int)(49*ScaleFactor));
             // alle Humanoids besitzen gleiche Hitbox
         }
 
@@ -191,7 +191,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public bool CollidesWithFrameBorder()
         {
-            return !new Rectangle(0, 0, (int)Game1.ScreenSize.X, (int)Game1.ScreenSize.Y).Contains(hitbox);
+            return !new Rectangle(0, 0, (int)Game1.ScreenSize.X, (int)Game1.ScreenSize.Y).Contains(Hitbox);
         }
 
         public override void Update(GameTime gameTime)

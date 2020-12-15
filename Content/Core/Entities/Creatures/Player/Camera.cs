@@ -26,7 +26,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             const int idleSheetFrameCount_Width = 6;
             const int idleSheetFrameCount_Height = 4;
 
-            var target = Matrix.CreateTranslation(new Vector3(-player.Position.X - (player.Size.X/ idleSheetFrameCount_Width / 2), -player.Position.Y - (player.Size.Y/ idleSheetFrameCount_Height / 2), 0));
+            var target = Matrix.CreateTranslation(new Vector3(-player.Position.X - (player.TextureSize.X/ idleSheetFrameCount_Width / 2), -player.Position.Y - (player.TextureSize.Y/ idleSheetFrameCount_Height / 2), 0));
             
             var zoomFactor = Matrix.CreateScale(zoom);
 

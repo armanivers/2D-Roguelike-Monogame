@@ -73,7 +73,7 @@ namespace _2DRoguelike.Content.Core.World
 
         public override void Update(Player player)
         {
-            if (player.hitbox.Intersects(room.exithitbox))
+            if (player.Hitbox.Intersects(room.exithitbox))
             {
                 LevelManager.NextLevel(player);
             }

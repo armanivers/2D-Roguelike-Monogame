@@ -55,12 +55,12 @@ namespace _2DRoguelike.Content.Core.GameDebug
 
                 foreach (var p in EntityManager.projectiles)
                 {
-                    DrawRectangleHitbox(p.hitbox, spriteBatch, Color.Blue);
+                    DrawRectangleHitbox(p.Hitbox, spriteBatch, Color.Blue);
                 }
 
                 foreach (var l in EntityManager.loots)
                 {
-                    DrawRectangleHitbox(l.hitbox, spriteBatch, Color.Blue);
+                    DrawRectangleHitbox(l.Hitbox, spriteBatch, Color.Blue);
                 }
             }
 

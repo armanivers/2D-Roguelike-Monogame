@@ -17,14 +17,15 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
         private const float EXPIRATION_TIMER = 3;
         private const float SPEED = 10f;
 
-        public Arrow(Humanoid creat) : base(new Vector2(creat.Hitbox.X + 16, creat.Hitbox.Y + 16), -7, +5, SPEED)
+        public Arrow(Humanoid creat) : base(new Vector2(creat.Hitbox.X + 16, creat.Hitbox.Y + 25), -7, +5, SPEED)
         {
+            this.texture = TextureManager.Arrow;
+            DrawOrigin = TextureSize / 2;
             shootingEntity = creat;
             DAMAGE = ((Bow)shootingEntity.CurrentWeapon).weaponDamage;
-            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(13*scaleFactor), (int)(13*scaleFactor));
+            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(13*ScaleFactor), (int)(13*ScaleFactor));
             this.Acceleration = Vector2.Normalize(GetDirection());
             this.rotation = (float)Math.Atan2(Acceleration.Y, Acceleration.X);
-            this.texture = TextureManager.Arrow;
             this.timer = 0;
         }
 
@@ -51,7 +52,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
         }
 
         private bool WithinOwnHitbox() {
-            return shootingEntity.Hitbox.Intersects(hitbox);
+            return shootingEntity.Hitbox.Intersects(Hitbox);
         }
 
         private void HittingLogic() {
@@ -62,7 +63,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
                 {
                     if (enemy is Enemies.Enemy)
                     { 
-                    if (hitbox.Intersects(enemy.Hitbox))
+                    if (Hitbox.Intersects(enemy.Hitbox))
                         {
                             ((Enemies.Enemy)enemy).DeductHealthPoints(DAMAGE);
                             isExpired = true;
@@ -70,7 +71,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
                     } 
                 }     
             } else if (shootingEntity is Enemies.Enemy) {
-                if (hitbox.Intersects(ControllingPlayer.Player.Instance.Hitbox)) {
+                if (Hitbox.Intersects(ControllingPlayer.Player.Instance.Hitbox)) {
                     ControllingPlayer.Player.Instance.DeductHealthPoints(DAMAGE);
                     isExpired = true;
                 }
