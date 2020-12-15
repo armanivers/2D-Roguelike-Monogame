@@ -281,7 +281,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             // TODO: mit LevelManager.currentroom.entities ersetzen 
             foreach (var loot in EntityManager.loots)
             {
-                if(hitbox.Intersects(loot.hitbox))    
+                if(Hitbox.Intersects(loot.Hitbox))    
                 {     
                     if(loot is LootContainer && ((LootContainer)loot).Closed) 
                     { 

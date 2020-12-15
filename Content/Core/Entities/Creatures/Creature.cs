@@ -38,8 +38,8 @@ namespace _2DRoguelike.Content.Core.Entities
             set
             {
                 base.Position = value;
-                hitbox.X = (int)(value.X + 17*scaleFactor);
-                hitbox.Y = (int)(value.Y + 14*scaleFactor);
+                hitbox.X = (int)(value.X + 17*ScaleFactor);
+                hitbox.Y = (int)(value.Y + 14*ScaleFactor);
 
                 if (animationManager != null)
                 {
@@ -60,7 +60,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public Rectangle GetTileCollisionHitbox()
         {
-            return new Rectangle(hitbox.X + 5, hitbox.Y + 5 + 20, hitbox.Width - 10, hitbox.Height - 10 - 20);
+            return new Rectangle(Hitbox.X + 5, Hitbox.Y + 5 + 20, Hitbox.Width - 10, Hitbox.Height - 10 - 20);
         }
 
 

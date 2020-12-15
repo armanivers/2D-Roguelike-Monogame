@@ -100,8 +100,8 @@ namespace _2DRoguelike.Content.Core.Entities
                 new Rectangle(animation.CurrentFrame * animation.FrameWidth, animation.yOffest, animation.FrameWidth, animation.FrameHeight), 
                 entity.colour * entity.transparency,
                 0f,
-                Vector2.Zero,
-                entity.scaleFactor,
+                entity.DrawOrigin,
+                entity.ScaleFactor,
                 SpriteEffects.None, 0
                 );
             

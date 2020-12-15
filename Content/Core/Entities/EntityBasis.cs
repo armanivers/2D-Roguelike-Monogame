@@ -11,7 +11,10 @@ namespace _2DRoguelike.Content.Core.Entities
     {
         public Color colour;
         public float transparency;
-        public float scaleFactor = 1f; // Default für alle, nicht hier ändern
+        private float scaleFactor = 1f; 
+        public float ScaleFactor { get => scaleFactor; set => scaleFactor = value; } // Skalierung der Textur (muss für Hitboxen mitberücksichtigt werden!). 1f = Default für alle, in Unterklassen änderbar
+        private Vector2 drawOrigin = Vector2.Zero;
+        public Vector2 DrawOrigin { get => drawOrigin; set => drawOrigin = value; } // Zentraler Punkt der Textur (Für Rotationen (→Hitbox) hilfreich). Vector2.Zero = Default für alle, in Unterklassen änderbar
 
         public bool shadow;
         public Vector2 shadowPosition;
@@ -23,8 +26,10 @@ namespace _2DRoguelike.Content.Core.Entities
         protected AnimationManager animationManager;
         protected Dictionary<string, Animation> animations;
 
-        public Rectangle hitbox; // Problem: bei protected: erlaubt nicht Änderung von Hitbox-Koordinaten
-        public Rectangle Hitbox { get { return hitbox; } set { hitbox = value; } }
+
+        protected Rectangle hitbox;
+        public Rectangle Hitbox { get => hitbox; set => hitbox = value; }
+
         public Vector2 HitboxCenter { get { return new Vector2(Hitbox.X + Hitbox.Width / 2, Hitbox.Y + Hitbox.Height / 2); } }
 
         private Vector2 position;
@@ -42,7 +47,7 @@ namespace _2DRoguelike.Content.Core.Entities
                 }
             }
         }
-        public Vector2 Size
+        public Vector2 TextureSize
         {
             get
             {
@@ -75,8 +80,8 @@ namespace _2DRoguelike.Content.Core.Entities
             if (shadow)
                 // Size / 2: Was, wenn die Textur ein sheet ist (breite größer, als das gezeichnete???)
                 spriteBatch.Draw(TextureManager.Shadow, shadowPosition, null, Color.White * 0.45f * transparency, 0,
-                    new Vector2(0, -35),
-                    scaleFactor, SpriteEffects.None, 0);
+                    DrawOrigin + new Vector2(0, -35),
+                    ScaleFactor, SpriteEffects.None, 0);
 
             if (animationManager != null)
             {
@@ -86,7 +91,7 @@ namespace _2DRoguelike.Content.Core.Entities
             {
                 if (transparency > 0)
                     // Size / 2: Origin in der Mitte muss geeinigt werden wann!!!
-                    spriteBatch.Draw(texture, Position, null, colour * transparency, rotation, Vector2.Zero, scaleFactor, SpriteEffects.None, 0);
+                    spriteBatch.Draw(texture, Position, null, colour * transparency, rotation, DrawOrigin, ScaleFactor, SpriteEffects.None, 0);
             }
             else { throw new Exception("Draw failed, there's a problem with the texture/animationManager!"); };
         }

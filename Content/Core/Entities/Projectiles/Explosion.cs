@@ -17,7 +17,7 @@ namespace _2DRoguelike.Content.Core.Entities
         public Explosion(): base(new Vector2(ControllingPlayer.Player.Instance.Hitbox.X-16, ControllingPlayer.Player.Instance.Hitbox.Y-16),16,16, 7f)
         {
             this.Hitbox = new Rectangle((int)Position.X+16, (int)Position.Y+16, 32, 32);
-            this.Acceleration = Vector2.Normalize(InputController.MousePosition - new Vector2(hitbox.X,hitbox.Y));
+            this.Acceleration = Vector2.Normalize(InputController.MousePosition - new Vector2(Hitbox.X,Hitbox.Y));
 
             this.texture = TextureManager.Explosion;
             animations = new Dictionary<string, Animation>()
@@ -42,7 +42,7 @@ namespace _2DRoguelike.Content.Core.Entities
             {
                 if(livingEntity is Creature && livingEntity != ControllingPlayer.Player.Instance) //&& livingEntity != Player.Player.Instance
                 {
-                    if (this.hitbox.Intersects(livingEntity.Hitbox))
+                    if (this.Hitbox.Intersects(livingEntity.Hitbox))
                     {
                         ((Creature)livingEntity).DeductHealthPoints(1);
                         Explode();

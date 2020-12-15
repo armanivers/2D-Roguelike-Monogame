@@ -152,11 +152,11 @@ namespace _2DRoguelike.Content.Core.World
         {
             for (int i = 0; i < NumRooms; i++)
             {
-                if (player.hitbox.Intersects(roomlist[i].roomhitbox))
+                if (player.Hitbox.Intersects(roomlist[i].roomhitbox))
                 {
                     if (roomlist[i].exitroom)
                     {
-                        if (player.hitbox.Intersects(roomlist[i].exithitbox))
+                        if (player.Hitbox.Intersects(roomlist[i].exithitbox))
                         {
                             LevelManager.NextLevel(player);
                         }
