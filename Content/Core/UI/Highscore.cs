@@ -27,7 +27,7 @@ namespace _2DRoguelike.Content.Core.UI
         public void Update(GameTime gameTime)
         {
 
-            currentScore = StatiscticsManager.currentScore.Score;
+            currentScore = StatisticsManager.currentScore.Score;
             textPosition = new Vector2(GameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("Score: " + currentScore).X / 2, textYOffset);
         }
         public void Draw(SpriteBatch spriteBatch)

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core
 {
-    static class StatiscticsManager
+    static class StatisticsManager
     {
         public static PlayerScore currentScore;
 

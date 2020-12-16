@@ -1,32 +1,53 @@
 ﻿using _2DRoguelike.Content.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace _2DRoguelike.Content.Core
 {
-    class GameSettings
+    public class GameSettings
     {
-        public static bool fullScreen;
+        public static string playerName;
 
+        public static bool fullScreen;
         public static int screenWidth;
         public static int screenHeight;
-        
-        public static float backgroundMusicLevel = 0.2f;
+
+        public static float backgroundMusicLevel;
         public static float prevBackgroundMusicLevel;
-        public static float soundeffectsLevel = 0.2f;
+        public static float soundeffectsLevel;
         public static float prevSoundeffectsLevel;
 
-        public static bool DEBUG = true;
+        public static bool DEBUG;
 
         // debug cheats
 
-        public static bool godMode = true;
-        public static bool showHitbox = true;
-        public static bool showMouse = true;
-        public static bool playerDebug = true;
-        public static bool attackHitbox = true;
+        public static bool godMode;
+        public static bool showHitbox;
+        public static bool showMouse;
+        public static bool playerDebug;
+        public static bool attackHitbox;
         
+        public GameSettings()
+        {
+            playerName = "User01";
+
+            backgroundMusicLevel = 0.2f;
+            soundeffectsLevel = 0.2f;
+
+            DEBUG = true;
+
+            godMode = true;
+            showHitbox = true;
+            showMouse = true;
+            playerDebug = true;
+            attackHitbox = true;
+
+            SetWindowedMode();
+    }
+
         public static void SwitchGodMode()
         {
             godMode = !godMode;
@@ -175,11 +196,21 @@ namespace _2DRoguelike.Content.Core
         public static void SaveSettings()
         {
             // TODO Save all settings to a config file
+
         }
 
-        public static void LoadSettings()
+        public static void LoadSettings(GameSettings settings)
         {
             // TODO Load all settings from a config file
+
         }
+
+        public static bool settingsFileExists()
+        {
+            //return File.Exists();
+            return true;
+        }
+
+
     }
 }

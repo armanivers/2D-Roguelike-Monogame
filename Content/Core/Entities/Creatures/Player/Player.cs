@@ -239,9 +239,10 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 return;
 
             if(currentXP >= xpCap[currentXPLevel]){
-                StatiscticsManager.LevelUp();
+                StatisticsManager.LevelUp();
                 while (currentXPLevel < MAX_LEVEL && currentXP >= xpCap[currentXPLevel])
                 {
+                    StatisticsManager.LevelUp();
                     currentXPLevel++;
                     DetermineLevelupAward(currentXPLevel);
                     // add remaining xp after levelup to next level
@@ -283,10 +284,13 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             {
                 if(Hitbox.Intersects(loot.Hitbox))    
                 {     
-                    if(loot is LootContainer && ((LootContainer)loot).Closed) 
+                    if(loot is LootContainer) 
                     { 
-                        interactableContainers.Add((LootContainer)loot);    
-                        canInteract = true;
+                        if(((LootContainer)loot).Closed)
+                        {
+                            interactableContainers.Add((LootContainer)loot);
+                            canInteract = true;
+                        }
                     }
                     else
                     {
@@ -326,11 +330,11 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             {
                 WeaponInventory[weapon.INVENTORY_SLOT] = weapon;
                 WeaponsInPosession++;
-                StatiscticsManager.NewWeaponRecieved();
+                StatisticsManager.NewWeaponRecieved();
             }
             else
             {
-                StatiscticsManager.WeaponRecieved();
+                StatisticsManager.WeaponRecieved();
             }
 
         }

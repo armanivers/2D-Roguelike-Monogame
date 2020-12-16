@@ -261,7 +261,7 @@ namespace _2DRoguelike.Content.Core.Entities
             if (this is Enemy)
             {
                 ((Enemy)this).DropExperiencePoints();
-                StatiscticsManager.MonsterKilled();
+                StatisticsManager.MonsterKilled();
             }
             isExpired = true;
         }

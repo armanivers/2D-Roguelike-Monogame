@@ -24,7 +24,7 @@ namespace _2DRoguelike.Content.Core.Screens
             notEscapable = true;
 
             // Create our menu entries.
-            MenuEntry score = new MenuEntry("Score: " + StatiscticsManager.currentScore.Score, false, Color.Yellow) ;
+            MenuEntry score = new MenuEntry("Score: " + StatisticsManager.currentScore.Score, false, Color.Yellow) ;
             MenuEntry newGame = new MenuEntry("Start New Game");
             MenuEntry mainMenu = new MenuEntry("Return To Menu");
 

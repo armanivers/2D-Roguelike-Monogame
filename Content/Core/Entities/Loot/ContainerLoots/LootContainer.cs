@@ -47,7 +47,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 
         public override void OnContact()
         {
-            StatiscticsManager.LootOpen();
+            StatisticsManager.LootOpen();
             currentAnimation = "Chest_Open";
             closed = false;
         }

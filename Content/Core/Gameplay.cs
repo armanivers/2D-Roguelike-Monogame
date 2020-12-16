@@ -23,7 +23,7 @@ namespace _2DRoguelike.Content.Core
 
         public void LoadContent()
         {
-            StatiscticsManager.InitializeScore();
+            StatisticsManager.InitializeScore();
             LevelManager.LoadContent();
             // EntityBasis Konstruktor f�gt automatisch zur EntityManager.entities hinzu
             new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 3 * 32), 100, 3);
@@ -59,7 +59,7 @@ namespace _2DRoguelike.Content.Core
             Player.Instance.DeleteInstance();
             Camera.Unload();
             LevelManager.UnloadContent();
-            StatiscticsManager.ClearScore();
+            StatisticsManager.ClearScore();
         }
 
         public void Update(GameTime gameTime)
