@@ -12,9 +12,9 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         protected bool closed;
         public bool Closed { get { return closed; } }
 
-        private const float DISAPPEARING_SPEED = 0.01f;
 
-        protected float timeToOpen;
+        protected float timeToOpen; // 1.2 = 2 Sekunden
+        private float fadingSpeed; //0.00833f;
         protected float openingTimer;
 
         public string currentAnimation = "Chest_Idle";
@@ -25,6 +25,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         {
             this.closed = true;
             this.timeToOpen = timeToOpen;
+            fadingSpeed = 1 / (timeToOpen*100);
             this.openingTimer = 0;
         }
 
@@ -35,7 +36,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
             base.Update(gameTime);
             if (!closed)
             {
-                transparency -= DISAPPEARING_SPEED;
+                transparency -= fadingSpeed;
                 openingTimer += 0.01f;
                 if (openingTimer >= timeToOpen)
                 {

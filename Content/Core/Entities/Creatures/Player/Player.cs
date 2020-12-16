@@ -345,8 +345,12 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         }
 
         public void UpdateCurrentWeaponPos() {
-            // TODO: Hier anhand von Eingaben prüfen, ob Waffenwechsel stattgefunden hat
-            // Beispiele: Num 1 - WEAPON_SLOT_CNT und Scrollen
+            // TEST
+
+            /*if (InputController.IsKeyDown(Keys.B)) {
+                new Explosion();
+            }*/
+
             if (InputController.IsKeyPressed(Keys.PageUp) || InputController.IsMouseScrolledDown())
                 SetNextWeapon();
             else if (InputController.IsKeyPressed(Keys.PageDown) || InputController.IsMouseScrolledUp())

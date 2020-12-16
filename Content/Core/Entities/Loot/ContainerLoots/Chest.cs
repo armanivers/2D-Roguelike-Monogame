@@ -8,7 +8,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 {
     public class Chest : LootContainer
     {
-        private const float TIME_TO_OPEN = 1f;
+        private const float TIME_TO_OPEN = 1.2f;
         public Chest(Vector2 pos, List<InventoryItem> dropList) : base(pos, TIME_TO_OPEN)
         {
 
