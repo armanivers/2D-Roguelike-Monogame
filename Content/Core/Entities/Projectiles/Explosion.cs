@@ -8,23 +8,24 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.Entities
 {
+
     class Explosion : Projectile
     {
 
         private const float expireTimer = 3;
         private float timer;
 
-        public Explosion(): base(new Vector2(ControllingPlayer.Player.Instance.Hitbox.X-16, ControllingPlayer.Player.Instance.Hitbox.Y-16),16,16, 7f)
+        public Explosion() : base(new Vector2(ControllingPlayer.Player.Instance.Hitbox.X - 16, ControllingPlayer.Player.Instance.Hitbox.Y - 16), 16, 16, 7f)
         {
-            this.Hitbox = new Rectangle((int)Position.X+16, (int)Position.Y+16, 32, 32);
-            this.Acceleration = Vector2.Normalize(InputController.MousePosition - new Vector2(Hitbox.X,Hitbox.Y));
+            this.Hitbox = new Rectangle((int)Position.X + 16, (int)Position.Y + 16, 32, 32);
+            this.Acceleration = Vector2.Normalize(InputController.MousePosition - new Vector2(Hitbox.X, Hitbox.Y));
 
             this.texture = TextureManager.Explosion;
             animations = new Dictionary<string, Animation>()
             {
                 {"Explode", new Animation(TextureManager.Explosion,0,6,0.1f)}
             };
-            this.animationManager = new AnimationManager(this,animations.First().Value);
+            this.animationManager = new AnimationManager(this, animations.First().Value);
             this.timer = 0;
         }
 
@@ -38,9 +39,9 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public void checkCollision()
         {
-            foreach(var livingEntity in EntityManager.creatures)
+            foreach (var livingEntity in EntityManager.creatures)
             {
-                if(livingEntity is Creature && livingEntity != ControllingPlayer.Player.Instance) //&& livingEntity != Player.Player.Instance
+                if (livingEntity is Creature && livingEntity != ControllingPlayer.Player.Instance) //&& livingEntity != Player.Player.Instance
                 {
                     if (this.Hitbox.Intersects(livingEntity.Hitbox))
                     {
@@ -57,7 +58,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             animationManager.Play(animations["Explode"]);
-            Position += Acceleration * flyingSpeed*SpeedModifier;
+            Position += Acceleration * flyingSpeed * SpeedModifier;
 
             if (timer > expireTimer)
             {

@@ -23,13 +23,14 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
             DrawOrigin = TextureSize / 2;
             shootingEntity = creat;
             DAMAGE = ((Bow)shootingEntity.CurrentWeapon).weaponDamage;
-            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(13*ScaleFactor), (int)(13*ScaleFactor));
+            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(13 * ScaleFactor), (int)(13 * ScaleFactor));
             this.Acceleration = Vector2.Normalize(GetDirection());
             this.rotation = (float)Math.Atan2(Acceleration.Y, Acceleration.X);
             this.timer = 0;
         }
 
-        private Vector2 GetDirection() {
+        private Vector2 GetDirection()
+        {
             return shootingEntity.GetAttackDirection() - Position;
         }
 
@@ -51,27 +52,33 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
             }
         }
 
-        private bool WithinOwnHitbox() {
+        private bool WithinOwnHitbox()
+        {
             return shootingEntity.Hitbox.Intersects(Hitbox);
         }
 
-        private void HittingLogic() {
-            if (shootingEntity is ControllingPlayer.Player) {
+        private void HittingLogic()
+        {
+            if (shootingEntity is ControllingPlayer.Player)
+            {
                 // TODO: ERSETZEN Durch EnemyList des Raumes
 
                 foreach (var enemy in EntityManager.creatures)
                 {
                     if (enemy is Enemies.Enemy)
-                    { 
-                    if (Hitbox.Intersects(enemy.Hitbox))
+                    {
+                        if (Hitbox.Intersects(enemy.Hitbox))
                         {
                             ((Enemies.Enemy)enemy).DeductHealthPoints(DAMAGE);
                             isExpired = true;
                         }
-                    } 
-                }     
-            } else if (shootingEntity is Enemies.Enemy) {
-                if (Hitbox.Intersects(ControllingPlayer.Player.Instance.Hitbox)) {
+                    }
+                }
+            }
+            else if (shootingEntity is Enemies.Enemy)
+            {
+                if (Hitbox.Intersects(ControllingPlayer.Player.Instance.Hitbox))
+                {
                     ControllingPlayer.Player.Instance.DeductHealthPoints(DAMAGE);
                     isExpired = true;
                 }
