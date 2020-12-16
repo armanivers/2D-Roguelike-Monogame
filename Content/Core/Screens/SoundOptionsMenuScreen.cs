@@ -61,8 +61,8 @@ namespace _2DRoguelike.Content.Core.Screens
 
         private void SetMenuEntryText()
         {
-            backgroundMusicLevel.Text = String.Format("Background Music: {0:0} %", GameSettings.backgroundMusicLevel*100);
-            soundeffectsLevel.Text = String.Format("Soundeffects: {0:0} %", GameSettings.soundeffectsLevel*100);
+            backgroundMusicLevel.Text = String.Format("Background Music: {0:0} %", Game1.gameSettings.backgroundMusicLevel*100);
+            soundeffectsLevel.Text = String.Format("Soundeffects: {0:0} %", Game1.gameSettings.soundeffectsLevel*100);
             bgDecrease.Text = "-";
             bgIncrease.Text = "+";
             sfxDecrease.Text = "-";
@@ -71,24 +71,24 @@ namespace _2DRoguelike.Content.Core.Screens
 
         private void DecreaseBackgroundMusicLevel(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.DecreaseBackgroundMusic();
+            Game1.gameSettings.DecreaseBackgroundMusic();
             SetMenuEntryText();
         }
 
         private void IncreaseBackgroundMusicLevel(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.IncreaseBackgroundMusic();
+            Game1.gameSettings.IncreaseBackgroundMusic();
             SetMenuEntryText();
         }
 
         private void DecreaseSoundEffectsLevel(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.DecreaseSoundEffectLevel();
+            Game1.gameSettings.DecreaseSoundEffectLevel();
             SetMenuEntryText();
         }
         private void IncreaseSoundEffectsLevel(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.IncreaseSoundEffectLevel();
+            Game1.gameSettings.IncreaseSoundEffectLevel();
             SetMenuEntryText();
 
         }

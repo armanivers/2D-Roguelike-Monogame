@@ -28,7 +28,7 @@ namespace _2DRoguelike.Content.Core.UI
         {
 
             currentScore = StatisticsManager.currentScore.Score;
-            textPosition = new Vector2(GameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("Score: " + currentScore).X / 2, textYOffset);
+            textPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("Score: " + currentScore).X / 2, textYOffset);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -37,7 +37,7 @@ namespace _2DRoguelike.Content.Core.UI
 
         public void ForceResolutionUpdate()
         {
-            textPosition = new Vector2(GameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("Score: " + currentScore).X / 2, textYOffset);
+            textPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("Score: " + currentScore).X / 2, textYOffset);
         }
 
     }

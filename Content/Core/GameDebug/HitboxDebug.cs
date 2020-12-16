@@ -19,7 +19,7 @@ namespace _2DRoguelike.Content.Core.GameDebug
         public void Draw(SpriteBatch spriteBatch)
         {
 
-            if (GameSettings.showMouse)
+            if (Game1.gameSettings.showMouse)
             {
                 // Mouse Targeting Line
                 var origin = Player.Instance.Hitbox;
@@ -27,7 +27,7 @@ namespace _2DRoguelike.Content.Core.GameDebug
                 DrawLine(spriteBatch, target, new Vector2(origin.X + 16, origin.Y + 16), Color.Gainsboro, 5);
             }
 
-            if (GameSettings.showHitbox) {
+            if (Game1.gameSettings.showHitbox) {
                 // Creature and Melee Hit Hitboxes
                 foreach (var p in EntityManager.creatures)
                 {

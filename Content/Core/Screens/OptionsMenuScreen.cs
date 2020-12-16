@@ -106,10 +106,10 @@ namespace _2DRoguelike.Content.Core.Screens
         {
             ungulateMenuEntry.Text = "Preferred ungulate: " + currentUngulate;
             languageMenuEntry.Text = "Language: " + languages[currentLanguage];
-            fullscreenMenuEntry.Text = "Fullscreen: " + (GameSettings.fullScreen ? "on" : "off");
+            fullscreenMenuEntry.Text = "Fullscreen: " + (Game1.gameSettings.fullScreen ? "on" : "off");
             elfMenuEntry.Text = "elf: " + elf;
-            backgroundMusicLevel.Text = "Background Music: " + (GameSettings.BackgroundMusicEnabled() ? "on" : "off");
-            soundeffectsLevel.Text = "SoundEffects: " + (GameSettings.SoundEffectsEnabled() ? "on" : "off");
+            backgroundMusicLevel.Text = "Background Music: " + (Game1.gameSettings.BackgroundMusicEnabled() ? "on" : "off");
+            soundeffectsLevel.Text = "SoundEffects: " + (Game1.gameSettings.SoundEffectsEnabled() ? "on" : "off");
             soundOptions.Text = "Sound Options";
             debugModeOptions.Text = "Debug Options";
         }
@@ -146,49 +146,49 @@ namespace _2DRoguelike.Content.Core.Screens
         /// </summary>
         private void FrobnicateMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            if (GameSettings.fullScreen)
+            if (Game1.gameSettings.fullScreen)
             {
-                GameSettings.SetWindowedMode();
+                Game1.gameSettings.SetWindowedMode();
             }
             else
             {
-                GameSettings.SetFullscreen();
+                Game1.gameSettings.SetFullscreen();
             }
             SetMenuEntryText();
         }
 
         private void EnableDisableBackgroundMusic(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.MuteUnmuteBackgroundMusic();
+            Game1.gameSettings.MuteUnmuteBackgroundMusic();
             SetMenuEntryText();
         }
 
         private void EnableDisableSoundeffects(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.MuteUnmuteSoundEffects();
+            Game1.gameSettings.MuteUnmuteSoundEffects();
             SetMenuEntryText();
         }
 
         private void DecreaseBackgroundMusicLevel(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.DecreaseBackgroundMusic();
+            Game1.gameSettings.DecreaseBackgroundMusic();
             SetMenuEntryText();
         }
 
         private void IncreaseBackgroundMusicLevel(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.IncreaseBackgroundMusic();
+            Game1.gameSettings.IncreaseBackgroundMusic();
             SetMenuEntryText();
         }
 
         private void DecreaseSoundEffectsLevel(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.DecreaseSoundEffectLevel();
+            Game1.gameSettings.DecreaseSoundEffectLevel();
             SetMenuEntryText();
         }
         private void IncreaseSoundEffectsLevel(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.IncreaseSoundEffectLevel();
+            Game1.gameSettings.IncreaseSoundEffectLevel();
             SetMenuEntryText();
 
         }

@@ -86,7 +86,7 @@ namespace _2DRoguelike.Content.Core
             EntityManager.Draw(spriteBatch);
             UIManager.DrawDynamic(spriteBatch);
 
-            if (GameSettings.DEBUG)
+            if (Game1.gameSettings.DEBUG)
             {
                 GameDebug.GameDebug.DrawDynamic(spriteBatch);
             }
@@ -97,7 +97,7 @@ namespace _2DRoguelike.Content.Core
             spriteBatch.Begin();
 
             // FOV + Fog
-            if(GameSettings.fullScreen)
+            if(Game1.gameSettings.fullScreen)
             {
                 // FOV Texture = 720p , so for 1080p it needs upscaling of 1.5
                 spriteBatch.Draw(TextureManager.FOV, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 1.5f, SpriteEffects.None, 0);
@@ -112,7 +112,7 @@ namespace _2DRoguelike.Content.Core
             // UI Elements
             UIManager.DrawStatic(spriteBatch);
 
-            if (GameSettings.DEBUG)
+            if (Game1.gameSettings.DEBUG)
             {
                 GameDebug.GameDebug.DrawStatic(spriteBatch);
             }

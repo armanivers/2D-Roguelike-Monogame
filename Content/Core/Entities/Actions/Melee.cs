@@ -17,7 +17,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         public override void CommenceAttack()
         {
             CallingInstance.AttackTimeSpanTimer = 0;
-            SoundManager.MeleeWeaponSwing.Play(GameSettings.soundeffectsLevel, 0.2f, 0);
+            SoundManager.MeleeWeaponSwing.Play(Game1.gameSettings.soundeffectsLevel, 0.2f, 0);
             CallingInstance.CurrentWeapon.UseWeapon();
         }
     }

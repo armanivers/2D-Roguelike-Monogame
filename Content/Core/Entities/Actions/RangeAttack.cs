@@ -14,7 +14,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         {
             // TODO: Ausführen der Logik für den Angriff
             CallingInstance.AttackTimeSpanTimer = 0;
-            SoundManager.ShootArrow.Play(GameSettings.soundeffectsLevel, 0.2f, 0);
+            SoundManager.ShootArrow.Play(Game1.gameSettings.soundeffectsLevel, 0.2f, 0);
             CallingInstance.CurrentWeapon.UseWeapon();
 
             /*Arris Notizen:

@@ -42,7 +42,7 @@ namespace _2DRoguelike.Content.Core.UI
             scalingFactor = 2.2f;
             
             skillbarTexture = TextureManager.skillbar;
-            skillbarPosition = new Vector2(GameSettings.screenWidth / 2 - skillbarTexture.Width * scalingFactor / 2, GameSettings.screenHeight-skillbarTexture.Height * scalingFactor - 30);
+            skillbarPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - skillbarTexture.Width * scalingFactor / 2, Game1.gameSettings.screenHeight-skillbarTexture.Height * scalingFactor - 30);
             
             redCrossSlotTexture = TextureManager.redSlotCross;
             usedSlotTexture = TextureManager.slotUsed;
@@ -133,7 +133,7 @@ namespace _2DRoguelike.Content.Core.UI
 
         public void ForceResolutionUpdate()
         {
-            skillbarPosition = new Vector2(GameSettings.screenWidth / 2 - skillbarTexture.Width * scalingFactor / 2, GameSettings.screenHeight - skillbarTexture.Height * scalingFactor - 30);
+            skillbarPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - skillbarTexture.Width * scalingFactor / 2, Game1.gameSettings.screenHeight - skillbarTexture.Height * scalingFactor - 30);
             usedSlotPosition = new Vector2(skillbarPosition.X + xOffset, skillbarPosition.Y + yOffset);
         }
 

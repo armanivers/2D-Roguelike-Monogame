@@ -42,7 +42,7 @@ namespace _2DRoguelike.Content.Core.UI
             
             currentXP = target.CurrentXP;
             currentXPLevel = target.currentXPLevel;
-            textPosition = new Vector2(GameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("Level: " + currentXPLevel + " XP: " + currentXP).X/2, 80);
+            textPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("Level: " + currentXPLevel + " XP: " + currentXP).X/2, 80);
             //currentWidth = (int)(((double)(currentHealth) / 100) * fullWidth);
             //Debug.WriteLine("target.HealthPoints: {3}\ncurrentHealth: {0}\ncurrentWidth: {1}\n fullWidth. {2}\n---------------", currentHealth, currentWidth, fullWidth,target.HealthPoints);
         }
@@ -55,7 +55,7 @@ namespace _2DRoguelike.Content.Core.UI
 
         public void ForceResolutionUpdate()
         {
-            textPosition = new Vector2(GameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("Level: " + currentXPLevel + " XP: " + currentXP).X / 2, 80);
+            textPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("Level: " + currentXPLevel + " XP: " + currentXP).X / 2, 80);
         }
 
     }

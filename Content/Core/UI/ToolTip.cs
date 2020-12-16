@@ -27,7 +27,7 @@ namespace _2DRoguelike.Content.Core.UI
             target = player;
             scalingFactor = 2.2f;
             visibility = 0;
-            tooltipPosition = new Vector2(GameSettings.screenWidth / 2 - interactWithContainerLength/2, GameSettings.screenHeight/2+60);
+            tooltipPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - interactWithContainerLength/2, Game1.gameSettings.screenHeight/2+60);
         }
 
         public void Update(GameTime gameTime)
@@ -59,7 +59,7 @@ namespace _2DRoguelike.Content.Core.UI
 
         public void ForceResolutionUpdate()
         { 
-            tooltipPosition = new Vector2(GameSettings.screenWidth / 2 - interactWithContainerLength / 2, GameSettings.screenHeight / 2 + 60);
+            tooltipPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - interactWithContainerLength / 2, Game1.gameSettings.screenHeight / 2 + 60);
         }
 
     }

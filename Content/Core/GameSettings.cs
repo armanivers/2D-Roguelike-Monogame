@@ -9,29 +9,34 @@ namespace _2DRoguelike.Content.Core
 {
     public class GameSettings
     {
-        public static string playerName;
+        // the 3 "../" used to save the settings file in the main direcotry of the game, instead of putting it in bin/Debug/netcoreapp3.1
+        private string settingsSavePath = "../../../settings.xml";
 
-        public static bool fullScreen;
-        public static int screenWidth;
-        public static int screenHeight;
+        public string playerName;
 
-        public static float backgroundMusicLevel;
-        public static float prevBackgroundMusicLevel;
-        public static float soundeffectsLevel;
-        public static float prevSoundeffectsLevel;
+        public bool fullScreen;
+        public int screenWidth;
+        public int screenHeight;
 
-        public static bool DEBUG;
+        public float backgroundMusicLevel;
+        public float prevBackgroundMusicLevel;
+        public float soundeffectsLevel;
+        public float prevSoundeffectsLevel;
+
+        public bool DEBUG;
 
         // debug cheats
 
-        public static bool godMode;
-        public static bool showHitbox;
-        public static bool showMouse;
-        public static bool playerDebug;
-        public static bool attackHitbox;
-        
+        public bool godMode;
+        public bool showHitbox;
+        public bool showMouse;
+        public bool playerDebug;
+        public bool attackHitbox;
+       
+        // default settings 
         public GameSettings()
         {
+            // Defaults
             playerName = "User01";
 
             backgroundMusicLevel = 0.2f;
@@ -46,33 +51,33 @@ namespace _2DRoguelike.Content.Core
             attackHitbox = true;
 
             SetWindowedMode();
-    }
+         }
 
-        public static void SwitchGodMode()
+        public void SwitchGodMode()
         {
             godMode = !godMode;
         }
-        public static void SwitchShowHitbox()
+        public void SwitchShowHitbox()
         {
             showHitbox = !showHitbox;
         }
 
-        public static void SwitchShowMouse()
+        public void SwitchShowMouse()
         {
             showMouse = !showMouse;
         }
 
-        public static void SwitchPlayerDebug()
+        public void SwitchPlayerDebug()
         {
             playerDebug = !playerDebug;
         }
 
-        public static void SwitchAttackHitox()
+        public void SwitchAttackHitox()
         {
             attackHitbox = !attackHitbox;
         }
 
-        public static void SetFullscreen()
+        public void SetFullscreen()
         {
             fullScreen = true;
             Game1._graphics.PreferredBackBufferWidth = 1920;
@@ -84,7 +89,7 @@ namespace _2DRoguelike.Content.Core
             //Game1._graphics.ApplyChanges();
         }
 
-        public static void SetWindowedMode()
+        public void SetWindowedMode()
         {
             fullScreen = false;
             Game1._graphics.PreferredBackBufferWidth = 1280;
@@ -96,7 +101,7 @@ namespace _2DRoguelike.Content.Core
             //Game1._graphics.ApplyChanges();
         }
 
-        public static float GetTextScale()
+        public float GetTextScale()
         {
             if (fullScreen)
             {
@@ -108,7 +113,7 @@ namespace _2DRoguelike.Content.Core
             }
         }
 
-        public static void DecreaseBackgroundMusic()
+        public void DecreaseBackgroundMusic()
         {
             backgroundMusicLevel -= 0.1f;
             if (backgroundMusicLevel <= 0)
@@ -117,7 +122,7 @@ namespace _2DRoguelike.Content.Core
             }
         }
 
-        public static void IncreaseBackgroundMusic()
+        public void IncreaseBackgroundMusic()
         {
             backgroundMusicLevel += 0.1f;
             if (backgroundMusicLevel >= 1)
@@ -126,7 +131,7 @@ namespace _2DRoguelike.Content.Core
             }
         }
 
-        public static void DecreaseSoundEffectLevel()
+        public void DecreaseSoundEffectLevel()
         {
             soundeffectsLevel -= 0.1f;
             if(soundeffectsLevel < 0)
@@ -135,7 +140,7 @@ namespace _2DRoguelike.Content.Core
             }
         }
 
-        public static bool SoundEffectsEnabled()
+        public bool SoundEffectsEnabled()
         {
             if(soundeffectsLevel > 0)
             {
@@ -144,7 +149,7 @@ namespace _2DRoguelike.Content.Core
             return false;
         }
 
-        public static void IncreaseSoundEffectLevel()
+        public void IncreaseSoundEffectLevel()
         {
             soundeffectsLevel += 0.1f;
             if (soundeffectsLevel > 1)
@@ -153,7 +158,7 @@ namespace _2DRoguelike.Content.Core
             }
         }
 
-        public static bool BackgroundMusicEnabled()
+        public bool BackgroundMusicEnabled()
         {
             if (backgroundMusicLevel > 0)
             {
@@ -162,7 +167,7 @@ namespace _2DRoguelike.Content.Core
             return false;
         }
 
-        public static void MuteUnmuteSoundEffects()
+        public void MuteUnmuteSoundEffects()
         {
             if (SoundEffectsEnabled())
             {
@@ -175,7 +180,7 @@ namespace _2DRoguelike.Content.Core
             }
         }
 
-        public static void MuteUnmuteBackgroundMusic()
+        public void MuteUnmuteBackgroundMusic()
         {
             if (BackgroundMusicEnabled())
             {
@@ -188,27 +193,74 @@ namespace _2DRoguelike.Content.Core
             }
         }
 
-        public static void SwitchDebugMode()
+        public void SwitchDebugMode()
         {
             DEBUG = !DEBUG;
         }
 
-        public static void SaveSettings()
+        public void ApplySettings(GameSettings settings)
         {
-            // TODO Save all settings to a config file
+            if(settings == null)
+            {
+                return;
+            }
+
+            playerName = settings.playerName;
+            
+            backgroundMusicLevel = settings.backgroundMusicLevel;
+            prevBackgroundMusicLevel = settings.prevBackgroundMusicLevel;
+
+            soundeffectsLevel = settings.soundeffectsLevel;
+            prevSoundeffectsLevel = settings.prevSoundeffectsLevel;
+
+            DEBUG = settings.DEBUG;
+            godMode = settings.godMode;
+            showHitbox = settings.showHitbox;
+            showMouse = settings.showMouse;
+            playerDebug = settings.playerDebug;
+            attackHitbox = settings.attackHitbox;
+
+            if(settings.fullScreen)
+            {
+                SetFullscreen();
+            }
+            else
+            {
+                SetWindowedMode();
+            }
 
         }
 
-        public static void LoadSettings(GameSettings settings)
+        public void SaveSettings()
         {
-            // TODO Load all settings from a config file
+            using(TextWriter writer = new StreamWriter(settingsSavePath))
+            {
+                XmlSerializer xmlser = new XmlSerializer(this.GetType());
+                xmlser.Serialize(writer,this);
+            }
+        }
+
+        public void LoadSettings()
+        {
+            if(!settingsFileExists())
+            {
+                SaveSettings();
+                return;
+            }
+            GameSettings instance;
+
+            using(TextReader reader = new StreamReader(settingsSavePath))
+            {
+                XmlSerializer xmlser = new XmlSerializer(this.GetType());
+                instance = (GameSettings)xmlser.Deserialize(reader);
+            }
+            ApplySettings(instance);
 
         }
 
-        public static bool settingsFileExists()
+        public bool settingsFileExists()
         {
-            //return File.Exists();
-            return true;
+            return File.Exists(settingsSavePath);
         }
 
 

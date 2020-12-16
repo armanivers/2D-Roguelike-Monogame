@@ -31,7 +31,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             var zoomFactor = Matrix.CreateScale(zoom);
 
             // instead of gameSettings the actual viewport should be used, but its buggy??
-            var translationMatrix = Matrix.CreateTranslation(new Vector3(GameSettings.screenWidth * 0.5f, GameSettings.screenHeight* 0.5f, 0));
+            var translationMatrix = Matrix.CreateTranslation(new Vector3(Game1.gameSettings.screenWidth * 0.5f, Game1.gameSettings.screenHeight* 0.5f, 0));
 
             transform = target *  zoomFactor *  translationMatrix * shakeOffsetMultiplier;
         } 
@@ -70,7 +70,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         
         public static void initZoom()
         {
-            if (GameSettings.fullScreen)
+            if (Game1.gameSettings.fullScreen)
             {
                 zoom = 2.0f;
             }

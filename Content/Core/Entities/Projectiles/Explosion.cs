@@ -32,7 +32,7 @@ namespace _2DRoguelike.Content.Core.Entities
         private void Explode()
         {
             this.isExpired = true;
-            SoundManager.Explosion.Play(GameSettings.soundeffectsLevel, 0.2f, 0);
+            SoundManager.Explosion.Play(Game1.gameSettings.soundeffectsLevel, 0.2f, 0);
             Camera.ShakeScreen();
 
         }

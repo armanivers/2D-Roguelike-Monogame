@@ -82,6 +82,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
         private void ConfirmExitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
         {
+            Game1.gameSettings.SaveSettings();
             ScreenManager.Game.Exit();
         }
 

@@ -312,7 +312,7 @@ namespace _2DRoguelike.Content.Core.Screens
             Color dataColor = new Color(255, 191, 128) * TransitionAlpha;
 
             float titleScale = 1.25f;
-            float dataScale = GameSettings.GetTextScale();
+            float dataScale = Game1.gameSettings.GetTextScale();
 
             titlePosition.Y -= transitionOffset * 100;
 

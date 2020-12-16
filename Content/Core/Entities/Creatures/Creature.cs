@@ -81,7 +81,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
             if(this is Player)
             {
-                if (GameSettings.godMode) return;
+                if (Game1.gameSettings.godMode) return;
             }
 
             HealthPoints -= damage;

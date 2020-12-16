@@ -50,48 +50,48 @@ namespace _2DRoguelike.Content.Core.Screens
 
         private void SetMenuEntryText()
         {
-            debugMode.Text = "Debug Mode: " + (GameSettings.DEBUG ? "on" : "off");
-            godMode.Text = "God Mode: " + (GameSettings.godMode ? "on" : "off");
-            showHitbox.Text = "Show Hitbox: " + (GameSettings.showHitbox ? "on" : "off");
-            showMouse.Text = "Show Mouse Debug: " + (GameSettings.showMouse ? "on" : "off");
-            playerDebug.Text = "Show Player Debug: " + (GameSettings.playerDebug ? "on" : "off");
+            debugMode.Text = "Debug Mode: " + (Game1.gameSettings.DEBUG ? "on" : "off");
+            godMode.Text = "God Mode: " + (Game1.gameSettings.godMode ? "on" : "off");
+            showHitbox.Text = "Show Hitbox: " + (Game1.gameSettings.showHitbox ? "on" : "off");
+            showMouse.Text = "Show Mouse Debug: " + (Game1.gameSettings.showMouse ? "on" : "off");
+            playerDebug.Text = "Show Player Debug: " + (Game1.gameSettings.playerDebug ? "on" : "off");
             //attackHitbox.Text = "Show Attackhitbox: " + (GameSettings.attackHitbox ? "on" : "off");
         }
 
         private void SwitchGodMode(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.SwitchGodMode();
+            Game1.gameSettings.SwitchGodMode();
             SetMenuEntryText();
         }
 
         private void SwitchShowHitbox(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.SwitchShowHitbox();
+            Game1.gameSettings.SwitchShowHitbox();
             SetMenuEntryText();
         }
 
         private void SwitchShowMouse(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.SwitchShowMouse();
+            Game1.gameSettings.SwitchShowMouse();
             SetMenuEntryText();
         }
         private void SwitchShowPlayerDebug(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.SwitchPlayerDebug();
+            Game1.gameSettings.SwitchPlayerDebug();
             SetMenuEntryText();
 
         }
 
         private void SwitchShowAttackHitbox(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.SwitchAttackHitox();
+            Game1.gameSettings.SwitchAttackHitox();
             SetMenuEntryText();
 
         }
 
         private void SwitchDebugMode(object sender, PlayerIndexEventArgs e)
         {
-            GameSettings.SwitchDebugMode();
+            Game1.gameSettings.SwitchDebugMode();
             SetMenuEntryText();
         }
     }
