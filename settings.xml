@@ -4,7 +4,7 @@
   <fullScreen>false</fullScreen>
   <screenWidth>1280</screenWidth>
   <screenHeight>720</screenHeight>
-  <backgroundMusicLevel>0</backgroundMusicLevel>
+  <backgroundMusicLevel>0.2</backgroundMusicLevel>
   <prevBackgroundMusicLevel>0.2</prevBackgroundMusicLevel>
   <soundeffectsLevel>0.2</soundeffectsLevel>
   <prevSoundeffectsLevel>0</prevSoundeffectsLevel>
