@@ -8,7 +8,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.UI
 {
-    class ExperienceBar
+    class ExperienceBar: UIElement
     {
         private Player target;
         private double currentXP;
@@ -37,7 +37,7 @@ namespace _2DRoguelike.Content.Core.UI
             //currentHealth = player.HealthPoints;
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             
             currentXP = target.CurrentXP;
@@ -46,14 +46,14 @@ namespace _2DRoguelike.Content.Core.UI
             //currentWidth = (int)(((double)(currentHealth) / 100) * fullWidth);
             //Debug.WriteLine("target.HealthPoints: {3}\ncurrentHealth: {0}\ncurrentWidth: {1}\n fullWidth. {2}\n---------------", currentHealth, currentWidth, fullWidth,target.HealthPoints);
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(healthbarContainer, position, null, Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
             //spriteBatch.Draw(healthBar, position, new Rectangle(0, 0, currentWidth, healthBar.Height), Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
             spriteBatch.DrawString(TextureManager.FontArial, "Level: " + currentXPLevel + " XP: "+currentXP , textPosition, Color.White);
         }
 
-        public void ForceResolutionUpdate()
+        public override void ForceResolutionUpdate()
         {
             textPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("Level: " + currentXPLevel + " XP: " + currentXP).X / 2, 80);
         }

@@ -1,6 +1,7 @@
 ﻿using _2DRoguelike.Content.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Xml.Serialization;
@@ -9,8 +10,7 @@ namespace _2DRoguelike.Content.Core
 {
     public class GameSettings
     {
-        // the 3 "../" used to save the settings file in the main direcotry of the game, instead of putting it in bin/Debug/netcoreapp3.1
-        private string settingsSavePath = "../../../settings.xml";
+        private string fileName = "settings.xml";
 
         public string playerName;
 
@@ -233,7 +233,7 @@ namespace _2DRoguelike.Content.Core
 
         public void SaveSettings()
         {
-            using(TextWriter writer = new StreamWriter(settingsSavePath))
+            using(TextWriter writer = new StreamWriter(Game1.projectPath+fileName))
             {
                 XmlSerializer xmlser = new XmlSerializer(this.GetType());
                 xmlser.Serialize(writer,this);
@@ -249,7 +249,7 @@ namespace _2DRoguelike.Content.Core
             }
             GameSettings instance;
 
-            using(TextReader reader = new StreamReader(settingsSavePath))
+            using(TextReader reader = new StreamReader(Game1.projectPath+fileName))
             {
                 XmlSerializer xmlser = new XmlSerializer(this.GetType());
                 instance = (GameSettings)xmlser.Deserialize(reader);
@@ -260,7 +260,7 @@ namespace _2DRoguelike.Content.Core
 
         public bool settingsFileExists()
         {
-            return File.Exists(settingsSavePath);
+            return File.Exists(Game1.projectPath + fileName);
         }
 
 

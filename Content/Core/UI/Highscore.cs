@@ -8,7 +8,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.UI
 {
-    class Highscore
+    class Highscore:UIElement
     {
 
         private int currentScore;
@@ -24,18 +24,18 @@ namespace _2DRoguelike.Content.Core.UI
             textYOffset = 120;
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
 
             currentScore = StatisticsManager.currentScore.Score;
             textPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("Score: " + currentScore).X / 2, textYOffset);
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString(TextureManager.FontArial, "Score: " + currentScore, textPosition, Color.White);
         }
 
-        public void ForceResolutionUpdate()
+        public override void ForceResolutionUpdate()
         {
             textPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("Score: " + currentScore).X / 2, textYOffset);
         }

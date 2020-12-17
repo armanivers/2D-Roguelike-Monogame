@@ -8,7 +8,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.UI
 {
-    class HealthBar
+    class HealthBar : UIElement
     {
         private Player target;
         private int currentHealth;
@@ -36,7 +36,7 @@ namespace _2DRoguelike.Content.Core.UI
             currentHealth = player.HealthPoints;
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             //if (InputController.keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.B))
             //{
@@ -53,14 +53,14 @@ namespace _2DRoguelike.Content.Core.UI
             textPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("" + currentHealth).X / 2, 30);
             //Debug.WriteLine("target.HealthPoints: {3}\ncurrentHealth: {0}\ncurrentWidth: {1}\n fullWidth. {2}\n---------------", currentHealth, currentWidth, fullWidth,target.HealthPoints);
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(healthbarContainer, position, null,Color.White,0, Vector2.Zero, scalingFactor, SpriteEffects.None,0);
             spriteBatch.Draw(healthBar, position,new Rectangle(0,0, currentWidth, healthBar.Height), Color.White,0, Vector2.Zero, scalingFactor,SpriteEffects.None,0);
             spriteBatch.DrawString(TextureManager.FontArial, ""+currentHealth, textPosition, Color.White);
         }
 
-        public void ForceResolutionUpdate()
+        public override void ForceResolutionUpdate()
         {
             position = new Vector2(Game1.gameSettings.screenWidth / 2 - healthbarContainer.Width * scalingFactor / 2, 30);
             textPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - 10, 30);

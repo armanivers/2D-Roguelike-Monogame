@@ -342,3 +342,4 @@ healthchecksdb
 
 # settings file of game
 settings.xml
+statistics.xml

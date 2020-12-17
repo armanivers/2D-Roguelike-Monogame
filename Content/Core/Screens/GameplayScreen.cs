@@ -95,6 +95,7 @@ namespace _2DRoguelike.Content.Core.Screens
                 if (gameplay.gameOver)
                 {
                     //LoadingScreen.Load(ScreenManager, false, null,new GameoverScreen());
+                    Game1.gameStats.AddHighscore(StatisticsManager.currentScore);
                     ScreenManager.AddScreen(new GameoverScreen(), ControllingPlayer);
                 }
             }

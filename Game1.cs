@@ -2,17 +2,27 @@
 using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Screens;
+using _2DRoguelike.Content.Core.Statistics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System;
 
 namespace _2DRoguelike
 {
     public class Game1 : Game
     {
         public static GraphicsDeviceManager _graphics;
+
+        // the 3 "../" used to save the settings file in the main direcotry of the game, instead of putting it in bin/Debug/netcoreapp3.1
+        public static string projectPath = "../../../";
+        // should be saved in appdata/Roaming of user folder otherwise
+        public static string appdataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
         public static GameSettings gameSettings;
+        public static GameStatistics gameStats;
+
         private ScreenManager screenManager;
 
         private static readonly string[] preloadAssets =
@@ -27,7 +37,10 @@ namespace _2DRoguelike
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+
             gameSettings = new GameSettings();
+            gameStats = new GameStatistics();
+
             _graphics.PreferredBackBufferWidth = gameSettings.screenWidth;
             _graphics.PreferredBackBufferHeight = gameSettings.screenHeight;
 
@@ -48,6 +61,8 @@ namespace _2DRoguelike
         protected override void Initialize()
         {
             gameSettings.LoadSettings();
+            gameStats.LoadStatistics();
+
             _graphics.PreferredBackBufferWidth = gameSettings.screenWidth;
             _graphics.PreferredBackBufferHeight = gameSettings.screenHeight;
             _graphics.IsFullScreen = gameSettings.fullScreen;

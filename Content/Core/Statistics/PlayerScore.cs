@@ -4,7 +4,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.Statistics
 {
-    class PlayerScore
+    public class PlayerScore
     {
         private int score;
 

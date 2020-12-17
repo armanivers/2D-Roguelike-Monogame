@@ -10,7 +10,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.UI
 {
-    class MobHealthBars
+    class MobHealthBars : UIElement
     {
 
         public Texture2D healthbarContainerTexture;
@@ -48,7 +48,7 @@ namespace _2DRoguelike.Content.Core.UI
             mobData = new List<MobData>();
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             mobData.Clear();
             foreach (EntityBasis e in EntityManager.creatures)
@@ -64,7 +64,7 @@ namespace _2DRoguelike.Content.Core.UI
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < mobData.Count; i++)
             {

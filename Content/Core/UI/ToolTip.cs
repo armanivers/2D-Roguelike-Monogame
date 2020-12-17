@@ -9,7 +9,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.UI
 {
-    class ToolTip
+    class ToolTip : UIElement
     {
         private Player target;
 
@@ -30,7 +30,7 @@ namespace _2DRoguelike.Content.Core.UI
             tooltipPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - interactWithContainerLength/2, Game1.gameSettings.screenHeight/2+60);
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             interactable = target.canInteract;
 
@@ -51,13 +51,13 @@ namespace _2DRoguelike.Content.Core.UI
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (visibility > 0)
                 spriteBatch.DrawString(TextureManager.FontArial, interactWithContainer, tooltipPosition, Color.White * visibility);
         }
 
-        public void ForceResolutionUpdate()
+        public override void ForceResolutionUpdate()
         { 
             tooltipPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - interactWithContainerLength / 2, Game1.gameSettings.screenHeight / 2 + 60);
         }

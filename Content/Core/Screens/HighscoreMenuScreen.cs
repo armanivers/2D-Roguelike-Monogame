@@ -39,6 +39,31 @@ namespace _2DRoguelike.Content.Core.Screens
             }
         }
 
+        /* JSON FORMAT array with objects in the form of "name"="name1","score"="1230"  OPTIONAL: "date"=17122020"
+         * {
+    "1": {
+      "name": "Ari",
+      "score": "1230"
+    },
+    "2": {
+      "name": "Klaus",
+      "score": "1200"
+    },
+    "3": {
+      "name": "Jurgen",
+      "score": "800"
+    },
+    "4": {
+      "name": "Kevin",
+      "score": "300"
+    },
+    "5": {
+      "name": "player32",
+      "score": "100"
+    }
+  }
+        */
+
         private void ReturnToMainMenu(object sender, PlayerIndexEventArgs e)
         {
             LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(), new MainMenuScreen());

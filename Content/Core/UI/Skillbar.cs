@@ -9,7 +9,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.UI
 {
-    class Skillbar
+    class Skillbar : UIElement
     {
         private Player target;
 
@@ -81,7 +81,7 @@ namespace _2DRoguelike.Content.Core.UI
             }
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             currentWeapon = target.CurrentWeaponPos;
 
@@ -108,7 +108,7 @@ namespace _2DRoguelike.Content.Core.UI
             //slotCurrentHeight = timerPercentage * usedSlotTexture.Height; //height = 18
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             //weaponsbar
             spriteBatch.Draw(skillbarTexture, skillbarPosition, null, Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
@@ -131,7 +131,7 @@ namespace _2DRoguelike.Content.Core.UI
             }
         }
 
-        public void ForceResolutionUpdate()
+        public override void ForceResolutionUpdate()
         {
             skillbarPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - skillbarTexture.Width * scalingFactor / 2, Game1.gameSettings.screenHeight - skillbarTexture.Height * scalingFactor - 30);
             usedSlotPosition = new Vector2(skillbarPosition.X + xOffset, skillbarPosition.Y + yOffset);
