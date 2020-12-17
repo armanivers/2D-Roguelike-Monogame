@@ -23,17 +23,15 @@ namespace _2DRoguelike.Content.Core.World
         {
             levelList = new List<Map>();
             levelList.Add(new TestMap(24, 24));
-            levelList.Add(new Dungeon());
-            levelList.Add(new Dungeon());
             maps = levelList[level];
             currentLevel = maps.map;
             playerposition = new Vector2();
         }
         public static void NextLevel(Player player)
         {
-            int x = level;
-            level = x + 1;
-            player.Position = levelList[level].getSpawnpoint() * new Vector2(32);
+            levelList.Add(new Dungeon());
+            levelList[level].clearEnemies();
+            player.Position = levelList[++level].getSpawnpoint() * new Vector2(32);
             maps = levelList[level];
             currentLevel = maps.map;
         }
@@ -50,8 +48,6 @@ namespace _2DRoguelike.Content.Core.World
         }
         public static void Draw(SpriteBatch spriteBatch)
         {
-            //DrawWithVisibility(spriteBatch, 0.2f, 15,10);
-            //DrawWithVisibility(spriteBatch, 0.5f, 6, 6);
             DrawWithVisibility(spriteBatch, 1.0f, 12, 9);
         }
         private static void DrawWithVisibility(SpriteBatch spriteBatch, float visibility, int Xvisiblerange, int Yvisiblerange)

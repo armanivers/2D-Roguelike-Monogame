@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -113,10 +114,10 @@ namespace _2DRoguelike.Content.Core.World
                     i = NumRooms;
                 }
             }
-            /*foreach(Room room in roomlist)
+            foreach(Room room in roomlist)
             {
                 room.placeEnemies();
-            }*/
+            }
         }
         public void room2Map(Room room)
         {
@@ -154,6 +155,7 @@ namespace _2DRoguelike.Content.Core.World
             {
                 if (player.Hitbox.Intersects(roomlist[i].roomhitbox))
                 {
+                    currentroom = roomlist[i];
                     if (roomlist[i].exitroom)
                     {
                         if (player.Hitbox.Intersects(roomlist[i].exithitbox))
@@ -163,6 +165,22 @@ namespace _2DRoguelike.Content.Core.World
                     }
                 }
             }
+        }
+
+        public override void clearEnemies()
+        {
+            foreach(Room r in roomlist)
+            {
+                foreach(Enemy e in r.enemylist)
+                {
+                    e.Kill();
+                }
+            }
+        }
+
+        public override void clearEnities()
+        {
+            
         }
     }
 }

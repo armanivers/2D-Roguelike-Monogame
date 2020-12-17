@@ -15,6 +15,7 @@ namespace _2DRoguelike.Content.Core.World
         public bool[,] boolmap;
         public int width;
         public int height;
+        public Room currentroom{ get; set; }
         public static readonly Random Random = new Random();
         public static int rnd(int x) => Random.Next() % x;
         #region TestMap
@@ -108,5 +109,7 @@ namespace _2DRoguelike.Content.Core.World
             }
             return result;
         }
+        public abstract void clearEnemies();
+        public abstract void clearEnities();
     }
 }

@@ -121,7 +121,7 @@ namespace _2DRoguelike.Content.Core.World
                 Vector2 enemyspawnpoint;
                 do
                 {
-                    enemyspawnpoint = new Vector2(Map.Random.Next(5, Width - 6), Map.Random.Next(5, Height - 6));
+                    enemyspawnpoint = new Vector2(Map.Random.Next(5, Width - 3), Map.Random.Next(5, Height - 3));
                 } while (room[(int)enemyspawnpoint.X, (int)enemyspawnpoint.Y] != RoomObject.EmptySpace);
                 enemyspawnpoint.X += (float)XPos;
                 enemyspawnpoint.Y += (float)YPos;

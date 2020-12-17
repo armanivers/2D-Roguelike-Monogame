@@ -78,5 +78,15 @@ namespace _2DRoguelike.Content.Core.World
                 LevelManager.NextLevel(player);
             }
         }
+
+        public override void clearEnemies()
+        {
+            
+        }
+
+        public override void clearEnities()
+        {
+            
+        }
     }
 }

@@ -113,5 +113,14 @@ namespace _DRoguelike.Content.Core.World
         {
         }
 
+        public override void clearEnemies()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void clearEnities()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
