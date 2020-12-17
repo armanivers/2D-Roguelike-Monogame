@@ -22,7 +22,8 @@ namespace _2DRoguelike.Content.Core.World
         public static void LoadContent()
         {
             levelList = new List<Map>();
-            levelList.Add(new TestMap(24, 24));
+            //levelList.Add(new TestMap(24, 24));
+            levelList.Add(new Dungeon());
             maps = levelList[level];
             currentLevel = maps.map;
             playerposition = new Vector2();

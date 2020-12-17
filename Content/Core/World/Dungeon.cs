@@ -1,4 +1,5 @@
-﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+﻿using _2DRoguelike.Content.Core.Entities;
+using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using Microsoft.Xna.Framework;
 using System;
@@ -30,8 +31,13 @@ namespace _2DRoguelike.Content.Core.World
                 int roomfindingtries = 0;
                 do
                 {
-                    room.setXPos(Map.Random.Next(0, width - room.Width));
-                    room.setYPos(Map.Random.Next(0, height - room.Height));
+                    room.setXPos(Map.Random.Next(previousRoom.XPos-24<0?0:previousRoom.XPos - 24, previousRoom.XPos + 24>width - room.Width? width - room.Width: previousRoom.XPos + 24));
+
+                    room.setYPos(Map.Random.Next(previousRoom.YPos - 24 < 0 ? 0 : previousRoom.YPos - 24, previousRoom.YPos + 24>height - room.Height? height - room.Height: previousRoom.YPos + 24));
+
+
+                    //room.setXPos(Map.Random.Next(0, width - room.Width));
+                    //room.setYPos(Map.Random.Next(0, height - room.Height));
                     roomfindingtries++;
                 } while (!avoidRoomCollision(room) && roomfindingtries <= ROOMTRIES);
                 if (roomfindingtries != ROOMTRIES)
@@ -158,11 +164,15 @@ namespace _2DRoguelike.Content.Core.World
                     currentroom = roomlist[i];
                     if (roomlist[i].exitroom)
                     {
-                        if (player.Hitbox.Intersects(roomlist[i].exithitbox))
+                        if (player.GetTileCollisionHitbox().Intersects(roomlist[i].exithitbox))
                         {
                             LevelManager.NextLevel(player);
                         }
                     }
+                }
+                else
+                {
+                    currentroom = null;
                 }
             }
         }
@@ -173,14 +183,22 @@ namespace _2DRoguelike.Content.Core.World
             {
                 foreach(Enemy e in r.enemylist)
                 {
-                    e.Kill();
+                    e.isExpired=true;
                 }
+                r.enemylist = null;
             }
         }
 
         public override void clearEnities()
         {
-            
+            foreach (Room r in roomlist)
+            {
+                foreach (EntityBasis e in r.entitylist)
+                {
+                    e.isExpired = true;
+                }
+                r.entitylist = null;
+            }
         }
     }
 }

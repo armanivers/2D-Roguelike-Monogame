@@ -54,6 +54,8 @@ namespace _2DRoguelike.Content.Core.World
 
         public Room()
         {
+            XPos = 0;
+            YPos = 0;
             Width = Map.Random.Next(7, 24);
             Height = Map.Random.Next(7, 24);
             roomsize = (Width - 1) * (Height - 1);
