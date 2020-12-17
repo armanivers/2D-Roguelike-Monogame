@@ -74,11 +74,5 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             return new Vector2(0, 0);
         }
 
-        public override Action DetermineAction()
-        {
-            // TODO: Anhand von Fakten, wie Status, position, playerPosition, blickfeld etc. eine Action erzeugen
-
-            return ai.DetermineAction();
-        }
     }
 }

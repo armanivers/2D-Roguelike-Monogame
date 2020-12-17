@@ -31,9 +31,17 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                 {
                     if (SimulateMeleeAttack())
                     {
-                        agent.WeaponInventory[0].CooldownTimer = 0;
-                        agent.CurrentWeapon = agent.WeaponInventory[0];
-                        return new Melee(agent);
+                        // Wenn reagiert wird
+                        if (React())
+                        {
+                            agent.WeaponInventory[0].CooldownTimer = 0;
+                            agent.CurrentWeapon = agent.WeaponInventory[0];
+                            return new Melee(agent);
+                        }
+                    }
+                    else {
+                        // Es wurde "zu spät reagiert" und der Player ist entkommen
+                        ResetReactionTimer();
                     }
                 }
             }

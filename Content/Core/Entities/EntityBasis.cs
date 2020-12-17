@@ -106,7 +106,7 @@ namespace _2DRoguelike.Content.Core.Entities
             Debug.WriteLine(animations[animation].FrameCount * (int)animations[animation].FrameSpeed * 100);
             return animations[animation].FrameCount * (int)animations[animation].FrameSpeed * 100;
         }
-        public void SetAnimation(String animationIdentifier)
+        public void SetAnimation(String animationIdentifier, bool revert = false)
         {
             if (lockedAnimation)
             {
@@ -119,7 +119,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
             if (animationManager != null)
             {
-                animationManager.Play(animations[animationIdentifier]);
+                animationManager.Play(animations[animationIdentifier], revert ? !animations[animationIdentifier].Reverse : animations[animationIdentifier].Reverse);
                 if (animationManager.IsPrioritized())
                     lockedAnimation = true;
             }

@@ -12,8 +12,11 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         public WizardAI(Wizard agent) : base(agent)
         {
         }
+        
         public override Action DetermineAction()
         {
+
+
             if (!agent.IsAttacking())
             {
                 if (!agent.WeaponInventory[1].InUsage())
@@ -22,17 +25,26 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                     // Check, ob Pfeil treffen würde
                     if (SimulateArrowAttack())
                     {
-                        agent.WeaponInventory[1].CooldownTimer = 0;
-                        agent.CurrentWeapon = agent.WeaponInventory[1];
-                        return new RangeAttack(agent);
+                        if (React())
+                        {
+                            agent.WeaponInventory[1].CooldownTimer = 0;
+                            agent.CurrentWeapon = agent.WeaponInventory[1];
+                            return new RangeAttack(agent);
+                        }
+
                     }
                 }
-                // if (!agent.WeaponInventory[0].InUsage())
+                // else if (!agent.WeaponInventory[0].InUsage())
                 //{
+                //   if (React) { 
                 //    agent.WeaponInventory[0].CooldownTimer = 0;
                 //    agent.CurrentWeapon = agent.WeaponInventory[0];
                 //    return new Melee(agent);
+                //    }
                 //}
+                else {
+                    ResetReactionTimer();
+                }
             }
             return new Move(agent);
         }

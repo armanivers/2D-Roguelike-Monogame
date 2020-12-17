@@ -78,14 +78,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         }
 
 
-        public override Action DetermineAction()
-        {
-            return ai.DetermineAction();
-        }
 
-        public override Vector2 GetDirection()
-        {
-            return ai.DeterminePath();
-        }
     }
 }

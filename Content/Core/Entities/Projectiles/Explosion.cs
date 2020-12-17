@@ -57,7 +57,7 @@ namespace _2DRoguelike.Content.Core.Entities
             checkCollision();
 
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            animationManager.Play(animations["Explode"]);
+            SetAnimation("Explode");
             Position += Acceleration * flyingSpeed * SpeedModifier;
 
             if (timer > expireTimer)

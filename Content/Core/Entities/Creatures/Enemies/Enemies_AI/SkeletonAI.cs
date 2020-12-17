@@ -17,27 +17,45 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         }
         public override Action DetermineAction()
         {
-            if (!agent.IsAttacking())
+            if (agent.IsPlayerInTheSameRoom())
             {
-                if (!agent.WeaponInventory[1].InUsage())
+                if (!agent.IsAttacking())
                 {
-
-                    // Check, ob Pfeil treffen würde
-                    if (SimulateArrowAttack())
+                    if (!agent.WeaponInventory[1].InUsage())
                     {
-                        agent.WeaponInventory[1].CooldownTimer = 0;
-                        agent.CurrentWeapon = agent.WeaponInventory[1];
-                        return new RangeAttack(agent);
+
+                        // Check, ob Pfeil treffen würde
+                        if (SimulateArrowAttack())
+                        {
+                            if (React())
+                            {
+                                agent.WeaponInventory[1].CooldownTimer = 0;
+                                agent.CurrentWeapon = agent.WeaponInventory[1];
+                                return new RangeAttack(agent);
+                            }
+
+                        }
+                    }
+                    // else if (!agent.WeaponInventory[0].InUsage())
+                    //{
+                    //    agent.WeaponInventory[0].CooldownTimer = 0;
+                    //    agent.CurrentWeapon = agent.WeaponInventory[0];
+                    //    return new Melee(agent);
+                    //}
+                    else
+                    {
+                        ResetReactionTimer();
                     }
                 }
-                // if (!agent.WeaponInventory[0].InUsage())
-                //{
-                //    agent.WeaponInventory[0].CooldownTimer = 0;
-                //    agent.CurrentWeapon = agent.WeaponInventory[0];
-                //    return new Melee(agent);
-                //}
+                return new Move(agent);
             }
-            return new Move(agent);
+            else
+            {
+                // TODO:
+                return new Wait(agent);
+            }
+
+
         }
 
         public override Vector2 DeterminePath()
@@ -49,11 +67,11 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             const int FLEEING_RANGE = 4 * 32;
             if (WithinRange(FLEEING_RANGE))
             {
-               
+
                 return Vector2.Negate(Vector2.Normalize(agent.GetAttackDirection() - agent.HitboxCenter));
             }
 
-            
+
             else if (//!WithinRange(FLEEING_RANGE + 16) &&  // diese Zeile, wenn der Skeleton warten soll vor der Gefahrenzone
                 !SimulateArrowAttack())
             {
@@ -78,7 +96,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
             return Vector2.Zero;
         }
-        
+
         // Alternativ
         public Vector2 nextPosition(int FLEEING_RANGE)
         {

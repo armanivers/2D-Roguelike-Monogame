@@ -11,10 +11,6 @@ namespace _2DRoguelike.Content.Core.Entities
         private float hurtTimer;
         private const int hurtTimerLimit = 2;
 
-        public enum ActionCommand { 
-            MOVE,
-            ATTACK
-        }
 
         public int maxHealthPoints;
         public int HealthPoints { get; private set; }

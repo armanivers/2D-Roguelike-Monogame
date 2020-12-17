@@ -6,10 +6,10 @@
   <screenHeight>720</screenHeight>
   <backgroundMusicLevel>0</backgroundMusicLevel>
   <prevBackgroundMusicLevel>0.2</prevBackgroundMusicLevel>
-  <soundeffectsLevel>0</soundeffectsLevel>
+  <soundeffectsLevel>0.2</soundeffectsLevel>
   <prevSoundeffectsLevel>0.2</prevSoundeffectsLevel>
-  <DEBUG>false</DEBUG>
-  <godMode>false</godMode>
+  <DEBUG>true</DEBUG>
+  <godMode>true</godMode>
   <showHitbox>true</showHitbox>
   <showMouse>true</showMouse>
   <playerDebug>true</playerDebug>

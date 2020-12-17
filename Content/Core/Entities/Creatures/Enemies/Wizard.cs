@@ -81,10 +81,11 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             base.Update(gameTime);
         }
 
-
-        public override Action DetermineAction()
+        public override Vector2 GetDirection()
         {
-            return ai.DetermineAction();
+            // TODO: KI nach Angaben fragen
+            return new Vector2(0, 0);
         }
+
     }
 }

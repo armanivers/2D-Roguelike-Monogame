@@ -16,19 +16,19 @@ namespace _2DRoguelike.Content.Core.Entities
         private float timer;
         private bool running = true;
         private bool reverse;
+        public bool Reverse { get => reverse; set => reverse = value; }
 
         public Vector2 Position { get; set; }
-
 
         public AnimationManager(EntityBasis entity, Animation animation)
         {
             this.entity = entity;
             this.animation = animation;
             this.Position = entity.Position;
-            reverse = animation.Reverse;
+            Reverse = animation.Reverse;
         }
 
-        public void Play(Animation newAnimation)
+        public void Play(Animation newAnimation, bool reverse)
         {
             /*
              check whether animation is null OR the animation that should be played is the same as the previous one
@@ -39,7 +39,8 @@ namespace _2DRoguelike.Content.Core.Entities
                 return;
             }
             this.animation = newAnimation;
-            newAnimation.CurrentFrame = !animation.Reverse ? 0 : animation.FrameCount - 1 ;
+            this.Reverse = reverse;
+            newAnimation.CurrentFrame = !this.Reverse ? 0 : animation.FrameCount - 1 ;
             timer = 0f;
             running=true;
         }
@@ -48,7 +49,7 @@ namespace _2DRoguelike.Content.Core.Entities
         {
             timer = 0f;
             // auf dem letzten Frame stehenbleiben
-            animation.CurrentFrame+= !animation.Reverse ? -1 : 1;
+            animation.CurrentFrame+= !this.Reverse ? -1 : 1;
             
         }
 
@@ -69,10 +70,10 @@ namespace _2DRoguelike.Content.Core.Entities
                 if (timer > animation.FrameSpeed)
                 {
                     timer = 0f;
-                    animation.CurrentFrame+= !animation.Reverse ? 1 : -1;
+                    animation.CurrentFrame+= !this.Reverse ? 1 : -1;
 
 
-                    { if(!animation.Reverse ? animation.CurrentFrame>=animation.FrameCount: animation.CurrentFrame < 0)
+                    { if(!this.Reverse ? animation.CurrentFrame>=animation.FrameCount: animation.CurrentFrame < 0)
                         {
                          // Hier kommt das isLppoing zum Zuge
                         {
@@ -83,7 +84,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
                             }
                             else
-                                animation.CurrentFrame = !animation.Reverse ? 0 : animation.FrameCount - 1;
+                                animation.CurrentFrame = !this.Reverse ? 0 : animation.FrameCount - 1;
                             }
                         }   
                     }

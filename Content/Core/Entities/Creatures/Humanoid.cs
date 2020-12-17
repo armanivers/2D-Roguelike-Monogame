@@ -38,26 +38,6 @@ namespace _2DRoguelike.Content.Core.Entities
 
        
 
-        public void SetAnimation(String animationIdentifier)
-        {
-            if (lockedAnimation)
-            {
-                if (!animationManager.IsRunning())
-                    lockedAnimation = false;
-                else return;
-            }
-
-            // Debug.WriteLine(animationIdentifier);
-
-            if (animationManager != null)
-            {
-                animationManager.Play(animations[animationIdentifier]);
-                if (animationManager.IsPrioritized())
-                    lockedAnimation = true;
-            }
-
-        }
-
         public void SetLineOfSight(Vector2 direction)
         {
             if (direction != Vector2.Zero)

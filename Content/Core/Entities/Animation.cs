@@ -23,7 +23,6 @@ namespace _2DRoguelike.Content.Core.Entities
         public int yOffest;
 
 
-
         public Animation(Texture2D texture, int yOffest, int frameCount, float frameSpeed, bool isLoop = true, bool priority = false, bool reverse = false, int FrameHeight = 64)
         {
             this.FrameHeight = FrameHeight;

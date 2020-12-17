@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.Diagnostics;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
@@ -31,14 +30,18 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 
         public void DropExperiencePoints()
         {
-            var xp = new Random().Next(1,5);
+            var xp = new System.Random().Next(1, 5);
             Player.Instance.AddExperiencePoints(xp);
+        }
+
+        public override Actions.Action DetermineAction()
+        {
+            return ai.DetermineAction();
         }
 
         public override Vector2 GetDirection()
         {
-            //return ai.DeterminePath();
-            return Vector2.Zero;
+            return ai.DeterminePath();
         }
 
         public override Vector2 GetAttackDirection()
@@ -58,6 +61,23 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         {
             // Check, ob bestimmte Waffe gerade genutzt
             return !IsAttacking() && !WeaponInventory[weaponPos].InUsage();
+        }
+
+        // TODO: Nachschauen, wie das funktioniert da ist noch was faul
+        public bool IsPlayerInTheSameRoom()
+        {
+            //// Test
+            //Rectangle outer = new Rectangle(0, 0, 5, 5);
+            //Rectangle inner = new Rectangle(1, 1, 2, 2);
+            //Debug.WriteLine("Test Intersect: " + outer.Intersects(inner));
+            //Debug.WriteLine("Test contains: " + outer.Contains(inner));
+            if (LevelManager.maps.currentroom == null)
+            {
+                Debug.WriteLine("Current Room is null\n------");
+                return false;
+            }
+            return LevelManager.maps.currentroom.enemylist.Contains(this);
+
         }
 
         public override void Update(GameTime gameTime)
