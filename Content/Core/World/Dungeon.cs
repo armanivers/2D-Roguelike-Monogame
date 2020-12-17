@@ -157,9 +157,11 @@ namespace _2DRoguelike.Content.Core.World
         }
         public override void Update(Player player)
         {
+            //TODO in eigene Methode auslagern
+            currentroom = null;
             for (int i = 0; i < NumRooms; i++)
             {
-                if (player.Hitbox.Intersects(roomlist[i].roomhitbox))
+                if (roomlist[i].roomhitbox.Contains(player.Hitbox))
                 {
                     currentroom = roomlist[i];
                     if (roomlist[i].exitroom)
@@ -169,10 +171,6 @@ namespace _2DRoguelike.Content.Core.World
                             LevelManager.NextLevel(player);
                         }
                     }
-                }
-                else
-                {
-                    currentroom = null;
                 }
             }
         }

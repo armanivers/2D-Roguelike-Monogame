@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -14,6 +15,7 @@ namespace _2DRoguelike.Content.Core.GameDebug
         private Vector2 mousePosition;
         private Vector2 anglePosition;
         private Vector2 currentWeaponPosition;
+        private Vector2 room;
 
         const bool DEBUG = true;
         public PlayerDebug()
@@ -23,7 +25,7 @@ namespace _2DRoguelike.Content.Core.GameDebug
             mousePosition = new Vector2(0, 80);
             anglePosition = new Vector2(0, 120);
             currentWeaponPosition = new Vector2(0, 160);
-
+            room = new Vector2(0, 200);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -55,6 +57,10 @@ namespace _2DRoguelike.Content.Core.GameDebug
                     angle, anglePosition, Color.White);
                 spriteBatch.DrawString(TextureManager.FontArial, "Waffe: " +
                     Player.Instance.CurrentWeapon?.ToString(), currentWeaponPosition, Color.White);
+                if (LevelManager.maps.currentroom != null)
+                {
+                    spriteBatch.DrawString(TextureManager.FontArial, "Raum: " +LevelManager.maps.currentroom.Width +" , "+ LevelManager.maps.currentroom.Height, room, Color.White);
+                }
             }
         }
 
