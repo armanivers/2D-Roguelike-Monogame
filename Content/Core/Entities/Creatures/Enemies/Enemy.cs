@@ -5,6 +5,7 @@ using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI;
 using _2DRoguelike.Content.Core.Entities.Weapons;
 using _2DRoguelike.Content.Core.World;
+using _2DRoguelike.Content.Core.World.Rooms;
 
 using Microsoft.Xna.Framework;
 

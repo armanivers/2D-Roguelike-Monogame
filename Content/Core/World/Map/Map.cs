@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.World.Rooms;
 using _2DRoguelike.Content.Core.World.Tiles;
 using Microsoft.Xna.Framework;
 using System;

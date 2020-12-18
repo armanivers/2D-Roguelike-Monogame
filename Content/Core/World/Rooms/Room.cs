@@ -9,21 +9,27 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace _2DRoguelike.Content.Core.World
+namespace _2DRoguelike.Content.Core.World.Rooms
 {
     class Room
     {
+        //Constanten
+        public const int MAXROOMSIZE = 24;
+        public const int MINROOMSIZE = 7;
+        public const int PIXELMULTIPLIER = 32;
+
         public char[,] room { get; }
         public int Width;
         public int Height;
-        public int roomsize { get; set; }
+        public int roomvolume { get; set; }
         public Rectangle roomhitbox { get; set; }
         public Rectangle exithitbox { get; set; }
         public int XPos;
         public void setXPos(int value)
         {
             XPos = value;
-            roomhitbox = new Rectangle(value * 32, roomhitbox.Y, (Width - 1) * 32, (Height - 1) * 32);
+            roomhitbox = new Rectangle(value * PIXELMULTIPLIER, roomhitbox.Y, Width * PIXELMULTIPLIER, Height * PIXELMULTIPLIER);
+            
         }
         public int getXPos()
         {
@@ -33,7 +39,8 @@ namespace _2DRoguelike.Content.Core.World
         public void setYPos(int value)
         {
             YPos = value;
-            roomhitbox = new Rectangle(roomhitbox.X, value * 32, (Width - 1) * 32, (Height - 1) * 32);
+            roomhitbox = new Rectangle(roomhitbox.X, value * PIXELMULTIPLIER, (Width - 1) * PIXELMULTIPLIER, (Height - 1) * PIXELMULTIPLIER);
+            
         }
         public int getYPos()
         {
@@ -56,9 +63,9 @@ namespace _2DRoguelike.Content.Core.World
         {
             XPos = 0;
             YPos = 0;
-            Width = Map.Random.Next(7, 24);
-            Height = Map.Random.Next(7, 24);
-            roomsize = (Width - 1) * (Height - 1);
+            Width = Map.Random.Next(MINROOMSIZE, MAXROOMSIZE);
+            Height = Map.Random.Next(MINROOMSIZE, MAXROOMSIZE);
+            roomvolume = (Width - 1) * (Height - 1);
             room = new char[Width, Height];
             enemylist = new List<Enemy>();
             entitylist = new List<EntityBasis>();
@@ -68,7 +75,7 @@ namespace _2DRoguelike.Content.Core.World
         {
             this.Width = width;
             this.Height = height;
-            roomsize = (Width - 1) * (Height - 1);
+            roomvolume = (Width - 1) * (Height - 1);
             room = new char[width, height];
             enemylist = new List<Enemy>();
             fillRoom();
@@ -98,7 +105,7 @@ namespace _2DRoguelike.Content.Core.World
             //Mittlerer Raum:192-383= 6 Gegner
             //Großer Raum:384-576= 8 Gegner
 
-            if (roomsize < 192)
+            if (roomvolume < 100)
             {
                 enemies = 0;
                 Vector2 chestspawnpoint;
@@ -108,9 +115,9 @@ namespace _2DRoguelike.Content.Core.World
                 } while (room[(int)chestspawnpoint.X, (int)chestspawnpoint.Y] != RoomObject.EmptySpace);
                 chestspawnpoint.X += XPos;
                 chestspawnpoint.Y += YPos;
-                entitylist.Add(new Chest(chestspawnpoint*new Vector2(32),null));
+                entitylist.Add(new Chest(chestspawnpoint*new Vector2(PIXELMULTIPLIER),null));
             }
-            else if (roomsize < 384)
+            else if (roomvolume < 384)
             {
                 enemies = 4;
             }
@@ -123,7 +130,7 @@ namespace _2DRoguelike.Content.Core.World
                 Vector2 enemyspawnpoint;
                 do
                 {
-                    enemyspawnpoint = new Vector2(Map.Random.Next(5, Width - 3), Map.Random.Next(5, Height - 3));
+                    enemyspawnpoint = new Vector2(Map.Random.Next(2, Width - 3), Map.Random.Next(2, Height - 3));
                 } while (room[(int)enemyspawnpoint.X, (int)enemyspawnpoint.Y] != RoomObject.EmptySpace);
                 enemyspawnpoint.X += (float)XPos;
                 enemyspawnpoint.Y += (float)YPos;
@@ -141,7 +148,7 @@ namespace _2DRoguelike.Content.Core.World
             room[XExit, YExit] = RoomObject.Exit;
             XExit = (XExit + XPos);
             YExit = (YExit + YPos);
-            exithitbox = new Rectangle(XExit * 32, YExit * 32, 32, 32);
+            exithitbox = new Rectangle(XExit * PIXELMULTIPLIER, YExit * PIXELMULTIPLIER, PIXELMULTIPLIER, PIXELMULTIPLIER);
         }
     }
 }
