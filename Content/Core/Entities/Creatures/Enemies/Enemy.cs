@@ -66,17 +66,13 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         // TODO: Nachschauen, wie das funktioniert da ist noch was faul
         public bool IsPlayerInTheSameRoom()
         {
-            //// Test
-            //Rectangle outer = new Rectangle(0, 0, 5, 5);
-            //Rectangle inner = new Rectangle(1, 1, 2, 2);
-            //Debug.WriteLine("Test Intersect: " + outer.Intersects(inner));
-            //Debug.WriteLine("Test contains: " + outer.Contains(inner));
+           
             if (LevelManager.maps.currentroom == null)
             {
-                Debug.WriteLine("Current Room is null\n------");
+                // Debug.WriteLine("Current Room is null\n------");
                 return false;
             }
-            return LevelManager.maps.currentroom.enemylist.Contains(this);
+            return LevelManager.maps.currentroom.roomhitbox.Intersects(this.Hitbox);
 
         }
 

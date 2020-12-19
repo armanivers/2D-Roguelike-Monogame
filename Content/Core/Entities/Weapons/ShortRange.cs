@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Weapons
@@ -18,26 +19,25 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         public float RangeMultiplierX { get => rangeMultiplierX; }
         public float RangeMultiplierY { get => rangeMultiplierY; }
 
-        public ShortRange(Humanoid Owner, float rangeX, float rangeY, int weaponDamage, float weaponCooldown) : base(Owner, weaponDamage, weaponCooldown) {
+        public ShortRange(Humanoid Owner, float rangeX, float rangeY, int weaponDamage, float weaponCooldown) : base(Owner, weaponDamage, weaponCooldown)
+        {
             this.rangeMultiplierX = rangeX;
             this.rangeMultiplierY = rangeY;
         }
 
         public Rectangle GetEffectiveRange()
         {
-
-           
             Rectangle ret = new Rectangle();
-            Vector2 upperLeft = new Vector2(Owner.Hitbox.X - Owner.Hitbox.Width*rangeMultiplierX,
-                 Owner.Hitbox.Y - Owner.Hitbox.Width*rangeMultiplierY);
+            Vector2 upperLeft = new Vector2(Owner.Hitbox.X - Owner.Hitbox.Width * rangeMultiplierX,
+                 Owner.Hitbox.Y - Owner.Hitbox.Width * rangeMultiplierY);
 
 
-            Vector2 upperRight = new Vector2(Owner.Hitbox.X + Owner.Hitbox.Width + Owner.Hitbox.Width*rangeMultiplierX,
+            Vector2 upperRight = new Vector2(Owner.Hitbox.X + Owner.Hitbox.Width + Owner.Hitbox.Width * rangeMultiplierX,
                 Owner.Hitbox.Y - Owner.Hitbox.Width * rangeMultiplierY);
 
 
-            Vector2 downLeft = new Vector2(Owner.Hitbox.X - Owner.Hitbox.Width*rangeMultiplierX,
-                    Owner.Hitbox.Y + Owner.Hitbox.Height + Owner.Hitbox.Width*rangeMultiplierY);
+            Vector2 downLeft = new Vector2(Owner.Hitbox.X - Owner.Hitbox.Width * rangeMultiplierX,
+                    Owner.Hitbox.Y + Owner.Hitbox.Height + Owner.Hitbox.Width * rangeMultiplierY);
 
 
             //Vector2 downRight = new Vector2(Owner.Hitbox.X + Owner.Hitbox.Width - (Owner.Hitbox.Height - Owner.Hitbox.Width),
@@ -74,20 +74,20 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             }
 
             // Mittelpunkt der Hitbox ist Maus
-            Vector2 attackDirection = new Vector2(Owner.GetAttackDirection().X - attackHitboxWidth /2 *rangeMultiplierX * tmpWidthReduction, 
-                Owner.GetAttackDirection().Y - attackHitboxHeight/2 * 0.8f * rangeMultiplierY * tmpHeightReduction);
+            Vector2 attackDirection = new Vector2(Owner.GetAttackDirection().X - attackHitboxWidth / 2 * rangeMultiplierX * tmpWidthReduction,
+                Owner.GetAttackDirection().Y - attackHitboxHeight / 2 * 0.8f * rangeMultiplierY * tmpHeightReduction);
 
             // TODO: Dieses Attribut nicht mehr nur für Höhe, sondern je anch Lage auf die Breite rechnen
-            
+
 
             // Intervallgrenzen für maximale Attack-Range: 
             // so gewählt, dass die kleinste mögliche Hitbox erlaubt ist:
             Vector2 attackHitboxRangeUpperLeft = new Vector2(OwnerHitbox.X - OwnerHitbox.Width * rangeMultiplierX * tmpWidthReduction,
-                OwnerHitbox.Y - OwnerHitbox.Width  * tmpHeightReduction * rangeMultiplierY);
+                OwnerHitbox.Y - OwnerHitbox.Width * tmpHeightReduction * rangeMultiplierY);
 
 
-            Vector2 attackHitboxRangeDownRight = new Vector2(OwnerHitbox.X + OwnerHitbox.Width - (attackHitboxWidth - OwnerHitbox.Width), 
-                OwnerHitbox.Y + OwnerHitbox.Height - (attackHitboxHeight - OwnerHitbox.Width)) ;
+            Vector2 attackHitboxRangeDownRight = new Vector2(OwnerHitbox.X + OwnerHitbox.Width - (attackHitboxWidth - OwnerHitbox.Width),
+                OwnerHitbox.Y + OwnerHitbox.Height - (attackHitboxHeight - OwnerHitbox.Width));
 
             Vector2 attackCoordinates = Vector2.Clamp(attackDirection, attackHitboxRangeUpperLeft, attackHitboxRangeDownRight);
 
@@ -100,17 +100,16 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             if (Owner is ControllingPlayer.Player)
             {
                 // TODO: ERSETZEN Durch EnemyList des Raumes
-
-                foreach (var enemy in EntityManager.creatures)
-                {
-                    if (enemy is Enemy)
+                if (LevelManager.maps.currentroom != null)
+                    foreach (var enemy in LevelManager.maps.currentroom.enemylist)
                     {
+
                         if (attackHitbox.Intersects(enemy.Hitbox))
                         {
                             ((Enemy)enemy).DeductHealthPoints(weaponDamage);
                         }
+
                     }
-                }
             }
             else if (Owner is Enemy)
             {
@@ -121,5 +120,5 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             }
         }
     }
-    
+
 }

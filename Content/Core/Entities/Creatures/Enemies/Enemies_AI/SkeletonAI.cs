@@ -51,7 +51,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             }
             else
             {
-                // TODO:
                 return new Wait(agent);
             }
 

@@ -23,7 +23,7 @@ namespace _2DRoguelike.Content.Core.World
         public void setXPos(int value)
         {
             XPos = value;
-            roomhitbox = new Rectangle(value * 32, roomhitbox.Y, (Width - 1) * 32, (Height - 1) * 32);
+            roomhitbox = new Rectangle((value + 1) * 32, roomhitbox.Y + 1, (Width - 2) * 32, (Height - 2) * 32);
         }
         public int getXPos()
         {
@@ -33,7 +33,7 @@ namespace _2DRoguelike.Content.Core.World
         public void setYPos(int value)
         {
             YPos = value;
-            roomhitbox = new Rectangle(roomhitbox.X, value * 32, (Width - 1) * 32, (Height - 1) * 32);
+            roomhitbox = new Rectangle(roomhitbox.X + 1, (value +1 )* 32 , (Width - 2 ) * 32, (Height - 2) * 32);
         }
         public int getYPos()
         {

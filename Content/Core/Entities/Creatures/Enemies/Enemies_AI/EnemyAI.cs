@@ -11,7 +11,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
     public abstract class EnemyAI
     {
         public Enemy agent;
-        public const int DEFAULT_REACTION_TIME_MIN = 16;
+        public const int DEFAULT_REACTION_TIME_MIN = 10;//16;
         public const int DEFAULT_REACTION_TIME_MAX = 30;
         public int[] reactionTimeInterval;
         public int currentReactionTimeGap;

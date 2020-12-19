@@ -157,11 +157,11 @@ namespace _2DRoguelike.Content.Core.World
         }
         public override void Update(Player player)
         {
-            //TODO in eigene Methode auslagern
+            //TODO in eigene Methoden auslagern SetCurrentRoom und GoToNextLevel(), da so imperformant (kein Schleifenabbruch)
             currentroom = null;
             for (int i = 0; i < NumRooms; i++)
             {
-                if (roomlist[i].roomhitbox.Contains(player.Hitbox))
+                if (roomlist[i].roomhitbox.Intersects(player.Hitbox))
                 {
                     currentroom = roomlist[i];
                     if (roomlist[i].exitroom)

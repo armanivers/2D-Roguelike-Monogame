@@ -16,42 +16,48 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         }
         public override Action DetermineAction()
         {
-            if (!agent.IsAttacking())
+            if (agent.IsPlayerInTheSameRoom())
             {
-                /*if (!agent.WeaponInventory[1].InUsage())
+                if (!agent.IsAttacking())
                 {
-
-                    // Check, ob Pfeil treffen würde
-                    if (SimulateArrowAttack())
+                    /*if (!agent.WeaponInventory[1].InUsage())
                     {
-                        agent.WeaponInventory[1].CooldownTimer = 0;
-                        agent.CurrentWeapon = agent.WeaponInventory[1];
-                        return new RangeAttack(agent);
-                    }
-                }
-                 */
 
-
-
-                if (!agent.WeaponInventory[0].InUsage())
-                {
-                    if (SimulateMeleeAttack())
-                    {
-                        if (React())
+                        // Check, ob Pfeil treffen würde
+                        if (SimulateArrowAttack())
                         {
-                            agent.WeaponInventory[0].CooldownTimer = 0;
-                            agent.CurrentWeapon = agent.WeaponInventory[0];
-                            return new Melee(agent);
+                            agent.WeaponInventory[1].CooldownTimer = 0;
+                            agent.CurrentWeapon = agent.WeaponInventory[1];
+                            return new RangeAttack(agent);
                         }
                     }
-                    else {
-                        // es wurde "zu spät reagiert" und der Player ist entkommen → Reaktion wieder zurücksetzen
-                        ResetReactionTimer();
-                    }
+                     */
 
+
+
+                    if (!agent.WeaponInventory[0].InUsage())
+                    {
+                        if (SimulateMeleeAttack())
+                        {
+                            if (React())
+                            {
+                                agent.WeaponInventory[0].CooldownTimer = 0;
+                                agent.CurrentWeapon = agent.WeaponInventory[0];
+                                return new Melee(agent);
+                            }
+                        }
+                        else
+                        {
+                            // es wurde "zu spät reagiert" und der Player ist entkommen → Reaktion wieder zurücksetzen
+                            ResetReactionTimer();
+                        }
+
+                    }
                 }
+                return new Move(agent);
             }
-            return new Move(agent);
+            else return new Wait(agent);
+
         }
 
         public override Vector2 DeterminePath()
