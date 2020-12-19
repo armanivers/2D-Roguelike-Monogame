@@ -66,7 +66,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
         private void HighscoresMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            ScreenManager.AddScreen(new HighscoreMenuScreen(), e.PlayerIndex);
+            ScreenManager.AddScreen(new LocalScoreboardScreen(), e.PlayerIndex);
         }
 
         protected override void OnCancel(PlayerIndex playerIndex)

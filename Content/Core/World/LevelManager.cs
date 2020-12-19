@@ -1,5 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.GameDebug;
+using _2DRoguelike.Content.Core.World.Rooms;
 using _2DRoguelike.Content.Core.World.Tiles;
 using _DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
@@ -22,8 +23,8 @@ namespace _2DRoguelike.Content.Core.World
         public static void LoadContent()
         {
             levelList = new List<Map>();
-            levelList.Add(new TestMap(24, 24));
-            //levelList.Add(new Dungeon());
+            //levelList.Add(RoomFactory.TestMap());
+            levelList.Add(new Dungeon());
             maps = levelList[level];
             currentLevel = maps.map;
             playerposition = new Vector2();

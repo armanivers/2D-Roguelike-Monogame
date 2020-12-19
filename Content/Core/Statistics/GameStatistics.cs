@@ -16,7 +16,7 @@ namespace _2DRoguelike.Content.Core.Statistics
         [XmlArray("Scores")]
         [XmlArrayItem("ScoreItem")]
         public List<int> scores;
-        public const int maxScores = 3;
+        public const int maxScores = 5;
 
         public int itemsRecieved;
         public int monstersKilled;
@@ -76,7 +76,7 @@ namespace _2DRoguelike.Content.Core.Statistics
             {
                 XmlSerializer xmlser = new XmlSerializer(this.GetType());
                 xmlser.Serialize(writer, this);
-                Debug.Print("monstersKilled {0}", monstersKilled);
+                //Debug.Print("monstersKilled {0}", monstersKilled);
             }
         }
 
@@ -95,7 +95,7 @@ namespace _2DRoguelike.Content.Core.Statistics
             if (!settingsFileExists())
             {
                 SaveStatistics();
-                Debug.Print("no scores found, default loaded");
+                //Debug.Print("no scores found, default loaded");
                 return;
             }
             GameStatistics instance;
@@ -104,7 +104,7 @@ namespace _2DRoguelike.Content.Core.Statistics
             {
                 XmlSerializer xmlser = new XmlSerializer(this.GetType());
                 instance = (GameStatistics)xmlser.Deserialize(reader);
-                Debug.Print("settings found, load them");
+                //Debug.Print("settings found, load them");
             }
             ApplyStatistics(instance);
         }

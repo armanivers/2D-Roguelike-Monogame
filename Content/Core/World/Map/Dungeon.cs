@@ -1,6 +1,7 @@
 ﻿using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.World.Rooms;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,9 @@ namespace _2DRoguelike.Content.Core.World
     class Dungeon : Map
     {
         private static readonly int ROOMTRIES = 2000;
-        List<Room> roomlist;
         public const int NumRooms = 10;
+
+        List<Room> roomlist;
         public Vector2 spawnpoint;
         public Dungeon() : base()
         {
@@ -24,20 +26,17 @@ namespace _2DRoguelike.Content.Core.World
         }
         public void Generate()
         {
-            Room previousRoom = new Room();
+            Room previousRoom = RoomFactory.RandomRoomWithEnemies();
             for (int i = 0; i < NumRooms; i++)
             {
-                Room room = new Room();
+                Room room = RoomFactory.RandomRoomWithEnemies();
+                
                 int roomfindingtries = 0;
                 do
                 {
-                    room.setXPos(Map.Random.Next(previousRoom.XPos-24<0?0:previousRoom.XPos - 24, previousRoom.XPos + 24>width - room.Width? width - room.Width: previousRoom.XPos + 24));
-
-                    room.setYPos(Map.Random.Next(previousRoom.YPos - 24 < 0 ? 0 : previousRoom.YPos - 24, previousRoom.YPos + 24>height - room.Height? height - room.Height: previousRoom.YPos + 24));
-
-
-                    //room.setXPos(Map.Random.Next(0, width - room.Width));
-                    //room.setYPos(Map.Random.Next(0, height - room.Height));
+                    //Ein Raum wird Relational weit zum Vorgänger in der Welt platziert. Dabei ist der weiteste entfernte Punkt wo ein Raum platziert werden kann die Maximale Größe eines Raum(MAXROOMZISE).
+                    room.setXPos(Map.Random.Next(previousRoom.XPos-Room.MAXROOMSIZE<0?0:previousRoom.XPos - Room.MAXROOMSIZE, previousRoom.XPos + Room.MAXROOMSIZE > width - room.Width? width - room.Width: previousRoom.XPos + Room.MAXROOMSIZE));
+                    room.setYPos(Map.Random.Next(previousRoom.YPos - Room.MAXROOMSIZE < 0 ? 0 : previousRoom.YPos - Room.MAXROOMSIZE, previousRoom.YPos + Room.MAXROOMSIZE > height - room.Height? height - room.Height: previousRoom.YPos + Room.MAXROOMSIZE));
                     roomfindingtries++;
                 } while (!avoidRoomCollision(room) && roomfindingtries <= ROOMTRIES);
                 if (roomfindingtries != ROOMTRIES)
@@ -120,9 +119,14 @@ namespace _2DRoguelike.Content.Core.World
                     i = NumRooms;
                 }
             }
-            foreach(Room room in roomlist)
+            SpawnEnemies();
+        }
+        public void SpawnEnemies()
+        {
+            //First room should not have enemies
+            for(int i=1;i<NumRooms;i++)
             {
-                room.placeEnemies();
+                roomlist[i].placeEnemies();
             }
         }
         public void room2Map(Room room)
@@ -152,7 +156,7 @@ namespace _2DRoguelike.Content.Core.World
 
         public override Vector2 getSpawnpoint()
         {
-            Room room = roomlist[1];
+            Room room = roomlist[0];
             return new Vector2((float)room.CentreX, (float)room.CentreY);
         }
         public override void Update(Player player)
