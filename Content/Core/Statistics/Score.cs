@@ -10,7 +10,7 @@ namespace _2DRoguelike.Content.Core.Statistics
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public partial class ScoreMiddleware
+    public partial class Score
     {
 
         private ScoreRank[] rankField;

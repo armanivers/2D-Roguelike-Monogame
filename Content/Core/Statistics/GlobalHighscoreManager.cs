@@ -25,13 +25,13 @@ namespace _2DRoguelike.Content.Core.Statistics
         public static List<KeyValuePair<string, int>> ConvertJson(string xml)
         {
             List<KeyValuePair<string, int>> xmlDeserialized = new List<KeyValuePair<string, int>>();
-            XmlSerializer serializer = new XmlSerializer(typeof(ScoreMiddleware));
-            ScoreMiddleware result;
+            XmlSerializer serializer = new XmlSerializer(typeof(Score));
+            Score result;
             using (TextReader reader = new StringReader(xml))
             {
                 try
                 {
-                    result = (ScoreMiddleware)serializer.Deserialize(reader);
+                    result = (Score)serializer.Deserialize(reader);
                     foreach (var r in result.Rank)
                     {
                         xmlDeserialized.Add(new KeyValuePair<string, int>(r.Name, r.Score));
