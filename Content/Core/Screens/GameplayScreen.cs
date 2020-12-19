@@ -25,6 +25,7 @@ using System.Threading;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using System.Diagnostics;
 using _2DRoguelike.Content.Core.UI;
+using _2DRoguelike.Content.Core.Statistics;
 
 #endregion Using Statements
 
@@ -94,8 +95,8 @@ namespace _2DRoguelike.Content.Core.Screens
 
                 if (gameplay.gameOver)
                 {
-                    //LoadingScreen.Load(ScreenManager, false, null,new GameoverScreen());
                     Game1.gameStats.AddHighscore(StatisticsManager.currentScore);
+                    GlobalHighscoreManager.SendHighscoreToServer(Game1.gameSettings.playerName, StatisticsManager.currentScore.Score);
                     ScreenManager.AddScreen(new GameoverScreen(), ControllingPlayer);
                 }
             }

@@ -163,6 +163,7 @@ namespace _2DRoguelike.Content.Core.Screens
         /// </summary>
         protected virtual void OnSelectEntry(int entryIndex, PlayerIndex playerIndex)
         {
+            Game1.gameSettings.SaveSettings();
             menuEntries[entryIndex].OnSelectEntry(playerIndex);
         }
 
