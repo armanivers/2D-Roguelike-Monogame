@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.World.Rooms;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,16 @@ namespace _2DRoguelike.Content.Core.World
 {
     class TestMap : Map
     {
-        Room room;
+        public Room room { get; set; }
         public TestMap(int width, int height) : base(width, height)
         {
             room = new Room(width, height);
-            room.setExit();
+            
             dottedArea(width / 2, height / 2);
             placeTables(6, 17);
             placelabyrinth();
             placeTables(3, 15);
+            room.setExit();
             map = fillTile(room.room);
         }
         public void placelabyrinth()
@@ -73,7 +75,7 @@ namespace _2DRoguelike.Content.Core.World
 
         public override void Update(Player player)
         {
-            if (player.Hitbox.Intersects(room.exithitbox))
+            if (player.GetTileCollisionHitbox().Intersects(room.exithitbox))
             {
                 LevelManager.NextLevel(player);
             }
