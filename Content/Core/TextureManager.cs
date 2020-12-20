@@ -102,6 +102,7 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D redSlotCross { get; private set; }
         public static Texture2D EnemyBarContainer { get; private set; }
         public static Texture2D EnemyBar { get; private set; }
+        public static Texture2D mouseCursor { get; private set; }
         // Tiles Data
         public static Texture2D[] tiles { get; private set; }
         public static int tilesAmount;
@@ -194,7 +195,7 @@ namespace _2DRoguelike.Content.Core
             Gradient = content.Load<Texture2D>("Assets/Graphics/Menus/gradient");
             Fog = content.Load<Texture2D>("Assets/Graphics/WorldElements/Fog");
             FOV = content.Load<Texture2D>("Assets/Graphics/WorldElements/FOV");
-
+            mouseCursor = content.Load<Texture2D>("Assets/System/mouseCursor");
             // UI Data
             healthBarEmpty = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/EmptyBar");
             healthBarRed = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/RedBar");

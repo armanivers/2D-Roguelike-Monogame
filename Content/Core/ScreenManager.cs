@@ -14,6 +14,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -100,6 +101,9 @@ namespace _2DRoguelike.Content.Core.Screens
         {
             base.Initialize();
 
+            // custom Cursor image
+            Mouse.SetCursor(MouseCursor.FromTexture2D(TextureManager.mouseCursor, 16, 16));
+            
             isInitialized = true;
         }
 
