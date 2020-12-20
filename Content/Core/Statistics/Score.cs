@@ -4,6 +4,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.Statistics
 {
+
     // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
     /// <remarks/>
     [System.SerializableAttribute()]
@@ -39,7 +40,7 @@ namespace _2DRoguelike.Content.Core.Statistics
 
         private string nameField;
 
-        private byte scoreField;
+        private ushort scoreField;
 
         /// <remarks/>
         public string Name
@@ -55,7 +56,7 @@ namespace _2DRoguelike.Content.Core.Statistics
         }
 
         /// <remarks/>
-        public byte Score
+        public ushort Score
         {
             get
             {
