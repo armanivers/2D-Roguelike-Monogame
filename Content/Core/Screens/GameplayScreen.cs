@@ -95,6 +95,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
                 if (gameplay.gameOver)
                 {
+                    StatisticsManager.currentScore.ForceCounterUpdate();
                     Game1.gameStats.AddHighscore(StatisticsManager.currentScore);
                     GlobalHighscoreManager.SendHighscoreToServer(Game1.gameSettings.playerName, StatisticsManager.currentScore.Score);
                     ScreenManager.AddScreen(new GameoverScreen(), ControllingPlayer);

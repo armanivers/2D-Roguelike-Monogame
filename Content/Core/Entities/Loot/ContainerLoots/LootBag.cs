@@ -20,7 +20,19 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         public override void OpenContainer()
         {
             // drop all items from the provided droplist
-            new BowLoot(Position);
+            
+            if(dropList != null)
+            {
+                foreach(var item in dropList)
+                {
+
+                }
+            }
+            else
+            {
+                // default drop item if no droplist given
+                new BowLoot(Position);
+            }
             isExpired = true;
         }
     }

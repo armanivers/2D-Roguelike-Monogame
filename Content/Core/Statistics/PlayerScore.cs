@@ -7,6 +7,9 @@ namespace _2DRoguelike.Content.Core.Statistics
     public class PlayerScore
     {
         private int score;
+        private double scoreBuffer;
+        private double incrementSpeed;
+        private double incrementTimer;
 
         public int Score { get { return score; } }
         // Score Multipliers
@@ -26,37 +29,61 @@ namespace _2DRoguelike.Content.Core.Statistics
         public PlayerScore()
         {
             score = 0;
+            scoreBuffer = 0;
+            incrementTimer = 0;
+            incrementSpeed = 0.2;
             // save current date + time?
+        }
+
+        public int UpdateBuffer()
+        {
+            if(scoreBuffer > 0)
+            {
+                scoreBuffer -= incrementSpeed;
+                incrementTimer++;
+                if(incrementTimer > 5)
+                {
+                    incrementTimer = 0;
+                    score++;
+                }
+            }
+
+            return Score;
+        }
+
+        public void ForceCounterUpdate()
+        {
+            score +=(int) scoreBuffer;
         }
 
         public void NewWeaponRecieved()
         {
-            score += NEW_WEAPON_RECIEVED;
+            scoreBuffer += NEW_WEAPON_RECIEVED;
         }
 
         public void WeaponRecieved()
         {
-            score += WEAPON_RECIEVED;
+            scoreBuffer += WEAPON_RECIEVED;
         }
 
         public void MonsterKilled()
         {
-            score += MONSTER_KILLED;
+            scoreBuffer += MONSTER_KILLED;
         }
 
         public void LevelUp()
         {
-            score += LEVEL_UP;
+            scoreBuffer += LEVEL_UP;
         }
 
         public void LootOpen()
         {
-            score += LOOT_OPEN;
+            scoreBuffer += LOOT_OPEN;
         }
 
         public void MapLevelReached()
         {
-            score += MAP_LEVEL_REACHED;
+            scoreBuffer += MAP_LEVEL_REACHED;
         }
 
 

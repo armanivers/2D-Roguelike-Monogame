@@ -221,6 +221,10 @@ namespace _2DRoguelike.Content.Core.Screens
         /// Unlike HandleInput, this method is called regardless of whether the screen
         /// is active, hidden, or in the middle of a transition.
         /// </summary>
+        /// 
+
+        public virtual void CustomUpdate() { }
+
         public virtual void Update(GameTime gameTime, bool otherScreenHasFocus,
                                                       bool coveredByOtherScreen)
         {

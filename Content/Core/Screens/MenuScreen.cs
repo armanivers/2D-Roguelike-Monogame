@@ -40,10 +40,11 @@ namespace _2DRoguelike.Content.Core.Screens
 
         #region Properties
         protected bool notEscapable = false;
-        protected bool reverse;
         protected String dataString;
         protected bool customMenu = false;
         protected int customSelectEntry;
+
+        protected bool customUpdate = false;
         /// <summary>
         /// Gets the list of menu entries, so derived classes can add
         /// or change the menu contents.
@@ -63,15 +64,6 @@ namespace _2DRoguelike.Content.Core.Screens
         public MenuScreen(string menuTitle)
         {
             this.menuTitle = menuTitle;
-            this.reverse = false;
-            TransitionOnTime = TimeSpan.FromSeconds(0.5);
-            TransitionOffTime = TimeSpan.FromSeconds(0.5);
-        }
-
-        public MenuScreen(string menuTitle, bool reverse)
-        {
-            this.menuTitle = menuTitle;
-            this.reverse = reverse;
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
         }
@@ -83,6 +75,18 @@ namespace _2DRoguelike.Content.Core.Screens
             this.customMenu = customMenu;
             this.customSelectEntry = customSelectedEntry;
 
+
+            TransitionOnTime = TimeSpan.FromSeconds(0.5);
+            TransitionOffTime = TimeSpan.FromSeconds(0.5);
+        }
+
+        public MenuScreen(string menuTitle, bool customMenu, int customSelectedEntry,bool customUpdate)
+        {
+            this.menuTitle = menuTitle;
+
+            this.customMenu = customMenu;
+            this.customSelectEntry = customSelectedEntry;
+            this.customUpdate = false;
 
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
@@ -221,34 +225,10 @@ namespace _2DRoguelike.Content.Core.Screens
                 // move down for the next entry the size of this entry
                 position.Y += menuEntry.GetHeight(this);
             }
-        }
 
-        protected virtual void UpdateMenuEntryLocationsReverse()
-        {
-            float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
-
-            // start at Y = 175; each X value is generated per entry
-            Vector2 position = new Vector2(0f,ScreenManager.GraphicsDevice.Viewport.Height - 175f);
-
-            // update each menu entry's location in turn
-            for (int i = 0; i < menuEntries.Count; i++)
+            if(ScreenState == ScreenState.TransitionOn)
             {
-                MenuEntry menuEntry = menuEntries[i];
-
-                // each entry is to be centered horizontally
-                position.Y = ScreenManager.GraphicsDevice.Viewport.Height - menuEntry.GetHeight(this) - 50f;
-                position.X = ScreenManager.GraphicsDevice.Viewport.Width / 2 - menuEntry.GetWidth(this) / 2;
-
-                if (ScreenState == ScreenState.TransitionOn)
-                    position.Y += transitionOffset * 256;
-                else
-                    position.Y -= transitionOffset * 512;
-
-                // set the entry's position
-                menuEntry.Position = position;
-
-                // move down for the next entry the size of this entry
-                position.Y -= menuEntry.GetHeight(this);
+                customUpdate = true;
             }
         }
 
@@ -267,6 +247,11 @@ namespace _2DRoguelike.Content.Core.Screens
 
                 menuEntries[i].Update(this, isSelected, gameTime);
             }
+
+            if(customUpdate)
+            {
+                CustomUpdate();
+            }
         }
 
         /// <summary>
@@ -274,15 +259,9 @@ namespace _2DRoguelike.Content.Core.Screens
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
-            if (reverse)
-            {
-                UpdateMenuEntryLocationsReverse();
-            }
-            else
-            {
-                // make sure our entries are in the right place before we draw them
-                UpdateMenuEntryLocations();
-            }
+            // make sure our entries are in the right place before we draw them
+            UpdateMenuEntryLocations();
+
 
             GraphicsDevice graphics = ScreenManager.GraphicsDevice;
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
