@@ -15,6 +15,7 @@ namespace _2DRoguelike.Content.Core.UI
         public static ExperienceBar experienceBar;
         public static ToolTip toolTip;
         public static Highscore highscore;
+        public static Fog fog;
         public static void Update(GameTime gameTime)
         {
             healthBar.Update(gameTime);
@@ -23,9 +24,11 @@ namespace _2DRoguelike.Content.Core.UI
             experienceBar.Update(gameTime);
             toolTip.Update(gameTime);
             highscore.Update(gameTime);
+            fog.Update(gameTime);
         }
         public static void DrawStatic(SpriteBatch spriteBatch)
         {
+            fog.Draw(spriteBatch);
             healthBar.Draw(spriteBatch);
             skillBar.Draw(spriteBatch);
             experienceBar.Draw(spriteBatch);
@@ -46,6 +49,7 @@ namespace _2DRoguelike.Content.Core.UI
                 experienceBar?.ForceResolutionUpdate();
                 toolTip?.ForceResolutionUpdate();
                 highscore?.ForceResolutionUpdate();
+                fog?.ForceResolutionUpdate();
             
         }
 

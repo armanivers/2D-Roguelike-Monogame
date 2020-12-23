@@ -91,6 +91,7 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D Gradient { get; private set; }
 
         public static Texture2D Fog { get; private set; }
+        public static Texture2D MovingFog { get; private set; }
         public static Texture2D FOV { get; private set; }
 
         // UI Data
@@ -194,6 +195,7 @@ namespace _2DRoguelike.Content.Core
             Blank = content.Load<Texture2D>("Assets/Graphics/Menus/blank");
             Gradient = content.Load<Texture2D>("Assets/Graphics/Menus/gradient");
             Fog = content.Load<Texture2D>("Assets/Graphics/WorldElements/Fog");
+            MovingFog = content.Load<Texture2D>("Assets/Graphics/WorldElements/movingFog");
             FOV = content.Load<Texture2D>("Assets/Graphics/WorldElements/FOV");
             mouseCursor = content.Load<Texture2D>("Assets/System/mouseCursor");
             // UI Data

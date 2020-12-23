@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace _2DRoguelike.Content.Core
@@ -17,6 +18,9 @@ namespace _2DRoguelike.Content.Core
     class Gameplay
     {
         public bool gameOver;
+        private int i;
+        private float fogTransparency;
+        private float tSpeed;
         public Gameplay()
         {
         }
@@ -48,8 +52,11 @@ namespace _2DRoguelike.Content.Core
             UIManager.experienceBar = new ExperienceBar(Player.Instance);
             UIManager.toolTip = new ToolTip(Player.Instance);
             UIManager.highscore = new Highscore();
+            UIManager.fog = new Fog();
 
-
+            fogTransparency = 0f;
+            tSpeed = 0.1f;
+            i = -1400;
             gameOver = false;
         }
         public void UnloadContent()
@@ -96,19 +103,7 @@ namespace _2DRoguelike.Content.Core
             // seperate sprite batch begin+end which isn't attached to an active 2D Camera
             spriteBatch.Begin();
 
-            // FOV + Fog
-            if(Game1.gameSettings.fullScreen)
-            {
-                // FOV Texture = 720p , so for 1080p it needs upscaling of 1.5
-                spriteBatch.Draw(TextureManager.FOV, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 1.5f, SpriteEffects.None, 0);
-                // Fog Texture = 720p, so for 1080p it needs upscaling of 1.5
-                spriteBatch.Draw(TextureManager.Fog, Vector2.Zero, null, Color.White * 0.3f, 0, Vector2.Zero, 1.5f, SpriteEffects.None, 0);
-            }
-            else
-            {
-                spriteBatch.Draw(TextureManager.FOV, Vector2.Zero, null,Color.White,0,Vector2.Zero,1f,SpriteEffects.None,0);
-                spriteBatch.Draw(TextureManager.Fog, Vector2.Zero, null, Color.White * 0.3f, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
-            }
+            
             // UI Elements
             UIManager.DrawStatic(spriteBatch);
 
@@ -117,6 +112,9 @@ namespace _2DRoguelike.Content.Core
                 GameDebug.GameDebug.DrawStatic(spriteBatch);
             }
             spriteBatch.End();
+
+
+    
         }
     }
 

@@ -25,6 +25,9 @@ namespace _2DRoguelike.Content.Core.Screens
         // Debug
         private MenuEntry debugModeOptions;
 
+        // change name
+        private MenuEntry changeName;
+
         private enum Ungulate
         {
             BactrianCamel,
@@ -65,6 +68,8 @@ namespace _2DRoguelike.Content.Core.Screens
             // debug mode
             debugModeOptions = new MenuEntry(String.Empty);
 
+            changeName = new MenuEntry(String.Empty);
+
             SetMenuEntryText();
 
             MenuEntry back = new MenuEntry("Back");
@@ -81,6 +86,8 @@ namespace _2DRoguelike.Content.Core.Screens
             soundOptions.Selected += OnSoundOptionsSelected;
 
             debugModeOptions.Selected += OnDebugmodeOptionsSelected;
+
+            changeName.Selected += OpenNameInputWindow;
 
             back.Selected += OnCancel;
 
@@ -100,6 +107,8 @@ namespace _2DRoguelike.Content.Core.Screens
 
             // sound options
             MenuEntries.Add(soundOptions);
+
+            MenuEntries.Add(changeName);
         }
 
         private void SetMenuEntryText()
@@ -112,6 +121,7 @@ namespace _2DRoguelike.Content.Core.Screens
             soundeffectsLevel.Text = "SoundEffects: " + (Game1.gameSettings.SoundEffectsEnabled() ? "on" : "off");
             soundOptions.Text = "Sound Options";
             debugModeOptions.Text = "Debug Options";
+            changeName.Text = "Change Player Name";
         }
 
         #endregion Initialization
@@ -155,6 +165,15 @@ namespace _2DRoguelike.Content.Core.Screens
                 Game1.gameSettings.SetFullscreen();
             }
             SetMenuEntryText();
+        }
+
+        private void OpenNameInputWindow(object sender, PlayerIndexEventArgs e)
+        {
+            NameInputScreen nameInput = new NameInputScreen();
+
+            //nameInput.Accepted += ConfirmQuitMessageBoxAccepted;
+
+            ScreenManager.AddScreen(nameInput, ControllingPlayer);
         }
 
         private void EnableDisableBackgroundMusic(object sender, PlayerIndexEventArgs e)
