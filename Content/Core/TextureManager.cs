@@ -87,6 +87,7 @@ namespace _2DRoguelike.Content.Core
 
         // Menu Data
         public static Texture2D Background { get; private set; }
+        public static Texture2D MenuBackground { get; private set; }
         public static Texture2D Blank { get; private set; }
         public static Texture2D Gradient { get; private set; }
 
@@ -191,7 +192,7 @@ namespace _2DRoguelike.Content.Core
             FontArial = content.Load<SpriteFont>("Assets/System/Fonts/Arial");
 
             // Menu Data
-            Background = content.Load<Texture2D>("Assets/Graphics/Menus/background");
+            Background = content.Load<Texture2D>("Assets/Graphics/Menus/DungeonBackground");
             Blank = content.Load<Texture2D>("Assets/Graphics/Menus/blank");
             Gradient = content.Load<Texture2D>("Assets/Graphics/Menus/gradient");
             Fog = content.Load<Texture2D>("Assets/Graphics/WorldElements/Fog");
