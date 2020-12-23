@@ -18,9 +18,6 @@ namespace _2DRoguelike.Content.Core
     class Gameplay
     {
         public bool gameOver;
-        private int i;
-        private float fogTransparency;
-        private float tSpeed;
         public Gameplay()
         {
         }
@@ -54,9 +51,6 @@ namespace _2DRoguelike.Content.Core
             UIManager.highscore = new Highscore();
             UIManager.fog = new Fog();
 
-            fogTransparency = 0f;
-            tSpeed = 0.1f;
-            i = -1400;
             gameOver = false;
         }
         public void UnloadContent()
@@ -113,8 +107,6 @@ namespace _2DRoguelike.Content.Core
             }
             spriteBatch.End();
 
-
-    
         }
     }
 
