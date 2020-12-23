@@ -50,8 +50,8 @@ namespace _2DRoguelike.Content.Core.Screens
 
         public GameplayScreen()
         {
-            TransitionOnTime = TimeSpan.FromSeconds(1.5);
-            TransitionOffTime = TimeSpan.FromSeconds(0.5);
+            TransitionOnTime = TimeSpan.FromSeconds(2.5);
+            TransitionOffTime = TimeSpan.FromSeconds(0.0);
             gameplay = new Gameplay();
         }
 
@@ -98,7 +98,8 @@ namespace _2DRoguelike.Content.Core.Screens
                     StatisticsManager.currentScore.ForceCounterUpdate();
                     Game1.gameStats.AddHighscore(StatisticsManager.currentScore);
                     GlobalHighscoreManager.SendHighscoreToServer(Game1.gameSettings.playerName, StatisticsManager.currentScore.Score);
-                    ScreenManager.AddScreen(new GameoverScreen(), ControllingPlayer);
+                    //ScreenManager.AddScreen(new GameoverScreen(), ControllingPlayer);
+                    LoadingScreen.LoadCustom(ScreenManager, true, null, new BackgroundHighscoreScreen(), new GameoverScreen());
                 }
             }
         }

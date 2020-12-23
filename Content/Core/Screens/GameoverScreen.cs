@@ -10,6 +10,8 @@
 #endregion File Description
 
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace _2DRoguelike.Content.Core.Screens
@@ -20,31 +22,48 @@ namespace _2DRoguelike.Content.Core.Screens
         MenuEntry score;
         MenuEntry newGame;
         MenuEntry mainMenu;
+        MenuEntry gameoverText;
+
+        private Dictionary<int, string> quotes;
 
         private int scoreCounter;
         private int scoreMax;
         private int incrementSpeed;
 
-        public GameoverScreen()  : base("Game Over",true,1,true)
+        public GameoverScreen()  : base("Game Over",true,2,true)
         {
+            TransitionOnTime = TimeSpan.FromSeconds(1.5);
+            TransitionOffTime = TimeSpan.FromSeconds(0.5);
+
             notEscapable = true;
             scoreCounter = 0;
 
             scoreMax = StatisticsManager.currentScore.Score;
 
+            quotes = new Dictionary<int, string>()
+        {
+            { 0,"This was the most amazing fight in history!"},
+            { 1,"Aww man sucks, lets try a new game?"},
+            { 2,"You died for a good cause? I guess..."},
+            { 3,"You were a great warrior!"},
+            { 4,"Look at your score!"}
+        };
+
             DetermineIncrementSpeed();
             // Create our menu entries.
-            score = new MenuEntry("Score: " + scoreCounter, false, Color.Yellow) ;
+            score = new MenuEntry("Score: " + scoreCounter, false, Color.Yellow);
+            gameoverText = new MenuEntry("", false, Color.Aquamarine);
+            gameoverText.Text = SelectGameoverText();
             newGame = new MenuEntry("Start New Game");
             mainMenu = new MenuEntry("Return To Menu");
 
             // Hook up menu event handlers.
-            score.Selectable = false;
             newGame.Selected += StartNewGame;
             mainMenu.Selected += ReturnToMainMenu;
 
             // Add entries to the menu.
             MenuEntries.Add(score);
+            MenuEntries.Add(gameoverText);
             MenuEntries.Add(newGame);
             MenuEntries.Add(mainMenu);
         }
@@ -52,6 +71,16 @@ namespace _2DRoguelike.Content.Core.Screens
         #endregion Initialization
 
         #region Handle Input
+
+        public string SelectGameoverText()
+        {
+            Random r = new Random();
+
+            int randomQuoteIndex = r.Next(0, quotes.Count);
+            Debug.Print("Selected n = " + randomQuoteIndex + " count is = " + quotes.Count);
+            return quotes[randomQuoteIndex];
+        }
+
 
         public void DetermineIncrementSpeed()
         {
@@ -86,13 +115,12 @@ namespace _2DRoguelike.Content.Core.Screens
 
         private void StartNewGame(object sender, PlayerIndexEventArgs e)
         {
-            //ScreenManager.AddScreen(confirmQuitMessageBox, ControllingPlayer);
-            LoadingScreen.Load(ScreenManager, false, e.PlayerIndex, new GameplayScreen());
+            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,new GameplayScreen());
         }
 
         private void ReturnToMainMenu(object sender, PlayerIndexEventArgs e)
         {
-            LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(), new MainMenuScreen());
+            LoadingScreen.LoadCustom(ScreenManager, true, null, new BackgroundScreen(), new MainMenuScreen());
         }
 
         #endregion Handle Input

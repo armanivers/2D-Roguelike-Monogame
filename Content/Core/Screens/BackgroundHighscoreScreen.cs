@@ -1,4 +1,4 @@
-#region File Description
+﻿#region File Description
 
 //-----------------------------------------------------------------------------
 // BackgroundScreen.cs
@@ -25,7 +25,7 @@ namespace _2DRoguelike.Content.Core.Screens
     /// It draws a background image that remains fixed in place regardless
     /// of whatever transitions the screens on top of it may be doing.
     /// </summary>
-    internal class BackgroundScreen : GameScreen
+    internal class BackgroundHighscoreScreen : GameScreen
     {
         #region Fields
 
@@ -39,7 +39,7 @@ namespace _2DRoguelike.Content.Core.Screens
         /// <summary>
         /// Constructor.
         /// </summary>
-        public BackgroundScreen()
+        public BackgroundHighscoreScreen()
         {
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
@@ -57,7 +57,7 @@ namespace _2DRoguelike.Content.Core.Screens
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            backgroundTexture = TextureManager.DungeonBackground;
+            backgroundTexture = TextureManager.FirepitBackground;
         }
 
         /// <summary>

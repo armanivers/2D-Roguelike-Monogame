@@ -14,6 +14,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Diagnostics;
 
 #endregion Using Statements
 
@@ -39,6 +40,8 @@ namespace _2DRoguelike.Content.Core.Screens
 
         private bool loadingIsSlow;
         private bool otherScreensAreGone;
+        private bool displayText;
+        private int loadPercentage = 0;
 
         private GameScreen[] screensToLoad;
 
@@ -55,8 +58,17 @@ namespace _2DRoguelike.Content.Core.Screens
         {
             this.loadingIsSlow = loadingIsSlow;
             this.screensToLoad = screensToLoad;
+            this.displayText = true;
+            TransitionOnTime = TimeSpan.FromSeconds(1.0);
+        }
 
-            TransitionOnTime = TimeSpan.FromSeconds(0.5);
+        private LoadingScreen(ScreenManager screenManager, bool loadingIsSlow,
+                              GameScreen[] screensToLoad,bool displayText)
+        {
+            this.loadingIsSlow = loadingIsSlow;
+            this.screensToLoad = screensToLoad;
+            this.displayText = displayText;
+            TransitionOnTime = TimeSpan.FromSeconds(1.0);
         }
 
         /// <summary>
@@ -78,6 +90,24 @@ namespace _2DRoguelike.Content.Core.Screens
             screenManager.AddScreen(loadingScreen, controllingPlayer);
         }
 
+        
+            public static void LoadCustom(ScreenManager screenManager, bool loadingIsSlow,PlayerIndex? controllingPlayer,
+                                params GameScreen[] screensToLoad)
+            {
+            // Tell all the current screens to transition off.
+            foreach (GameScreen screen in screenManager.GetScreens())
+                screen.ExitScreen();
+
+            // Create and activate the loading screen.
+           
+            LoadingScreen loadingScreen = new LoadingScreen(screenManager,
+                                                            loadingIsSlow,
+                                                            screensToLoad,false);
+            
+            
+
+            screenManager.AddScreen(loadingScreen, controllingPlayer);
+            }
         #endregion Initialization
 
         #region Update and Draw
@@ -132,13 +162,22 @@ namespace _2DRoguelike.Content.Core.Screens
             // it would look silly if we flashed this up for just a fraction of a
             // second while returning from the game to the menus. This parameter
             // tells us how long the loading is going to take, so we know whether
+            
             // to bother drawing the message.
             if (loadingIsSlow)
             {
                 SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
+                ScreenManager.GraphicsDevice.Clear(Color.Black);
                 SpriteFont font = ScreenManager.Font;
 
-                const string message = "Loading...";
+                string message = "Loading....."+loadPercentage+"%";
+
+                loadPercentage += 2;
+                if (loadPercentage > 100)
+                {
+                    loadPercentage = 100;
+                    message = "Prepare For Battle!";
+                }
 
                 // Center the text in the viewport.
                 Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
@@ -147,7 +186,7 @@ namespace _2DRoguelike.Content.Core.Screens
                 Vector2 textPosition = (viewportSize - textSize) / 2;
 
                 Color color = Color.White * TransitionAlpha;
-
+                if (!displayText) return;
                 // Draw the text.
                 spriteBatch.Begin();
                 spriteBatch.DrawString(font, message, textPosition, color);

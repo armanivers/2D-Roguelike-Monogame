@@ -86,8 +86,8 @@ namespace _2DRoguelike.Content.Core
         public static SpriteFont FontArial { get; private set; }
 
         // Menu Data
-        public static Texture2D Background { get; private set; }
-        public static Texture2D MenuBackground { get; private set; }
+        public static Texture2D DungeonBackground { get; private set; }
+        public static Texture2D FirepitBackground { get; private set; }
         public static Texture2D Blank { get; private set; }
         public static Texture2D Gradient { get; private set; }
 
@@ -192,7 +192,8 @@ namespace _2DRoguelike.Content.Core
             FontArial = content.Load<SpriteFont>("Assets/System/Fonts/Arial");
 
             // Menu Data
-            Background = content.Load<Texture2D>("Assets/Graphics/Menus/DungeonBackground");
+            DungeonBackground = content.Load<Texture2D>("Assets/Graphics/Menus/DungeonBackground");
+            FirepitBackground = content.Load<Texture2D>("Assets/Graphics/Menus/FirepitBackground");
             Blank = content.Load<Texture2D>("Assets/Graphics/Menus/blank");
             Gradient = content.Load<Texture2D>("Assets/Graphics/Menus/gradient");
             Fog = content.Load<Texture2D>("Assets/Graphics/WorldElements/Fog");

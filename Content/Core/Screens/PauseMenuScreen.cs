@@ -71,7 +71,7 @@ namespace _2DRoguelike.Content.Core.Screens
         /// </summary>
         private void ConfirmQuitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
         {
-            LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(),  new MainMenuScreen());
+            LoadingScreen.LoadCustom(ScreenManager, true, null, new BackgroundScreen(),  new MainMenuScreen());
         }
 
         #endregion Handle Input

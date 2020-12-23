@@ -72,7 +72,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
             SetMenuEntryText();
 
-            MenuEntry back = new MenuEntry("Back");
+            //MenuEntry back = new MenuEntry("Back");
 
             // Hook up menu event handlers.
             ungulateMenuEntry.Selected += UngulateMenuEntrySelected;
@@ -89,7 +89,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
             changeName.Selected += OpenNameInputWindow;
 
-            back.Selected += OnCancel;
+            //back.Selected += OnCancel;
 
             // Add entries to the menu.
             //MenuEntries.Add(ungulateMenuEntry);

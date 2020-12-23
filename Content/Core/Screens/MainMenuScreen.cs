@@ -12,6 +12,7 @@
 #region Using Statements
 
 using Microsoft.Xna.Framework;
+using System;
 
 #endregion Using Statements
 
@@ -30,6 +31,9 @@ namespace _2DRoguelike.Content.Core.Screens
         public MainMenuScreen()
             : base("Main Menu")
         {
+
+            TransitionOnTime = TimeSpan.FromSeconds(0.8);
+            TransitionOffTime = TimeSpan.FromSeconds(0.0);
             // Create our menu entries.
             MenuEntry playGameMenuEntry = new MenuEntry("Play Game");
             MenuEntry optionsMenuEntry = new MenuEntry("Options");
@@ -55,8 +59,7 @@ namespace _2DRoguelike.Content.Core.Screens
 
         private void PlayGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
-                               new GameplayScreen());
+            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,new GameplayScreen());
         }
 
         private void OptionsMenuEntrySelected(object sender, PlayerIndexEventArgs e)

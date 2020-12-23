@@ -25,8 +25,6 @@ namespace _2DRoguelike.Content.Core.Screens
 
         public GlobalScoreboardScreen() : base("Global Highscore", true, 5)
         {
-            notEscapable = true;
-
             // Create our menu entries.
             MenuEntry switchHighscore = new MenuEntry("Local Highscores");
             MenuEntry mainMenu = new MenuEntry("Main Menu");

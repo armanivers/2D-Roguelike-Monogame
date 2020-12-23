@@ -116,8 +116,10 @@ namespace _2DRoguelike.Content.Core.Screens
             ContentManager content = Game.Content;
             TextureManager.Load(content);
             SoundManager.Load(content);
-
+            GraphicsDevice.Clear(ClearOptions.Target, Color.Black, 0, 0);
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            GraphicsDevice.Clear(ClearOptions.Target, Color.Black, 0, 0);
+            //GraphicsDevice.Clear(Color.Red);
             font = TextureManager.FontArial;
             blankTexture = TextureManager.Blank;
 
