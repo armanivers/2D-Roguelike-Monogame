@@ -35,7 +35,7 @@ namespace _2DRoguelike.Content.Core.UI
             if (Game1.gameSettings.fullScreen)
             {
                 // FOV Texture = 720p , so for 1080p it needs upscaling of 1.5
-                spritebatch.Draw(TextureManager.FOV, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
+                spritebatch.Draw(TextureManager.FOV, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 1.5f, SpriteEffects.None, 0);
                 spritebatch.Draw(TextureManager.MovingFog, new Vector2(xOffset, -30), null, Color.White*fogTransparency, 0, Vector2.Zero, 1.1f, SpriteEffects.None, 0);
                 spritebatch.Draw(TextureManager.Fog, Vector2.Zero, null, Color.White * 0.3f, 0, Vector2.Zero, 1.5f, SpriteEffects.None, 0);
             }
