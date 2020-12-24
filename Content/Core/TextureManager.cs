@@ -96,8 +96,11 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D FOV { get; private set; }
 
         // UI Data
-        public static Texture2D healthBarEmpty { get; private set; }
-        public static Texture2D healthBarRed { get; private set; }
+        public static Texture2D HealthbarContainer { get; private set; }
+        public static Texture2D HealthbarBar { get; private set; }
+        public static Texture2D BossbarContainer { get; private set; }
+        public static Texture2D BossbarBar { get; private set; }
+        public static Texture2D HighscoreCoin { get; private set; }
         public static Texture2D skillbar { get; private set; }
         public static Texture2D slotUsed { get; private set; }
         public static Texture2D selectedItemFame { get; private set; }
@@ -202,8 +205,11 @@ namespace _2DRoguelike.Content.Core
             FOV = content.Load<Texture2D>("Assets/Graphics/WorldElements/FOV");
             mouseCursor = content.Load<Texture2D>("Assets/System/mouseCursor");
             // UI Data
-            healthBarEmpty = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/EmptyBar");
-            healthBarRed = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/RedBar");
+            HealthbarContainer = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/HealthbarHolder");
+            HealthbarBar = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/HealthbarBar");
+            BossbarContainer = content.Load<Texture2D>("Assets/Graphics/UI/Bossbar/BossbarContainer");
+            BossbarBar = content.Load<Texture2D>("Assets/Graphics/UI/Bossbar/BossbarBar");
+            HighscoreCoin = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Highscore/HighscoreCoin");
             skillbar = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/skillbar");
             slotUsed = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/slotUsed");
             selectedItemFame = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/selectedItemFrame");

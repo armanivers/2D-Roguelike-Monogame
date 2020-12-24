@@ -9,48 +9,56 @@ namespace _2DRoguelike.Content.Core.UI
 {
     class UIManager
     {
-        public static HealthBar healthBar;
-        public static Skillbar skillBar;
-        public static MobHealthBars mobHealthBars;
-        public static ExperienceBar experienceBar;
-        public static ToolTip toolTip;
-        public static Highscore highscore;
-        public static Fog fog;
+        public static List<UIElement> uiElementsDynamic = new List<UIElement>();
+        public static List<UIElement> uiElementsStatic = new List<UIElement>();
+
+        public static List<UIElement> uiElements = new List<UIElement>();
         public static void Update(GameTime gameTime)
         {
-            healthBar.Update(gameTime);
-            skillBar.Update(gameTime);
-            mobHealthBars.Update(gameTime);
-            experienceBar.Update(gameTime);
-            toolTip.Update(gameTime);
-            highscore.Update(gameTime);
-            fog.Update(gameTime);
+            foreach(var ui in uiElements)
+            {
+                ui.Update(gameTime);
+            }
         }
         public static void DrawStatic(SpriteBatch spriteBatch)
         {
-            fog.Draw(spriteBatch);
-            healthBar.Draw(spriteBatch);
-            skillBar.Draw(spriteBatch);
-            experienceBar.Draw(spriteBatch);
-            toolTip.Draw(spriteBatch);
-            highscore.Draw(spriteBatch);
+            foreach(var ui in uiElementsStatic)    
+            {
+                ui.Draw(spriteBatch);
+            }
         }
 
         public static void DrawDynamic(SpriteBatch spriteBatch)
         {
-            mobHealthBars.Draw(spriteBatch);
+            foreach(var ui in uiElementsDynamic)
+            {
+                ui.Draw(spriteBatch);
+            }
         }
 
         public static void ForceResolutionUpdate()
         {
+            foreach(var ui in uiElementsDynamic)
+            {
+                ui?.ForceResolutionUpdate();
+            }
+        }
 
-                healthBar?.ForceResolutionUpdate();
-                skillBar?.ForceResolutionUpdate();
-                experienceBar?.ForceResolutionUpdate();
-                toolTip?.ForceResolutionUpdate();
-                highscore?.ForceResolutionUpdate();
-                fog?.ForceResolutionUpdate();
-            
+        public static void AddUIElementDynamic(UIElement ui)
+        {
+            if(ui != null)
+            {
+                uiElementsDynamic.Add(ui);
+                uiElements.Add(ui);
+            }
+        }
+        public static void AddUIElementStatic(UIElement ui)
+        {
+            if (ui != null)
+            {
+                uiElementsStatic.Add(ui);
+                uiElements.Add(ui);
+            }
         }
 
     }

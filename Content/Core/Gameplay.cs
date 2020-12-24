@@ -43,13 +43,17 @@ namespace _2DRoguelike.Content.Core
             new LootBag(/*LevelManager.maps.getSpawnpoint() +*/ new Vector2(6 * 32, 21 * 32),null);
             new Chest(new Vector2(2 * 32, 2 * 32), null);
 
-            UIManager.healthBar = new HealthBar(Player.Instance);
-            UIManager.skillBar = new Skillbar(Player.Instance);
-            UIManager.mobHealthBars = new MobHealthBars();
-            UIManager.experienceBar = new ExperienceBar(Player.Instance);
-            UIManager.toolTip = new ToolTip(Player.Instance);
-            UIManager.highscore = new Highscore();
-            UIManager.fog = new Fog();
+            UIManager.AddUIElementDynamic(new MobHealthBars());
+
+            UIManager.AddUIElementStatic(new Fog());
+            UIManager.AddUIElementStatic(new Skillbar(Player.Instance));
+            UIManager.AddUIElementStatic(new ExperienceBar(Player.Instance));
+            UIManager.AddUIElementStatic(new BossBar(Player.Instance));
+            UIManager.AddUIElementStatic(new HealthBar(Player.Instance));
+            UIManager.AddUIElementStatic(new ToolTip(Player.Instance));
+            UIManager.AddUIElementStatic(new Highscore());
+
+
 
             gameOver = false;
         }

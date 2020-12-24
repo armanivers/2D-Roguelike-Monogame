@@ -11,27 +11,43 @@ namespace _2DRoguelike.Content.Core.UI
     class HealthBar : UIElement
     {
         private Player target;
+
         private int currentHealth;
         private int fullWidth;
         private int currentWidth;
 
+        // space from upper left corner
+        private int xSafezone = 30;
+        private int ySafezone = 20;
 
         private Texture2D healthbarContainer;
         private Texture2D healthBar;
-        private float scalingFactor;
 
-        private Vector2 position;
+        private float scalingFactor = 1.0f;
+
+        // red bar starts at x = 69, before it everything is empty
+        private int redbarOffsetStart = 69;
+        // redbar ends 3 pixels before the end of iamge, after it everything is empty
+        private int redbarOffsetEnd = 3;
+
+        private Vector2 redbarPosition;
+        private Vector2 containerPositon;
         private Vector2 textPosition;
 
         public HealthBar(Player player)
         {
             target = player;
-            scalingFactor = 1.5f;
-            healthbarContainer = TextureManager.healthBarEmpty;
-            healthBar = TextureManager.healthBarRed;
-            position = new Vector2(Game1.gameSettings.screenWidth / 2 - healthbarContainer.Width*scalingFactor/2, 30);
-            textPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString(""+player.HealthPoints).X/2, 30);
-            fullWidth = healthBar.Width;
+
+            healthbarContainer = TextureManager.HealthbarContainer;
+            healthBar = TextureManager.HealthbarBar;
+
+            containerPositon = new Vector2(xSafezone*scalingFactor, ySafezone*scalingFactor);
+            redbarPosition = containerPositon + new Vector2(redbarOffsetStart * scalingFactor, 0);
+
+            fullWidth = healthBar.Width-redbarOffsetStart - redbarOffsetEnd;
+            
+            textPosition = containerPositon + new Vector2(69 + fullWidth/2 -TextureManager.FontArial.MeasureString("" + player.HealthPoints).X / 2, xSafezone);
+            
             currentWidth = fullWidth;
             currentHealth = player.HealthPoints;
         }
@@ -50,20 +66,14 @@ namespace _2DRoguelike.Content.Core.UI
             //}
             currentHealth = target.HealthPoints;
             currentWidth = (int)(   ( (double)(currentHealth) / 100) * fullWidth );
-            textPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("" + currentHealth).X / 2, 30);
+            textPosition = containerPositon + new Vector2(redbarOffsetStart + fullWidth / 2 - TextureManager.FontArial.MeasureString("" + target.HealthPoints).X / 2, xSafezone);
             //Debug.WriteLine("target.HealthPoints: {3}\ncurrentHealth: {0}\ncurrentWidth: {1}\n fullWidth. {2}\n---------------", currentHealth, currentWidth, fullWidth,target.HealthPoints);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(healthbarContainer, position, null,Color.White,0, Vector2.Zero, scalingFactor, SpriteEffects.None,0);
-            spriteBatch.Draw(healthBar, position,new Rectangle(0,0, currentWidth, healthBar.Height), Color.White,0, Vector2.Zero, scalingFactor,SpriteEffects.None,0);
+            spriteBatch.Draw(healthbarContainer, containerPositon, null,Color.White,0, Vector2.Zero, scalingFactor, SpriteEffects.None,0);
+            spriteBatch.Draw(healthBar, redbarPosition, new Rectangle(redbarOffsetStart,0, currentWidth, healthBar.Height), Color.White,0, Vector2.Zero, scalingFactor,SpriteEffects.None,0);
             spriteBatch.DrawString(TextureManager.FontArial, ""+currentHealth, textPosition, Color.White);
-        }
-
-        public override void ForceResolutionUpdate()
-        {
-            position = new Vector2(Game1.gameSettings.screenWidth / 2 - healthbarContainer.Width * scalingFactor / 2, 30);
-            textPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - 10, 30);
         }
 
     }

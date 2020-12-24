@@ -13,31 +13,36 @@ namespace _2DRoguelike.Content.Core.UI
 
         private int currentScore;
 
-        private float scalingFactor;
+        private float scalingFactor = 1.0f;
+
+        private int xSafezone = 20;
+        private int ySafezone = 30;
 
         private Vector2 textPosition;
-        private int textYOffset;
+        private Vector2 coinPosition;
+
+        private Texture2D coinTexture;
 
         public Highscore()
         {
-            scalingFactor = 1.5f;
-            textYOffset = 120;
+            coinTexture = TextureManager.HighscoreCoin;
         }
 
         public override void Update(GameTime gameTime)
         {
-
             currentScore = StatisticsManager.currentScore.UpdateBuffer();
-            textPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("Score: " + currentScore).X / 2, textYOffset);
+            coinPosition = new Vector2(Game1.gameSettings.screenWidth - xSafezone - coinTexture.Width, ySafezone);
+            textPosition = new Vector2(coinPosition.X - TextureManager.FontArial.MeasureString("Score: " + currentScore).X - xSafezone, coinPosition.Y+10);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(coinTexture, coinPosition, null, Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
             spriteBatch.DrawString(TextureManager.FontArial, "Score: " + currentScore, textPosition, Color.White);
         }
 
         public override void ForceResolutionUpdate()
         {
-            textPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("Score: " + currentScore).X / 2, textYOffset);
+            coinPosition = new Vector2(Game1.gameSettings.screenWidth - xSafezone - coinTexture.Width, ySafezone);
         }
 
     }

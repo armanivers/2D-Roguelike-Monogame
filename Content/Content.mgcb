@@ -745,6 +745,30 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/Projectiles/Arrow.png
 
+#begin Assets/Graphics/UI/Bossbar/BossbarBar.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/UI/Bossbar/BossbarBar.png
+
+#begin Assets/Graphics/UI/Bossbar/BossbarContainer.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/UI/Bossbar/BossbarContainer.png
+
 #begin Assets/Graphics/UI/EnemeyUI/enemyBar.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -769,7 +793,7 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/UI/EnemeyUI/enemyBarContainer.png
 
-#begin Assets/Graphics/UI/PlayerUI/EmptyBar.png
+#begin Assets/Graphics/UI/PlayerUI/HealthbarBar.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -779,7 +803,31 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Graphics/UI/PlayerUI/EmptyBar.png
+/build:Assets/Graphics/UI/PlayerUI/HealthbarBar.png
+
+#begin Assets/Graphics/UI/PlayerUI/HealthbarHolder.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/UI/PlayerUI/HealthbarHolder.png
+
+#begin Assets/Graphics/UI/PlayerUI/Highscore/HighscoreCoin.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/UI/PlayerUI/Highscore/HighscoreCoin.png
 
 #begin Assets/Graphics/UI/PlayerUI/lockedWeapon.png
 /importer:TextureImporter
@@ -792,18 +840,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/UI/PlayerUI/lockedWeapon.png
-
-#begin Assets/Graphics/UI/PlayerUI/RedBar.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Assets/Graphics/UI/PlayerUI/RedBar.png
 
 #begin Assets/Graphics/UI/PlayerUI/RedSlotCross.png
 /importer:TextureImporter
