@@ -102,6 +102,7 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D slotUsed { get; private set; }
         public static Texture2D selectedItemFame { get; private set; }
         public static Texture2D redSlotCross { get; private set; }
+        public static Texture2D LockedWeapon { get; private set; }
         public static Texture2D EnemyBarContainer { get; private set; }
         public static Texture2D EnemyBar { get; private set; }
         public static Texture2D mouseCursor { get; private set; }
@@ -207,6 +208,7 @@ namespace _2DRoguelike.Content.Core
             slotUsed = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/slotUsed");
             selectedItemFame = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/selectedItemFrame");
             redSlotCross = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/RedSlotCross");
+            LockedWeapon = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/lockedWeapon");
             EnemyBarContainer = content.Load<Texture2D>("Assets/Graphics/UI/EnemeyUI/enemyBarContainer");
             EnemyBar = content.Load<Texture2D>("Assets/Graphics/UI/EnemeyUI/enemyBar");
 

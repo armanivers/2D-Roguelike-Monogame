@@ -44,7 +44,7 @@ namespace _2DRoguelike.Content.Core.UI
             skillbarTexture = TextureManager.skillbar;
             skillbarPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - skillbarTexture.Width * scalingFactor / 2, Game1.gameSettings.screenHeight-skillbarTexture.Height * scalingFactor - 30);
             
-            redCrossSlotTexture = TextureManager.redSlotCross;
+            redCrossSlotTexture = TextureManager.LockedWeapon;
             usedSlotTexture = TextureManager.slotUsed;
             selectedItemFrame = TextureManager.selectedItemFame;
             
@@ -126,7 +126,7 @@ namespace _2DRoguelike.Content.Core.UI
                 }
                 else
                 {
-                    spriteBatch.Draw(redCrossSlotTexture, new Vector2(usedSlotPosition.X + (itemFrameWidth * i), usedSlotPosition.Y), null, Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
+                    spriteBatch.Draw(redCrossSlotTexture, new Vector2(usedSlotPosition.X + (itemFrameWidth * i), usedSlotPosition.Y), null, Color.White*0.8F, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
                 }
             }
         }

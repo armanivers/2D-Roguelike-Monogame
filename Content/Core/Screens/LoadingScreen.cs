@@ -68,7 +68,7 @@ namespace _2DRoguelike.Content.Core.Screens
             this.loadingIsSlow = loadingIsSlow;
             this.screensToLoad = screensToLoad;
             this.displayText = displayText;
-            TransitionOnTime = TimeSpan.FromSeconds(1.0);
+            TransitionOnTime = TimeSpan.FromSeconds(0.3);
         }
 
         /// <summary>
