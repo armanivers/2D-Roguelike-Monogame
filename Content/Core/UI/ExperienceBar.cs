@@ -19,7 +19,10 @@ namespace _2DRoguelike.Content.Core.UI
 
         // space from upper left corner
         private int xSafezone = 25;
-        private int ySafezone = 80;
+        private int ySafezone = 90;
+
+        // text position relative to xpbar position
+        private int textOffsetY = 25;
 
         private Texture2D xpbarContainer;
         private Texture2D xpbarBar;
@@ -47,7 +50,7 @@ namespace _2DRoguelike.Content.Core.UI
 
             fullWidth = xpbarBar.Width - xpbarOffsetStart - xpbarOffsetEnd;
 
-            textPosition = xpbarContainerPosition + new Vector2(69 + fullWidth / 2 - TextureManager.FontArial.MeasureString("" + player.HealthPoints).X / 2, xSafezone);
+            textPosition = xpbarBarPosition - new Vector2(0, 25);
 
             currentWidth = fullWidth;
             currentXP = player.HealthPoints;
@@ -60,9 +63,6 @@ namespace _2DRoguelike.Content.Core.UI
             currentXP = target.CurrentXP;
             currentXPLevel = target.currentXPLevel;
 
-            textPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("Level: " + currentXPLevel + " XP: " + currentXP).X/2, 80);
-
-
             currentWidth = (int)((target.LevelupPercentage) * fullWidth);
             //Debug.Print("Percentage {0} width = {1}", target.LevelupPercentage, currentWidth);
             //textPosition = containerPositon + new Vector2(redbarOffsetStart + fullWidth / 2 - TextureManager.FontArial.MeasureString("" + target.HealthPoints).X / 2, xSafezone);
@@ -72,12 +72,7 @@ namespace _2DRoguelike.Content.Core.UI
             spriteBatch.Draw(xpbarContainer, xpbarContainerPosition, null, Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
             spriteBatch.Draw(xpbarBar, xpbarBarPosition, new Rectangle(xpbarOffsetStart, 0, currentWidth, xpbarBar.Height), Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
 
-            spriteBatch.DrawString(TextureManager.FontArial, "Level: " + currentXPLevel + " XP: "+currentXP , textPosition, Color.White);
-        }
-
-        public override void ForceResolutionUpdate()
-        {
-            textPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("Level: " + currentXPLevel + " XP: " + currentXP).X / 2, 80);
+            spriteBatch.DrawString(TextureManager.GameFont, "Level: " + currentXPLevel + " XP: "+currentXP , textPosition, Color.Gold);
         }
 
     }

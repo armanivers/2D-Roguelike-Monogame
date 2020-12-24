@@ -30,6 +30,9 @@ namespace _2DRoguelike.Content.Core.UI
         // redbar ends 3 pixels before the end of iamge, after it everything is empty
         private int redbarOffsetEnd = 4;
 
+        // text position relative to healthbar position
+        private int textOffsetY = 15;
+
         private Vector2 redbarPosition;
         private Vector2 containerPositon;
         private Vector2 textPosition;
@@ -46,7 +49,7 @@ namespace _2DRoguelike.Content.Core.UI
 
             fullWidth = healthBar.Width-redbarOffsetStart - redbarOffsetEnd;
             
-            textPosition = containerPositon + new Vector2(69 + fullWidth/2 -TextureManager.FontArial.MeasureString("" + player.HealthPoints).X / 2, xSafezone);
+            textPosition = containerPositon + new Vector2(redbarOffsetStart + fullWidth/2 -TextureManager.FontArial.MeasureString("" + player.HealthPoints).X / 2, ySafezone + textOffsetY);
             
             currentWidth = fullWidth;
             currentHealth = player.HealthPoints;
@@ -66,14 +69,14 @@ namespace _2DRoguelike.Content.Core.UI
             //}
             currentHealth = target.HealthPoints;
             currentWidth = (int)(   ( (double)(currentHealth) / target.maxHealthPoints) * fullWidth );
-            textPosition = containerPositon + new Vector2(redbarOffsetStart + fullWidth / 2 - TextureManager.FontArial.MeasureString("" + target.HealthPoints).X / 2, xSafezone);
+            textPosition = containerPositon + new Vector2(redbarOffsetStart + fullWidth / 2 - TextureManager.FontArial.MeasureString("" + target.HealthPoints).X / 2, ySafezone + textOffsetY);
             //Debug.WriteLine("target.HealthPoints: {3}\ncurrentHealth: {0}\ncurrentWidth: {1}\n fullWidth. {2}\n---------------", currentHealth, currentWidth, fullWidth,target.HealthPoints);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(healthbarContainer, containerPositon, null,Color.White,0, Vector2.Zero, scalingFactor, SpriteEffects.None,0);
             spriteBatch.Draw(healthBar, redbarPosition, new Rectangle(redbarOffsetStart,0, currentWidth, healthBar.Height), Color.White,0, Vector2.Zero, scalingFactor,SpriteEffects.None,0);
-            spriteBatch.DrawString(TextureManager.FontArial, ""+currentHealth, textPosition, Color.White);
+            spriteBatch.DrawString(TextureManager.GameFont, ""+currentHealth, textPosition, Color.White);
         }
 
     }

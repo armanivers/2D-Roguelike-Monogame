@@ -84,6 +84,7 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D Shadow { get; private set; }
         // Font Data
         public static SpriteFont FontArial { get; private set; }
+        public static SpriteFont GameFont { get; private set; }
 
         // Menu Data
         public static Texture2D DungeonBackground { get; private set; }
@@ -200,6 +201,7 @@ namespace _2DRoguelike.Content.Core
 
             // Font Data
             FontArial = content.Load<SpriteFont>("Assets/System/Fonts/Arial");
+            GameFont = content.Load<SpriteFont>("Assets/System/Fonts/File");
 
             // Menu Data
             DungeonBackground = content.Load<Texture2D>("Assets/Graphics/Menus/DungeonBackground");

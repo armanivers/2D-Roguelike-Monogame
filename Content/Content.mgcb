@@ -1094,6 +1094,13 @@
 /processorParam:TextureFormat=Compressed
 /build:Assets/System/Fonts/Arial.spritefont
 
+#begin Assets/System/Fonts/File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Assets/System/Fonts/File.spritefont
+
 #begin Assets/System/mouseCursor.png
 /importer:TextureImporter
 /processor:TextureProcessor

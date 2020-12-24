@@ -38,7 +38,15 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
         public double LevelupPercentage
         {
-            get { return ((double)currentXP) / xpCap[currentXPLevel]; }
+            get {
+                if (currentXPLevel < MAX_LEVEL) {
+
+                    return ((double)currentXP) / xpCap[currentXPLevel];
+                } else {
+                    // max level reached, return 100% always
+                    return 1.0;
+                } 
+            }
         }
 
         public int CurrentWeaponPos

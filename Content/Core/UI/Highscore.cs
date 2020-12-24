@@ -32,12 +32,12 @@ namespace _2DRoguelike.Content.Core.UI
         {
             currentScore = StatisticsManager.currentScore.UpdateBuffer();
             coinPosition = new Vector2(Game1.gameSettings.screenWidth - xSafezone - coinTexture.Width, ySafezone);
-            textPosition = new Vector2(coinPosition.X - TextureManager.FontArial.MeasureString("Score: " + currentScore).X - xSafezone, coinPosition.Y+10);
+            textPosition = new Vector2(coinPosition.X - TextureManager.FontArial.MeasureString("Score: " + currentScore).X - xSafezone, coinPosition.Y+13);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(coinTexture, coinPosition, null, Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
-            spriteBatch.DrawString(TextureManager.FontArial, "Score: " + currentScore, textPosition, Color.White);
+            spriteBatch.DrawString(TextureManager.GameFont, "Score: " + currentScore, textPosition, Color.White);
         }
 
         public override void ForceResolutionUpdate()
