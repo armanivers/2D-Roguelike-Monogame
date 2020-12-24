@@ -35,7 +35,12 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 currentXP = value;
             }
         }
-       
+
+        public double LevelupPercentage
+        {
+            get { return ((double)currentXP) / xpCap[currentXPLevel]; }
+        }
+
         public int CurrentWeaponPos
         {
             get { return currentWeaponPos; }
@@ -238,7 +243,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             if (currentXPLevel >= MAX_LEVEL)
                 return;
 
-            if(currentXP >= xpCap[currentXPLevel]){
+            if(CurrentXP >= xpCap[currentXPLevel]){
                 StatisticsManager.LevelUp();
                 while (currentXPLevel < MAX_LEVEL && currentXP >= xpCap[currentXPLevel])
                 {

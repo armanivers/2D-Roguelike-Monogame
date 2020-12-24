@@ -26,9 +26,9 @@ namespace _2DRoguelike.Content.Core.UI
         private float scalingFactor = 1.0f;
 
         // red bar starts at x = 69, before it everything is empty
-        private int redbarOffsetStart = 69;
+        private int redbarOffsetStart = 68;
         // redbar ends 3 pixels before the end of iamge, after it everything is empty
-        private int redbarOffsetEnd = 3;
+        private int redbarOffsetEnd = 4;
 
         private Vector2 redbarPosition;
         private Vector2 containerPositon;
@@ -65,7 +65,7 @@ namespace _2DRoguelike.Content.Core.UI
             //    position = new Vector2(GameSettings.screenWidth / 2 - healthbarContainer.Width * scalingFactor / 2, 30);
             //}
             currentHealth = target.HealthPoints;
-            currentWidth = (int)(   ( (double)(currentHealth) / 100) * fullWidth );
+            currentWidth = (int)(   ( (double)(currentHealth) / target.maxHealthPoints) * fullWidth );
             textPosition = containerPositon + new Vector2(redbarOffsetStart + fullWidth / 2 - TextureManager.FontArial.MeasureString("" + target.HealthPoints).X / 2, xSafezone);
             //Debug.WriteLine("target.HealthPoints: {3}\ncurrentHealth: {0}\ncurrentWidth: {1}\n fullWidth. {2}\n---------------", currentHealth, currentWidth, fullWidth,target.HealthPoints);
         }

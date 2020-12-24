@@ -38,7 +38,7 @@ namespace _2DRoguelike.Content.Core.UI
 
         public static void ForceResolutionUpdate()
         {
-            foreach(var ui in uiElementsDynamic)
+            foreach(var ui in uiElements)
             {
                 ui?.ForceResolutionUpdate();
             }
