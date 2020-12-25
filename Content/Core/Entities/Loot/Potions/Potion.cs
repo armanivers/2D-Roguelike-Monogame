@@ -12,5 +12,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         }
         public abstract void ActivateEffect();
 
+        public abstract void PlaySound();
+
     }
 }

@@ -30,10 +30,24 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         public override void OpenContainer()
         {
             // drop all items from the provided droplist
+            
             new AxeLoot(Position);
             isExpired = true;
         }
+        public override void PlaySound()
+        {
+            // choose one random effect (testing)
+            int x = Game1.rand.Next();
 
+            if (x % 2 == 0)
+            {
+                SoundManager.ChestOpenMagical.Play(Game1.gameSettings.soundeffectsLevel, 0, 0);
+            }
+            else
+            {
+                SoundManager.ChestOpenWooden.Play(Game1.gameSettings.soundeffectsLevel, 0, 0);
+            }
+        }
 
     }
 }

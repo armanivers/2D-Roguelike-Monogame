@@ -22,6 +22,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 
         public override void ActivateEffect()
         {
+            PlaySound();
             Player.Instance.AddHealthPoints(healthModifier);
         }
 
@@ -29,6 +30,11 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         {
             ActivateEffect();
             isExpired = true;
+        }
+
+        public override void PlaySound()
+        {
+            SoundManager.PotionDrink.Play(Game1.gameSettings.soundeffectsLevel, 0, 0);
         }
     }
 }

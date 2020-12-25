@@ -23,11 +23,22 @@ namespace _2DRoguelike.Content.Core
         // Player Effects
         public static SoundEffect PlayerHurt { get; private set; }
         public static SoundEffect PlayerDie { get; private set; }
+        // Attack/Weapon Sounds
         public static SoundEffect ShootArrow { get; private set; }
         public static SoundEffect MeleeWeaponSwing { get; private set; }
         public static SoundEffect EquipWeapon { get; private set; }
-
+        // Particle Sounds
         public static SoundEffect Explosion { get; private set; }
+        // Loot sounds
+        public static SoundEffect ChestOpenWooden { get; private set; }
+        public static SoundEffect ChestOpenMagical { get; private set; }
+        public static SoundEffect LootbagOpen { get; private set; }
+
+        // Experience obrs
+        public static SoundEffect ExperiencePickup { get; private set; }
+
+        // Potions
+        public static SoundEffect PotionDrink { get; private set; }
 
         public static void Load(ContentManager content)
         {
@@ -47,18 +58,24 @@ namespace _2DRoguelike.Content.Core
             PlayerHurt = content.Load<SoundEffect>("Assets/Sounds/PlayerSounds/playerHurt");
             PlayerDie = content.Load<SoundEffect>("Assets/Sounds/PlayerSounds/PlayerDie");
 
-            ShootArrow = content.Load<SoundEffect>("Assets/Sounds/PlayerSounds/walking_dirt");
-
-            EquipWeapon = content.Load<SoundEffect>("Assets/Sounds/PlayerSounds/equip");
-            
             // Attack sounds
-
+            ShootArrow = content.Load<SoundEffect>("Assets/Sounds/PlayerSounds/walking_dirt");
             MeleeWeaponSwing = content.Load<SoundEffect>("Assets/Sounds/PlayerSounds/Whoosh2");
+            EquipWeapon = content.Load<SoundEffect>("Assets/Sounds/PlayerSounds/equip");
 
-
+            // Particle Sounds
             Explosion = content.Load<SoundEffect>("Assets/Sounds/ParticleSFX/explosion");
 
+            // Loot sounds
+            ChestOpenWooden = content.Load<SoundEffect>("Assets/Sounds/LootSounds/ChestOpenWooden");
+            ChestOpenMagical = content.Load<SoundEffect>("Assets/Sounds/LootSounds/ChestOpenMagical");
+            LootbagOpen = content.Load<SoundEffect>("Assets/Sounds/LootSounds/LootbagOpen");
 
+            // Experience Orbs
+            ExperiencePickup = content.Load<SoundEffect>("Assets/Sounds/Miscellaneous/ExperiencePickup");
+
+            // Potions
+            PotionDrink = content.Load<SoundEffect>("Assets/Sounds/PotionSounds/PotionDrink");
         }
     }
 }

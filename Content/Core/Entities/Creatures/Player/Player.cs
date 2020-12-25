@@ -80,11 +80,15 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
         public bool ChangeCurrentWeaponSlot(int value)
         {
+            if (value != currentWeaponPos)
+            {
+                SoundManager.EquipWeapon.Play(Game1.gameSettings.soundeffectsLevel, 0.2f, 0);
+            }
+
             if (HasWeaponInSlot(value))
             {
                 CurrentWeaponPos = value;
                 CurrentWeapon = WeaponInventory[CurrentWeaponPos];
-                SoundManager.EquipWeapon.Play(Game1.gameSettings.soundeffectsLevel, 0.2f, 0);
                 return true;
             }
             return false;
@@ -248,7 +252,8 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         public void AddExperiencePoints(int xp)
         {
             CurrentXP += xp;
-            
+            SoundManager.ExperiencePickup.Play(Game1.gameSettings.soundeffectsLevel,0,0);
+
             if (currentXPLevel >= MAX_LEVEL)
                 return;
 
@@ -258,6 +263,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 while (currentXPLevel < MAX_LEVEL && currentXP >= xpCap[currentXPLevel])
                 {
                     StatisticsManager.LevelUp();
+                    MessageFactory.DisplayMessage("Level Up++", Color.Yellow);
                     currentXPLevel++;
                     DetermineLevelupAward(currentXPLevel);
                     // add remaining xp after levelup to next level

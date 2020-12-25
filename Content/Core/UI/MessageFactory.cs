@@ -21,7 +21,7 @@ namespace _2DRoguelike.Content.Core.UI
 
             public Message(string message, Color color)
             {
-                transparency = 1f;
+                transparency = 0;
                 this.message = message;
                 this.color = color;
                 this.position = new Vector2(Game1.gameSettings.screenWidth/2 - TextureManager.FontArial.MeasureString(message).X/2,0);
@@ -30,21 +30,25 @@ namespace _2DRoguelike.Content.Core.UI
 
             public void UpdatePosition()
             {
-                position = new Vector2(position.X,position.Y+5);
 
-                if (position.Y < Game1.gameSettings.screenHeight/2-100 && transparency < 1f)
+                position = new Vector2(position.X, position.Y + 2);
+
+                if (position.Y < Game1.gameSettings.screenHeight/2-100 && transparency < 1)
                 {
                     transparency += 0.005f;
+                    position = new Vector2(position.X, position.Y + 8);
                 }
 
                 if (position.Y > Game1.gameSettings.screenHeight / 2 - 100 && position.Y < Game1.gameSettings.screenHeight / 2 + 100)
                 {
-                     transparency = 1f;
+                    transparency = 1f;
+                    position = new Vector2(position.X, position.Y + 1);
                 }
 
                 if (position.Y > Game1.gameSettings.screenHeight / 2 + 100 && transparency > 0)
                 {
                     transparency -= 0.005f;
+                    position = new Vector2(position.X, position.Y + 8);
                 }
 
 

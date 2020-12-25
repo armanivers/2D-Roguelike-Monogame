@@ -20,7 +20,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         public override void OpenContainer()
         {
             // drop all items from the provided droplist
-            
+
             if(dropList != null)
             {
                 foreach(var item in dropList)
@@ -34,6 +34,11 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
                 new BowLoot(Position);
             }
             isExpired = true;
+        }
+
+        public override void PlaySound()
+        {
+            SoundManager.LootbagOpen.Play(Game1.gameSettings.soundeffectsLevel, 0, 0);
         }
     }
 }

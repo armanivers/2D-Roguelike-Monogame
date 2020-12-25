@@ -49,10 +49,12 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         public override void OnContact()
         {
             StatisticsManager.LootOpen();
+            PlaySound();
             currentAnimation = "Chest_Open";
             closed = false;
         }
 
         public abstract void OpenContainer();
+        public abstract void PlaySound();
     }
 }
