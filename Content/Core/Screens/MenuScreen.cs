@@ -13,6 +13,7 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -158,7 +159,14 @@ namespace _2DRoguelike.Content.Core.Screens
             }
             else if (input.IsMenuCancel(ControllingPlayer, out playerIndex) && !notEscapable)
             {
-                OnCancel(playerIndex);
+                if(this is OptionsMenuScreen)
+                {
+                    OnCancel(playerIndex);
+                }
+                else
+                {
+                    OnCancelPause(playerIndex);
+                }
             }
         }
 
@@ -179,12 +187,28 @@ namespace _2DRoguelike.Content.Core.Screens
             ExitScreen();
         }
 
+        protected virtual void OnCancelPause(PlayerIndex playerIndex)
+        {
+            MediaPlayer.Resume();
+
+            if (this is GamestatsScreen)
+            {
+                LoadingScreen.LoadCustom(ScreenManager, true, null, new BackgroundScreen(), new MainMenuScreen());
+            }
+            ExitScreen();
+        }
+
         /// <summary>
         /// Helper overload makes it easy to use OnCancel as a MenuEntry event handler.
         /// </summary>
         protected void OnCancel(object sender, PlayerIndexEventArgs e)
         {
             OnCancel(e.PlayerIndex);
+        }
+
+        protected void OnCancelPause(object sender, PlayerIndexEventArgs e)
+        {
+            OnCancelPause(e.PlayerIndex);
         }
 
         #endregion Handle Input

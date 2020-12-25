@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -26,6 +27,12 @@ namespace _2DRoguelike.Content.Core
             keyboardState = Keyboard.GetState();
             previousMouseState = mouseState;
             mouseState = Mouse.GetState();
+
+            if(keyboardState.IsKeyDown(Keys.H))
+            {
+                MessageFactory.DisplayMessage("Level Up++", Color.Yellow);
+            }
+
         }
 
         public static Vector2 GetDirection()
@@ -92,7 +99,7 @@ namespace _2DRoguelike.Content.Core
             return IsKeyDown(key) && !previousKeyboardState.IsKeyDown(key);
         }
 
-
+        
 
         public static Vector2 GetMouseClickPosition()
         {

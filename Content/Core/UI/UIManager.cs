@@ -19,10 +19,12 @@ namespace _2DRoguelike.Content.Core.UI
             {
                 ui.Update(gameTime);
             }
+            MessageFactory.Update(gameTime);
         }
         public static void DrawStatic(SpriteBatch spriteBatch)
         {
-            foreach(var ui in uiElementsStatic)    
+            MessageFactory.Draw(spriteBatch);
+            foreach (var ui in uiElementsStatic)    
             {
                 ui.Draw(spriteBatch);
             }

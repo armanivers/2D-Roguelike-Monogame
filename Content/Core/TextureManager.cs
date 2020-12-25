@@ -89,6 +89,7 @@ namespace _2DRoguelike.Content.Core
         // Menu Data
         public static Texture2D DungeonBackground { get; private set; }
         public static Texture2D FirepitBackground { get; private set; }
+        public static Texture2D CaveDoorBackground { get; private set; }
         public static Texture2D Blank { get; private set; }
         public static Texture2D Gradient { get; private set; }
 
@@ -206,6 +207,7 @@ namespace _2DRoguelike.Content.Core
             // Menu Data
             DungeonBackground = content.Load<Texture2D>("Assets/Graphics/Menus/DungeonBackground");
             FirepitBackground = content.Load<Texture2D>("Assets/Graphics/Menus/FirepitBackground");
+            CaveDoorBackground = content.Load<Texture2D>("Assets/Graphics/Menus/CaveBackground");
             Blank = content.Load<Texture2D>("Assets/Graphics/Menus/blank");
             Gradient = content.Load<Texture2D>("Assets/Graphics/Menus/gradient");
             Fog = content.Load<Texture2D>("Assets/Graphics/WorldElements/Fog");
@@ -215,7 +217,7 @@ namespace _2DRoguelike.Content.Core
             // UI Data
             // health + scores
             HealthbarContainer = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Healthbar/HealthbarContainer");
-            HealthbarBar = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/HealthbarBar");
+            HealthbarBar = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Healthbar/HealthbarBar");
             BossbarContainer = content.Load<Texture2D>("Assets/Graphics/UI/Bossbar/BossbarContainer");
             BossbarBar = content.Load<Texture2D>("Assets/Graphics/UI/Bossbar/BossbarBar");
             HighscoreCoin = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Highscore/HighscoreCoin");
@@ -223,11 +225,11 @@ namespace _2DRoguelike.Content.Core
             XPBarContainer = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Experiencebar/XPBarContainer");
             XPBarBar = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Experiencebar/XPBarBar");
             // skillbar
-            skillbar = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/skillbar");
-            slotUsed = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/slotUsed");
-            selectedItemFame = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/selectedItemFrame");
-            redSlotCross = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/RedSlotCross");
-            LockedWeapon = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/lockedWeapon");
+            skillbar = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Skillbar/skillbar");
+            slotUsed = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Skillbar/slotUsed");
+            selectedItemFame = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Skillbar/selectedItemFrame");
+            redSlotCross = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Skillbar/RedSlotCross");
+            LockedWeapon = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Skillbar/lockedWeapon");
             // mob health
             EnemyBarContainer = content.Load<Texture2D>("Assets/Graphics/UI/EnemeyUI/enemyBarContainer");
             EnemyBar = content.Load<Texture2D>("Assets/Graphics/UI/EnemeyUI/enemyBar");

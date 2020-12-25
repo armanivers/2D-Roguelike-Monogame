@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -103,7 +104,6 @@ namespace _2DRoguelike.Content.Core.Screens
 
             // custom Cursor image
             Mouse.SetCursor(MouseCursor.FromTexture2D(TextureManager.mouseCursor, 16, 16));
-            
             isInitialized = true;
         }
 
@@ -112,10 +112,6 @@ namespace _2DRoguelike.Content.Core.Screens
         /// </summary>
         protected override void LoadContent()
         {
-            // Load content belonging to the screen manager.
-            ContentManager content = Game.Content;
-            TextureManager.Load(content);
-            SoundManager.Load(content);
             GraphicsDevice.Clear(ClearOptions.Target, Color.Black, 0, 0);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             GraphicsDevice.Clear(ClearOptions.Target, Color.Black, 0, 0);

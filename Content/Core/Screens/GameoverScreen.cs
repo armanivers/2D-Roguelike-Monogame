@@ -10,6 +10,7 @@
 #endregion File Description
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -121,6 +122,9 @@ namespace _2DRoguelike.Content.Core.Screens
         private void ReturnToMainMenu(object sender, PlayerIndexEventArgs e)
         {
             LoadingScreen.LoadCustom(ScreenManager, true, null, new BackgroundScreen(), new MainMenuScreen());
+            MediaPlayer.Play(SoundManager.MenuMusic);
+            MediaPlayer.Volume = Game1.gameSettings.backgroundMusicLevel;
+            MediaPlayer.IsRepeating = true;
         }
 
         #endregion Handle Input

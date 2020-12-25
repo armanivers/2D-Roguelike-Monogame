@@ -541,6 +541,18 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/Menus/blank.png
 
+#begin Assets/Graphics/Menus/CaveBackground.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/Menus/CaveBackground.png
+
 #begin Assets/Graphics/Menus/DungeonBackground.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -805,18 +817,6 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/UI/PlayerUI/Experiencebar/XPBarBar.png
 
-#begin Assets/Graphics/UI/PlayerUI/Experiencebar/XPBarBar.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Assets/Graphics/UI/PlayerUI/Experiencebar/XPBarBar.png
-
 #begin Assets/Graphics/UI/PlayerUI/Experiencebar/XPBarContainer.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -828,6 +828,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/UI/PlayerUI/Experiencebar/XPBarContainer.png
+
+#begin Assets/Graphics/UI/PlayerUI/Healthbar/HealthbarBar.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/UI/PlayerUI/Healthbar/HealthbarBar.png
 
 #begin Assets/Graphics/UI/PlayerUI/Healthbar/HealthbarContainer.png
 /importer:TextureImporter
@@ -841,30 +853,6 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/UI/PlayerUI/Healthbar/HealthbarContainer.png
 
-#begin Assets/Graphics/UI/PlayerUI/HealthbarBar.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Assets/Graphics/UI/PlayerUI/HealthbarBar.png
-
-#begin Assets/Graphics/UI/PlayerUI/HealthbarHolder.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Assets/Graphics/UI/PlayerUI/HealthbarHolder.png
-
 #begin Assets/Graphics/UI/PlayerUI/Highscore/HighscoreCoin.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -877,7 +865,7 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/UI/PlayerUI/Highscore/HighscoreCoin.png
 
-#begin Assets/Graphics/UI/PlayerUI/lockedWeapon.png
+#begin Assets/Graphics/UI/PlayerUI/Skillbar/lockedWeapon.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -887,9 +875,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Graphics/UI/PlayerUI/lockedWeapon.png
+/build:Assets/Graphics/UI/PlayerUI/Skillbar/lockedWeapon.png
 
-#begin Assets/Graphics/UI/PlayerUI/RedSlotCross.png
+#begin Assets/Graphics/UI/PlayerUI/Skillbar/RedSlotCross.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -899,9 +887,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Graphics/UI/PlayerUI/RedSlotCross.png
+/build:Assets/Graphics/UI/PlayerUI/Skillbar/RedSlotCross.png
 
-#begin Assets/Graphics/UI/PlayerUI/selectedItemFrame.png
+#begin Assets/Graphics/UI/PlayerUI/Skillbar/selectedItemFrame.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -911,9 +899,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Graphics/UI/PlayerUI/selectedItemFrame.png
+/build:Assets/Graphics/UI/PlayerUI/Skillbar/selectedItemFrame.png
 
-#begin Assets/Graphics/UI/PlayerUI/skillbar.png
+#begin Assets/Graphics/UI/PlayerUI/Skillbar/skillbar.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -923,9 +911,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Graphics/UI/PlayerUI/skillbar.png
+/build:Assets/Graphics/UI/PlayerUI/Skillbar/skillbar.png
 
-#begin Assets/Graphics/UI/PlayerUI/slotUsed.png
+#begin Assets/Graphics/UI/PlayerUI/Skillbar/slotUsed.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -935,7 +923,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Graphics/UI/PlayerUI/slotUsed.png
+/build:Assets/Graphics/UI/PlayerUI/Skillbar/slotUsed.png
 
 #begin Assets/Graphics/WorldElements/Fog.png
 /importer:TextureImporter
@@ -1045,12 +1033,6 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/WorldElements/Tiles/wood.png;Assets/Graphics/WorldElements/Tiles/tile0.png
 
-#begin Assets/Sounds/BackgroundMusic.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Assets/Sounds/BackgroundMusic.mp3
-
 #begin Assets/Sounds/ParticleSFX/explosion.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1063,6 +1045,18 @@
 /processorParam:Quality=Best
 /build:Assets/Sounds/PlayerSounds/equip.wav
 
+#begin Assets/Sounds/PlayerSounds/PlayerDie.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/PlayerSounds/PlayerDie.wav
+
+#begin Assets/Sounds/PlayerSounds/PlayerHurt.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/PlayerSounds/PlayerHurt.wav
+
 #begin Assets/Sounds/PlayerSounds/walking_dirt.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1074,6 +1068,30 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Assets/Sounds/PlayerSounds/Whoosh2.wav
+
+#begin Assets/Sounds/SceenMusics/Gameplay/BossMusic/Bossbattle_00.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/SceenMusics/Gameplay/BossMusic/Bossbattle_00.mp3
+
+#begin Assets/Sounds/SceenMusics/Gameplay/LevelsMusic/LevelMusic_00.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/SceenMusics/Gameplay/LevelsMusic/LevelMusic_00.mp3
+
+#begin Assets/Sounds/SceenMusics/Gameplay/LevelsMusic/LevelMusic_01.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/SceenMusics/Gameplay/LevelsMusic/LevelMusic_01.mp3
+
+#begin Assets/Sounds/SceenMusics/Menus/MenuMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/SceenMusics/Menus/MenuMusic.mp3
 
 #begin Assets/System/Debug/Hitbox/tileHitBox.png
 /importer:TextureImporter

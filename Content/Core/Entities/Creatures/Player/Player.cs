@@ -2,6 +2,7 @@
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Weapons;
+using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -253,6 +254,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
             if(CurrentXP >= xpCap[currentXPLevel]){
                 StatisticsManager.LevelUp();
+                MessageFactory.DisplayMessage("Level Up++", Color.Yellow);
                 while (currentXPLevel < MAX_LEVEL && currentXP >= xpCap[currentXPLevel])
                 {
                     StatisticsManager.LevelUp();

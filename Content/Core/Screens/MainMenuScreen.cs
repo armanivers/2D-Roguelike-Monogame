@@ -12,6 +12,7 @@
 #region Using Statements
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
 using System;
 
 #endregion Using Statements
@@ -38,18 +39,21 @@ namespace _2DRoguelike.Content.Core.Screens
             MenuEntry playGameMenuEntry = new MenuEntry("Play Game");
             MenuEntry optionsMenuEntry = new MenuEntry("Options");
             MenuEntry highscoreMenuEntry = new MenuEntry("Highscores");
+            MenuEntry playerStats = new MenuEntry("Player Statistics");
             MenuEntry exitMenuEntry = new MenuEntry("Exit");
 
             // Hook up menu event handlers.
             playGameMenuEntry.Selected += PlayGameMenuEntrySelected;
             optionsMenuEntry.Selected += OptionsMenuEntrySelected;
             highscoreMenuEntry.Selected += HighscoresMenuEntrySelected;
+            playerStats.Selected += PlayerStatsMenuEntrySelected;
             exitMenuEntry.Selected += OnCancel;
 
             // Add entries to the menu.
             MenuEntries.Add(playGameMenuEntry);
             MenuEntries.Add(optionsMenuEntry);
             MenuEntries.Add(highscoreMenuEntry);
+            MenuEntries.Add(playerStats);
             MenuEntries.Add(exitMenuEntry);
         }
 
@@ -70,6 +74,11 @@ namespace _2DRoguelike.Content.Core.Screens
         private void HighscoresMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             ScreenManager.AddScreen(new LocalScoreboardScreen(), e.PlayerIndex);
+        }
+
+        private void PlayerStatsMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        {
+            LoadingScreen.LoadCustom(ScreenManager, true, e.PlayerIndex, new BackgroundsStatisticsScreen(), new GamestatsScreen());
         }
 
         protected override void OnCancel(PlayerIndex playerIndex)

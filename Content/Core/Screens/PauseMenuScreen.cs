@@ -9,6 +9,8 @@
 
 #endregion File Description
 
+using Microsoft.Xna.Framework.Media;
+
 namespace _2DRoguelike.Content.Core.Screens
 {
     /// <summary>
@@ -31,7 +33,7 @@ namespace _2DRoguelike.Content.Core.Screens
             MenuEntry quitGameMenuEntry = new MenuEntry("Quit Game");
 
             // Hook up menu event handlers.
-            resumeGameMenuEntry.Selected += OnCancel;
+            resumeGameMenuEntry.Selected += OnCancelPause;
             optionsMenuEntry.Selected += OnOptionsSelected;
             quitGameMenuEntry.Selected += QuitGameMenuEntrySelected;
 
@@ -39,6 +41,7 @@ namespace _2DRoguelike.Content.Core.Screens
             MenuEntries.Add(resumeGameMenuEntry);
             MenuEntries.Add(optionsMenuEntry);
             MenuEntries.Add(quitGameMenuEntry);
+            MediaPlayer.Pause() ;
         }
 
         #endregion Initialization
@@ -71,6 +74,7 @@ namespace _2DRoguelike.Content.Core.Screens
         /// </summary>
         private void ConfirmQuitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
         {
+            MediaPlayer.Play(SoundManager.MenuMusic);
             LoadingScreen.LoadCustom(ScreenManager, true, null, new BackgroundScreen(),  new MainMenuScreen());
         }
 

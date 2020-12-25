@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.UI;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -120,6 +121,7 @@ namespace _2DRoguelike.Content.Core
             {
                 backgroundMusicLevel = 0;
             }
+            MediaPlayer.Volume = backgroundMusicLevel;
         }
 
         public void IncreaseBackgroundMusic()
@@ -129,6 +131,7 @@ namespace _2DRoguelike.Content.Core
             {
                 backgroundMusicLevel = 1;
             }
+            MediaPlayer.Volume = backgroundMusicLevel;
         }
 
         public void DecreaseSoundEffectLevel()
@@ -191,6 +194,7 @@ namespace _2DRoguelike.Content.Core
             {
                 backgroundMusicLevel = prevBackgroundMusicLevel;
             }
+            MediaPlayer.Volume = backgroundMusicLevel;
         }
 
         public void SwitchDebugMode()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.UI;
 using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities
@@ -74,10 +75,15 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public void DeductHealthPoints(int damage)
         {
+            if (dead) return;
 
             if(this is Player)
             {
-                if (Game1.gameSettings.godMode) return;
+                if (Game1.gameSettings.godMode)
+                {
+                    return;
+                }
+                SoundManager.PlayerHurt.Play(Game1.gameSettings.soundeffectsLevel, 0.1f, 0);
             }
 
             HealthPoints -= damage;
@@ -124,7 +130,11 @@ namespace _2DRoguelike.Content.Core.Entities
         public void Kill()
         {
             HealthPoints = 0;
-            // TODO: Hurt abspielen
+            if(this is Player)
+            {
+                SoundManager.PlayerDie.Play(Game1.gameSettings.soundeffectsLevel, 0.3f, 0);
+                MessageFactory.DisplayMessage("GAME OVER", Color.Yellow);
+            }
             dead = true;
         }
 

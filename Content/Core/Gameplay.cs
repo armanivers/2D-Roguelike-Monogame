@@ -8,6 +8,7 @@ using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,6 +25,10 @@ namespace _2DRoguelike.Content.Core
 
         public void LoadContent()
         {
+            MediaPlayer.Play(SoundManager.Level00);
+            MediaPlayer.Volume = Game1.gameSettings.backgroundMusicLevel;
+            MediaPlayer.IsRepeating = true;
+
             StatisticsManager.InitializeScore();
             LevelManager.LoadContent();
             // EntityBasis Konstruktor f�gt automatisch zur EntityManager.entities hinzu
@@ -53,7 +58,7 @@ namespace _2DRoguelike.Content.Core
             UIManager.AddUIElementStatic(new ToolTip(Player.Instance));
             UIManager.AddUIElementStatic(new Highscore());
 
-
+            MessageFactory.DisplayMessage("Level 1 - Forbidden Dungeon", Color.White);
 
             gameOver = false;
         }
@@ -65,6 +70,8 @@ namespace _2DRoguelike.Content.Core
             Camera.Unload();
             LevelManager.UnloadContent();
             StatisticsManager.ClearScore();
+
+            //MediaPlayer.Stop();
         }
 
         public void Update(GameTime gameTime)
