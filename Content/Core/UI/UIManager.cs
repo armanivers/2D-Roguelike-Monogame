@@ -68,6 +68,7 @@ namespace _2DRoguelike.Content.Core.UI
             uiElements.Clear();
             uiElementsDynamic.Clear();
             uiElementsStatic.Clear();
+            MessageFactory.ClearMessages();
         }
 
     }

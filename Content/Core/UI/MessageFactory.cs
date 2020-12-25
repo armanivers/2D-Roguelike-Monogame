@@ -90,5 +90,10 @@ namespace _2DRoguelike.Content.Core.UI
             
         }
 
+        public static void ClearMessages()
+        {
+            messages.Clear();
+            removedMessages.Clear();
+        }
     }
 }
