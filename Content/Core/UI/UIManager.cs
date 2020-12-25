@@ -63,5 +63,12 @@ namespace _2DRoguelike.Content.Core.UI
             }
         }
 
+        public static void ClearElements()
+        {
+            uiElements.Clear();
+            uiElementsDynamic.Clear();
+            uiElementsStatic.Clear();
+        }
+
     }
 }

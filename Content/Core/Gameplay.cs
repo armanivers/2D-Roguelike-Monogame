@@ -70,7 +70,7 @@ namespace _2DRoguelike.Content.Core
             Camera.Unload();
             LevelManager.UnloadContent();
             StatisticsManager.ClearScore();
-
+            UIManager.ClearElements();
             //MediaPlayer.Stop();
         }
 
