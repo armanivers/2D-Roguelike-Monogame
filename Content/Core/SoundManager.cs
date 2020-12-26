@@ -40,6 +40,10 @@ namespace _2DRoguelike.Content.Core
         // Potions
         public static SoundEffect PotionDrink { get; private set; }
 
+        // Miscellaneous
+        public static SoundEffect ScoreCounterSound00 { get; private set; }
+        public static SoundEffect ScoreCounterSound01 { get; private set; }
+
         public static void Load(ContentManager content)
         {
             // Background Songs
@@ -76,6 +80,10 @@ namespace _2DRoguelike.Content.Core
 
             // Potions
             PotionDrink = content.Load<SoundEffect>("Assets/Sounds/PotionSounds/PotionDrink");
+
+            // Miscellaneous
+            ScoreCounterSound00 = content.Load<SoundEffect>("Assets/Sounds/Miscellaneous/scoreCounterSound_00");
+            ScoreCounterSound01 = content.Load<SoundEffect>("Assets/Sounds/Miscellaneous/scoreCounterSound_01");
         }
     }
 }

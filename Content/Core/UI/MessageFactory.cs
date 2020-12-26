@@ -31,12 +31,12 @@ namespace _2DRoguelike.Content.Core.UI
             public void UpdatePosition()
             {
 
-                position = new Vector2(position.X, position.Y + 2);
+                position = new Vector2(position.X, position.Y + 1);
 
                 if (position.Y < Game1.gameSettings.screenHeight/2-100 && transparency < 1)
                 {
                     transparency += 0.005f;
-                    position = new Vector2(position.X, position.Y + 8);
+                    position = new Vector2(position.X, position.Y + 4);
                 }
 
                 if (position.Y > Game1.gameSettings.screenHeight / 2 - 100 && position.Y < Game1.gameSettings.screenHeight / 2 + 100)
@@ -48,7 +48,7 @@ namespace _2DRoguelike.Content.Core.UI
                 if (position.Y > Game1.gameSettings.screenHeight / 2 + 100 && transparency > 0)
                 {
                     transparency -= 0.005f;
-                    position = new Vector2(position.X, position.Y + 8);
+                    position = new Vector2(position.X, position.Y + 5);
                 }
 
 

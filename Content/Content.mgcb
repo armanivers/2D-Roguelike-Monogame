@@ -1057,6 +1057,18 @@
 /processorParam:Quality=Best
 /build:Assets/Sounds/Miscellaneous/ExperiencePickup.wav
 
+#begin Assets/Sounds/Miscellaneous/scoreCounterSound_00.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Miscellaneous/scoreCounterSound_00.wav
+
+#begin Assets/Sounds/Miscellaneous/scoreCounterSound_01.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Miscellaneous/scoreCounterSound_01.wav
+
 #begin Assets/Sounds/ParticleSFX/explosion.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

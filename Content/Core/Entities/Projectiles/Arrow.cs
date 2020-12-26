@@ -67,7 +67,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
                 {
                     if (enemy is Enemies.Enemy)
                     {
-                        if (Hitbox.Intersects(enemy.Hitbox))
+                        if (Hitbox.Intersects(enemy.Hitbox) && !((Humanoid)enemy).IsDead())
                         {
                             ((Enemies.Enemy)enemy).DeductHealthPoints(DAMAGE);
                             isExpired = true;

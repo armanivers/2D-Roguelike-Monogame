@@ -10,6 +10,7 @@
 #endregion File Description
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace _2DRoguelike.Content.Core.Screens
         private int scoreCounter;
         private int scoreMax;
         private int incrementSpeed;
+        SoundEffectInstance instance;
 
         public GameoverScreen()  : base("Game Over",true,2,true)
         {
@@ -67,6 +69,11 @@ namespace _2DRoguelike.Content.Core.Screens
             MenuEntries.Add(gameoverText);
             MenuEntries.Add(newGame);
             MenuEntries.Add(mainMenu);
+
+            instance = SoundManager.ScoreCounterSound01.CreateInstance();
+            
+            instance.IsLooped = true;
+            instance.Play();
         }
 
         #endregion Initialization
@@ -111,6 +118,8 @@ namespace _2DRoguelike.Content.Core.Screens
                 {
                     score.Text = "New Highscore Achieved: " + scoreCounter +" !";
                 }
+                instance.Stop();
+                instance.Dispose();
             }
         }
 
