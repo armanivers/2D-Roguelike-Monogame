@@ -38,7 +38,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         public void setYPos(int value)
         {
             YPos = value;
-            roomhitbox = new Rectangle(roomhitbox.X + 1, (value +1 )* PIXELMULTIPLIER , (Width - 2 ) * 32, (Height - 2) * PIXELMULTIPLIER);
+            roomhitbox = new Rectangle(roomhitbox.X + 1, (value + 1)* PIXELMULTIPLIER , (Width - 2 ) * PIXELMULTIPLIER, (Height - 2) * PIXELMULTIPLIER);
         }
         public int getYPos()
         {

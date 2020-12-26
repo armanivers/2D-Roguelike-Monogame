@@ -41,6 +41,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                                 return new Melee(agent);
                             }
                         }
+                        // TODO: Verschieben
                         else
                         {
                             // Es wurde "zu spät reagiert" und der Player ist entkommen

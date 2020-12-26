@@ -28,16 +28,16 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         public Rectangle GetEffectiveRange()
         {
             Rectangle ret = new Rectangle();
-            Vector2 upperLeft = new Vector2(Owner.Hitbox.X - Owner.Hitbox.Width * rangeMultiplierX,
-                 Owner.Hitbox.Y - Owner.Hitbox.Width * rangeMultiplierY);
+            Vector2 upperLeft = new Vector2(Owner.Hitbox.X - Owner.Hitbox.Width * rangeMultiplierX * widthReduction,
+                 Owner.Hitbox.Y - Owner.Hitbox.Width * rangeMultiplierX * heightReduction);
 
 
-            Vector2 upperRight = new Vector2(Owner.Hitbox.X + Owner.Hitbox.Width + Owner.Hitbox.Width * rangeMultiplierX,
-                Owner.Hitbox.Y - Owner.Hitbox.Width * rangeMultiplierY);
+            Vector2 upperRight = new Vector2(Owner.Hitbox.X + Owner.Hitbox.Width + Owner.Hitbox.Width * rangeMultiplierX*widthReduction,
+                Owner.Hitbox.Y - Owner.Hitbox.Width * rangeMultiplierX*widthReduction);
 
 
-            Vector2 downLeft = new Vector2(Owner.Hitbox.X - Owner.Hitbox.Width * rangeMultiplierX,
-                    Owner.Hitbox.Y + Owner.Hitbox.Height + Owner.Hitbox.Width * rangeMultiplierY);
+            Vector2 downLeft = new Vector2(Owner.Hitbox.X - Owner.Hitbox.Width * rangeMultiplierX*widthReduction,
+                    Owner.Hitbox.Y + Owner.Hitbox.Height + Owner.Hitbox.Width * rangeMultiplierX*widthReduction);
 
 
             //Vector2 downRight = new Vector2(Owner.Hitbox.X + Owner.Hitbox.Width - (Owner.Hitbox.Height - Owner.Hitbox.Width),
@@ -60,8 +60,12 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             int attackHitboxHeight = OwnerHitbox.Height;
 
             float tmpWidthReduction = widthReduction;
-            float tmpHeightReduction = heightReduction
-                ;
+            float tmpHeightReduction = heightReduction;
+
+            float tmpRangeMultiplierX = rangeMultiplierX;
+            float tmpRangeMultiplierY = rangeMultiplierY;
+            
+
             if (Owner.GetAttackLineOfSight().Y != 0)
             {
                 int swap = attackHitboxWidth;
@@ -71,19 +75,23 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
                 float swap2 = tmpWidthReduction;
                 tmpWidthReduction = tmpHeightReduction;
                 tmpHeightReduction = swap2;
+
+                swap2 = rangeMultiplierX;
+                tmpRangeMultiplierX = rangeMultiplierY;
+                tmpRangeMultiplierY = swap2;
             }
 
             // Mittelpunkt der Hitbox ist Maus
-            Vector2 attackDirection = new Vector2(Owner.GetAttackDirection().X - attackHitboxWidth / 2 * rangeMultiplierX * tmpWidthReduction,
-                Owner.GetAttackDirection().Y - attackHitboxHeight / 2 * 0.8f * rangeMultiplierY * tmpHeightReduction);
+            Vector2 attackDirection = new Vector2(Owner.GetAttackDirection().X - attackHitboxWidth / 2 * tmpRangeMultiplierX * tmpWidthReduction,
+                Owner.GetAttackDirection().Y - attackHitboxHeight / 2 * 0.8f * tmpRangeMultiplierY * tmpHeightReduction);
 
             // TODO: Dieses Attribut nicht mehr nur für Höhe, sondern je anch Lage auf die Breite rechnen
 
 
             // Intervallgrenzen für maximale Attack-Range: 
             // so gewählt, dass die kleinste mögliche Hitbox erlaubt ist:
-            Vector2 attackHitboxRangeUpperLeft = new Vector2(OwnerHitbox.X - OwnerHitbox.Width * rangeMultiplierX * tmpWidthReduction,
-                OwnerHitbox.Y - OwnerHitbox.Width * tmpHeightReduction * rangeMultiplierY);
+            Vector2 attackHitboxRangeUpperLeft = new Vector2(OwnerHitbox.X - OwnerHitbox.Width * tmpRangeMultiplierX * tmpWidthReduction,
+                OwnerHitbox.Y - OwnerHitbox.Width * tmpHeightReduction * tmpRangeMultiplierY);
 
 
             Vector2 attackHitboxRangeDownRight = new Vector2(OwnerHitbox.X + OwnerHitbox.Width - (attackHitboxWidth - OwnerHitbox.Width),
@@ -91,7 +99,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
 
             Vector2 attackCoordinates = Vector2.Clamp(attackDirection, attackHitboxRangeUpperLeft, attackHitboxRangeDownRight);
 
-            Rectangle attackHitbox = new Rectangle((int)attackCoordinates.X, (int)attackCoordinates.Y, (int)(attackHitboxWidth * tmpWidthReduction * rangeMultiplierX), (int)(attackHitboxHeight * tmpHeightReduction * rangeMultiplierY));
+            Rectangle attackHitbox = new Rectangle((int)attackCoordinates.X, (int)attackCoordinates.Y, (int)(attackHitboxWidth * tmpWidthReduction * tmpRangeMultiplierX), (int)(attackHitboxHeight * tmpHeightReduction * tmpRangeMultiplierY));
 
             // Für Debug
             if (GameDebug.HitboxDebug.DEBUG)

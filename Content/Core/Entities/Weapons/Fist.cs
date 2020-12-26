@@ -11,7 +11,8 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         const float RANGE_MULTIPLIER_X = 0.8f;
         const float RANGE_MULTIPLIER_Y = 0.8f;
 
-        public Fist(Humanoid Owner, float damageMultiplier = 1f, float cooldownMultiplier = 1f) : base(Owner, RANGE_MULTIPLIER_X, RANGE_MULTIPLIER_Y,
+        public Fist(Humanoid Owner, float damageMultiplier = 1f, float cooldownMultiplier = 1f, float rangeX = 1f, float rangeY = 1f)
+            : base(Owner, rangeX*RANGE_MULTIPLIER_X, rangeY*RANGE_MULTIPLIER_Y,
             (int)(DAMAGE * damageMultiplier), FIST_COOLDOWN * cooldownMultiplier)
         {
             INVENTORY_SLOT = 0;

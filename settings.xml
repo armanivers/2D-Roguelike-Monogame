@@ -9,7 +9,7 @@
   <soundeffectsLevel>0.2</soundeffectsLevel>
   <prevSoundeffectsLevel>0.2</prevSoundeffectsLevel>
   <DEBUG>true</DEBUG>
-  <godMode>true</godMode>
+  <godMode>false</godMode>
   <showHitbox>true</showHitbox>
   <showMouse>true</showMouse>
   <playerDebug>true</playerDebug>
