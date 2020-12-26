@@ -17,6 +17,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
             SoundManager.ShootArrow.Play(Game1.gameSettings.soundeffectsLevel, (float) Game1.rand.NextDouble(), 0);
             CallingInstance.CurrentWeapon.UseWeapon();
 
+
             /*Arris Notizen:
               // create an explosion
             //Explosion e = new Explosion();

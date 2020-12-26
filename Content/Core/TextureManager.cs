@@ -64,6 +64,7 @@ namespace _2DRoguelike.Content.Core
 
         // Projectile Data
         public static Texture2D Arrow { get; private set; }
+        public static Texture2D Bomb { get; private set; }
 
         // Loot Data
 
@@ -199,6 +200,7 @@ namespace _2DRoguelike.Content.Core
 
             // Projectile Data
             Arrow = content.Load<Texture2D>("Assets/Graphics/Projectiles/Arrow");
+            Bomb = content.Load<Texture2D>("Assets/Graphics/Projectiles/Bomb");
 
             // Font Data
             FontArial = content.Load<SpriteFont>("Assets/System/Fonts/Arial");

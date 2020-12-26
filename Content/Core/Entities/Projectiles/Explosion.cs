@@ -12,26 +12,33 @@ namespace _2DRoguelike.Content.Core.Entities
     class Explosion : Projectile
     {
 
-        private const float expireTimer = 3;
+        private const float expireTimer = 1;
         private float timer;
 
-        public Explosion() : base(new Vector2(ControllingPlayer.Player.Instance.Hitbox.X - 16, ControllingPlayer.Player.Instance.Hitbox.Y - 16), 16, 16, 7f)
+        public Explosion(Vector2 pos, float size = 1f): this(pos, Vector2.Zero, 0f, size)
         {
-            this.Hitbox = new Rectangle((int)Position.X + 16, (int)Position.Y + 16, 32, 32);
-            this.Acceleration = Vector2.Normalize(InputController.MousePosition - new Vector2(Hitbox.X, Hitbox.Y));
+        }
+
+        public Explosion(Vector2 pos, Vector2 direction, float windSpeed, float size = 1f) : base(pos, -TextureManager.Explosion.Height/4, -TextureManager.Explosion.Height / 4, windSpeed)
+        {
+            ScaleFactor = size;
+            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(TextureManager.Explosion.Height/2 * ScaleFactor), (int)(TextureManager.Explosion.Height/2 * ScaleFactor));
+            this.Acceleration = direction;
 
             this.texture = TextureManager.Explosion;
             animations = new Dictionary<string, Animation>()
             {
-                {"Explode", new Animation(TextureManager.Explosion,0,6,0.1f)}
+                {"Explode", new Animation(TextureManager.Explosion,0,6,0.1f, false)}
             };
             this.animationManager = new AnimationManager(this, animations.First().Value);
+            this.DrawOrigin = new Vector2(texture.Height, texture.Height) / 2;
+
             this.timer = 0;
+            Explode();
         }
 
         private void Explode()
         {
-            this.isExpired = true;
             SoundManager.Explosion.Play(Game1.gameSettings.soundeffectsLevel, 0.2f, 0);
             Camera.ShakeScreen();
 
@@ -41,12 +48,11 @@ namespace _2DRoguelike.Content.Core.Entities
         {
             foreach (var livingEntity in EntityManager.creatures)
             {
-                if (livingEntity is Creature && livingEntity != ControllingPlayer.Player.Instance) //&& livingEntity != Player.Player.Instance
+                if (livingEntity is Creature) //&& livingEntity != Player.Player.Instance
                 {
                     if (this.Hitbox.Intersects(livingEntity.Hitbox))
                     {
-                        ((Creature)livingEntity).DeductHealthPoints(1);
-                        Explode();
+                        ((Creature)livingEntity).DeductHealthPoints(2);
                     }
                 }
             }

@@ -29,6 +29,11 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
                 WeaponInventory[1] = weapon;
         }
 
+        public override bool CannotWalkHere()
+        {
+            return LevelManager.maps.currentroom == null ? true : (!LevelManager.maps.currentroom.roomhitbox.Contains(Hitbox) || base.CannotWalkHere() );
+        }
+
         public void DropExperiencePoints()
         {
             var xp = new System.Random().Next(1, 5);

@@ -16,7 +16,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
     {
         private static Player instance;
 
-        const int WEAPON_SLOT_CNT = 5;
+        const int WEAPON_SLOT_CNT = 6;
         public int WeaponsInPosession;
         private int currentWeaponPos = 0;
 
@@ -135,6 +135,8 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             AddToWeaponInventory(new Axe(this));
             AddToWeaponInventory(new Bow(this));
             */
+            AddToWeaponInventory(new BombWeapon(this));
+
             ChangeCurrentWeaponSlot(0); 
 
             texture = TextureManager.Player_Idle;

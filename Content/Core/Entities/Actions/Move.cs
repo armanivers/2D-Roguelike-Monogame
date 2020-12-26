@@ -31,7 +31,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
             CallingInstance.Position += new Vector2((int)CallingInstance.Acceleration.X,0);
             // Wenn Bewegung nicht möglich: Hitbox wieder zurücksetzen
             // CollidesWithFrameBorder() weggemacht
-            if (CallingInstance.CollidesWithSolidTile())
+            if (CallingInstance.CannotWalkHere())
             {
                 CallingInstance.Position -= new Vector2((int)CallingInstance.Acceleration.X, 0);
             }
@@ -39,7 +39,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
 
 
             CallingInstance.Position += new Vector2(0,(int)CallingInstance.Acceleration.Y);
-            if (CallingInstance.CollidesWithSolidTile())
+            if (CallingInstance.CannotWalkHere())
             {
                 CallingInstance.Position -= new Vector2(0, (int)CallingInstance.Acceleration.Y);
             }

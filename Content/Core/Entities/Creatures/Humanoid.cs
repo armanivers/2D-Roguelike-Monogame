@@ -94,6 +94,10 @@ namespace _2DRoguelike.Content.Core.Entities
 
             return Vector2.Zero;
         }
+
+        public virtual bool CannotWalkHere() {
+            return CollidesWithSolidTile();
+        }
         public bool CollidesWithSolidTile()
         {
             // Update: Code ist nun allgemeingültig für Entities mit größeren TileCollision-Hitboxen
