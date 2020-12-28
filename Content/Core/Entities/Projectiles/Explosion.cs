@@ -41,7 +41,6 @@ namespace _2DRoguelike.Content.Core.Entities
         {
             SoundManager.Explosion.Play(Game1.gameSettings.soundeffectsLevel, 0.2f, 0);
             Camera.ShakeScreen();
-
         }
 
         public void checkCollision()

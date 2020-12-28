@@ -18,6 +18,10 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
         private bool scalingUp = true;
         private float explosionSize;
 
+
+        private Vector2 aimedTarget;
+        private float distanceToAimedTarget;
+
         public BombProjectile(Humanoid creat, float explosionSize = 1f) : base(new Vector2(creat.Hitbox.X + 16, creat.Hitbox.Y + 25), -TextureManager.Bomb.Width / 2, -5, SPEED)
         {
             this.texture = TextureManager.Bomb;
@@ -29,6 +33,10 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
             // this.rotation = (float)Math.Atan2(Acceleration.Y, Acceleration.X);
             this.timer = 0;
             this.explosionSize = explosionSize;
+
+            aimedTarget = shootingEntity.GetAttackDirection();
+
+            distanceToAimedTarget = Vector2.Distance(Position, aimedTarget);
         }
 
         private Vector2 GetDirection()
@@ -41,21 +49,31 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
             return shootingEntity.Hitbox.Intersects(Hitbox);
         }
 
-        public void checkCollision()
+        private bool WithinOwnTileCollisionHitbox()
         {
-           
+            return shootingEntity.GetTileCollisionHitbox().Intersects(Hitbox);
+        }
+
+        public bool checkCollision()
+        {
+            if (!WithinOwnTileCollisionHitbox())
                 if (CollidesWithSolidTile())
                 {
-                    SpeedModifier = 0f;
+                    return true;
                 }
-            
+            return false;
         }
 
         public override void Update(GameTime gameTime)
         {
-            checkCollision();
+            if (SpeedModifier != 0 && checkCollision())
+            {
+                SpeedModifier = 0f;
+                timer = EXPIRATION_TIMER / 2f;
+            }
+            else
+                timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Acceleration * flyingSpeed * SpeedModifier;
 
             if (timer > EXPIRATION_TIMER)
@@ -64,36 +82,50 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
                 new Explosion(Position, explosionSize);
                 this.isExpired = true;
             }
-            else if (timer > EXPIRATION_TIMER / 2)
+            else
             {
-                const float growFactor = 0.04f;
-                if (scalingUp)
-                {
-                    colour = Color.Red;
-                    if (ScaleFactor >= 1.5f)
-                        scalingUp = !scalingUp;
-                    else
-                        ScaleFactor += growFactor;
-                }
-                else {
-                    colour = Color.White;
-                    if (ScaleFactor <= 1f)
-                        scalingUp = !scalingUp;
-                    else
-                        ScaleFactor -= growFactor;
-                }
-            }
 
-            else if (timer > EXPIRATION_TIMER / 4)
-            {
-                if (SpeedModifier > 1 / 3)
-                    SpeedModifier *= 0.8f;
+                if (timer >= EXPIRATION_TIMER / 2f)
+                {
+                    const float growFactor = 0.04f;
+                    if (scalingUp)
+                    {
+                        colour = Color.Red;
+                        if (ScaleFactor >= 1.5f)
+                            scalingUp = !scalingUp;
+                        else
+                            ScaleFactor += growFactor;
+                    }
+                    else
+                    {
+                        colour = Color.White;
+                        if (ScaleFactor <= 1f)
+                            scalingUp = !scalingUp;
+                        else
+                            ScaleFactor -= growFactor;
+                    }
+                }
+                else
+                {
+                    if (timer >= EXPIRATION_TIMER / 2.5f || (distanceToAimedTarget - Vector2.Distance(Position, aimedTarget)) > distanceToAimedTarget * 0.9f)
+                    {
+                        SpeedModifier = 0;
+                    }
+                    else if (timer > EXPIRATION_TIMER / 4f || (distanceToAimedTarget - Vector2.Distance(Position, aimedTarget)) > distanceToAimedTarget * 4f / 5f)
+                    {
+                        if (SpeedModifier > (1f / 3))
+                            SpeedModifier *= 0.8f;
+                    }
+                    else if (timer > EXPIRATION_TIMER / 5f || (distanceToAimedTarget - Vector2.Distance(Position, aimedTarget)) > distanceToAimedTarget * 3f / 5)
+                    {
+                        if (SpeedModifier > (2f / 3))
+                            SpeedModifier *= 0.9f;
+                    }
+                }
+
             }
-            else if (timer > EXPIRATION_TIMER / 5)
-            {
-                if (SpeedModifier > 2 / 3)
-                    SpeedModifier *= 0.9f;
-            }
+            //Debug.WriteLine("Position der Bombe: {0}\nZiel: {1}\nGesamtdistanz: {2}\nZurückgelegte Distanz: {3}\nNoch zurückzulegende Distanz: {4}\n---",
+            //    Position, aimedTarget, distanceToAimedTarget, distanceToAimedTarget - Vector2.Distance(Position, aimedTarget), Vector2.Distance(Position, aimedTarget));
 
         }
     }
