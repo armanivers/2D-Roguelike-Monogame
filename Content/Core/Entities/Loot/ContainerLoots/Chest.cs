@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots;
 using _2DRoguelike.Content.Core.Entities.Loot.WeaponLoots;
 using Microsoft.Xna.Framework;
 
@@ -30,16 +31,38 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         public override void OpenContainer()
         {
             // drop all items from the provided droplist
-            
-            new AxeLoot(Position);
+
+            SpawnRandomLoot();
             isExpired = true;
+        }
+
+        private void SpawnRandomLoot()
+        {
+
+            int WeaponLootNumber = Game1.rand.Next(101);
+
+            if (WeaponLootNumber <= 10)
+                new BombLoot(Position);
+            else
+            if (WeaponLootNumber <= 30)
+                new AxeLoot(Position);
+            else
+            if (WeaponLootNumber <= 60)
+                new BowLoot(Position);
+            else
+            if (WeaponLootNumber <= 1000)
+                new DaggerLoot(Position);
+
+
+
         }
         public override void PlaySound()
         {
-            // choose one random effect (testing)
-            int x = Game1.rand.Next();
 
-            if (x % 2 == 0)
+            // choose one random effect (testing)
+            int x = Game1.rand.Next(2);
+
+            if (x == 0)
             {
                 SoundManager.ChestOpenMagical.Play(Game1.gameSettings.soundeffectsLevel, 0, 0);
             }

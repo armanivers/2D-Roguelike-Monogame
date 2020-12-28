@@ -134,8 +134,8 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             AddToWeaponInventory(new Dagger(this));
             AddToWeaponInventory(new Axe(this));
             AddToWeaponInventory(new Bow(this));
-            */
             AddToWeaponInventory(new BombWeapon(this));
+            */
 
             ChangeCurrentWeaponSlot(0); 
 

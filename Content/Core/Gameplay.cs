@@ -32,6 +32,8 @@ namespace _2DRoguelike.Content.Core
             StatisticsManager.InitializeScore();
             LevelManager.LoadContent();
             // EntityBasis Konstruktor f�gt automatisch zur EntityManager.entities hinzu
+
+            // TODO: Rausnehmen. diese sind nur zu Testzwecke erstellt worden
             new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 3 * 32), 100, 3);
             new BrownZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 5 * 32), 50, 3);
             new Skeleton(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 7 * 32), 100, 3);
@@ -44,6 +46,7 @@ namespace _2DRoguelike.Content.Core
             new AxeLoot(LevelManager.maps.getSpawnpoint() + new Vector2(6 * 32, 15 * 32));
             new BowLoot(LevelManager.maps.getSpawnpoint() + new Vector2(8 * 32, 15 * 32));
             new DaggerLoot(LevelManager.maps.getSpawnpoint() + new Vector2(10 * 32, 15 * 32));
+            new BombLoot(LevelManager.maps.getSpawnpoint() + new Vector2(12 * 32, 15 * 32));
 
             new LootBag(/*LevelManager.maps.getSpawnpoint() +*/ new Vector2(6 * 32, 21 * 32),null);
             new Chest(new Vector2(2 * 32, 2 * 32), null);
