@@ -43,13 +43,12 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
 
         public void checkCollision()
         {
-            if (!WithinOwnHitbox())
-            {
+           
                 if (CollidesWithSolidTile())
                 {
                     SpeedModifier = 0f;
                 }
-            }
+            
         }
 
         public override void Update(GameTime gameTime)

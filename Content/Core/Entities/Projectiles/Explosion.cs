@@ -52,6 +52,7 @@ namespace _2DRoguelike.Content.Core.Entities
                 {
                     if (this.Hitbox.Intersects(livingEntity.Hitbox))
                     {
+                        // TODO: je näher man am Explosionsherd steht,desto höher der Schaden
                         ((Creature)livingEntity).DeductHealthPoints(2);
                     }
                 }
