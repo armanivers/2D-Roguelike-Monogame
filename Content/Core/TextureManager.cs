@@ -118,10 +118,7 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D EnemyBarContainer { get; private set; }
         public static Texture2D EnemyBar { get; private set; }
         public static Texture2D mouseCursor { get; private set; }
-        // Tiles Data
-        public static Texture2D[] tiles { get; private set; }
-        public static int tilesAmount;
-
+        
         // Debug Data
         public static Texture2D tileHitboxBorder { get; private set; }
 
@@ -236,13 +233,7 @@ namespace _2DRoguelike.Content.Core
             EnemyBarContainer = content.Load<Texture2D>("Assets/Graphics/UI/EnemeyUI/enemyBarContainer");
             EnemyBar = content.Load<Texture2D>("Assets/Graphics/UI/EnemeyUI/enemyBar");
 
-            // Tiles Data
-            tilesAmount = 3;
-            tiles = new Texture2D[tilesAmount];
-            for (int i = 0; i < tilesAmount; i++)
-            {
-                tiles[i] = content.Load<Texture2D>("Assets/Graphics/WorldElements/Tiles/tile" + i);
-            }
+            
 
             // Debug Data
             tileHitboxBorder = content.Load<Texture2D>("Assets/System/Debug/Hitbox/tileHitBox");

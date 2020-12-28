@@ -96,15 +96,15 @@ namespace _2DRoguelike.Content.Core.World
                 {
                     if (level[i, j].Equals(RoomObject.Wall) || level[i, j].Equals(RoomObject.Corner) || level[i, j] == 0)
                     {
-                        result[i, j] = new Tile(true, i, j);
+                        result[i, j] = new Tile(RoomObject.Wall, i, j);
                     }
                     else if (level[i, j].Equals(RoomObject.Exit))
                     {
-                        result[i, j] = new Tile(2, i, j);
+                        result[i, j] = new Tile(RoomObject.Exit, i, j);
                     }
                     else
                     {
-                        result[i, j] = new Tile(false, i, j);
+                        result[i, j] = new Tile(RoomObject.EmptySpace, i, j);
                     }
                 }
             }

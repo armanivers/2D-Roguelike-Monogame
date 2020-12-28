@@ -3,6 +3,7 @@ using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Screens;
 using _2DRoguelike.Content.Core.Statistics;
+using _2DRoguelike.Content.Core.World.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -70,6 +71,7 @@ namespace _2DRoguelike
             _graphics.ApplyChanges();
 
             TextureManager.Load(Content);
+            TileTextureManager.Load(Content);
             SoundManager.Load(Content);
 
             MediaPlayer.Play(SoundManager.MenuMusic);
