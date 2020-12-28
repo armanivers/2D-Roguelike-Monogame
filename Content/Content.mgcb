@@ -995,7 +995,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Graphics/WorldElements/Tiles/ladder.png;Assets/Graphics/WorldElements/Tiles/tile2.png
+/build:Assets/Graphics/WorldElements/Tiles/ladder.png;Assets/Graphics/WorldElements/Tiles/ladder0.png
 
 #begin Assets/Graphics/WorldElements/Tiles/tile0.png
 /importer:TextureImporter
@@ -1031,7 +1031,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Graphics/WorldElements/Tiles/wall_dark.png;Assets/Graphics/WorldElements/Tiles/tile1.png
+/build:Assets/Graphics/WorldElements/Tiles/wall_dark.png;Assets/Graphics/WorldElements/Tiles/stone0.png
 
 #begin Assets/Graphics/WorldElements/Tiles/wood.png
 /importer:TextureImporter
@@ -1043,7 +1043,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Graphics/WorldElements/Tiles/wood.png;Assets/Graphics/WorldElements/Tiles/tile0.png
+/build:Assets/Graphics/WorldElements/Tiles/wood.png;Assets/Graphics/WorldElements/Tiles/wood0.png
 
 #begin Assets/Sounds/LootSounds/ChestOpenMagical.wav
 /importer:WavImporter

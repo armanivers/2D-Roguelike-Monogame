@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <playerName>User01</playerName>
-  <fullScreen>true</fullScreen>
-  <screenWidth>1920</screenWidth>
-  <screenHeight>1080</screenHeight>
+  <fullScreen>false</fullScreen>
+  <screenWidth>1280</screenWidth>
+  <screenHeight>720</screenHeight>
   <backgroundMusicLevel>0</backgroundMusicLevel>
   <prevBackgroundMusicLevel>0.2</prevBackgroundMusicLevel>
   <soundeffectsLevel>0.2</soundeffectsLevel>
