@@ -17,7 +17,6 @@ namespace _2DRoguelike.Content.Core.World
         public static int level = 0;
         private static List<Map> levelList;
         private static Vector2 playerposition;
-
         public static Map maps;
         public static Tile[,] currentLevel;
         public static void LoadContent()
@@ -31,9 +30,10 @@ namespace _2DRoguelike.Content.Core.World
         }
         public static void NextLevel(Player player)
         {
+            level++;
             levelList.Add(new Dungeon());
-            levelList[level].clearEnemies();
-            player.Position = levelList[++level].getSpawnpoint() * new Vector2(32);
+            levelList[level-1].clearEnemies();
+            player.Position = levelList[level].getSpawnpoint() * new Vector2(32);
             maps = levelList[level];
             currentLevel = maps.map;
         }

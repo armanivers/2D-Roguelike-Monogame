@@ -12,14 +12,17 @@ namespace _2DRoguelike.Content.Core.World.Tiles
         public const int WOODTILES = 1;
         public static Texture2D[] woodtileslist { get; private set; }
         //Stone Tiles
-        public const int STONETILES = 1;
+        public const int STONETILES = 4;
         public static Texture2D[] stonetileslist { get; private set; }
         //Grass Tiles
-        public const int GRASSTILES = 0;
+        public const int GRASSTILES = 2;
         public static Texture2D[] grasstileslist { get; private set; }
         //Ladder
         public const int LADDERTILES = 1;
         public static Texture2D[] laddertileslist { get; private set; }
+        //Mable
+        public const int MABLETILES = 1;
+        public static Texture2D[] mabletileslist { get; private set; }
 
         public static void Load(ContentManager content)
         {
@@ -42,6 +45,11 @@ namespace _2DRoguelike.Content.Core.World.Tiles
             for (int i = 0; i < LADDERTILES; i++)
             {
                 laddertileslist[i] = content.Load<Texture2D>("Assets/Graphics/WorldElements/Tiles/ladder" + i);
+            }
+            mabletileslist = new Texture2D[MABLETILES];
+            for (int i = 0; i < MABLETILES; i++)
+            {
+                mabletileslist[i] = content.Load<Texture2D>("Assets/Graphics/WorldElements/Tiles/marble" + i);
             }
         }
     }

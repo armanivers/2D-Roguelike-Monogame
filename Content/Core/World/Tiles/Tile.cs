@@ -29,7 +29,7 @@ namespace _2DRoguelike.Content.Core.World.Tiles
         public Tile(char ro, int x, int y)
         {
             this.ro = ro;
-            this.texture = DetermineTexture(ro);
+            this.texture = DetermineTexture( ro);
             this.width = 32;
             this.height = 32;
             this.x = x * height;
@@ -38,7 +38,7 @@ namespace _2DRoguelike.Content.Core.World.Tiles
         public Tile(bool type, int x, int y)
         {
             this.type = type ? 1 : 0;
-            this.texture = type?TileTextureManager.woodtileslist[0]: TileTextureManager.stonetileslist[0];
+            this.texture = type ? TileTextureManager.woodtileslist[0] : TileTextureManager.stonetileslist[0];
             this.width = 32;
             this.height = 32;
             this.x = x * height;
@@ -47,26 +47,37 @@ namespace _2DRoguelike.Content.Core.World.Tiles
         }
         private Texture2D DetermineTexture(char roomObject)
         {
-            Texture2D retunTexture=null;
-            int tmp;
+            Texture2D returnTexture = null;
+            switch (LevelManager.level)
+            {
+                case 0:
+                    returnTexture = LevelDesigner.ForgottenDungeon(roomObject);
+                    //returnTexture = LevelDesigner.DoomedWorld(roomObject);
+                    //returnTexture = LevelDesigner.HeavenOrHell(roomObject);
+                    break;
+                case 1:
+                    returnTexture = LevelDesigner.DoomedWorld(roomObject);
+                    break;
+                case 2:
+                    returnTexture = LevelDesigner.HeavenOrHell(roomObject);
+                    break;
+                default:
+                    returnTexture = LevelDesigner.ForgottenDungeon(roomObject);
+                    break;
+            }
             if (roomObject.Equals(RoomObject.Wall))
             {
-                tmp = Map.Random.Next(0, TileTextureManager.STONETILES-1);
-                retunTexture = TileTextureManager.stonetileslist[tmp];
                 solid = true;
-            }else if (roomObject.Equals(RoomObject.EmptySpace))
+            }
+            else if (roomObject.Equals(RoomObject.EmptySpace))
             {
-                tmp = Map.Random.Next(0, TileTextureManager.WOODTILES-1);
-                retunTexture = TileTextureManager.woodtileslist[tmp];
                 solid = false;
             }
             else if (roomObject.Equals(RoomObject.Exit))
             {
-                tmp = Map.Random.Next(0, TileTextureManager.LADDERTILES-1);
-                retunTexture = TileTextureManager.laddertileslist[tmp];
                 solid = false;
             }
-            return retunTexture;
+            return returnTexture;
         }
 
         public bool DetermineSolid(int type)
