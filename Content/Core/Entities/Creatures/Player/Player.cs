@@ -39,14 +39,18 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
         public double LevelupPercentage
         {
-            get {
-                if (currentXPLevel < MAX_LEVEL) {
+            get
+            {
+                if (currentXPLevel < MAX_LEVEL)
+                {
 
                     return ((double)currentXP) / xpCap[currentXPLevel];
-                } else {
+                }
+                else
+                {
                     // max level reached, return 100% always
                     return 1.0;
-                } 
+                }
             }
         }
 
@@ -60,11 +64,12 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         }
 
         private bool HasWeaponInSlot(int pos)
-        {    
+        {
             return WeaponInventory[pos] != null;
         }
 
-        private void SetNextWeapon(bool backwards = false) {
+        private void SetNextWeapon(bool backwards = false)
+        {
             // Nächste gültige Position im Array ermitteln
 
             int currentPos = CurrentWeaponPos;
@@ -106,9 +111,9 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             }
         }
 
-       
 
-        public Player(Vector2 position, int maxHealthPoints, float movingSpeed, float attackCooldown = 0.2f ) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
+
+        public Player(Vector2 position, int maxHealthPoints, float movingSpeed, float attackCooldown = 0.2f) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
         {
 
             //this.position = new Vector2(2*32, 5*32); bei statischer Map
@@ -133,14 +138,14 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             AddToWeaponInventory(new Fist(this));
 
             // add weapons manually
-            /* 
+            /*
             AddToWeaponInventory(new Dagger(this));
             AddToWeaponInventory(new Axe(this));
             AddToWeaponInventory(new Bow(this));
             AddToWeaponInventory(new BombWeapon(this));
             */
 
-            ChangeCurrentWeaponSlot(0); 
+            ChangeCurrentWeaponSlot(0);
 
             texture = TextureManager.Player_Idle;
 
@@ -198,7 +203,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 // Todesanimation
                 {"Die", new Animation(TextureManager.Player_Hurt,0,6,frameSpeed*2f, NO_LOOP, PRIORITIZED)}
             };
-            animationManager = new AnimationManager(this,animations["IdleDown"]);
+            animationManager = new AnimationManager(this, animations["IdleDown"]);
         }
         public void DeleteInstance()
         {
@@ -217,7 +222,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
         public override Vector2 GetAttackLineOfSight()
         {
-            var differenz = InputController.MousePosition - new Vector2(HitboxCenter.X,HitboxCenter.Y);
+            var differenz = InputController.MousePosition - new Vector2(HitboxCenter.X, HitboxCenter.Y);
             var angle = System.Math.Atan2(differenz.Y, differenz.X);
 
             return CalculateDirection(angle);
@@ -230,12 +235,14 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             if (InputController.IsMouseButtonPressed() && !IsAttacking() && CanAttack())
             // TODO: if(weapon.rangeAttack) return RangeAttack else return Melee ...
             {
-                if (CurrentWeapon is LongRange) {
+                if (CurrentWeapon is LongRange)
+                {
                     CurrentWeapon.CooldownTimer = 0;
-                                return new RangeAttack(this);
+                    return new RangeAttack(this);
 
                 }
-                if (CurrentWeapon is ShortRange) {
+                if (CurrentWeapon is ShortRange)
+                {
                     CurrentWeapon.CooldownTimer = 0;
 
                     return new Melee(this);
@@ -257,12 +264,13 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         public void AddExperiencePoints(int xp)
         {
             CurrentXP += xp;
-            SoundManager.ExperiencePickup.Play(Game1.gameSettings.soundeffectsLevel,0,0);
+            SoundManager.ExperiencePickup.Play(Game1.gameSettings.soundeffectsLevel, 0, 0);
 
             if (currentXPLevel >= MAX_LEVEL)
                 return;
 
-            if(CurrentXP >= xpCap[currentXPLevel]){
+            if (CurrentXP >= xpCap[currentXPLevel])
+            {
                 StatisticsManager.LevelUp();
                 MessageFactory.DisplayMessage("Level Up++", Color.Yellow);
                 while (currentXPLevel < MAX_LEVEL && currentXP >= xpCap[currentXPLevel])
@@ -280,7 +288,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
         public void DetermineLevelupAward(int level)
         {
-            switch(level)
+            switch (level)
             {
                 case 1:
                     // Level 1 award = increase max hp by 20
@@ -308,11 +316,11 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             // TODO: mit LevelManager.currentroom.entities ersetzen 
             foreach (var loot in EntityManager.loots)
             {
-                if(Hitbox.Intersects(loot.Hitbox))    
-                {     
-                    if(loot is LootContainer) 
-                    { 
-                        if(((LootContainer)loot).Closed)
+                if (Hitbox.Intersects(loot.Hitbox))
+                {
+                    if (loot is LootContainer)
+                    {
+                        if (((LootContainer)loot).Closed)
                         {
                             interactableContainers.Add((LootContainer)loot);
                             canInteract = true;
@@ -329,7 +337,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
         public void InteractWithObject()
         {
-            if(InputController.IsKeyPressed(Keys.F))
+            if (InputController.IsKeyPressed(Keys.F))
             {
                 foreach (var lootContainer in interactableContainers)
                 {
@@ -378,7 +386,8 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             return !IsAttacking() && !CurrentWeapon.InUsage();
         }
 
-        public void UpdateCurrentWeaponPos() {
+        public void UpdateCurrentWeaponPos()
+        {
             // TEST
 
             /*if (InputController.IsKeyDown(Keys.B)) {

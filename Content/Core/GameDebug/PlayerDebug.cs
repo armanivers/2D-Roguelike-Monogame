@@ -10,37 +10,34 @@ namespace _2DRoguelike.Content.Core.GameDebug
 {
     class PlayerDebug
     {
-        private Vector2 playerPositionOnScreen;
-        private Vector2 playerPositionOnMap;
-        private Vector2 mousePosition;
-        private Vector2 anglePosition;
-        private Vector2 currentWeaponPosition;
-        private Vector2 room;
+        private Vector2 indent;
 
         const bool DEBUG = true;
         public PlayerDebug()
-        { 
-            playerPositionOnScreen = new Vector2(0, 0);
-            playerPositionOnMap = new Vector2(0, 40);
-            mousePosition = new Vector2(0, 80);
-            anglePosition = new Vector2(0, 120);
-            currentWeaponPosition = new Vector2(0, 160);
-            room = new Vector2(0, 200);
+        {
+            indent = Vector2.Zero;
+        }
+
+        private Vector2 MoveIndent() {
+            Vector2 ret = indent;
+            indent += new Vector2(0, 40);
+            return ret;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            indent = Vector2.Zero;
             if (Game1.gameSettings.playerDebug)
             {
                 spriteBatch.DrawString(TextureManager.FontArial,
                 "Position Player auf Screen: {X: " + (int)Player.Instance.Position.X + " Y:" + (int)Player.Instance.Position.Y + "}",
-                playerPositionOnScreen, Color.White);
+                MoveIndent(), Color.White);
                 spriteBatch.DrawString(TextureManager.FontArial,
                 "Position Player auf Map: {X: " + (int)(Player.Instance.GetTileCollisionHitbox().X / 32) + " Y:" + (int)(Player.Instance.GetTileCollisionHitbox().Y / 32) + "}",
-                    playerPositionOnMap, Color.White);
+                    MoveIndent(), Color.White);
                 spriteBatch.DrawString(TextureManager.FontArial,
                     "Position Maus auf Map: {X: " + (int)InputController.MousePosition.X / 32 + " Y:" + (int)InputController.MousePosition.Y / 32 + "}",
-                    mousePosition, Color.White);
+                    MoveIndent(), Color.White);
 
                 // Winkel Berechnung
 
@@ -54,12 +51,14 @@ namespace _2DRoguelike.Content.Core.GameDebug
                 //    angle = 360 - (-angle);
                 //}
                 spriteBatch.DrawString(TextureManager.FontArial, "Winkel des Mauses: " +
-                    angle, anglePosition, Color.White);
+                    angle, MoveIndent(), Color.White);
                 spriteBatch.DrawString(TextureManager.FontArial, "Waffe: " +
-                    Player.Instance.CurrentWeapon?.ToString(), currentWeaponPosition, Color.White);
+                    Player.Instance.CurrentWeapon?.ToString(), MoveIndent(), Color.White);
                 if (LevelManager.maps.currentroom != null)
                 {
-                    spriteBatch.DrawString(TextureManager.FontArial, "Raum: " +LevelManager.maps.currentroom.Width +" , "+ LevelManager.maps.currentroom.Height, room, Color.White);
+                    spriteBatch.DrawString(TextureManager.FontArial, "Raum: " +LevelManager.maps.currentroom.Width +" , "+ LevelManager.maps.currentroom.Height, MoveIndent(), Color.White);
+                    if(LevelManager.maps.currentroom.exitroom)
+                        spriteBatch.DrawString(TextureManager.FontArial, "Exit: " + LevelManager.maps.currentroom.exithitbox.X/32+ " , " + LevelManager.maps.currentroom.exithitbox.Y/32, MoveIndent(), Color.White);
                 }
             }
         }
