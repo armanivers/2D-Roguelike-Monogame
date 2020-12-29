@@ -118,17 +118,20 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
             currentXP = currentXPLevel = 0;
 
-            xpCap = new List<int>();
             // Number of xp caps needs to be same or bigger than MAX_LEVEL
-            xpCap.Add(10);
-            xpCap.Add(20);
-            xpCap.Add(20);
-            xpCap.Add(30);
-            xpCap.Add(35);
+            xpCap = new List<int>()
+            {
+                10, // Level 1
+                20, // Level 2
+                30, // Level 3
+                30, // Level 4
+                40  // Level 5 MAX
+            };
 
             instance = this;
             WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
             AddToWeaponInventory(new Fist(this));
+
             // add weapons manually
             /* 
             AddToWeaponInventory(new Dagger(this));
@@ -359,6 +362,14 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             {
                 StatisticsManager.WeaponRecieved();
             }
+
+        }
+
+        public override void Kill()
+        {
+            base.Kill();
+            SoundManager.PlayerDie.Play(Game1.gameSettings.soundeffectsLevel, 0.3f, 0);
+            MessageFactory.DisplayMessage("GAME OVER", Color.Red);
 
         }
 

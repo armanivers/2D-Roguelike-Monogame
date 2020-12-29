@@ -1,68 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
+using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots;
 using _2DRoguelike.Content.Core.Entities.Loot.WeaponLoots;
 using Microsoft.Xna.Framework;
-
+using Microsoft.Xna.Framework.Graphics;
 
 namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 {
     public class Chest : LootContainer
     {
         private const float TIME_TO_OPEN = 1.2f;
-        public Chest(Vector2 pos, List<InventoryItem> dropList) : base(pos, TIME_TO_OPEN)
+        private const float DIAMOND_CHEST_CHANCE = 30;
+        Texture2D chestIdleAnimation;
+        Texture2D chestOpenAnimation;
+        public Chest(Vector2 pos) : base(pos, TIME_TO_OPEN)
         {
+            type = DetermineChestRarity();
+            SetTexture();
 
-            //texture = TextureManager.LootChest;
             animations = new Dictionary<string, Animation>()
             {
-                {"Chest_Idle",new Animation(TextureManager.LootChest_Animation_Idle,0,4,0.1f,true,false,false,32) },
-                {"Chest_Open",new Animation(TextureManager.Lootchest_Animation_Open,0,4,0.2f,false,false,false,32) }
+                {"Chest_Idle",new Animation(chestIdleAnimation,0,4,0.1f,true,false,false,32) },
+                {"Chest_Open",new Animation(chestOpenAnimation,0,4,0.2f,false,false,false,32) }
             };
+
             animationManager = new AnimationManager(this, animations["Chest_Idle"]);
             animationManager.Position = pos;
             floatable = false;
-            this.dropList = dropList;
-
-
-            //timeToOpen = AnimationDuration("Chest_Open");
         }
 
         public override void OpenContainer()
         {
-            // drop all items from the provided droplist
-
-            SpawnRandomLoot();
+            RandomLoot.SpawnLoot(type,Position);
             isExpired = true;
         }
 
-        private void SpawnRandomLoot()
+        private int DetermineChestRarity()
         {
+            int random = Game1.rand.Next(0, 100);
 
-            int WeaponLootNumber = Game1.rand.Next(101);
-
-            if (WeaponLootNumber <= 10)
-                new BombLoot(Position);
+            if(random <= DIAMOND_CHEST_CHANCE)
+            {
+                return 1;
+            }
             else
-            if (WeaponLootNumber <= 30)
-                new AxeLoot(Position);
-            else
-            if (WeaponLootNumber <= 60)
-                new BowLoot(Position);
-            else
-            if (WeaponLootNumber <= 1000)
-                new DaggerLoot(Position);
-
-
+            {
+                return 0;
+            }
 
         }
+
         public override void PlaySound()
         {
 
-            // choose one random effect (testing)
-            int x = Game1.rand.Next(2);
-
-            if (x == 0)
+            if (type == 1)
             {
                 SoundManager.ChestOpenMagical.Play(Game1.gameSettings.soundeffectsLevel, 0, 0);
             }
@@ -72,5 +64,24 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
             }
         }
 
+        private void SetTexture()
+        {
+            switch(type)
+            {
+                case 0:
+                    chestIdleAnimation = TextureManager.LootChest_Animation_Idle;
+                    chestOpenAnimation = TextureManager.Lootchest_Animation_Open;
+                    break;
+                case 1:
+                    chestIdleAnimation = TextureManager.LootChest_Diamond_Animation_Idle;
+                    chestOpenAnimation = TextureManager.LootChest_Diamond_Animation_Open;
+                    break;
+                default:
+                    chestIdleAnimation = TextureManager.LootChest_Animation_Idle;
+                    chestOpenAnimation = TextureManager.Lootchest_Animation_Open;
+                    break;
+            }
+
+        }
     }
 }

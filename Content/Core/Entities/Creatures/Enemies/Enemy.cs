@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI;
+using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Weapons;
 using _2DRoguelike.Content.Core.World;
 using _2DRoguelike.Content.Core.World.Rooms;
@@ -17,6 +18,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         public EnemyAI ai;
         // Für ATTACK-Range Debug
         public Rectangle AttackRangeHitbox;
+        // 30% to drop an loot bag
+        private const int dropChance = 30;
         public Enemy(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
         {
         }
@@ -34,10 +37,21 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             return LevelManager.maps.currentroom == null ? true : (!LevelManager.maps.currentroom.roomhitbox.Contains(Hitbox) || base.CannotWalkHere() );
         }
 
-        public void DropExperiencePoints()
+        protected void DropExperiencePoints()
         {
             var xp = new System.Random().Next(1, 5);
             Player.Instance.AddExperiencePoints(xp);
+        }
+
+        protected void DropLoot()
+        {
+
+            var randomPercentage = Game1.rand.Next(0, 100);
+            
+            if(randomPercentage <= dropChance)
+            {
+                new LootBag(new Vector2(Hitbox.X, Hitbox.Y), this);
+            }
         }
 
         public override Actions.Action DetermineAction()
@@ -80,6 +94,14 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             }
             return LevelManager.maps.currentroom.roomhitbox.Intersects(this.Hitbox);
 
+        }
+
+        protected override void Disappear()
+        {
+            base.Disappear();
+            DropExperiencePoints();
+            DropLoot();
+            StatisticsManager.MonsterKilled();
         }
 
         public override void Update(GameTime gameTime)

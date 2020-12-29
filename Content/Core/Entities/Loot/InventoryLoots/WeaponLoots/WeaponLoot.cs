@@ -13,6 +13,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots
         public WeaponLoot(Vector2 pos) : base(pos) { }    
         
         public override void OnContact() {
+            base.OnContact();
             Player.Instance.AddToWeaponInventory(GetCorrespondingWeapon());
             isExpired = true;
         }

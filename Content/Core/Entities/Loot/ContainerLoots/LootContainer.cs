@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,15 +13,15 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         protected bool closed;
         public bool Closed { get { return closed; } }
 
+        // used to determine loot, type 0 = chest , 1 = lootbag etc.
+        protected int type;
 
         protected float timeToOpen; // 1.2 = 2 Sekunden
         private float fadingSpeed; //0.00833f;
         protected float openingTimer;
 
         public string currentAnimation = "Chest_Idle";
-
-        protected List<InventoryItem> dropList;
-
+    
         public LootContainer(Vector2 pos, float timeToOpen) : base(pos)
         {
             this.closed = true;

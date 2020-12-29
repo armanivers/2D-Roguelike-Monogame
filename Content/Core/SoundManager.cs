@@ -30,6 +30,7 @@ namespace _2DRoguelike.Content.Core
         // Particle Sounds
         public static SoundEffect Explosion { get; private set; }
         // Loot sounds
+        public static SoundEffect ItemPickup { get; private set; }
         public static SoundEffect ChestOpenWooden { get; private set; }
         public static SoundEffect ChestOpenMagical { get; private set; }
         public static SoundEffect LootbagOpen { get; private set; }
@@ -71,6 +72,7 @@ namespace _2DRoguelike.Content.Core
             Explosion = content.Load<SoundEffect>("Assets/Sounds/ParticleSFX/explosion");
 
             // Loot sounds
+            ItemPickup = content.Load<SoundEffect>("Assets/Sounds/LootSounds/ItemPickup");
             ChestOpenWooden = content.Load<SoundEffect>("Assets/Sounds/LootSounds/ChestOpenWooden");
             ChestOpenMagical = content.Load<SoundEffect>("Assets/Sounds/LootSounds/ChestOpenMagical");
             LootbagOpen = content.Load<SoundEffect>("Assets/Sounds/LootSounds/LootbagOpen");

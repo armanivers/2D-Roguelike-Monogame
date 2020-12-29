@@ -37,7 +37,10 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
             shadowPosition = pos - shadowOffset;
         }
 
-        public abstract void OnContact();
+        public virtual void OnContact()
+        {
+            SoundManager.ItemPickup.Play(Game1.gameSettings.soundeffectsLevel, 0, 0);
+        }
 
         public override void Update(GameTime gameTime)
         {

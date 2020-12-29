@@ -85,7 +85,7 @@ namespace _2DRoguelike.Content.Core.Screens
             Random r = new Random();
 
             int randomQuoteIndex = r.Next(0, quotes.Count);
-            Debug.Print("Selected n = " + randomQuoteIndex + " count is = " + quotes.Count);
+            //Debug.Print("Selected n = " + randomQuoteIndex + " count is = " + quotes.Count);
             return quotes[randomQuoteIndex];
         }
 
@@ -126,11 +126,15 @@ namespace _2DRoguelike.Content.Core.Screens
         private void StartNewGame(object sender, PlayerIndexEventArgs e)
         {
             LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,new GameplayScreen());
+            instance.Stop();
+            instance.Dispose();
         }
 
         private void ReturnToMainMenu(object sender, PlayerIndexEventArgs e)
         {
             LoadingScreen.LoadCustom(ScreenManager, true, null, new BackgroundScreen(), new MainMenuScreen());
+            instance.Stop();
+            instance.Dispose();
             MediaPlayer.Play(SoundManager.MenuMusic);
             MediaPlayer.Volume = Game1.gameSettings.backgroundMusicLevel;
             MediaPlayer.IsRepeating = true;

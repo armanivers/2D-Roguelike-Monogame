@@ -83,6 +83,8 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D LootChest { get; private set; }
         public static Texture2D LootChest_Animation_Idle { get; private set; }
         public static Texture2D Lootchest_Animation_Open { get; private set; }
+        public static Texture2D LootChest_Diamond_Animation_Idle { get; private set; }
+        public static Texture2D LootChest_Diamond_Animation_Open { get; private set; }
         public static Texture2D Shadow { get; private set; }
         // Font Data
         public static SpriteFont FontArial { get; private set; }
@@ -194,6 +196,8 @@ namespace _2DRoguelike.Content.Core
             LootChest = content.Load<Texture2D>("Assets/Graphics/LootElements/Containers/LootChest");
             LootChest_Animation_Idle = content.Load<Texture2D>("Assets/Graphics/LootElements/Containers/chest_animation");
             Lootchest_Animation_Open = content.Load<Texture2D>("Assets/Graphics/LootElements/Containers/chest_open_animation");
+            LootChest_Diamond_Animation_Idle = content.Load<Texture2D>("Assets/Graphics/LootElements/Containers/chest_diamond_idle_animation");
+            LootChest_Diamond_Animation_Open = content.Load<Texture2D>("Assets/Graphics/LootElements/Containers/chest_diamond_open_animation");
 
             Shadow = content.Load<Texture2D>("Assets/Graphics/WorldElements/Shadow");
 

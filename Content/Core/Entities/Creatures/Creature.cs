@@ -87,7 +87,6 @@ namespace _2DRoguelike.Content.Core.Entities
             }
 
             HealthPoints -= damage;
-            System.Diagnostics.Debug.Print("Got Hit!");
             if (HealthPoints <= 0)
             {
                 Kill();
@@ -127,14 +126,9 @@ namespace _2DRoguelike.Content.Core.Entities
             }
         }
 
-        public void Kill()
+        public virtual void Kill()
         {
             HealthPoints = 0;
-            if(this is Player)
-            {
-                SoundManager.PlayerDie.Play(Game1.gameSettings.soundeffectsLevel, 0.3f, 0);
-                MessageFactory.DisplayMessage("GAME OVER", Color.Yellow);
-            }
             dead = true;
         }
 

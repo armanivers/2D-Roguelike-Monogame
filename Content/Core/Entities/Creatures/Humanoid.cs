@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.Entities.Loot;
+using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Weapons;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
@@ -240,13 +242,6 @@ namespace _2DRoguelike.Content.Core.Entities
 
         protected virtual void Disappear()
         {
-            // TODO: Für Enemies: Loot droppen und EXP geben
-
-            if (this is Enemy)
-            {
-                ((Enemy)this).DropExperiencePoints();
-                StatisticsManager.MonsterKilled();
-            }
             isExpired = true;
         }
     }
