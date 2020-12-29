@@ -19,7 +19,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
 
         public Arrow(Humanoid creat) : base(new Vector2(creat.Hitbox.X + 16, creat.Hitbox.Y + 25), -7, +5, SPEED)
         {
-            this.texture = TextureManager.Arrow;
+            this.texture = TextureManager.projectiles.Arrow;
             DrawOrigin = TextureSize / 2;
             shootingEntity = creat;
             DAMAGE = ((Bow)shootingEntity.CurrentWeapon).weaponDamage;

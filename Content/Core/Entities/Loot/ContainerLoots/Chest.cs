@@ -69,16 +69,16 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
             switch(type)
             {
                 case 0:
-                    chestIdleAnimation = TextureManager.LootChest_Animation_Idle;
-                    chestOpenAnimation = TextureManager.Lootchest_Animation_Open;
+                    chestIdleAnimation = TextureManager.loot.LootChest_Animation_Idle;
+                    chestOpenAnimation = TextureManager.loot.Lootchest_Animation_Open;
                     break;
                 case 1:
-                    chestIdleAnimation = TextureManager.LootChest_Diamond_Animation_Idle;
-                    chestOpenAnimation = TextureManager.LootChest_Diamond_Animation_Open;
+                    chestIdleAnimation = TextureManager.loot.LootChest_Diamond_Animation_Idle;
+                    chestOpenAnimation = TextureManager.loot.LootChest_Diamond_Animation_Open;
                     break;
                 default:
-                    chestIdleAnimation = TextureManager.LootChest_Animation_Idle;
-                    chestOpenAnimation = TextureManager.Lootchest_Animation_Open;
+                    chestIdleAnimation = TextureManager.loot.LootChest_Animation_Idle;
+                    chestOpenAnimation = TextureManager.loot.Lootchest_Animation_Open;
                     break;
             }
 

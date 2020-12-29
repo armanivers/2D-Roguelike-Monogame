@@ -41,8 +41,8 @@ namespace _2DRoguelike.Content.Core.UI
 
         public MobHealthBars()
         {
-            healthbarContainerTexture = TextureManager.EnemyBarContainer;
-            healthbarTexture = TextureManager.EnemyBar;
+            healthbarContainerTexture = TextureManager.ui.EnemyBarContainer;
+            healthbarTexture = TextureManager.ui.EnemyBar;
             scalingFactor = 0.2f;
             fullwidth = (int)(healthbarTexture.Width);
             mobData = new List<MobData>();

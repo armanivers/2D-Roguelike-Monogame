@@ -41,8 +41,8 @@ namespace _2DRoguelike.Content.Core.UI
         {
             target = player;
 
-            healthbarContainer = TextureManager.HealthbarContainer;
-            healthBar = TextureManager.HealthbarBar;
+            healthbarContainer = TextureManager.ui.HealthbarContainer;
+            healthBar = TextureManager.ui.HealthbarBar;
 
             containerPositon = new Vector2(xSafezone*scalingFactor, ySafezone*scalingFactor);
             redbarPosition = containerPositon + new Vector2(redbarOffsetStart * scalingFactor, 0);

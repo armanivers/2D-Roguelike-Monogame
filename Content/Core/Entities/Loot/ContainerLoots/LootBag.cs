@@ -14,7 +14,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 
         public LootBag(Vector2 pos, Enemy enemy) : base(pos, TIME_TO_OPEN)
         {
-            texture = TextureManager.LootBag;
+            texture = TextureManager.loot.LootBag;
             type = RandomLoot.DetermineMonsterLootTable(enemy);
         }
 

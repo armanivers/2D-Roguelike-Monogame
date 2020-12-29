@@ -14,7 +14,7 @@ namespace _2DRoguelike.Content.Core.GameDebug
     {
         private int borderWidth = 3;
         public static bool DEBUG = true;
-        public Texture2D borderTexture = TextureManager.tileHitboxBorder;
+        public Texture2D borderTexture = TextureManager.ui.tileHitboxBorder;
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -84,7 +84,7 @@ namespace _2DRoguelike.Content.Core.GameDebug
             if (from.Y > to.Y)
                 angle = MathHelper.TwoPi - angle;
 
-            spriteBatch.Draw(TextureManager.tileHitboxBorder, rect, null, color, angle, origin, SpriteEffects.None, 0);
+            spriteBatch.Draw(TextureManager.ui.tileHitboxBorder, rect, null, color, angle, origin, SpriteEffects.None, 0);
         }
 
     }

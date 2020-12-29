@@ -22,13 +22,13 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
         private Vector2 aimedTarget;
         private float distanceToAimedTarget;
 
-        public BombProjectile(Humanoid creat, float explosionSize = 1f) : base(new Vector2(creat.Hitbox.X + 16, creat.Hitbox.Y + 25), -TextureManager.Bomb.Width / 2, -5, SPEED)
+        public BombProjectile(Humanoid creat, float explosionSize = 1f) : base(new Vector2(creat.Hitbox.X + 16, creat.Hitbox.Y + 25), -TextureManager.projectiles.Bomb.Width / 2, -5, SPEED)
         {
-            this.texture = TextureManager.Bomb;
+            this.texture = TextureManager.projectiles.Bomb;
             DrawOrigin = TextureSize / 2;
             shootingEntity = creat;
             DAMAGE = ((BombWeapon)shootingEntity.CurrentWeapon).weaponDamage;
-            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(TextureManager.Bomb.Width * ScaleFactor), (int)(TextureManager.Bomb.Width * ScaleFactor));
+            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(TextureManager.projectiles.Bomb.Width * ScaleFactor), (int)(TextureManager.projectiles.Bomb.Width * ScaleFactor));
             this.Acceleration = Vector2.Normalize(GetDirection());
             // this.rotation = (float)Math.Atan2(Acceleration.Y, Acceleration.X);
             this.timer = 0;

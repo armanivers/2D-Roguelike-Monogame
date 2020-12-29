@@ -17,7 +17,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         public HealthPotion(Vector2 pos) : base(pos)
         {
             healthModifier = 20;
-            texture = TextureManager.HealthPotion;
+            texture = TextureManager.loot.HealthPotion;
         }
 
         public override void ActivateEffect()

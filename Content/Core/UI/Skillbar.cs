@@ -41,12 +41,12 @@ namespace _2DRoguelike.Content.Core.UI
             target = player;
             scalingFactor = 2.2f;
             
-            skillbarTexture = TextureManager.skillbar;
+            skillbarTexture = TextureManager.ui.skillbar;
             skillbarPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - skillbarTexture.Width * scalingFactor / 2, Game1.gameSettings.screenHeight-skillbarTexture.Height * scalingFactor - 30);
             
-            redCrossSlotTexture = TextureManager.LockedWeapon;
-            usedSlotTexture = TextureManager.slotUsed;
-            selectedItemFrame = TextureManager.selectedItemFame;
+            redCrossSlotTexture = TextureManager.ui.LockedWeapon;
+            usedSlotTexture = TextureManager.ui.slotUsed;
+            selectedItemFrame = TextureManager.ui.selectedItemFame;
             
             xOffset = 11;
             yOffset = 16;

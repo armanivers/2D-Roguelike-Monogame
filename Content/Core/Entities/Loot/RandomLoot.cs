@@ -51,12 +51,11 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
         {
             new KeyValuePair<int,int>(50,1), // 40% chance to get Dagger (id 0)
             new KeyValuePair<int,int>(50,0), // 30% chance to get Bow (id 1)
-            new KeyValuePair<int,int>(5,5), // 5% chance to get XPPOTION (id 5)
-            new KeyValuePair<int,int>(5,3), // 5% chance to get Bomb (id 3)
-            new KeyValuePair<int,int>(20,4) // 20% chance to get Healthpotion (id 4)
         };
 
 
+
+        // Main method used to spawn the loot!
         public static void SpawnLoot(int type,Vector2 pos)
         {
             int chosenItem;

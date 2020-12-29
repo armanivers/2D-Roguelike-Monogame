@@ -83,7 +83,7 @@ namespace _2DRoguelike.Content.Core.Screens
         {
             ContentManager content = ScreenManager.Game.Content;
 
-            gradientTexture = TextureManager.Gradient;
+            gradientTexture = TextureManager.menu.Gradient;
         }
 
         #endregion Initialization

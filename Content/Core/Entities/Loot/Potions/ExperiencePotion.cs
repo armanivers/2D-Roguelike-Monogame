@@ -15,7 +15,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         public ExperiencePotion(Vector2 pos) : base(pos)
         {
             experienceModifier = 15;
-            texture = TextureManager.ExperiencePotion;
+            texture = TextureManager.loot.ExperiencePotion;
         }
 
         public override void ActivateEffect()

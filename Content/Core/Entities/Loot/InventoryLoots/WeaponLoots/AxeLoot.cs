@@ -10,7 +10,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.WeaponLoots
     public class AxeLoot : WeaponLoot
     {
         public AxeLoot(Vector2 pos) : base(pos) {
-            texture = TextureManager.LootAxe;
+            texture = TextureManager.loot.LootAxe;
         }
 
         public override Weapon GetCorrespondingWeapon()

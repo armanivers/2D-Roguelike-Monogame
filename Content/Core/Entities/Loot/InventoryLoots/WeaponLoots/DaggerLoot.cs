@@ -9,7 +9,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots
     class DaggerLoot: WeaponLoot
     {
         public DaggerLoot(Vector2 pos) : base(pos) {
-            texture = TextureManager.LootDagger;
+            texture = TextureManager.loot.LootDagger;
         }
 
         public override Weapon GetCorrespondingWeapon()

@@ -36,8 +36,8 @@ namespace _2DRoguelike.Content.Core.UI
         public BossBar(Player player)
         {
             target = player;
-            healthbarContainer = TextureManager.BossbarContainer;
-            healthBar = TextureManager.BossbarBar;
+            healthbarContainer = TextureManager.ui.BossbarContainer;
+            healthBar = TextureManager.ui.BossbarBar;
             position = new Vector2(Game1.gameSettings.screenWidth / 2 - healthbarContainer.Width * scalingFactor / 2, ySafezone);
             bossNameTextPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString(bossName).X / 2, position.Y +bossnameTextOffsetY);
             bossHealthTextPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - TextureManager.FontArial.MeasureString("" + player.HealthPoints).X / 2, position.Y + bosshealthTextOffsetY);

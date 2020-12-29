@@ -79,7 +79,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
             if (shadow)
                 // Size / 2: Was, wenn die Textur ein sheet ist (breite größer, als das gezeichnete???)
-                spriteBatch.Draw(TextureManager.Shadow, shadowPosition, null, Color.White * 0.45f * transparency, 0,
+                spriteBatch.Draw(TextureManager.loot.Shadow, shadowPosition, null, Color.White * 0.45f * transparency, 0,
                     DrawOrigin + new Vector2(0, -35),
                     ScaleFactor, SpriteEffects.None, 0);
 

@@ -103,7 +103,7 @@ namespace _2DRoguelike.Content.Core.Screens
             base.Initialize();
 
             // custom Cursor image
-            Mouse.SetCursor(MouseCursor.FromTexture2D(TextureManager.mouseCursor, 16, 16));
+            Mouse.SetCursor(MouseCursor.FromTexture2D(TextureManager.ui.mouseCursor, 16, 16));
             isInitialized = true;
         }
 
@@ -117,7 +117,7 @@ namespace _2DRoguelike.Content.Core.Screens
             GraphicsDevice.Clear(ClearOptions.Target, Color.Black, 0, 0);
             //GraphicsDevice.Clear(Color.Red);
             font = TextureManager.FontArial;
-            blankTexture = TextureManager.Blank;
+            blankTexture = TextureManager.menu.Blank;
 
             // Tell each of the screens to load their content.
             foreach (GameScreen screen in screens)

@@ -19,16 +19,16 @@ namespace _2DRoguelike.Content.Core.Entities
         {
         }
 
-        public Explosion(Vector2 pos, Vector2 direction, float windSpeed, float size = 1f) : base(pos, -TextureManager.Explosion.Height/4, -TextureManager.Explosion.Height / 4, windSpeed)
+        public Explosion(Vector2 pos, Vector2 direction, float windSpeed, float size = 1f) : base(pos, -TextureManager.projectiles.Explosion.Height/4, -TextureManager.projectiles.Explosion.Height / 4, windSpeed)
         {
             ScaleFactor = size;
-            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(TextureManager.Explosion.Height/2 * ScaleFactor), (int)(TextureManager.Explosion.Height/2 * ScaleFactor));
+            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(TextureManager.projectiles.Explosion.Height/2 * ScaleFactor), (int)(TextureManager.projectiles.Explosion.Height/2 * ScaleFactor));
             this.Acceleration = direction;
 
-            this.texture = TextureManager.Explosion;
+            this.texture = TextureManager.projectiles.Explosion;
             animations = new Dictionary<string, Animation>()
             {
-                {"Explode", new Animation(TextureManager.Explosion,0,6,0.1f, false)}
+                {"Explode", new Animation(TextureManager.projectiles.Explosion,0,6,0.1f, false)}
             };
             this.animationManager = new AnimationManager(this, animations.First().Value);
             this.DrawOrigin = new Vector2(texture.Height, texture.Height) / 2;

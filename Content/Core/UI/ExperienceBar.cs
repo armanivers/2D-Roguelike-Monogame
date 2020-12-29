@@ -42,8 +42,8 @@ namespace _2DRoguelike.Content.Core.UI
         {
             target = player;
 
-            xpbarContainer = TextureManager.XPBarContainer;
-            xpbarBar = TextureManager.XPBarBar;
+            xpbarContainer = TextureManager.ui.XPBarContainer;
+            xpbarBar = TextureManager.ui.XPBarBar;
 
             xpbarContainerPosition = new Vector2(xSafezone * scalingFactor, ySafezone * scalingFactor);
             xpbarBarPosition = xpbarContainerPosition + new Vector2(xpbarOffsetStart * scalingFactor, 0);

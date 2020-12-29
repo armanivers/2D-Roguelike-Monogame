@@ -57,7 +57,7 @@ namespace _2DRoguelike.Content.Core.Screens
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            backgroundTexture = TextureManager.CaveDoorBackground;
+            backgroundTexture = TextureManager.menu.CaveDoorBackground;
         }
 
         /// <summary>

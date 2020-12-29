@@ -74,7 +74,7 @@ namespace _2DRoguelike.Content.Core.GameDebug
             if (from.Y > to.Y)
                 angle = MathHelper.TwoPi - angle;
 
-            spriteBatch.Draw(TextureManager.tileHitboxBorder, rect, null, color, angle, origin, SpriteEffects.None, 0);
+            spriteBatch.Draw(TextureManager.ui.tileHitboxBorder, rect, null, color, angle, origin, SpriteEffects.None, 0);
         }
     }
 }

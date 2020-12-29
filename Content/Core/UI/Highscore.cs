@@ -25,7 +25,7 @@ namespace _2DRoguelike.Content.Core.UI
 
         public Highscore()
         {
-            coinTexture = TextureManager.HighscoreCoin;
+            coinTexture = TextureManager.ui.HighscoreCoin;
         }
 
         public override void Update(GameTime gameTime)

@@ -10,7 +10,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots
     {
         public BombLoot(Vector2 pos) : base(pos)
         {
-            texture = TextureManager.LootBomb;
+            texture = TextureManager.loot.LootBomb;
         }
 
         public override Weapon GetCorrespondingWeapon()

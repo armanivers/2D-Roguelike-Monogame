@@ -10,7 +10,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.WeaponLoots
     public class BowLoot : WeaponLoot
     {
         public BowLoot(Vector2 pos) : base(pos) {
-            texture = TextureManager.LootBow;
+            texture = TextureManager.loot.LootBow;
         }
 
         public override Weapon GetCorrespondingWeapon()
