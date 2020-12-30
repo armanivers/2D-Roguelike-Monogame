@@ -70,7 +70,7 @@ namespace _2DRoguelike.Content.Core
         public void UnloadContent()
         {
             // Unload all entities + delete current Player Intance
-            EntityManager.UnloadEntities();
+            EntityManager.UnloadAllEntities();
             Player.Instance.DeleteInstance();
             Camera.Unload();
             LevelManager.UnloadContent();

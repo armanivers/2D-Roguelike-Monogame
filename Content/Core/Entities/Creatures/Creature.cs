@@ -46,7 +46,16 @@ namespace _2DRoguelike.Content.Core.Entities
         }
 
         public Creature(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position){
-            EntityManager.AddCreatureEntity(this);
+
+            if (this is Player)
+            {
+                EntityManager.player = (Player)this;
+            }
+            else
+            {
+                EntityManager.AddCreatureEntity(this);
+            }
+            
             this.maxHealthPoints = maxHealthPoints;
             HealthPoints = maxHealthPoints;
             this.attackTimespan = attackTimespan;

@@ -71,7 +71,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         private void SetNextWeapon(bool backwards = false)
         {
             // Nächste gültige Position im Array ermitteln
-
+            EntityManager.ClearLevelEntities();
             int currentPos = CurrentWeaponPos;
             do
             {

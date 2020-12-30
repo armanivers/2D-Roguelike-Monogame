@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.Loot;
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
+using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 
 namespace _2DRoguelike.Content.Core.Entities
 {
@@ -24,6 +25,9 @@ namespace _2DRoguelike.Content.Core.Entities
         public static List<EntityBasis> creatures = new List<EntityBasis>();
         public static List<EntityBasis> addedEntities = new List<EntityBasis>();
 
+        public static Player player;
+
+        public static bool clearLevel = false;
         public static int CreaturesCount { get { return creatures.Count; } }
         public static int ProjectilesCount { get { return projectiles.Count; } } 
         public static int LootsCount { get { return loots.Count; } }
@@ -55,6 +59,20 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public static void Update(GameTime gameTime)
         {
+            if(clearLevel)
+            {
+                addedEntities.Clear();
+                creatures.Clear();
+                projectiles.Clear();
+                addedProjectile.Clear();
+                loots.Clear();
+                addedLoot.Clear();
+
+                clearLevel = false;
+            }
+
+            player.Update(gameTime);
+
             isUpdatingCreature = true;
             foreach (var entity in creatures)
                 entity.Update(gameTime);
@@ -90,6 +108,8 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public static void Draw(SpriteBatch spriteBatch)
         {
+            player.Draw(spriteBatch);
+
             foreach (var loot in loots)
                 loot.Draw(spriteBatch);
 
@@ -100,7 +120,12 @@ namespace _2DRoguelike.Content.Core.Entities
                 projectile.Draw(spriteBatch);
         }
 
-        public static void UnloadEntities()
+        public static void ClearLevelEntities()
+        {
+            clearLevel = true;
+        }
+
+        public static void UnloadAllEntities()
         {
             addedEntities.Clear();
             addedLoot.Clear();
