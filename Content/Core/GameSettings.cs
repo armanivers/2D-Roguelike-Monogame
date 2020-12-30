@@ -33,6 +33,7 @@ namespace _2DRoguelike.Content.Core
         public bool showMouse;
         public bool playerDebug;
         public bool attackHitbox;
+        public bool noclip;
        
         // default settings 
         public GameSettings()
@@ -50,6 +51,7 @@ namespace _2DRoguelike.Content.Core
             showMouse = true;
             playerDebug = true;
             attackHitbox = true;
+            noclip = false;
 
             SetWindowedMode();
          }
@@ -202,6 +204,11 @@ namespace _2DRoguelike.Content.Core
             DEBUG = !DEBUG;
         }
 
+        public void SwitchNoclip()
+        {
+            noclip = !noclip;
+        }
+
         public void ApplySettings(GameSettings settings)
         {
             if(settings == null)
@@ -223,6 +230,7 @@ namespace _2DRoguelike.Content.Core
             showMouse = settings.showMouse;
             playerDebug = settings.playerDebug;
             attackHitbox = settings.attackHitbox;
+            noclip = settings.noclip;
 
             if(settings.fullScreen)
             {

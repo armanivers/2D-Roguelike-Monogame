@@ -10,7 +10,7 @@ namespace _2DRoguelike.Content.Core.Screens
         private MenuEntry showHitbox;
         private MenuEntry showMouse;
         private MenuEntry playerDebug;
-        private MenuEntry attackHitbox;
+        private MenuEntry noclip;
 
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace _2DRoguelike.Content.Core.Screens
             showHitbox = new MenuEntry(string.Empty);
             showMouse = new MenuEntry(string.Empty);
             playerDebug = new MenuEntry(string.Empty);
-            //attackHitbox = new MenuEntry(string.Empty);
+            noclip = new MenuEntry(string.Empty);
 
             SetMenuEntryText();
 
@@ -36,7 +36,7 @@ namespace _2DRoguelike.Content.Core.Screens
             showHitbox.Selected += SwitchShowHitbox;
             showMouse.Selected += SwitchShowMouse;
             playerDebug.Selected += SwitchShowPlayerDebug;
-            //attackHitbox.Selected += SwitchShowAttackHitbox;
+            noclip.Selected += SwitchNoclip;
 
             back.Selected += OnCancel;
 
@@ -45,7 +45,7 @@ namespace _2DRoguelike.Content.Core.Screens
             MenuEntries.Add(showHitbox);
             MenuEntries.Add(showMouse);
             MenuEntries.Add(playerDebug);
-            //MenuEntries.Add(attackHitbox);
+            MenuEntries.Add(noclip);
         }
 
         private void SetMenuEntryText()
@@ -55,7 +55,7 @@ namespace _2DRoguelike.Content.Core.Screens
             showHitbox.Text = "Show Hitbox: " + (Game1.gameSettings.showHitbox ? "on" : "off");
             showMouse.Text = "Show Mouse Debug: " + (Game1.gameSettings.showMouse ? "on" : "off");
             playerDebug.Text = "Show Player Debug: " + (Game1.gameSettings.playerDebug ? "on" : "off");
-            //attackHitbox.Text = "Show Attackhitbox: " + (GameSettings.attackHitbox ? "on" : "off");
+            noclip.Text = "Noclip: " + (Game1.gameSettings.noclip ? "on" : "off");
         }
 
         private void SwitchGodMode(object sender, PlayerIndexEventArgs e)
@@ -92,6 +92,12 @@ namespace _2DRoguelike.Content.Core.Screens
         private void SwitchDebugMode(object sender, PlayerIndexEventArgs e)
         {
             Game1.gameSettings.SwitchDebugMode();
+            SetMenuEntryText();
+        }
+
+        private void SwitchNoclip(object sender, PlayerIndexEventArgs e)
+        {
+            Game1.gameSettings.SwitchNoclip();
             SetMenuEntryText();
         }
     }

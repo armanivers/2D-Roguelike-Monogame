@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.Entities.Loot;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
@@ -124,6 +125,7 @@ namespace _2DRoguelike.Content.Core.Entities
     */
             #endregion
 
+            if (Game1.gameSettings.noclip && this is Player) return false;
 
             Rectangle tileCollisionHitbox = GetTileCollisionHitbox();
             int levelWidth = LevelManager.currentLevel.GetLength(0);
