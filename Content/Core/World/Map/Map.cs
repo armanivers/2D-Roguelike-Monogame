@@ -13,7 +13,6 @@ namespace _2DRoguelike.Content.Core.World
     {
         public Tile[,] map;
         public char[,] charmap;
-        public bool[,] boolmap;
         public int width;
         public int height;
         public Room currentroom{ get; set; }

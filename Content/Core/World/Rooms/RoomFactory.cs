@@ -18,7 +18,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         }
         public static Room StartingRoom()
         {
-            Room returnvalue = new Room();
+            Room returnvalue = new Room(10,10);
             return returnvalue;
         }
         public static Room FinalRoom()

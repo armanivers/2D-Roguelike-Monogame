@@ -29,14 +29,22 @@ namespace _2DRoguelike.Content.Core.World
             Room previousRoom = RoomFactory.RandomRoomWithEnemies();
             for (int i = 0; i < NumRooms; i++)
             {
-                Room room = RoomFactory.RandomRoomWithEnemies();
-                
+                Room room;
+                if (i == 0)
+                {
+                    room = RoomFactory.StartingRoom();
+                }
+                else
+                {
+                    room = RoomFactory.RandomRoomWithEnemies();
+                }
                 int roomfindingtries = 0;
                 do
                 {
+                    int addedvalue = 3;
                     //Ein Raum wird Relational weit zum Vorgänger in der Welt platziert. Dabei ist der weiteste entfernte Punkt wo ein Raum platziert werden kann die Maximale Größe eines Raum(MAXROOMZISE).
-                    room.setXPos(Map.Random.Next(previousRoom.XPos-Room.MAXROOMSIZE<0?0:previousRoom.XPos - Room.MAXROOMSIZE, previousRoom.XPos + Room.MAXROOMSIZE > width - room.Width? width - room.Width: previousRoom.XPos + Room.MAXROOMSIZE));
-                    room.setYPos(Map.Random.Next(previousRoom.YPos - Room.MAXROOMSIZE < 0 ? 0 : previousRoom.YPos - Room.MAXROOMSIZE, previousRoom.YPos + Room.MAXROOMSIZE > height - room.Height? height - room.Height: previousRoom.YPos + Room.MAXROOMSIZE));
+                    room.setXPos(Map.Random.Next(previousRoom.XPos-Room.MAXROOMSIZE- addedvalue < 0?0:previousRoom.XPos - Room.MAXROOMSIZE- addedvalue, previousRoom.XPos + Room.MAXROOMSIZE+ addedvalue > width - room.Width? width - room.Width: previousRoom.XPos + Room.MAXROOMSIZE+ addedvalue));
+                    room.setYPos(Map.Random.Next(previousRoom.YPos - Room.MAXROOMSIZE - addedvalue < 0 ? 0 : previousRoom.YPos - Room.MAXROOMSIZE- addedvalue, previousRoom.YPos + Room.MAXROOMSIZE+ addedvalue > height - room.Height? height - room.Height: previousRoom.YPos + Room.MAXROOMSIZE+ addedvalue));
                     roomfindingtries++;
                 } while (!avoidRoomCollision(room) && roomfindingtries <= ROOMTRIES);
                 if (roomfindingtries != ROOMTRIES)

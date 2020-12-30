@@ -33,7 +33,7 @@ namespace _2DRoguelike.Content.Core
             LevelManager.LoadContent();
             // EntityBasis Konstruktor f�gt automatisch zur EntityManager.entities hinzu
 
-            new Player(LevelManager.maps.getSpawnpoint() * new Vector2(32), 100, 5);
+            new Player(LevelManager.currentmap.getSpawnpoint() * new Vector2(32), 100, 5);
             
             // TODO: Rausnehmen. diese sind nur zu Testzwecke erstellt worden
             //new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 3 * 32), 100, 3);

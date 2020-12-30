@@ -54,11 +54,11 @@ namespace _2DRoguelike.Content.Core.GameDebug
                     angle, MoveIndent(), Color.White);
                 spriteBatch.DrawString(TextureManager.FontArial, "Waffe: " +
                     Player.Instance.CurrentWeapon?.ToString(), MoveIndent(), Color.White);
-                if (LevelManager.maps.currentroom != null)
+                if (LevelManager.currentmap.currentroom != null)
                 {
-                    spriteBatch.DrawString(TextureManager.FontArial, "Raum: " +LevelManager.maps.currentroom.Width +" , "+ LevelManager.maps.currentroom.Height, MoveIndent(), Color.White);
-                    if(LevelManager.maps.currentroom.exitroom)
-                        spriteBatch.DrawString(TextureManager.FontArial, "Exit: " + LevelManager.maps.currentroom.exithitbox.X/32+ " , " + LevelManager.maps.currentroom.exithitbox.Y/32, MoveIndent(), Color.White);
+                    spriteBatch.DrawString(TextureManager.FontArial, "Raum: " +LevelManager.currentmap.currentroom.Width +" , "+ LevelManager.currentmap.currentroom.Height, MoveIndent(), Color.White);
+                    if(LevelManager.currentmap.currentroom.exitroom)
+                        spriteBatch.DrawString(TextureManager.FontArial, "Exit: " + LevelManager.currentmap.currentroom.exithitbox.X/32+ " , " + LevelManager.currentmap.currentroom.exithitbox.Y/32, MoveIndent(), Color.White);
                 }
             }
         }

@@ -71,11 +71,14 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         }
         public Room(int width, int height)
         {
+            XPos = 0;
+            YPos = 0;
             this.Width = width;
             this.Height = height;
             roomvolume = (Width - 1) * (Height - 1);
             room = new char[width, height];
             enemylist = new List<Enemy>();
+            entitylist = new List<EntityBasis>();
             fillRoom();
         }
         public void fillRoom()

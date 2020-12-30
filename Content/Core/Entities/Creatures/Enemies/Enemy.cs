@@ -34,10 +34,10 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 
         public override bool CannotWalkHere()
         {
-            if(LevelManager.maps.currentroom == null || !LevelManager.maps.currentroom.roomhitbox.Contains(Hitbox) || base.CannotWalkHere())
+            if(LevelManager.currentmap.currentroom == null || !LevelManager.currentmap.currentroom.roomhitbox.Contains(Hitbox) || base.CannotWalkHere())
                 return true;
             // TODO: Spawns fixen, dass Enemies nicht ineinander spawnen können
-            foreach (Enemy otherEnemy in LevelManager.maps.currentroom.enemylist)
+            foreach (Enemy otherEnemy in LevelManager.currentmap.currentroom.enemylist)
             {
                 if (otherEnemy != this && Hitbox.Intersects(otherEnemy.Hitbox)) {
                     // Debug.WriteLine("Enemy at Position:{0} is Stuck with Enemy at Position:{1}!", Position/32, otherEnemy.Position/32);
@@ -97,12 +97,12 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         public bool IsPlayerInTheSameRoom()
         {
            
-            if (LevelManager.maps.currentroom == null)
+            if (LevelManager.currentmap.currentroom == null)
             {
                 // Debug.WriteLine("Current Room is null\n------");
                 return false;
             }
-            return LevelManager.maps.currentroom.roomhitbox.Intersects(this.Hitbox);
+            return LevelManager.currentmap.currentroom.roomhitbox.Intersects(this.Hitbox);
 
         }
 

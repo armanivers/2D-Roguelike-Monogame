@@ -108,8 +108,8 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             if (Owner is ControllingPlayer.Player)
             {
                 // TODO: ERSETZEN Durch EnemyList des Raumes
-                if (LevelManager.maps.currentroom != null)
-                    foreach (var enemy in LevelManager.maps.currentroom.enemylist)
+                if (LevelManager.currentmap.currentroom != null)
+                    foreach (var enemy in LevelManager.currentmap.currentroom.enemylist)
                     {
 
                         if (attackHitbox.Intersects(enemy.Hitbox))

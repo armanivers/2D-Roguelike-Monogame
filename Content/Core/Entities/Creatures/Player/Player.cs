@@ -105,7 +105,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             {
                 if (instance == null)
                 {
-                    instance = new Player(LevelManager.maps.getSpawnpoint(), 100, 0.4f, 5);
+                    instance = new Player(LevelManager.currentmap.getSpawnpoint(), 100, 0.4f, 5);
                 }
                 return instance;
             }
