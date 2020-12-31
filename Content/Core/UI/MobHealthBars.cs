@@ -10,7 +10,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.UI
 {
-    class MobHealthBars : UIElement
+    class MobHealthBars : UIElementBasis
     {
 
         public Texture2D healthbarContainerTexture;

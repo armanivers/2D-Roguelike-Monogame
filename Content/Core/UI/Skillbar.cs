@@ -9,7 +9,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.UI
 {
-    class Skillbar : UIElement
+    class Skillbar : UIElementBasis
     {
         private Player target;
 

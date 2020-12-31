@@ -8,7 +8,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.UI
 {
-    class ExperienceBar: UIElement
+    class ExperienceBar: UIElementBasis
     {
         private Player target;
 

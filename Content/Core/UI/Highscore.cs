@@ -8,7 +8,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.UI
 {
-    class Highscore:UIElement
+    class Highscore:UIElementBasis
     {
 
         private int currentScore;

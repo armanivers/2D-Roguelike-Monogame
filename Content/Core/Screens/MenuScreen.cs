@@ -159,7 +159,7 @@ namespace _2DRoguelike.Content.Core.Screens
             }
             else if (input.IsMenuCancel(ControllingPlayer, out playerIndex) && !notEscapable)
             {
-                if(this is OptionsMenuScreen)
+                if(this is OptionsMenuScreen || this is MainMenuScreen)
                 {
                     OnCancel(playerIndex);
                 }

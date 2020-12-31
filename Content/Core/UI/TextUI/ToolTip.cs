@@ -9,7 +9,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.UI
 {
-    class ToolTip : UIElement
+    class ToolTip : UIElementBasis
     {
         private Player target;
 
@@ -17,8 +17,8 @@ namespace _2DRoguelike.Content.Core.UI
         private float scalingFactor;
         private float visibility;
 
-        private String interactWithContainer = "Press F To Open";
-        private float interactWithContainerLength = TextureManager.FontArial.MeasureString("Press F To Open").X;
+        private String interactWithContainer = "Press F To Interact";
+        private float interactWithContainerLength = TextureManager.FontArial.MeasureString("Press F To Interact").X;
 
         public ToolTip(Player player)
         {
