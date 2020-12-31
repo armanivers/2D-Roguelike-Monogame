@@ -13,6 +13,8 @@ namespace _2DRoguelike.Content.Core.World
 {
     static class LevelManager
     {
+        // TODO: Methode, die ein Tile im Char Array ändert und im Tile-Array aktualisiert
+
         public const int numLevel = 3;
         public static int level = 0;
         private static List<Map> levelList;

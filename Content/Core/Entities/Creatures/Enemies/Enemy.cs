@@ -39,7 +39,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             // TODO: Spawns fixen, dass Enemies nicht ineinander spawnen können
             foreach (Enemy otherEnemy in LevelManager.currentmap.currentroom.enemylist)
             {
-                if (otherEnemy != this && Hitbox.Intersects(otherEnemy.Hitbox)) {
+                if (otherEnemy != this && GetTileCollisionHitbox().Intersects(otherEnemy.GetTileCollisionHitbox())) {
                     // Debug.WriteLine("Enemy at Position:{0} is Stuck with Enemy at Position:{1}!", Position/32, otherEnemy.Position/32);
                     return true;
                 }
