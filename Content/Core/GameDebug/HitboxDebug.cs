@@ -58,7 +58,7 @@ namespace _2DRoguelike.Content.Core.GameDebug
                     DrawRectangleHitbox(p.Hitbox, spriteBatch, Color.Blue);
                 }
 
-                foreach (var l in EntityManager.loots)
+                foreach (var l in EntityManager.interactables)
                 {
                     DrawRectangleHitbox(l.Hitbox, spriteBatch, Color.Blue);
                 }

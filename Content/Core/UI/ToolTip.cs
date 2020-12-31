@@ -17,8 +17,6 @@ namespace _2DRoguelike.Content.Core.UI
         private float scalingFactor;
         private float visibility;
 
-        private bool interactable;
-
         private String interactWithContainer = "Press F To Open";
         private float interactWithContainerLength = TextureManager.FontArial.MeasureString("Press F To Open").X;
 
@@ -32,9 +30,7 @@ namespace _2DRoguelike.Content.Core.UI
 
         public override void Update(GameTime gameTime)
         {
-            interactable = target.canInteract;
-
-            if (interactable)
+            if (target.canInteract)
             {
                 if (visibility < 1)
                 {

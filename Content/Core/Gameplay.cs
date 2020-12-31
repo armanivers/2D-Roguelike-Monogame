@@ -1,6 +1,7 @@
 ﻿using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects;
 using _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Loot.WeaponLoots;
@@ -31,27 +32,29 @@ namespace _2DRoguelike.Content.Core
 
             StatisticsManager.InitializeScore();
             LevelManager.LoadContent();
+
             // EntityBasis Konstruktor f�gt automatisch zur EntityManager.entities hinzu
 
             new Player(LevelManager.currentmap.getSpawnpoint() * new Vector2(32), 100, 5);
             
-            // TODO: Rausnehmen. diese sind nur zu Testzwecke erstellt worden
-            //new GreenZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 3 * 32), 100, 3);
-            //BrownZombie zombie = new BrownZombie(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 5 * 32), 50, 3);
-            //new Skeleton(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 7 * 32), 100, 3);
-            //new Wizard(/*WorldGenerator.spawn*/LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 9 * 32), 100, 3);
+            /*
+            new GreenZombie(LevelManager.currentmap.getSpawnpoint() + new Vector2(5 * 32, 3 * 32), 100, 3);
+            BrownZombie zombie = new BrownZombie(LevelManager.currentmap.getSpawnpoint() + new Vector2(5 * 32, 5 * 32), 50, 3);
+            new Skeleton(LevelManager.currentmap.getSpawnpoint() + new Vector2(5 * 32, 7 * 32), 100, 3);
+            new Wizard(LevelManager.currentmap.getSpawnpoint() + new Vector2(5 * 32, 9 * 32), 100, 3);
             
-            //new HealthPotion(LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 13 * 32));
-            //new ExperiencePotion(LevelManager.maps.getSpawnpoint() + new Vector2(5 * 32, 11 * 32));
+            new HealthPotion(LevelManager.currentmap.getSpawnpoint() + new Vector2(5 * 32, 13 * 32));
+            new ExperiencePotion(LevelManager.currentmap.getSpawnpoint() + new Vector2(5 * 32, 11 * 32));
 
-            //new AxeLoot(LevelManager.maps.getSpawnpoint() + new Vector2(6 * 32, 15 * 32));
-            //new BowLoot(LevelManager.maps.getSpawnpoint() + new Vector2(8 * 32, 15 * 32));
-            //new DaggerLoot(LevelManager.maps.getSpawnpoint() + new Vector2(10 * 32, 15 * 32));
-            //new BombLoot(LevelManager.maps.getSpawnpoint() + new Vector2(12 * 32, 15 * 32));
+            new AxeLoot(LevelManager.currentmap.getSpawnpoint() + new Vector2(6 * 32, 15 * 32));
+            new BowLoot(LevelManager.currentmap.getSpawnpoint() + new Vector2(8 * 32, 15 * 32));
+            new DaggerLoot(LevelManager.currentmap.getSpawnpoint() + new Vector2(10 * 32, 15 * 32));
+            new BombLoot(LevelManager.currentmap.getSpawnpoint() + new Vector2(12 * 32, 15 * 32));
 
-            //new LootBag(LevelManager.maps.getSpawnpoint()  + new Vector2(6 * 32, 21 * 32), zombie);
-            //new Chest(new Vector2(2 * 32, 2 * 32));
-            
+            new LootBag(LevelManager.currentmap.getSpawnpoint()  + new Vector2(6 * 32, 21 * 32), zombie);
+            new Chest(new Vector2(2 * 32, 2 * 32));
+            new Ladder(new Vector2(2 * 32, 6 * 32));
+            */
 
             UIManager.AddUIElementDynamic(new MobHealthBars());
 

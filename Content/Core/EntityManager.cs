@@ -13,9 +13,9 @@ namespace _2DRoguelike.Content.Core.Entities
     static class EntityManager
     {
 
-        public static bool isUpdatingLoot;
-        public static List<LootBase> addedLoot = new List<LootBase>();
-        public static List<LootBase> loots = new List<LootBase>();
+        public static bool isUpdatingInteractables;
+        public static List<InteractableBase> addedInteractables = new List<InteractableBase>();
+        public static List<InteractableBase> interactables = new List<InteractableBase>();
 
         public static bool isUpdatingProjectile;
         public static List<Projectile> addedProjectile = new List<Projectile>();
@@ -30,7 +30,7 @@ namespace _2DRoguelike.Content.Core.Entities
         public static bool clearLevel = false;
         public static int CreaturesCount { get { return creatures.Count; } }
         public static int ProjectilesCount { get { return projectiles.Count; } } 
-        public static int LootsCount { get { return loots.Count; } }
+        public static int LootsCount { get { return interactables.Count; } }
 
 
         public static void AddCreatureEntity(EntityBasis entity)
@@ -41,12 +41,12 @@ namespace _2DRoguelike.Content.Core.Entities
                 addedEntities.Add(entity);
         }
 
-        public static void AddLootEntity(LootBase loot)
+        public static void AddInteractableEntity(InteractableBase loot)
         {
-            if (!isUpdatingLoot)
-                loots.Add(loot);
+            if (!isUpdatingInteractables)
+                interactables.Add(loot);
             else
-                addedLoot.Add(loot);
+                addedInteractables.Add(loot);
         }
 
         public static void AddProjectileEntity(Projectile projectile)
@@ -65,8 +65,8 @@ namespace _2DRoguelike.Content.Core.Entities
                 creatures.Clear();
                 projectiles.Clear();
                 addedProjectile.Clear();
-                loots.Clear();
-                addedLoot.Clear();
+                interactables.Clear();
+                addedInteractables.Clear();
 
                 clearLevel = false;
             }
@@ -79,10 +79,10 @@ namespace _2DRoguelike.Content.Core.Entities
             isUpdatingCreature = false;
 
 
-            isUpdatingLoot = true;
-            foreach (var loot in loots)
+            isUpdatingInteractables = true;
+            foreach (var loot in interactables)
                 loot.Update(gameTime);
-            isUpdatingLoot = false;
+            isUpdatingInteractables = false;
 
             isUpdatingProjectile = true;
             foreach (var projectile in projectiles)
@@ -91,30 +91,30 @@ namespace _2DRoguelike.Content.Core.Entities
 
             foreach (var entity in addedEntities)
                 creatures.Add(entity);
-            foreach (var loot in addedLoot)
-                loots.Add(loot);
+            foreach (var loot in addedInteractables)
+                interactables.Add(loot);
             foreach (var projectile in addedProjectile)
                 projectiles.Add(projectile);
 
             addedEntities.Clear();
-            addedLoot.Clear();
+            addedInteractables.Clear();
             addedProjectile.Clear();
 
             // remove any expired entities.
             creatures = creatures.Where(x => !x.isExpired).ToList();
             projectiles = projectiles.Where(x => !x.isExpired).ToList();
-            loots = loots.Where(x => !x.isExpired).ToList();
+            interactables = interactables.Where(x => !x.isExpired).ToList();
         }
 
         public static void Draw(SpriteBatch spriteBatch)
         {
-            player.Draw(spriteBatch);
-
-            foreach (var loot in loots)
+            foreach (var loot in interactables)
                 loot.Draw(spriteBatch);
 
             foreach (var entity in creatures)
                 entity.Draw(spriteBatch);
+
+            player.Draw(spriteBatch);
 
             foreach (var projectile in projectiles)
                 projectile.Draw(spriteBatch);
@@ -128,12 +128,12 @@ namespace _2DRoguelike.Content.Core.Entities
         public static void UnloadAllEntities()
         {
             addedEntities.Clear();
-            addedLoot.Clear();
+            addedInteractables.Clear();
             addedProjectile.Clear();
 
             creatures.Clear();
             projectiles.Clear();
-            loots.Clear();
+            interactables.Clear();
         }
     }
 }

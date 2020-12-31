@@ -1,7 +1,11 @@
 ﻿using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
+using _2DRoguelike.Content.Core.Entities.Interactables.NPCs;
+using _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects;
+using _2DRoguelike.Content.Core.Entities.Loot;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Weapons;
+using _2DRoguelike.Content.Core.Items.ObtainableItems;
 using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
@@ -21,7 +25,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         private int currentWeaponPos = 0;
 
         public bool canInteract;
-        private List<LootContainer> interactableContainers;
+        private List<InteractableBase> interactableObjects;
 
         private readonly int MAX_LEVEL = 5;
         public int currentXPLevel;
@@ -37,6 +41,19 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             }
         }
 
+        /*
+        public LevelKey key;
+
+        public LevelKey Key
+        {
+            get { return key; }
+            private set
+            {
+                key = value;
+            }
+        }
+        */
+        public bool hasLevelKey;
         public double LevelupPercentage
         {
             get
@@ -71,7 +88,6 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         private void SetNextWeapon(bool backwards = false)
         {
             // Nächste gültige Position im Array ermitteln
-            EntityManager.ClearLevelEntities();
             int currentPos = CurrentWeaponPos;
             do
             {
@@ -119,7 +135,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             //this.position = new Vector2(2*32, 5*32); bei statischer Map
 
             canInteract = false;
-            interactableContainers = new List<LootContainer>();
+            interactableObjects = new List<InteractableBase>();
 
             currentXP = currentXPLevel = 0;
 
@@ -132,6 +148,8 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 30, // Level 4
                 40  // Level 5 MAX
             };
+
+            hasLevelKey = false;
 
             instance = this;
             WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
@@ -256,7 +274,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         public override void Update(GameTime gameTime)
         {
             UpdateCurrentWeaponPos();
-            CheckLootCollision();
+            CheckInteractableCollision();
             InteractWithObject();
             base.Update(gameTime);
         }
@@ -304,31 +322,39 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             }
         }
 
-        public void CheckLootCollision()
+        public void CheckInteractableCollision()
         {
             /* schoener wenn interaktion mit Container in seperate Methode geprueft wird, jedoch wenn wir interaktion und collision
              gleichzeitig pruefen, muessen wir die Loot liste nicht doppelt durchgehen, IDEE: liste mit container/objekte die interactable sind
             */
 
             canInteract = false;
-            interactableContainers.Clear();
+            interactableObjects.Clear();
 
             // TODO: mit LevelManager.currentroom.entities ersetzen 
-            foreach (var loot in EntityManager.loots)
+            foreach (var interactableObject in EntityManager.interactables)
             {
-                if (Hitbox.Intersects(loot.Hitbox))
+                if (Hitbox.Intersects(interactableObject.Hitbox))
                 {
-                    if (loot is LootContainer)
+                    if (interactableObject is LootContainer)
                     {
-                        if (((LootContainer)loot).Closed)
+                        // if its a container, check if its still closed before counting it as "interactable"
+                        if (((LootContainer)interactableObject).Closed)
                         {
-                            interactableContainers.Add((LootContainer)loot);
+                            interactableObjects.Add(interactableObject);
                             canInteract = true;
                         }
                     }
+                    else if(interactableObject is WorldObject || interactableObject is NPCBase)
+                    {
+                        // if its a worldobject or npc add it directly
+                        // later maybe check if npc has finished dialog and if worldobject has been initialized
+                        interactableObjects.Add(interactableObject);
+                        canInteract = true;
+                    }
                     else
                     {
-                        loot.OnContact();
+                        interactableObject.OnContact();
                     }
 
                 }
@@ -339,12 +365,23 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         {
             if (InputController.IsKeyPressed(Keys.F))
             {
-                foreach (var lootContainer in interactableContainers)
+                foreach (var interactable in interactableObjects)
                 {
-                    lootContainer.OnContact();
+                    interactable.OnContact();
                 }
             }
-            interactableContainers.Clear();
+            interactableObjects.Clear();
+        }
+
+
+        // sollte abstrakter sein, z.B. AddItem mit Parameter ObtainableItem item, fuegt es in Liste der schon vorhandene items
+        public void AddKey()
+        {
+            hasLevelKey = true;
+        }
+        public void ClearKey()
+        {
+            hasLevelKey = false;
         }
 
         public bool GameOver()

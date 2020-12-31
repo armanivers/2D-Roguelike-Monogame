@@ -23,9 +23,14 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D Player_Walk_Fist { get; private set; }
         public static Texture2D Player_Walk_Spear { get; private set; }
 
+        // Genral Data
+
         // Font Data
         public static SpriteFont FontArial { get; private set; }
         public static SpriteFont GameFont { get; private set; }
+
+        // Textures
+        public static Texture2D placeholderImage { get; private set; }
 
         // Other Data
 
@@ -59,7 +64,8 @@ namespace _2DRoguelike.Content.Core
 
             // Font Data
             FontArial = content.Load<SpriteFont>("Assets/System/Fonts/Arial");
-            GameFont = content.Load<SpriteFont>("Assets/System/Fonts/File");           
+            GameFont = content.Load<SpriteFont>("Assets/System/Fonts/File");
+            placeholderImage = content.Load<Texture2D>("Assets/Graphics/placeholderImage");
         }
     }
 }

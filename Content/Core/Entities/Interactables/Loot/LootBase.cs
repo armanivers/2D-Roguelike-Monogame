@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Loot
 {
-    public abstract class LootBase : EntityBasis
+    public abstract class LootBase : InteractableBase
     {
         // how much should the loot object float up/down compared to its original spawn position
         protected float floatOffset;
@@ -21,8 +21,6 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
 
         public LootBase(Vector2 pos) : base(pos)
         {
-            EntityManager.AddLootEntity(this);
-
             // we are using 32x32px loot items drop texturs 
             Hitbox = new Rectangle((int)(Position.X), (int)(Position.Y), (int)(32 * ScaleFactor), (int)(32 * ScaleFactor));
             basePosition = pos;
@@ -35,11 +33,6 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
             shadow = true;
             shadowOffset = new Vector2(0, 10);
             shadowPosition = pos - shadowOffset;
-        }
-
-        public virtual void OnContact()
-        {
-            SoundManager.ItemPickup.Play(Game1.gameSettings.soundeffectsLevel, 0, 0);
         }
 
         public override void Update(GameTime gameTime)
