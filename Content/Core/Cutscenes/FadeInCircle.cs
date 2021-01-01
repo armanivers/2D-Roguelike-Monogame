@@ -34,7 +34,6 @@ namespace _2DRoguelike.Content.Core.Cutscenes
         {
             if(transparency <= 1 && phaseCounter == 0)
             {
-                Debug.Print("Loading screen");
                 transparency += 0.01f;
             }
             else if(transparency >= 1 && phaseCounter == 1 && timer < cutsceneDuration)
