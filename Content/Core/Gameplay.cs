@@ -84,6 +84,13 @@ namespace _2DRoguelike.Content.Core
 
         public void Update(GameTime gameTime)
         {
+            if(CutsceneManager.activeCutscene)
+            {
+                CutsceneManager.Update(gameTime);
+                // if there is an active cutscene playing, don't update anything!
+                return;
+            }
+
             // Game 
             Camera.Update(Player.Instance);
             InputController.Update();
@@ -116,9 +123,11 @@ namespace _2DRoguelike.Content.Core
             // seperate sprite batch begin+end which isn't attached to an active 2D Camera
             spriteBatch.Begin();
 
-            
             // UI Elements
             UIManager.DrawStatic(spriteBatch);
+
+            // draw current cutscene, if one is currently active
+            if (CutsceneManager.activeCutscene) CutsceneManager.Draw(spriteBatch);
 
             if (Game1.gameSettings.DEBUG)
             {

@@ -33,6 +33,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Assets\Graphics\Cutscenes\" />
     <Folder Include="Content\Assets\Graphics\EnemyElements\Skeleton\" />
     <Folder Include="Content\Assets\Graphics\EnemyElements\Wizard\" />
     <Folder Include="Content\Assets\Graphics\EnemyElements\ZombieBrown\" />
