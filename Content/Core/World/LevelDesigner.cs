@@ -1,5 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.World.Tiles;
 using Microsoft.Xna.Framework.Graphics;
+using _2DRoguelike.Content.Core.World.Maps;
 using System;
 using System.Collections.Generic;
 using System.Text;

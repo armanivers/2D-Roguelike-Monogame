@@ -3,6 +3,7 @@ using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Loot.WeaponLoots;
+using _2DRoguelike.Content.Core.World.Maps;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

@@ -10,7 +10,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Content\Core\World\Map\CaveMap.cs" />
+    <Compile Remove="Content\Core\World\Maps\CaveMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />

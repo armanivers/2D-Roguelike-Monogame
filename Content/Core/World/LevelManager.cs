@@ -2,7 +2,7 @@
 using _2DRoguelike.Content.Core.GameDebug;
 using _2DRoguelike.Content.Core.World.Rooms;
 using _2DRoguelike.Content.Core.World.Tiles;
-using _2DRoguelike.Content.Core.World;
+using _2DRoguelike.Content.Core.World.Maps;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -25,6 +25,7 @@ namespace _2DRoguelike.Content.Core.World
         {
             levelList = new List<Map>();
             //levelList.Add(RoomFactory.TestMap());
+            //levelList.Add(RoomFactory.BossMap());
             levelList.Add(new Dungeon());
             currentmap = levelList[level];
             currentLevel = currentmap.map;

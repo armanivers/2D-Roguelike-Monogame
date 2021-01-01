@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace _2DRoguelike.Content.Core.World
+namespace _2DRoguelike.Content.Core.World.Maps
 {
     class Dungeon : Map
     {
