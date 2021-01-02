@@ -36,7 +36,7 @@ namespace _2DRoguelike.Content.Core
             // EntityBasis Konstruktor f�gt automatisch zur EntityManager.entities hinzu
 
             new Player(LevelManager.currentmap.getSpawnpoint() * new Vector2(32), 100, 5);
-            
+
             /*
             new GreenZombie(LevelManager.currentmap.getSpawnpoint() + new Vector2(5 * 32, 3 * 32), 100, 3);
             BrownZombie zombie = new BrownZombie(LevelManager.currentmap.getSpawnpoint() + new Vector2(5 * 32, 5 * 32), 50, 3);
@@ -80,6 +80,7 @@ namespace _2DRoguelike.Content.Core
             StatisticsManager.ClearScore();
             UIManager.ClearElements();
             //MediaPlayer.Stop();
+            CutsceneManager.ClearCutscene();
         }
 
         public void Update(GameTime gameTime)
