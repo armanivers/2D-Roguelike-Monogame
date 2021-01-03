@@ -22,20 +22,32 @@ namespace _2DRoguelike.Content.Core.UI
             public AnimationType animation { get; private set; }
             public float scale { get; private set; }
             public float rotation { get; private set; }
+            public float timer { get; private set; }
 
             public enum AnimationType
             {
                 UpToDown,
-                LeftToRight
+                LeftToRight,
+                MiddleFadeInOut,
+                LeftToRightUpDown,
+                LeftToRightCos
             }
 
             public Message(string message, Color color,AnimationType animation)
             {
+                // defaults, can be overwritten depending on animation preferences
+                rotation = 0f;
+                scale = 1f;
+                transparency = 0f;
+
                 this.message = message;
                 this.animation = animation;
+
                 SetAnimationProperties();
+
                 this.color = color;
                 this.expire = false;
+                this.timer = 0;
             }
 
             public void SetAnimationProperties()
@@ -43,16 +55,17 @@ namespace _2DRoguelike.Content.Core.UI
                 switch (animation)
                 {
                     case AnimationType.UpToDown:
-                        transparency = 0;
-                        scale = 1f;
                         this.position = new Vector2(Game1.gameSettings.screenWidth / 2, 0);
-                        rotation = 0f;
                         break;
                     case AnimationType.LeftToRight:
-                        transparency = 0;
-                        scale = 1f;
                         this.position = new Vector2(0, Game1.gameSettings.screenHeight / 2 - 100);
-                        rotation = 0f;
+                        break;
+                    case AnimationType.MiddleFadeInOut:
+                        position = new Vector2(Game1.gameSettings.screenWidth / 2, Game1.gameSettings.screenHeight / 2);
+                        break;
+                    case AnimationType.LeftToRightCos:
+                        transparency = 1f;
+                        position = new Vector2(0, Game1.gameSettings.screenHeight / 2-120);
                         break;
                     default:
                         UpToDownAnimation();
@@ -69,6 +82,12 @@ namespace _2DRoguelike.Content.Core.UI
                         break;
                     case AnimationType.LeftToRight:
                         LeftToRightAnimation();
+                        break;
+                    case AnimationType.MiddleFadeInOut:
+                        MiddleFadeInOut();
+                        break;
+                    case AnimationType.LeftToRightCos:
+                        LeftRightCos();
                         break;
                     default:
                         UpToDownAnimation();
@@ -134,6 +153,34 @@ namespace _2DRoguelike.Content.Core.UI
                 }
             }
 
+            public void MiddleFadeInOut()
+            {
+                // quadratic function: minimum at x=0 and x=10 maximum opacity reached at x-5 with value y=1
+                transparency = -0.04f * timer * (timer - 10f);
+                
+                if (timer > 10)
+                {
+                    expire = true;
+                }
+
+                timer+=0.05f;
+            }
+
+            public void LeftRightCos()
+            {
+                // timer hier used as time variable for the cos function
+                timer += 0.05f;
+
+                // 3 in x coordinate is default speed and the (2* ..) in y coordinate is for the vertical scale of the cos function, because it otherwise only returns a value between -1 and 1
+                position = new Vector2(position.X + 4, position.Y + 2 * (float)Math.Cos(timer));
+
+                if (position.X > Game1.gameSettings.screenWidth)
+                {
+                    expire = true;
+                }
+
+            }
+
             public void Draw(SpriteBatch s)
             {
                 //s.DrawString(TextureManager.FontArial, message,position,color*transparency);
@@ -143,7 +190,7 @@ namespace _2DRoguelike.Content.Core.UI
 
         public static void DisplayMessage(string message, Color c)
         {
-            messages.Add(new Message(message, c, AnimationType.LeftToRight));
+            messages.Add(new Message(message, c, AnimationType.LeftToRightCos));
         }
         public static void DisplayMessage(string message, Color c, AnimationType animation)
         {
