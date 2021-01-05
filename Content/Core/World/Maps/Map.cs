@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace _2DRoguelike.Content.Core.World
+namespace _2DRoguelike.Content.Core.World.Maps
 {
     abstract class Map
     {

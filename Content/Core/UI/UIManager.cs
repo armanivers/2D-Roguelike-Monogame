@@ -9,10 +9,10 @@ namespace _2DRoguelike.Content.Core.UI
 {
     class UIManager
     {
-        public static List<UIElement> uiElementsDynamic = new List<UIElement>();
-        public static List<UIElement> uiElementsStatic = new List<UIElement>();
+        public static List<UIElementBasis> uiElementsDynamic = new List<UIElementBasis>();
+        public static List<UIElementBasis> uiElementsStatic = new List<UIElementBasis>();
 
-        public static List<UIElement> uiElements = new List<UIElement>();
+        public static List<UIElementBasis> uiElements = new List<UIElementBasis>();
         public static void Update(GameTime gameTime)
         {
             foreach(var ui in uiElements)
@@ -46,7 +46,7 @@ namespace _2DRoguelike.Content.Core.UI
             }
         }
 
-        public static void AddUIElementDynamic(UIElement ui)
+        public static void AddUIElementDynamic(UIElementBasis ui)
         {
             if(ui != null)
             {
@@ -54,7 +54,7 @@ namespace _2DRoguelike.Content.Core.UI
                 uiElements.Add(ui);
             }
         }
-        public static void AddUIElementStatic(UIElement ui)
+        public static void AddUIElementStatic(UIElementBasis ui)
         {
             if (ui != null)
             {

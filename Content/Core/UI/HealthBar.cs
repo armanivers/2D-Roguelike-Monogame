@@ -8,7 +8,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.UI
 {
-    class HealthBar : UIElement
+    class HealthBar : UIElementBasis
     {
         private Player target;
 

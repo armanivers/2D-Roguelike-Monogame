@@ -7,7 +7,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.UI
 {
-    class Fog : UIElement
+    class Fog : UIElementBasis
     {
         // x Coordinate from where the fog image shoudl be drawn 
         private int xOffset;

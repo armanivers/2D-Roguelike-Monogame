@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _2DRoguelike.Content.Core.World.Maps;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,6 +10,10 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         public static Map TestMap()
         {
             return new TestMap(24, 24);
+        }
+        public static Map BossMap()
+        {
+            return new BossMap(32, 32);
         }
         public static Room RandomRoomWithEnemies()
         {

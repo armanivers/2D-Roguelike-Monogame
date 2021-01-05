@@ -14,6 +14,9 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
         public Texture2D CaveDoorBackground { get; private set; }
         public Texture2D Blank { get; private set; }
         public Texture2D Gradient { get; private set; }
+
+        // Cutscenes
+        public Texture2D NPCTalk00 { get; private set; }
         
         public void Load(ContentManager content)
         {
@@ -23,6 +26,9 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
             CaveDoorBackground = content.Load<Texture2D>("Assets/Graphics/Menus/CaveBackground");
             Blank = content.Load<Texture2D>("Assets/Graphics/Menus/blank");
             Gradient = content.Load<Texture2D>("Assets/Graphics/Menus/gradient");
+
+            // Cutscenes
+            NPCTalk00 = content.Load<Texture2D>("Assets/Graphics/Cutscenes/NPCTalk00");
         }
     }
 }

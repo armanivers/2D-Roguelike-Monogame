@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities.Loot;
+using _2DRoguelike.Content.Core.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -22,11 +23,13 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects
             if(ControllingPlayer.Player.Instance.hasLevelKey)
             {
                 // if yes remove player's key item, play fade out scene and load next level (LevelManager.nextlevel())
+                MessageFactory.DisplayMessage("Key Accepted", Color.Green);
                 Debug.Print("Next Level!");
             }
             else
             {
                 // if no diplay message "Key missing"
+                MessageFactory.DisplayMessage("Key Missing!", Color.Red);
                 Debug.Print("Key Missing!");
             }  
         }

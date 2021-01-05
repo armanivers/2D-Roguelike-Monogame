@@ -1,5 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.World.Rooms;
+using _2DRoguelike.Content.Core.World.Maps;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,6 @@ namespace _2DRoguelike.Content.Core.World
         public TestMap(int width, int height) : base(width, height)
         {
             room = new Room(width, height);
-            
             dottedArea(width / 2, height / 2);
             placeTables(6, 17);
             placelabyrinth();

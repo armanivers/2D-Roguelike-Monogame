@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using _2DRoguelike.Content.Core.Cutscenes;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots;
 using _2DRoguelike.Content.Core.Entities.Loot.WeaponLoots;
@@ -33,6 +34,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         public override void OpenContainer()
         {
             RandomLoot.SpawnLoot(type,Position);
+            CutsceneManager.PlayCutscene(new FadeInCircle());
             isExpired = true;
         }
 

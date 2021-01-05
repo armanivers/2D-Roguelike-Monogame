@@ -36,7 +36,7 @@ namespace _2DRoguelike.Content.Core
             // EntityBasis Konstruktor f�gt automatisch zur EntityManager.entities hinzu
 
             new Player(LevelManager.currentmap.getSpawnpoint() * new Vector2(32), 100, 5);
-            
+
             /*
             new GreenZombie(LevelManager.currentmap.getSpawnpoint() + new Vector2(5 * 32, 3 * 32), 100, 3);
             BrownZombie zombie = new BrownZombie(LevelManager.currentmap.getSpawnpoint() + new Vector2(5 * 32, 5 * 32), 50, 3);
@@ -80,10 +80,18 @@ namespace _2DRoguelike.Content.Core
             StatisticsManager.ClearScore();
             UIManager.ClearElements();
             //MediaPlayer.Stop();
+            CutsceneManager.ClearCutscene();
         }
 
         public void Update(GameTime gameTime)
         {
+            if(CutsceneManager.activeCutscene)
+            {
+                CutsceneManager.Update(gameTime);
+                // if there is an active cutscene playing, don't update anything!
+                return;
+            }
+
             // Game 
             Camera.Update(Player.Instance);
             InputController.Update();
@@ -116,9 +124,11 @@ namespace _2DRoguelike.Content.Core
             // seperate sprite batch begin+end which isn't attached to an active 2D Camera
             spriteBatch.Begin();
 
-            
             // UI Elements
             UIManager.DrawStatic(spriteBatch);
+
+            // draw current cutscene, if one is currently active
+            if (CutsceneManager.activeCutscene) CutsceneManager.Draw(spriteBatch);
 
             if (Game1.gameSettings.DEBUG)
             {

@@ -10,7 +10,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Content\Core\World\Map\CaveMap.cs" />
+    <Compile Remove="Content\Core\World\Maps\CaveMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />
@@ -33,6 +33,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Assets\Graphics\Cutscenes\" />
     <Folder Include="Content\Assets\Graphics\EnemyElements\Skeleton\" />
     <Folder Include="Content\Assets\Graphics\EnemyElements\Wizard\" />
     <Folder Include="Content\Assets\Graphics\EnemyElements\ZombieBrown\" />
@@ -40,5 +41,7 @@
     <Folder Include="Content\Assets\Graphics\Particles\" />
     <Folder Include="Content\Assets\Graphics\PlayerElements\" />
     <Folder Include="Content\Assets\Graphics\Projectiles\" />
+    <Folder Include="Content\Core\Items\InventoryItems\UsableItems\" />
+    <Folder Include="Content\Core\Items\QuestItems\" />
   </ItemGroup>
 </Project>

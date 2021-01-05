@@ -6,7 +6,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.UI
 {
-    abstract class UIElement
+    abstract class UIElementBasis
     {
         public abstract void Update(GameTime gametime);
         public abstract void Draw(SpriteBatch spritebatch);
