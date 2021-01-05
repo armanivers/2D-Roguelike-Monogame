@@ -80,5 +80,16 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             reactionTimeInterval[0] = min;
             reactionTimeInterval[1] = max;
         }
+
+        public bool TryToAttack(Weapon usedWeapon)
+        {
+            if (React()) { 
+                usedWeapon.CooldownTimer = 0;
+                agent.CurrentWeapon = usedWeapon;
+                return true;
+            }
+            return false;
+            
+        }
     }
 }

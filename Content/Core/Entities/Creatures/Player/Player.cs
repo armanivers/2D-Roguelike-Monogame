@@ -5,6 +5,7 @@ using _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects;
 using _2DRoguelike.Content.Core.Entities.Loot;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Weapons;
+using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
 using _2DRoguelike.Content.Core.Items.ObtainableItems;
 using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.World;
@@ -162,6 +163,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             AddToWeaponInventory(new Bow(this));
             AddToWeaponInventory(new BombWeapon(this));
             */
+            AddToWeaponInventory(new FireballWeapon(this));
 
             ChangeCurrentWeaponSlot(0);
 
@@ -250,7 +252,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
         public override Action DetermineAction()
         {
-            if (InputController.IsMouseButtonPressed() && !IsAttacking() && CanAttack())
+            if (InputController.IsMouseButtonHeld() && !IsAttacking() && CanAttack())
             // TODO: if(weapon.rangeAttack) return RangeAttack else return Melee ...
             {
                 if (CurrentWeapon is LongRange)
