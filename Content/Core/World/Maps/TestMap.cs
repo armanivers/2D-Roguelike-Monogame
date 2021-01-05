@@ -19,7 +19,7 @@ namespace _2DRoguelike.Content.Core.World
             placelabyrinth();
             placeTables(3, 15);
             room.setExit();
-            map = fillTile(room.room);
+            tilearray = fillTile(room.room);
         }
         public void placelabyrinth()
         {
@@ -89,6 +89,16 @@ namespace _2DRoguelike.Content.Core.World
         public override void clearEnities()
         {
             
+        }
+
+        public override int CountEnemies()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int EnemiesAlive()
+        {
+            throw new NotImplementedException();
         }
     }
 }

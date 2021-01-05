@@ -15,14 +15,14 @@ namespace _2DRoguelike.Content.Core.World.Maps
         private static readonly int ROOMTRIES = 2000;
         public const int NumRooms = 10;
 
-        List<Room> roomlist;
+        public List<Room> roomlist { get; }
         public Vector2 spawnpoint;
         public Dungeon() : base()
         {
             roomlist = new List<Room>();
-            charmap = new char[width, height];
+            chararray = new char[width, height];
             Generate();
-            map = fillTile(charmap);
+            tilearray = fillTile(chararray);
         }
         public void Generate()
         {
@@ -66,24 +66,24 @@ namespace _2DRoguelike.Content.Core.World.Maps
                             for (int x = startX; x < endX; x++)
                             {
 
-                                if (charmap[x, previousRoom.CentreY] != RoomObject.EmptySpace)
+                                if (chararray[x, previousRoom.CentreY] != RoomObject.EmptySpace)
                                 {
-                                    charmap[x, previousRoom.CentreY] = RoomObject.EmptySpace;
-                                    if (charmap[x, previousRoom.CentreY + 1] != RoomObject.Wall)
+                                    chararray[x, previousRoom.CentreY] = RoomObject.EmptySpace;
+                                    if (chararray[x, previousRoom.CentreY + 1] != RoomObject.Wall)
                                     {
-                                        charmap[x, previousRoom.CentreY + 1] = RoomObject.EmptySpace;
+                                        chararray[x, previousRoom.CentreY + 1] = RoomObject.EmptySpace;
                                     }
                                 }
                             }
                             for (int y = startY; y < endY + 1; y++)
                             {
 
-                                if (charmap[room.CentreX, y] != RoomObject.EmptySpace)
+                                if (chararray[room.CentreX, y] != RoomObject.EmptySpace)
                                 {
-                                    charmap[room.CentreX, y] = RoomObject.EmptySpace;
-                                    if (charmap[room.CentreX + 1, y] != RoomObject.Wall)
+                                    chararray[room.CentreX, y] = RoomObject.EmptySpace;
+                                    if (chararray[room.CentreX + 1, y] != RoomObject.Wall)
                                     {
-                                        charmap[room.CentreX + 1, y] = RoomObject.EmptySpace;
+                                        chararray[room.CentreX + 1, y] = RoomObject.EmptySpace;
                                     }
                                 }
                             }
@@ -93,12 +93,12 @@ namespace _2DRoguelike.Content.Core.World.Maps
                             for (int y = startY; y < endY + 1; y++)
                             {
 
-                                if (charmap[previousRoom.CentreX, y] != RoomObject.EmptySpace)
+                                if (chararray[previousRoom.CentreX, y] != RoomObject.EmptySpace)
                                 {
-                                    charmap[previousRoom.CentreX, y] = RoomObject.EmptySpace;
-                                    if (charmap[previousRoom.CentreX, y] != RoomObject.Wall)
+                                    chararray[previousRoom.CentreX, y] = RoomObject.EmptySpace;
+                                    if (chararray[previousRoom.CentreX, y] != RoomObject.Wall)
                                     {
-                                        charmap[previousRoom.CentreX + 1, y] = RoomObject.EmptySpace;
+                                        chararray[previousRoom.CentreX + 1, y] = RoomObject.EmptySpace;
                                     }
                                 }
                             }
@@ -106,12 +106,12 @@ namespace _2DRoguelike.Content.Core.World.Maps
                             for (int x = startX; x < endX; x++)
                             {
 
-                                if (charmap[x, room.CentreY] != RoomObject.EmptySpace)
+                                if (chararray[x, room.CentreY] != RoomObject.EmptySpace)
                                 {
-                                    charmap[x, room.CentreY] = RoomObject.EmptySpace;
-                                    if (charmap[x, room.CentreY] != RoomObject.Wall)
+                                    chararray[x, room.CentreY] = RoomObject.EmptySpace;
+                                    if (chararray[x, room.CentreY] != RoomObject.Wall)
                                     {
-                                        charmap[x, room.CentreY + 1] = RoomObject.EmptySpace;
+                                        chararray[x, room.CentreY + 1] = RoomObject.EmptySpace;
                                     }
                                 }
                             }
@@ -143,7 +143,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
             {
                 for (int x = room.XPos; x < room.XPos + room.Width; x++)
                 {
-                    charmap[x, y] = room.room[x - room.XPos, y - room.YPos];
+                    chararray[x, y] = room.room[x - room.XPos, y - room.YPos];
                 }
             }
         }
@@ -153,7 +153,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
             {
                 for (int x = room.XPos; x < room.XPos + room.Width; x++)
                 {
-                    if (charmap[x, y] != 0)
+                    if (chararray[x, y] != 0)
                     {
                         return false;
                     }
@@ -209,6 +209,32 @@ namespace _2DRoguelike.Content.Core.World.Maps
                 }
                 r.entitylist = null;
             }
+        }
+
+        public override int CountEnemies()
+        {
+            int returnvalue = 0;
+            foreach(Room r in roomlist)
+            {
+                returnvalue += r.enemylist.Count;
+            }
+            return returnvalue;
+        }
+
+        public override int EnemiesAlive()
+        {
+            int returnvalue = 0;
+            foreach (Room r in roomlist)
+            {
+                foreach(Enemy e in r.enemylist)
+                {
+                    if (!e.dead)
+                    {
+                        returnvalue++;
+                    }
+                }
+            }
+            return returnvalue;
         }
     }
 }

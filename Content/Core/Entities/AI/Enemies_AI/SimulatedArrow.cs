@@ -61,8 +61,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         public bool CollidesWithSolidTile()
         {
 
-            int levelWidth = LevelManager.currentLevel.GetLength(0);
-            int levelHeight = LevelManager.currentLevel.GetLength(1);
+            int levelWidth = LevelManager.currenttilemap.GetLength(0);
+            int levelHeight = LevelManager.currenttilemap.GetLength(1);
             // Handling von NullPointer-Exception
             int northWest = Hitbox.X < 0 ? 0 : Hitbox.X / 32;
             int northEast = (Hitbox.X + Hitbox.Width) / 32 >= levelWidth ? levelWidth - 1 : (Hitbox.X + Hitbox.Width) / 32;
@@ -74,7 +74,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             {
                 for (int y = southWest; y <= southEast; y++)
                 {
-                    if (LevelManager.currentLevel[x, y].IsSolid())
+                    if (LevelManager.currenttilemap[x, y].IsSolid())
                         return true;
                 }
             }

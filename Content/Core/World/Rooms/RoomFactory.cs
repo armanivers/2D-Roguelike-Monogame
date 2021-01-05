@@ -7,14 +7,6 @@ namespace _2DRoguelike.Content.Core.World.Rooms
 {
     static class RoomFactory
     {
-        public static Map TestMap()
-        {
-            return new TestMap(24, 24);
-        }
-        public static Map BossMap()
-        {
-            return new BossMap(32, 32);
-        }
         public static Room RandomRoomWithEnemies()
         {
             Room returnvalue = new Room();

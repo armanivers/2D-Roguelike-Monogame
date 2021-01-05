@@ -11,8 +11,8 @@ namespace _2DRoguelike.Content.Core.World.Maps
 {
     abstract class Map
     {
-        public Tile[,] map;
-        public char[,] charmap;
+        public Tile[,] tilearray;
+        public char[,] chararray;
         public int width;
         public int height;
         public Room currentroom{ get; set; }
@@ -111,5 +111,8 @@ namespace _2DRoguelike.Content.Core.World.Maps
         }
         public abstract void clearEnemies();
         public abstract void clearEnities();
+        public abstract int CountEnemies();
+
+        public abstract int EnemiesAlive();
     }
 }

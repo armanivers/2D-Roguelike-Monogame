@@ -14,7 +14,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
         {
             bossroom = new Room(width,height);
             bossroom.setExit();
-            map = fillTile(bossroom.room);
+            tilearray = fillTile(bossroom.room);
         }
 
         public override Vector2 getSpawnpoint()
@@ -35,6 +35,16 @@ namespace _2DRoguelike.Content.Core.World.Maps
         public override void clearEnities()
         {
             
+        }
+
+        public override int CountEnemies()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int EnemiesAlive()
+        {
+            throw new NotImplementedException();
         }
     }
 }

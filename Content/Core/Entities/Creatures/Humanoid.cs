@@ -128,8 +128,8 @@ namespace _2DRoguelike.Content.Core.Entities
             if (Game1.gameSettings.noclip && this is Player) return false;
 
             Rectangle tileCollisionHitbox = GetTileCollisionHitbox();
-            int levelWidth = LevelManager.currentLevel.GetLength(0);
-            int levelHeight = LevelManager.currentLevel.GetLength(1);
+            int levelWidth = LevelManager.currenttilemap.GetLength(0);
+            int levelHeight = LevelManager.currenttilemap.GetLength(1);
             // Handling von NullPointer-Exception
             int northWest = tileCollisionHitbox.X < 0 ? 0 : tileCollisionHitbox.X / 32;
             int northEast = (tileCollisionHitbox.X + tileCollisionHitbox.Width) / 32 >= levelWidth ? levelWidth - 1 : (tileCollisionHitbox.X + tileCollisionHitbox.Width) / 32;
@@ -140,7 +140,7 @@ namespace _2DRoguelike.Content.Core.Entities
             {
                 for (int y = southWest; y <= southEast; y++)
                 {
-                    if (LevelManager.currentLevel[x, y].IsSolid())
+                    if (LevelManager.currenttilemap[x, y].IsSolid())
                         return true;
                 }
             }
