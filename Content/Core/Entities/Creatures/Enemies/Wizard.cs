@@ -12,7 +12,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
     public class Wizard : Enemy
     {
         const int WEAPON_SLOT_CNT = 3; 
-        public Wizard(Vector2 position, int maxHealthPoints, float movingSpeed, float attackTimespan = 0.4f) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
+        public Wizard(Vector2 position, int maxHealthPoints = 75, float movingSpeed = 3, float attackTimespan = 0.4f) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
         {
             ai = new WizardAI(this);
 

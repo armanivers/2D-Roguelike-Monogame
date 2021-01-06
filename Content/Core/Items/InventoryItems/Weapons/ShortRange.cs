@@ -28,16 +28,16 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         public Rectangle GetEffectiveRange()
         {
             Rectangle ret = new Rectangle();
-            Vector2 upperLeft = new Vector2(Owner.Hitbox.X - Owner.Hitbox.Width * rangeMultiplierX * widthReduction,
-                 Owner.Hitbox.Y - Owner.Hitbox.Width * rangeMultiplierX * heightReduction);
+            Vector2 upperLeft = new Vector2(Owner.Hitbox.X - Owner.Hitbox.Width * rangeMultiplierX,
+                 Owner.Hitbox.Y - Owner.Hitbox.Width * rangeMultiplierX);
 
 
-            Vector2 upperRight = new Vector2(Owner.Hitbox.X + Owner.Hitbox.Width + Owner.Hitbox.Width * rangeMultiplierX*widthReduction,
-                Owner.Hitbox.Y - Owner.Hitbox.Width * rangeMultiplierX*widthReduction);
+            Vector2 upperRight = new Vector2(Owner.Hitbox.X + Owner.Hitbox.Width + Owner.Hitbox.Width * rangeMultiplierX,
+                Owner.Hitbox.Y - Owner.Hitbox.Width * rangeMultiplierX);
 
 
-            Vector2 downLeft = new Vector2(Owner.Hitbox.X - Owner.Hitbox.Width * rangeMultiplierX*widthReduction,
-                    Owner.Hitbox.Y + Owner.Hitbox.Height + Owner.Hitbox.Width * rangeMultiplierX*widthReduction);
+            Vector2 downLeft = new Vector2(Owner.Hitbox.X - Owner.Hitbox.Width * rangeMultiplierX,
+                    Owner.Hitbox.Y + Owner.Hitbox.Height + Owner.Hitbox.Width * rangeMultiplierX);
 
 
             //Vector2 downRight = new Vector2(Owner.Hitbox.X + Owner.Hitbox.Width - (Owner.Hitbox.Height - Owner.Hitbox.Width),

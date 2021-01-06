@@ -14,19 +14,19 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             int randomvalue = Random.Next(0,100);
             if (randomvalue <= 35)
             {
-                returnvalue = new BrownZombie(spawnpoint * new Vector2(32), 100, 3);
+                returnvalue = new BrownZombie(spawnpoint * new Vector2(32));
             }
             else if (randomvalue <= 70)
             {
-                returnvalue = new GreenZombie(spawnpoint * new Vector2(32), 100, 3);
+                returnvalue = new GreenZombie(spawnpoint * new Vector2(32));
             }
             else if (randomvalue <=90)
             {
-                returnvalue = new Skeleton(spawnpoint * new Vector2(32), 100, 3);
+                returnvalue = new Skeleton(spawnpoint * new Vector2(32));
             }
             else if (randomvalue <= 100)
             {
-                returnvalue = new Wizard(spawnpoint * new Vector2(32), 100, 3);
+                returnvalue = new Wizard(spawnpoint * new Vector2(32));
             }
             return returnvalue;
         }

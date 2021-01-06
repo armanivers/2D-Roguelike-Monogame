@@ -7,8 +7,8 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
 {
     public class Axe : ShortRange
     {
-        const float AXE_COOLDOWN = 0.7f;
-        const int DAMAGE = 50;
+        const float AXE_COOLDOWN = 0.8f;
+        const int DAMAGE = 40;
         const float RANGE_MULTIPLIER_X = 0.9f;
         const float RANGE_MULTIPLIER_Y = 0.9f;
 

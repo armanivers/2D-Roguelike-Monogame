@@ -9,8 +9,8 @@ namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
     public class Spear : ShortRange
     {
 
-        const float SPEAR_COOLDOWN = 0.8f;
-        const int DAMAGE = 50;
+        const float SPEAR_COOLDOWN = 1f;
+        const int DAMAGE = 60;
         const float RANGE_MULTIPLIER_X = 1.3f;
         const float RANGE_MULTIPLIER_Y = 0.5f;
 

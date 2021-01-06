@@ -88,7 +88,7 @@ namespace _2DRoguelike.Content.Core.Entities
         }
 
         public virtual bool IsInvincible() {
-            return Invincible || Game1.gameSettings.godMode;
+            return Invincible;
         }
 
         public void DeductHealthPoints(int damage)

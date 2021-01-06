@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.Actions;
+using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
+using _2DRoguelike.Content.Core.Entities.Weapons;
 using Microsoft.Xna.Framework;
 using Action = _2DRoguelike.Content.Core.Entities.Actions.Action;
 
@@ -10,8 +12,9 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 {
     public class BrownZombieAI : EnemyAI
     {
-        public BrownZombieAI(BrownZombie agent) : base(agent)
+        public BrownZombieAI(BrownZombie agent) : base(agent, (int)(DEFAULT_REACTION_TIME_MIN*1.5), (int)(DEFAULT_REACTION_TIME_MAX * 1.5))
         {
+            
         }
         public override Action DetermineAction()
         {
@@ -55,7 +58,17 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
         public override Vector2 DeterminePath()
         {
-            throw new NotImplementedException();
+            const int DETECTION_RANGE = 8 * 32;
+            //if (WithinRange(DETECTION_RANGE))
+            //    return Vector2.Normalize(agent.GetAttackDirection() - agent.Position);
+
+            if (WithinRange(DETECTION_RANGE))
+            {
+                Rectangle effectiveMeleeRange = ((ShortRange)agent.WeaponInventory[0]).GetEffectiveRange();
+                if (!effectiveMeleeRange.Intersects(Player.Instance.Hitbox))
+                    return Vector2.Normalize(agent.GetAttackDirection() - agent.Position);
+            }
+            return Vector2.Zero;
         }
 
     }
