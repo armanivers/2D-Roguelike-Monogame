@@ -114,5 +114,6 @@ namespace _2DRoguelike.Content.Core.World.Maps
         public abstract int CountEnemies();
         public abstract int EnemiesAlive();
         public abstract bool AddKeyToRoom(int roomnmb);
+        public abstract Room getExitRoom();
     }
 }

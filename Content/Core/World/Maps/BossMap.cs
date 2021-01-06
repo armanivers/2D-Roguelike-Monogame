@@ -51,5 +51,10 @@ namespace _2DRoguelike.Content.Core.World.Maps
         {
             throw new NotImplementedException();
         }
+
+        public override Room getExitRoom()
+        {
+            return bossroom;
+        }
     }
 }

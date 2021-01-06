@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Text;
 using _2DRoguelike.Content.Core.World.ExitConditions;
 using _2DRoguelike.Content.Core.Entities;
+using Microsoft.Xna.Framework.Input;
 
 namespace _2DRoguelike.Content.Core.World
 {
@@ -63,6 +64,11 @@ namespace _2DRoguelike.Content.Core.World
             levelList[level].map.Update(player);
             playerposition = player.HitboxCenter;
             levelList[level].exitCondition.Exit();
+            if (InputController.IsKeyPressed(Keys.L))
+            {
+                Room exitroom = levelList[level].map.getExitRoom();
+                player.Position = new Vector2(exitroom.CentreX*32, exitroom.CentreY*32);
+            }
         }
 
         public static void UnloadContent()

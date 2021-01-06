@@ -105,5 +105,10 @@ namespace _2DRoguelike.Content.Core.World
         {
             throw new NotImplementedException();
         }
+
+        public override Room getExitRoom()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
 
         public List<Room> roomlist { get; }
         public Vector2 spawnpoint;
+        Room exitroom;
         public Dungeon() : base()
         {
             roomlist = new List<Room>();
@@ -52,6 +53,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
                     if (i == NumRooms - 1)
                     {
                         room.setExit();
+                        exitroom = room;
                     }
                     room2Map(room);
                     if (i > 0)
@@ -125,6 +127,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
                 {
                     previousRoom.setExit();
                     i = NumRooms;
+                    exitroom = previousRoom;
                 }
             }
             SpawnEnemies();
@@ -253,6 +256,11 @@ namespace _2DRoguelike.Content.Core.World.Maps
                 roomlist[NumRooms - 1].setKey();
                 return false;
             }
+        }
+
+        public override Room getExitRoom()
+        {
+            return exitroom;
         }
     }
 }
