@@ -77,7 +77,7 @@ namespace _2DRoguelike.Content.Core.World
         {
             if (player.GetTileCollisionHitbox().Intersects(room.exithitbox))
             {
-                LevelManager.NextLevel(player);
+                LevelManager.NextLevel();
             }
         }
 

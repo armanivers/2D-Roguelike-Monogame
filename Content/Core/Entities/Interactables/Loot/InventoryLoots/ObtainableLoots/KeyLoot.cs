@@ -41,12 +41,7 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.O
             base.Update(gameTime);
             if (obtained)
             {
-                transparency -= fadingSpeed;
-                openingTimer += 0.01f;
-                if (openingTimer >= timeToOpen)
-                {
-                    isExpired = true;
-                }
+              isExpired = true;
             }
 
         }
