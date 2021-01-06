@@ -35,6 +35,8 @@ namespace _2DRoguelike.Content.Core
         public static SoundEffect ChestOpenMagical { get; private set; }
         public static SoundEffect LootbagOpen { get; private set; }
 
+        public static SoundEffect KeyCollect { get; private set; }
+
         // Experience obrs
         public static SoundEffect ExperiencePickup { get; private set; }
 
@@ -76,6 +78,7 @@ namespace _2DRoguelike.Content.Core
             ChestOpenWooden = content.Load<SoundEffect>("Assets/Sounds/LootSounds/ChestOpenWooden");
             ChestOpenMagical = content.Load<SoundEffect>("Assets/Sounds/LootSounds/ChestOpenMagical");
             LootbagOpen = content.Load<SoundEffect>("Assets/Sounds/LootSounds/LootbagOpen");
+            KeyCollect = content.Load<SoundEffect>("Assets/Sounds/LootSounds/KeyCollect");
 
             // Experience Orbs
             ExperiencePickup = content.Load<SoundEffect>("Assets/Sounds/Miscellaneous/ExperiencePickup");

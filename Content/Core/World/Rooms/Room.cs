@@ -1,5 +1,7 @@
 ﻿using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.ObtainableLoots;
+using _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects;
 using _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Loot.WeaponLoots;
@@ -7,6 +9,7 @@ using _2DRoguelike.Content.Core.World.Maps;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 
@@ -153,6 +156,19 @@ namespace _2DRoguelike.Content.Core.World.Rooms
             XExit = (XExit + XPos);
             YExit = (YExit + YPos);
             exithitbox = new Rectangle(XExit * PIXELMULTIPLIER, YExit * PIXELMULTIPLIER, PIXELMULTIPLIER, PIXELMULTIPLIER);
+            entitylist.Add(new Ladder(new Vector2(XExit*PIXELMULTIPLIER, YExit*PIXELMULTIPLIER)));
+        }
+        /// <summary>
+        /// Places Key to a Random position in the Room
+        /// </summary>
+        public void setKey()
+        {
+            int xpos;
+            int ypos;
+            xpos = (Map.Random.Next(1, Width - 2))+XPos;
+            ypos = (Map.Random.Next(1, Height - 2))+YPos;
+            entitylist.Add(new KeyLoot(new Vector2(xpos* PIXELMULTIPLIER, ypos * PIXELMULTIPLIER)));
+            Debug.Print("Key placed!");
         }
     }
 }

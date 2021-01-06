@@ -55,7 +55,6 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 
         public override void PlaySound()
         {
-
             if (type == 1)
             {
                 SoundManager.ChestOpenMagical.Play(Game1.gameSettings.soundeffectsLevel, 0, 0);

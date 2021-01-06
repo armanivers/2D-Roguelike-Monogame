@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using _2DRoguelike.Content.Core.World.ExitConditions;
+using _2DRoguelike.Content.Core.Entities;
 
 namespace _2DRoguelike.Content.Core.World
 {
@@ -22,48 +23,46 @@ namespace _2DRoguelike.Content.Core.World
         private static Vector2 playerposition;
         public static Map currentmap;
         public static Tile[,] currenttilemap;
+
+        public static object EnityManager { get; private set; }
+
         public static void LoadContent()
         {
             levelList = new List<Level>();
             //levelList.Add(RoomFactory.TestMap());
             //levelList.Add(RoomFactory.BossMap());
-            levelList.Add(new Level(new Dungeon(),new KillAllEnemies()));
+            levelList.Add(new Level(new Dungeon(), new KillAllEnemies()));
             currentmap = levelList[level].map;
             currenttilemap = currentmap.tilearray;
             playerposition = new Vector2();
         }
         public static void NextLevel(Player player)
         {
-            if (levelList[level].exitCondition.Exit())
+            EntityManager.UnloadAllEntities();
+            level++;
+            switch (level)
             {
-                level++;
-                switch (level)
-                {
-                    case 0:
-                        levelList.Add(new Level(new Dungeon(), new KillAllEnemies()));
-                        break;
-                    case 1:
-                        levelList.Add(new Level(new Dungeon(), new KillAllEnemies()));
-                        break;
-                    case 2:
-                        levelList.Add(new Level(new BossMap(24,12), new KillAllEnemies()));
-                        break;
-                }
-                levelList[level-1].map.clearEnemies();
-                player.Position = levelList[level].map.getSpawnpoint() * new Vector2(32);
-                currentmap = levelList[level].map;
-                currenttilemap = currentmap.tilearray;
+                case 0:
+                    levelList.Add(new Level(new Dungeon(), new KillAllEnemies()));
+                    break;
+                case 1:
+                    levelList.Add(new Level(new Dungeon(), new KillAllEnemies()));
+                    break;
+                case 2:
+                    levelList.Add(new Level(new BossMap(24, 12), new KillAllEnemies()));
+                    break;
             }
-            else
-            {
-                //TODO Bildschirm Notifikation einfügen
-            }
+            levelList[level - 1].map.clearEnemies();
+            player.Position = levelList[level].map.getSpawnpoint() * new Vector2(32);
+            currentmap = levelList[level].map;
+            currenttilemap = currentmap.tilearray;
             
         }
         public static void Update(Player player)
         {
             levelList[level].map.Update(player);
             playerposition = player.HitboxCenter;
+            levelList[level].exitCondition.Exit();
         }
 
         public static void UnloadContent()

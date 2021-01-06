@@ -30,6 +30,9 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
         public Texture2D LootChest_Diamond_Animation_Open { get; private set; }
         public Texture2D Shadow { get; private set; }
 
+        // Key 
+        public Texture2D KeyLoot { get; private set; }
+
         public void Load(ContentManager content)
         {
             // Loot Data
@@ -54,6 +57,9 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
             LootChest_Diamond_Animation_Open = content.Load<Texture2D>("Assets/Graphics/LootElements/Containers/chest_diamond_open_animation");
 
             Shadow = content.Load<Texture2D>("Assets/Graphics/WorldElements/Shadow");
+
+            //Key
+            KeyLoot = content.Load<Texture2D>("Assets/Graphics/LootElements/Obtainable/key_animation");
         }
     }
 }

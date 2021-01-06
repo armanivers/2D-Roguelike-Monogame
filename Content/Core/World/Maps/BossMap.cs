@@ -46,5 +46,10 @@ namespace _2DRoguelike.Content.Core.World.Maps
         {
             throw new NotImplementedException();
         }
+
+        public override bool AddKeyToRoom(int roomnmb)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

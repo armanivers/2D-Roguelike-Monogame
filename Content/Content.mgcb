@@ -493,6 +493,18 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/LootElements/Containers/LootChest.png
 
+#begin Assets/Graphics/LootElements/Obtainable/key_animation.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/LootElements/Obtainable/key_animation.png
+
 #begin Assets/Graphics/LootElements/Potions/ExperiencePotion.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1194,6 +1206,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Assets/Sounds/LootSounds/ItemPickup.wav
+
+#begin Assets/Sounds/LootSounds/KeyCollect.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/LootSounds/KeyCollect.wav
 
 #begin Assets/Sounds/LootSounds/LootbagOpen.wav
 /importer:WavImporter

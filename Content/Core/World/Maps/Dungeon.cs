@@ -149,9 +149,9 @@ namespace _2DRoguelike.Content.Core.World.Maps
         }
         public bool avoidRoomCollision(Room room)
         {
-            for (int y = room.YPos; y < room.YPos + room.Height; y++)
+            for (int y = room.YPos; y < room.YPos + room.Height+1; y++)
             {
-                for (int x = room.XPos; x < room.XPos + room.Width; x++)
+                for (int x = room.XPos; x < room.XPos + room.Width+1; x++)
                 {
                     if (chararray[x, y] != 0)
                     {
@@ -176,13 +176,13 @@ namespace _2DRoguelike.Content.Core.World.Maps
                 if (roomlist[i].roomhitbox.Intersects(player.Hitbox))
                 {
                     currentroom = roomlist[i];
-                    if (roomlist[i].exitroom)
+                    /*if (roomlist[i].exitroom)
                     {
                         if (player.GetTileCollisionHitbox().Intersects(roomlist[i].exithitbox))
                         {
                             LevelManager.NextLevel(player);
                         }
-                    }
+                    }*/
                 }
             }
         }
@@ -235,6 +235,24 @@ namespace _2DRoguelike.Content.Core.World.Maps
                 }
             }
             return returnvalue;
+        }
+        /// <summary>
+        /// Places a Key to a Room
+        /// When roomnmb out of range. Last Room gets the Key.
+        /// Returns true when roomnmb is in range
+        /// </summary>
+        public override bool AddKeyToRoom(int roomnmb)
+        {
+            if (roomnmb-1 <= NumRooms)
+            {
+                roomlist[roomnmb-1].setKey();
+                return true;
+            }
+            else
+            {
+                roomlist[NumRooms - 1].setKey();
+                return false;
+            }
         }
     }
 }

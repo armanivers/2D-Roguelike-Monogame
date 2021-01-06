@@ -112,7 +112,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
         public abstract void clearEnemies();
         public abstract void clearEnities();
         public abstract int CountEnemies();
-
         public abstract int EnemiesAlive();
+        public abstract bool AddKeyToRoom(int roomnmb);
     }
 }
