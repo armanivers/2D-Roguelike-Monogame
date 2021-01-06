@@ -19,6 +19,11 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
            new Arrow(Owner);
         }
 
+        public override string GetAnimationType()
+        {
+            return "Shoot";
+        }
+
         public override string ToString()
         {
             return "Bow";

@@ -73,6 +73,12 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
                 {"ShootDown", new Animation(TextureManager.enemy.Wizard_Shoot,2,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
                 {"ShootRight", new Animation(TextureManager.enemy.Wizard_Shoot,3,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
 
+                // Zauber-Animation
+                {"SpellcastUp", new Animation(TextureManager.enemy.Wizard_Spellcast,0,7,(tmpFrameSpeed=FRAME_SPEED*0.7f),NO_LOOP, PRIORITIZED)},
+                {"SpellcastLeft",new Animation(TextureManager.enemy.Wizard_Spellcast,1,7,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
+                {"SpellcastDown", new Animation(TextureManager.enemy.Wizard_Spellcast,2,7,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
+                {"SpellcastRight", new Animation(TextureManager.enemy.Wizard_Spellcast,3,7,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
+
                 // Todesanimation
                 {"Die", new Animation(TextureManager.enemy.Wizard_Hurt,0,6,FRAME_SPEED*2f, NO_LOOP, PRIORITIZED)}
             };

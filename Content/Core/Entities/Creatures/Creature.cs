@@ -6,8 +6,10 @@ using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities
 {
-    public abstract class Creature: EntityBasis
+    public abstract class Creature : EntityBasis
     {
+        private bool invincible = false;    
+        public bool Invincible { get => invincible; set => invincible = value; }
         private bool hurtTimerStart;
         private float hurtTimer;
         private const int hurtTimerLimit = 2;
@@ -20,10 +22,10 @@ namespace _2DRoguelike.Content.Core.Entities
         // (bessere Alternative überlegen, damit nicht immer ein neues Attribut hinzugefügt werden muss)
         public readonly float attackTimespan;
         public float AttackTimeSpanTimer { get; set; }
-        
+
         // TODO: Einen ALLGEMEINEN attacking-Timer, damit nicht während eines Angriffes ein anderer Angriff gestartet werden kann
         // (die Angriffe haben aber dennoch eigene unabhängige Cooldowns (z.B. Melee hat kürzeren Cooldown))
-        
+
         public readonly float movingSpeed;
         public float SpeedModifier { get; set; }
         public bool dead;
@@ -35,8 +37,8 @@ namespace _2DRoguelike.Content.Core.Entities
             set
             {
                 base.Position = value;
-                hitbox.X = (int)(value.X + 17*ScaleFactor);
-                hitbox.Y = (int)(value.Y + 14*ScaleFactor);
+                hitbox.X = (int)(value.X + 17 * ScaleFactor);
+                hitbox.Y = (int)(value.Y + 14 * ScaleFactor);
 
                 if (animationManager != null)
                 {
@@ -45,7 +47,10 @@ namespace _2DRoguelike.Content.Core.Entities
             }
         }
 
-        public Creature(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position){
+
+
+        public Creature(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position)
+        {
 
             if (this is Player)
             {
@@ -55,7 +60,7 @@ namespace _2DRoguelike.Content.Core.Entities
             {
                 EntityManager.AddCreatureEntity(this);
             }
-            
+
             this.maxHealthPoints = maxHealthPoints;
             HealthPoints = maxHealthPoints;
             this.attackTimespan = attackTimespan;
@@ -75,35 +80,44 @@ namespace _2DRoguelike.Content.Core.Entities
             // TODO: attackExecution Timer implementieren. CooldownTimer ist fuer Weapons wichtig
             return AttackTimeSpanTimer <= attackTimespan;
         }
-        
+
         public override void Update(GameTime gameTime)
         {
             /** TODO: Vorerst wurde alles in Humanoid eingefügt
             Die Änderungen in Humanoid müssen bald teilweise hier eingefügt werden */
         }
 
+        public virtual bool IsInvincible() {
+            return Invincible || Game1.gameSettings.godMode;
+        }
+
         public void DeductHealthPoints(int damage)
         {
-            if (dead) return;
+            if (dead) 
+                return;
 
-            if(this is Player)
+            if (this is Player)
             {
-                if (Game1.gameSettings.godMode)
+                if (IsInvincible())
                 {
                     return;
                 }
                 SoundManager.PlayerHurt.Play(Game1.gameSettings.soundeffectsLevel, 0.1f, 0);
             }
 
-            HealthPoints -= damage;
-            if (HealthPoints <= 0)
+            if (!IsInvincible())
             {
-                Kill();
+                HealthPoints -= damage;
+                if (HealthPoints <= 0)
+                {
+                    Kill();
+                }
+                if (!dead)
+                {
+                    DisplayDamageTaken();
+                }
             }
-            if(!dead)
-            {
-                DisplayDamageTaken();
-            }
+
         }
 
         public void DisplayDamageTaken()
@@ -115,7 +129,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public void RefreshDamageTakenTimer()
         {
-            if(hurtTimerStart)
+            if (hurtTimerStart)
             {
                 if (hurtTimer >= hurtTimerLimit)
                 {
@@ -129,7 +143,7 @@ namespace _2DRoguelike.Content.Core.Entities
         public void AddHealthPoints(int health)
         {
             HealthPoints += health;
-            if(HealthPoints > maxHealthPoints)
+            if (HealthPoints > maxHealthPoints)
             {
                 HealthPoints = maxHealthPoints;
             }

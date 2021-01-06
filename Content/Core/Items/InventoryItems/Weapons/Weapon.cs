@@ -22,6 +22,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
 
         public abstract void UseWeapon();
 
+        public abstract string GetAnimationType();
         public bool InUsage() { 
             return CooldownTimer <= WeaponCooldown;
         }

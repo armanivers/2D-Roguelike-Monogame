@@ -13,7 +13,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         public override string ChooseAnimation(Humanoid CallingInstance)
         {
             // TODO: AnimationString bestimmen anhand von MousePosition
-            return "Shoot" + PrintLineOfSight(CallingInstance);
+            return CallingInstance.CurrentWeapon.GetAnimationType() + PrintLineOfSight(CallingInstance);
         }
     }
 }

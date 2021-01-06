@@ -20,6 +20,11 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             new BombProjectile(Owner, 2.5f);
         }
 
+        public override string GetAnimationType()
+        {
+            return "Slash";
+        }
+
         public override string ToString()
         {
             return "Bomb";

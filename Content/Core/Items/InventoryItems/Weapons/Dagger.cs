@@ -17,6 +17,11 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             INVENTORY_SLOT = 1;
         }
 
+        public override string GetAnimationType()
+        {
+            return "Slash";
+        }
+
         public override string ToString()
         {
             return "Dagger";

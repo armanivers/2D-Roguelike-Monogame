@@ -128,8 +128,6 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             }
         }
 
-
-
         public Player(Vector2 position, int maxHealthPoints, float movingSpeed, float attackCooldown = 0.2f) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
         {
 
@@ -172,56 +170,62 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             const bool NO_LOOP = false;
             const bool PRIORITIZED = true;
             const bool REVERSE = true;
-            const float frameSpeed = 0.09f;
+            const float FRAME_SPEED = 0.09f;
             float tmpFrameSpeed;
             animations = new Dictionary<string, Animation>()
             {
                 // Idle
-                {"IdleUp", new Animation(TextureManager.Player_Idle,0,6,tmpFrameSpeed=frameSpeed*2.5f)},
+                {"IdleUp", new Animation(TextureManager.Player_Idle,0,6,tmpFrameSpeed=FRAME_SPEED*2.5f)},
                 {"IdleLeft", new Animation(TextureManager.Player_Idle,1,6,tmpFrameSpeed)},
                 {"IdleDown", new Animation(TextureManager.Player_Idle,2,6,tmpFrameSpeed)},
                 {"IdleRight", new Animation(TextureManager.Player_Idle,3,6,tmpFrameSpeed)},
                 
                 // Laufbewegung
-                {"WalkUp_Axe", new Animation(TextureManager.Player_Walk_Axe,0,9,tmpFrameSpeed=frameSpeed)},
+                {"WalkUp_Axe", new Animation(TextureManager.Player_Walk_Axe,0,9,tmpFrameSpeed=FRAME_SPEED)},
                 {"WalkLeft_Axe",new Animation(TextureManager.Player_Walk_Axe,1,9,tmpFrameSpeed)},
                 {"WalkDown_Axe", new Animation(TextureManager.Player_Walk_Axe,2,9,tmpFrameSpeed)},
                 {"WalkRight_Axe", new Animation(TextureManager.Player_Walk_Axe,3,9,tmpFrameSpeed)},
 
-                {"WalkUp_Fist", new Animation(TextureManager.Player_Walk_Fist,0,9,tmpFrameSpeed=frameSpeed)},
+                {"WalkUp_Fist", new Animation(TextureManager.Player_Walk_Fist,0,9,tmpFrameSpeed=FRAME_SPEED)},
                 {"WalkLeft_Fist",new Animation(TextureManager.Player_Walk_Fist,1,9,tmpFrameSpeed)},
                 {"WalkDown_Fist", new Animation(TextureManager.Player_Walk_Fist,2,9,tmpFrameSpeed)},
                 {"WalkRight_Fist", new Animation(TextureManager.Player_Walk_Fist,3,9,tmpFrameSpeed)},
 
-                {"WalkUp_Dagger", new Animation(TextureManager.Player_Walk_Dagger,0,9,tmpFrameSpeed=frameSpeed)},
+                {"WalkUp_Dagger", new Animation(TextureManager.Player_Walk_Dagger,0,9,tmpFrameSpeed=FRAME_SPEED)},
                 {"WalkLeft_Dagger",new Animation(TextureManager.Player_Walk_Dagger,1,9,tmpFrameSpeed)},
                 {"WalkDown_Dagger", new Animation(TextureManager.Player_Walk_Dagger,2,9,tmpFrameSpeed)},
                 {"WalkRight_Dagger", new Animation(TextureManager.Player_Walk_Dagger,3,9,tmpFrameSpeed)},
                 
                  // Melee-            
-                {"SlashUp_Axe", new Animation(TextureManager.Player_Slash_Axe,0,6,(tmpFrameSpeed=frameSpeed*0.5f), NO_LOOP, PRIORITIZED, REVERSE)},
+                {"SlashUp_Axe", new Animation(TextureManager.Player_Slash_Axe,0,6,(tmpFrameSpeed=FRAME_SPEED*0.5f), NO_LOOP, PRIORITIZED, REVERSE)},
                 {"SlashLeft_Axe",new Animation(TextureManager.Player_Slash_Axe,1,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
                 {"SlashDown_Axe", new Animation(TextureManager.Player_Slash_Axe,2,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
                 {"SlashRight_Axe", new Animation(TextureManager.Player_Slash_Axe,3,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
 
-                {"SlashUp_Dagger", new Animation(TextureManager.Player_Slash_Dagger,0,6,(tmpFrameSpeed=frameSpeed*0.5f), NO_LOOP, PRIORITIZED, REVERSE)},
+                {"SlashUp_Dagger", new Animation(TextureManager.Player_Slash_Dagger,0,6,(tmpFrameSpeed=FRAME_SPEED*0.5f), NO_LOOP, PRIORITIZED, REVERSE)},
                 {"SlashLeft_Dagger",new Animation(TextureManager.Player_Slash_Dagger,1,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
                 {"SlashDown_Dagger", new Animation(TextureManager.Player_Slash_Dagger,2,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
                 {"SlashRight_Dagger", new Animation(TextureManager.Player_Slash_Dagger,3,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
 
-                {"SlashUp_Fist", new Animation(TextureManager.Player_Slash_Fist,0,6,(tmpFrameSpeed=frameSpeed*0.5f), NO_LOOP, PRIORITIZED, REVERSE)},
+                {"SlashUp_Fist", new Animation(TextureManager.Player_Slash_Fist,0,6,(tmpFrameSpeed=FRAME_SPEED*0.5f), NO_LOOP, PRIORITIZED, REVERSE)},
                 {"SlashLeft_Fist",new Animation(TextureManager.Player_Slash_Fist,1,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
                 {"SlashDown_Fist", new Animation(TextureManager.Player_Slash_Fist,2,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
                 {"SlashRight_Fist", new Animation(TextureManager.Player_Slash_Fist,3,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
                 
                 // Pfeil Schießen
-                {"ShootUp", new Animation(TextureManager.Player_Shoot,0,13,(tmpFrameSpeed=frameSpeed*0.3f),NO_LOOP, PRIORITIZED)},
+                {"ShootUp", new Animation(TextureManager.Player_Shoot,0,13,(tmpFrameSpeed=FRAME_SPEED*0.3f),NO_LOOP, PRIORITIZED)},
                 {"ShootLeft",new Animation(TextureManager.Player_Shoot,1,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
                 {"ShootDown", new Animation(TextureManager.Player_Shoot,2,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
                 {"ShootRight", new Animation(TextureManager.Player_Shoot,3,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
 
+                 // Zauber-Animation
+                {"SpellcastUp", new Animation(TextureManager.Player_Spellcast,0,6,(tmpFrameSpeed=FRAME_SPEED*0.7f),NO_LOOP, PRIORITIZED)},
+                {"SpellcastLeft",new Animation(TextureManager.Player_Spellcast,1,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
+                {"SpellcastDown", new Animation(TextureManager.Player_Spellcast,2,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
+                {"SpellcastRight", new Animation(TextureManager.Player_Spellcast,3,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
+
                 // Todesanimation
-                {"Die", new Animation(TextureManager.Player_Hurt,0,6,frameSpeed*2f, NO_LOOP, PRIORITIZED)}
+                {"Die", new Animation(TextureManager.Player_Hurt,0,6,FRAME_SPEED*2f, NO_LOOP, PRIORITIZED)}
             };
             animationManager = new AnimationManager(this, animations["IdleDown"]);
         }
@@ -250,9 +254,14 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
         }
 
+
         public override Action DetermineAction()
         {
-            if (InputController.IsMouseButtonHeld() && !IsAttacking() && CanAttack())
+            if (InputController.IsRightMouseButtonHeld())
+                return new Protect(this);
+            else Invincible = false;
+
+            if (InputController.IsLeftMouseButtonPressed() && !IsAttacking() && CanAttack())
             // TODO: if(weapon.rangeAttack) return RangeAttack else return Melee ...
             {
                 if (CurrentWeapon is LongRange)
@@ -347,7 +356,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                             canInteract = true;
                         }
                     }
-                    else if(interactableObject is WorldObject || interactableObject is NPCBase)
+                    else if (interactableObject is WorldObject || interactableObject is NPCBase)
                     {
                         // if its a worldobject or npc add it directly
                         // later maybe check if npc has finished dialog and if worldobject has been initialized
@@ -424,7 +433,10 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         {
             return !IsAttacking() && !CurrentWeapon.InUsage();
         }
-
+        public override bool IsInvincible()
+        {
+            return base.IsInvincible() || Game1.gameSettings.godMode;
+        }
         public void UpdateCurrentWeaponPos()
         {
             // TEST

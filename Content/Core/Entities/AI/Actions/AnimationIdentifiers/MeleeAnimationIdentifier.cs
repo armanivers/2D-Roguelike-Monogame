@@ -13,8 +13,9 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         public override string ChooseAnimation(Humanoid CallingInstance)
         {
             // Debug.WriteLine("Slash" + PrintLineOfSight(CallingInstance));
-            // TODO: AnimationString bestimmen anhand von LineOfSight
-            return "Slash" + PrintLineOfSight(CallingInstance) + "_" + CallingInstance.CurrentWeapon.ToString();
+            // TODO: AnimationString bestimmen anhand von Weapon Attribut
+
+            return CallingInstance.CurrentWeapon.GetAnimationType() + PrintLineOfSight(CallingInstance) + "_" + CallingInstance.CurrentWeapon.ToString();
         }
     }
 }

@@ -24,6 +24,11 @@ namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
             new FireballProjectile(Owner, explosionDamageMultiplier);
         }
 
+        public override string GetAnimationType()
+        {
+            return "Spellcast";
+        }
+
         public override string ToString()
         {
             return "Fireball";

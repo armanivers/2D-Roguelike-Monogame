@@ -16,11 +16,11 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         public override void UseAbility()
         {
             // TODO: Hier die Logik für den Ablauf einfügen
-            throw new NotImplementedException();
+            CallingInstance.Invincible = true;
         }
         public override void SetLineOfSight()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
