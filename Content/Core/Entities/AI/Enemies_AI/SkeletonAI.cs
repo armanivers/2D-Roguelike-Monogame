@@ -27,12 +27,9 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                         // Check, ob Pfeil treffen würde
                         if (SimulateArrowAttack())
                         {
-                            if (React())
-                            {
-                                agent.WeaponInventory[1].CooldownTimer = 0;
-                                agent.CurrentWeapon = agent.WeaponInventory[1];
+                            if (TryToAttack(agent.WeaponInventory[1]))
                                 return new RangeAttack(agent);
-                            }
+
 
                         }
                     }

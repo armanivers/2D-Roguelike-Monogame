@@ -14,9 +14,12 @@ namespace _2DRoguelike.Content.Core.Entities
 
         private const float expireTimer = 1;
         private float timer;
+        private float damageModifier;
+        private const int EXPLOSION_DAMAGE = 1;
 
-        public Explosion(Vector2 pos, float size = 1f): this(pos, Vector2.Zero, 0f, size)
+        public Explosion(Vector2 pos, float explosionDamageModifier = 1f, float size = 1f): this(pos, Vector2.Zero, 0f, size)
         {
+            this.damageModifier = explosionDamageModifier;
         }
 
         public Explosion(Vector2 pos, Vector2 direction, float windSpeed, float size = 1f) : base(pos, -TextureManager.projectiles.Explosion.Height/4, -TextureManager.projectiles.Explosion.Height / 4, windSpeed)
@@ -45,6 +48,8 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public void checkCollision()
         {
+            if (this.Hitbox.Intersects(Player.Instance.Hitbox))
+                Player.Instance.DeductHealthPoints((int)(EXPLOSION_DAMAGE * damageModifier));
             foreach (var livingEntity in EntityManager.creatures)
             {
                 if (livingEntity is Creature) //&& livingEntity != Player.Player.Instance
@@ -52,7 +57,7 @@ namespace _2DRoguelike.Content.Core.Entities
                     if (this.Hitbox.Intersects(livingEntity.Hitbox))
                     {
                         // TODO: je näher man am Explosionsherd steht,desto höher der Schaden
-                        ((Creature)livingEntity).DeductHealthPoints(2);
+                        ((Creature)livingEntity).DeductHealthPoints((int)(EXPLOSION_DAMAGE * damageModifier));
                     }
                 }
             }

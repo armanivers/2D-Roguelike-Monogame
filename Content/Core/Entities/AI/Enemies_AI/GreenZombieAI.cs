@@ -39,12 +39,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                     {
                         if (SimulateMeleeAttack())
                         {
-                            if (React())
-                            {
-                                agent.WeaponInventory[0].CooldownTimer = 0;
-                                agent.CurrentWeapon = agent.WeaponInventory[0];
+                            if (TryToAttack(agent.WeaponInventory[0]))
                                 return new Melee(agent);
-                            }
                         }
                         else
                         {

@@ -2,6 +2,7 @@
 
 using System;
 using _2DRoguelike.Content.Core.Entities.Actions;
+using _2DRoguelike.Content.Core.Entities.Weapons;
 using Microsoft.Xna.Framework;
 using Action = _2DRoguelike.Content.Core.Entities.Actions.Action;
 
@@ -13,8 +14,11 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         {
         }
 
+
+
         public override Action DetermineAction()
         {
+            // TODO: 
             if (agent.IsPlayerInTheSameRoom())
             {
                 if (!agent.IsAttacking())
@@ -25,13 +29,19 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                         // Check, ob Pfeil treffen würde
                         if (SimulateArrowAttack())
                         {
-                            if (React())
-                            {
-                                agent.WeaponInventory[1].CooldownTimer = 0;
-                                agent.CurrentWeapon = agent.WeaponInventory[1];
+                            if (TryToAttack(agent.WeaponInventory[1]))
                                 return new RangeAttack(agent);
-                            }
 
+
+                        }
+                    }
+                    else if (!agent.WeaponInventory[2].InUsage())
+                    {
+                        if (SimulateArrowAttack())
+                        {
+                            // TODO: SimulatedFireballAttack
+                            if (TryToAttack(agent.WeaponInventory[2]))
+                                return new RangeAttack(agent);
                         }
                     }
                     // else if (!agent.WeaponInventory[0].InUsage())

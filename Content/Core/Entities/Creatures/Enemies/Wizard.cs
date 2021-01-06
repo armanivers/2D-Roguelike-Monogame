@@ -4,13 +4,14 @@ using System.Text;
 using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI;
 using _2DRoguelike.Content.Core.Entities.Weapons;
+using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
 using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 {
     public class Wizard : Enemy
     {
-        const int WEAPON_SLOT_CNT = 2; // 0: ShortRange / 1: LongRange
+        const int WEAPON_SLOT_CNT = 3; 
         public Wizard(Vector2 position, int maxHealthPoints, float movingSpeed, float attackTimespan = 0.4f) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
         {
             ai = new WizardAI(this);
@@ -19,6 +20,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 
             WeaponInventory[0] = new Fist(this, 1f, 2.2f);
             WeaponInventory[1] = new Bow(this, 0.2f, 1.5f);
+            WeaponInventory[2] = new FireballWeapon(this,2, 1.5f, 1.5f);
+            
             CurrentWeapon = WeaponInventory[0];
 
             texture = TextureManager.enemy.Wizard_Idle;

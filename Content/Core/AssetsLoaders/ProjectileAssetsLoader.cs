@@ -15,6 +15,7 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
         // Projectile Data
         public Texture2D Arrow { get; private set; }
         public Texture2D Bomb { get; private set; }
+        public Texture2D Fireball { get; private set; }
 
         public void Load(ContentManager content)
         {
@@ -24,6 +25,7 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
             // Projectile Data
             Arrow = content.Load<Texture2D>("Assets/Graphics/Projectiles/Arrow");
             Bomb = content.Load<Texture2D>("Assets/Graphics/Projectiles/Bomb");
+            Fireball = content.Load<Texture2D>("Assets/Graphics/Projectiles/fireball");
         }
     }
 }
