@@ -18,6 +18,7 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D Player_Slash_Dagger { get; private set; }
         public static Texture2D Player_Slash_Fist { get; private set; }
         public static Texture2D Player_Spellcast { get; private set; }
+        public static Texture2D Player_Thrust_Spear { get; private set; }
         public static Texture2D Player_Walk_Axe { get; private set; }
         public static Texture2D Player_Walk_Dagger { get; private set; }
         public static Texture2D Player_Walk_Fist { get; private set; }
@@ -56,6 +57,8 @@ namespace _2DRoguelike.Content.Core
             Player_Slash_Dagger = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_slash_dagger");
             Player_Slash_Fist = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_slash_fist");
             Player_Spellcast =  content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_spellcast");
+
+            Player_Thrust_Spear = content.Load<Texture2D>("Assets/Graphics/PlayerElements/playerSheet_thrust_spear");
 
 
             enemy.Load(content);

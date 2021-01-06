@@ -155,13 +155,14 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             AddToWeaponInventory(new Fist(this));
 
             // add weapons manually
-            /*
+            
             AddToWeaponInventory(new Dagger(this));
             AddToWeaponInventory(new Axe(this));
             AddToWeaponInventory(new Bow(this));
+            // AddToWeaponInventory(new FireballWeapon(this)); // entweder Spear oder Fireball
             AddToWeaponInventory(new BombWeapon(this));
-            */
-            AddToWeaponInventory(new FireballWeapon(this));
+            AddToWeaponInventory(new Spear(this));
+            
 
             ChangeCurrentWeaponSlot(0);
 
@@ -196,7 +197,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 {"WalkDown_Dagger", new Animation(TextureManager.Player_Walk_Dagger,2,9,tmpFrameSpeed)},
                 {"WalkRight_Dagger", new Animation(TextureManager.Player_Walk_Dagger,3,9,tmpFrameSpeed)},
                 
-                 // Melee-            
+                 // Melee-Angriff            
                 {"SlashUp_Axe", new Animation(TextureManager.Player_Slash_Axe,0,6,(tmpFrameSpeed=FRAME_SPEED*0.5f), NO_LOOP, PRIORITIZED, REVERSE)},
                 {"SlashLeft_Axe",new Animation(TextureManager.Player_Slash_Axe,1,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
                 {"SlashDown_Axe", new Animation(TextureManager.Player_Slash_Axe,2,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
@@ -212,6 +213,14 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 {"SlashDown_Fist", new Animation(TextureManager.Player_Slash_Fist,2,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
                 {"SlashRight_Fist", new Animation(TextureManager.Player_Slash_Fist,3,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
                 
+                // Thrust-Angriff
+                 {"ThrustUp_Spear", new Animation(TextureManager.Player_Thrust_Spear,0,8,(tmpFrameSpeed=FRAME_SPEED*0.5f), NO_LOOP, PRIORITIZED, REVERSE)},
+                {"ThrustLeft_Spear",new Animation(TextureManager.Player_Thrust_Spear,1,8,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
+                {"ThrustDown_Spear", new Animation(TextureManager.Player_Thrust_Spear,2,8,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
+                {"ThrustRight_Spear", new Animation(TextureManager.Player_Thrust_Spear,3,8,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
+
+
+
                 // Pfeil Schießen
                 {"ShootUp", new Animation(TextureManager.Player_Shoot,0,13,(tmpFrameSpeed=FRAME_SPEED*0.3f),NO_LOOP, PRIORITIZED)},
                 {"ShootLeft",new Animation(TextureManager.Player_Shoot,1,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},

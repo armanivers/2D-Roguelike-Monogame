@@ -12,8 +12,12 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
 
         public override string ChooseAnimation(Humanoid CallingInstance)
         {
-            // TODO: AnimationString bestimmen anhand von MousePosition
-            return CallingInstance.CurrentWeapon.GetAnimationType() + PrintLineOfSight(CallingInstance);
+
+
+            String ret = CallingInstance.CurrentWeapon.GetAnimationType() + PrintLineOfSight(CallingInstance);
+            if (!CallingInstance.AnimationExists(ret))
+                ret += "_" + CallingInstance.defaultAnimationWeapon;
+            return ret;
         }
     }
 }

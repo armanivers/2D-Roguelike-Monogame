@@ -15,7 +15,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
                 return "Idle" + PrintLineOfSight(CallingInstance);
             String ret = "Walk" + PrintLineOfSight(CallingInstance) + "_" + CallingInstance.CurrentWeapon.ToString();
             if (!CallingInstance.AnimationExists(ret))
-                ret = ret.Substring(0, ret.Length - CallingInstance.CurrentWeapon.ToString().Length) + "Fist";
+                ret = ret.Substring(0, ret.Length - CallingInstance.CurrentWeapon.ToString().Length) + CallingInstance.defaultAnimationWeapon;
             return ret;
         }
     }

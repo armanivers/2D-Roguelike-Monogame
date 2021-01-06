@@ -20,6 +20,7 @@ namespace _2DRoguelike.Content.Core.Entities
         public Actions.Action PerformedAction;
         public string LastAnimation { get; set; }
         private bool lockedAnimation = false;
+        public string defaultAnimationWeapon = "Fist";
 
         private const int TIME_BEFORE_DISAPPEARING = 100;
         private int disappearingTimer = 0;

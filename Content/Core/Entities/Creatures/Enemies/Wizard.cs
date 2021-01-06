@@ -83,6 +83,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
                 {"Die", new Animation(TextureManager.enemy.Wizard_Hurt,0,6,FRAME_SPEED*2f, NO_LOOP, PRIORITIZED)}
             };
             animationManager = new AnimationManager(this,animations["IdleDown"]);
+            defaultAnimationWeapon = "Fist";
         }
 
         public override void Update(GameTime gameTime)

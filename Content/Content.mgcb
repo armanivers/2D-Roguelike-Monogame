@@ -757,7 +757,7 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/PlayerElements/playerSheet_spellcast.png
 
-#begin Assets/Graphics/PlayerElements/playerSheet_thrust.png
+#begin Assets/Graphics/PlayerElements/playerSheet_thrust_spear.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -767,7 +767,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Assets/Graphics/PlayerElements/playerSheet_thrust.png
+/build:Assets/Graphics/PlayerElements/playerSheet_thrust_spear.png
 
 #begin Assets/Graphics/PlayerElements/playerSheet_walk_axe.png
 /importer:TextureImporter

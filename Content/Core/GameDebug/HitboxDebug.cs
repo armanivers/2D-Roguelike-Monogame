@@ -28,6 +28,12 @@ namespace _2DRoguelike.Content.Core.GameDebug
             }
 
             if (Game1.gameSettings.showHitbox) {
+
+                DrawRectangleHitbox(Player.Instance.GetTileCollisionHitbox(), spriteBatch, Color.Red);
+                DrawRectangleHitbox(Player.Instance.Hitbox, spriteBatch, Color.Blue);
+                DrawRectangleHitbox(Player.Instance.AttackHitbox, spriteBatch, Color.White);
+
+
                 // Creature and Melee Hit Hitboxes
                 foreach (var p in EntityManager.creatures)
                 {

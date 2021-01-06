@@ -36,7 +36,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         {
             if(LevelManager.currentmap.currentroom == null || !LevelManager.currentmap.currentroom.roomhitbox.Contains(Hitbox) || base.CannotWalkHere())
                 return true;
-            // TODO: Spawns fixen, dass Enemies nicht ineinander spawnen können
+            // TODO: BUG! Enemies stoßen gegen die TileCollisionHitbox der toten Enemies: expired Enemies werden nicht aus der currentroom.enemylist genommen
             foreach (Enemy otherEnemy in LevelManager.currentmap.currentroom.enemylist)
             {
                 if (otherEnemy != this && GetTileCollisionHitbox().Intersects(otherEnemy.GetTileCollisionHitbox())) {
