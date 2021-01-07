@@ -23,7 +23,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
             roomlist = new List<Room>();
             chararray = new char[width, height];
             Generate();
-            tilearray = fillTile(chararray);
+            tilearray = fillTile(chararray);    
         }
         public void Generate()
         {
@@ -44,8 +44,8 @@ namespace _2DRoguelike.Content.Core.World.Maps
                 {
                     int addedvalue = 3;
                     //Ein Raum wird Relational weit zum Vorgänger in der Welt platziert. Dabei ist der weiteste entfernte Punkt wo ein Raum platziert werden kann die Maximale Größe eines Raum(MAXROOMZISE).
-                    room.setXPos(Map.Random.Next(previousRoom.XPos-Room.MAXROOMSIZE- addedvalue < 0?0:previousRoom.XPos - Room.MAXROOMSIZE- addedvalue, previousRoom.XPos + Room.MAXROOMSIZE+ addedvalue > width - room.Width? width - room.Width: previousRoom.XPos + Room.MAXROOMSIZE+ addedvalue));
-                    room.setYPos(Map.Random.Next(previousRoom.YPos - Room.MAXROOMSIZE - addedvalue < 0 ? 0 : previousRoom.YPos - Room.MAXROOMSIZE- addedvalue, previousRoom.YPos + Room.MAXROOMSIZE+ addedvalue > height - room.Height? height - room.Height: previousRoom.YPos + Room.MAXROOMSIZE+ addedvalue));
+                    room.setXPos(Map.Random.Next(previousRoom.XPos - Room.MAXROOMSIZE - addedvalue < 0 ? 0 : previousRoom.XPos - Room.MAXROOMSIZE - addedvalue, previousRoom.XPos + Room.MAXROOMSIZE + addedvalue > width - room.Width ? width - room.Width : previousRoom.XPos + Room.MAXROOMSIZE + addedvalue));
+                    room.setYPos(Map.Random.Next(previousRoom.YPos - Room.MAXROOMSIZE - addedvalue < 0 ? 0 : previousRoom.YPos - Room.MAXROOMSIZE - addedvalue, previousRoom.YPos + Room.MAXROOMSIZE + addedvalue > height - room.Height ? height - room.Height : previousRoom.YPos + Room.MAXROOMSIZE + addedvalue));
                     roomfindingtries++;
                 } while (!avoidRoomCollision(room) && roomfindingtries <= ROOMTRIES);
                 if (roomfindingtries != ROOMTRIES)
@@ -135,7 +135,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
         public void SpawnEnemies()
         {
             //First room should not have enemies
-            for(int i=1;i<NumRooms;i++)
+            for (int i = 1; i < NumRooms; i++)
             {
                 roomlist[i].placeEnemies();
             }
@@ -152,9 +152,9 @@ namespace _2DRoguelike.Content.Core.World.Maps
         }
         public bool avoidRoomCollision(Room room)
         {
-            for (int y = room.YPos; y < room.YPos + room.Height+1; y++)
+            for (int y = room.YPos; y < room.YPos + room.Height + 1; y++)
             {
-                for (int x = room.XPos; x < room.XPos + room.Width+1; x++)
+                for (int x = room.XPos; x < room.XPos + room.Width + 1; x++)
                 {
                     if (chararray[x, y] != 0)
                     {
@@ -176,7 +176,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
             currentroom = null;
             for (int i = 0; i < NumRooms; i++)
             {
-                if (roomlist[i].roomhitbox.Intersects(player.Hitbox))
+                if (roomlist[i].roomhitbox.Intersects(player.GetTileCollisionHitbox()))
                 {
                     currentroom = roomlist[i];
                     /*if (roomlist[i].exitroom)
@@ -192,11 +192,11 @@ namespace _2DRoguelike.Content.Core.World.Maps
 
         public override void clearEnemies()
         {
-            foreach(Room r in roomlist)
+            foreach (Room r in roomlist)
             {
-                foreach(Enemy e in r.enemylist)
+                foreach (Enemy e in r.enemylist)
                 {
-                    e.isExpired=true;
+                    e.isExpired = true;
                 }
                 r.enemylist = null;
             }
@@ -217,7 +217,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
         public override int CountEnemies()
         {
             int returnvalue = 0;
-            foreach(Room r in roomlist)
+            foreach (Room r in roomlist)
             {
                 returnvalue += r.enemylist.Count;
             }
@@ -229,7 +229,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
             int returnvalue = 0;
             foreach (Room r in roomlist)
             {
-                foreach(Enemy e in r.enemylist)
+                foreach (Enemy e in r.enemylist)
                 {
                     if (!e.dead)
                     {
@@ -246,9 +246,9 @@ namespace _2DRoguelike.Content.Core.World.Maps
         /// </summary>
         public override bool AddKeyToRoom(int roomnmb)
         {
-            if (roomnmb-1 <= NumRooms)
+            if (roomnmb - 1 <= NumRooms)
             {
-                roomlist[roomnmb-1].setKey();
+                roomlist[roomnmb - 1].setKey();
                 return true;
             }
             else

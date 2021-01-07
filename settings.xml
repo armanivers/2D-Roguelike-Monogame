@@ -8,11 +8,11 @@
   <prevBackgroundMusicLevel>0.2</prevBackgroundMusicLevel>
   <soundeffectsLevel>0.2</soundeffectsLevel>
   <prevSoundeffectsLevel>0.2</prevSoundeffectsLevel>
-  <DEBUG>false</DEBUG>
-  <godMode>false</godMode>
+  <DEBUG>true</DEBUG>
+  <godMode>true</godMode>
   <showHitbox>true</showHitbox>
   <showMouse>false</showMouse>
   <playerDebug>true</playerDebug>
   <attackHitbox>true</attackHitbox>
-  <noclip>false</noclip>
+  <noclip>true</noclip>
 </GameSettings>
