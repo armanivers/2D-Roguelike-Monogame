@@ -71,6 +71,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
                                 if (chararray[x, previousRoom.CentreY] != RoomObject.EmptySpace)
                                 {
                                     chararray[x, previousRoom.CentreY] = RoomObject.EmptySpace;
+                                    chararray[x, previousRoom.CentreY + 1] = RoomObject.EmptySpace;
                                     if (chararray[x, previousRoom.CentreY + 1] != RoomObject.Wall)
                                     {
                                         chararray[x, previousRoom.CentreY + 1] = RoomObject.EmptySpace;
@@ -83,6 +84,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
                                 if (chararray[room.CentreX, y] != RoomObject.EmptySpace)
                                 {
                                     chararray[room.CentreX, y] = RoomObject.EmptySpace;
+                                    chararray[room.CentreX + 1, y] = RoomObject.EmptySpace;
                                     if (chararray[room.CentreX + 1, y] != RoomObject.Wall)
                                     {
                                         chararray[room.CentreX + 1, y] = RoomObject.EmptySpace;
@@ -98,6 +100,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
                                 if (chararray[previousRoom.CentreX, y] != RoomObject.EmptySpace)
                                 {
                                     chararray[previousRoom.CentreX, y] = RoomObject.EmptySpace;
+                                    chararray[previousRoom.CentreX + 1, y] = RoomObject.EmptySpace;
                                     if (chararray[previousRoom.CentreX, y] != RoomObject.Wall)
                                     {
                                         chararray[previousRoom.CentreX + 1, y] = RoomObject.EmptySpace;
@@ -111,6 +114,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
                                 if (chararray[x, room.CentreY] != RoomObject.EmptySpace)
                                 {
                                     chararray[x, room.CentreY] = RoomObject.EmptySpace;
+                                    chararray[x, room.CentreY + 1] = RoomObject.EmptySpace;
                                     if (chararray[x, room.CentreY] != RoomObject.Wall)
                                     {
                                         chararray[x, room.CentreY + 1] = RoomObject.EmptySpace;
