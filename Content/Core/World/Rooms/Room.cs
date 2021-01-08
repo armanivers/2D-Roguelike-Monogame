@@ -61,18 +61,19 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         //TODO entities
         public List<EntityBasis> entitylist;
 
-        public Room()
+        public Room() : this(Map.Random.Next(MINROOMSIZE, MAXROOMSIZE), Map.Random.Next(MINROOMSIZE, MAXROOMSIZE))
         {
-            XPos = 0;
-            YPos = 0;
-            Width = Map.Random.Next(MINROOMSIZE, MAXROOMSIZE);
-            Height = Map.Random.Next(MINROOMSIZE, MAXROOMSIZE);
-            roomvolume = (Width - 1) * (Height - 1);
-            room = new char[Width, Height];
-            enemylist = new List<Enemy>();
-            entitylist = new List<EntityBasis>();
-            fillRoom();
+            //XPos = 0;
+            //YPos = 0;
+            //Width = Map.Random.Next(MINROOMSIZE, MAXROOMSIZE);
+            //Height = Map.Random.Next(MINROOMSIZE, MAXROOMSIZE);
+            //roomvolume = (Width - 1) * (Height - 1);
+            //room = new char[Width, Height];
+            //enemylist = new List<Enemy>();
+            //entitylist = new List<EntityBasis>();
+            //fillRoom();
         }
+
         public Room(int width, int height)
         {
             XPos = 0;
@@ -144,6 +145,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
                 enemylist.Add(EnemyFactory.CreateRandomEnemy(enemyspawnpoint));
             }
         }
+
         public void setExit()
         {
             do

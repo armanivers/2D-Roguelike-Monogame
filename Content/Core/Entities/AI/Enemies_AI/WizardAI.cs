@@ -21,6 +21,13 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             // TODO: 
             if (agent.IsPlayerInTheSameRoom())
             {
+                /*
+                 * if (inDangerZone()) {
+                    if (React()) { 
+                        return NullReferenceException Teleport(agent);
+                    }
+                }*/
+
                 if (!agent.IsAttacking())
                 {
                     if (!agent.WeaponInventory[1].InUsage())
@@ -31,7 +38,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                         {
                             if (TryToAttack(agent.WeaponInventory[1]))
                                 return new RangeAttack(agent);
-
 
                         }
                     }

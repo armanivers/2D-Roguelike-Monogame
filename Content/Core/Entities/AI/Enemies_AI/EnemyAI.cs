@@ -42,7 +42,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         protected bool SimulateMeleeAttack() {
             Rectangle effectiveRange = ((ShortRange)agent.WeaponInventory[0]).GetEffectiveRange();
             // Für Debug
-            agent.AttackRangeHitbox = effectiveRange;
+            GameDebug.GameDebug.AddToBoxDebugBuffer(effectiveRange, Color.Violet);
 
             return (effectiveRange.Intersects(Player.Instance.Hitbox));
         }

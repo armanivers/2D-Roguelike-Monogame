@@ -23,7 +23,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
             roomlist = new List<Room>();
             chararray = new char[width, height];
             Generate();
-            tilearray = fillTile(chararray);    
+            tilearray = fillTile(chararray);
         }
         public void Generate()
         {
@@ -131,6 +131,12 @@ namespace _2DRoguelike.Content.Core.World.Maps
                 }
             }
             SpawnEnemies();
+
+            // DEBUG-Test:
+            foreach (Room room in roomlist)
+            {
+                GameDebug.GameDebug.AddToBoxDebugBuffer(room.roomhitbox, Color.Blue, true);
+            }
         }
         public void SpawnEnemies()
         {

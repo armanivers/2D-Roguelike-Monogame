@@ -52,7 +52,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         }
         public override void UseWeapon()
         {
-            // TODO: Angemessene AttackTimespan für jede Waffe wählen (Animationsdauer
+            // TODO: ÄNDERN!!!
 
 
             Rectangle OwnerHitbox = Owner.Hitbox;
@@ -97,8 +97,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             Rectangle attackHitbox = new Rectangle((int)attackCoordinates.X, (int)attackCoordinates.Y, (int)(attackHitboxWidth  * tmpRangeMultiplierX), (int)(attackHitboxHeight  * tmpRangeMultiplierY));
 
             // Für Debug
-            if (GameDebug.HitboxDebug.DEBUG)
-                Owner.AttackHitbox = attackHitbox;
+            GameDebug.GameDebug.AddToBoxDebugBuffer(attackHitbox, Color.White, 10);
 
             if (Owner is ControllingPlayer.Player)
             {

@@ -83,6 +83,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public override void Update(GameTime gameTime)
         {
+            DrawHitboxes();
             /** TODO: Vorerst wurde alles in Humanoid eingefügt
             Die Änderungen in Humanoid müssen bald teilweise hier eingefügt werden */
         }
@@ -158,6 +159,11 @@ namespace _2DRoguelike.Content.Core.Entities
         public bool IsDead()
         {
             return dead;
+        }
+
+        protected virtual void DrawHitboxes() {
+            GameDebug.GameDebug.AddToBoxDebugBuffer(GetTileCollisionHitbox(), Color.Red);
+            GameDebug.GameDebug.AddToBoxDebugBuffer(Hitbox, Color.Blue);
         }
 
     }
