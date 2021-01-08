@@ -266,6 +266,8 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
         public override Action DetermineAction()
         {
+
+
             if (InputController.IsRightMouseButtonHeld())
                 return new Protect(this);
             else Invincible = false;

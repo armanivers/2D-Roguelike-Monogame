@@ -34,7 +34,8 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         public override void OpenContainer()
         {
             RandomLoot.SpawnLoot(type,Position);
-            CutsceneManager.PlayCutscene(new FadeInCircle());
+            // TODO: static bool Variable für einmaliges Ausführen ?
+            // CutsceneManager.PlayCutscene(new FadeInCircle());
             isExpired = true;
         }
 

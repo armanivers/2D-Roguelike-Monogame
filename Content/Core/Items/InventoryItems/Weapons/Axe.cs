@@ -12,10 +12,10 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         const float RANGE_MULTIPLIER_X = 0.9f;
         const float RANGE_MULTIPLIER_Y = 0.9f;
 
-        const byte DEFAULT_MAXIMUM_HITS_PER_USAGE = 2;
+        const byte DEFAULT_MAXIMUM_HITS_PER_ATTACK = 2;
 
         public Axe(Humanoid Owner, float damageMultiplier = 1f, float cooldownMultiplier = 1f) : base(Owner, RANGE_MULTIPLIER_X, RANGE_MULTIPLIER_Y, 
-            (int)(DAMAGE*damageMultiplier),AXE_COOLDOWN * cooldownMultiplier, DEFAULT_MAXIMUM_HITS_PER_USAGE) {
+            (int)(DAMAGE*damageMultiplier),AXE_COOLDOWN * cooldownMultiplier, DEFAULT_MAXIMUM_HITS_PER_ATTACK) {
             INVENTORY_SLOT = 3;
         }
 

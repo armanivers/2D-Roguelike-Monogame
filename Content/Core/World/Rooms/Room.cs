@@ -56,7 +56,8 @@ namespace _2DRoguelike.Content.Core.World.Rooms
 
         //enemies list
         public int enemies;
-        public List<Enemy> enemylist;
+        public List<Enemy> enemylist; 
+        // IDEE: bei update: in currentRoom die enemylist durchlaufen, und gucken, ob isExpired = true (um "Leichen" zu entfernen)
 
         //TODO entities
         public List<EntityBasis> entitylist;
@@ -137,13 +138,23 @@ namespace _2DRoguelike.Content.Core.World.Rooms
                 do
                 {
                     enemyspawnpoint = new Vector2(Map.Random.Next(2, Width - 3), Map.Random.Next(2, Height - 3));
-                } while (room[(int)enemyspawnpoint.X, (int)enemyspawnpoint.Y] != RoomObject.EmptySpace);
+                } while (room[(int)enemyspawnpoint.X, (int)enemyspawnpoint.Y] != RoomObject.EmptySpace && IntersectsTileCollisionHitbox((int)enemyspawnpoint.X, (int)enemyspawnpoint.Y));
                 // TODO: Schauen, ob beim neuen Spawn der Enemy die TileCollisonHitbox eines anderen Enemy schneidet → neuer Spawn ermitteln
                 
                 enemyspawnpoint.X += (float)XPos;
                 enemyspawnpoint.Y += (float)YPos;
                 enemylist.Add(EnemyFactory.CreateRandomEnemy(enemyspawnpoint));
             }
+        }
+
+        private bool IntersectsTileCollisionHitbox(int enemyPosX, int enemyPosY) {
+            Rectangle tileCollisionHitbox = new Rectangle(enemyPosX, enemyPosY, 19, 19);
+            foreach (Enemy enemy in enemylist)
+            {
+                if (enemy.GetTileCollisionHitbox().Intersects(tileCollisionHitbox))
+                    return true;
+            }
+            return false;
         }
 
         public void setExit()

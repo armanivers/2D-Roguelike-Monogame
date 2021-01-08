@@ -12,11 +12,11 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         const float RANGE_MULTIPLIER_Y = 0.8f;
 
 
-        const byte DEFAULT_MAXIMUM_HITS_PER_USAGE = 1;
+        const byte DEFAULT_MAXIMUM_HITS_PER_ATTACK = 1;
 
         public Fist(Humanoid Owner, float damageMultiplier = 1f, float cooldownMultiplier = 1f, float rangeX = 1f, float rangeY = 1f)
             : base(Owner, rangeX * RANGE_MULTIPLIER_X, rangeY * RANGE_MULTIPLIER_Y,
-            (int)(DAMAGE * damageMultiplier), FIST_COOLDOWN * cooldownMultiplier, DEFAULT_MAXIMUM_HITS_PER_USAGE)
+            (int)(DAMAGE * damageMultiplier), FIST_COOLDOWN * cooldownMultiplier, DEFAULT_MAXIMUM_HITS_PER_ATTACK)
         {
             INVENTORY_SLOT = 0;
         }

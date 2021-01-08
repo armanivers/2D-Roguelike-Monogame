@@ -4,12 +4,12 @@
   <fullScreen>false</fullScreen>
   <screenWidth>1280</screenWidth>
   <screenHeight>720</screenHeight>
-  <backgroundMusicLevel>0</backgroundMusicLevel>
+  <backgroundMusicLevel>0.5</backgroundMusicLevel>
   <prevBackgroundMusicLevel>0.2</prevBackgroundMusicLevel>
   <soundeffectsLevel>0.2</soundeffectsLevel>
   <prevSoundeffectsLevel>0.2</prevSoundeffectsLevel>
-  <DEBUG>false</DEBUG>
-  <godMode>false</godMode>
+  <DEBUG>true</DEBUG>
+  <godMode>true</godMode>
   <showHitbox>true</showHitbox>
   <showMouse>false</showMouse>
   <playerDebug>true</playerDebug>

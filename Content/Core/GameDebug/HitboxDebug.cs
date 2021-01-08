@@ -50,7 +50,6 @@ namespace _2DRoguelike.Content.Core.GameDebug
             {
                 AddAllHitboxDataToList();
                 DrawHitboxesFromBuffer(spriteBatch);
-
             }
         }
 

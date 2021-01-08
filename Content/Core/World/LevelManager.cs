@@ -39,6 +39,7 @@ namespace _2DRoguelike.Content.Core.World
         }
         public static void NextLevel()
         {
+            GameDebug.GameDebug.UnloadHitboxBuffer();
             EntityManager.UnloadAllEntities();
             level++;
             switch (level)
@@ -54,6 +55,8 @@ namespace _2DRoguelike.Content.Core.World
                     break;
             }
             levelList[level - 1].map.clearEnemies();
+
+
             Entities.ControllingPlayer.Player.Instance.Position = levelList[level].map.getSpawnpoint() * new Vector2(32);
             currentmap = levelList[level].map;
             currenttilemap = currentmap.tilearray;

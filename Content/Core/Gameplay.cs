@@ -81,6 +81,7 @@ namespace _2DRoguelike.Content.Core
             UIManager.ClearElements();
             //MediaPlayer.Stop();
             CutsceneManager.ClearCutscene();
+            GameDebug.GameDebug.UnloadHitboxBuffer();
         }
 
         public void Update(GameTime gameTime)

@@ -32,5 +32,11 @@ namespace _2DRoguelike.Content.Core.GameDebug
             hitboxDebug.AddToBoxDebugBuffer(box, color, always);
         }
 
+
+
+        public static void UnloadHitboxBuffer() {
+            hitboxDebug.boxDebugBuffer.Clear();
+        }
+
     }
 }
