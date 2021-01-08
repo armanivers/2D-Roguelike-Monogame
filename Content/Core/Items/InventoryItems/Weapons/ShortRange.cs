@@ -10,6 +10,8 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
 {
     public abstract class ShortRange : Weapon
     {
+        private byte maximumHitsPerAttack;
+
         // Für gleichzeitiges Abziehen von zwei Richtungen (z.B. Schulter und Beine nicht miteinbeziehen)
         private float heightReduction = 0.8f;
         private float widthReduction = 1f;
@@ -19,10 +21,12 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         public float RangeMultiplierX { get => rangeMultiplierX; }
         public float RangeMultiplierY { get => rangeMultiplierY; }
 
-        public ShortRange(Humanoid Owner, float rangeX, float rangeY, int weaponDamage, float weaponCooldown) : base(Owner, weaponDamage, weaponCooldown)
+        public ShortRange(Humanoid Owner, float rangeX, float rangeY, int weaponDamage, float weaponCooldown, byte maximumHitsPerAttack = 1) : base(Owner, weaponDamage, weaponCooldown)
         {
             this.rangeMultiplierX = rangeX * widthReduction;
             this.rangeMultiplierY = rangeY * heightReduction;
+
+            this.maximumHitsPerAttack = maximumHitsPerAttack;
         }
 
         public Rectangle[] GetEffectiveRange()
@@ -130,7 +134,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
 
 
             #region alterCode
-                        //Rectangle OwnerHitbox = Owner.Hitbox;
+            //Rectangle OwnerHitbox = Owner.Hitbox;
             //int attackHitboxWidth = OwnerHitbox.Width;
             //int attackHitboxHeight = OwnerHitbox.Height;
 
@@ -180,15 +184,23 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             {
                 // TODO: ERSETZEN Durch EnemyList des Raumes
                 if (LevelManager.currentmap.currentroom != null)
+                {
+                    byte enemiesHit = 0; 
                     foreach (var enemy in LevelManager.currentmap.currentroom.enemylist)
                     {
-
                         if (attackHitbox.Intersects(enemy.Hitbox))
                         {
                             ((Enemy)enemy).DeductHealthPoints(weaponDamage);
+                            {
+                                Debug.WriteLine("Hit {0} enemies. Maxiumum hits per attack with {1}: {2}", ++enemiesHit, ToString(), maximumHitsPerAttack);
+                            }
+                            if (enemiesHit == maximumHitsPerAttack)
+                                return;
                         }
 
                     }
+                }
+
             }
             else if (Owner is Enemy)
             {

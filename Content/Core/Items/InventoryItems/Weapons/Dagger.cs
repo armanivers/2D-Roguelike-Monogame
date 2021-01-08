@@ -11,8 +11,10 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         const float RANGE_MULTIPLIER_X = 0.8f;
         const float RANGE_MULTIPLIER_Y = 0.8f;
 
+        const byte DEFAULT_MAXIMUM_HITS_PER_USAGE = 1;
+
         public Dagger(Humanoid Owner, float damageMultiplier = 1f, float cooldownMultiplier = 1f) : base(Owner, RANGE_MULTIPLIER_X, RANGE_MULTIPLIER_Y,
-            (int)(DAMAGE * damageMultiplier), DAGGER_COOLDOWN * cooldownMultiplier)
+            (int)(DAMAGE * damageMultiplier), DAGGER_COOLDOWN * cooldownMultiplier, DEFAULT_MAXIMUM_HITS_PER_USAGE)
         {
             INVENTORY_SLOT = 1;
         }
