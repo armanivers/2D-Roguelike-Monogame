@@ -18,7 +18,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 
             WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
 
-            WeaponInventory[0] = new Fist(this, 0.8f, 2.2f, 0.5f, 1f);
+            WeaponInventory[0] = new Fist(this, 0.8f, 2.2f, 1f, 1f);
             //WeaponInventory[1] = new Bow(this, 0.7f, 1.5f);
             CurrentWeapon = WeaponInventory[0];
 

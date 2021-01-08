@@ -22,7 +22,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         // TODO: Reaktionszeit für Angriff. Random [15-60]
         // Wenn currentRoom != Room des Enemies: Idle
 
-        public EnemyAI(Enemy agent, int minReactionTime = DEFAULT_REACTION_TIME_MIN, int maxReactionTime = DEFAULT_REACTION_TIME_MAX) {
+        public EnemyAI(Enemy agent, int minReactionTime = DEFAULT_REACTION_TIME_MIN, int maxReactionTime = DEFAULT_REACTION_TIME_MAX)
+        {
             this.agent = agent;
             reactionTimeInterval = new int[2] { minReactionTime, maxReactionTime };
             this.ReactionTimer = currentReactionTimeGap = new Random().Next(reactionTimeInterval[0], reactionTimeInterval[1]);
@@ -39,12 +40,23 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             return simulatedArrow.TestForImpact();
         }
 
-        protected bool SimulateMeleeAttack() {
-            Rectangle effectiveRange = ((ShortRange)agent.WeaponInventory[0]).GetEffectiveRange();
-            // Für Debug
-            GameDebug.GameDebug.AddToBoxDebugBuffer(effectiveRange, Color.Violet);
+        protected bool SimulateMeleeAttack()
+        {
+            // TODO: Weapon als Parameter übergeben
 
-            return (effectiveRange.Intersects(Player.Instance.Hitbox));
+            Rectangle[] effectiveRange = ((ShortRange)agent.WeaponInventory[0]).GetEffectiveRange();
+
+
+            // Für Debug
+            foreach (Rectangle box in effectiveRange)
+            {
+                GameDebug.GameDebug.AddToBoxDebugBuffer(box, Color.Violet);
+            }
+
+            foreach (Rectangle box in effectiveRange)
+                if (box.Intersects(Player.Instance.Hitbox))
+                    return true;
+            return false;
         }
 
         protected bool WithinRange(int radius)
@@ -67,29 +79,32 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             }
             else
             {
-                reactionTimer =currentReactionTimeGap = new Random().Next(reactionTimeInterval[0], reactionTimeInterval[1]);
+                reactionTimer = currentReactionTimeGap = new Random().Next(reactionTimeInterval[0], reactionTimeInterval[1]);
                 return true;
             }
         }
 
-        public void ResetReactionTimer() {
+        public void ResetReactionTimer()
+        {
             reactionTimer = currentReactionTimeGap;
         }
 
-        public void SetReactionTimeInterval(int min, int max) {
+        public void SetReactionTimeInterval(int min, int max)
+        {
             reactionTimeInterval[0] = min;
             reactionTimeInterval[1] = max;
         }
 
         public bool TryToAttack(Weapon usedWeapon)
         {
-            if (React()) { 
+            if (React())
+            {
                 usedWeapon.CooldownTimer = 0;
                 agent.CurrentWeapon = usedWeapon;
                 return true;
             }
             return false;
-            
+
         }
     }
 }

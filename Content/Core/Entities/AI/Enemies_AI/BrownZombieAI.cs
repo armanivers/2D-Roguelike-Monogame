@@ -64,9 +64,14 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
             if (WithinRange(DETECTION_RANGE))
             {
-                Rectangle effectiveMeleeRange = ((ShortRange)agent.WeaponInventory[0]).GetEffectiveRange();
-                if (!effectiveMeleeRange.Intersects(Player.Instance.Hitbox))
-                    return Vector2.Normalize(agent.GetAttackDirection() - agent.Position);
+                Rectangle[] effectiveMeleeRange = ((ShortRange)agent.WeaponInventory[0]).GetEffectiveRange();
+                foreach (Rectangle effective in effectiveMeleeRange)
+                {
+                    if (effective.Intersects(Player.Instance.Hitbox))
+                        return Vector2.Zero;
+                }
+
+                return Vector2.Normalize(agent.GetAttackDirection() - agent.Position);
             }
             return Vector2.Zero;
         }

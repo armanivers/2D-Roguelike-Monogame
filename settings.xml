@@ -14,5 +14,5 @@
   <showMouse>false</showMouse>
   <playerDebug>true</playerDebug>
   <attackHitbox>true</attackHitbox>
-  <noclip>false</noclip>
+  <noclip>true</noclip>
 </GameSettings>
