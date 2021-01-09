@@ -21,7 +21,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
         private static int lootbagSkeleton = 3;
         private static int lootbagWizard = 4;
 
-        // dagger = 0, bow = 1, axe = 2, bomb = 3, healthpotion = 4, xppotion = 5
+        // dagger = 0, bow = 1, axe = 2, bomb = 3, healthpotion = 4, xppotion = 5, regen potion = 6
 
         // List mit keyvaluepairs um items mit gleiche wahrscheinlichkeit zu erlauben
         private static List<KeyValuePair<int, int>> chestNormalDroplist = new List<KeyValuePair<int, int>>()
@@ -34,8 +34,8 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
 
         private static List<KeyValuePair<int, int>> chestDiamondDroplist = new List<KeyValuePair<int, int>>()
         {
-            new KeyValuePair<int,int>(50,2), // 10% chance to get Axe (id 2)
-            new KeyValuePair<int,int>(50,4) // 10% chance to get Healthpotion (id 4)
+            new KeyValuePair<int,int>(50,6), // 10% chance to get Axe (id 2)
+            new KeyValuePair<int,int>(50,6) // 10% chance to get Healthpotion (id 4)
         };
 
         private static List<KeyValuePair<int, int>> lootbagZombieDroplist = new List<KeyValuePair<int, int>>()
@@ -59,7 +59,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
         public static void SpawnLoot(int type,Vector2 pos)
         {
             int chosenItem;
-
+            type = 1;
             switch(type)
             {
                 // Normal Chest Loot
@@ -132,6 +132,9 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
                     break;
                 case 5:
                     new ExperiencePotion(pos);
+                    break;
+                case 6:
+                    new HealthRegenerationPotion(pos);
                     break;
                 default:
                     new HealthPotion(pos);
