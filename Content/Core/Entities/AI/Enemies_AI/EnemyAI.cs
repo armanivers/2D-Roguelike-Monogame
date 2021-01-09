@@ -51,7 +51,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             // Für Debug
             foreach (Rectangle box in effectiveRange)
             {
-                GameDebug.AddToBoxDebugBuffer(box, Color.Violet);
+                GameDebug.AddToBoxDebugBuffer(box, Color.DarkRed);
             }
 
             foreach (Rectangle box in effectiveRange)

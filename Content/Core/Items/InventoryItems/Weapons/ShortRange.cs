@@ -180,26 +180,30 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             Rectangle attackHitbox = new Rectangle((int)attackCoordinates.X, (int)attackCoordinates.Y, (int)(attackHitboxWidth * tmpRangeMultiplierX), (int)(attackHitboxHeight * tmpRangeMultiplierY));
 
             // Für Debug
-            GameDebug.AddToBoxDebugBuffer(attackHitbox, Color.White, 10);
+            GameDebug.AddToBoxDebugBuffer(attackHitbox, Color.IndianRed, 10);
 
             if (Owner is Player)
             {
-                // TODO: ERSETZEN Durch EnemyList des Raumes
                 if (LevelManager.currentmap.currentroom != null)
                 {
                     byte enemiesHit = 0; 
                     foreach (var enemy in LevelManager.currentmap.currentroom.enemylist)
                     {
-                        if (attackHitbox.Intersects(enemy.Hitbox))
+                        if (attackHitbox.Intersects(enemy.Hitbox) && !enemy.IsDead())
                         {
                             ((Enemy)enemy).DeductHealthPoints(weaponDamage);
                             {
                                 Debug.WriteLine("Hit {0} enemies. Maxiumum hits per attack with {1}: {2}", ++enemiesHit, ToString(), maximumHitsPerAttack);
                             }
                             if (enemiesHit == maximumHitsPerAttack)
-                                return;
+                                break;
                         }
+                    }
 
+                    foreach (var projectile in EntityManager.projectiles)
+                    {
+                        if (attackHitbox.Intersects(projectile.Hitbox))
+                            projectile.isExpired = true;
                     }
                 }
 

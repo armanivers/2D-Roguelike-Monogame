@@ -156,12 +156,12 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
             // add weapons manually
 
-            AddToWeaponInventory(new Dagger(this));
-            AddToWeaponInventory(new Axe(this));
-            AddToWeaponInventory(new Bow(this));
-            // AddToWeaponInventory(new FireballWeapon(this)); // entweder Spear oder Fireball
-            AddToWeaponInventory(new BombWeapon(this));
-            AddToWeaponInventory(new Spear(this));
+            //AddToWeaponInventory(new Dagger(this));
+            //AddToWeaponInventory(new Axe(this));
+            //AddToWeaponInventory(new Bow(this));
+            //// AddToWeaponInventory(new FireballWeapon(this)); // entweder Spear oder Fireball
+            //AddToWeaponInventory(new BombWeapon(this));
+            //AddToWeaponInventory(new Spear(this));
             
 
             ChangeCurrentWeaponSlot(0);

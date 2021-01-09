@@ -160,8 +160,8 @@ namespace _2DRoguelike.Content.Core.Entities
         }
 
         protected virtual void DrawHitboxes() {
-            GameDebug.AddToBoxDebugBuffer(GetTileCollisionHitbox(), Color.Red);
-            GameDebug.AddToBoxDebugBuffer(Hitbox, Color.Blue);
+            GameDebug.AddToBoxDebugBuffer(GetTileCollisionHitbox(), Color.Black);
+            GameDebug.AddToBoxDebugBuffer(Hitbox, Color.DarkBlue);
         }
 
     }
