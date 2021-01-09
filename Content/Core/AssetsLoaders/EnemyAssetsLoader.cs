@@ -46,6 +46,12 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
         public  Texture2D Wizard_Walk_Dagger { get; private set; }
         public  Texture2D Wizard_Walk_Fist { get; private set; }
 
+        // Dragon
+        public Texture2D Dragon_Hurt { get; set; }
+        public Texture2D Dragon_Idle { get; private set; }
+        public Texture2D Dragon_Slash_Fist { get; private set; }
+        public Texture2D Dragon_Spellcast { get; private set; }
+        public Texture2D Dragon_Walk_Fist { get; private set; }
 
         public void Load(ContentManager content)
         {
@@ -83,6 +89,13 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
             Wizard_Walk_Cane = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Wizard/wizardSheet_walk_cane");
             Wizard_Walk_Dagger = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Wizard/wizardSheet_walk_dagger");
             Wizard_Walk_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Wizard/wizardSheet_walk_fist");
+
+            // Dragon
+            Dragon_Hurt = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Dragon/dragonSheet_hurt");
+            Dragon_Idle = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Dragon/dragonSheet_idle");
+            Dragon_Slash_Fist  = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Dragon/dragonSheet_slash_fist");
+            Dragon_Spellcast = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Dragon/dragonSheet_spellcast");
+            Dragon_Walk_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Dragon/dragonSheet_walk_fist");
         }
     }
 }
