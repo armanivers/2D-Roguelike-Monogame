@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
@@ -28,13 +29,18 @@ namespace _2DRoguelike.Content.Core.Entities.AI.Enemies_AI.Bosses_AI
                             return new Melee(agent);
                     }
                 }
-                else if (!agent.WeaponInventory[1].InUsage())
+
+                // Problem: Weapon0 not in usage but Weapon1 in usage:
+                // Reaction time wird nicht zurückgesetzt, bis Player gehitted wird oder Weapon1 einsatzbereit
+
+                if (!agent.WeaponInventory[1].InUsage())
                 {
                     if (SimulateArrowAttack())
                     {
                         if (TryToAttack(agent.WeaponInventory[1]))
                             return new RangeAttack(agent);
                     }
+                    
                 }
                 else
                     ResetReactionTimer();

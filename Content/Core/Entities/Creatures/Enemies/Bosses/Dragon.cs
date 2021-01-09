@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using _2DRoguelike.Content.Core.Entities.AI.Enemies_AI.Bosses_AI;
 using _2DRoguelike.Content.Core.Entities.Weapons;
 using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
 using Microsoft.Xna.Framework;
@@ -11,10 +12,10 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
     {
         const int DEFAULT_HEALTHPOINTS = 200;
         const int WEAPON_SLOT_CNT = 2; // 0: ShortRange / 1: LongRange
-        public Dragon(Vector2 position, float attackTimespan, float movingSpeed) : base(position, DEFAULT_HEALTHPOINTS, attackTimespan, movingSpeed)
+        public Dragon(Vector2 position, float movingSpeed = 3, float attackTimespan = 0.4f) : base(position, DEFAULT_HEALTHPOINTS, attackTimespan, movingSpeed)
         {
 
-            // ai = new DragonAI(this);
+             ai = new DragonAI(this);
 
             WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
 
@@ -62,10 +63,10 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
                 {"SlashRight_Dagger", new Animation(TextureManager.enemy.Skeleton_Slash_Dagger,3,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
 
                 // Magie-Animation
-                 {"SpellcastUp", new Animation(TextureManager.enemy.Dragon_Spellcast,0,13,(tmpFrameSpeed=FRAME_SPEED*0.3f),NO_LOOP, PRIORITIZED)},
-                {"SpellcastLeft",new Animation(TextureManager.enemy.Dragon_Spellcast,1,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
-                {"SpellcastDown", new Animation(TextureManager.enemy.Dragon_Spellcast,2,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
-                {"SpellcastRight", new Animation(TextureManager.enemy.Dragon_Spellcast,3,13,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
+                 {"SpellcastUp", new Animation(TextureManager.enemy.Dragon_Spellcast,0,7,(tmpFrameSpeed=FRAME_SPEED*0.3f),NO_LOOP, PRIORITIZED)},
+                {"SpellcastLeft",new Animation(TextureManager.enemy.Dragon_Spellcast,1,7,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
+                {"SpellcastDown", new Animation(TextureManager.enemy.Dragon_Spellcast,2,7,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
+                {"SpellcastRight", new Animation(TextureManager.enemy.Dragon_Spellcast,3,7,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
 
                 // Todesanimation
                 {"Die", new Animation(TextureManager.enemy.Dragon_Hurt,0,6,FRAME_SPEED*2f, NO_LOOP, PRIORITIZED)}
