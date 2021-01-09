@@ -17,6 +17,7 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
 
         // Cutscenes
         public Texture2D NPCTalk00 { get; private set; }
+        public Texture2D CircleFade { get; private set; }
         
         public void Load(ContentManager content)
         {
@@ -29,6 +30,7 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
 
             // Cutscenes
             NPCTalk00 = content.Load<Texture2D>("Assets/Graphics/Cutscenes/NPCTalk00");
+            CircleFade = content.Load<Texture2D>("Assets/Graphics/Cutscenes/circleFade");
         }
     }
 }

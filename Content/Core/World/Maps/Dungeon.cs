@@ -1,6 +1,7 @@
 ﻿using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.GameDebugger;
 using _2DRoguelike.Content.Core.World.Rooms;
 using Microsoft.Xna.Framework;
 using System;
@@ -139,7 +140,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
             // DEBUG-Test:
             foreach (Room room in roomlist)
             {
-                GameDebug.GameDebug.AddToBoxDebugBuffer(room.roomhitbox, Color.Blue, true);
+                GameDebug.AddToBoxDebugBuffer(room.roomhitbox, Color.Blue, true);
             }
         }
         public void SpawnEnemies()

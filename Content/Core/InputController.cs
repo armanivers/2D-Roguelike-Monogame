@@ -1,5 +1,10 @@
-﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+﻿using _2DRoguelike.Content.Core.Cutscenes;
+using _2DRoguelike.Content.Core.Entities;
+using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.UI;
+using _2DRoguelike.Content.Core.World;
+using _2DRoguelike.Content.Core.World.Rooms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -28,9 +33,49 @@ namespace _2DRoguelike.Content.Core
             previousMouseState = mouseState;
             mouseState = Mouse.GetState();
 
-            if(keyboardState.IsKeyDown(Keys.H))
+            if(Game1.gameSettings.DEBUG)
+            {
+                CheckDebugKeys();
+            }
+        }
+
+        public static void CheckDebugKeys()
+        {
+            // Display Test Message
+            if (IsKeyPressed(Keys.H))
             {
                 MessageFactory.DisplayMessage("Level Up++", Color.Yellow);
+            }
+
+            // Teleport player to ladder room (escape room)
+            if (IsKeyPressed(Keys.L))
+            {
+                Room exitroom = LevelManager.levelList[LevelManager.level].map.getExitRoom();
+                Player.Instance.Position = new Vector2(exitroom.CentreX * 32, exitroom.CentreY * 32);
+            }
+
+            // Instantly Kill All Enemies
+            if (IsKeyDown(Keys.K))
+            {
+                foreach(var monster in EntityManager.creatures)
+                {
+                    if(monster is Enemy)
+                    {
+                        ((Enemy)monster).Kill();
+                    }
+                }
+            }
+
+            // Instantly Kill Player
+            if (IsKeyDown(Keys.X))
+            {
+                Player.Instance.Kill();
+            }
+
+            // Cutscene Test
+            if(IsKeyDown(Keys.C))
+            {
+                CutsceneManager.PlayCutscene(new FadeInCircle());
             }
 
         }

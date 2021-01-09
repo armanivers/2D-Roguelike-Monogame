@@ -7,9 +7,9 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.Cutscenes
 {
-    class FadeInCircle : CutsceneBasis
+    class NPCTalk : CutsceneBasis
     {
-        public FadeInCircle() : base()
+        public NPCTalk() : base()
         {
             cutsceneTexture = TextureManager.menu.NPCTalk00;
             color = Color.White;

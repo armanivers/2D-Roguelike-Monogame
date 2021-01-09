@@ -95,7 +95,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
                 }
                 else
                 {
-                    if (shootingEntity is ControllingPlayer.Player)
+                    if (shootingEntity is Player)
                     {
                         foreach (var enemy in EntityManager.creatures)
                         {
@@ -111,7 +111,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
                     }
                     else if (shootingEntity is Enemy)
                     {
-                        if (Hitbox.Intersects(ControllingPlayer.Player.Instance.Hitbox))
+                        if (Hitbox.Intersects(Player.Instance.Hitbox))
                         {
                             Player.Instance.DeductHealthPoints(impactDamage);
                             Incinerate();

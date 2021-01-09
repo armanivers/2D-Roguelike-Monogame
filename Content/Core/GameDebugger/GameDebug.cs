@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-namespace _2DRoguelike.Content.Core.GameDebug
+namespace _2DRoguelike.Content.Core.GameDebugger
 {
     static class GameDebug
     {
@@ -31,8 +31,6 @@ namespace _2DRoguelike.Content.Core.GameDebug
         {
             hitboxDebug.AddToBoxDebugBuffer(box, color, always);
         }
-
-
 
         public static void UnloadHitboxBuffer() {
             hitboxDebug.boxDebugBuffer.Clear();

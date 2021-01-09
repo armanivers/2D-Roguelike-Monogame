@@ -23,7 +23,7 @@ namespace _2DRoguelike.Content.Core.Screens
         MenuEntry StatisticsLine2n3;
         MenuEntry StatisticsLine4;
         MenuEntry mainMenu;
-        Color color;
+        //Color color;
         public GamestatsScreen() : base("Player Statistics", true, 3, true)
         {
             TransitionOnTime = TimeSpan.FromSeconds(1.0);

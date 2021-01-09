@@ -1,4 +1,5 @@
-﻿using _2DRoguelike.Content.Core.Entities.Weapons;
+﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Weapons;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 using System;
@@ -59,7 +60,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
 
         private void HittingLogic()
         {
-            if (shootingEntity is ControllingPlayer.Player)
+            if (shootingEntity is Player)
             {
                 // TODO: Problem lösen: LevelManager.maps.currentroom.enemylist gilt nur für Player, NICHT für Arrow
                 // → wenn Arrow von Flur aus geschossen, ist dieser wirkungslos
@@ -77,9 +78,9 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
             }
             else if (shootingEntity is Enemies.Enemy)
             {
-                if (Hitbox.Intersects(ControllingPlayer.Player.Instance.Hitbox))
+                if (Hitbox.Intersects(Player.Instance.Hitbox))
                 {
-                    ControllingPlayer.Player.Instance.DeductHealthPoints(DAMAGE);
+                    Player.Instance.DeductHealthPoints(DAMAGE);
                     isExpired = true;
                 }
             }

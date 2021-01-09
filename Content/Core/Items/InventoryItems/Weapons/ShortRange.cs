@@ -4,7 +4,9 @@ using System.Diagnostics;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.World;
+using _2DRoguelike.Content.Core.GameDebugger;
 using Microsoft.Xna.Framework;
+using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 
 namespace _2DRoguelike.Content.Core.Entities.Weapons
 {
@@ -178,9 +180,9 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             Rectangle attackHitbox = new Rectangle((int)attackCoordinates.X, (int)attackCoordinates.Y, (int)(attackHitboxWidth * tmpRangeMultiplierX), (int)(attackHitboxHeight * tmpRangeMultiplierY));
 
             // Für Debug
-            GameDebug.GameDebug.AddToBoxDebugBuffer(attackHitbox, Color.White, 10);
+            GameDebug.AddToBoxDebugBuffer(attackHitbox, Color.White, 10);
 
-            if (Owner is ControllingPlayer.Player)
+            if (Owner is Player)
             {
                 // TODO: ERSETZEN Durch EnemyList des Raumes
                 if (LevelManager.currentmap.currentroom != null)
@@ -204,9 +206,9 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             }
             else if (Owner is Enemy)
             {
-                if (attackHitbox.Intersects(ControllingPlayer.Player.Instance.Hitbox))
+                if (attackHitbox.Intersects(Player.Instance.Hitbox))
                 {
-                    ControllingPlayer.Player.Instance.DeductHealthPoints(weaponDamage);
+                    Player.Instance.DeductHealthPoints(weaponDamage);
                 }
             }
         }

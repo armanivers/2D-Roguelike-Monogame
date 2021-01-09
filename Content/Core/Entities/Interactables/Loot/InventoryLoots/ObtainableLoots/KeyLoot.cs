@@ -1,4 +1,5 @@
-﻿using _2DRoguelike.Content.Core.Entities.Loot;
+﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Loot;
 using _2DRoguelike.Content.Core.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,9 +13,7 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.O
     {
         Texture2D KeyLootIdleAnimation;
         private bool obtained;
-        protected float timeToOpen; // 1.2 = 2 Sekunden
-        private float fadingSpeed; //0.00833f;
-        protected float openingTimer;
+
         public KeyLoot(Vector2 pos) : base(pos)
         {
             obtained = false;
@@ -29,7 +28,7 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.O
         }
         public override void OnContact()
         {
-            ControllingPlayer.Player.Instance.AddKey();
+            Player.Instance.AddKey();
             PlaySound();
             NotifyPlayer();
             obtained = true;

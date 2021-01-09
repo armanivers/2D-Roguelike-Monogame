@@ -10,7 +10,7 @@ namespace _2DRoguelike.Content.Core
     static class CutsceneManager
     {
         public static bool activeCutscene = false;
-
+        public static Queue<CutsceneBasis> scenesToDisplay = new Queue<CutsceneBasis>();
         public static CutsceneBasis currentCutscene;
 
         public static void PlayCutscene(CutsceneBasis cutscene)

@@ -32,6 +32,7 @@ namespace _2DRoguelike.Content.Core
 
         // Textures
         public static Texture2D placeholderImage { get; private set; }
+        public static Texture2D TransparentImage { get; private set; }
 
         // Other Data
 
@@ -71,6 +72,7 @@ namespace _2DRoguelike.Content.Core
             FontArial = content.Load<SpriteFont>("Assets/System/Fonts/Arial");
             GameFont = content.Load<SpriteFont>("Assets/System/Fonts/File");
             placeholderImage = content.Load<Texture2D>("Assets/Graphics/placeholderImage");
+            TransparentImage = content.Load<Texture2D>("Assets/Graphics/transparentTexture");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using _2DRoguelike.Content.Core.Entities.Loot;
+﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Loot;
 using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
@@ -14,14 +15,14 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects
 
         public Ladder(Vector2 pos) : base(pos)
         {
-            texture = TextureManager.placeholderImage;
+            texture = TextureManager.TransparentImage;
             Hitbox = new Rectangle((int)(Position.X), (int)(Position.Y), (int)(32 * ScaleFactor), (int)(32 * ScaleFactor));
         }
 
         public override void OnContact()
         {
             // check if player has obtained the key
-            if(ControllingPlayer.Player.Instance.hasLevelKey)
+            if(Player.Instance.hasLevelKey)
             {
                 // if yes remove player's key item, play fade out scene and load next level (LevelManager.nextlevel())
                 MessageFactory.DisplayMessage("Key Accepted", Color.Green);

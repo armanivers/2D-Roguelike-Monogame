@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
-using _2DRoguelike.Content.Core.UI;
+﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.GameDebugger;
 using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities
@@ -162,8 +160,8 @@ namespace _2DRoguelike.Content.Core.Entities
         }
 
         protected virtual void DrawHitboxes() {
-            GameDebug.GameDebug.AddToBoxDebugBuffer(GetTileCollisionHitbox(), Color.Red);
-            GameDebug.GameDebug.AddToBoxDebugBuffer(Hitbox, Color.Blue);
+            GameDebug.AddToBoxDebugBuffer(GetTileCollisionHitbox(), Color.Red);
+            GameDebug.AddToBoxDebugBuffer(Hitbox, Color.Blue);
         }
 
     }

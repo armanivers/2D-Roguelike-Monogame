@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 
@@ -47,7 +48,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                     return false;
                 if (!Hitbox.Intersects(shootingEntity.Hitbox))
                 {
-                    if (Hitbox.Intersects(ControllingPlayer.Player.Instance.Hitbox))
+                    if (Hitbox.Intersects(Player.Instance.Hitbox))
                     {
                         return true;
                     }
@@ -55,7 +56,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
                 Position += Acceleration * flyingSpeed * speedModifier;
             }
-            return false;
         }
 
         public bool CollidesWithSolidTile()
@@ -79,11 +79,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                 }
             }
             return false;
-
-
         }
-
-
-
     }
 }

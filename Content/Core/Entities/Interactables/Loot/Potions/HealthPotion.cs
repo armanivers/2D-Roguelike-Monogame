@@ -12,7 +12,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
     {
         private int healthModifier;
         // timer nur fur z.B. Regeneration wenn es ueber einen Zeitraum hinaus wirkt
-        private float timer;
+        //private float timer;
 
         public HealthPotion(Vector2 pos) : base(pos)
         {

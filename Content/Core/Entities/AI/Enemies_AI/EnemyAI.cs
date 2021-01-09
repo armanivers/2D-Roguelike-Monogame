@@ -4,6 +4,7 @@ using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
 using _2DRoguelike.Content.Core.Entities.Weapons;
+using _2DRoguelike.Content.Core.GameDebugger;
 using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
@@ -50,7 +51,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             // Für Debug
             foreach (Rectangle box in effectiveRange)
             {
-                GameDebug.GameDebug.AddToBoxDebugBuffer(box, Color.Violet);
+                GameDebug.AddToBoxDebugBuffer(box, Color.Violet);
             }
 
             foreach (Rectangle box in effectiveRange)

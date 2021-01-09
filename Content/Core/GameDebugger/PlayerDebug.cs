@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace _2DRoguelike.Content.Core.GameDebug
+namespace _2DRoguelike.Content.Core.GameDebugger
 {
     class PlayerDebug
     {

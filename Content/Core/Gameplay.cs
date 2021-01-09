@@ -5,15 +5,12 @@ using _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects;
 using _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Loot.WeaponLoots;
+using _2DRoguelike.Content.Core.GameDebugger;
 using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 namespace _2DRoguelike.Content.Core
 {
@@ -33,7 +30,7 @@ namespace _2DRoguelike.Content.Core
             StatisticsManager.InitializeScore();
             LevelManager.LoadContent();
 
-            // EntityBasis Konstruktor f�gt automatisch zur EntityManager.entities hinzu
+            // EntityBasis Konstruktor fuegt automatisch zur EntityManager.entities hinzu
 
             new Player(LevelManager.currentmap.getSpawnpoint() * new Vector2(32), 100, 5);
 
@@ -81,7 +78,7 @@ namespace _2DRoguelike.Content.Core
             UIManager.ClearElements();
             //MediaPlayer.Stop();
             CutsceneManager.ClearCutscene();
-            GameDebug.GameDebug.UnloadHitboxBuffer();
+            GameDebug.UnloadHitboxBuffer();
         }
 
         public void Update(GameTime gameTime)
@@ -117,7 +114,7 @@ namespace _2DRoguelike.Content.Core
 
             if (Game1.gameSettings.DEBUG)
             {
-                GameDebug.GameDebug.DrawDynamic(spriteBatch);
+                GameDebug.DrawDynamic(spriteBatch);
             }
 
             spriteBatch.End();
@@ -133,7 +130,7 @@ namespace _2DRoguelike.Content.Core
 
             if (Game1.gameSettings.DEBUG)
             {
-                GameDebug.GameDebug.DrawStatic(spriteBatch);
+                GameDebug.DrawStatic(spriteBatch);
             }
             spriteBatch.End();
 

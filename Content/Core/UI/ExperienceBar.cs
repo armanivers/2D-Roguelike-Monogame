@@ -22,7 +22,7 @@ namespace _2DRoguelike.Content.Core.UI
         private int ySafezone = 90;
 
         // text position relative to xpbar position
-        private int textOffsetY = 25;
+        //private int textOffsetY = 25;
 
         private Texture2D xpbarContainer;
         private Texture2D xpbarBar;

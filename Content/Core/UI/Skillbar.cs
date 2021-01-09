@@ -48,7 +48,7 @@ namespace _2DRoguelike.Content.Core.UI
             usedSlotTexture = TextureManager.ui.slotUsed;
             selectedItemFrame = TextureManager.ui.selectedItemFame;
             
-            xOffset = 11;
+            xOffset = 12;
             yOffset = 16;
             itemFrameWidth = 50;
             

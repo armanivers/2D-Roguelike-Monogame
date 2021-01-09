@@ -188,17 +188,6 @@ namespace _2DRoguelike.Content.Core.Entities
             // hier sollte das in creature sein, also base.update() aufrufen, momentan auskommentiert?
             RefreshDamageTakenTimer();
 
-
-            #region Testinputs
-            if (InputController.keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.K))
-                if (this is Enemy)
-                    Kill();
-            if (InputController.keyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.X))
-                if (this is ControllingPlayer.Player)
-                    Kill();
-            #endregion
-
-
             if (IsDead())
             {
                 CommenceKillLogic();

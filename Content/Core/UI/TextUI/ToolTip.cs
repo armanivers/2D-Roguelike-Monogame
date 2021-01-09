@@ -14,7 +14,7 @@ namespace _2DRoguelike.Content.Core.UI
         private Player target;
 
         private Vector2 tooltipPosition;
-        private float scalingFactor;
+        // private float scalingFactor;
         private float visibility;
 
         private String interactWithContainer = "Press F To Interact";
@@ -23,7 +23,7 @@ namespace _2DRoguelike.Content.Core.UI
         public ToolTip(Player player)
         {
             target = player;
-            scalingFactor = 2.2f;
+            // scalingFactor = 2.2f;
             visibility = 0;
             tooltipPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - interactWithContainerLength/2, Game1.gameSettings.screenHeight/2+60);
         }

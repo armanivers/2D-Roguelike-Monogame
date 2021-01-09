@@ -10,21 +10,12 @@
 #endregion File Description
 
 #region Using Statements
-
-using _2DRoguelike.Content.Core.GameDebug;
-using _2DRoguelike.Content.Core.Entities;
-using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
-using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using System;
 using System.Threading;
-using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
-using System.Diagnostics;
-using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.Statistics;
 
 #endregion Using Statements
