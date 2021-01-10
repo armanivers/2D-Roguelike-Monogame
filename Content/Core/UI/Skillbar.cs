@@ -22,14 +22,15 @@ namespace _2DRoguelike.Content.Core.UI
         private float itemFrameWidth;
 
         public Texture2D usedSlotTexture;
-        private Vector2 usedSlotPosition;
 
-        private float scalingFactor;
+        private float scalingFactor = 2.7f;
 
-        private float xOffset;
-        private float yOffset;
+        // transparent/unused white space in the texutre itself
+        private float skillbarWhitespaceHeight;
+        private float skillbarWhitespaceWidth;
 
-        // TODO: add item not unlocked Texture(red cross) + item selected texutre (frame/bubble)
+        // distance between skillbar and lower screen end
+        private float skillbarYOffset = 100;
 
         //current selected weapon
         private int currentWeapon;
@@ -39,20 +40,17 @@ namespace _2DRoguelike.Content.Core.UI
         public Skillbar(Player player)
         {
             target = player;
-            scalingFactor = 2.2f;
-            
+
+            skillbarWhitespaceWidth = 29 * scalingFactor;
+            skillbarWhitespaceHeight = 23 * scalingFactor;
+            itemFrameWidth = 24 * scalingFactor;
+
             skillbarTexture = TextureManager.ui.skillbar;
-            skillbarPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - skillbarTexture.Width * scalingFactor / 2, Game1.gameSettings.screenHeight-skillbarTexture.Height * scalingFactor - 30);
-            
             redCrossSlotTexture = TextureManager.ui.LockedWeapon;
             usedSlotTexture = TextureManager.ui.slotUsed;
             selectedItemFrame = TextureManager.ui.selectedItemFame;
-            
-            xOffset = 12;
-            yOffset = 16;
-            itemFrameWidth = 50;
-            
-            usedSlotPosition = new Vector2(skillbarPosition.X+xOffset,skillbarPosition.Y+yOffset);
+
+            skillbarPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - (skillbarTexture.Width* scalingFactor - skillbarWhitespaceWidth) / 2, Game1.gameSettings.screenHeight-(skillbarTexture.Height*scalingFactor - skillbarWhitespaceHeight)-skillbarYOffset);
 
             weaponData = new List<WeaponCooldownData>();
         }
@@ -71,7 +69,7 @@ namespace _2DRoguelike.Content.Core.UI
                 if (unlocked)
                 {
                     var timerPercentage = 1 - currentCooldown / maxCooldown ; // (1 -) used to revert the red effect, means red highlight only when weapon in cooldown
-                    weaponSlotHeight = timerPercentage * 18; //textureheight = 18 stattdessen usedSlotTexture.Height!!!! sollten keine hardgecodede werte sein
+                    weaponSlotHeight = timerPercentage*16; //textureheight = 18 stattdessen usedSlotTexture.Height!!!! sollten keine hardgecodede werte sein
                 }
                 else
                 {
@@ -114,27 +112,29 @@ namespace _2DRoguelike.Content.Core.UI
             spriteBatch.Draw(skillbarTexture, skillbarPosition, null, Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
 
             //selected weapon icon (TODO: little bubble on top maybe or frame around weapon)
-            spriteBatch.Draw(selectedItemFrame, new Vector2(usedSlotPosition.X-10+(currentWeapon* itemFrameWidth), usedSlotPosition.Y-16), null,Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
+            spriteBatch.Draw(selectedItemFrame, new Vector2(skillbarPosition.X+1+(currentWeapon * itemFrameWidth), skillbarPosition.Y + skillbarWhitespaceHeight), null,Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
             
             //cooldowns of weapons
 
-            for(int i = 0; i < weaponData.Count; i++)
+            for(int i = 0; i < weaponData.Count; i++) 
             {
                 if (weaponData[i].unlocked)
                 {
-                    spriteBatch.Draw(usedSlotTexture, new Vector2(usedSlotPosition.X + (itemFrameWidth * i), usedSlotPosition.Y), new Rectangle((int)usedSlotPosition.Y, (int)usedSlotPosition.X, usedSlotTexture.Width, (int)weaponData[i].weaponSlotHeight), Color.White * 0.5f, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
+                    Debug.Print("" + weaponData[i].weaponSlotHeight);
+                    spriteBatch.Draw(usedSlotTexture, new Vector2(skillbarPosition.X+1 + (itemFrameWidth * i), skillbarPosition.Y + skillbarWhitespaceHeight+1),
+                        new Rectangle(0, 0, usedSlotTexture.Width, (int)weaponData[i].weaponSlotHeight+3),
+                        Color.White * 0.5f, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
                 }
                 else
                 {
-                    spriteBatch.Draw(redCrossSlotTexture, new Vector2(usedSlotPosition.X + (itemFrameWidth * i), usedSlotPosition.Y), null, Color.White*0.8F, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
+                    spriteBatch.Draw(redCrossSlotTexture, new Vector2(skillbarPosition.X + (itemFrameWidth * i), skillbarPosition.Y+ skillbarWhitespaceHeight ), null, Color.White*0.8F, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
                 }
             }
         }
 
         public override void ForceResolutionUpdate()
         {
-            skillbarPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - skillbarTexture.Width * scalingFactor / 2, Game1.gameSettings.screenHeight - skillbarTexture.Height * scalingFactor - 30);
-            usedSlotPosition = new Vector2(skillbarPosition.X + xOffset, skillbarPosition.Y + yOffset);
+            skillbarPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - (skillbarTexture.Width * scalingFactor - skillbarWhitespaceWidth) / 2, Game1.gameSettings.screenHeight - (skillbarTexture.Height * scalingFactor - skillbarWhitespaceHeight) - skillbarYOffset);
         }
 
     }
