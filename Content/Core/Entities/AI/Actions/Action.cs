@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Actions
 {
@@ -9,6 +10,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
     {
         public AnimationIdentifier AnimationIdentif { get; set; }
         public Humanoid CallingInstance { get; set; }
+
 
         public Action(Humanoid callInst, AnimationIdentifier animIdent) {
             CallingInstance = callInst;
@@ -25,6 +27,11 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
             //if(CallingInstance is Player.Player) Debug.WriteLine(ret);
             return ret;
         }
+
+        public virtual bool StateFinished(float gameTime) {
+            return true;
+        }
+
 
     }
 }

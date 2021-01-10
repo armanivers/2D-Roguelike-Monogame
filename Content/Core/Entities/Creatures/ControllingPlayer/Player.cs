@@ -265,12 +265,12 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         }
 
 
-        public override Action DetermineAction()
+        public override Action DetermineAction(float currentGameTime)
         {
 
 
-            if (InputController.IsRightMouseButtonHeld())
-                return new Protect(this);
+            if (InputController.IsRightMouseButtonHeld() && Protect.CanSwitchToState(currentGameTime))
+                return new Protect(this, currentGameTime);
             else Invincible = false;
 
             if (InputController.IsLeftMouseButtonPressed() && !IsAttacking() && CanAttack())

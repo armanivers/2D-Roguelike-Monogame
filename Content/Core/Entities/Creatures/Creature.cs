@@ -121,7 +121,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public void DisplayDamageTaken()
         {
-            colour = Color.Red;
+            currentColor = Color.Red;
             hurtTimerStart = true;
             hurtTimer = 0;
         }
@@ -132,7 +132,7 @@ namespace _2DRoguelike.Content.Core.Entities
             {
                 if (hurtTimer >= hurtTimerLimit)
                 {
-                    colour = Color.White;
+                    currentColor = Color.White;
                     hurtTimerStart = false;
                 }
                 hurtTimer += 0.1f;

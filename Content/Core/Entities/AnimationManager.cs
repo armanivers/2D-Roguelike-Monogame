@@ -16,7 +16,9 @@ namespace _2DRoguelike.Content.Core.Entities
         private float timer;
         private bool running = true;
         private bool reverse;
+        private bool prioritized;
         public bool Reverse { get => reverse; set => reverse = value; }
+        public bool Prioritized { get => prioritized; set => prioritized = value; }
 
         public Vector2 Position { get; set; }
 
@@ -26,6 +28,7 @@ namespace _2DRoguelike.Content.Core.Entities
             this.animation = animation;
             this.Position = entity.Position;
             Reverse = animation.Reverse;
+            Prioritized = animation.Prioritized;
         }
 
         public void Play(Animation newAnimation, bool reverse)
@@ -40,6 +43,7 @@ namespace _2DRoguelike.Content.Core.Entities
             }
             this.animation = newAnimation;
             this.Reverse = reverse;
+            this.Prioritized = animation.Prioritized;
             newAnimation.CurrentFrame = !this.Reverse ? 0 : animation.FrameCount - 1 ;
             timer = 0f;
             running=true;
@@ -59,7 +63,7 @@ namespace _2DRoguelike.Content.Core.Entities
         }
 
         public bool IsPrioritized() {
-            return animation.Prioritized;
+            return Prioritized;
         }
 
         public void Update(GameTime gameTime)
@@ -102,7 +106,7 @@ namespace _2DRoguelike.Content.Core.Entities
             spritebatch.Draw(animation.Texture,
                 Position,
                 new Rectangle(animation.CurrentFrame * animation.FrameWidth, animation.yOffest, animation.FrameWidth, animation.FrameHeight), 
-                entity.colour * entity.transparency,
+                entity.currentColor * entity.transparency,
                 0f,
                 entity.DrawOrigin,
                 entity.ScaleFactor,

@@ -36,6 +36,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         public Actions.Action DetermineAction() {
             StartAttemptForReaction();
             Actions.Action ret = GetAIDecision();
+
             ResetReactionIfNoReactionAttempt();
             return ret;
         }

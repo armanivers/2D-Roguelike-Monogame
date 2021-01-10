@@ -64,7 +64,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             }
         }
 
-        public override Actions.Action DetermineAction()
+        public override Actions.Action DetermineAction(float elapsedTime)
         {
             return ai.DetermineAction();
         }

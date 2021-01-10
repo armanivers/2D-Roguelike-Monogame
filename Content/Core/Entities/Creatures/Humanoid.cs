@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.Entities.Loot;
@@ -30,17 +31,19 @@ namespace _2DRoguelike.Content.Core.Entities
         public Weapon CurrentWeapon { get; set; }
         public Humanoid(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed, float scaleFactor = 1f) : base(position, maxHealthPoints, attackTimespan, movingSpeed, scaleFactor)
         {
-            // scaleFactor = 1f;
-            Hitbox = new Rectangle((int)(Position.X + 17*ScaleFactor), (int)(Position.Y + 14*ScaleFactor), (int)(29*ScaleFactor), (int)(49*ScaleFactor));
+            Hitbox = new Rectangle((int)(Position.X + 17 * ScaleFactor), (int)(Position.Y + 14 * ScaleFactor), (int)(29 * ScaleFactor), (int)(49 * ScaleFactor));
             // alle Humanoids besitzen gleiche Hitbox
+
+            // initialer State:
+            PerformedAction = new Wait(this);
         }
 
         // ----------------------------------
 
         public abstract void AddToWeaponInventory(Weapon weapon);
-        public abstract Actions.Action DetermineAction();
+        public abstract Actions.Action DetermineAction(float gameTime);
 
-       
+
 
         public void SetLineOfSight(Vector2 direction)
         {
@@ -99,7 +102,8 @@ namespace _2DRoguelike.Content.Core.Entities
             return Vector2.Zero;
         }
 
-        public virtual bool CannotWalkHere() {
+        public virtual bool CannotWalkHere()
+        {
             return CollidesWithSolidTile();
         }
         public bool CollidesWithSolidTile()
@@ -202,7 +206,10 @@ namespace _2DRoguelike.Content.Core.Entities
 
                 if (AttackTimeSpanTimer <= attackTimespan)
                     AttackTimeSpanTimer += elapsedTime;
-                PerformedAction = DetermineAction();
+
+                if (PerformedAction.StateFinished((float)gameTime.TotalGameTime.TotalSeconds))
+                    PerformedAction = DetermineAction((float)gameTime.TotalGameTime.TotalSeconds);
+                
                 PerformedAction.ExecuteAction();
 
                 SetAnimation(PerformedAction.ChooseAnimation());
