@@ -146,6 +146,12 @@ namespace _2DRoguelike.Content.Core.World.Rooms
                 enemylist.Add(EnemyFactory.CreateRandomEnemy(enemyspawnpoint));
             }
         }
+        public void placeBoss()
+        {
+            int XSPAWN = Width-8;
+            int YSPAWN = Height / 2;
+            enemylist.Add(EnemyFactory.CreateDragonBoss(new Vector2(XSPAWN , YSPAWN)));
+        }
 
         private bool IntersectsTileCollisionHitbox(int enemyPosX, int enemyPosY) {
             Rectangle tileCollisionHitbox = new Rectangle(enemyPosX, enemyPosY, 19, 19);

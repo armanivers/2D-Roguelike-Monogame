@@ -43,7 +43,7 @@ namespace _2DRoguelike.Content.Core.World
             }
             else if (roomObject.Equals(RoomObject.Exit))
             {
-                textureidentifier = Map.Random.Next(0, TileTextureManager.LADDERTILES - 1);
+                textureidentifier = 1;
                 retunTexture = TileTextureManager.laddertileslist[textureidentifier];
             }
             return retunTexture;
@@ -64,7 +64,7 @@ namespace _2DRoguelike.Content.Core.World
             }
             else if (roomObject.Equals(RoomObject.Exit))
             {
-                textureidentifier = Map.Random.Next(0, TileTextureManager.LADDERTILES - 1);
+                textureidentifier = 2;
                 retunTexture = TileTextureManager.laddertileslist[textureidentifier];
             }
             return retunTexture;

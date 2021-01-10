@@ -18,7 +18,7 @@ namespace _2DRoguelike.Content.Core.World.Tiles
         public const int GRASSTILES = 2;
         public static Texture2D[] grasstileslist { get; private set; }
         //Ladder
-        public const int LADDERTILES = 1;
+        public const int LADDERTILES = 3;
         public static Texture2D[] laddertileslist { get; private set; }
         //Mable
         public const int MABLETILES = 1;

@@ -163,9 +163,9 @@ namespace _2DRoguelike.Content.Core.World.Maps
         }
         public bool avoidRoomCollision(Room room)
         {
-            for (int y = room.YPos; y < room.YPos + room.Height + 1; y++)
+            for (int y = room.YPos; y < room.YPos + room.Height; y++)
             {
-                for (int x = room.XPos; x < room.XPos + room.Width + 1; x++)
+                for (int x = room.XPos; x < room.XPos + room.Width ; x++)
                 {
                     if (chararray[x, y] != 0)
                     {

@@ -1225,6 +1225,30 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/WorldElements/Tiles/ladder.png;Assets/Graphics/WorldElements/Tiles/ladder0.png
 
+#begin Assets/Graphics/WorldElements/Tiles/ladder1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/WorldElements/Tiles/ladder1.png
+
+#begin Assets/Graphics/WorldElements/Tiles/ladder2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/WorldElements/Tiles/ladder2.png
+
 #begin Assets/Graphics/WorldElements/Tiles/marble0.png
 /importer:TextureImporter
 /processor:TextureProcessor
