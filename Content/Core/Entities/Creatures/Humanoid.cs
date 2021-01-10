@@ -28,7 +28,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public Weapon[] WeaponInventory;
         public Weapon CurrentWeapon { get; set; }
-        public Humanoid(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
+        public Humanoid(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed, float scaleFactor = 1f) : base(position, maxHealthPoints, attackTimespan, movingSpeed, scaleFactor)
         {
             // scaleFactor = 1f;
             Hitbox = new Rectangle((int)(Position.X + 17*ScaleFactor), (int)(Position.Y + 14*ScaleFactor), (int)(29*ScaleFactor), (int)(49*ScaleFactor));

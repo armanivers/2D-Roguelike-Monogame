@@ -47,9 +47,9 @@ namespace _2DRoguelike.Content.Core.Entities
 
 
 
-        public Creature(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position)
+        public Creature(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed, float scaleFactor = 1f) : base(position, scaleFactor)
         {
-
+            
             if (this is Player)
             {
                 EntityManager.player = (Player)this;

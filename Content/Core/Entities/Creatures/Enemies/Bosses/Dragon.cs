@@ -12,14 +12,14 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
     {
         const int DEFAULT_HEALTHPOINTS = 200;
         const int WEAPON_SLOT_CNT = 2; // 0: ShortRange / 1: LongRange
-        public Dragon(Vector2 position, float movingSpeed = 3, float attackTimespan = 0.4f) : base(position, DEFAULT_HEALTHPOINTS, attackTimespan, movingSpeed)
+        public Dragon(Vector2 position, float movingSpeed = 3, float attackTimespan = 0.4f, float scaleFactor = 1f) : base(position, DEFAULT_HEALTHPOINTS, attackTimespan, movingSpeed, scaleFactor)
         {
 
              ai = new DragonAI(this);
 
             WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
 
-            WeaponInventory[0] = new Fist(this, 2.4f, 2f, 1.3f);
+            WeaponInventory[0] = new Fist(this, 2.4f, 0.8f, 1.3f);
             WeaponInventory[1] = new FireballWeapon(this, 2f, 0.8f);
 
             CurrentWeapon = WeaponInventory[0];

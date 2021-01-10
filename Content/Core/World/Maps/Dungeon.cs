@@ -140,7 +140,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
             // DEBUG-Test:
             foreach (Room room in roomlist)
             {
-                GameDebug.AddToBoxDebugBuffer(room.roomhitbox, Color.Black, true);
+                GameDebug.AddToBoxDebugBuffer(room.roomhitbox, Color.LightGray, true);
             }
         }
         public void SpawnEnemies()

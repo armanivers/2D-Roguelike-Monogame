@@ -16,9 +16,9 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
 
 
-        public override Action DetermineAction()
+        protected override Action GetAIDecision()
         {
-            // TODO: 
+
             if (agent.IsPlayerInTheSameRoom())
             {
 
@@ -36,7 +36,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
                         }
                     }
-                    else if (!agent.WeaponInventory[2].InUsage())
+                    if (!agent.WeaponInventory[2].InUsage())
                     {
                         if (SimulateArrowAttack())
                         {
@@ -49,16 +49,12 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
                     // TODO: Teleport
                     /*
-                    else if (inDangerZone()) {
+                    if (inDangerZone()) {
                         if (React()) { 
                             return NullReferenceException Teleport(agent);
                         }
                     }
                     */
-                    else
-                    {
-                        ResetReactionTimer();
-                    }
                 }
                 return new Move(agent);
             }

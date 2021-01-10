@@ -6,6 +6,7 @@ using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.Entities.Weapons;
+using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.AI.Enemies_AI.Bosses_AI
@@ -17,35 +18,35 @@ namespace _2DRoguelike.Content.Core.Entities.AI.Enemies_AI.Bosses_AI
 
         }
 
-        public override Actions.Action DetermineAction()
+        protected override Actions.Action GetAIDecision()
         {
-            if (!agent.IsAttacking())
+            if (agent.IsPlayerInTheSameRoom())
             {
-                if (!agent.WeaponInventory[0].InUsage())
+                if (!agent.IsAttacking())
                 {
-                    if (SimulateMeleeAttack())
+                    if (!agent.WeaponInventory[0].InUsage())
                     {
-                        if (TryToAttack(agent.WeaponInventory[0]))
-                            return new Melee(agent);
+                        if (SimulateMeleeAttack())
+                        {
+                            if (TryToAttack(agent.WeaponInventory[0]))
+                                return new Melee(agent);
+                        }
                     }
-                }
 
-                // Problem: Weapon0 not in usage but Weapon1 in usage:
-                // Reaction time wird nicht zurückgesetzt, bis Player gehitted wird oder Weapon1 einsatzbereit
-
-                if (!agent.WeaponInventory[1].InUsage())
-                {
-                    if (SimulateArrowAttack())
+                    if (!agent.WeaponInventory[1].InUsage())
                     {
-                        if (TryToAttack(agent.WeaponInventory[1]))
-                            return new RangeAttack(agent);
+                        if (SimulateArrowAttack())
+                        {
+                            if (TryToAttack(agent.WeaponInventory[1]))
+                                return new RangeAttack(agent);
+                        }
+
                     }
-                    
+
                 }
-                else
-                    ResetReactionTimer();
+                return new Move(agent);
             }
-            return new Move(agent);
+            else return new Wait(agent);
         }
 
         public override Vector2 DeterminePath()
@@ -54,9 +55,10 @@ namespace _2DRoguelike.Content.Core.Entities.AI.Enemies_AI.Bosses_AI
             foreach (Rectangle effective in effectiveMeleeRange)
             {
                 if (effective.Intersects(Player.Instance.Hitbox))
+                {
                     return Vector2.Zero;
+                }
             }
-
             return Vector2.Normalize(agent.GetAttackDirection() - agent.Position);
         }
     }

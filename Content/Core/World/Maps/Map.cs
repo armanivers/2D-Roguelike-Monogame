@@ -11,6 +11,12 @@ namespace _2DRoguelike.Content.Core.World.Maps
 {
     abstract class Map
     {
+        // Todo:Methode, die einen zufälligen Punkt auf der Map zurückgibt, den man betreten kann (für teleportieren)
+        public Vector2 getRandomCoordinateOnCurrentRoom() {
+            return Vector2.Zero;
+        }
+
+
         public Tile[,] tilearray;
         public char[,] chararray;
         public int width;

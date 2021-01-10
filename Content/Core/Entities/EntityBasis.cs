@@ -60,8 +60,9 @@ namespace _2DRoguelike.Content.Core.Entities
         public float rotation;
         public bool isExpired;
 
-        public EntityBasis(Vector2 pos)
+        public EntityBasis(Vector2 pos, float scaleFactor = 1f)
         {
+            this.scaleFactor = scaleFactor;
             Position = pos;
             isExpired = false;
             rotation = 0;

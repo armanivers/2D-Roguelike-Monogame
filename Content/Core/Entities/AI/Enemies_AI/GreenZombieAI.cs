@@ -14,27 +14,12 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         public GreenZombieAI(GreenZombie agent) : base(agent)
         {
         }
-        public override Action DetermineAction()
+        protected override Action GetAIDecision()
         {
             if (agent.IsPlayerInTheSameRoom())
             {
                 if (!agent.IsAttacking())
                 {
-                    /*if (!agent.WeaponInventory[1].InUsage())
-                    {
-
-                        // Check, ob Pfeil treffen würde
-                        if (SimulateArrowAttack())
-                        {
-                            agent.WeaponInventory[1].CooldownTimer = 0;
-                            agent.CurrentWeapon = agent.WeaponInventory[1];
-                            return new RangeAttack(agent);
-                        }
-                    }
-                     */
-
-
-
                     if (!agent.WeaponInventory[0].InUsage())
                     {
                         if (SimulateMeleeAttack())
@@ -42,11 +27,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                             if (TryToAttack(agent.WeaponInventory[0]))
                                 return new Melee(agent);
                         }
-                        else
-                        {
-                            // es wurde "zu spät reagiert" und der Player ist entkommen → Reaktion wieder zurücksetzen
-                            ResetReactionTimer();
-                        }
+
 
                     }
                 }

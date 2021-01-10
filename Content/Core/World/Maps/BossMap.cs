@@ -1,5 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.GameDebugger;
 using _2DRoguelike.Content.Core.World.Rooms;
 using Microsoft.Xna.Framework;
 using System;
@@ -19,6 +20,11 @@ namespace _2DRoguelike.Content.Core.World.Maps
             bossroom.setExit();
             bossroom.placeBoss();
             currentroom = bossroom;
+            
+            // redundant, aber setzt zumindest die roomhitbox
+            currentroom.setXPos(currentroom.XPos);
+            currentroom.setYPos(currentroom.YPos);     
+
             tilearray = fillTile(bossroom.room);
         }
         public override Vector2 getSpawnpoint()
@@ -28,8 +34,8 @@ namespace _2DRoguelike.Content.Core.World.Maps
 
         public override void Update(Player player)
         {
-            string s = "Enemies= "+bossroom.enemylist.Count;
-            Debug.Print(s);
+            GameDebug.AddToBoxDebugBuffer(LevelManager.currentmap.currentroom.roomhitbox, Color.LightGray);
+            // Debug.WriteLine("Enemies= " + bossroom.enemylist.Count);
         }
 
         public override void clearEnemies()

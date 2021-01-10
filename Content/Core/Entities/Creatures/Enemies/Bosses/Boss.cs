@@ -7,8 +7,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
 {
     public abstract class Boss : Enemy
     {
-        public Boss(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position,maxHealthPoints, attackTimespan, movingSpeed){
-            ScaleFactor = 1.5f;
+        public Boss(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed, float scaleFactor = 1.5f) : base(position,maxHealthPoints, attackTimespan, movingSpeed, scaleFactor){
         }
 
         // TODO

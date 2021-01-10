@@ -133,6 +133,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
             //this.position = new Vector2(2*32, 5*32); bei statischer Map
 
+            
             canInteract = false;
             interactableObjects = new List<InteractableBase>();
 
