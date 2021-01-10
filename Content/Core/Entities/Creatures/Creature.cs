@@ -47,9 +47,9 @@ namespace _2DRoguelike.Content.Core.Entities
 
 
 
-        public Creature(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position)
+        public Creature(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed, float scaleFactor = 1f) : base(position, scaleFactor)
         {
-
+            
             if (this is Player)
             {
                 EntityManager.player = (Player)this;
@@ -121,7 +121,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public void DisplayDamageTaken()
         {
-            colour = Color.Red;
+            currentColor = Color.Red;
             hurtTimerStart = true;
             hurtTimer = 0;
         }
@@ -132,7 +132,7 @@ namespace _2DRoguelike.Content.Core.Entities
             {
                 if (hurtTimer >= hurtTimerLimit)
                 {
-                    colour = Color.White;
+                    currentColor = Color.White;
                     hurtTimerStart = false;
                 }
                 hurtTimer += 0.1f;
@@ -160,8 +160,8 @@ namespace _2DRoguelike.Content.Core.Entities
         }
 
         protected virtual void DrawHitboxes() {
-            GameDebug.AddToBoxDebugBuffer(GetTileCollisionHitbox(), Color.Red);
-            GameDebug.AddToBoxDebugBuffer(Hitbox, Color.Blue);
+            GameDebug.AddToBoxDebugBuffer(GetTileCollisionHitbox(), Color.Black);
+            GameDebug.AddToBoxDebugBuffer(Hitbox, Color.DarkBlue);
         }
 
     }

@@ -16,22 +16,12 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         {
             
         }
-        public override Action DetermineAction()
+        protected override Action GetAIDecision()
         {
             if (agent.IsPlayerInTheSameRoom())
             {
                 if (!agent.IsAttacking())
                 {
-                    /*if (!agent.WeaponInventory[1].InUsage())
-                    {
-                        // Check, ob Pfeil treffen würde
-                        if (SimulateArrowAttack()) { 
-                            agent.WeaponInventory[1].CooldownTimer = 0;
-                            agent.CurrentWeapon = agent.WeaponInventory[1];
-                            return new RangeAttack(agent);
-                        }
-                    }
-                    else */
                     if (!agent.WeaponInventory[0].InUsage())
                     {
                         if (SimulateMeleeAttack())
@@ -41,12 +31,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                             if(TryToAttack(agent.WeaponInventory[0]))
                                 return new Melee(agent);
                             
-                        }
-                        // TODO: Verschieben
-                        else
-                        {
-                            // Es wurde "zu spät reagiert" und der Player ist entkommen
-                            ResetReactionTimer();
                         }
                     }
                 }

@@ -20,6 +20,7 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
         public Texture2D LootBow { get; private set; }
         public Texture2D LootDagger { get; private set; }
         public Texture2D LootBomb { get; private set; }
+        public Texture2D LootSpear { get; private set; }
 
         // Loot Container Data
         public Texture2D LootBag { get; private set; }
@@ -43,6 +44,8 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
             LootBow = content.Load<Texture2D>("Assets/Graphics/LootElements/Weapons/LootBow");
             LootDagger = content.Load<Texture2D>("Assets/Graphics/LootElements/Weapons/LootDagger");
             LootBomb = content.Load<Texture2D>("Assets/Graphics/LootElements/Weapons/LootBomb");
+            LootSpear = content.Load<Texture2D>("Assets/Graphics/LootElements/Weapons/LootSpear");
+
 
             // Potion Data
             HealthPotion = content.Load<Texture2D>("Assets/Graphics/LootElements/Potions/HealthPotion");

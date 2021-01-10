@@ -133,6 +133,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
             //this.position = new Vector2(2*32, 5*32); bei statischer Map
 
+            
             canInteract = false;
             interactableObjects = new List<InteractableBase>();
 
@@ -156,12 +157,12 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
             // add weapons manually
 
-            AddToWeaponInventory(new Dagger(this));
-            AddToWeaponInventory(new Axe(this));
-            AddToWeaponInventory(new Bow(this));
-            // AddToWeaponInventory(new FireballWeapon(this)); // entweder Spear oder Fireball
-            AddToWeaponInventory(new BombWeapon(this));
-            AddToWeaponInventory(new Spear(this));
+            //AddToWeaponInventory(new Dagger(this));
+            //AddToWeaponInventory(new Axe(this));
+            //AddToWeaponInventory(new Bow(this));
+            //// AddToWeaponInventory(new FireballWeapon(this)); // entweder Spear oder Fireball
+            //AddToWeaponInventory(new BombWeapon(this));
+            //AddToWeaponInventory(new Spear(this));
             
 
             ChangeCurrentWeaponSlot(0);
@@ -264,12 +265,12 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         }
 
 
-        public override Action DetermineAction()
+        public override Action DetermineAction(float currentGameTime)
         {
 
 
-            if (InputController.IsRightMouseButtonHeld())
-                return new Protect(this);
+            if (InputController.IsRightMouseButtonHeld() && Protect.CanSwitchToState(currentGameTime))
+                return new Protect(this, currentGameTime);
             else Invincible = false;
 
             if (InputController.IsLeftMouseButtonPressed() && !IsAttacking() && CanAttack())

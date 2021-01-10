@@ -23,7 +23,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
         private int impactDamage;
         private float explosionDamageMultiplier;
 
-        public FireballProjectile(Humanoid shootingCreat, float explosionDamageMultiplier = 1f) : base(new Vector2(shootingCreat.Hitbox.X + 16, shootingCreat.Hitbox.Y + 25), -TextureManager.projectiles.Fireball.Width/4, -TextureManager.projectiles.Fireball.Height / 4, SPEED)
+        public FireballProjectile(Humanoid shootingCreat, float explosionDamageMultiplier = 1f) : base(new Vector2(shootingCreat.Hitbox.X + 16, shootingCreat.Hitbox.Y + 25), -TextureManager.projectiles.Fireball.Width / 4, -TextureManager.projectiles.Fireball.Height / 4, SPEED)
         {
             this.ScaleFactor = 0.8f;
             this.texture = TextureManager.projectiles.Fireball;
@@ -114,7 +114,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
                         if (Hitbox.Intersects(Player.Instance.Hitbox))
                         {
                             Player.Instance.DeductHealthPoints(impactDamage);
-                            Incinerate();
+                            Incinerate(shootingEntity);
                         }
                     }
                 }
@@ -128,12 +128,17 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
             return shootingEntity.Hitbox.Intersects(Hitbox);
         }
 
+
         private void Incinerate()
         {
-            new Explosion(Position, explosionDamageMultiplier);
+            Incinerate(null);
+        }
+
+        private void Incinerate(Humanoid protectedEntity)
+        {
+            new Explosion(Position, explosionDamageMultiplier, 1, protectedEntity);
             //Velocity = Vector2.Zero;
             isExpired = true;
         }
-
     }
 }

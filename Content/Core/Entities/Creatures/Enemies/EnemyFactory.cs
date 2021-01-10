@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +12,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         public static Enemy CreateRandomEnemy(Vector2 spawnpoint)
         {
             Enemy returnvalue=null;
-            int randomvalue = Random.Next(0,100);
+            int randomvalue = Random.Next(0,101);
+
             if (randomvalue <= 35)
             {
                 returnvalue = new BrownZombie(spawnpoint * new Vector2(32));
@@ -29,6 +31,10 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
                 returnvalue = new Wizard(spawnpoint * new Vector2(32));
             }
             return returnvalue;
+        }
+        public static Enemy CreateDragonBoss(Vector2 spawnpoint)
+        {
+            return new Dragon(spawnpoint * new Vector2(32));
         }
     }
 }

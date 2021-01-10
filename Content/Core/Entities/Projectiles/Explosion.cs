@@ -12,21 +12,23 @@ namespace _2DRoguelike.Content.Core.Entities
     class Explosion : Projectile
     {
 
+        private Humanoid protectedEntity;
         private const float expireTimer = 1;
         private float timer;
         private float damageModifier;
         private const int EXPLOSION_DAMAGE = 1;
 
-        public Explosion(Vector2 pos, float explosionDamageModifier = 1f, float size = 1f): this(pos, Vector2.Zero, 0f, size)
+        public Explosion(Vector2 pos, float explosionDamageModifier = 1f, float size = 1f, Humanoid protectedEntity = null): this(pos, Vector2.Zero, 0f, explosionDamageModifier, size, protectedEntity)
         {
-            this.damageModifier = explosionDamageModifier;
         }
 
-        public Explosion(Vector2 pos, Vector2 direction, float windSpeed, float size = 1f) : base(pos, -TextureManager.projectiles.Explosion.Height/4, -TextureManager.projectiles.Explosion.Height / 4, windSpeed)
+        public Explosion(Vector2 pos, Vector2 direction, float windSpeed, float explosionDamageModifier = 1f, float size = 1f, Humanoid protectedEntity = null) : base(pos, -TextureManager.projectiles.Explosion.Height/4, -TextureManager.projectiles.Explosion.Height / 4, windSpeed)
         {
             ScaleFactor = size;
             this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(TextureManager.projectiles.Explosion.Height/2 * ScaleFactor), (int)(TextureManager.projectiles.Explosion.Height/2 * ScaleFactor));
             this.Acceleration = direction;
+            this.damageModifier = explosionDamageModifier;
+            this.protectedEntity = protectedEntity;
 
             this.texture = TextureManager.projectiles.Explosion;
             animations = new Dictionary<string, Animation>()
@@ -48,16 +50,16 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public void checkCollision()
         {
-            if (this.Hitbox.Intersects(Player.Instance.Hitbox))
+            if (protectedEntity != Player.Instance && this.Hitbox.Intersects(Player.Instance.Hitbox))
                 Player.Instance.DeductHealthPoints((int)(EXPLOSION_DAMAGE * damageModifier));
             foreach (var livingEntity in EntityManager.creatures)
             {
-                if (livingEntity is Creature) //&& livingEntity != Player.Player.Instance
+                if (livingEntity is Humanoid) //&& livingEntity != Player.Player.Instance
                 {
-                    if (this.Hitbox.Intersects(livingEntity.Hitbox))
+                    if (protectedEntity != (Humanoid)livingEntity && this.Hitbox.Intersects(livingEntity.Hitbox))
                     {
                         // TODO: je näher man am Explosionsherd steht,desto höher der Schaden
-                        ((Creature)livingEntity).DeductHealthPoints((int)(EXPLOSION_DAMAGE * damageModifier));
+                        ((Humanoid)livingEntity).DeductHealthPoints((int)(EXPLOSION_DAMAGE * damageModifier));
                     }
                 }
             }

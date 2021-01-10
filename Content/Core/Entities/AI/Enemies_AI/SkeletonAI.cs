@@ -15,7 +15,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         public SkeletonAI(Skeleton agent) : base(agent)
         {
         }
-        public override Action DetermineAction()
+        protected override Action GetAIDecision()
         {
             if (agent.IsPlayerInTheSameRoom())
             {
@@ -33,16 +33,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
                         }
                     }
-                    // else if (!agent.WeaponInventory[0].InUsage())
-                    //{
-                    //    agent.WeaponInventory[0].CooldownTimer = 0;
-                    //    agent.CurrentWeapon = agent.WeaponInventory[0];
-                    //    return new Melee(agent);
-                    //}
-                    else
-                    {
-                        ResetReactionTimer();
-                    }
+
                 }
                 return new Move(agent);
             }

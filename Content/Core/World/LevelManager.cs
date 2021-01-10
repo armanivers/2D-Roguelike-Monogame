@@ -26,9 +26,7 @@ namespace _2DRoguelike.Content.Core.World
         public static void LoadContent()
         {
             levelList = new List<Level>();
-            //levelList.Add(RoomFactory.TestMap());
-            //levelList.Add(RoomFactory.BossMap());
-            levelList.Add(new Level(new Dungeon(), new KillAllEnemies()));
+            levelList.Add(new Level(new BossMap(24, 12), new KillAllEnemies()));
             currentmap = levelList[level].map;
             currenttilemap = currentmap.tilearray;
             playerposition = new Vector2();

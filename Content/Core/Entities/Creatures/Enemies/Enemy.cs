@@ -20,7 +20,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         public Rectangle AttackRangeHitbox;
         // 30% to drop an loot bag
         private const int dropChance = 30;
-        public Enemy(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
+        public Enemy(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed, float scaleFactor = 1f) : base(position, maxHealthPoints, attackTimespan, movingSpeed, scaleFactor)
         {
         }
 
@@ -39,8 +39,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             // TODO: BUG! Enemies stoßen gegen die TileCollisionHitbox der toten Enemies: expired Enemies werden nicht aus der currentroom.enemylist genommen
             foreach (Enemy otherEnemy in LevelManager.currentmap.currentroom.enemylist)
             {
-                if (otherEnemy != this && !otherEnemy.IsDead() && GetTileCollisionHitbox().Intersects(otherEnemy.GetTileCollisionHitbox())) {
-                    // Debug.WriteLine("Enemy at Position:{0} is Stuck with Enemy at Position:{1}!", Position/32, otherEnemy.Position/32);
+                if (otherEnemy != this /*&& !otherEnemy.IsDead()*/ && GetTileCollisionHitbox().Intersects(otherEnemy.GetTileCollisionHitbox())) {
+                     // Debug.WriteLine("Enemy at Position:{0} is Stuck with Enemy at Position:{1}!", Position/32, otherEnemy.Position/32);
                     return true;
                 }
             }
@@ -64,7 +64,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             }
         }
 
-        public override Actions.Action DetermineAction()
+        public override Actions.Action DetermineAction(float elapsedTime)
         {
             return ai.DetermineAction();
         }
@@ -99,7 +99,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
            
             if (LevelManager.currentmap.currentroom == null)
             {
-                // Debug.WriteLine("Current Room is null\n------");
                 return false;
             }
             return LevelManager.currentmap.currentroom.roomhitbox.Intersects(this.Hitbox);

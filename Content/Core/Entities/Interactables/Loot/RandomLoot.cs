@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.WeaponLoots;
 using _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Loot.WeaponLoots;
@@ -13,6 +14,8 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
     class RandomLoot
     {
         // Item IDS 
+        
+        // wieso keine Weapon-Enums? Sind Aussagekräftiger, als IDs 
 
         // drop types
         private static int chestNormal = 0;
@@ -27,30 +30,32 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
         private static List<KeyValuePair<int, int>> chestNormalDroplist = new List<KeyValuePair<int, int>>()
         {
             new KeyValuePair<int,int>(40,0), // 40% chance to get Dagger (id 0)
-            new KeyValuePair<int,int>(40,1), // 30% chance to get Bow (id 1)
-            new KeyValuePair<int,int>(10,3), // 10% chance to get Bomb (id 3)
-            new KeyValuePair<int,int>(10,4) // 10% chance to get Healthpotion (id 4)
+            new KeyValuePair<int,int>(30,1), // 30% chance to get Bow (id 1)
+            new KeyValuePair<int,int>(15,3), // 10% chance to get Bomb (id 3)
+            new KeyValuePair<int,int>(10,5), // 10% chance to get Healthpotion (id 5)
+            new KeyValuePair<int, int>(5,4) // 5% chance to get Spear (id 4)
         };
 
         private static List<KeyValuePair<int, int>> chestDiamondDroplist = new List<KeyValuePair<int, int>>()
         {
-            new KeyValuePair<int,int>(50,6), // 10% chance to get Axe (id 2)
-            new KeyValuePair<int,int>(50,6) // 10% chance to get Healthpotion (id 4)
+            new KeyValuePair<int,int>(50,2), // 50% chance to get Axe (id 2)
+            new KeyValuePair<int,int>(30,5), // 30% chance to get Healthpotion (id 5)
+            new KeyValuePair<int, int>(20,4)// 20% chance to get Spear (id 4)
         };
 
         private static List<KeyValuePair<int, int>> lootbagZombieDroplist = new List<KeyValuePair<int, int>>()
         {
             new KeyValuePair<int,int>(40,0), // 40% chance to get Dagger (id 0)
             new KeyValuePair<int,int>(30,1), // 30% chance to get Bow (id 1)
-            new KeyValuePair<int,int>(10,5), // 10% chance to get XPPOTION (id 5)
+            new KeyValuePair<int,int>(10,6), // 10% chance to get XPPOTION (id 6)
             new KeyValuePair<int,int>(10,3), // 10% chance to get Bomb (id 3)
-            new KeyValuePair<int,int>(10,4) // 10% chance to get Healthpotion (id 4)
+            new KeyValuePair<int,int>(10,5) // 10% chance to get Healthpotion (id 5)
         };
 
         private static List<KeyValuePair<int, int>> lootbagSkeletonDroplist = new List<KeyValuePair<int, int>>()
         {
-            new KeyValuePair<int,int>(50,1), // 40% chance to get Dagger (id 0)
-            new KeyValuePair<int,int>(50,0), // 30% chance to get Bow (id 1)
+            new KeyValuePair<int,int>(50,0), // 40% chance to get Dagger (id 0)
+            new KeyValuePair<int,int>(50,1), // 30% chance to get Bow (id 1)
         };
 
 
@@ -58,9 +63,10 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
         // Main method used to spawn the loot!
         public static void SpawnLoot(int type,Vector2 pos)
         {
+
             int chosenItem;
-            type = 1;
-            switch(type)
+            //type = 1;
+            switch (type)
             {
                 // Normal Chest Loot
                 case 0:
@@ -89,7 +95,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
         private static int DetermineLoot(List<KeyValuePair<int, int>> dropList)
         {
             // % between 0 und 100
-            int randomPercentage = Game1.rand.Next(0, 100);
+            int randomPercentage = Game1.rand.Next(0, 101); // der zweite Wert ist exklusiv (nicht mit einbezogen)
             int pos = 0;
 
             foreach(var itemPercentage in dropList)
@@ -128,12 +134,15 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
                     new BombLoot(pos);
                     break;
                 case 4:
-                    new HealthPotion(pos);
+                    new SpearLoot(pos);
                     break;
                 case 5:
-                    new ExperiencePotion(pos);
+                    new HealthPotion(pos);
                     break;
                 case 6:
+                    new ExperiencePotion(pos);
+                    break;
+                case 7:
                     new HealthRegenerationPotion(pos);
                     break;
                 default:

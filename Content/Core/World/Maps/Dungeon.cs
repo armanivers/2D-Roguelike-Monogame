@@ -140,7 +140,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
             // DEBUG-Test:
             foreach (Room room in roomlist)
             {
-                GameDebug.AddToBoxDebugBuffer(room.roomhitbox, Color.Blue, true);
+                GameDebug.AddToBoxDebugBuffer(room.roomhitbox, Color.LightGray, true);
             }
         }
         public void SpawnEnemies()
@@ -163,9 +163,9 @@ namespace _2DRoguelike.Content.Core.World.Maps
         }
         public bool avoidRoomCollision(Room room)
         {
-            for (int y = room.YPos; y < room.YPos + room.Height + 1; y++)
+            for (int y = room.YPos; y < room.YPos + room.Height; y++)
             {
-                for (int x = room.XPos; x < room.XPos + room.Width + 1; x++)
+                for (int x = room.XPos; x < room.XPos + room.Width ; x++)
                 {
                     if (chararray[x, y] != 0)
                     {
@@ -199,6 +199,14 @@ namespace _2DRoguelike.Content.Core.World.Maps
                     }*/
                 }
             }
+
+            // Check nach Überresten der Toten
+            if(currentroom != null)
+                for (int i = currentroom.enemylist.Count - 1; i >= 0; i--)
+                {
+                    if (currentroom.enemylist[i].isExpired)
+                        currentroom.enemylist.RemoveAt(i);
+                }
         }
 
         public override void clearEnemies()

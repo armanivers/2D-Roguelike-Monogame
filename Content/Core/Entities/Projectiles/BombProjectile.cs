@@ -90,7 +90,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
                     const float growFactor = 0.04f;
                     if (scalingUp)
                     {
-                        colour = Color.Red;
+                        currentColor = Color.Red;
                         if (ScaleFactor >= 1.5f)
                             scalingUp = !scalingUp;
                         else
@@ -98,7 +98,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
                     }
                     else
                     {
-                        colour = Color.White;
+                        currentColor = Color.White;
                         if (ScaleFactor <= 1f)
                             scalingUp = !scalingUp;
                         else

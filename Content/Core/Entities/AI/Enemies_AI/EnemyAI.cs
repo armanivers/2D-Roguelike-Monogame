@@ -31,7 +31,15 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         }
 
 
-        public abstract Actions.Action DetermineAction();
+        protected abstract Actions.Action GetAIDecision();
+
+        public Actions.Action DetermineAction() {
+            StartAttemptForReaction();
+            Actions.Action ret = GetAIDecision();
+
+            ResetReactionIfNoReactionAttempt();
+            return ret;
+        }
         public abstract Vector2 DeterminePath();
 
 
@@ -51,7 +59,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             // Für Debug
             foreach (Rectangle box in effectiveRange)
             {
-                GameDebug.AddToBoxDebugBuffer(box, Color.Violet);
+                GameDebug.AddToBoxDebugBuffer(box, Color.DarkRed);
             }
 
             foreach (Rectangle box in effectiveRange)
@@ -71,8 +79,22 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         }
 
 
+        #region Reaction
+
+        private bool didReact;
+
+        protected void StartAttemptForReaction()
+        {
+            didReact = false;
+        }
+
         public bool React()
         {
+            if (didReact)
+                return false;
+            else
+                didReact = true;
+
             if (reactionTimer > 0)
             {
                 reactionTimer--;
@@ -85,9 +107,28 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             }
         }
 
-        public void ResetReactionTimer()
+        public bool TryToAttack(Weapon usedWeapon)
+        {
+            if (React())
+            {
+
+                usedWeapon.CooldownTimer = 0;
+                agent.CurrentWeapon = usedWeapon;
+                return true;
+            }
+            return false;
+        }
+
+        private void ResetReactionTimer()
         {
             reactionTimer = currentReactionTimeGap;
+        }
+        protected void ResetReactionIfNoReactionAttempt()
+        {
+            if (!didReact)
+                ResetReactionTimer();
+            else
+                didReact = false;
         }
 
         public void SetReactionTimeInterval(int min, int max)
@@ -96,16 +137,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             reactionTimeInterval[1] = max;
         }
 
-        public bool TryToAttack(Weapon usedWeapon)
-        {
-            if (React())
-            {
-                usedWeapon.CooldownTimer = 0;
-                agent.CurrentWeapon = usedWeapon;
-                return true;
-            }
-            return false;
 
-        }
+        #endregion
+
     }
 }

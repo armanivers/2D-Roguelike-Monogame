@@ -8,7 +8,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
     public class Bow : LongRange
     {
         const float BOW_COOLDOWN = 1.5f;
-        const int DAMAGE = 25;
+        const int DAMAGE = 35;
 
         public Bow(Humanoid Owner,float damageMultiplier = 1f, float cooldownMultiplier = 1f) : base(Owner,(int)(DAMAGE * damageMultiplier), BOW_COOLDOWN * cooldownMultiplier) {
             INVENTORY_SLOT = 2;

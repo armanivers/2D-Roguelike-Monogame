@@ -9,9 +9,11 @@ namespace _2DRoguelike.Content.Core.Entities
 {
     public abstract class EntityBasis
     {
-        public Color colour;
+        public Color initialColor;
+        public Color currentColor;
         public float transparency;
         private float scaleFactor = 1f;
+
         public float ScaleFactor { get => scaleFactor; set => scaleFactor = value; } // Skalierung der Textur (muss für Hitboxen mitberücksichtigt werden!). 1f = Default für alle, in Unterklassen änderbar
         private Vector2 drawOrigin = Vector2.Zero; 
         public Vector2 DrawOrigin { get => drawOrigin; set => drawOrigin = value; } // Zentraler Punkt der Textur (Für Rotationen (→Hitbox) hilfreich). Vector2.Zero = Default für alle, in Unterklassen änderbar
@@ -60,12 +62,13 @@ namespace _2DRoguelike.Content.Core.Entities
         public float rotation;
         public bool isExpired;
 
-        public EntityBasis(Vector2 pos)
+        public EntityBasis(Vector2 pos, float scaleFactor = 1f)
         {
+            this.scaleFactor = scaleFactor;
             Position = pos;
             isExpired = false;
             rotation = 0;
-            colour = Color.White;
+            initialColor = currentColor = Color.White;
             transparency = 1f;
             shadow = false;
         }
@@ -91,7 +94,7 @@ namespace _2DRoguelike.Content.Core.Entities
             {
                 if (transparency > 0)
                     // Size / 2: Origin in der Mitte muss geeinigt werden wann!!!
-                    spriteBatch.Draw(texture, Position, null, colour * transparency, rotation, DrawOrigin, ScaleFactor, SpriteEffects.None, 0);
+                    spriteBatch.Draw(texture, Position, null, currentColor * transparency, rotation, DrawOrigin, ScaleFactor, SpriteEffects.None, 0);
             }
             else { throw new Exception("Draw failed, there's a problem with the texture/animationManager!"); };
         }
