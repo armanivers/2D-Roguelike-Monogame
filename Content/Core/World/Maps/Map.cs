@@ -1,4 +1,5 @@
-﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+﻿using _2DRoguelike.Content.Core.Entities;
+using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.World.Rooms;
 using _2DRoguelike.Content.Core.World.Tiles;
 using Microsoft.Xna.Framework;
@@ -11,10 +12,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
 {
     abstract class Map
     {
-        // Todo:Methode, die einen zufälligen Punkt auf der Map zurückgibt, den man betreten kann (für teleportieren)
-        public Vector2 getRandomCoordinateOnCurrentRoom() {
-            return Vector2.Zero;
-        }
+
 
 
         public Tile[,] tilearray;

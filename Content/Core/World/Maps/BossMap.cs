@@ -34,6 +34,12 @@ namespace _2DRoguelike.Content.Core.World.Maps
 
         public override void Update(Player player)
         {
+            for (int i = currentroom.enemylist.Count - 1; i >= 0; i--)
+            {
+                if (currentroom.enemylist[i].isExpired)
+                    currentroom.enemylist.RemoveAt(i);
+            }
+
             GameDebug.AddToBoxDebugBuffer(LevelManager.currentmap.currentroom.roomhitbox, Color.LightGray);
             // Debug.WriteLine("Enemies= " + bossroom.enemylist.Count);
         }

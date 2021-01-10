@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities;
+using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.ObtainableLoots;
 using _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects;
@@ -32,7 +33,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         public void setXPos(int value)
         {
             XPos = value;
-            roomhitbox = new Rectangle((value) * PIXELMULTIPLIER, roomhitbox.Y , (Width ) * PIXELMULTIPLIER, (Height ) * PIXELMULTIPLIER);
+            roomhitbox = new Rectangle((value) * PIXELMULTIPLIER, roomhitbox.Y, (Width) * PIXELMULTIPLIER, (Height) * PIXELMULTIPLIER);
         }
         public int getXPos()
         {
@@ -42,7 +43,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         public void setYPos(int value)
         {
             YPos = value;
-            roomhitbox = new Rectangle(roomhitbox.X, (value )* PIXELMULTIPLIER , (Width ) * PIXELMULTIPLIER, (Height ) * PIXELMULTIPLIER);
+            roomhitbox = new Rectangle(roomhitbox.X, (value) * PIXELMULTIPLIER, (Width) * PIXELMULTIPLIER, (Height) * PIXELMULTIPLIER);
         }
         public int getYPos()
         {
@@ -56,7 +57,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
 
         //enemies list
         public int enemies;
-        public List<Enemy> enemylist; 
+        public List<Enemy> enemylist;
         // IDEE: bei update: in currentRoom die enemylist durchlaufen, und gucken, ob isExpired = true (um "Leichen" zu entfernen)
 
         //TODO entities
@@ -104,6 +105,9 @@ namespace _2DRoguelike.Content.Core.World.Rooms
                 }
             }
         }
+
+
+
         public void placeEnemies()
         {
             //Kleinstmöglicher raum 6*6=36
@@ -122,7 +126,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
                 } while (room[(int)chestspawnpoint.X, (int)chestspawnpoint.Y] != RoomObject.EmptySpace);
                 chestspawnpoint.X += XPos;
                 chestspawnpoint.Y += YPos;
-                entitylist.Add(new Chest(chestspawnpoint*new Vector2(PIXELMULTIPLIER)));
+                entitylist.Add(new Chest(chestspawnpoint * new Vector2(PIXELMULTIPLIER)));
             }
             else if (roomvolume < 384)
             {
@@ -140,7 +144,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
                     enemyspawnpoint = new Vector2(Map.Random.Next(2, Width - 3), Map.Random.Next(2, Height - 3));
                 } while (room[(int)enemyspawnpoint.X, (int)enemyspawnpoint.Y] != RoomObject.EmptySpace && IntersectsTileCollisionHitbox((int)enemyspawnpoint.X, (int)enemyspawnpoint.Y));
                 // TODO: Schauen, ob beim neuen Spawn der Enemy die TileCollisonHitbox eines anderen Enemy schneidet → neuer Spawn ermitteln
-                
+
                 enemyspawnpoint.X += (float)XPos;
                 enemyspawnpoint.Y += (float)YPos;
                 enemylist.Add(EnemyFactory.CreateRandomEnemy(enemyspawnpoint));
@@ -148,13 +152,14 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         }
         public void placeBoss()
         {
-            int XSPAWN = Width-8;
+            int XSPAWN = Width - 8;
             int YSPAWN = Height / 2;
-            enemylist.Add(EnemyFactory.CreateDragonBoss(new Vector2(XSPAWN , YSPAWN)));
+            enemylist.Add(EnemyFactory.CreateDragonBoss(new Vector2(XSPAWN, YSPAWN)));
             // /*Test:*/ enemylist.Add(EnemyFactory.CreateRandomEnemy(new Vector2(XSPAWN - 2, YSPAWN - 2)));
         }
 
-        private bool IntersectsTileCollisionHitbox(int enemyPosX, int enemyPosY) {
+        private bool IntersectsTileCollisionHitbox(int enemyPosX, int enemyPosY)
+        {
             Rectangle tileCollisionHitbox = new Rectangle(enemyPosX, enemyPosY, 19, 19);
             foreach (Enemy enemy in enemylist)
             {
@@ -176,7 +181,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
             XExit = (XExit + XPos);
             YExit = (YExit + YPos);
             exithitbox = new Rectangle(XExit * PIXELMULTIPLIER, YExit * PIXELMULTIPLIER, PIXELMULTIPLIER, PIXELMULTIPLIER);
-            entitylist.Add(new Ladder(new Vector2(XExit*PIXELMULTIPLIER, YExit*PIXELMULTIPLIER)));
+            entitylist.Add(new Ladder(new Vector2(XExit * PIXELMULTIPLIER, YExit * PIXELMULTIPLIER)));
         }
         /// <summary>
         /// Places Key to a Random position in the Room
@@ -185,10 +190,65 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         {
             int xpos;
             int ypos;
-            xpos = (Map.Random.Next(1, Width - 2))+XPos;
-            ypos = (Map.Random.Next(1, Height - 2))+YPos;
-            entitylist.Add(new KeyLoot(new Vector2(xpos* PIXELMULTIPLIER, ypos * PIXELMULTIPLIER)));
-            Debug.Print("Key placed!");
+            xpos = (Map.Random.Next(1, Width - 2)) + XPos;
+            ypos = (Map.Random.Next(1, Height - 2)) + YPos;
+            entitylist.Add(new KeyLoot(new Vector2(xpos * PIXELMULTIPLIER, ypos * PIXELMULTIPLIER)));
+            Debug.WriteLine("Key placed!");
+        }
+
+        public static Vector2 getRandomCoordinateInCurrentRoom(Creature creature)
+        {
+            
+            Vector2 ret;
+            do
+            {
+
+                ret = new Vector2(Map.Random.Next(1, LevelManager.currentmap.currentroom.Width ), Map.Random.Next(1, LevelManager.currentmap.currentroom.Height ));
+            } while (WouldBeStuck(creature, ret));
+            ret.X += LevelManager.currentmap.currentroom.XPos;
+            ret.Y += LevelManager.currentmap.currentroom.YPos;
+            
+            return ret * new Vector2(32, 32) - new Vector2(17 * creature.ScaleFactor + 5, 14 * creature.ScaleFactor + 25);
+        }
+
+
+
+        private static bool WouldBeStuck(Creature creature, Vector2 ret)
+        {
+            Rectangle newTileCollisionHitbox = new Rectangle((int)(ret.X * 32), (int)(ret.Y * 32), creature.GetTileCollisionHitbox().Width, creature.GetTileCollisionHitbox().Height);
+
+            if (creature is Enemy && newTileCollisionHitbox.Intersects(Player.Instance.GetTileCollisionHitbox()))
+                return true;
+
+            
+            foreach (var enemy in LevelManager.currentmap.currentroom.enemylist)
+            {
+                if (!(creature == enemy) && newTileCollisionHitbox.Intersects(enemy.GetTileCollisionHitbox()))
+                {
+                    return true;
+
+                }
+            }
+
+            int tilesOnCreatureWidth = creature.GetTileCollisionHitbox().Width / 32 + 1;
+            int tilesOnCreatureHeight = creature.GetTileCollisionHitbox().Height / 32 + 1;
+
+
+
+
+            for (int x = (int)ret.X;    x < (int)ret.X + tilesOnCreatureWidth /*&& (int)ret.X + tilesOnCreatureWidth < LevelManager.currentmap.currentroom.room.GetLength(0)*/; x++)
+            {
+                for (int y = (int)ret.Y; y < (int)ret.Y + tilesOnCreatureHeight/*&& (int)ret.Y + tilesOnCreatureHeight < LevelManager.currentmap.currentroom.room.GetLength(1)*/; y++)
+                {
+                    if (LevelManager.currentmap.currentroom.room[x, y] != RoomObject.EmptySpace) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
+
+
+
 }

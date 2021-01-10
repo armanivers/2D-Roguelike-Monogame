@@ -6,7 +6,7 @@ namespace _2DRoguelike.Content.Core.Entities
 {
     public abstract class Creature : EntityBasis
     {
-        private bool invincible = false;    
+        private bool invincible = false;
         public bool Invincible { get => invincible; set => invincible = value; }
         private bool hurtTimerStart;
         private float hurtTimer;
@@ -49,7 +49,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public Creature(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed, float scaleFactor = 1f) : base(position, scaleFactor)
         {
-            
+
             if (this is Player)
             {
                 EntityManager.player = (Player)this;
@@ -86,20 +86,21 @@ namespace _2DRoguelike.Content.Core.Entities
             Die Änderungen in Humanoid müssen bald teilweise hier eingefügt werden */
         }
 
-        public virtual bool IsInvincible() {
+        public virtual bool IsInvincible()
+        {
             return Invincible;
         }
 
-        public void DeductHealthPoints(int damage)
+        public virtual bool DeductHealthPoints(int damage)
         {
-            if (dead) 
-                return;
+            if (dead)
+                return false;
 
             if (this is Player)
             {
                 if (IsInvincible())
                 {
-                    return;
+                    return false;
                 }
                 SoundManager.PlayerHurt.Play(Game1.gameSettings.soundeffectsLevel, 0.1f, 0);
             }
@@ -115,7 +116,9 @@ namespace _2DRoguelike.Content.Core.Entities
                 {
                     DisplayDamageTaken();
                 }
+                return true;
             }
+            return false;
 
         }
 
@@ -159,7 +162,8 @@ namespace _2DRoguelike.Content.Core.Entities
             return dead;
         }
 
-        protected virtual void DrawHitboxes() {
+        protected virtual void DrawHitboxes()
+        {
             GameDebug.AddToBoxDebugBuffer(GetTileCollisionHitbox(), Color.Black);
             GameDebug.AddToBoxDebugBuffer(Hitbox, Color.DarkBlue);
         }

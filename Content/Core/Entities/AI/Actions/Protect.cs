@@ -27,9 +27,9 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         {
             // TODO: Hier die Logik für den Ablauf einfügen
             CallingInstance.Invincible = true;
-            CallingInstance.currentColor = Color.LightSkyBlue;
+            CallingInstance.currentColor = Color.GhostWhite;
             if (CallingInstance.transparency >= 0.5f)
-                CallingInstance.transparency -= 0.01f;
+                CallingInstance.transparency -= 0.02f;
         }
 
         public override void SetLineOfSight()
