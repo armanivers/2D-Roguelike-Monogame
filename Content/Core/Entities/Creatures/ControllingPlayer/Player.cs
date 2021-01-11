@@ -9,6 +9,7 @@ using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
 using _2DRoguelike.Content.Core.Items.ObtainableItems;
 using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.World;
+using _2DRoguelike.Content.Core.World.Rooms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -132,7 +133,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         {
 
             //this.position = new Vector2(2*32, 5*32); bei statischer Map
-
+            
             
             canInteract = false;
             interactableObjects = new List<InteractableBase>();
@@ -260,17 +261,16 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             var angle = System.Math.Atan2(differenz.Y, differenz.X);
 
             return CalculateDirection(angle);
-
-
         }
 
 
         public override Action DetermineAction(float currentGameTime)
         {
+            if (InputController.IsRightMouseButtonPressed() && LevelManager.currentmap.currentroom != null)
+                Position = Room.getRandomCoordinateInCurrentRoom(this);
 
-
-            if (InputController.IsRightMouseButtonHeld() && Protect.CanSwitchToState(currentGameTime))
-                return new Protect(this, currentGameTime);
+            //if (InputController.IsRightMouseButtonHeld() && Protect.CanSwitchToState(currentGameTime))
+            //    return new Protect(this, currentGameTime);
             else Invincible = false;
 
             if (InputController.IsLeftMouseButtonPressed() && !IsAttacking() && CanAttack())

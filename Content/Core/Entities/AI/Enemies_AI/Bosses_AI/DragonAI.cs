@@ -13,9 +13,8 @@ namespace _2DRoguelike.Content.Core.Entities.AI.Enemies_AI.Bosses_AI
 {
     public class DragonAI : BossAI
     {
-        public DragonAI(Enemy agent, int minReactionTime = DEFAULT_REACTION_TIME_MIN, int maxReactionTime = DEFAULT_REACTION_TIME_MAX) : base(agent, minReactionTime, maxReactionTime)
+        public DragonAI(Enemy agent, int minReactionTime = DEFAULT_REACTION_TIME_MIN + 10, int maxReactionTime = DEFAULT_REACTION_TIME_MAX + 10) : base(agent, minReactionTime, maxReactionTime)
         {
-
         }
 
         protected override Actions.Action GetAIDecision()

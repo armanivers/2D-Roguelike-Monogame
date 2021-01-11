@@ -113,6 +113,16 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             StatisticsManager.MonsterKilled();
         }
 
+        public override bool DeductHealthPoints(int damage)
+        {
+            bool ret = base.DeductHealthPoints(damage);
+            if (ret) {
+                ai.ReactionTimer /= 10;
+                // Debug.WriteLine("ReactionTime successfully cut to " + ai.ReactionTimer);
+            }
+            return ret;
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
