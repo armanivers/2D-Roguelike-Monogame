@@ -17,6 +17,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Threading;
 using _2DRoguelike.Content.Core.Statistics;
+using _2DRoguelike.Content.Core.World;
 
 #endregion Using Statements
 
@@ -89,8 +90,14 @@ namespace _2DRoguelike.Content.Core.Screens
                     StatisticsManager.currentScore.ForceCounterUpdate();
                     Game1.gameStats.AddHighscore(StatisticsManager.currentScore);
                     GlobalHighscoreManager.SendHighscoreToServer(Game1.gameSettings.playerName, StatisticsManager.currentScore.Score);
-                    //ScreenManager.AddScreen(new GameoverScreen(), ControllingPlayer);
                     LoadingScreen.LoadCustom(ScreenManager, true, null, new BackgroundHighscoreScreen(), new GameoverScreen());
+                }
+                if (LevelManager.gameOverSucc)
+                {
+                    StatisticsManager.currentScore.ForceCounterUpdate();
+                    Game1.gameStats.AddHighscore(StatisticsManager.currentScore);
+                    GlobalHighscoreManager.SendHighscoreToServer(Game1.gameSettings.playerName, StatisticsManager.currentScore.Score);
+                    LoadingScreen.LoadCustom(ScreenManager, true, null, new BackgroundsWhiteKnights(), new GameOverSuccScreen());
                 }
             }
         }

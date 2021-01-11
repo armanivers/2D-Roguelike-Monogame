@@ -54,8 +54,7 @@ namespace _2DRoguelike.Content.Core.UI
             mobData.Clear();
             foreach (EntityBasis e in EntityManager.creatures)
             {
-                //&& !(e is Boss)
-                if (e is Enemy)
+                if (e is Enemy && !(e is Boss))
                 {
                     var maxHealth = ((Humanoid)e).maxHealthPoints;
                     var hp = ((Humanoid)e).HealthPoints;

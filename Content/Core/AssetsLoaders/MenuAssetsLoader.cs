@@ -12,6 +12,7 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
         public Texture2D DungeonBackground { get; private set; }
         public Texture2D FirepitBackground { get; private set; }
         public Texture2D CaveDoorBackground { get; private set; }
+        public Texture2D GameOverSucc { get; private set; }
         public Texture2D Blank { get; private set; }
         public Texture2D Gradient { get; private set; }
 
@@ -25,6 +26,7 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
             DungeonBackground = content.Load<Texture2D>("Assets/Graphics/Menus/DungeonBackground");
             FirepitBackground = content.Load<Texture2D>("Assets/Graphics/Menus/FirepitBackground");
             CaveDoorBackground = content.Load<Texture2D>("Assets/Graphics/Menus/CaveBackground");
+            GameOverSucc = content.Load<Texture2D>("Assets/Graphics/Menus/gameOverSucc");
             Blank = content.Load<Texture2D>("Assets/Graphics/Menus/blank");
             Gradient = content.Load<Texture2D>("Assets/Graphics/Menus/gradient");
 

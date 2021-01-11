@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace _2DRoguelike.Content.Core.Statistics
@@ -54,6 +55,8 @@ namespace _2DRoguelike.Content.Core.Statistics
         public void ForceCounterUpdate()
         {
             score +=(int) scoreBuffer;
+            scoreBuffer = 0;
+            Debug.Print("Forces Score = " + score);
         }
 
         public void NewWeaponRecieved()

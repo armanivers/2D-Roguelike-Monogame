@@ -24,10 +24,16 @@ namespace _2DRoguelike.Content.Core.World
         public static Map currentmap;
         public static Tile[,] currenttilemap;
 
+        // max level
+        public static int maxLevel = 4;
+        // "gameover" but successfullly
+        public static bool gameOverSucc;
+
         public static object EnityManager { get; private set; }
 
         public static void LoadContent()
         {
+            gameOverSucc = false;
             levelList = new List<Level>();
             levelList.Add(new Level(new Dungeon(), new KillAllEnemies()));
             currentmap = levelList[level].map;
@@ -38,6 +44,11 @@ namespace _2DRoguelike.Content.Core.World
         {
             GameDebug.UnloadHitboxBuffer();
             EntityManager.UnloadAllEntities();
+            level++;
+            if(level >= maxLevel)
+            {
+                gameOverSucc = true;
+            }
             switch (level)
             {
                 case 0:
@@ -52,8 +63,11 @@ namespace _2DRoguelike.Content.Core.World
                 case 3:
                     levelList.Add(new Level(new BossMap(24, 12), new KillAllEnemies()));
                     break;
+                default:
+                    // default case is used for gameover!
+                    levelList.Add(new Level(new Dungeon(), new KillAllEnemies()));
+                    break;
             }
-            level++;
             levelList[level - 1].map.clearEnemies();
 
             Player.Instance.ClearKey();
