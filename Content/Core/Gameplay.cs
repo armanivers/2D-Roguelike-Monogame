@@ -58,7 +58,7 @@ namespace _2DRoguelike.Content.Core
             UIManager.AddUIElementStatic(new Fog());
             UIManager.AddUIElementStatic(new Skillbar(Player.Instance));
             UIManager.AddUIElementStatic(new ExperienceBar(Player.Instance));
-            UIManager.AddUIElementStatic(new BossBar(Player.Instance));
+            UIManager.AddUIElementStatic(new BossBar());
             UIManager.AddUIElementStatic(new HealthBar(Player.Instance));
             UIManager.AddUIElementStatic(new ToolTip(Player.Instance));
             UIManager.AddUIElementStatic(new Highscore());

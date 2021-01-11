@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses;
 
 namespace _2DRoguelike.Content.Core.UI
 {
@@ -53,9 +54,9 @@ namespace _2DRoguelike.Content.Core.UI
             mobData.Clear();
             foreach (EntityBasis e in EntityManager.creatures)
             {
+                //&& !(e is Boss)
                 if (e is Enemy)
                 {
-
                     var maxHealth = ((Humanoid)e).maxHealthPoints;
                     var hp = ((Humanoid)e).HealthPoints;
                     var currentWidth = (int)(((double)(hp) / maxHealth) * fullwidth);

@@ -32,7 +32,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             }
             return returnvalue;
         }
-        public static Enemy CreateDragonBoss(Vector2 spawnpoint)
+        public static Boss CreateDragonBoss(Vector2 spawnpoint)
         {
             return new Dragon(spawnpoint * new Vector2(32));
         }

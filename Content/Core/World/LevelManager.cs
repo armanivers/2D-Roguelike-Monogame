@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using _2DRoguelike.Content.Core.World.ExitConditions;
 using _2DRoguelike.Content.Core.Entities;
+using _2DRoguelike.Content.Core.UI;
 
 namespace _2DRoguelike.Content.Core.World
 {
@@ -16,6 +17,8 @@ namespace _2DRoguelike.Content.Core.World
 
         public const int numLevel = 3;
         public static int level = 0;
+        // which boss should be spawned, example; bossmap1 = dragon bossm bossmap2 = ...
+        public static int bossStage = 0;
         public static List<Level> levelList;
         private static Vector2 playerposition;
         public static Map currentmap;
@@ -26,7 +29,7 @@ namespace _2DRoguelike.Content.Core.World
         public static void LoadContent()
         {
             levelList = new List<Level>();
-            levelList.Add(new Level(new BossMap(24, 12), new KillAllEnemies()));
+            levelList.Add(new Level(new Dungeon(), new KillAllEnemies()));
             currentmap = levelList[level].map;
             currenttilemap = currentmap.tilearray;
             playerposition = new Vector2();
@@ -35,32 +38,56 @@ namespace _2DRoguelike.Content.Core.World
         {
             GameDebug.UnloadHitboxBuffer();
             EntityManager.UnloadAllEntities();
-            level++;
             switch (level)
             {
                 case 0:
                     levelList.Add(new Level(new Dungeon(), new KillAllEnemies()));
                     break;
                 case 1:
-                    levelList.Add(new Level(new Dungeon(), new KillAllEnemies()));
+                    levelList.Add(new Level(new BossMap(24, 12), new KillAllEnemies()));
                     break;
                 case 2:
+                    levelList.Add(new Level(new Dungeon(), new KillAllEnemies()));
+                    break;
+                case 3:
                     levelList.Add(new Level(new BossMap(24, 12), new KillAllEnemies()));
                     break;
             }
+            level++;
             levelList[level - 1].map.clearEnemies();
 
+            Player.Instance.ClearKey();
 
             Player.Instance.Position = levelList[level].map.getSpawnpoint() * new Vector2(32);
             currentmap = levelList[level].map;
             currenttilemap = currentmap.tilearray;
-            
+
+            if (currentmap is BossMap)
+            {
+                bossStage++;
+                UIManager.SwitchBossBarState();
+            }
+
+
         }
         public static void Update(Player player)
         {
             levelList[level].map.Update(player);
             playerposition = player.HitboxCenter;
             levelList[level].exitCondition.Exit();
+            CheckEndgame();
+        }
+
+        public static void CheckEndgame()
+        {
+            if (currentmap is BossMap)
+            {
+                ((BossMap)currentmap).StageCleared();
+            }
+            else
+            {
+                // set game over = true and display game over screen
+            }
         }
 
         public static void UnloadContent()

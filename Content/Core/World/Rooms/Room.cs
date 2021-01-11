@@ -1,5 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses;
 using _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.ObtainableLoots;
 using _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects;
 using _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots;
@@ -146,12 +147,22 @@ namespace _2DRoguelike.Content.Core.World.Rooms
                 enemylist.Add(EnemyFactory.CreateRandomEnemy(enemyspawnpoint));
             }
         }
-        public void placeBoss()
+        public Boss placeBoss()
         {
             int XSPAWN = Width-8;
             int YSPAWN = Height / 2;
-            enemylist.Add(EnemyFactory.CreateDragonBoss(new Vector2(XSPAWN , YSPAWN)));
-            // /*Test:*/ enemylist.Add(EnemyFactory.CreateRandomEnemy(new Vector2(XSPAWN - 2, YSPAWN - 2)));
+
+            switch(LevelManager.bossStage)
+            {
+                case 0:
+                    return EnemyFactory.CreateDragonBoss(new Vector2(XSPAWN, YSPAWN));
+                case 1:
+                    // return here boss for second boss map
+                    return EnemyFactory.CreateDragonBoss(new Vector2(XSPAWN, YSPAWN));
+                default:
+                    return EnemyFactory.CreateDragonBoss(new Vector2(XSPAWN, YSPAWN));
+            }
+
         }
 
         private bool IntersectsTileCollisionHitbox(int enemyPosX, int enemyPosY) {

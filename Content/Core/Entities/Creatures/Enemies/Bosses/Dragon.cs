@@ -15,7 +15,9 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
         public Dragon(Vector2 position, float movingSpeed = 3, float attackTimespan = 0.4f, float scaleFactor = 1f) : base(position, DEFAULT_HEALTHPOINTS, attackTimespan, movingSpeed, scaleFactor)
         {
 
-             ai = new DragonAI(this);
+            ai = new DragonAI(this);
+
+            bossName = "The Dragon";
 
             WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
 

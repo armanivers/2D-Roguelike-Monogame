@@ -1,6 +1,8 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses;
 using _2DRoguelike.Content.Core.GameDebugger;
+using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.World.Rooms;
 using Microsoft.Xna.Framework;
 using System;
@@ -13,19 +15,22 @@ namespace _2DRoguelike.Content.Core.World.Maps
     class BossMap :Map
     {
         public Room bossroom { get; set; }
-
+        public Boss bossEntity;
+        public bool stageCleared;
         public  BossMap(int width, int height) : base(width, height)
         {
             bossroom = new Room(width,height);
             bossroom.setExit();
-            bossroom.placeBoss();
-            currentroom = bossroom;
+            bossEntity = bossroom.placeBoss();
             
+            currentroom = bossroom;
+            currentroom.enemylist.Add(bossEntity);
             // redundant, aber setzt zumindest die roomhitbox
             currentroom.setXPos(currentroom.XPos);
             currentroom.setYPos(currentroom.YPos);     
 
             tilearray = fillTile(bossroom.room);
+            stageCleared = false;
         }
         public override Vector2 getSpawnpoint()
         {
@@ -51,6 +56,15 @@ namespace _2DRoguelike.Content.Core.World.Maps
         public override int CountEnemies()
         {
             return bossroom.enemylist.Count;
+        }
+
+        public void StageCleared()
+        {
+            if(bossEntity.IsDead() && !stageCleared)
+            {
+                UIManager.SwitchBossBarState();
+                stageCleared = true;
+            }
         }
 
         public override int EnemiesAlive()

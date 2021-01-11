@@ -120,7 +120,6 @@ namespace _2DRoguelike.Content.Core.UI
             {
                 if (weaponData[i].unlocked)
                 {
-                    Debug.Print("" + weaponData[i].weaponSlotHeight);
                     spriteBatch.Draw(usedSlotTexture, new Vector2(skillbarPosition.X+1 + (itemFrameWidth * i), skillbarPosition.Y + skillbarWhitespaceHeight+1),
                         new Rectangle(0, 0, usedSlotTexture.Width, (int)weaponData[i].weaponSlotHeight+3),
                         Color.White * 0.5f, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);

@@ -1,4 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.World;
+using _2DRoguelike.Content.Core.World.Maps;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -11,7 +13,6 @@ namespace _2DRoguelike.Content.Core.UI
     {
         public static List<UIElementBasis> uiElementsDynamic = new List<UIElementBasis>();
         public static List<UIElementBasis> uiElementsStatic = new List<UIElementBasis>();
-
         public static List<UIElementBasis> uiElements = new List<UIElementBasis>();
         public static void Update(GameTime gameTime)
         {
@@ -24,6 +25,7 @@ namespace _2DRoguelike.Content.Core.UI
         public static void DrawStatic(SpriteBatch spriteBatch)
         {
             MessageFactory.Draw(spriteBatch);
+                
             foreach (var ui in uiElementsStatic)    
             {
                 ui.Draw(spriteBatch);
@@ -69,6 +71,18 @@ namespace _2DRoguelike.Content.Core.UI
             uiElementsDynamic.Clear();
             uiElementsStatic.Clear();
             MessageFactory.ClearMessages();
+        }
+
+        public static void SwitchBossBarState()
+        {
+            foreach(var element in uiElementsStatic)
+            {
+                if(element is BossBar)
+                {
+                    ((BossBar)element).SwitchState();
+                    return;
+                }
+            }
         }
 
     }
