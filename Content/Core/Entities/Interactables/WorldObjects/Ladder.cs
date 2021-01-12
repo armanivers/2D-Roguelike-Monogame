@@ -26,14 +26,16 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects
             {
                 // if yes remove player's key item, play fade out scene and load next level (LevelManager.nextlevel())
                 MessageFactory.DisplayMessage("Key Accepted", Color.Green);
-                Debug.Print("Next Level!");
+                //Debug.Print("Next Level!");
+                SoundManager.NextLevel.Play(Game1.gameSettings.soundeffectsLevel, 0.3f, 0);
                 LevelManager.NextLevel();
             }
             else
             {
                 // if no diplay message "Key missing"
                 MessageFactory.DisplayMessage("Key Missing!", Color.Red);
-                Debug.Print("Key Missing!");
+                //Debug.Print("Key Missing!");
+                SoundManager.KeyMissing.Play(Game1.gameSettings.soundeffectsLevel, 0.3f, 0);
             }  
         }
 

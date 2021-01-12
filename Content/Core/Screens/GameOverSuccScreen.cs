@@ -71,7 +71,7 @@ namespace _2DRoguelike.Content.Core.Screens
             MenuEntries.Add(mainMenu);
 
             instance = SoundManager.ScoreCounterSound01.CreateInstance();
-
+            SoundManager.GameOverSucc.Play(Game1.gameSettings.soundeffectsLevel, 0.3f, 0);
             instance.IsLooped = true;
             instance.Play();
         }

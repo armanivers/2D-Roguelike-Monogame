@@ -82,10 +82,9 @@ namespace _2DRoguelike.Content.Core
 
         public void Update(GameTime gameTime)
         {
-            if(CutsceneManager.activeCutscene)
+            CutsceneManager.Update(gameTime);
+            if (CutsceneManager.activeCutscene)
             {
-                CutsceneManager.Update(gameTime);
-                // if there is an active cutscene playing, don't update anything!
                 return;
             }
 

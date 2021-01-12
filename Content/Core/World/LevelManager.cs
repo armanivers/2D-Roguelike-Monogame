@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using _2DRoguelike.Content.Core.World.ExitConditions;
 using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.UI;
+using _2DRoguelike.Content.Core.Cutscenes;
 
 namespace _2DRoguelike.Content.Core.World
 {
@@ -88,13 +89,19 @@ namespace _2DRoguelike.Content.Core.World
             currentmap = levelList[level].map;
             currenttilemap = currentmap.tilearray;
 
+            // start next Level scene
+            CutsceneManager.PlayCutsceneDelayed(new FadeOutCircle());
+            
             if (currentmap is BossMap)
             {
+                // queue bosstalk scene
+                //CutsceneManager.QueueScene(new NPCTalk());
                 bossStage++;
                 UIManager.SwitchBossBarState();
             }
-            MessageFactory.DisplayMessage("Level " + level + " - " + levelNames[level], Color.White);
 
+            MessageFactory.DisplayMessage("Level " + level + " - " + levelNames[level], Color.White);
+            MessageFactory.ClearMessages();
         }
         public static void Update(Player player)
         {

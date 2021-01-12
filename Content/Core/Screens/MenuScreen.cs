@@ -107,7 +107,7 @@ namespace _2DRoguelike.Content.Core.Screens
             if (!MenuEntries[selectedEntry].Selectable || input.IsMenuUp(ControllingPlayer))
             {
                 selectedEntry--;
-
+                SoundManager.MenuItemSelect.Play(Game1.gameSettings.soundeffectsLevel, 0.3f, 0);
                 if (selectedEntry < 0 || selectedEntry < customSelectEntry)
                     selectedEntry = menuEntries.Count - 1;
                 if (menuEntries[selectedEntry].Selectable)
@@ -124,7 +124,7 @@ namespace _2DRoguelike.Content.Core.Screens
             if (!MenuEntries[selectedEntry].Selectable || input.IsMenuDown(ControllingPlayer))
             {
                 selectedEntry++;
-
+                SoundManager.MenuItemSelect.Play(Game1.gameSettings.soundeffectsLevel, 0.3f, 0);
                 if (selectedEntry >= menuEntries.Count)
                     if (customMenu)
                     {
