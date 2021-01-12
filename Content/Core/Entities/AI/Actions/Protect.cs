@@ -19,6 +19,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
 
         public Protect(Humanoid callInst, float startingTime) : base(callInst, new ProtectAnimationIdentifier("SpellcastRight", "SpellcastLeft", "SpellcastDown", "SpellcastUp"))
         {
+            // callInst.mana = 0;
             timeOfLastUsage = startingTime;
         }
 
@@ -54,8 +55,6 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         }
 
         public static bool CanSwitchToState(float currentGameTime) {
-
-
             return timeOfLastUsage == 0f || currentGameTime - timeOfLastUsage >= PROTECT_COOLDOWN;
         }
     }
