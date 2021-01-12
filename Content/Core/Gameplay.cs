@@ -62,8 +62,7 @@ namespace _2DRoguelike.Content.Core
             UIManager.AddUIElementStatic(new HealthBar(Player.Instance));
             UIManager.AddUIElementStatic(new ToolTip(Player.Instance));
             UIManager.AddUIElementStatic(new Highscore());
-
-            MessageFactory.DisplayMessage("Level 1 - Forbidden Dungeon", Color.White);
+            UIManager.AddUIElementStatic(new KeyStatus(Player.Instance));
 
             gameOver = false;
         }
@@ -83,10 +82,9 @@ namespace _2DRoguelike.Content.Core
 
         public void Update(GameTime gameTime)
         {
-            if(CutsceneManager.activeCutscene)
+            CutsceneManager.Update(gameTime);
+            if (CutsceneManager.activeCutscene)
             {
-                CutsceneManager.Update(gameTime);
-                // if there is an active cutscene playing, don't update anything!
                 return;
             }
 

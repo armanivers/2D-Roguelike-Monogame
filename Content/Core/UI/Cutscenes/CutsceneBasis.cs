@@ -20,6 +20,9 @@ namespace _2DRoguelike.Content.Core.Cutscenes
         protected float fadeOutDuration = 0.6f; // 1 sekunden
         protected float fadeOutSpeed;
 
+        // used for scenes which don't need start/middle/end part
+        protected float sceneDuration = 8f;
+
         // by default cutscene is not interactable
         protected bool interactable = false;
         protected bool buttonPressed = false;

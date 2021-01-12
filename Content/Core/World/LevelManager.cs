@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using _2DRoguelike.Content.Core.World.ExitConditions;
 using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.UI;
+using _2DRoguelike.Content.Core.Cutscenes;
 
 namespace _2DRoguelike.Content.Core.World
 {
@@ -29,6 +30,15 @@ namespace _2DRoguelike.Content.Core.World
         // "gameover" but successfullly
         public static bool gameOverSucc;
 
+        public static List<string> levelNames = new List<string>()
+        { "The Forbidden Dugeon",
+            "Mountain Hill",
+            "Dragon's cave",
+            "Magical Forest",
+            "Last Hope"
+        };
+
+
         public static object EnityManager { get; private set; }
 
         public static void LoadContent()
@@ -39,16 +49,19 @@ namespace _2DRoguelike.Content.Core.World
             currentmap = levelList[level].map;
             currenttilemap = currentmap.tilearray;
             playerposition = new Vector2();
+            MessageFactory.DisplayMessage("Level " +level +" - " +levelNames[level], Color.White);
         }
         public static void NextLevel()
         {
             GameDebug.UnloadHitboxBuffer();
             EntityManager.UnloadAllEntities();
+
             level++;
             if(level >= maxLevel)
             {
                 gameOverSucc = true;
             }
+
             switch (level)
             {
                 case 0:
@@ -76,13 +89,19 @@ namespace _2DRoguelike.Content.Core.World
             currentmap = levelList[level].map;
             currenttilemap = currentmap.tilearray;
 
+            // start next Level scene
+            CutsceneManager.PlayCutsceneDelayed(new FadeOutCircle());
+            
             if (currentmap is BossMap)
             {
+                // queue bosstalk scene
+                //CutsceneManager.QueueScene(new NPCTalk());
                 bossStage++;
                 UIManager.SwitchBossBarState();
             }
 
-
+            MessageFactory.DisplayMessage("Level " + level + " - " + levelNames[level], Color.White);
+            MessageFactory.ClearMessages();
         }
         public static void Update(Player player)
         {

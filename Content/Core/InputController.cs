@@ -75,7 +75,7 @@ namespace _2DRoguelike.Content.Core
             // Cutscene Test
             if(IsKeyDown(Keys.C))
             {
-                CutsceneManager.PlayCutscene(new FadeInCircle());
+                CutsceneManager.PlayCutscene(new FadeOutCircle());
             }
 
         }

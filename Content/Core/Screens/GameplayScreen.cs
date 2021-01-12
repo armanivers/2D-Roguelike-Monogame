@@ -91,6 +91,8 @@ namespace _2DRoguelike.Content.Core.Screens
                     Game1.gameStats.AddHighscore(StatisticsManager.currentScore);
                     GlobalHighscoreManager.SendHighscoreToServer(Game1.gameSettings.playerName, StatisticsManager.currentScore.Score);
                     LoadingScreen.LoadCustom(ScreenManager, true, null, new BackgroundHighscoreScreen(), new GameoverScreen());
+                    SoundManager.GameOver.Play(Game1.gameSettings.soundeffectsLevel, 0.3f, 0);
+
                 }
                 if (LevelManager.gameOverSucc)
                 {

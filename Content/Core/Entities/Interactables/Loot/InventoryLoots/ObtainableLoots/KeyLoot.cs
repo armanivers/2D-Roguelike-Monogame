@@ -46,12 +46,11 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.O
         }
         private void NotifyPlayer()
         {
-            // display message on screen / update ui
             MessageFactory.DisplayMessage("Key Obtained!", Color.Green);
         }
         private void PlaySound()
         {
-            SoundManager.KeyCollect.Play(Game1.gameSettings.soundeffectsLevel, 0, 0);
+            SoundManager.KeyPickup.Play(Game1.gameSettings.soundeffectsLevel, 0.3f, 0);
         }
 
     }

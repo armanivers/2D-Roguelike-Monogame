@@ -29,7 +29,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         public bool canInteract;
         private List<InteractableBase> interactableObjects;
 
-        private readonly int MAX_LEVEL = 5;
+        public readonly int MAX_LEVEL = 5;
         public int currentXPLevel;
         private int currentXP;
         // ExperiencePoints needed to levelup at each level -> IMPORANT: xp cap amount needs to be atleast the amount of MAX_LEVEL 

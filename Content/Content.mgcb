@@ -1381,6 +1381,18 @@
 /processorParam:Quality=Best
 /build:Assets/Sounds/LootSounds/KeyCollect.wav
 
+#begin Assets/Sounds/LootSounds/KeySounds/KeyMissing .wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/LootSounds/KeySounds/KeyMissing .wav
+
+#begin Assets/Sounds/LootSounds/KeySounds/KeyPickup.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/LootSounds/KeySounds/KeyPickup.wav
+
 #begin Assets/Sounds/LootSounds/LootbagOpen.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1392,6 +1404,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Assets/Sounds/Miscellaneous/ExperiencePickup.wav
+
+#begin Assets/Sounds/Miscellaneous/NextLevel.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Miscellaneous/NextLevel.wav
 
 #begin Assets/Sounds/Miscellaneous/scoreCounterSound_00.wav
 /importer:WavImporter
@@ -1447,6 +1465,18 @@
 /processorParam:Quality=Best
 /build:Assets/Sounds/PotionSounds/PotionDrink.wav
 
+#begin Assets/Sounds/SceenMusics/GameOver.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/SceenMusics/GameOver.wav
+
+#begin Assets/Sounds/SceenMusics/GameOverSucc.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/SceenMusics/GameOverSucc.wav
+
 #begin Assets/Sounds/SceenMusics/Gameplay/BossMusic/Bossbattle_00.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
@@ -1464,6 +1494,12 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Assets/Sounds/SceenMusics/Gameplay/LevelsMusic/LevelMusic_01.mp3
+
+#begin Assets/Sounds/SceenMusics/MenuItemSelect.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/SceenMusics/MenuItemSelect.wav
 
 #begin Assets/Sounds/SceenMusics/Menus/MenuMusic.mp3
 /importer:Mp3Importer
