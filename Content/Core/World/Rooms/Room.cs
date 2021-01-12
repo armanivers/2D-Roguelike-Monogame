@@ -159,7 +159,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
             switch(LevelManager.bossStage)
             {
                 case 0:
-                    return EnemyFactory.CreateDragonBoss(new Vector2(XSPAWN, YSPAWN));
+                    return EnemyFactory.CreateOrcBoss(new Vector2(XSPAWN, YSPAWN));
                 case 1:
                     // return here boss for second boss map
                     return EnemyFactory.CreateDragonBoss(new Vector2(XSPAWN, YSPAWN));

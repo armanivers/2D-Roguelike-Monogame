@@ -15,7 +15,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
         public Dragon(Vector2 position, float movingSpeed = 3, float attackTimespan = 0.4f, float scaleFactor = 1.6f) : base(position, DEFAULT_HEALTHPOINTS, attackTimespan, movingSpeed, scaleFactor)
         {
 
-            ai = new DragonAI(this);
+            ai = new DragonAI(this, DragonAI.DEFAULT_REACTION_TIME_MIN * 2, DragonAI.DEFAULT_REACTION_TIME_MAX * 2);
 
             bossName = "The Dragon";
 
@@ -26,7 +26,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
 
             CurrentWeapon = WeaponInventory[0];
 
-            texture = TextureManager.enemy.Skeleton_Idle;
+            texture = TextureManager.enemy.Dragon_Idle;
 
             const bool NO_LOOP = false;
             const bool PRIORITIZED = true;
@@ -47,22 +47,12 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
                 {"WalkLeft_Fist",new Animation(TextureManager.enemy.Dragon_Walk_Fist,1,9,tmpFrameSpeed)},
                 {"WalkDown_Fist", new Animation(TextureManager.enemy.Dragon_Walk_Fist,2,9,tmpFrameSpeed)},
                 {"WalkRight_Fist", new Animation(TextureManager.enemy.Dragon_Walk_Fist,3,9,tmpFrameSpeed)},
-
-                {"WalkUp_Dagger", new Animation(TextureManager.enemy.Skeleton_Walk_Dagger,0,9,tmpFrameSpeed=FRAME_SPEED)},
-                {"WalkLeft_Dagger",new Animation(TextureManager.enemy.Skeleton_Walk_Dagger,1,9,tmpFrameSpeed)},
-                {"WalkDown_Dagger", new Animation(TextureManager.enemy.Skeleton_Walk_Dagger,2,9,tmpFrameSpeed)},
-                {"WalkRight_Dagger", new Animation(TextureManager.enemy.Skeleton_Walk_Dagger,3,9,tmpFrameSpeed)},
                 
                  // Melee-Angriff
                 {"SlashUp_Fist", new Animation(TextureManager.enemy.Dragon_Slash_Fist,0,6,(tmpFrameSpeed=FRAME_SPEED*0.5f), NO_LOOP, PRIORITIZED, REVERSE)},
                 {"SlashLeft_Fist",new Animation(TextureManager.enemy.Dragon_Slash_Fist,1,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
                 {"SlashDown_Fist", new Animation(TextureManager.enemy.Dragon_Slash_Fist,2,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
                 {"SlashRight_Fist", new Animation(TextureManager.enemy.Dragon_Slash_Fist,3,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
-
-                {"SlashUp_Dagger", new Animation(TextureManager.enemy.Skeleton_Slash_Dagger,0,6,(tmpFrameSpeed=FRAME_SPEED*0.5f), NO_LOOP, PRIORITIZED, REVERSE)},
-                {"SlashLeft_Dagger",new Animation(TextureManager.enemy.Skeleton_Slash_Dagger,1,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
-                {"SlashDown_Dagger", new Animation(TextureManager.enemy.Skeleton_Slash_Dagger,2,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
-                {"SlashRight_Dagger", new Animation(TextureManager.enemy.Skeleton_Slash_Dagger,3,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
 
                 // Magie-Animation
                  {"SpellcastUp", new Animation(TextureManager.enemy.Dragon_Spellcast,0,7,(tmpFrameSpeed=FRAME_SPEED*0.3f),NO_LOOP, PRIORITIZED)},

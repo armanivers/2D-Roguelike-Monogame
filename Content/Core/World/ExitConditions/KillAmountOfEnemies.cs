@@ -44,7 +44,7 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
 
         public override string PrintCondition()
         {
-            return "Kill a total of " + killTarget + " enemies! (" + (killTarget - kills) + " enemies remaining)";
+            return "Kill " + killTarget + " enemies! (" + (killTarget - kills) + " enemies remaining)";
         }
     }
 }

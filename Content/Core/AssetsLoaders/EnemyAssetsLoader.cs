@@ -53,6 +53,15 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
         public Texture2D Dragon_Spellcast { get; private set; }
         public Texture2D Dragon_Walk_Fist { get; private set; }
 
+        // Orc
+        public Texture2D Orc_Hurt { get; set; }
+        public Texture2D Orc_Idle { get; private set; }
+        public Texture2D Orc_Slash_Fist { get; private set; }
+        public Texture2D Orc_Spellcast { get; private set; }
+        public Texture2D Orc_Thrust_Spear { get; private set; }
+        public Texture2D Orc_Walk_Fist { get; private set; }
+        public Texture2D Orc_Walk_Spear { get; private set; }
+
         public void Load(ContentManager content)
         {
             // Enemy Data
@@ -96,6 +105,15 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
             Dragon_Slash_Fist  = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Dragon/dragonSheet_slash_fist");
             Dragon_Spellcast = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Dragon/dragonSheet_spellcast");
             Dragon_Walk_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Dragon/dragonSheet_walk_fist");
+
+            // Orc
+            Orc_Hurt = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Orc/orcSheet_hurt");
+            Orc_Idle = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Orc/orcSheet_idle");
+            Orc_Slash_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Orc/orcSheet_slash_fist");
+            Orc_Spellcast = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Orc/orcSheet_spellcast");
+            Orc_Thrust_Spear = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Orc/orcSheet_thrust_spear");
+            Orc_Walk_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Orc/orcSheet_walk_fist");
+            Orc_Walk_Spear = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Orc/orcSheet_walk_spear");
         }
     }
 }
