@@ -8,6 +8,9 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <PackageProjectUrl>https://github.com/armanivers/2D-Roguelike-Monogame</PackageProjectUrl>
+    <Copyright>Arman,Moritz and Zakaria</Copyright>
+    <PackageIcon>DungeondoorIcon.png</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Content\Core\World\Maps\CaveMap.cs" />
@@ -15,10 +18,18 @@
   <ItemGroup>
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
+    <None Include="..\..\..\Desktop\DungeondoorIcon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Icon.ico" />
-    <EmbeddedResource Include="Icon.bmp" />
+  <EmbeddedResource Include="Icon.bmp">
+    <LogicalName>Icon.bmp</LogicalName>
+  </EmbeddedResource>
+  <EmbeddedResource Include="Icon.ico">
+    <LogicalName>Icon.ico</LogicalName>
+  </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />

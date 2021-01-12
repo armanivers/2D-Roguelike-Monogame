@@ -38,6 +38,8 @@ namespace _2DRoguelike.Content.Core.UI
         private Vector2 xpbarBarPosition;
         private Vector2 textPosition;
 
+        private bool maxLevel = false;
+
         public ExperienceBar(Player player)
         {
             target = player;
@@ -64,6 +66,11 @@ namespace _2DRoguelike.Content.Core.UI
             currentXPLevel = target.currentXPLevel;
 
             currentWidth = (int)((target.LevelupPercentage) * fullWidth);
+
+            if(target.currentXPLevel >= target.MAX_LEVEL)
+            {
+                maxLevel = true;
+            }
             //Debug.Print("Percentage {0} width = {1}", target.LevelupPercentage, currentWidth);
             //textPosition = containerPositon + new Vector2(redbarOffsetStart + fullWidth / 2 - TextureManager.FontArial.MeasureString("" + target.HealthPoints).X / 2, xSafezone);
         }
@@ -71,8 +78,14 @@ namespace _2DRoguelike.Content.Core.UI
         {
             spriteBatch.Draw(xpbarContainer, xpbarContainerPosition, null, Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
             spriteBatch.Draw(xpbarBar, xpbarBarPosition, new Rectangle(xpbarOffsetStart, 0, currentWidth, xpbarBar.Height), Color.White, 0, Vector2.Zero, scalingFactor, SpriteEffects.None, 0);
-
-            spriteBatch.DrawString(TextureManager.GameFont, "Level: " + currentXPLevel + " XP: "+currentXP , textPosition, Color.Gold);
+            if(!maxLevel)
+            {
+                spriteBatch.DrawString(TextureManager.GameFont, "Level: " + currentXPLevel + " XP: "+currentXP , textPosition, Color.Gold);
+            }
+            else
+            {
+                spriteBatch.DrawString(TextureManager.GameFont, "Level: " + currentXPLevel + " MAXIMUM REACHED", textPosition, Color.Gold);
+            }
         }
 
     }

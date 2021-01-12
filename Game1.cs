@@ -17,6 +17,7 @@ namespace _2DRoguelike
     {
         public static GraphicsDeviceManager _graphics;
         public static readonly Random rand = new Random();
+        public static readonly String gameName = "Dungeon Explorer";
         // the 3 "../" used to save the settings file in the main direcotry of the game, instead of putting it in bin/Debug/netcoreapp3.1
         public static string projectPath = "../../../";
         // should be saved in appdata/Roaming of user folder otherwise
@@ -62,6 +63,7 @@ namespace _2DRoguelike
 
         protected override void Initialize()
         {
+            Window.Title = gameName;
             gameSettings.LoadSettings();
             gameStats.LoadStatistics();
 

@@ -62,8 +62,7 @@ namespace _2DRoguelike.Content.Core
             UIManager.AddUIElementStatic(new HealthBar(Player.Instance));
             UIManager.AddUIElementStatic(new ToolTip(Player.Instance));
             UIManager.AddUIElementStatic(new Highscore());
-
-            MessageFactory.DisplayMessage("Level 1 - Forbidden Dungeon", Color.White);
+            UIManager.AddUIElementStatic(new KeyStatus(Player.Instance));
 
             gameOver = false;
         }
