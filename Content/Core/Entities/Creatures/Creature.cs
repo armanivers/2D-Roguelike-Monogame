@@ -14,7 +14,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
 
         public int maxHealthPoints;
-        public int HealthPoints { get; private set; }
+        public int HealthPoints { get; set; }
 
         // TODO: Dieser CooldownTimer gilt aktuell für ALLE Angriffsarten → Für jede Angriffsart eigenen Cooldown erstellen
         // (bessere Alternative überlegen, damit nicht immer ein neues Attribut hinzugefügt werden muss)
@@ -135,7 +135,7 @@ namespace _2DRoguelike.Content.Core.Entities
             {
                 if (hurtTimer >= hurtTimerLimit)
                 {
-                    currentColor = Color.White;
+                    currentColor = initialColor;
                     hurtTimerStart = false;
                 }
                 hurtTimer += 0.1f;

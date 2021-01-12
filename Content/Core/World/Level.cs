@@ -8,6 +8,7 @@ namespace _2DRoguelike.Content.Core.World
 {
     class Level
     {
+
         public Map map { get;}
         public ExitCondition exitCondition { get; set; }
 

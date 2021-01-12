@@ -52,6 +52,7 @@ namespace _2DRoguelike.Content.Core
         // Miscellaneous
         public static SoundEffect ScoreCounterSound00 { get; private set; }
         public static SoundEffect ScoreCounterSound01 { get; private set; }
+        public static SoundEffect FulfilledExitCondition { get; private set; }
         public static SoundEffect NextLevel { get; private set; }
 
         public static void Load(ContentManager content)
@@ -100,6 +101,7 @@ namespace _2DRoguelike.Content.Core
             // Miscellaneous
             ScoreCounterSound00 = content.Load<SoundEffect>("Assets/Sounds/Miscellaneous/scoreCounterSound_00");
             ScoreCounterSound01 = content.Load<SoundEffect>("Assets/Sounds/Miscellaneous/scoreCounterSound_01");
+            FulfilledExitCondition = content.Load<SoundEffect>("Assets/Sounds/Miscellaneous/ExitConfitionFulfilled");
             NextLevel = content.Load<SoundEffect>("Assets/Sounds/Miscellaneous/NextLevel");
         }
     }

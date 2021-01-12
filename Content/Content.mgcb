@@ -1399,6 +1399,12 @@
 /processorParam:Quality=Best
 /build:Assets/Sounds/LootSounds/LootbagOpen.wav
 
+#begin Assets/Sounds/Miscellaneous/ExitConfitionFulfilled.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Miscellaneous/ExitConfitionFulfilled.wav
+
 #begin Assets/Sounds/Miscellaneous/ExperiencePickup.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

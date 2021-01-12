@@ -45,12 +45,13 @@ namespace _2DRoguelike.Content.Core.World
         {
             gameOverSucc = false;
             levelList = new List<Level>();
-            levelList.Add(new Level(new Dungeon(), new KillAllEnemies()));
+            levelList.Add(new Level(new Dungeon(), new KillAmountOfEnemies()));
             currentmap = levelList[level].map;
             currenttilemap = currentmap.tilearray;
             playerposition = new Vector2();
             MessageFactory.DisplayMessage("Level " +level +" - " +levelNames[level], Color.White);
         }
+
         public static void NextLevel()
         {
             GameDebug.UnloadHitboxBuffer();
@@ -65,20 +66,21 @@ namespace _2DRoguelike.Content.Core.World
             switch (level)
             {
                 case 0:
-                    levelList.Add(new Level(new Dungeon(), new KillAllEnemies()));
+                    // wird aber nie erreicht
+                    levelList.Add(new Level(new Dungeon(), ExitCondition.getRandomExitCondition()));
                     break;
                 case 1:
                     levelList.Add(new Level(new BossMap(24, 12), new KillAllEnemies()));
                     break;
                 case 2:
-                    levelList.Add(new Level(new Dungeon(), new KillAllEnemies()));
+                    levelList.Add(new Level(new Dungeon(), ExitCondition.getRandomExitCondition()));
                     break;
                 case 3:
                     levelList.Add(new Level(new BossMap(24, 12), new KillAllEnemies()));
                     break;
                 default:
                     // default case is used for gameover!
-                    levelList.Add(new Level(new Dungeon(), new KillAllEnemies()));
+                    levelList.Add(new Level(new Dungeon(), ExitCondition.getRandomExitCondition()));
                     break;
             }
             levelList[level - 1].map.clearEnemies();
@@ -107,7 +109,11 @@ namespace _2DRoguelike.Content.Core.World
         {
             levelList[level].map.Update(player);
             playerposition = player.HitboxCenter;
-            levelList[level].exitCondition.Exit();
+
+            if (levelList[level].exitCondition.Exit()) {
+                SoundManager.FulfilledExitCondition.Play(Game1.gameSettings.soundeffectsLevel, 0.0f, 0);
+                currentmap.AddKeyToRoom(10);
+            }
             CheckEndgame();
         }
 

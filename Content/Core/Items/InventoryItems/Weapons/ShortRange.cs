@@ -192,7 +192,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
                         if (attackHitbox.Intersects(enemy.Hitbox) && !enemy.IsDead())
                         {
                             ((Enemy)enemy).DeductHealthPoints(weaponDamage);
-                            if (enemiesHit == maximumHitsPerAttack)
+                            if (++enemiesHit == maximumHitsPerAttack)
                                 break;
                         }
                     }

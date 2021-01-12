@@ -6,21 +6,20 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
 {
     class KillAllEnemies : ExitCondition
     {
-        private bool keyplaced;
+        
 
         public KillAllEnemies()
         {
             keyplaced = false;
         }
-        public bool Exit()
+        protected override bool CheckIfConditionMet()
         {
-            if (LevelManager.currentmap.EnemiesAlive() == 0 && !keyplaced)
-            {
-                LevelManager.currentmap.AddKeyToRoom(10);
-                keyplaced = true;
-                return true;
-            }
-            else return false;
+            return LevelManager.currentmap.EnemiesAlive() == 0;
+        }
+
+        public override string PrintCondition()
+        {
+            return "Kill everyone!";
         }
     }
 }

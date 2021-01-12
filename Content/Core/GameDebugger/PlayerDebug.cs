@@ -30,13 +30,13 @@ namespace _2DRoguelike.Content.Core.GameDebugger
             if (Game1.gameSettings.playerDebug)
             {
                 spriteBatch.DrawString(TextureManager.FontArial,
-                "Position Player auf Screen: {X: " + (int)Player.Instance.Position.X + " Y:" + (int)Player.Instance.Position.Y + "}",
+                "Position Player on Screen: {X: " + (int)Player.Instance.Position.X + " Y:" + (int)Player.Instance.Position.Y + "}",
                 MoveIndent(), Color.White);
                 spriteBatch.DrawString(TextureManager.FontArial,
-                "Position Player auf Map: {X: " + (int)(Player.Instance.GetTileCollisionHitbox().X / 32) + " Y:" + (int)(Player.Instance.GetTileCollisionHitbox().Y / 32) + "}",
+                "Position Player on Map: {X: " + (int)(Player.Instance.GetTileCollisionHitbox().X / 32) + " Y:" + (int)(Player.Instance.GetTileCollisionHitbox().Y / 32) + "}",
                     MoveIndent(), Color.White);
                 spriteBatch.DrawString(TextureManager.FontArial,
-                    "Position Maus auf Map: {X: " + (int)InputController.MousePosition.X / 32 + " Y:" + (int)InputController.MousePosition.Y / 32 + "}",
+                    "Position Mouse on Map: {X: " + (int)InputController.MousePosition.X / 32 + " Y:" + (int)InputController.MousePosition.Y / 32 + "}",
                     MoveIndent(), Color.White);
 
                 // Winkel Berechnung
@@ -50,16 +50,20 @@ namespace _2DRoguelike.Content.Core.GameDebugger
                 //{
                 //    angle = 360 - (-angle);
                 //}
-                spriteBatch.DrawString(TextureManager.FontArial, "Winkel des Mauses: " +
+                spriteBatch.DrawString(TextureManager.FontArial, "Angle of Mouse: " +
                     angle, MoveIndent(), Color.White);
-                spriteBatch.DrawString(TextureManager.FontArial, "Waffe: " +
+                spriteBatch.DrawString(TextureManager.FontArial, "Weapon: " +
                     Player.Instance.CurrentWeapon?.ToString(), MoveIndent(), Color.White);
                 if (LevelManager.currentmap.currentroom != null)
                 {
-                    spriteBatch.DrawString(TextureManager.FontArial, "Raum: " +LevelManager.currentmap.currentroom.Width +" , "+ LevelManager.currentmap.currentroom.Height, MoveIndent(), Color.White);
+                    spriteBatch.DrawString(TextureManager.FontArial, "Room: " +LevelManager.currentmap.currentroom.Width +" , "+ LevelManager.currentmap.currentroom.Height, MoveIndent(), Color.White);
                     if(LevelManager.currentmap.currentroom.exitroom)
                         spriteBatch.DrawString(TextureManager.FontArial, "Exit: " + LevelManager.currentmap.currentroom.exithitbox.X/32+ " , " + LevelManager.currentmap.currentroom.exithitbox.Y/32, MoveIndent(), Color.White);
                 }
+
+                spriteBatch.DrawString(TextureManager.FontArial, "Exit condition: " + LevelManager.levelList[LevelManager.level].exitCondition.PrintCondition() , MoveIndent(), Color.White);
+                spriteBatch.DrawString(TextureManager.FontArial, "Condition " + (LevelManager.levelList[LevelManager.level].exitCondition.CanExit() ? "is fulfilled!" : "is not fulfilled yet") , MoveIndent(), Color.White);
+                
             }
         }
 
