@@ -198,7 +198,12 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 {"WalkLeft_Dagger",new Animation(TextureManager.Player_Walk_Dagger,1,9,tmpFrameSpeed)},
                 {"WalkDown_Dagger", new Animation(TextureManager.Player_Walk_Dagger,2,9,tmpFrameSpeed)},
                 {"WalkRight_Dagger", new Animation(TextureManager.Player_Walk_Dagger,3,9,tmpFrameSpeed)},
-                
+
+                {"WalkUp_Spear", new Animation(TextureManager.Player_Walk_Spear,0,9,tmpFrameSpeed=FRAME_SPEED)},
+                {"WalkLeft_Spear",new Animation(TextureManager.Player_Walk_Spear,1,9,tmpFrameSpeed)},
+                {"WalkDown_Spear", new Animation(TextureManager.Player_Walk_Spear,2,9,tmpFrameSpeed)},
+                {"WalkRight_Spear", new Animation(TextureManager.Player_Walk_Spear,3,9,tmpFrameSpeed)},
+                  
                  // Melee-Angriff            
                 {"SlashUp_Axe", new Animation(TextureManager.Player_Slash_Axe,0,6,(tmpFrameSpeed=FRAME_SPEED*0.5f), NO_LOOP, PRIORITIZED, REVERSE)},
                 {"SlashLeft_Axe",new Animation(TextureManager.Player_Slash_Axe,1,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},

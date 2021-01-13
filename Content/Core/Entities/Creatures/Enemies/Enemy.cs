@@ -39,7 +39,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             // TODO: BUG! Enemies stoßen gegen die TileCollisionHitbox der toten Enemies: expired Enemies werden nicht aus der currentroom.enemylist genommen
             foreach (Enemy otherEnemy in LevelManager.currentmap.currentroom.enemylist)
             {
-                if (otherEnemy != this /*&& !otherEnemy.IsDead()*/ && GetTileCollisionHitbox().Intersects(otherEnemy.GetTileCollisionHitbox())) {
+                if (otherEnemy != this && !otherEnemy.IsDead() && GetTileCollisionHitbox().Intersects(otherEnemy.GetTileCollisionHitbox())) {
                      // Debug.WriteLine("Enemy at Position:{0} is Stuck with Enemy at Position:{1}!", Position/32, otherEnemy.Position/32);
                     return true;
                 }
