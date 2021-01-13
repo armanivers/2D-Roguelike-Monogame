@@ -52,6 +52,7 @@
     <Folder Include="Content\Assets\Graphics\Particles\" />
     <Folder Include="Content\Assets\Graphics\PlayerElements\" />
     <Folder Include="Content\Assets\Graphics\Projectiles\" />
+    <Folder Include="Content\Core\Entities\Special_Interactables\Positive\" />
     <Folder Include="Content\Core\Items\InventoryItems\UsableItems\" />
     <Folder Include="Content\Core\Items\QuestItems\" />
   </ItemGroup>

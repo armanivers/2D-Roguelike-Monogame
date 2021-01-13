@@ -135,7 +135,9 @@ namespace _2DRoguelike.Content.Core.World.Maps
                     exitroom = previousRoom;
                 }
             }
+            
             SpawnEnemies();
+            PlaceTraps();
 
             // DEBUG-Test:
             foreach (Room room in roomlist)
@@ -149,6 +151,13 @@ namespace _2DRoguelike.Content.Core.World.Maps
             for (int i = 1; i < NumRooms; i++)
             {
                 roomlist[i].placeEnemies();
+            }
+        }
+        public void PlaceTraps()
+        {
+            for (int i = 1; i < NumRooms; i++)
+            {
+                roomlist[i].SetTrap();
             }
         }
         public void room2Map(Room room)

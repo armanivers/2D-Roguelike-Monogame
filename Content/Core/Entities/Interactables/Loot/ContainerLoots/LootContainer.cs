@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using static _2DRoguelike.Content.Core.Entities.Loot.RandomLoot;
 
 namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 {
@@ -14,7 +15,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         public bool Closed { get { return closed; } }
 
         // used to determine loot, type 0 = chest , 1 = lootbag etc.
-        protected int type;
+        protected DropType type;
 
         protected float timeToOpen; // 1.2 = 2 Sekunden
         private float fadingSpeed; //0.00833f;

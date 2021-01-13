@@ -6,6 +6,7 @@ using _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots;
 using _2DRoguelike.Content.Core.Entities.Loot.WeaponLoots;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using static _2DRoguelike.Content.Core.Entities.Loot.RandomLoot;
 
 namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 {
@@ -39,24 +40,24 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
             isExpired = true;
         }
 
-        private int DetermineChestRarity()
+        private DropType DetermineChestRarity()
         {
             int random = Game1.rand.Next(0, 100);
 
             if(random <= DIAMOND_CHEST_CHANCE)
             {
-                return 1;
+                return DropType.chestDiamond;
             }
             else
             {
-                return 0;
+                return DropType.chestNormal;
             }
 
         }
 
         public override void PlaySound()
         {
-            if (type == 1)
+            if (type == DropType.chestDiamond)
             {
                 SoundManager.ChestOpenMagical.Play(Game1.gameSettings.soundeffectsLevel, 0, 0);
             }
@@ -70,11 +71,11 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         {
             switch(type)
             {
-                case 0:
+                case DropType.chestNormal:
                     chestIdleAnimation = TextureManager.loot.LootChest_Animation_Idle;
                     chestOpenAnimation = TextureManager.loot.Lootchest_Animation_Open;
                     break;
-                case 1:
+                case DropType.chestDiamond:
                     chestIdleAnimation = TextureManager.loot.LootChest_Diamond_Animation_Idle;
                     chestOpenAnimation = TextureManager.loot.LootChest_Diamond_Animation_Open;
                     break;

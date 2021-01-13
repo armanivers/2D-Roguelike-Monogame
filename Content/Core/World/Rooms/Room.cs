@@ -7,6 +7,7 @@ using _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects;
 using _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Loot.WeaponLoots;
+using _2DRoguelike.Content.Core.Entities.Special_Interactables.Negative;
 using _2DRoguelike.Content.Core.World.Maps;
 using Microsoft.Xna.Framework;
 using System;
@@ -194,6 +195,24 @@ namespace _2DRoguelike.Content.Core.World.Rooms
             exithitbox = new Rectangle(XExit * PIXELMULTIPLIER, YExit * PIXELMULTIPLIER, PIXELMULTIPLIER, PIXELMULTIPLIER);
             entitylist.Add(new Ladder(new Vector2(XExit * PIXELMULTIPLIER, YExit * PIXELMULTIPLIER)));
         }
+
+        public void SetTrap()
+        {
+            for(int i = 0; i < 5; i++)
+            {
+                Vector2 trapPos;
+                do
+                {
+                    trapPos = new Vector2(Map.Random.Next(2, Width - 3), Map.Random.Next(2, Height - 3));
+                } while (room[(int)trapPos.X, (int)trapPos.Y] != RoomObject.EmptySpace);
+
+                trapPos.X += (float)XPos;
+                trapPos.Y += (float)YPos;
+
+                new Spikes(trapPos * PIXELMULTIPLIER);
+            }
+            
+        }
         /// <summary>
         /// Places Key to a Random position in the Room
         /// </summary>
@@ -204,16 +223,14 @@ namespace _2DRoguelike.Content.Core.World.Rooms
             xpos = (Map.Random.Next(1, Width - 2)) + XPos;
             ypos = (Map.Random.Next(1, Height - 2)) + YPos;
             entitylist.Add(new KeyLoot(new Vector2(xpos * PIXELMULTIPLIER, ypos * PIXELMULTIPLIER)));
-            Debug.WriteLine("Key placed!");
+            //Debug.WriteLine("Key placed!");
         }
 
         public static Vector2 getRandomCoordinateInCurrentRoom(Creature creature)
         {
-            
             Vector2 ret;
             do
             {
-
                 ret = new Vector2(Map.Random.Next(1, LevelManager.currentmap.currentroom.Width ), Map.Random.Next(1, LevelManager.currentmap.currentroom.Height ));
             } while (WouldBeStuck(creature, ret));
             ret.X += LevelManager.currentmap.currentroom.XPos;

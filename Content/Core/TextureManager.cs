@@ -34,6 +34,9 @@ namespace _2DRoguelike.Content.Core
         public static Texture2D placeholderImage { get; private set; }
         public static Texture2D TransparentImage { get; private set; }
 
+        // Traps
+        public static Texture2D Spikes01 { get; private set; }
+
         // Other Data
 
         public static EnemyAssetsLoader enemy = new EnemyAssetsLoader();
@@ -67,6 +70,9 @@ namespace _2DRoguelike.Content.Core
             loot.Load(content);
             menu.Load(content);
             projectiles.Load(content);
+
+            // Traps
+            Spikes01 = content.Load<Texture2D>("Assets/Graphics/Special_Interactables/spikes_01");
 
             // Font Data
             FontArial = content.Load<SpriteFont>("Assets/System/Fonts/Arial");

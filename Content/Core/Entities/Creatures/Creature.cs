@@ -1,6 +1,7 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.GameDebugger;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace _2DRoguelike.Content.Core.Entities
 {
@@ -12,7 +13,8 @@ namespace _2DRoguelike.Content.Core.Entities
         private float hurtTimer;
         private const int hurtTimerLimit = 2;
 
-
+        public const float MAX_MANA = 100;
+        public float Mana { get; set; }
         public int maxHealthPoints;
         public int HealthPoints { get; set; }
 
@@ -62,6 +64,7 @@ namespace _2DRoguelike.Content.Core.Entities
             this.maxHealthPoints = maxHealthPoints;
             HealthPoints = maxHealthPoints;
             this.attackTimespan = attackTimespan;
+            Mana = 0;
             this.movingSpeed = movingSpeed;
             dead = false;
             SpeedModifier = 1;
@@ -82,8 +85,23 @@ namespace _2DRoguelike.Content.Core.Entities
         public override void Update(GameTime gameTime)
         {
             DrawHitboxes();
+            RegenerateMana();
             /** TODO: Vorerst wurde alles in Humanoid eingefügt
-            Die Änderungen in Humanoid müssen bald teilweise hier eingefügt werden */
+            Die Änderungen in Humanoid müssen bald te-*ilweise hier eingefügt werden */
+        }
+
+        public void RegenerateMana()
+        {
+            // speed 0.1f means full regeneration is ~16 seconds
+            if (Mana < MAX_MANA) Mana += 0.1f;
+        }
+
+        public void DeductMana(float manaAmount)
+        {
+            Mana -= manaAmount;
+
+            // sanity check
+            if (Mana < 0) Mana = 0;
         }
 
         public virtual bool IsInvincible()

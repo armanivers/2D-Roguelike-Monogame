@@ -19,7 +19,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
 
         public Protect(Humanoid callInst, float startingTime) : base(callInst, new ProtectAnimationIdentifier("SpellcastRight", "SpellcastLeft", "SpellcastDown", "SpellcastUp"))
         {
-            // callInst.mana = 0;
+            CallingInstance.Mana = 0;
             timeOfLastUsage = startingTime;
         }
 

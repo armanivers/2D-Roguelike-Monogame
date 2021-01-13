@@ -7,6 +7,8 @@ using System.Text;
 using _2DRoguelike.Content.Core.Entities.Loot;
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Special_Interactables;
+using System.Diagnostics;
 
 namespace _2DRoguelike.Content.Core.Entities
 {
@@ -24,6 +26,10 @@ namespace _2DRoguelike.Content.Core.Entities
         public static bool isUpdatingCreature;
         public static List<EntityBasis> creatures = new List<EntityBasis>();
         public static List<EntityBasis> addedEntities = new List<EntityBasis>();
+
+        public static bool isUpdatingSpecialInteractables;
+        public static List<EntityBasis> specialInteractables = new List<EntityBasis>();
+        public static List<EntityBasis> addedspecialInteractables = new List<EntityBasis>();
 
         public static Player player;
 
@@ -57,6 +63,14 @@ namespace _2DRoguelike.Content.Core.Entities
                 addedProjectile.Add(projectile);
         }
 
+        public static void AddSpecialInteractable(SpecialInteractableBase specialInter)
+        {
+            if (!isUpdatingSpecialInteractables)
+                specialInteractables.Add(specialInter);
+            else
+                addedspecialInteractables.Add(specialInter);
+        }
+
         public static void Update(GameTime gameTime)
         {
             if(clearLevel)
@@ -67,6 +81,8 @@ namespace _2DRoguelike.Content.Core.Entities
                 addedProjectile.Clear();
                 interactables.Clear();
                 addedInteractables.Clear();
+                specialInteractables.Clear();
+                addedspecialInteractables.Clear();
 
                 clearLevel = false;
             }
@@ -89,27 +105,39 @@ namespace _2DRoguelike.Content.Core.Entities
                 projectile.Update(gameTime);
             isUpdatingProjectile = false;
 
+            isUpdatingSpecialInteractables = true;
+            foreach (var specialInter in specialInteractables)
+                specialInter.Update(gameTime);
+            isUpdatingSpecialInteractables = false;
+
             foreach (var entity in addedEntities)
                 creatures.Add(entity);
             foreach (var loot in addedInteractables)
                 interactables.Add(loot);
             foreach (var projectile in addedProjectile)
                 projectiles.Add(projectile);
+            foreach (var specialInter in addedspecialInteractables)
+                specialInteractables.Add(specialInter);
 
             addedEntities.Clear();
             addedInteractables.Clear();
             addedProjectile.Clear();
+            addedspecialInteractables.Clear();
 
             // remove any expired entities.
             creatures = creatures.Where(x => !x.isExpired).ToList();
             projectiles = projectiles.Where(x => !x.isExpired).ToList();
             interactables = interactables.Where(x => !x.isExpired).ToList();
+            specialInteractables = specialInteractables.Where(x => !x.isExpired).ToList();
         }
 
         public static void Draw(SpriteBatch spriteBatch)
         {
             foreach (var loot in interactables)
                 loot.Draw(spriteBatch);
+
+            foreach (var specialInter in specialInteractables)
+                specialInter.Draw(spriteBatch);
 
             foreach (var entity in creatures)
                 entity.Draw(spriteBatch);
@@ -130,10 +158,12 @@ namespace _2DRoguelike.Content.Core.Entities
             addedEntities.Clear();
             addedInteractables.Clear();
             addedProjectile.Clear();
+            addedspecialInteractables.Clear();
 
             creatures.Clear();
             projectiles.Clear();
             interactables.Clear();
+            specialInteractables.Clear();
         }
     }
 }

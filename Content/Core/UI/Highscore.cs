@@ -16,7 +16,7 @@ namespace _2DRoguelike.Content.Core.UI
         private float scalingFactor = 1.0f;
 
         private int xSafezone = 20;
-        private int ySafezone = 30;
+        private int ySafezone = 80;
 
         private Vector2 textPosition;
         private Vector2 coinPosition;
@@ -31,7 +31,7 @@ namespace _2DRoguelike.Content.Core.UI
         public override void Update(GameTime gameTime)
         {
             currentScore = StatisticsManager.currentScore.UpdateBuffer();
-            coinPosition = new Vector2(Game1.gameSettings.screenWidth - xSafezone - coinTexture.Width, ySafezone);
+            coinPosition = new Vector2(Game1.gameSettings.screenWidth - xSafezone - coinTexture.Width, Game1.gameSettings.screenHeight - ySafezone);
             textPosition = new Vector2(coinPosition.X - TextureManager.FontArial.MeasureString("Score: " + currentScore).X - xSafezone, coinPosition.Y+13);
         }
         public override void Draw(SpriteBatch spriteBatch)

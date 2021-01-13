@@ -266,12 +266,14 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
         public override Action DetermineAction(float currentGameTime)
         {
+            
             if (InputController.IsRightMouseButtonPressed() && LevelManager.currentmap.currentroom != null)
                 Position = Room.getRandomCoordinateInCurrentRoom(this);
-
-            //if (InputController.IsRightMouseButtonHeld() && Protect.CanSwitchToState(currentGameTime))
-            //    return new Protect(this, currentGameTime);
+            /*
+            if (InputController.IsRightMouseButtonHeld() && Protect.CanSwitchToState(currentGameTime) && (Mana>=100)) // statt 100 ggf. Ability.RequiredMana nutzen
+                return new Protect(this, currentGameTime);
             else Invincible = false;
+            */
 
             if (InputController.IsLeftMouseButtonPressed() && !IsAttacking() && CanAttack())
             // TODO: if(weapon.rangeAttack) return RangeAttack else return Melee ...
