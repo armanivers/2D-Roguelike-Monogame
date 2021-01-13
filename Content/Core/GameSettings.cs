@@ -209,6 +209,10 @@ namespace _2DRoguelike.Content.Core
             noclip = !noclip;
         }
 
+        public void SetName(String name)
+        {
+            playerName = name;
+        }
         public void ApplySettings(GameSettings settings)
         {
             if(settings == null)

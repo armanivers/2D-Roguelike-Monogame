@@ -20,6 +20,7 @@ namespace _2DRoguelike.Content.Core
     {
         public static KeyboardState keyboardState, previousKeyboardState;
         public static MouseState mouseState, previousMouseState;
+        public static Keys[] lastPreesedKeys;
         public static Vector2 MousePosition { 
             get {
                 return Vector2.Transform(new Vector2(mouseState.X, mouseState.Y), Matrix.Invert(Camera.transform));
@@ -33,7 +34,9 @@ namespace _2DRoguelike.Content.Core
             previousMouseState = mouseState;
             mouseState = Mouse.GetState();
 
-            if(Game1.gameSettings.DEBUG)
+            lastPreesedKeys = new Keys[5];
+
+            if (Game1.gameSettings.DEBUG)
             {
                 CheckDebugKeys();
             }
@@ -158,6 +161,19 @@ namespace _2DRoguelike.Content.Core
             }
 
             /* if mouse isn't clicked, return a zero vector */
+        }
+
+        public static Keys GetInputKey()
+        {
+            foreach (Keys key in GetPressedKeys())
+            {
+                if (!lastPreesedKeys.Contains(key))
+                {
+                    return key;
+                }
+            }
+            lastPreesedKeys = GetPressedKeys();
+            return Keys.None;
         }
 
         public static Vector2 GetMousePosition()

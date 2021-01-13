@@ -14,8 +14,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Diagnostics;
+using System.Linq;
 
 #endregion Using Statements
 
@@ -30,10 +32,15 @@ namespace _2DRoguelike.Content.Core.Screens
         #region Fields
 
         private string message;
-        private string line1;
+        private string name = Game1.gameSettings.playerName;
+        private string line1 = "-----------------------";
         private string line2;
-        private Texture2D gradientTexture;
 
+        private const int maxCharacters = 15;
+        private const string nameOutlineCharacter = "-";
+
+        private Texture2D gradientTexture;
+        private Keys[] lastPreesedKeys = new Keys[2];
         #endregion Fields
 
         #region Events
@@ -52,9 +59,7 @@ namespace _2DRoguelike.Content.Core.Screens
         /// </summary>
         public NameInputScreen()
         {
-            line1 = "-----------------------";
-            line2 = "Name: ";
-
+            line2 = "Current Name: " + name;
             this.message = "Please input your name:";
 
             IsPopup = true;
@@ -87,30 +92,116 @@ namespace _2DRoguelike.Content.Core.Screens
         {
             PlayerIndex playerIndex;
 
-            //InputController.KeyboardKeyPressed();
-
-            // We pass in our ControllingPlayer, which may either be null (to
-            // accept input from any player) or a specific index. If we pass a null
-            // controlling player, the InputState helper returns to us which player
-            // actually provided the input. We pass that through to our Accepted and
-            // Cancelled events, so they can tell which player triggered them.
+            // player accepted the new name
             if (input.IsMenuSelect(ControllingPlayer, out playerIndex))
             {
-                // Raise the accepted event, then exit the message box.
                 if (Accepted != null)
                     Accepted(this, new PlayerIndexEventArgs(playerIndex));
-
+                Game1.gameSettings.SetName(name);
                 ExitScreen();
             }
+            // player cancelled name input window
             else if (input.IsMenuCancel(ControllingPlayer, out playerIndex))
             {
-                // Raise the cancelled event, then exit the message box.
                 if (Cancelled != null)
                     Cancelled(this, new PlayerIndexEventArgs(playerIndex));
-
                 ExitScreen();
             }
         }
+
+        public override void Update(GameTime gameTime, bool otherScreenHasFocus,
+                                                       bool coveredByOtherScreen)
+        {
+            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+
+            CheckKeyboardInput();
+        }
+
+        public void CheckKeyboardInput()
+        {
+            KeyboardState kbState = Keyboard.GetState();
+            Keys[] pressedKeys = kbState.GetPressedKeys();
+
+            foreach (Keys key in pressedKeys)
+            {
+                if (!lastPreesedKeys.Contains(key))
+                {
+                    PressedKey(key);
+                }
+            }
+            lastPreesedKeys = pressedKeys;
+            UpdateNameString();
+        }
+
+        public void UpdateNameString()
+        {
+            // if min/max chars reached, dont update string
+            if (name.Length < 0 || name.Length > maxCharacters) return;
+
+            line1 = "";
+
+            int nameOutlineAmount = maxCharacters - name.Length;
+
+            // used to make sure the name is always in the center of the string
+            if(name.Length%2 != 0)
+            {
+                nameOutlineAmount++;
+            }
+
+            for (int i = 0; i < nameOutlineAmount / 2; i++)
+            {
+                line1 += nameOutlineCharacter;
+            }
+            line1 += name;
+            for (int i = 0; i < nameOutlineAmount / 2; i++)
+            {
+                line1 += nameOutlineCharacter;
+            }
+        }
+
+        public void PressedKey(Keys key)
+        {
+            // input characters
+            if (name.Length < maxCharacters)
+            {
+                // check if capslock is activated
+                if(!Keyboard.GetState().CapsLock) 
+                    name += ConvertPressedKey(key).ToLower();
+                else 
+                    name += ConvertPressedKey(key);
+            }
+
+            // deleting characters
+            if (name.Length > 0 && key == Keys.Back)
+            {
+                name = name.Remove(name.Length - 1);
+            }
+        }
+
+        private string ConvertPressedKey(Keys k)
+        {
+            string keyValue = k.ToString();
+            
+            // check if special character
+            if (keyValue.Length > 1)
+            {
+                string firstChar = keyValue[0].ToString();
+
+                // for example numbers (d0-d9)
+                if (firstChar== "D")
+                {
+                    return "" +k.ToString()[1];
+                }
+                // ignore everything else
+                else
+                {
+                    return "";
+                }
+            }
+            // if normal character, return it
+            else return k.ToString();
+        }
+
 
         #endregion Handle Input
 
