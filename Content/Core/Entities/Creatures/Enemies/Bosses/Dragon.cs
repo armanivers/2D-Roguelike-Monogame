@@ -22,7 +22,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
             WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
 
             WeaponInventory[0] = new Fist(this, 2.4f, 0.8f, 0.8f);
-            WeaponInventory[1] = new FireballWeapon(this, 2f, 0.8f);
+            WeaponInventory[1] = new FireballWeapon(this, 1f, 0.8f);
 
             CurrentWeapon = WeaponInventory[0];
 

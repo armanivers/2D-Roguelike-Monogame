@@ -11,22 +11,27 @@ namespace _2DRoguelike.Content.Core.Entities.Special_Interactables.Negative
     {
         private int damage = 1;
         private float timer = 0;
-        private float effectCooldown = 10; 
+        private float effectCooldown = 10;
 
-        public Spikes(Vector2 pos) : base(pos)
+        public Spikes(Vector2 pos) : base(pos, 1f)
         {
             texture = TextureManager.Spikes01;
-            ScaleFactor = 1.5f;
         }
 
         public override void ActivateEffect()
         {
-            if(timer >= effectCooldown)
+            if (timer >= effectCooldown)
             {
                 Player.Instance.DeductHealthPoints(damage);
                 timer = 0;
             }
-            timer += 0.1f;
+
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            if (timer <= effectCooldown) timer += 0.1f;
         }
 
     }

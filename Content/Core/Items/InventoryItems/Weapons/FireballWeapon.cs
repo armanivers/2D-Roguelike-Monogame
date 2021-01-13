@@ -10,7 +10,7 @@ namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
     class FireballWeapon: LongRange
     {
         const float FIREBALL_COOLDOWN = 3f;
-        const int DAMAGE = 10;
+        const int DAMAGE = 20;
         private float explosionDamageMultiplier;
 
         public FireballWeapon(Humanoid Owner, float impactDamageMultiplier = 1f, float cooldownMultiplier = 1f, float explosionDamageMultiplier = 1f) : base(Owner, (int)(DAMAGE * impactDamageMultiplier), FIREBALL_COOLDOWN * cooldownMultiplier)

@@ -21,9 +21,9 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
         private const float EXPIRATION_TIMER = 3;
         private const float SPEED = 3f;
         private int impactDamage;
-        private float explosionDamageMultiplier;
+        private float explosionDamageMultiplier = 20;
 
-        public FireballProjectile(Humanoid shootingCreat, float explosionDamageMultiplier = 1f) : base(new Vector2(shootingCreat.Hitbox.X + 16, shootingCreat.Hitbox.Y + 25), -TextureManager.projectiles.Fireball.Width / 4, -TextureManager.projectiles.Fireball.Height / 4, SPEED)
+        public FireballProjectile(Humanoid shootingCreat, float explosionDamageMultiplier = 20f) : base(new Vector2(shootingCreat.Hitbox.X + 16, shootingCreat.Hitbox.Y + 25), -TextureManager.projectiles.Fireball.Width / 4, -TextureManager.projectiles.Fireball.Height / 4, SPEED)
         {
             this.ScaleFactor = 0.8f;
             this.texture = TextureManager.projectiles.Fireball;
@@ -114,7 +114,15 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
                         if (Hitbox.Intersects(Player.Instance.Hitbox))
                         {
                             Player.Instance.DeductHealthPoints(impactDamage);
-                            Incinerate(shootingEntity);
+                            isExpired = true;
+                            // Incinerate(shootingEntity);
+                        }
+                    }
+                    foreach (var projectile in EntityManager.projectiles)
+                    {
+                        if (projectile is Arrow && Hitbox.Intersects(projectile.Hitbox)) { 
+                            Incinerate();
+                            break;
                         }
                     }
                 }

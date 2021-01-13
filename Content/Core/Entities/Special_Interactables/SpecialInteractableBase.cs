@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.GameDebugger;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace _2DRoguelike.Content.Core.Entities.Special_Interactables
 {
     abstract class SpecialInteractableBase : EntityBasis
     {
-        public SpecialInteractableBase(Vector2 pos) : base(pos)
+        public SpecialInteractableBase(Vector2 pos, float scaleFactor = 1f) : base(pos, scaleFactor)
         {
             EntityManager.AddSpecialInteractable(this);
             // a trap hitbox is now 32x32, size of a tile block in world
@@ -19,8 +20,9 @@ namespace _2DRoguelike.Content.Core.Entities.Special_Interactables
 
         public override void Update(GameTime gameTime)
         {
+            GameDebug.AddToBoxDebugBuffer(hitbox, Color.Firebrick);
             // statt hitbox ggf tilehitbox?
-            if(Hitbox.Intersects(Player.Instance.Hitbox))
+            if(Hitbox.Intersects(Player.Instance.GetTileCollisionHitbox()))
             {
                 ActivateEffect();
             }

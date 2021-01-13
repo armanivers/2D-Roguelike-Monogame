@@ -22,7 +22,7 @@ namespace _2DRoguelike.Content.Core.GameDebugger
 
         public void AddToBoxDebugBuffer(Rectangle box, Color color,  int timeToDraw = 0)
         {
-            if (Game1.gameSettings.showHitbox)
+            if (Game1.gameSettings.DEBUG && Game1.gameSettings.showHitbox)
             {
                 boxDebugBuffer.Add(new Box(box, color, timeToDraw));
             }
@@ -30,7 +30,7 @@ namespace _2DRoguelike.Content.Core.GameDebugger
 
         public void AddToBoxDebugBuffer(Rectangle box, Color color, bool always)
         {
-            if (Game1.gameSettings.showHitbox)
+            if (Game1.gameSettings.DEBUG &&  Game1.gameSettings.showHitbox)
             {
                 boxDebugBuffer.Add(new Box(box, color, always));
             }
