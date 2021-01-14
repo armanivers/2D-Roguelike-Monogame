@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using static _2DRoguelike.Content.Core.UI.MessageFactory.Message;
 
 namespace _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects
 {
@@ -25,7 +26,7 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects
             if(Player.Instance.hasLevelKey)
             {
                 // if yes remove player's key item, play fade out scene and load next level (LevelManager.nextlevel())
-                MessageFactory.DisplayMessage("Key Accepted", Color.Green);
+                MessageFactory.DisplayMessage("Key Accepted", Color.Green, AnimationType.MiddleFadeInOut);
                 //Debug.Print("Next Level!");
                 SoundManager.NextLevel.Play(Game1.gameSettings.soundeffectsLevel, 0.3f, 0);
                 LevelManager.NextLevel();
@@ -33,7 +34,7 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects
             else
             {
                 // if no diplay message "Key missing"
-                MessageFactory.DisplayMessage("Key Missing!", Color.Red);
+                MessageFactory.DisplayMessage("Key Missing!", Color.Red, AnimationType.MiddleFadeInOut);
                 //Debug.Print("Key Missing!");
                 SoundManager.KeyMissing.Play(Game1.gameSettings.soundeffectsLevel, 0.3f, 0);
             }  

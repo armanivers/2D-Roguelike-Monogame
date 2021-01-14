@@ -36,7 +36,8 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
             HEALTH_POTION,
             XP_POTION,
             REGENERATION_POTION,
-            SPEAR
+            SPEAR,
+            SPEED_POTION
         }
 
         // List mit keyvaluepairs um items mit gleiche wahrscheinlichkeit zu erlauben
@@ -109,7 +110,6 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
         {
             // % between 0 und 100
             int randomPercentage = Game1.rand.Next(0, 101); // der zweite Wert ist exklusiv (nicht mit einbezogen)
-            int pos = 0;
 
             foreach(var itemPercentage in dropList)
             {
@@ -120,7 +120,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
                 }
                 else
                 {
-                    pos++;
+              
                     //Debug.Print("Next Weapon");
                     randomPercentage -= itemPercentage.Key;
                 }
@@ -157,6 +157,9 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
                     break;
                 case Items.REGENERATION_POTION:
                     new HealthRegenerationPotion(pos);
+                    break;
+                case Items.SPEED_POTION:
+                    new SpeedPotion(pos);
                     break;
                 default:
                     new DaggerLoot(pos);

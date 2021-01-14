@@ -15,6 +15,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using static _2DRoguelike.Content.Core.UI.MessageFactory.Message;
 
 namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 {
@@ -320,11 +321,11 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             if (CurrentXP >= xpCap[currentXPLevel])
             {
                 StatisticsManager.LevelUp();
-                MessageFactory.DisplayMessage("Level Up++", Color.Yellow);
+                MessageFactory.DisplayMessage("Level Up++", Color.Yellow,AnimationType.DownSimpleFade);
                 while (currentXPLevel < MAX_LEVEL && currentXP >= xpCap[currentXPLevel])
                 {
                     StatisticsManager.LevelUp();
-                    MessageFactory.DisplayMessage("Level Up++", Color.Yellow);
+                    MessageFactory.DisplayMessage("Level Up++", Color.Yellow, AnimationType.DownSimpleFade);
                     currentXPLevel++;
                     DetermineLevelupAward(currentXPLevel);
                     // add remaining xp after levelup to next level
@@ -444,7 +445,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         {
             base.Kill();
             SoundManager.PlayerDie.Play(Game1.gameSettings.soundeffectsLevel, 0.3f, 0);
-            MessageFactory.DisplayMessage("GAME OVER", Color.Red);
+            MessageFactory.DisplayMessage("GAME OVER", Color.Red,AnimationType.LeftToRight);
 
         }
 

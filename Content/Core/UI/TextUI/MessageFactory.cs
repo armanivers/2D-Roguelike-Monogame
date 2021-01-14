@@ -10,6 +10,7 @@ namespace _2DRoguelike.Content.Core.UI
 {
     static class MessageFactory
     {
+        public static SpriteFont font = TextureManager.FontArial;
         public static List<Message> messages = new List<Message>();
         public static List<Message> removedMessages = new List<Message>();
         internal class Message
@@ -18,6 +19,7 @@ namespace _2DRoguelike.Content.Core.UI
             public Vector2 position { get; private set; }
             public Color color { get; }
             public string message { get; }
+            public int messageSize { get; }
             public bool expire { get; private set; }
             public AnimationType animation { get; private set; }
             public float scale { get; private set; }
@@ -30,7 +32,9 @@ namespace _2DRoguelike.Content.Core.UI
                 LeftToRight,
                 MiddleFadeInOut,
                 LeftToRightUpDown,
-                LeftToRightCos
+                LeftToRightCos,
+                DownSimpleFade,
+                UpSimpleFade
             }
 
             public Message(string message, Color color,AnimationType animation)
@@ -42,7 +46,7 @@ namespace _2DRoguelike.Content.Core.UI
 
                 this.message = message;
                 this.animation = animation;
-
+                
                 SetAnimationProperties();
 
                 this.color = color;
@@ -61,11 +65,15 @@ namespace _2DRoguelike.Content.Core.UI
                         this.position = new Vector2(0, Game1.gameSettings.screenHeight / 2 - 100);
                         break;
                     case AnimationType.MiddleFadeInOut:
-                        position = new Vector2(Game1.gameSettings.screenWidth / 2, Game1.gameSettings.screenHeight / 2);
+                        position = new Vector2(Game1.gameSettings.screenWidth / 2, Game1.gameSettings.screenHeight / 2-100);
                         break;
                     case AnimationType.LeftToRightCos:
                         transparency = 1f;
                         position = new Vector2(0, Game1.gameSettings.screenHeight / 2-120);
+                        break;
+                    case AnimationType.DownSimpleFade:
+                        transparency = 1f;
+                        position = new Vector2(Game1.gameSettings.screenWidth / 2, Game1.gameSettings.screenHeight  - 200);
                         break;
                     default:
                         UpToDownAnimation();
@@ -88,6 +96,9 @@ namespace _2DRoguelike.Content.Core.UI
                         break;
                     case AnimationType.LeftToRightCos:
                         LeftRightCos();
+                        break;
+                    case AnimationType.DownSimpleFade:
+                        DownSimpleFade();
                         break;
                     default:
                         UpToDownAnimation();
@@ -155,7 +166,6 @@ namespace _2DRoguelike.Content.Core.UI
 
             public void MiddleFadeInOut()
             {
-                // quadratic function: minimum at x=0 and x=10 maximum opacity reached at x-5 with value y=1
                 transparency = -0.04f * timer * (timer - 10f);
                 
                 if (timer > 10)
@@ -181,16 +191,28 @@ namespace _2DRoguelike.Content.Core.UI
 
             }
 
+            public void DownSimpleFade()
+            {
+                transparency = -0.04f * timer * (timer - 10f);
+
+                if (timer > 10)
+                {
+                    expire = true;
+                }
+
+                timer += 0.05f;
+            }
+
             public void Draw(SpriteBatch s)
             {
                 //s.DrawString(TextureManager.FontArial, message,position,color*transparency);
-                s.DrawString(TextureManager.FontArial, message, position, color*transparency, rotation, TextureManager.FontArial.MeasureString(message)/2, scale, SpriteEffects.None, 0);
+                s.DrawString(font, message, position, color*transparency, rotation, TextureManager.FontArial.MeasureString(message)/2, scale, SpriteEffects.None, 0);
             }
         }
 
         public static void DisplayMessage(string message, Color c)
         {
-            messages.Add(new Message(message, c, AnimationType.LeftToRightCos));
+            messages.Add(new Message(message, c, AnimationType.DownSimpleFade));
         }
         public static void DisplayMessage(string message, Color c, AnimationType animation)
         {

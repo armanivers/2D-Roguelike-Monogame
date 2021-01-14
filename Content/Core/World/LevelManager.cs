@@ -9,6 +9,7 @@ using _2DRoguelike.Content.Core.World.ExitConditions;
 using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.Cutscenes;
+using static _2DRoguelike.Content.Core.UI.MessageFactory.Message;
 
 namespace _2DRoguelike.Content.Core.World
 {
@@ -49,7 +50,7 @@ namespace _2DRoguelike.Content.Core.World
             currentmap = levelList[level].map;
             currenttilemap = currentmap.tilearray;
             playerposition = new Vector2();
-            MessageFactory.DisplayMessage("Level " +level +" - " +levelNames[level], Color.White);
+            MessageFactory.DisplayMessage("Level " +level +" - " +levelNames[level], Color.White, AnimationType.LeftToRightCos);
         }
 
         public static void NextLevel()
@@ -102,8 +103,8 @@ namespace _2DRoguelike.Content.Core.World
                 UIManager.SwitchBossBarState();
             }
 
-            MessageFactory.DisplayMessage("Level " + level + " - " + levelNames[level], Color.White);
             MessageFactory.ClearMessages();
+            MessageFactory.DisplayMessage("Level " + level + " - " + levelNames[level], Color.White, AnimationType.LeftToRightCos);
         }
         public static void Update(Player player)
         {

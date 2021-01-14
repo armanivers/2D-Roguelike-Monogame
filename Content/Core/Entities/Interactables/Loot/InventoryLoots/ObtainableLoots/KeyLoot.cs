@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static _2DRoguelike.Content.Core.UI.MessageFactory.Message;
+
 namespace _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.ObtainableLoots
 {
     // abstrakte klasse ObtainableItemLoot erstellen, falls mehr items
@@ -46,7 +48,7 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.O
         }
         private void NotifyPlayer()
         {
-            MessageFactory.DisplayMessage("Key Obtained!", Color.Green);
+            MessageFactory.DisplayMessage("Key Obtained!", Color.Green,AnimationType.UpToDown);
         }
         private void PlaySound()
         {
