@@ -13,11 +13,6 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
 {
     public class RandomLoot
     {
-        // Item IDS 
-        
-        // wieso keine Weapon-Enums? Sind Aussagekräftiger, als IDs 
-
-        // drop types
         public enum DropType
         {
             chestNormal,
@@ -40,70 +35,66 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
             SPEED_POTION
         }
 
-        // List mit keyvaluepairs um items mit gleiche wahrscheinlichkeit zu erlauben
-        private static List<KeyValuePair<int, Items>> chestNormalDroplist = new List<KeyValuePair<int, Items>>()
+
+        /*
+         Drop table has the following Structure: 
+         Dictionary containg a droptype(loot source, example: chest/zombie etc) and it's corresponding List with items (its loot table) and then a
+         List with keyvaluepairs (so certain items can have same drop percentage) consisting of an int (drop percentage) and an item (dropped item)
+        */
+        private static Dictionary<DropType, List<KeyValuePair<int, Items>>> dropTables = new Dictionary<DropType, List<KeyValuePair<int, Items>>>()
         {
-            new KeyValuePair<int,Items>(40,Items.DAGGER), // 40% chance to get Dagger (id 0)
-            new KeyValuePair<int,Items>(30,Items.BOW), // 30% chance to get Bow (id 1)
-            new KeyValuePair<int,Items>(15,Items.BOMB), // 10% chance to get Bomb (id 3)
-            new KeyValuePair<int,Items>(10,Items.HEALTH_POTION), // 10% chance to get Healthpotion (id 5)
-            new KeyValuePair<int, Items>(5,Items.SPEAR) // 5% chance to get Spear (id 4)
+
+            {
+                DropType.chestNormal, new List<KeyValuePair<int, Items>>()
+                {
+                    new KeyValuePair<int,Items>(40,Items.DAGGER), // 40% chance to get Dagger (id 0)
+                    new KeyValuePair<int,Items>(30,Items.BOW), // 30% chance to get Bow (id 1)
+                    new KeyValuePair<int,Items>(15,Items.BOMB), // 10% chance to get Bomb (id 3
+                    new KeyValuePair<int,Items>(10,Items.HEALTH_POTION), // 10% chance to get Healthpotion (id 5)
+                    new KeyValuePair<int, Items>(5,Items.SPEAR) // 5% chance to get Spear (id 4)
+                }
+            },
+            {
+                DropType.chestDiamond,new List<KeyValuePair<int, Items>>()      
+                {
+                    new KeyValuePair<int,Items>(40,Items.DAGGER), // 40% chance to get Dagger (id 0)
+                    new KeyValuePair<int,Items>(30,Items.BOW), // 30% chance to get Bow (id 1)
+                    new KeyValuePair<int,Items>(15,Items.BOMB), // 10% chance to get Bomb (id 3)
+                    new KeyValuePair<int,Items>(10,Items.HEALTH_POTION), // 10% chance to get Healthpotion (id 5)
+                    new KeyValuePair<int, Items>(5,Items.SPEAR) // 5% chance to get Spear (id 4)
+                }
+            },
+            {
+                DropType.lootbagZombie,new List<KeyValuePair<int, Items>>()
+                {
+                    new KeyValuePair<int,Items>(40,Items.DAGGER),
+                    new KeyValuePair<int,Items>(30,Items.BOW),
+                    new KeyValuePair<int,Items>(10,Items.XP_POTION),
+                    new KeyValuePair<int,Items>(10,Items.BOMB),
+                    new KeyValuePair<int,Items>(10,Items.HEALTH_POTION)
+                }
+            },
+            {
+                DropType.lootbagSkeleton,new List<KeyValuePair<int, Items>>()
+                {
+                    new KeyValuePair<int,Items>(50,Items.DAGGER),
+                    new KeyValuePair<int,Items>(50,Items.BOW)
+                }
+            },
+            {
+                DropType.lootbagWizard,new List<KeyValuePair<int, Items>>()
+                {
+                    new KeyValuePair<int,Items>(50,Items.DAGGER),
+                    new KeyValuePair<int,Items>(50,Items.BOW)
+                }
+            }
+
         };
-
-        private static List<KeyValuePair<int, Items>> chestDiamondDroplist = new List<KeyValuePair<int, Items>>()
-        {
-            new KeyValuePair<int,Items>(50,Items.AXE),
-            new KeyValuePair<int,Items>(30,Items.HEALTH_POTION),
-            new KeyValuePair<int, Items>(20,Items.SPEAR)
-        };
-
-        private static List<KeyValuePair<int, Items>> lootbagZombieDroplist = new List<KeyValuePair<int, Items>>()
-        {
-            new KeyValuePair<int,Items>(40,Items.DAGGER),
-            new KeyValuePair<int,Items>(30,Items.BOW),
-            new KeyValuePair<int,Items>(10,Items.XP_POTION),
-            new KeyValuePair<int,Items>(10,Items.BOMB),
-            new KeyValuePair<int,Items>(10,Items.HEALTH_POTION)
-        };
-
-        private static List<KeyValuePair<int, Items>> lootbagSkeletonDroplist = new List<KeyValuePair<int, Items>>()
-        {
-            new KeyValuePair<int,Items>(50,Items.DAGGER),
-            new KeyValuePair<int,Items>(50,Items.BOW)
-        };
-
-
 
         // Main method used to spawn the loot!
         public static void SpawnLoot(DropType type,Vector2 pos)
         {
-
-            Items chosenItem;
-            //type = 1;
-            switch (type)
-            {
-                // Normal Chest Loot
-                case DropType.chestNormal:
-                    chosenItem = DetermineLoot(chestNormalDroplist);
-                    break;
-                // Diamond Chest Loot
-                case DropType.chestDiamond:
-                    chosenItem = DetermineLoot(chestDiamondDroplist);
-                    break;
-                // Zombies Loot bag 
-                case DropType.lootbagZombie:
-                    chosenItem = DetermineLoot(lootbagZombieDroplist);
-                    break;
-                // skeleton loot bag
-                case DropType.lootbagSkeleton:
-                    chosenItem = DetermineLoot(lootbagSkeletonDroplist);
-                    break;
-                default:
-                    chosenItem = Items.DAGGER;
-                    break;
-            }
-            //Debug.Print("Chosen item to spawn is " + chosenItem);
-            PlaceLoot(chosenItem, pos);
+            PlaceLoot(DetermineLoot(dropTables[type]), pos);
         }
 
         private static Items DetermineLoot(List<KeyValuePair<int, Items>> dropList)
@@ -189,5 +180,84 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
                 return DropType.chestNormal;
             }
         }
+
+        #region OLD LOOTABLE
+        /*
+        public static void SpawnLoot(DropType type, Vector2 pos)
+        {
+            /*
+            Items chosenItem;
+            //type = 1;
+            switch (type)
+            {
+                // Normal Chest Loot
+                case DropType.chestNormal:
+                    chosenItem = DetermineLoot(chestNormalDroplist);
+                    break;
+                // Diamond Chest Loot
+                case DropType.chestDiamond:
+                    chosenItem = DetermineLoot(chestDiamondDroplist);
+                    break;
+                // Zombies Loot bag 
+                case DropType.lootbagZombie:
+                    chosenItem = DetermineLoot(lootbagZombieDroplist);
+                    break;
+                // skeleton loot bag
+                case DropType.lootbagSkeleton:
+                    chosenItem = DetermineLoot(lootbagSkeletonDroplist);
+                    break;
+                default:
+                    chosenItem = Items.DAGGER;
+                    break;
+            }
+            //Debug.Print("Chosen item to spawn is " + chosenItem
+            PlaceLoot(choosenItem, pos);
+        }
+
+        
+       // List mit keyvaluepairs um items mit gleiche wahrscheinlichkeit zu erlauben
+       private static List<KeyValuePair<int, Items>> chestNormal = new List<KeyValuePair<int, Items>>()
+       {
+           new KeyValuePair<int,Items>(40,Items.DAGGER), // 40% chance to get Dagger (id 0)
+           new KeyValuePair<int,Items>(30,Items.BOW), // 30% chance to get Bow (id 1)
+           new KeyValuePair<int,Items>(15,Items.BOMB), // 10% chance to get Bomb (id 3)
+           new KeyValuePair<int,Items>(10,Items.HEALTH_POTION), // 10% chance to get Healthpotion (id 5)
+           new KeyValuePair<int, Items>(5,Items.SPEAR) // 5% chance to get Spear (id 4)
+       };
+
+       // List mit keyvaluepairs um items mit gleiche wahrscheinlichkeit zu erlauben
+       private static List<KeyValuePair<int, Items>> chestNormalDroplist = new List<KeyValuePair<int, Items>>()
+       {
+           new KeyValuePair<int,Items>(40,Items.DAGGER), // 40% chance to get Dagger (id 0)
+           new KeyValuePair<int,Items>(30,Items.BOW), // 30% chance to get Bow (id 1)
+           new KeyValuePair<int,Items>(15,Items.BOMB), // 10% chance to get Bomb (id 3)
+           new KeyValuePair<int,Items>(10,Items.HEALTH_POTION), // 10% chance to get Healthpotion (id 5)
+           new KeyValuePair<int, Items>(5,Items.SPEAR) // 5% chance to get Spear (id 4)
+       };
+
+       private static List<KeyValuePair<int, Items>> chestDiamondDroplist = new List<KeyValuePair<int, Items>>()
+       {
+           new KeyValuePair<int,Items>(50,Items.AXE),
+           new KeyValuePair<int,Items>(30,Items.HEALTH_POTION),
+           new KeyValuePair<int, Items>(20,Items.SPEAR)
+       };
+
+       private static List<KeyValuePair<int, Items>> lootbagZombieDroplist = new List<KeyValuePair<int, Items>>()
+       {
+           new KeyValuePair<int,Items>(40,Items.DAGGER),
+           new KeyValuePair<int,Items>(30,Items.BOW),
+           new KeyValuePair<int,Items>(10,Items.XP_POTION),
+           new KeyValuePair<int,Items>(10,Items.BOMB),
+           new KeyValuePair<int,Items>(10,Items.HEALTH_POTION)
+       };
+
+       private static List<KeyValuePair<int, Items>> lootbagSkeletonDroplist = new List<KeyValuePair<int, Items>>()
+       {
+           new KeyValuePair<int,Items>(50,Items.DAGGER),
+           new KeyValuePair<int,Items>(50,Items.BOW)
+       };
+       */
+
+        #endregion
     }
 }

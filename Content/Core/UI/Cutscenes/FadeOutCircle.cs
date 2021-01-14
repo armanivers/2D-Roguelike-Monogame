@@ -50,7 +50,9 @@ namespace _2DRoguelike.Content.Core.Cutscenes
 
             // center the image depending on resolution
             position = new Vector2((cutsceneTexture.Width * scalingFactor / 2), (cutsceneTexture.Height * scalingFactor / 2));
-            
+
+            if (scale > scalingFactor * 10) transparency-=0.01f;
+
             // if cutscene done, remove it
             if (timer >= sceneDuration) cutsceneDone = true;
 

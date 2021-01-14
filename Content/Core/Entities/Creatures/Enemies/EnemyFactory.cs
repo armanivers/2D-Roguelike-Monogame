@@ -70,8 +70,9 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         public static EnemyType ChooseEnemy()
         {
             int randomPercentage = Game1.rand.Next(0, 101);
-            
-            foreach (var enemyPercentage in levelEnemies[LevelManager.level])
+
+            // Paramter 0 sollte mit LevelManager.level ersetzt werden! (jetzt 0 damit ich nicht fur jedes Level enemy list erstelle)
+            foreach (var enemyPercentage in levelEnemies[0])
             {
                 if (randomPercentage <= enemyPercentage.Key)
                 {
