@@ -9,8 +9,6 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
     class KillSpecificEnemy : ExitCondition
     {
         Enemy enemy;
-        // TODO: Enemy speichern
-        // bei Erzeugung von diesedr ExitCondition: maxHealthPoints erhöhen, Color = Color.Gold
 
         public KillSpecificEnemy(Enemy enemy) {
             this.enemy = enemy;

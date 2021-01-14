@@ -20,7 +20,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         private int reactionTimer;
         public int ReactionTimer { get => reactionTimer; set => reactionTimer = value; }
 
-        // TODO: Reaktionszeit für Angriff. Random [15-60]
         // Wenn currentRoom != Room des Enemies: Idle
 
         public EnemyAI(Enemy agent, int minReactionTime = DEFAULT_REACTION_TIME_MIN, int maxReactionTime = DEFAULT_REACTION_TIME_MAX)
@@ -51,7 +50,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
         protected bool SimulateMeleeAttack()
         {
-            // TODO: Weapon als Parameter übergeben
 
             Rectangle[] effectiveRange = ((ShortRange)agent.WeaponInventory[0]).GetEffectiveRange();
 

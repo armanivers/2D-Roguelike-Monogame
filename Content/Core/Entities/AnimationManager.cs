@@ -7,8 +7,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.Entities
 {
-    /* TODO: Animationen, die rückwärts spielen müssen anders abgespielt werden:
-    */
+    
     public class AnimationManager
     {
         private EntityBasis entity;

@@ -192,13 +192,13 @@ namespace _2DRoguelike.Content.Core.World.Maps
         }
         public override void Update(Player player)
         {
-            //TODO in eigene Methoden auslagern SetCurrentRoom und GoToNextLevel(), da so imperformant (kein Schleifenabbruch)
             currentroom = null;
             for (int i = 0; i < NumRooms; i++)
             {
                 if (roomlist[i].roomhitbox.Intersects(player.GetTileCollisionHitbox()))
                 {
                     currentroom = roomlist[i];
+                    break;
                     /*if (roomlist[i].exitroom)
                     {
                         if (player.GetTileCollisionHitbox().Intersects(roomlist[i].exithitbox))

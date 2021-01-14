@@ -36,7 +36,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         {
             if(LevelManager.currentmap.currentroom == null || !LevelManager.currentmap.currentroom.roomhitbox.Contains(Hitbox) || base.CannotWalkHere())
                 return true;
-            // TODO: BUG! Enemies stoßen gegen die TileCollisionHitbox der toten Enemies: expired Enemies werden nicht aus der currentroom.enemylist genommen
             foreach (Enemy otherEnemy in LevelManager.currentmap.currentroom.enemylist)
             {
                 if (otherEnemy != this && !otherEnemy.IsDead() && GetTileCollisionHitbox().Intersects(otherEnemy.GetTileCollisionHitbox())) {
@@ -93,7 +92,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             return !IsAttacking() && !WeaponInventory[weaponPos].InUsage();
         }
 
-        // TODO: Nachschauen, wie das funktioniert da ist noch was faul
         public bool IsPlayerInTheSameRoom()
         {
            

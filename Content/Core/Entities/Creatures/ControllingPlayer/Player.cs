@@ -282,7 +282,6 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             */
 
             if (InputController.IsLeftMouseButtonPressed() && !IsAttacking() && CanAttack())
-            // TODO: if(weapon.rangeAttack) return RangeAttack else return Melee ...
             {
                 if (CurrentWeapon is LongRange)
                 {
@@ -362,7 +361,6 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             canInteract = false;
             interactableObjects.Clear();
 
-            // TODO: mit LevelManager.currentroom.entities ersetzen 
             foreach (var interactableObject in EntityManager.interactables)
             {
                 if (Hitbox.Intersects(interactableObject.Hitbox))

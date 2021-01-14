@@ -72,7 +72,6 @@ namespace _2DRoguelike.Content.Core.Entities
             transparency = 1f;
             shadow = false;
         }
-        // TODO: Setter fuer die Hitbox fixen (fuer untere Klassen), Bsp Klasse Creature
 
 
         public abstract void Update(GameTime gameTime);

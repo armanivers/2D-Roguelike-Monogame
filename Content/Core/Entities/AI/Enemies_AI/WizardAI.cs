@@ -40,14 +40,12 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                     {
                         if (SimulateArrowAttack())
                         {
-                            // TODO: SimulatedFireballAttack
                             if (TryToAttack(agent.WeaponInventory[2]))
                                 return new RangeAttack(agent);
                         }
                     }
 
 
-                    // TODO: Teleport
                     /*
                     if (inDangerZone()) {
                         if (React()) { 

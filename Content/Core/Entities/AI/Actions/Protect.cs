@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Actions
 {
-    // TODO: Funktion zum Schützen einbinden
     public class Protect : Ability
     {
         const float DEFAULT_TIME_IN_STATE = 3f;
@@ -26,7 +25,6 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
 
         public override void UseAbility()
         {
-            // TODO: Hier die Logik für den Ablauf einfügen
             CallingInstance.Invincible = true;
             CallingInstance.currentColor = Color.GhostWhite;
             if (CallingInstance.transparency >= 0.5f)

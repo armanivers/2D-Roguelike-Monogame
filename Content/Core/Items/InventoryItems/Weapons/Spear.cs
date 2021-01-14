@@ -8,7 +8,6 @@ namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
 {
     public class Spear : ShortRange
     {
-        // TODO: Attribut maximumHitsPerUsage
 
         const float SPEAR_COOLDOWN = 1.5f;
         const int DAMAGE = 60;

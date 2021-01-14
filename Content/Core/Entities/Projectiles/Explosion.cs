@@ -52,7 +52,7 @@ namespace _2DRoguelike.Content.Core.Entities
         
         public void checkCollision()
         {
-            // TODO: Explosionen können Sachen zerstöre4n, wie Spikes und Projectiles
+            // TODO: Explosionen können Sachen zerstören, wie Spikes und Projectiles
             if (timer >= expireTimer / damageCheckDivisor)
                 if (protectedEntity != Player.Instance && this.Hitbox.Intersects(Player.Instance.Hitbox))
                 { 
