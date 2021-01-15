@@ -51,5 +51,10 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
         {
             return "Enemies Remaining:" + (killTarget - kills);
         }
+
+        public override void PlaceKeyOnMap()
+        {
+            LevelManager.currentmap.currentroom.setKey();
+        }
     }
 }

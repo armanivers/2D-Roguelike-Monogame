@@ -112,7 +112,7 @@ namespace _2DRoguelike.Content.Core.World
 
             if (levelList[level].exitCondition.Exit()) {
                 SoundManager.FulfilledExitCondition.Play(Game1.gameSettings.soundeffectsLevel, 0.0f, 0);
-                currentmap.AddKeyToRoom(10);
+                levelList[level].exitCondition.PlaceKeyOnMap();
             }
             CheckEndgame();
         }

@@ -21,5 +21,10 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
         {
             return "Kill everyone!";
         }
+
+        public override void PlaceKeyOnMap()
+        {
+            LevelManager.currentmap.AddKeyToRoom(10);
+        }
     }
 }

@@ -51,6 +51,6 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
 
         public abstract string PrintCondition();
 
-
+        public abstract void PlaceKeyOnMap();
     }
 }

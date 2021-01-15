@@ -15,5 +15,10 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
         {
             throw new NotImplementedException();
         }
+
+        public override void PlaceKeyOnMap()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

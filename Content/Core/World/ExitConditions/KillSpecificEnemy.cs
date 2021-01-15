@@ -25,5 +25,10 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
         {
             return "Kill the Key Guardian!";
         }
+
+        public override void PlaceKeyOnMap()
+        {
+            LevelManager.currentmap.currentroom.setKey();
+        }
     }
 }
