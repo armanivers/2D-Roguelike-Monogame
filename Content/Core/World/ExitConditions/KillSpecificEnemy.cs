@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.World.Rooms;
 using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.World.ExitConditions
@@ -24,6 +25,11 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
         public override string PrintCondition()
         {
             return "Kill the Key Guardian!";
+        }
+
+        public override Vector2 GetKeySpawnPosition(Room room)
+        {
+            return enemy.Position;
         }
     }
 }

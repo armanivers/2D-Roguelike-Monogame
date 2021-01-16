@@ -61,9 +61,9 @@ namespace _2DRoguelike.Content.Core.GameDebugger
                         spriteBatch.DrawString(TextureManager.FontArial, "Exit: " + LevelManager.currentmap.currentroom.exithitbox.X/32+ " , " + LevelManager.currentmap.currentroom.exithitbox.Y/32, MoveIndent(), Color.White);
                 }
 
-                spriteBatch.DrawString(TextureManager.FontArial, "Exit condition: " + LevelManager.levelList[LevelManager.level].exitCondition.PrintCondition() , MoveIndent(), Color.White);
+                // spriteBatch.DrawString(TextureManager.FontArial, "Exit condition: " + LevelManager.levelList[LevelManager.level].exitCondition.PrintCondition() , MoveIndent(), Color.White);
                 spriteBatch.DrawString(TextureManager.FontArial, "Condition " + (LevelManager.levelList[LevelManager.level].exitCondition.CanExit() ? "is fulfilled!" : "is not fulfilled yet") , MoveIndent(), Color.White);
-                
+                spriteBatch.DrawString(TextureManager.FontArial,"Mana: " + Player.Instance.Mana, MoveIndent(), Color.White);
             }
         }
 

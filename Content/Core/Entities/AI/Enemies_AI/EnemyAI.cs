@@ -20,6 +20,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         private int reactionTimer;
         public int ReactionTimer { get => reactionTimer; set => reactionTimer = value; }
 
+
         // Wenn currentRoom != Room des Enemies: Idle
 
         public EnemyAI(Enemy agent, int minReactionTime = DEFAULT_REACTION_TIME_MIN, int maxReactionTime = DEFAULT_REACTION_TIME_MAX)
@@ -81,6 +82,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
         private bool didReact;
 
+       
+
         protected void StartAttemptForReaction()
         {
             didReact = false;
@@ -93,14 +96,14 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             else
                 didReact = true;
 
-            if (reactionTimer > 0)
+            if (ReactionTimer > 0)
             {
-                reactionTimer--;
+                ReactionTimer--;
                 return false;
             }
             else
             {
-                reactionTimer = currentReactionTimeGap = new Random().Next(reactionTimeInterval[0], reactionTimeInterval[1]);
+                ReactionTimer = currentReactionTimeGap = new Random().Next(reactionTimeInterval[0], reactionTimeInterval[1]);
                 return true;
             }
         }
@@ -117,9 +120,9 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             return false;
         }
 
-        private void ResetReactionTimer()
+        public void ResetReactionTimer()
         {
-            reactionTimer = currentReactionTimeGap;
+            ReactionTimer = currentReactionTimeGap;
         }
         protected void ResetReactionIfNoReactionAttempt()
         {

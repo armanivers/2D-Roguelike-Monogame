@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities.Actions;
+using _2DRoguelike.Content.Core.Entities.AI.Actions;
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
 using _2DRoguelike.Content.Core.Entities.Interactables.NPCs;
 using _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects;
@@ -159,12 +160,12 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
             // add weapons manually
 
-            AddToWeaponInventory(new Dagger(this));
-            AddToWeaponInventory(new Axe(this));
-            AddToWeaponInventory(new Bow(this));
-            AddToWeaponInventory(new BombWeapon(this));
-            AddToWeaponInventory(new Spear(this));
-            //AddToWeaponInventory(new FireballWeapon(this));
+            //AddToWeaponInventory(new Dagger(this));
+            //AddToWeaponInventory(new Axe(this));
+            //AddToWeaponInventory(new Bow(this));
+            //AddToWeaponInventory(new BombWeapon(this));
+            //AddToWeaponInventory(new Spear(this));
+            ////AddToWeaponInventory(new FireballWeapon(this));
 
 
             ChangeCurrentWeaponSlot(0);
@@ -272,14 +273,13 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
         public override Action DetermineAction(float currentGameTime)
         {
-            
-            if (InputController.IsRightMouseButtonPressed() && LevelManager.currentmap.currentroom != null)
-                Position = Room.getRandomCoordinateInCurrentRoom(this);
-            /*
-            if (InputController.IsRightMouseButtonHeld() && Protect.CanSwitchToState(currentGameTime) && (Mana>=100)) // statt 100 ggf. Ability.RequiredMana nutzen
-                return new Protect(this, currentGameTime);
-            else Invincible = false;
-            */
+
+            if (InputController.IsRightMouseButtonPressed() && Teleport.CanSwitchToState(this))
+                return new Teleport(this, currentGameTime);
+
+            //if (InputController.IsRightMouseButtonHeld() && Protect.CanSwitchToState(this) /*&& (Mana >= 100)*/) // statt 100 ggf. Ability.RequiredMana nutzen
+            //    return new Protect(this, currentGameTime);
+
 
             if (InputController.IsLeftMouseButtonPressed() && !IsAttacking() && CanAttack())
             {
@@ -341,9 +341,11 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 case 1:
                     // Level 1 award = increase max hp by 20
                     maxHealthPoints += 20;
+                    HealthPoints += 20;
                     break;
                 case 2:
                     maxHealthPoints += 50;
+                    HealthPoints += 50;
                     break;
                 case 3:
                     break;

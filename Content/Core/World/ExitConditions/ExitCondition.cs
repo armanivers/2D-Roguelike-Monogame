@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using _2DRoguelike.Content.Core.World.Rooms;
+using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.World.ExitConditions
 {
@@ -51,6 +53,7 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
 
         public abstract string PrintCondition();
 
+        public abstract Vector2 GetKeySpawnPosition(Room room);
 
     }
 }

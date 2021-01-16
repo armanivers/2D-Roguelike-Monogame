@@ -17,6 +17,10 @@ namespace _2DRoguelike.Content.Core
     class Gameplay
     {
         public bool gameOver;
+        private static GameTime gameTime;
+
+        public static GameTime GameTime { get => gameTime; private set => gameTime = value; }
+
         public Gameplay()
         {
         }
@@ -82,6 +86,8 @@ namespace _2DRoguelike.Content.Core
 
         public void Update(GameTime gameTime)
         {
+            GameTime = gameTime;
+
             CutsceneManager.Update(gameTime);
             if (CutsceneManager.activeCutscene)
             {

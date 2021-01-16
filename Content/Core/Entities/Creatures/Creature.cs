@@ -15,6 +15,8 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public const float MAX_MANA = 100;
         public float Mana { get; set; }
+        public const float MANA_REGENERATION_SPEED = 0.56f; // 3 sekunden (100/(60*3))
+
         public int maxHealthPoints;
         public int HealthPoints { get; set; }
 
@@ -87,7 +89,14 @@ namespace _2DRoguelike.Content.Core.Entities
         public void RegenerateMana()
         {
             // speed 0.1f means full regeneration is ~16 seconds
-            if (Mana < MAX_MANA) Mana += 0.1f;
+            if (Mana < MAX_MANA)
+            {
+                Mana += MANA_REGENERATION_SPEED;
+                if (Mana > MAX_MANA)
+                    Mana = MAX_MANA;
+
+                // Debug.WriteLine("Mana is at: " + Mana);
+            }
         }
 
         public void DeductMana(float manaAmount)
@@ -95,7 +104,9 @@ namespace _2DRoguelike.Content.Core.Entities
             Mana -= manaAmount;
 
             // sanity check
-            if (Mana < 0) Mana = 0;
+            if (Mana < 0)
+                Mana = 0;
+            // Debug.WriteLine("Mana is at: " + Mana);
         }
 
         public virtual bool IsInvincible()

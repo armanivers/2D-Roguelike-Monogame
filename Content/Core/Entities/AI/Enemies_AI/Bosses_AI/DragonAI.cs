@@ -17,7 +17,7 @@ namespace _2DRoguelike.Content.Core.Entities.AI.Enemies_AI.Bosses_AI
         {
         }
 
-        protected override Actions.Action GetAIDecision()
+        protected override Entities.Actions.Action GetAIDecision()
         {
             if (agent.IsPlayerInTheSameRoom())
             {

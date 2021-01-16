@@ -216,13 +216,12 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         /// </summary>
         public void setKey()
         {
-            int xpos;
-            int ypos;
-            xpos = (Map.Random.Next(1, Width - 2)) + XPos;
-            ypos = (Map.Random.Next(1, Height - 2)) + YPos;
-            entitylist.Add(new KeyLoot(new Vector2(xpos * PIXELMULTIPLIER, ypos * PIXELMULTIPLIER)));
+            
+            entitylist.Add(new KeyLoot(LevelManager.levelList[LevelManager.level].exitCondition.GetKeySpawnPosition(this)));
             //Debug.WriteLine("Key placed!");
         }
+
+
 
         public static Vector2 getRandomCoordinateInCurrentRoom(Creature creature)
         {
