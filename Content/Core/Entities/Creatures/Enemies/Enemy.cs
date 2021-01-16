@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
-using _2DRoguelike.Content.Core.Entities.Creatures.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Inventories;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Weapons;

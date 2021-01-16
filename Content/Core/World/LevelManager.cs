@@ -10,6 +10,7 @@ using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.Cutscenes;
 using static _2DRoguelike.Content.Core.UI.MessageFactory.Message;
+using _2DRoguelike.Content.Core.Entities.Inventories;
 
 namespace _2DRoguelike.Content.Core.World
 {
@@ -85,7 +86,7 @@ namespace _2DRoguelike.Content.Core.World
             }
             levelList[level - 1].map.clearEnemies();
 
-            Player.Instance.inventory.ClearKey();
+            ((PlayerInventory)Player.Instance.inventory).ClearKey();
 
             Player.Instance.Position = levelList[level].map.getSpawnpoint() * new Vector2(32);
             currentmap = levelList[level].map;

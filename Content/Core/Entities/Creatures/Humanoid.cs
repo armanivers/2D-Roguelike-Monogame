@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
-using _2DRoguelike.Content.Core.Entities.Creatures.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Inventories;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.Entities.Loot;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;

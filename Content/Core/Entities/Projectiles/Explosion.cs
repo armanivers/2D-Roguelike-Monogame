@@ -55,9 +55,10 @@ namespace _2DRoguelike.Content.Core.Entities
             // TODO: Explosionen können Sachen zerstören, wie Spikes und Projectiles
             if (timer >= expireTimer / damageCheckDivisor)
                 if (protectedEntity != Player.Instance && this.Hitbox.Intersects(Player.Instance.Hitbox))
-                { 
-                
-                    Player.Instance.DeductHealthPoints((int)(EXPLOSION_DAMAGE * damageModifier * protectedEntity.temporaryDamageMultiplier));
+                {
+                    var damage = EXPLOSION_DAMAGE * damageModifier;
+                    if (protectedEntity != null) damage *= protectedEntity.temporaryDamageMultiplier;
+                    Player.Instance.DeductHealthPoints((int)(damage));
                 }
 
             if (timer >= expireTimer / damageCheckDivisor)
@@ -68,7 +69,9 @@ namespace _2DRoguelike.Content.Core.Entities
                         if (protectedEntity != (Humanoid)livingEntity && this.Hitbox.Intersects(livingEntity.Hitbox))
                         {
                             // TODO: je näher man am Explosionsherd steht,desto höher der Schaden
-                            ((Humanoid)livingEntity).DeductHealthPoints((int)(EXPLOSION_DAMAGE * damageModifier * protectedEntity.temporaryDamageMultiplier)) ;
+                            var damage = EXPLOSION_DAMAGE * damageModifier;
+                            if (protectedEntity != null) damage *= protectedEntity.temporaryDamageMultiplier;
+                            ((Humanoid)livingEntity).DeductHealthPoints((int)(damage)) ;
                         }
                     }
                 }

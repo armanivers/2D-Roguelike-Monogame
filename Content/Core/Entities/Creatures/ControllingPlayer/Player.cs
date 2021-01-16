@@ -1,6 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.AI.Actions;
-using _2DRoguelike.Content.Core.Entities.Creatures.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Inventories;
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
 using _2DRoguelike.Content.Core.Entities.Interactables.NPCs;
 using _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects;
@@ -102,13 +102,13 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             instance = this;
 
             // add weapons manually
-            /*
-            AddToWeaponInventory(new Dagger(this));
-            AddToWeaponInventory(new Axe(this));
-            AddToWeaponInventory(new Bow(this));
-            AddToWeaponInventory(new BombWeapon(this));
-            AddToWeaponInventory(new Spear(this));
-            */
+
+            inventory.AddToWeaponInventory(new Dagger(this));
+            inventory.AddToWeaponInventory(new Axe(this));
+            inventory.AddToWeaponInventory(new Bow(this));
+            inventory.AddToWeaponInventory(new BombWeapon(this));
+            inventory.AddToWeaponInventory(new Spear(this));
+            
             //AddToWeaponInventory(new FireballWeapon(this));
 
 
@@ -380,9 +380,9 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             }*/
 
             if (InputController.IsKeyPressed(Keys.PageUp) || InputController.IsMouseScrolledDown())
-                inventory.SetNextWeapon();
+                ((PlayerInventory)inventory).SetNextWeapon();
             else if (InputController.IsKeyPressed(Keys.PageDown) || InputController.IsMouseScrolledUp())
-                inventory.SetNextWeapon(true);
+                ((PlayerInventory)inventory).SetNextWeapon(true);
             else if (InputController.IsKeyPressed(Keys.NumPad0))
                 inventory.ChangeCurrentWeaponSlot(0);
             else if (InputController.IsKeyPressed(Keys.NumPad1))

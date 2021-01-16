@@ -1,13 +1,23 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Weapons;
+using _2DRoguelike.Content.Core.Items.ObtainableItems;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace _2DRoguelike.Content.Core.Entities.Creatures.ControllingPlayer
+namespace _2DRoguelike.Content.Core.Entities.Inventories
 {
     public class PlayerInventory : Inventory
     {
+        private LevelKey key;
+        public bool HasLevelKey
+        {
+            get { return (key != null); }
+        }
+
+        // usable temporary items
+
+
         public PlayerInventory(Player player) : base(player)
         {
             
@@ -33,7 +43,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.ControllingPlayer
             }
 
         }
-        public override void SetNextWeapon(bool backwards = false)
+        public void SetNextWeapon(bool backwards = false)
         {
             // Nächste gültige Position im Array ermitteln
             int currentPos = CurrentWeaponPos;
@@ -47,27 +57,15 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.ControllingPlayer
             ChangeCurrentWeaponSlot(currentPos);
         }
 
-        /*
-        public LevelKey key;
-
-        public LevelKey Key
-        {
-            get { return key; }
-            private set
-            {
-                key = value;
-            }
-        }
-        */
 
         // sollte abstrakter sein, z.B. AddItem mit Parameter ObtainableItem item, fuegt es in Liste der schon vorhandene items
-        public override void AddKey()
+        public void AddKey(LevelKey key)
         {
-            hasLevelKey = true;
+            this.key = key;
         }
-        public override void ClearKey()
+        public void ClearKey()
         {
-            hasLevelKey = false;
+            key = null;
         }
     }
 }

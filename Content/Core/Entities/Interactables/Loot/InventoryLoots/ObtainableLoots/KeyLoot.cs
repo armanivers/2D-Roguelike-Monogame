@@ -1,5 +1,7 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Inventories;
 using _2DRoguelike.Content.Core.Entities.Loot;
+using _2DRoguelike.Content.Core.Items.ObtainableItems;
 using _2DRoguelike.Content.Core.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -30,7 +32,7 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.O
         }
         public override void OnContact()
         {
-            Player.Instance.inventory.AddKey();
+            ((PlayerInventory)Player.Instance.inventory).AddKey(new LevelKey());
             PlaySound();
             NotifyPlayer();
             obtained = true;

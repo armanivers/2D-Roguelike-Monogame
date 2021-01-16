@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace _2DRoguelike.Content.Core.Entities.Creatures.ControllingPlayer
+namespace _2DRoguelike.Content.Core.Entities.Inventories
 {
     public class EnemyInventory : Inventory
     {

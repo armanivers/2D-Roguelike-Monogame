@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace _2DRoguelike.Content.Core.Entities.Creatures.ControllingPlayer
+namespace _2DRoguelike.Content.Core.Entities.Inventories
 {
     public abstract class Inventory
     {
@@ -56,11 +56,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.ControllingPlayer
 
         public abstract void AddToWeaponInventory(Weapon weapon);
 
-        // Player Attributes
-        public virtual void SetNextWeapon(bool backwards = false) { }
-        public bool hasLevelKey;
-        public virtual void AddKey() { }
-        public virtual void ClearKey() { }
 
         
     }

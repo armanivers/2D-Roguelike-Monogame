@@ -2,6 +2,8 @@
 using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.Entities.Inventories;
+using _2DRoguelike.Content.Core.Items.ObtainableItems;
 using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.World;
 using _2DRoguelike.Content.Core.World.Rooms;
@@ -55,12 +57,11 @@ namespace _2DRoguelike.Content.Core
             {
                 Room exitroom = LevelManager.levelList[LevelManager.level].map.getExitRoom();
                 Player.Instance.Position = new Vector2(exitroom.CentreX * 32, exitroom.CentreY * 32);
-                Player.Instance.inventory.AddKey();
             }
 
             if (IsKeyPressed(Keys.O))
             {
-                Player.Instance.inventory.AddKey();
+                ((PlayerInventory)Player.Instance.inventory).AddKey(new LevelKey());
             }
 
             // Instantly Kill All Enemies
