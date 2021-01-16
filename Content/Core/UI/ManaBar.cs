@@ -1,4 +1,5 @@
-﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+﻿using _2DRoguelike.Content.Core.Entities;
+using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -60,7 +61,7 @@ namespace _2DRoguelike.Content.Core.UI
 
             currentMana = (int) target.Mana;
 
-            currentWidth = (int)(currentMana / target.MAX_MANA * fullWidth);
+            currentWidth = (int)(currentMana / Creature.MAX_MANA * fullWidth);
 
             //Debug.Print("Percentage {0} width = {1}", target.LevelupPercentage, currentWidth);
             //textPosition = containerPositon + new Vector2(redbarOffsetStart + fullWidth / 2 - TextureManager.FontArial.MeasureString("" + target.HealthPoints).X / 2, xSafezone);

@@ -57,7 +57,7 @@ namespace _2DRoguelike.Content.Core.Entities
                 if (protectedEntity != Player.Instance && this.Hitbox.Intersects(Player.Instance.Hitbox))
                 { 
                 
-                    Player.Instance.DeductHealthPoints((int)(EXPLOSION_DAMAGE * damageModifier));
+                    Player.Instance.DeductHealthPoints((int)(EXPLOSION_DAMAGE * damageModifier * protectedEntity.temporaryDamageMultiplier));
                 }
 
             if (timer >= expireTimer / damageCheckDivisor)
@@ -68,7 +68,7 @@ namespace _2DRoguelike.Content.Core.Entities
                         if (protectedEntity != (Humanoid)livingEntity && this.Hitbox.Intersects(livingEntity.Hitbox))
                         {
                             // TODO: je näher man am Explosionsherd steht,desto höher der Schaden
-                            ((Humanoid)livingEntity).DeductHealthPoints((int)(EXPLOSION_DAMAGE * damageModifier));
+                            ((Humanoid)livingEntity).DeductHealthPoints((int)(EXPLOSION_DAMAGE * damageModifier * protectedEntity.temporaryDamageMultiplier)) ;
                         }
                     }
                 }

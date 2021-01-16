@@ -103,7 +103,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
                             {
                                 if (Hitbox.Intersects(enemy.Hitbox) && !((Humanoid)enemy).IsDead())
                                 {
-                                    ((Enemy)enemy).DeductHealthPoints(impactDamage);
+                                    ((Enemy)enemy).DeductHealthPoints((int)(impactDamage * shootingEntity.temporaryDamageMultiplier));
                                     Incinerate();
                                 }
                             }
@@ -113,7 +113,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
                     {
                         if (Hitbox.Intersects(Player.Instance.Hitbox))
                         {
-                            Player.Instance.DeductHealthPoints(impactDamage);
+                            Player.Instance.DeductHealthPoints((int)(impactDamage*shootingEntity.temporaryDamageMultiplier));
                             isExpired = true;
                             // Incinerate(shootingEntity);
                         }

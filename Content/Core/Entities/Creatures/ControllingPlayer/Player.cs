@@ -359,12 +359,6 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             }
         }
 
-        public double GetUnlockedDamageMultiplier()
-        {
-            if (currentXPLevel >= 2) return 1.2;
-            else return 1.0;
-        }
-
         public void CheckInteractableCollision()
         {
             /* schoener wenn interaktion mit Container in seperate Methode geprueft wird, jedoch wenn wir interaktion und collision

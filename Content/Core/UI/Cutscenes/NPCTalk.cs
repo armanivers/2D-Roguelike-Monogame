@@ -9,12 +9,31 @@ namespace _2DRoguelike.Content.Core.Cutscenes
 {
     class NPCTalk : CutsceneBasis
     {
-        public NPCTalk() : base()
+        public NPCTalk(int npcTalkId) : base()
         {
-            cutsceneTexture = TextureManager.menu.NPCTalk00;
+            DetermineTextureCutscene(npcTalkId);
             color = Color.White;
             transparency = 0;
             position = new Vector2(0, 0);
+        }
+
+        private void DetermineTextureCutscene(int npcTalkId)
+        {
+            switch(npcTalkId)
+            {
+                case 0:
+                    cutsceneTexture = TextureManager.menu.NPCTalk00;
+                    break;
+                case 1:
+                    cutsceneTexture = TextureManager.menu.NPCTalk01;
+                    break;
+                case 2:
+                    cutsceneTexture = TextureManager.menu.NPCTalk02;
+                    break;
+                default:
+                    cutsceneTexture = TextureManager.menu.NPCTalk00;
+                    break;
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

@@ -68,7 +68,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
                     {
                         if (Hitbox.Intersects(enemy.Hitbox) && !((Humanoid)enemy).IsDead())
                         {
-                            ((Enemies.Enemy)enemy).DeductHealthPoints(DAMAGE);
+                            ((Enemies.Enemy)enemy).DeductHealthPoints((int)(DAMAGE * shootingEntity.temporaryDamageMultiplier));
                             isExpired = true;
                         }
                     }
@@ -78,7 +78,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
             {
                 if (Hitbox.Intersects(Player.Instance.Hitbox))
                 {
-                    Player.Instance.DeductHealthPoints(DAMAGE);
+                    Player.Instance.DeductHealthPoints((int)(DAMAGE * shootingEntity.temporaryDamageMultiplier));
                     isExpired = true;
                 }
             }

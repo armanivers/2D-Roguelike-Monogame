@@ -14,7 +14,7 @@ namespace _2DRoguelike.Content.Core.Entities
         private float hurtTimer;
         private const int hurtTimerLimit = 2;
 
-        public readonly float MAX_MANA = 100;
+        public const float MAX_MANA = 100;
         public float Mana { get; set; }
         public const float MANA_REGENERATION_SPEED = 0.56f; // 3 sekunden (100/(60*3))
 
@@ -28,6 +28,7 @@ namespace _2DRoguelike.Content.Core.Entities
         public readonly float movingSpeed;
         public float SpeedModifier { get; set; }
         public float DamageMultiplier { get; set; }
+        public float temporaryDamageMultiplier { get; set; }
         public bool dead;
 
         public override Vector2 Position
@@ -68,6 +69,7 @@ namespace _2DRoguelike.Content.Core.Entities
             dead = false;
             SpeedModifier = 1;
             DamageMultiplier = 1;
+            temporaryDamageMultiplier = DamageMultiplier;
         }
 
         public Rectangle GetTileCollisionHitbox()

@@ -190,7 +190,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
                     {
                         if (attackHitbox.Intersects(enemy.Hitbox) && !enemy.IsDead())
                         {
-                            ((Enemy)enemy).DeductHealthPoints(weaponDamage);
+                            ((Enemy)enemy).DeductHealthPoints((int)(weaponDamage * Owner.temporaryDamageMultiplier));
                             if (++enemiesHit == maximumHitsPerAttack)
                                 break;
                         }
@@ -208,7 +208,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             {
                 if (attackHitbox.Intersects(Player.Instance.Hitbox))
                 {
-                    Player.Instance.DeductHealthPoints(weaponDamage);
+                    Player.Instance.DeductHealthPoints((int)(weaponDamage * Owner.DamageMultiplier));
                 }
             }
         }
