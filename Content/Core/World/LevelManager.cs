@@ -15,8 +15,6 @@ namespace _2DRoguelike.Content.Core.World
 {
     static class LevelManager
     {
-
-        public const int numLevel = 3;
         public static int level = 0;
         // which boss should be spawned, example; bossmap1 = dragon bossm bossmap2 = ...
         public static int bossStage = 0;
@@ -35,7 +33,9 @@ namespace _2DRoguelike.Content.Core.World
             "Mountain Hill",
             "Dragon's cave",
             "Magical Forest",
-            "Last Hope"
+            "Last Hope",
+            "placeholder",
+            "placeholder"
         };
 
 

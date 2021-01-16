@@ -55,6 +55,12 @@ namespace _2DRoguelike.Content.Core
             {
                 Room exitroom = LevelManager.levelList[LevelManager.level].map.getExitRoom();
                 Player.Instance.Position = new Vector2(exitroom.CentreX * 32, exitroom.CentreY * 32);
+                Player.Instance.AddKey();
+            }
+
+            if (IsKeyPressed(Keys.O))
+            {
+                Player.Instance.AddKey();
             }
 
             // Instantly Kill All Enemies
