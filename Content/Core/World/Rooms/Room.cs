@@ -183,8 +183,8 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         {
             do
             {
-                XExit = (Map.Random.Next(1, Width - 2));
-                YExit = (Map.Random.Next(1, Height - 2));
+                XExit = (Map.Random.Next(2, Width - 2));
+                YExit = (Map.Random.Next(2, Height - 2));
             } while (room[XExit, YExit] != RoomObject.EmptySpace);
             exitroom = true;
             room[XExit, YExit] = RoomObject.Exit;
