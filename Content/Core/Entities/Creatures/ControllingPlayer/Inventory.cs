@@ -11,7 +11,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.ControllingPlayer
     {
         public Humanoid owner;
 
-
         public const int WEAPON_SLOT_CNT = 6;
         public int WeaponsInPosession;
 
@@ -55,37 +54,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.ControllingPlayer
             return WeaponInventory[pos] != null;
         }
 
-        public void AddToWeaponInventory(Weapon weapon)
-        {
-            if (owner is Enemy)
-            {
-                if (weapon is ShortRange)
-                    WeaponInventory[0] = weapon;
-                else
-                    WeaponInventory[1] = weapon;
-                return;
-            }
-
-
-            // sollte nicht vorkommen
-            if (WeaponsInPosession >= WEAPON_SLOT_CNT)
-            {
-                return;
-            }
-
-            if (WeaponInventory[weapon.INVENTORY_SLOT] == null)
-            {
-                Debug.Print("bin hier");
-                WeaponInventory[weapon.INVENTORY_SLOT] = weapon;
-                WeaponsInPosession++;
-                StatisticsManager.NewWeaponRecieved();
-            }
-            else
-            {
-                StatisticsManager.WeaponRecieved();
-            }
-
-        }
+        public abstract void AddToWeaponInventory(Weapon weapon);
 
         // Player Attributes
         public virtual void SetNextWeapon(bool backwards = false) { }

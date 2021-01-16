@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Weapons;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +13,26 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.ControllingPlayer
             
         }
 
+        public override void AddToWeaponInventory(Weapon weapon)
+        {
+            // sollte nicht vorkommen
+            if (WeaponsInPosession >= WEAPON_SLOT_CNT)
+            {
+                return;
+            }
+
+            if (WeaponInventory[weapon.INVENTORY_SLOT] == null)
+            {
+                WeaponInventory[weapon.INVENTORY_SLOT] = weapon;
+                WeaponsInPosession++;
+                StatisticsManager.NewWeaponRecieved();
+            }
+            else
+            {
+                StatisticsManager.WeaponRecieved();
+            }
+
+        }
         public override void SetNextWeapon(bool backwards = false)
         {
             // Nächste gültige Position im Array ermitteln
