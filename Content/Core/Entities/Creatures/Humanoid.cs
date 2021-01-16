@@ -11,6 +11,7 @@ using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Weapons;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
+using Action = _2DRoguelike.Content.Core.Entities.Actions.Action;
 
 namespace _2DRoguelike.Content.Core.Entities
 {
@@ -19,7 +20,7 @@ namespace _2DRoguelike.Content.Core.Entities
         // Für ATTACK Debug
         public Rectangle AttackHitbox;
 
-        public Actions.Action PerformedAction;
+        public Action PerformedAction;
         public string LastAnimation { get; set; }
         private bool lockedAnimation = false;
         public string defaultAnimationWeapon = "Fist";

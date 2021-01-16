@@ -6,7 +6,7 @@ using System.Text;
 
 namespace _2DRoguelike.Content.Core.Entities.Creatures.ControllingPlayer
 {
-    class PlayerInventory : Inventory
+    public class PlayerInventory : Inventory
     {
         public PlayerInventory(Player player) : base(player)
         {

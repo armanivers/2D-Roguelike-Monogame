@@ -21,7 +21,7 @@ using static _2DRoguelike.Content.Core.UI.MessageFactory.Message;
 
 namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 {
-    class Player : Humanoid
+    public class Player : Humanoid
     {
         private static Player instance;
 
