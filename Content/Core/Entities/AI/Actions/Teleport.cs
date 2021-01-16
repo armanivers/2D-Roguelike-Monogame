@@ -38,10 +38,16 @@ namespace _2DRoguelike.Content.Core.Entities.AI.Actions
                 if (CallingInstance.transparency >= 0f)
                     CallingInstance.transparency -= 0.05f;
             }
-            else if (newPosition == null) {
-                newPosition = CallingInstance.Position = Room.getRandomCoordinateInCurrentRoom(CallingInstance);
+            else if (newPosition == null)
+            {
+                if (LevelManager.currentmap.currentroom != null)
+                {
+                    newPosition = CallingInstance.Position = Room.getRandomCoordinateInCurrentRoom(CallingInstance);
+                }
+                else newPosition = CallingInstance.Position;
             }
-            else {
+            else
+            {
                 if (CallingInstance.transparency < 1f)
                     CallingInstance.transparency += 0.05f;
             }
