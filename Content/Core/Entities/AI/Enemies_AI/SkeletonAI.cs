@@ -47,7 +47,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
         public override Vector2 DeterminePath()
         {
-            // TODO: Der schmale Grad zwischen Fliehen und Suchen ist buggy
             // Idee: Einen zwischenraum zwischen suchen und fliehen, in dem so gegangen wird, dass der Abstand sich nicht mehr erhöht
             // (Sprich, es wird in einem Kreis um den Player herum gegangen)
 
@@ -67,7 +66,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                 // Wenn  nicht direkt im Umkreis, aber kurz davor: Um den Player herum im Kreis laufen
                 if (WithinRange(FLEEING_RANGE + 32))
                 {
-                    // TODO: Hier den Vektor so modifizieren, dass er den minimalen Abstand nicht unterschreitet
 
                     #region Idee mit Quadrat-Bewegung
                     /*

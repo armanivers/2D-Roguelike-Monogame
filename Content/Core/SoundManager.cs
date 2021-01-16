@@ -53,7 +53,7 @@ namespace _2DRoguelike.Content.Core
         public static SoundEffect ScoreCounterSound00 { get; private set; }
         public static SoundEffect ScoreCounterSound01 { get; private set; }
         public static SoundEffect FulfilledExitCondition { get; private set; }
-        public static SoundEffect NextLevel { get; private set; }
+        public static SoundEffect NextLevel { get; private set; } // version2
 
         public static void Load(ContentManager content)
         {

@@ -62,7 +62,6 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         public List<Enemy> enemylist;
         // IDEE: bei update: in currentRoom die enemylist durchlaufen, und gucken, ob isExpired = true (um "Leichen" zu entfernen)
 
-        //TODO entities
         public List<EntityBasis> entitylist;
 
         public Room() : this(Map.Random.Next(MINROOMSIZE, MAXROOMSIZE), Map.Random.Next(MINROOMSIZE, MAXROOMSIZE))
@@ -145,7 +144,6 @@ namespace _2DRoguelike.Content.Core.World.Rooms
                 {
                     enemyspawnpoint = new Vector2(Map.Random.Next(2, Width - 3), Map.Random.Next(2, Height - 3));
                 } while (room[(int)enemyspawnpoint.X, (int)enemyspawnpoint.Y] != RoomObject.EmptySpace && IntersectsTileCollisionHitbox((int)enemyspawnpoint.X, (int)enemyspawnpoint.Y));
-                // TODO: Schauen, ob beim neuen Spawn der Enemy die TileCollisonHitbox eines anderen Enemy schneidet → neuer Spawn ermitteln
 
                 enemyspawnpoint.X += (float)XPos;
                 enemyspawnpoint.Y += (float)YPos;
@@ -185,8 +183,8 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         {
             do
             {
-                XExit = (Map.Random.Next(1, Width - 2));
-                YExit = (Map.Random.Next(1, Height - 2));
+                XExit = (Map.Random.Next(2, Width - 2));
+                YExit = (Map.Random.Next(2, Height - 2));
             } while (room[XExit, YExit] != RoomObject.EmptySpace);
             exitroom = true;
             room[XExit, YExit] = RoomObject.Exit;
@@ -218,13 +216,12 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         /// </summary>
         public void setKey()
         {
-            int xpos;
-            int ypos;
-            xpos = (Map.Random.Next(1, Width - 2)) + XPos;
-            ypos = (Map.Random.Next(1, Height - 2)) + YPos;
-            entitylist.Add(new KeyLoot(new Vector2(xpos * PIXELMULTIPLIER, ypos * PIXELMULTIPLIER)));
+            
+            entitylist.Add(new KeyLoot(LevelManager.levelList[LevelManager.level].exitCondition.GetKeySpawnPosition(this)));
             //Debug.WriteLine("Key placed!");
         }
+
+
 
         public static Vector2 getRandomCoordinateInCurrentRoom(Creature creature)
         {

@@ -78,7 +78,6 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
 
             if (timer > EXPIRATION_TIMER)
             {
-                // TODO: Spawn explosion
                 new Explosion(Position, 25 ,explosionSize);
                 this.isExpired = true;
             }

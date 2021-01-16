@@ -16,23 +16,20 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public readonly float MAX_MANA = 100;
         public float Mana { get; set; }
+        public const float MANA_REGENERATION_SPEED = 0.56f; // 3 sekunden (100/(60*3))
+
         public int maxHealthPoints;
         public int HealthPoints { get; set; }
 
-        // TODO: Dieser CooldownTimer gilt aktuell für ALLE Angriffsarten → Für jede Angriffsart eigenen Cooldown erstellen
-        // (bessere Alternative überlegen, damit nicht immer ein neues Attribut hinzugefügt werden muss)
         public readonly float attackTimespan;
         public float AttackTimeSpanTimer { get; set; }
 
-        // TODO: Einen ALLGEMEINEN attacking-Timer, damit nicht während eines Angriffes ein anderer Angriff gestartet werden kann
-        // (die Angriffe haben aber dennoch eigene unabhängige Cooldowns (z.B. Melee hat kürzeren Cooldown))
 
         public readonly float movingSpeed;
         public float SpeedModifier { get; set; }
         public float DamageMultiplier { get; set; }
         public bool dead;
 
-        // TODO: Setter fuer die Hitbox fixen (fuer untere Klassen)
         public override Vector2 Position
         {
             get { return base.Position; }
@@ -81,7 +78,6 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public bool IsAttacking()
         {
-            // TODO: attackExecution Timer implementieren. CooldownTimer ist fuer Weapons wichtig
             return AttackTimeSpanTimer <= attackTimespan;
         }
 
@@ -96,7 +92,14 @@ namespace _2DRoguelike.Content.Core.Entities
         public void RegenerateMana()
         {
             // speed 0.1f means full regeneration is ~16 seconds
-            if (Mana < MAX_MANA) Mana += 0.1f;
+            if (Mana < MAX_MANA)
+            {
+                Mana += MANA_REGENERATION_SPEED;
+                if (Mana > MAX_MANA)
+                    Mana = MAX_MANA;
+
+                // Debug.WriteLine("Mana is at: " + Mana);
+            }
         }
 
         public void DeductMana(float manaAmount)
@@ -104,7 +107,9 @@ namespace _2DRoguelike.Content.Core.Entities
             Mana -= manaAmount;
 
             // sanity check
-            if (Mana < 0) Mana = 0;
+            if (Mana < 0)
+                Mana = 0;
+            // Debug.WriteLine("Mana is at: " + Mana);
         }
 
         public virtual bool IsInvincible()

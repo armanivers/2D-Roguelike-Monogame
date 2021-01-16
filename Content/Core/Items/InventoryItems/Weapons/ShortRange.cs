@@ -161,7 +161,6 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             //Vector2 attackDirection = new Vector2(Owner.GetAttackDirection().X - attackHitboxWidth / 2 * tmpRangeMultiplierX ,
             //    Owner.GetAttackDirection().Y - attackHitboxHeight / 2  * tmpRangeMultiplierY );
 
-            //// TODO: Dieses Attribut nicht mehr nur für Höhe, sondern je anch Lage auf die Breite rechnen
 
 
             //// Intervallgrenzen für maximale Attack-Range: 

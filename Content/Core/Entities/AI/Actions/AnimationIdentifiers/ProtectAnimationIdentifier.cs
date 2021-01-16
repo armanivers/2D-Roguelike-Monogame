@@ -10,7 +10,6 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         }
         public override string ChooseAnimation(Humanoid CallingInstance)
         {
-            // TODO: AnimationString bestimmen anhand von LineOfSight
             return "Spellcast" + PrintLineOfSight(CallingInstance);
         }
     }

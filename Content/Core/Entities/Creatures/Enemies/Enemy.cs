@@ -34,13 +34,13 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 
         public override bool CannotWalkHere()
         {
-            if(LevelManager.currentmap.currentroom == null || !LevelManager.currentmap.currentroom.roomhitbox.Contains(Hitbox) || base.CannotWalkHere())
+            if (LevelManager.currentmap.currentroom == null || !LevelManager.currentmap.currentroom.roomhitbox.Contains(Hitbox) || base.CannotWalkHere())
                 return true;
-            // TODO: BUG! Enemies stoßen gegen die TileCollisionHitbox der toten Enemies: expired Enemies werden nicht aus der currentroom.enemylist genommen
             foreach (Enemy otherEnemy in LevelManager.currentmap.currentroom.enemylist)
             {
-                if (otherEnemy != this && !otherEnemy.IsDead() && GetTileCollisionHitbox().Intersects(otherEnemy.GetTileCollisionHitbox())) {
-                     // Debug.WriteLine("Enemy at Position:{0} is Stuck with Enemy at Position:{1}!", Position/32, otherEnemy.Position/32);
+                if (otherEnemy != this && !otherEnemy.IsDead() && GetTileCollisionHitbox().Intersects(otherEnemy.GetTileCollisionHitbox()))
+                {
+                    // Debug.WriteLine("Enemy at Position:{0} is Stuck with Enemy at Position:{1}!", Position/32, otherEnemy.Position/32);
                     return true;
                 }
             }
@@ -57,8 +57,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         {
 
             var randomPercentage = Game1.rand.Next(0, 100);
-            
-            if(randomPercentage <= dropChance)
+
+            if (randomPercentage <= dropChance)
             {
                 new LootBag(new Vector2(Hitbox.X, Hitbox.Y), this);
             }
@@ -93,10 +93,9 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             return !IsAttacking() && !WeaponInventory[weaponPos].InUsage();
         }
 
-        // TODO: Nachschauen, wie das funktioniert da ist noch was faul
         public bool IsPlayerInTheSameRoom()
         {
-           
+
             if (LevelManager.currentmap.currentroom == null)
             {
                 return false;
@@ -116,8 +115,11 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         public override bool DeductHealthPoints(int damage)
         {
             bool ret = base.DeductHealthPoints(damage);
-            if (ret) {
-                ai.ReactionTimer /= 10;
+            if (ret)
+            {
+                ai.ReactionTimer += ai.currentReactionTimeGap / 5;
+                if (ai.ReactionTimer > ai.currentReactionTimeGap)
+                    ai.ReactionTimer = ai.currentReactionTimeGap;
                 // Debug.WriteLine("ReactionTime successfully cut to " + ai.ReactionTimer);
             }
             return ret;
@@ -125,6 +127,18 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 
         public override void Update(GameTime gameTime)
         {
+            if (!this.IsDead() && LevelManager.currentmap.currentroom != null)
+                // Wenn Endlossschleifen verursacht: Auskommentieren
+                for (int i = 0; i < EntityManager.creatures.Count; i++)
+                {
+                    if (EntityManager.creatures[i] is Creature && EntityManager.creatures[i] != this)
+
+                        if (!((Creature)EntityManager.creatures[i]).IsDead() && GetTileCollisionHitbox().Intersects(((Creature)EntityManager.creatures[i]).GetTileCollisionHitbox()))
+                        {
+                            EntityManager.creatures[i].isExpired = this.isExpired = true;
+                        }
+                }
+
             base.Update(gameTime);
         }
 

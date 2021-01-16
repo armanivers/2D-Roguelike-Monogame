@@ -213,7 +213,6 @@ namespace _2DRoguelike.Content.Core.Entities
                 PerformedAction.ExecuteAction();
 
                 SetAnimation(PerformedAction.ChooseAnimation());
-                // TODO: Method updateStats()
 
                 base.Update(gameTime);
 

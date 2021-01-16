@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.World.Rooms;
+using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.World.ExitConditions
 {
@@ -12,7 +14,7 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
         int kills;
         const float KILL_PECENTAGE = 0.4f;
         List<Enemy> allEnemies = new List<Enemy>();
-
+        Vector2 positionOfLastDeadEnemy;
 
         public KillAmountOfEnemies() : this(KILL_PECENTAGE) { }
 
@@ -33,6 +35,7 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
                 {
                     if (allEnemies[i].IsDead())
                     {
+                        positionOfLastDeadEnemy = allEnemies[i].Position;
                         allEnemies.RemoveAt(i);
                         kills++;
                         if (kills == killTarget) 
@@ -50,6 +53,11 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
         public string PrintRemainingEnemies()
         {
             return "Enemies Remaining:" + (killTarget - kills);
+        }
+
+        public override Vector2 GetKeySpawnPosition(Room room)
+        {
+            return positionOfLastDeadEnemy;
         }
     }
 }

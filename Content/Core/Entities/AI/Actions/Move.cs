@@ -17,7 +17,6 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         }
 
         public void Walk() {
-            // TODO: Ausführen der Logik für die Bewegung
             Vector2 direction = CallingInstance.GetDirection();
             
             CallingInstance.Acceleration = CallingInstance.movingSpeed * CallingInstance.SpeedModifier * direction;

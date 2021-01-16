@@ -28,7 +28,7 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects
                 // if yes remove player's key item, play fade out scene and load next level (LevelManager.nextlevel())
                 MessageFactory.DisplayMessage("Key Accepted", Color.Green, AnimationType.MiddleFadeInOut);
                 //Debug.Print("Next Level!");
-                SoundManager.NextLevel.Play(Game1.gameSettings.soundeffectsLevel, 0.3f, 0);
+                SoundManager.NextLevel.Play(Game1.gameSettings.soundeffectsLevel, 0f, 0);
                 LevelManager.NextLevel();
             }
             else

@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities.Actions;
+using _2DRoguelike.Content.Core.Entities.AI.Actions;
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
 using _2DRoguelike.Content.Core.Entities.Interactables.NPCs;
 using _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects;
@@ -273,17 +274,15 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
         public override Action DetermineAction(float currentGameTime)
         {
-            
-            if (InputController.IsRightMouseButtonPressed() && LevelManager.currentmap.currentroom != null)
-                Position = Room.getRandomCoordinateInCurrentRoom(this);
-            /*
-            if (InputController.IsRightMouseButtonHeld() && Protect.CanSwitchToState(currentGameTime) && (Mana>=100)) // statt 100 ggf. Ability.RequiredMana nutzen
-                return new Protect(this, currentGameTime);
-            else Invincible = false;
-            */
+
+            if (InputController.IsRightMouseButtonPressed() && Teleport.CanSwitchToState(this))
+                return new Teleport(this, currentGameTime);
+
+            //if (InputController.IsRightMouseButtonHeld() && Protect.CanSwitchToState(this) /*&& (Mana >= 100)*/) // statt 100 ggf. Ability.RequiredMana nutzen
+            //    return new Protect(this, currentGameTime);
+
 
             if (InputController.IsLeftMouseButtonPressed() && !IsAttacking() && CanAttack())
-            // TODO: if(weapon.rangeAttack) return RangeAttack else return Melee ...
             {
                 if (CurrentWeapon is LongRange)
                 {
@@ -343,12 +342,14 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 case 1:
                     // Level 1 award = increase max hp by 20
                     maxHealthPoints += 20;
+                    HealthPoints += 20;
                     break;
                 case 2:
                     DamageMultiplier = 1.2f;
                     break;
                 case 3:
                     maxHealthPoints += 50;
+                    HealthPoints += 50;
                     break;
                 case 4:
                     DamageMultiplier = 1.6f;
@@ -373,7 +374,6 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             canInteract = false;
             interactableObjects.Clear();
 
-            // TODO: mit LevelManager.currentroom.entities ersetzen 
             foreach (var interactableObject in EntityManager.interactables)
             {
                 if (Hitbox.Intersects(interactableObject.Hitbox))

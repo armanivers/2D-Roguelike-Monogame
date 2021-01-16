@@ -62,8 +62,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
         {
             if (shootingEntity is Player)
             {
-                // TODO: Problem lösen: LevelManager.maps.currentroom.enemylist gilt nur für Player, NICHT für Arrow
-                // → wenn Arrow von Flur aus geschossen, ist dieser wirkungslos
                 foreach (var enemy in EntityManager.creatures)
                 {
                     if (enemy is Enemies.Enemy)
