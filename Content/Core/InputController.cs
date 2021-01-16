@@ -75,8 +75,14 @@ namespace _2DRoguelike.Content.Core
                 Player.Instance.Kill();
             }
 
+            // increase xp by 1
+            if (IsKeyDown(Keys.E))
+            {
+                Player.Instance.AddExperiencePoints(1);
+            }
+
             // Cutscene Test
-            if(IsKeyDown(Keys.C))
+            if (IsKeyDown(Keys.C))
             {
                 CutsceneManager.PlayCutscene(new FadeOutCircle());
             }

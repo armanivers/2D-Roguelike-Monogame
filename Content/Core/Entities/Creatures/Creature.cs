@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.GameDebugger;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
@@ -13,7 +14,7 @@ namespace _2DRoguelike.Content.Core.Entities
         private float hurtTimer;
         private const int hurtTimerLimit = 2;
 
-        public const float MAX_MANA = 100;
+        public readonly float MAX_MANA = 100;
         public float Mana { get; set; }
         public int maxHealthPoints;
         public int HealthPoints { get; set; }
@@ -28,6 +29,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public readonly float movingSpeed;
         public float SpeedModifier { get; set; }
+        public float DamageMultiplier { get; set; }
         public bool dead;
 
         // TODO: Setter fuer die Hitbox fixen (fuer untere Klassen)
@@ -68,6 +70,7 @@ namespace _2DRoguelike.Content.Core.Entities
             this.movingSpeed = movingSpeed;
             dead = false;
             SpeedModifier = 1;
+            DamageMultiplier = 1;
         }
 
         public Rectangle GetTileCollisionHitbox()

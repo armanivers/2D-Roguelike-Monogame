@@ -37,6 +37,30 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/Cutscenes/NPCTalk00.png
 
+#begin Assets/Graphics/Cutscenes/NPCTalk01.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/Cutscenes/NPCTalk01.png
+
+#begin Assets/Graphics/Cutscenes/NPCTalk02.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/Cutscenes/NPCTalk02.png
+
 #begin Assets/Graphics/EnemyElements/Dragon/dragonSheet_hurt.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -733,6 +757,30 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/LootElements/Potions/HealthPotion.png
 
+#begin Assets/Graphics/LootElements/Potions/SpeedPotion.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/LootElements/Potions/SpeedPotion.png
+
+#begin Assets/Graphics/LootElements/Potions/StrengthPotion.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/LootElements/Potions/StrengthPotion.png
+
 #begin Assets/Graphics/LootElements/Weapons/LootAxe.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1212,6 +1260,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/UI/PlayerUI/Highscore/HighscoreCoin.png
+
+#begin Assets/Graphics/UI/PlayerUI/ManaBar/ManaBarBar.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/UI/PlayerUI/ManaBar/ManaBarBar.png
+
+#begin Assets/Graphics/UI/PlayerUI/ManaBar/ManaBarContainer.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/UI/PlayerUI/ManaBar/ManaBarContainer.png
 
 #begin Assets/Graphics/UI/PlayerUI/Skillbar/lockedWeapon.png
 /importer:TextureImporter

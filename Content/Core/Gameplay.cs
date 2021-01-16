@@ -63,6 +63,7 @@ namespace _2DRoguelike.Content.Core
             UIManager.AddUIElementStatic(new ToolTip(Player.Instance));
             UIManager.AddUIElementStatic(new Highscore());
             UIManager.AddUIElementStatic(new KeyStatus(Player.Instance));
+            UIManager.AddUIElementStatic(new ManaBar(Player.Instance));
 
             gameOver = false;
         }

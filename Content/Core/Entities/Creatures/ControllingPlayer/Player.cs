@@ -158,12 +158,13 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             AddToWeaponInventory(new Fist(this));
 
             // add weapons manually
-
+            /*
             AddToWeaponInventory(new Dagger(this));
             AddToWeaponInventory(new Axe(this));
             AddToWeaponInventory(new Bow(this));
             AddToWeaponInventory(new BombWeapon(this));
             AddToWeaponInventory(new Spear(this));
+            */
             //AddToWeaponInventory(new FireballWeapon(this));
 
 
@@ -344,13 +345,23 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                     maxHealthPoints += 20;
                     break;
                 case 2:
-                    maxHealthPoints += 50;
+                    DamageMultiplier = 1.2f;
                     break;
                 case 3:
+                    maxHealthPoints += 50;
+                    break;
+                case 4:
+                    DamageMultiplier = 1.6f;
                     break;
                 default:
                     break;
             }
+        }
+
+        public double GetUnlockedDamageMultiplier()
+        {
+            if (currentXPLevel >= 2) return 1.2;
+            else return 1.0;
         }
 
         public void CheckInteractableCollision()

@@ -19,7 +19,7 @@ namespace _2DRoguelike.Content.Core.UI
 
         // space from upper left corner
         private int xSafezone = 25;
-        private int ySafezone = 90;
+        private int ySafezone = 130;
 
         // text position relative to xpbar position
         //private int textOffsetY = 25;
@@ -55,7 +55,7 @@ namespace _2DRoguelike.Content.Core.UI
             textPosition = xpbarBarPosition - new Vector2(0, 25);
 
             currentWidth = fullWidth;
-            currentXP = player.HealthPoints;
+            currentXP = (int)player.HealthPoints;
             currentXPLevel = target.currentXPLevel;
         }
 

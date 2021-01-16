@@ -10,17 +10,17 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 {
     public class StrengthPotion : Potion
     {
-        private float strenghtModifier;
+        private double strenghtModifier;
         // how long should the potion heal the player (how long effect lasts)
-        private const float POTION_DURATION = 8;
+        private const float POTION_DURATION = 15;
         // used to determine end of potion duration
         private float effectTimer;
         // whether potion effect activated
         private bool activated;
         public StrengthPotion(Vector2 pos) : base(pos)
         {
-            strenghtModifier = 1.5f;
-            texture = TextureManager.loot.HealthPotion;
+            strenghtModifier = 3;
+            texture = TextureManager.loot.StrengthPotion;
             effectTimer = 0;
             activated = false;
         }
@@ -34,13 +34,15 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 
         public void BoostPlayerSpeed()
         {
-            // kein damage modifier?
-            if (effectTimer == 0) //Player.Instance. = strenghtModifier;
+            // set it every update, incase player levels up, and his damage multiplier increaes as result of level up, potion's multiplier should still be active
+            Player.Instance.DamageMultiplier = strenghtModifier;
+            //Debug.Print("DamageMul" + Player.Instance.DamageMultiplier);
             if (effectTimer >= POTION_DURATION)
             {
-                Player.Instance.SpeedModifier = 1.0f;
+                Player.Instance.DamageMultiplier = Player.Instance.GetUnlockedDamageMultiplier();
                 isExpired = true;
             }
+            
             effectTimer += 0.1f;
         }
 
@@ -52,7 +54,6 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
             if (activated) BoostPlayerSpeed();
         }
 

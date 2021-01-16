@@ -14,6 +14,8 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
         // Potion Data
         public Texture2D HealthPotion { get; private set; }
         public Texture2D ExperiencePotion { get; private set; }
+        public Texture2D SpeedPotion { get; private set; }
+        public Texture2D StrengthPotion { get; private set; }
 
         // Weapon Loot Data
         public Texture2D LootAxe { get; private set; }
@@ -50,6 +52,8 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
             // Potion Data
             HealthPotion = content.Load<Texture2D>("Assets/Graphics/LootElements/Potions/HealthPotion");
             ExperiencePotion = content.Load<Texture2D>("Assets/Graphics/LootElements/Potions/ExperiencePotion");
+            SpeedPotion = content.Load<Texture2D>("Assets/Graphics/LootElements/Potions/SpeedPotion");
+            StrengthPotion = content.Load<Texture2D>("Assets/Graphics/LootElements/Potions/StrengthPotion");
 
             // Loot Container Data
             LootBag = content.Load<Texture2D>("Assets/Graphics/LootElements/Containers/LootBag");
