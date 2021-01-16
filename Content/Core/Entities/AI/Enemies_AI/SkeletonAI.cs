@@ -21,13 +21,13 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             {
                 if (!agent.IsAttacking())
                 {
-                    if (!agent.WeaponInventory[1].InUsage())
+                    if (!agent.inventory.WeaponInventory[1].InUsage())
                     {
 
                         // Check, ob Pfeil treffen würde
                         if (SimulateArrowAttack())
                         {
-                            if (TryToAttack(agent.WeaponInventory[1]))
+                            if (TryToAttack(agent.inventory.WeaponInventory[1]))
                                 return new RangeAttack(agent);
 
 

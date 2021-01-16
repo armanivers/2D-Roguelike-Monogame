@@ -11,16 +11,13 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 {
     public class GreenZombie : Enemy
     {
-        const int WEAPON_SLOT_CNT = 2; // 0: ShortRange / 1: LongRange
         public GreenZombie(Vector2 position, int maxHealthPoints = 40, float movingSpeed = 3, float attackTimespan = 0.4f) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
         {
             ai = new GreenZombieAI(this);
 
-            WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
-
-            WeaponInventory[0] = new Fist(this, 0.8f, 2.2f, 1f, 1f);
+            inventory.WeaponInventory[0] = new Fist(this, 0.8f, 2.2f, 1f, 1f);
             //WeaponInventory[1] = new Bow(this, 0.7f, 1.5f);
-            CurrentWeapon = WeaponInventory[0];
+            inventory.CurrentWeapon = inventory.WeaponInventory[0];
 
             texture = TextureManager.enemy.ZombieGreen_Idle;
 

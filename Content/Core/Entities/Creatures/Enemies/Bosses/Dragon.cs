@@ -19,12 +19,10 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
 
             bossName = "The Dragon";
 
-            WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
+            inventory.WeaponInventory[0] = new Fist(this, 2.4f, 0.8f, 0.8f);
+            inventory.WeaponInventory[1] = new FireballWeapon(this, 1f, 0.8f);
 
-            WeaponInventory[0] = new Fist(this, 2.4f, 0.8f, 0.8f);
-            WeaponInventory[1] = new FireballWeapon(this, 1f, 0.8f);
-
-            CurrentWeapon = WeaponInventory[0];
+            inventory.CurrentWeapon = inventory.WeaponInventory[0];
 
             texture = TextureManager.enemy.Dragon_Idle;
 

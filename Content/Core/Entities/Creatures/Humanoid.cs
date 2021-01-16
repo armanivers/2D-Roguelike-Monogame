@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Creatures.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.Entities.Loot;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
@@ -26,21 +27,17 @@ namespace _2DRoguelike.Content.Core.Entities
         private const int TIME_BEFORE_DISAPPEARING = 100;
         private int disappearingTimer = 0;
         public Vector2 LineOfSight { get; set; }
-
-        public Weapon[] WeaponInventory;
-        public Weapon CurrentWeapon { get; set; }
+        public Inventory inventory { get; set; }
+        
         public Humanoid(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed, float scaleFactor = 1f) : base(position, maxHealthPoints, attackTimespan, movingSpeed, scaleFactor)
         {
             Hitbox = new Rectangle((int)(Position.X + 17 * ScaleFactor), (int)(Position.Y + 14 * ScaleFactor), (int)(29 * ScaleFactor), (int)(49 * ScaleFactor));
             // alle Humanoids besitzen gleiche Hitbox
-
             // initialer State:
             PerformedAction = new Wait(this);
         }
 
         // ----------------------------------
-
-        public abstract void AddToWeaponInventory(Weapon weapon);
         public abstract Actions.Action DetermineAction(float gameTime);
 
 
@@ -199,7 +196,7 @@ namespace _2DRoguelike.Content.Core.Entities
             else
             {
                 float elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-                foreach (Weapon w in WeaponInventory)
+                foreach (Weapon w in inventory.WeaponInventory)
                 {
                     w?.UpdateCooldownTimer(elapsedTime);
                 }

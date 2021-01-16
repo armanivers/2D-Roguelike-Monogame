@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Creatures.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Weapons;
@@ -22,14 +23,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         private const int dropChance = 30;
         public Enemy(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed, float scaleFactor = 1f) : base(position, maxHealthPoints, attackTimespan, movingSpeed, scaleFactor)
         {
-        }
-
-        public override void AddToWeaponInventory(Weapon weapon)
-        {
-            if (weapon is ShortRange)
-                WeaponInventory[0] = weapon;
-            else
-                WeaponInventory[1] = weapon;
+            inventory = new EnemyInventory(this);
         }
 
         public override bool CannotWalkHere()
@@ -90,7 +84,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         public bool CanAttack(int weaponPos)
         {
             // Check, ob bestimmte Waffe gerade genutzt
-            return !IsAttacking() && !WeaponInventory[weaponPos].InUsage();
+            return !IsAttacking() && !inventory.WeaponInventory[weaponPos].InUsage();
         }
 
         public bool IsPlayerInTheSameRoom()

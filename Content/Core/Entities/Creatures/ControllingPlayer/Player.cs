@@ -1,5 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.AI.Actions;
+using _2DRoguelike.Content.Core.Entities.Creatures.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
 using _2DRoguelike.Content.Core.Entities.Interactables.NPCs;
 using _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects;
@@ -24,10 +25,6 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
     {
         private static Player instance;
 
-        const int WEAPON_SLOT_CNT = 6;
-        public int WeaponsInPosession;
-        private int currentWeaponPos = 0;
-
         public bool canInteract;
         private List<InteractableBase> interactableObjects;
 
@@ -45,19 +42,6 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             }
         }
 
-        /*
-        public LevelKey key;
-
-        public LevelKey Key
-        {
-            get { return key; }
-            private set
-            {
-                key = value;
-            }
-        }
-        */
-        public bool hasLevelKey;
         public double LevelupPercentage
         {
             get
@@ -75,49 +59,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             }
         }
 
-        public int CurrentWeaponPos
-        {
-            get { return currentWeaponPos; }
-            set
-            {
-                currentWeaponPos = value;
-            }
-        }
-
-        private bool HasWeaponInSlot(int pos)
-        {
-            return WeaponInventory[pos] != null;
-        }
-
-        private void SetNextWeapon(bool backwards = false)
-        {
-            // Nächste gültige Position im Array ermitteln
-            int currentPos = CurrentWeaponPos;
-            do
-            {
-                currentPos = currentPos + (!backwards ? 1 : -1);
-                if (backwards && currentPos < 0) currentPos = WEAPON_SLOT_CNT - 1;
-                else if (currentPos >= WEAPON_SLOT_CNT) currentPos = 0;
-                // Debug.WriteLine("---Position: " + currentPos);
-            } while (!HasWeaponInSlot(currentPos));
-            ChangeCurrentWeaponSlot(currentPos);
-        }
-
-        public bool ChangeCurrentWeaponSlot(int value)
-        {
-            if (value != currentWeaponPos)
-            {
-                SoundManager.EquipWeapon.Play(Game1.gameSettings.soundeffectsLevel, 0.2f, 0);
-            }
-
-            if (HasWeaponInSlot(value))
-            {
-                CurrentWeaponPos = value;
-                CurrentWeapon = WeaponInventory[CurrentWeaponPos];
-                return true;
-            }
-            return false;
-        }
+       
 
         public static Player Instance
         {
@@ -135,8 +77,11 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         {
 
             //this.position = new Vector2(2*32, 5*32); bei statischer Map
-            
-            
+
+            inventory = new PlayerInventory(this);
+            inventory.AddToWeaponInventory(new Fist(this));
+            inventory.ChangeCurrentWeaponSlot(0);
+
             canInteract = false;
             interactableObjects = new List<InteractableBase>();
 
@@ -152,11 +97,9 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 40  // Level 5 MAX
             };
 
-            hasLevelKey = false;
+
 
             instance = this;
-            WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
-            AddToWeaponInventory(new Fist(this));
 
             // add weapons manually
             /*
@@ -168,8 +111,6 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             */
             //AddToWeaponInventory(new FireballWeapon(this));
 
-
-            ChangeCurrentWeaponSlot(0);
 
             texture = TextureManager.Player_Idle;
 
@@ -284,15 +225,15 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
             if (InputController.IsLeftMouseButtonPressed() && !IsAttacking() && CanAttack())
             {
-                if (CurrentWeapon is LongRange)
+                if (inventory.CurrentWeapon is LongRange)
                 {
-                    CurrentWeapon.CooldownTimer = 0;
+                    inventory.CurrentWeapon.CooldownTimer = 0;
                     return new RangeAttack(this);
 
                 }
-                if (CurrentWeapon is ShortRange)
+                if (inventory.CurrentWeapon is ShortRange)
                 {
-                    CurrentWeapon.CooldownTimer = 0;
+                    inventory.CurrentWeapon.CooldownTimer = 0;
 
                     return new Melee(this);
 
@@ -409,41 +350,9 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             interactableObjects.Clear();
         }
 
-
-        // sollte abstrakter sein, z.B. AddItem mit Parameter ObtainableItem item, fuegt es in Liste der schon vorhandene items
-        public void AddKey()
-        {
-            hasLevelKey = true;
-        }
-        public void ClearKey()
-        {
-            hasLevelKey = false;
-        }
-
         public bool GameOver()
         {
             return isExpired;
-        }
-
-        public override void AddToWeaponInventory(Weapon weapon)
-        {
-            // sollte nicht vorkommen
-            if (WeaponsInPosession >= WEAPON_SLOT_CNT)
-            {
-                return;
-            }
-
-            if (WeaponInventory[weapon.INVENTORY_SLOT] == null)
-            {
-                WeaponInventory[weapon.INVENTORY_SLOT] = weapon;
-                WeaponsInPosession++;
-                StatisticsManager.NewWeaponRecieved();
-            }
-            else
-            {
-                StatisticsManager.WeaponRecieved();
-            }
-
         }
 
         public override void Kill()
@@ -456,7 +365,7 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
         public bool CanAttack()
         {
-            return !IsAttacking() && !CurrentWeapon.InUsage();
+            return !IsAttacking() && !inventory.CurrentWeapon.InUsage();
         }
         public override bool IsInvincible()
         {
@@ -471,17 +380,17 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             }*/
 
             if (InputController.IsKeyPressed(Keys.PageUp) || InputController.IsMouseScrolledDown())
-                SetNextWeapon();
+                inventory.SetNextWeapon();
             else if (InputController.IsKeyPressed(Keys.PageDown) || InputController.IsMouseScrolledUp())
-                SetNextWeapon(true);
+                inventory.SetNextWeapon(true);
             else if (InputController.IsKeyPressed(Keys.NumPad0))
-                ChangeCurrentWeaponSlot(0);
+                inventory.ChangeCurrentWeaponSlot(0);
             else if (InputController.IsKeyPressed(Keys.NumPad1))
-                ChangeCurrentWeaponSlot(1);
+                inventory.ChangeCurrentWeaponSlot(1);
             else if (InputController.IsKeyPressed(Keys.NumPad2))
-                ChangeCurrentWeaponSlot(2);
+                inventory.ChangeCurrentWeaponSlot(2);
             else if (InputController.IsKeyPressed(Keys.NumPad3))
-                ChangeCurrentWeaponSlot(3);
+                inventory.ChangeCurrentWeaponSlot(3);
         }
     }
 }

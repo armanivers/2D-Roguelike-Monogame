@@ -81,10 +81,10 @@ namespace _2DRoguelike.Content.Core.UI
 
         public override void Update(GameTime gameTime)
         {
-            currentWeapon = target.CurrentWeaponPos;
+            currentWeapon = target.inventory.CurrentWeaponPos;
 
             weaponData.Clear();
-            foreach(var weapon in target.WeaponInventory)
+            foreach(var weapon in target.inventory.WeaponInventory)
             {
                 if (weapon != null)
                 {

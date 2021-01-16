@@ -11,16 +11,13 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 {
     public class Skeleton : Enemy
     {
-        const int WEAPON_SLOT_CNT = 2; // 0: ShortRange / 1: LongRange
         public Skeleton(Vector2 position, int maxHealthPoints = 50, float movingSpeed = 3, float attackTimespan = 0.4f) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
         {
             ai = new SkeletonAI(this);
 
-            WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
-
-            WeaponInventory[0] = new Fist(this, 1f, 2.2f);
-            WeaponInventory[1] = new Bow(this, 0.3f, 1.5f);
-            CurrentWeapon = WeaponInventory[0];
+            inventory.WeaponInventory[0] = new Fist(this, 1f, 2.2f);
+            inventory.WeaponInventory[1] = new Bow(this, 0.3f, 1.5f);
+            inventory.CurrentWeapon = inventory.WeaponInventory[0];
 
             texture = TextureManager.enemy.Skeleton_Idle;
 

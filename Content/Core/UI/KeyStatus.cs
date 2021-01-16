@@ -37,7 +37,7 @@ namespace _2DRoguelike.Content.Core.UI
 
         public override void Update(GameTime gameTime)
         {
-            if (target.hasLevelKey)
+            if (target.inventory.hasLevelKey)
             {
                 displayText = "Find the Exit!";
                 color = Color.MediumSeaGreen;
@@ -58,7 +58,7 @@ namespace _2DRoguelike.Content.Core.UI
             spriteBatch.DrawString(TextureManager.GameFont, objectiveText, objectivePostion, objectiveColor);
 
             // exitCondition KillAmountOfEnemies has an extra text to be displayed
-            if (LevelManager.levelList[LevelManager.level].exitCondition is KillAmountOfEnemies && !target.hasLevelKey)
+            if (LevelManager.levelList[LevelManager.level].exitCondition is KillAmountOfEnemies && !target.inventory.hasLevelKey)
             {
                 var text = ((KillAmountOfEnemies)LevelManager.levelList[LevelManager.level].exitCondition).PrintRemainingEnemies();
                 var pos = new Vector2(Game1.gameSettings.screenWidth - xSafezone - TextureManager.GameFont.MeasureString(text).X/2, keyPosition.Y+ textVerticalLength);

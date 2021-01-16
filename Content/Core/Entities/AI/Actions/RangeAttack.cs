@@ -14,7 +14,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         {
             CallingInstance.AttackTimeSpanTimer = 0;
             SoundManager.ShootArrow.Play(Game1.gameSettings.soundeffectsLevel, (float) Game1.rand.NextDouble(), 0);
-            CallingInstance.CurrentWeapon.UseWeapon();
+            CallingInstance.inventory.CurrentWeapon.UseWeapon();
 
 
             /*Arris Notizen:

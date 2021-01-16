@@ -22,13 +22,13 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             {
                 if (!agent.IsAttacking())
                 {
-                    if (!agent.WeaponInventory[0].InUsage())
+                    if (!agent.inventory.WeaponInventory[0].InUsage())
                     {
                         if (SimulateMeleeAttack())
                         {
                             // Wenn reagiert wird
                             
-                            if(TryToAttack(agent.WeaponInventory[0]))
+                            if(TryToAttack(agent.inventory.WeaponInventory[0]))
                                 return new Melee(agent);
                             
                         }
@@ -48,7 +48,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
             if (WithinRange(DETECTION_RANGE))
             {
-                Rectangle[] effectiveMeleeRange = ((ShortRange)agent.WeaponInventory[0]).GetEffectiveRange();
+                Rectangle[] effectiveMeleeRange = ((ShortRange)agent.inventory.WeaponInventory[0]).GetEffectiveRange();
                 foreach (Rectangle effective in effectiveMeleeRange)
                 {
                     if (effective.Intersects(Player.Instance.Hitbox))

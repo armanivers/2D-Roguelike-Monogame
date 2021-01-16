@@ -85,7 +85,7 @@ namespace _2DRoguelike.Content.Core.World
             }
             levelList[level - 1].map.clearEnemies();
 
-            Player.Instance.ClearKey();
+            Player.Instance.inventory.ClearKey();
 
             Player.Instance.Position = levelList[level].map.getSpawnpoint() * new Vector2(32);
             currentmap = levelList[level].map;

@@ -30,7 +30,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
             DrawOrigin = TextureSize / 2;
             shootingEntity = shootingCreat;
 
-            impactDamage = ((FireballWeapon)shootingEntity.CurrentWeapon).weaponDamage;
+            impactDamage = ((FireballWeapon)shootingEntity.inventory.CurrentWeapon).weaponDamage;
             this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(20 * ScaleFactor), (int)(20 * ScaleFactor));
             this.Acceleration = Vector2.Normalize(GetDirection());
             this.rotation = (float)Math.Atan2(Acceleration.Y, Acceleration.X);

@@ -14,7 +14,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots
         
         public override void OnContact() {
             base.OnContact();
-            Player.Instance.AddToWeaponInventory(GetCorrespondingWeapon());
+            Player.Instance.inventory.AddToWeaponInventory(GetCorrespondingWeapon());
             isExpired = true;
         }
 

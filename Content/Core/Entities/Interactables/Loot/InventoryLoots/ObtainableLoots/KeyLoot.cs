@@ -30,7 +30,7 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.O
         }
         public override void OnContact()
         {
-            Player.Instance.AddKey();
+            Player.Instance.inventory.AddKey();
             PlaySound();
             NotifyPlayer();
             obtained = true;

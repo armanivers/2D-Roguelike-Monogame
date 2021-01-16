@@ -52,7 +52,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         protected bool SimulateMeleeAttack()
         {
 
-            Rectangle[] effectiveRange = ((ShortRange)agent.WeaponInventory[0]).GetEffectiveRange();
+            Rectangle[] effectiveRange = ((ShortRange)agent.inventory.WeaponInventory[0]).GetEffectiveRange();
 
 
             // Für Debug
@@ -114,7 +114,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             {
 
                 usedWeapon.CooldownTimer = 0;
-                agent.CurrentWeapon = usedWeapon;
+                agent.inventory.CurrentWeapon = usedWeapon;
                 return true;
             }
             return false;
