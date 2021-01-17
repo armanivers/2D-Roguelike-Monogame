@@ -53,7 +53,7 @@ namespace _2DRoguelike.Content.Core.GameDebugger
                 spriteBatch.DrawString(TextureManager.FontArial, "Angle of Mouse: " +
                     angle, MoveIndent(), Color.White);
                 spriteBatch.DrawString(TextureManager.FontArial, "Weapon: " +
-                    Player.Instance.CurrentWeapon?.ToString(), MoveIndent(), Color.White);
+                    Player.Instance.inventory.CurrentWeapon?.ToString(), MoveIndent(), Color.White);
                 if (LevelManager.currentmap.currentroom != null)
                 {
                     spriteBatch.DrawString(TextureManager.FontArial, "Room: " +LevelManager.currentmap.currentroom.Width +" , "+ LevelManager.currentmap.currentroom.Height, MoveIndent(), Color.White);

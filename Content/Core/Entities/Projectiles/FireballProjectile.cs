@@ -30,7 +30,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
             DrawOrigin = TextureSize / 2;
             shootingEntity = shootingCreat;
 
-            impactDamage = ((FireballWeapon)shootingEntity.CurrentWeapon).weaponDamage;
+            impactDamage = ((FireballWeapon)shootingEntity.inventory.CurrentWeapon).weaponDamage;
             this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(20 * ScaleFactor), (int)(20 * ScaleFactor));
             this.Acceleration = Vector2.Normalize(GetDirection());
             this.rotation = (float)Math.Atan2(Acceleration.Y, Acceleration.X);
@@ -103,7 +103,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
                             {
                                 if (Hitbox.Intersects(enemy.Hitbox) && !((Humanoid)enemy).IsDead())
                                 {
-                                    ((Enemy)enemy).DeductHealthPoints(impactDamage);
+                                    ((Enemy)enemy).DeductHealthPoints((int)(impactDamage * shootingEntity.temporaryDamageMultiplier));
                                     Incinerate();
                                 }
                             }
@@ -113,7 +113,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
                     {
                         if (Hitbox.Intersects(Player.Instance.Hitbox))
                         {
-                            Player.Instance.DeductHealthPoints(impactDamage);
+                            Player.Instance.DeductHealthPoints((int)(impactDamage*shootingEntity.temporaryDamageMultiplier));
                             isExpired = true;
                             // Incinerate(shootingEntity);
                         }

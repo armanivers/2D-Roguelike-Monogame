@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
 using _2DRoguelike.Content.Core.Entities.Weapons;
+using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
 using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Projectiles
@@ -27,7 +28,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
             this.texture = TextureManager.projectiles.Bomb;
             DrawOrigin = TextureSize / 2;
             shootingEntity = creat;
-            DAMAGE = ((BombWeapon)shootingEntity.CurrentWeapon).weaponDamage;
+            DAMAGE = ((BombWeapon)shootingEntity.inventory.CurrentWeapon).weaponDamage;
             this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(TextureManager.projectiles.Bomb.Width * ScaleFactor), (int)(TextureManager.projectiles.Bomb.Width * ScaleFactor));
             this.Acceleration = Vector2.Normalize(GetDirection());
             // this.rotation = (float)Math.Atan2(Acceleration.Y, Acceleration.X);

@@ -27,17 +27,31 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
                 {
                     new KeyValuePair<int,EnemyType>(25,EnemyType.ZombieBrown), // 50% chance for a brown zombie
                     new KeyValuePair<int,EnemyType>(25,EnemyType.ZombieGreen), // 50% chance for a green zombie
-                    new KeyValuePair<int,EnemyType>(30,EnemyType.Skeleton), // 30% chance for a skeleton
-                    new KeyValuePair<int,EnemyType>(10,EnemyType.Wizard), // 10% chance for a wizard
+                    new KeyValuePair<int,EnemyType>(45,EnemyType.Skeleton), // 30% chance for a skeleton
+                    new KeyValuePair<int,EnemyType>(5,EnemyType.Wizard), // 10% chance for a wizard
                 }
             },
+            //boss level, no enemies
             {1,
                 new List<KeyValuePair<int, EnemyType>>()
                 {
-                    new KeyValuePair<int,EnemyType>(25,EnemyType.ZombieBrown), // 50% chance for a brown zombie
-                    new KeyValuePair<int,EnemyType>(25,EnemyType.ZombieGreen), // 50% chance for a green zombie
-                    new KeyValuePair<int,EnemyType>(30,EnemyType.Skeleton), // 30% chance for a skeleton
+                    new KeyValuePair<int,EnemyType>(100,EnemyType.ZombieBrown), // 50% chance for a brown zombie
+                }
+            },
+            {2,
+                new List<KeyValuePair<int, EnemyType>>()
+                {
+                    new KeyValuePair<int,EnemyType>(10,EnemyType.ZombieBrown), // 50% chance for a brown zombie
+                    new KeyValuePair<int,EnemyType>(20,EnemyType.ZombieGreen), // 50% chance for a green zombie
+                    new KeyValuePair<int,EnemyType>(60,EnemyType.Skeleton), // 30% chance for a skeleton
                     new KeyValuePair<int,EnemyType>(10,EnemyType.Wizard), // 10% chance for a wizard
+                }
+            },
+            //boss level, no enemies
+            {3,
+                new List<KeyValuePair<int, EnemyType>>()
+                {
+                    new KeyValuePair<int,EnemyType>(100,EnemyType.ZombieBrown), // 50% chance for a brown zombie
                 }
             }
         };
@@ -70,9 +84,15 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         public static EnemyType ChooseEnemy()
         {
             int randomPercentage = Game1.rand.Next(0, 101);
+            List<KeyValuePair<int, EnemyType>> enemyList;
+
+            if (LevelManager.level > levelEnemies.Count-1)
+                enemyList = levelEnemies[0];
+            else
+                enemyList = levelEnemies[LevelManager.level];
 
             // Paramter 0 sollte mit LevelManager.level ersetzt werden! (jetzt 0 damit ich nicht fur jedes Level enemy list erstelle)
-            foreach (var enemyPercentage in levelEnemies[0])
+            foreach (var enemyPercentage in enemyList)
             {
                 if (randomPercentage <= enemyPercentage.Key)
                 {

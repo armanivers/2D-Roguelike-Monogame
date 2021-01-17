@@ -19,8 +19,8 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         private bool activated;
         public SpeedPotion(Vector2 pos) : base(pos)
         {
-            speedModifier = 1.5f;
-            texture = TextureManager.loot.HealthPotion;
+            speedModifier = 1.7f;
+            texture = TextureManager.loot.SpeedPotion;
             effectTimer = 0;
             activated = false;
         }

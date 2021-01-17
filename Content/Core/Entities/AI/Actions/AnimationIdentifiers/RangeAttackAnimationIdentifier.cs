@@ -14,7 +14,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         {
 
 
-            String ret = CallingInstance.CurrentWeapon.GetAnimationType() + PrintLineOfSight(CallingInstance);
+            String ret = CallingInstance.inventory.CurrentWeapon.GetAnimationType() + PrintLineOfSight(CallingInstance);
             if (!CallingInstance.AnimationExists(ret))
                 ret += "_" + CallingInstance.defaultAnimationWeapon;
             return ret;

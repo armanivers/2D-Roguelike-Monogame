@@ -10,13 +10,12 @@ using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.Cutscenes;
 using static _2DRoguelike.Content.Core.UI.MessageFactory.Message;
+using _2DRoguelike.Content.Core.Entities.Inventories;
 
 namespace _2DRoguelike.Content.Core.World
 {
     static class LevelManager
     {
-
-        public const int numLevel = 3;
         public static int level = 0;
         // which boss should be spawned, example; bossmap1 = dragon bossm bossmap2 = ...
         public static int bossStage = 0;
@@ -35,7 +34,9 @@ namespace _2DRoguelike.Content.Core.World
             "Mountain Hill",
             "Dragon's cave",
             "Magical Forest",
-            "Last Hope"
+            "Last Hope",
+            "placeholder",
+            "placeholder"
         };
 
 
@@ -85,7 +86,7 @@ namespace _2DRoguelike.Content.Core.World
             }
             levelList[level - 1].map.clearEnemies();
 
-            Player.Instance.ClearKey();
+            Player.Instance.Inventory.ClearKey();
 
             Player.Instance.Position = levelList[level].map.getSpawnpoint() * new Vector2(32);
             currentmap = levelList[level].map;
@@ -97,7 +98,7 @@ namespace _2DRoguelike.Content.Core.World
             if (currentmap is BossMap)
             {
                 // queue bosstalk scene
-                //CutsceneManager.QueueScene(new NPCTalk());
+                CutsceneManager.QueueScene(new NPCTalk(bossStage+1));
                 bossStage++;
                 UIManager.SwitchBossBarState();
             }
@@ -132,6 +133,7 @@ namespace _2DRoguelike.Content.Core.World
         public static void UnloadContent()
         {
             level = 0;
+            bossStage = 0;
             levelList.Clear();
         }
         public static void Draw(SpriteBatch spriteBatch)

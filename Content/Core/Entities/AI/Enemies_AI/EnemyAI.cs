@@ -5,6 +5,7 @@ using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
 using _2DRoguelike.Content.Core.Entities.Weapons;
 using _2DRoguelike.Content.Core.GameDebugger;
+using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
 using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
@@ -52,7 +53,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         protected bool SimulateMeleeAttack()
         {
 
-            Rectangle[] effectiveRange = ((ShortRange)agent.WeaponInventory[0]).GetEffectiveRange();
+            Rectangle[] effectiveRange = ((ShortRange)agent.inventory.WeaponInventory[0]).GetEffectiveRange();
 
 
             // Für Debug
@@ -114,7 +115,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             {
 
                 usedWeapon.CooldownTimer = 0;
-                agent.CurrentWeapon = usedWeapon;
+                agent.inventory.CurrentWeapon = usedWeapon;
                 return true;
             }
             return false;

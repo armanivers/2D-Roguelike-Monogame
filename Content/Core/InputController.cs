@@ -2,6 +2,9 @@
 using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.Entities.Inventories;
+using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
+using _2DRoguelike.Content.Core.Items.ObtainableItems;
 using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.World;
 using _2DRoguelike.Content.Core.World.Rooms;
@@ -57,6 +60,11 @@ namespace _2DRoguelike.Content.Core
                 Player.Instance.Position = new Vector2(exitroom.CentreX * 32, exitroom.CentreY * 32);
             }
 
+            if (IsKeyPressed(Keys.O))
+            {
+                Player.Instance.Inventory.AddKey(new LevelKey(Player.Instance));
+            }
+
             // Instantly Kill All Enemies
             if (IsKeyDown(Keys.K))
             {
@@ -75,10 +83,26 @@ namespace _2DRoguelike.Content.Core
                 Player.Instance.Kill();
             }
 
+            // increase xp by 1
+            if (IsKeyDown(Keys.E))
+            {
+                Player.Instance.AddExperiencePoints(1);
+            }
+
             // Cutscene Test
-            if(IsKeyDown(Keys.C))
+            if (IsKeyDown(Keys.C))
             {
                 CutsceneManager.PlayCutscene(new FadeOutCircle());
+            }
+
+            // Unlock All Weapns
+            if (IsKeyDown(Keys.U))
+            {
+                Player.Instance.Inventory.AddToWeaponInventory(new Dagger(Player.Instance));
+                Player.Instance.Inventory.AddToWeaponInventory(new Axe(Player.Instance));
+                Player.Instance.Inventory.AddToWeaponInventory(new Bow(Player.Instance));
+                Player.Instance.Inventory.AddToWeaponInventory(new BombWeapon(Player.Instance));
+                Player.Instance.Inventory.AddToWeaponInventory(new Spear(Player.Instance));
             }
 
         }

@@ -11,18 +11,15 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 {
     public class Wizard : Enemy
     {
-        const int WEAPON_SLOT_CNT = 3; 
         public Wizard(Vector2 position, int maxHealthPoints = 75, float movingSpeed = 3, float attackTimespan = 0.4f) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
         {
             ai = new WizardAI(this);
 
-            WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
+            inventory.WeaponInventory[0] = new Fist(this, 1f, 2.2f);
+            inventory.WeaponInventory[1] = new Bow(this, 0.2f, 1.5f);
+            inventory.WeaponInventory[2] = new FireballWeapon(this,0.5f, 1.5f, 1.5f);
 
-            WeaponInventory[0] = new Fist(this, 1f, 2.2f);
-            WeaponInventory[1] = new Bow(this, 0.2f, 1.5f);
-            WeaponInventory[2] = new FireballWeapon(this,0.5f, 1.5f, 1.5f);
-            
-            CurrentWeapon = WeaponInventory[0];
+            inventory.CurrentWeapon = inventory.WeaponInventory[0];
 
             texture = TextureManager.enemy.Wizard_Idle;
 

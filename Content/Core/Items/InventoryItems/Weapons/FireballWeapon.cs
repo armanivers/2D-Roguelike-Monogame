@@ -21,7 +21,7 @@ namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
 
         public override void UseWeapon()
         {
-            new FireballProjectile(Owner, explosionDamageMultiplier);
+            new FireballProjectile(owner, explosionDamageMultiplier);
         }
 
         public override string GetAnimationType()

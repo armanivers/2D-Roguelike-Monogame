@@ -12,7 +12,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
     public class Orc : Boss
     {
         const int DEFAULT_HEALTHPOINTS = 200;
-        const int WEAPON_SLOT_CNT = 2; // 0: ShortRange / 1: LongRange
         public Orc(Vector2 position, float movingSpeed = 3, float attackTimespan = 0.4f, float scaleFactor = 1.6f) : base(position, DEFAULT_HEALTHPOINTS, attackTimespan, movingSpeed, scaleFactor)
         {
 
@@ -20,12 +19,11 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
 
             bossName = "The Orc";
 
-            WeaponInventory = new Weapon[WEAPON_SLOT_CNT];
 
-            WeaponInventory[0] = new Spear(this, 0.5f, 1.5f, 0.8f, 1f);
-            
+            inventory.WeaponInventory[0] = new Spear(this, 0.5f, 1.5f, 0.8f, 1f);
 
-            CurrentWeapon = WeaponInventory[0];
+
+            inventory.CurrentWeapon = inventory.WeaponInventory[0];
 
             texture = TextureManager.enemy.Skeleton_Idle;
 

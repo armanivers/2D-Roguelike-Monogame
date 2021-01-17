@@ -14,12 +14,15 @@ namespace _2DRoguelike.Content.Core.UI
         public static List<UIElementBasis> uiElementsDynamic = new List<UIElementBasis>();
         public static List<UIElementBasis> uiElementsStatic = new List<UIElementBasis>();
         public static List<UIElementBasis> uiElements = new List<UIElementBasis>();
+        public static BossBar bossbar;
+
         public static void Update(GameTime gameTime)
         {
             foreach(var ui in uiElements)
             {
                 ui.Update(gameTime);
             }
+            bossbar.Update(gameTime);
             MessageFactory.Update(gameTime);
         }
         public static void DrawStatic(SpriteBatch spriteBatch)
@@ -30,6 +33,7 @@ namespace _2DRoguelike.Content.Core.UI
             {
                 ui.Draw(spriteBatch);
             }
+            bossbar.Draw(spriteBatch);
         }
 
         public static void DrawDynamic(SpriteBatch spriteBatch)
@@ -65,25 +69,37 @@ namespace _2DRoguelike.Content.Core.UI
             }
         }
 
-        public static void ClearElements()
+        public static void Load()
+        {
+            AddUIElementDynamic(new MobHealthBars());
+
+            AddUIElementStatic(new Fog());
+            AddUIElementStatic(new Skillbar(Player.Instance));
+            AddUIElementStatic(new ExperienceBar(Player.Instance));
+            AddUIElementStatic(new HealthBar(Player.Instance));
+            AddUIElementStatic(new ToolTip(Player.Instance));
+            AddUIElementStatic(new Highscore());
+            AddUIElementStatic(new KeyStatus(Player.Instance));
+            AddUIElementStatic(new ManaBar(Player.Instance));
+            AddUIElementStatic(new UsableItemsBar(Player.Instance));
+            AddUIElementStatic(new PlayerEffects(Player.Instance));
+            bossbar = new BossBar();
+        }
+
+        public static void Unload()
         {
             uiElements.Clear();
             uiElementsDynamic.Clear();
             uiElementsStatic.Clear();
+            bossbar = null;
             MessageFactory.ClearMessages();
         }
 
         public static void SwitchBossBarState()
         {
-            foreach(var element in uiElementsStatic)
-            {
-                if(element is BossBar)
-                {
-                    ((BossBar)element).SwitchState();
-                    return;
-                }
-            }
+            bossbar.SwitchState();
         }
+
 
     }
 }

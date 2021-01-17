@@ -17,7 +17,7 @@ namespace _2DRoguelike.Content.Core.Cutscenes
 
         protected float displayDuration = 1.2f; // 2 sekunden
         
-        protected float fadeOutDuration = 0.6f; // 1 sekunden
+        protected float fadeOutDuration = 0.2f; // 1 sekunden
         protected float fadeOutSpeed;
 
         // used for scenes which don't need start/middle/end part
@@ -26,9 +26,11 @@ namespace _2DRoguelike.Content.Core.Cutscenes
         // by default cutscene is not interactable
         protected bool interactable = false;
         protected bool buttonPressed = false;
+        protected bool paused = false;
 
         // after 15 seconds, interactable scenes are auto skipped
-        protected int interactbleAutoSkipDuration = 15; 
+        protected float interactbleAutoSkipDuration = 30;
+        protected float interactableTimer = 0;
 
         protected Texture2D cutsceneTexture;
         

@@ -26,13 +26,13 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
 
                 if (!agent.IsAttacking())
                 {
-                    if (!agent.WeaponInventory[1].InUsage())
+                    if (!agent.inventory.WeaponInventory[1].InUsage())
                     {
 
                         // Check, ob Pfeil treffen würde
                         if (SimulateArrowAttack())
                         {
-                            if (TryToAttack(agent.WeaponInventory[1]))
+                            if (TryToAttack(agent.inventory.WeaponInventory[1]))
                                 return new RangeAttack(agent);
                         }
                         else
@@ -41,11 +41,11 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
                             return new Teleport(agent, (float)Gameplay.GameTime.TotalGameTime.TotalSeconds);
                         }
                     }
-                    if (!agent.WeaponInventory[2].InUsage())
+                    if (!agent.inventory.WeaponInventory[2].InUsage())
                     {
                         if (SimulateArrowAttack())
                         {
-                            if (TryToAttack(agent.WeaponInventory[2]))
+                            if (TryToAttack(agent.inventory.WeaponInventory[2]))
                                 return new RangeAttack(agent);
                         }
                         else if (React())

@@ -18,6 +18,9 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
         // score
         public Texture2D XPBarContainer { get; private set; }
         public Texture2D XPBarBar { get; private set; }
+        // Manabar
+        public Texture2D ManaBarContainer { get; private set; }
+        public Texture2D ManaBarBar { get; private set; }
         // skillbar
         public Texture2D skillbar { get; private set; }
         public Texture2D slotUsed { get; private set; }
@@ -52,6 +55,9 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
             // xpbar
             XPBarContainer = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Experiencebar/XPBarContainer");
             XPBarBar = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Experiencebar/XPBarBar");
+            // manabar
+            ManaBarContainer = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/ManaBar/ManaBarContainer");
+            ManaBarBar = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/ManaBar/ManaBarBar");
             // skillbar
             skillbar = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Skillbar/skillbar");
             slotUsed = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Skillbar/slotUsed");

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using _2DRoguelike.Content.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace _2DRoguelike.Content.Core.Entities.Weapons
+namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
 {
     public abstract class Weapon : InventoryItem
     {
@@ -12,8 +13,6 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         
         private float cooldownTimer=0;
         public float CooldownTimer { get => cooldownTimer; set => cooldownTimer = value; }
-
-        public int INVENTORY_SLOT;
 
         public Weapon(Humanoid Owner, int weaponDamage, float weaponCooldown): base(Owner) {
             this.weaponDamage = weaponDamage;

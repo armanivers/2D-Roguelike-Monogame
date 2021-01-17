@@ -23,7 +23,7 @@ namespace _2DRoguelike.Content.Core.UI
         private Texture2D healthbarContainer;
         private Texture2D healthBar;
 
-        private float scalingFactor = 1.0f;
+        private float scalingFactor = 1.1f;
 
         // red bar starts at x = 69, before it everything is empty
         private int redbarOffsetStart = 68;
@@ -31,7 +31,7 @@ namespace _2DRoguelike.Content.Core.UI
         private int redbarOffsetEnd = 4;
 
         // text position relative to healthbar position
-        private int textOffsetY = 15;
+        private int textOffsetY = 20;
 
         private Vector2 redbarPosition;
         private Vector2 containerPositon;

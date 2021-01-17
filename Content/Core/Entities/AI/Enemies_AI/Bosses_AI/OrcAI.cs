@@ -5,6 +5,7 @@ using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.Entities.Weapons;
+using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
 using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.AI.Enemies_AI.Bosses_AI
@@ -21,11 +22,11 @@ namespace _2DRoguelike.Content.Core.Entities.AI.Enemies_AI.Bosses_AI
             {
                 if (!agent.IsAttacking())
                 {
-                    if (!agent.WeaponInventory[0].InUsage())
+                    if (!agent.inventory.WeaponInventory[0].InUsage())
                     {
                         if (SimulateMeleeAttack())
                         {
-                            if (TryToAttack(agent.WeaponInventory[0]))
+                            if (TryToAttack(agent.inventory.WeaponInventory[0]))
                                 return new Melee(agent);
                         }
                     }
@@ -39,7 +40,7 @@ namespace _2DRoguelike.Content.Core.Entities.AI.Enemies_AI.Bosses_AI
 
         public override Vector2 DeterminePath()
         {
-            Rectangle[] effectiveMeleeRange = ((ShortRange)agent.WeaponInventory[0]).GetEffectiveRange();
+            Rectangle[] effectiveMeleeRange = ((ShortRange)agent.inventory.WeaponInventory[0]).GetEffectiveRange();
             foreach (Rectangle effective in effectiveMeleeRange)
             {
                 if (effective.Intersects(Player.Instance.Hitbox))

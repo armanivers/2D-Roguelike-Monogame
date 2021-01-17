@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
+using _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses;
 using _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.WeaponLoots;
 using _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
@@ -19,7 +20,9 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
             chestDiamond,
             lootbagZombie,
             lootbagSkeleton,
-            lootbagWizard
+            lootbagWizard,
+            lootbagOrc,
+            lootbagDragon
         }
 
         private enum Items
@@ -32,7 +35,8 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
             XP_POTION,
             REGENERATION_POTION,
             SPEAR,
-            SPEED_POTION
+            SPEED_POTION,
+            STRENGTH_POTION
         }
 
 
@@ -47,7 +51,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
             {
                 DropType.chestNormal, new List<KeyValuePair<int, Items>>()
                 {
-                    new KeyValuePair<int,Items>(40,Items.DAGGER), // 40% chance to get Dagger (id 0)
+                    new KeyValuePair<int,Items>(40,Items.REGENERATION_POTION), // 40% chance to get Dagger (id 0)
                     new KeyValuePair<int,Items>(30,Items.BOW), // 30% chance to get Bow (id 1)
                     new KeyValuePair<int,Items>(15,Items.BOMB), // 10% chance to get Bomb (id 3
                     new KeyValuePair<int,Items>(10,Items.HEALTH_POTION), // 10% chance to get Healthpotion (id 5)
@@ -67,25 +71,36 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
             {
                 DropType.lootbagZombie,new List<KeyValuePair<int, Items>>()
                 {
-                    new KeyValuePair<int,Items>(40,Items.DAGGER),
-                    new KeyValuePair<int,Items>(30,Items.BOW),
-                    new KeyValuePair<int,Items>(10,Items.XP_POTION),
-                    new KeyValuePair<int,Items>(10,Items.BOMB),
-                    new KeyValuePair<int,Items>(10,Items.HEALTH_POTION)
+                    new KeyValuePair<int,Items>(30,Items.STRENGTH_POTION),
+                    new KeyValuePair<int,Items>(30,Items.HEALTH_POTION),
+                    new KeyValuePair<int,Items>(30,Items.XP_POTION),
+                    new KeyValuePair<int,Items>(10,Items.BOMB)
                 }
             },
             {
                 DropType.lootbagSkeleton,new List<KeyValuePair<int, Items>>()
                 {
-                    new KeyValuePair<int,Items>(50,Items.DAGGER),
+                    new KeyValuePair<int,Items>(50,Items.SPEED_POTION),
                     new KeyValuePair<int,Items>(50,Items.BOW)
                 }
             },
             {
                 DropType.lootbagWizard,new List<KeyValuePair<int, Items>>()
                 {
-                    new KeyValuePair<int,Items>(50,Items.DAGGER),
-                    new KeyValuePair<int,Items>(50,Items.BOW)
+                    new KeyValuePair<int,Items>(50,Items.REGENERATION_POTION),
+                    new KeyValuePair<int,Items>(50,Items.SPEAR)
+                }
+            },
+            {
+                DropType.lootbagOrc,new List<KeyValuePair<int, Items>>()
+                {
+                    new KeyValuePair<int,Items>(100,Items.HEALTH_POTION)
+                }
+            },
+            {
+                DropType.lootbagDragon,new List<KeyValuePair<int, Items>>()
+                {
+                    new KeyValuePair<int,Items>(100,Items.HEALTH_POTION)
                 }
             }
 
@@ -152,13 +167,16 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
                 case Items.SPEED_POTION:
                     new SpeedPotion(pos);
                     break;
+                case Items.STRENGTH_POTION:
+                    new StrengthPotion(pos);
+                    break;
                 default:
                     new DaggerLoot(pos);
                     break;
             }
         }
 
-        public static DropType DetermineMonsterLootTable(Enemy enemy)
+        public static DropType DetermineMonsterLootTable(Humanoid enemy)
         {
             if (enemy == null) return DropType.chestNormal;
 
@@ -173,6 +191,14 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
             else if(enemy is Wizard)
             {
                 return DropType.lootbagWizard;
+            }
+            else if(enemy is Orc)
+            {
+                return DropType.lootbagOrc;
+            }
+            else if (enemy is Dragon)
+            {
+                return DropType.lootbagDragon;
             }
             // default loottable is normal chest
             else

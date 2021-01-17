@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.Projectiles;
+using _2DRoguelike.Content.Core.Entities.Weapons;
 
-namespace _2DRoguelike.Content.Core.Entities.Weapons
+namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
 {
     public class BombWeapon : LongRange
     {
@@ -17,7 +19,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
 
         public override void UseWeapon()
         {
-            new BombProjectile(Owner, 2.5f);
+            new BombProjectile(owner, 2.5f);
         }
 
         public override string GetAnimationType()

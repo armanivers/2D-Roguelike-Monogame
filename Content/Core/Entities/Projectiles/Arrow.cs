@@ -1,5 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Weapons;
+using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 using System;
@@ -23,7 +24,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
             this.texture = TextureManager.projectiles.Arrow;
             DrawOrigin = TextureSize / 2;
             shootingEntity = creat;
-            DAMAGE = ((Bow)shootingEntity.CurrentWeapon).weaponDamage;
+            DAMAGE = ((Bow)shootingEntity.inventory.CurrentWeapon).weaponDamage;
             this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(13 * ScaleFactor), (int)(13 * ScaleFactor));
             this.Acceleration = Vector2.Normalize(GetDirection());
             this.rotation = (float)Math.Atan2(Acceleration.Y, Acceleration.X);
@@ -68,7 +69,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
                     {
                         if (Hitbox.Intersects(enemy.Hitbox) && !((Humanoid)enemy).IsDead())
                         {
-                            ((Enemies.Enemy)enemy).DeductHealthPoints(DAMAGE);
+                            ((Enemies.Enemy)enemy).DeductHealthPoints((int)(DAMAGE * shootingEntity.temporaryDamageMultiplier));
                             isExpired = true;
                         }
                     }
@@ -78,7 +79,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
             {
                 if (Hitbox.Intersects(Player.Instance.Hitbox))
                 {
-                    Player.Instance.DeductHealthPoints(DAMAGE);
+                    Player.Instance.DeductHealthPoints((int)(DAMAGE * shootingEntity.temporaryDamageMultiplier));
                     isExpired = true;
                 }
             }

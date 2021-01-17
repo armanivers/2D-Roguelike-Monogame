@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using _2DRoguelike.Content.Core.Entities;
+using _2DRoguelike.Content.Core.Entities.Weapons;
 using Microsoft.Xna.Framework;
 
-namespace _2DRoguelike.Content.Core.Entities.Weapons
+namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
 {
     public class Axe : ShortRange
     {
