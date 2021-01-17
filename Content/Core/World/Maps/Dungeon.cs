@@ -14,7 +14,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
     class Dungeon : Map
     {
         private static readonly int ROOMTRIES = 2000;
-        public const int NumRooms = 10;
+        public const int NumRooms = 5;
 
         public List<Room> roomlist { get; }
         public Vector2 spawnpoint;
