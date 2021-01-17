@@ -188,6 +188,9 @@ namespace _2DRoguelike.Content.Core.World.Rooms
             } while (room[XExit, YExit] != RoomObject.EmptySpace);
             exitroom = true;
             room[XExit, YExit] = RoomObject.Exit;
+
+           // Debug.WriteLine("Exit is at: {0},{1}" + XExit, YExit);
+
             XExit = (XExit + XPos);
             YExit = (YExit + YPos);
             exithitbox = new Rectangle(XExit * PIXELMULTIPLIER, YExit * PIXELMULTIPLIER, PIXELMULTIPLIER, PIXELMULTIPLIER);

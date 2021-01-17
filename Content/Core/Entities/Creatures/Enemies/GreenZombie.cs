@@ -11,7 +11,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 {
     public class GreenZombie : Enemy
     {
-        public GreenZombie(Vector2 position, int maxHealthPoints = 40, float movingSpeed = 3, float attackTimespan = 0.4f) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
+        public GreenZombie(Vector2 position, int maxHealthPoints = 45, float movingSpeed = 3, float attackTimespan = 0.4f) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
         {
             ai = new GreenZombieAI(this);
 

@@ -25,18 +25,17 @@ namespace _2DRoguelike.Content.Core.World
         public static Tile[,] currenttilemap;
 
         // max level
-        public static int maxLevel = 4;
+        public static int maxLevel = 9;
         // "gameover" but successfullly
         public static bool gameOverSucc;
 
         public static List<string> levelNames = new List<string>()
         { "The Forbidden Dugeon",
-            "Mountain Hill",
+            "", "",
             "Dragon's cave",
-            "Magical Forest",
+            "", "",
             "Last Hope",
-            "placeholder",
-            "placeholder"
+            "","", ""
         };
 
 
@@ -50,7 +49,11 @@ namespace _2DRoguelike.Content.Core.World
             currentmap = levelList[level].map;
             currenttilemap = currentmap.tilearray;
             playerposition = new Vector2();
-            MessageFactory.DisplayMessage("Level " +level +" - " +levelNames[level], Color.White, AnimationType.LeftToRightCos);
+            PrintStageName();
+        }
+
+        public static void PrintStageName() {
+            MessageFactory.DisplayMessage("Level " + (level / 3 + 1) + " - " + levelNames[level], Color.White, AnimationType.LeftToRightCos);
         }
 
         public static void NextLevel()
@@ -59,26 +62,38 @@ namespace _2DRoguelike.Content.Core.World
             EntityManager.UnloadAllEntities();
 
             level++;
-            if(level >= maxLevel)
+            if (level >= maxLevel)
             {
                 gameOverSucc = true;
             }
 
             switch (level)
             {
-                case 0:
-                    // wird aber nie erreicht
-                    levelList.Add(new Level(new Dungeon(), ExitCondition.getRandomExitCondition()));
-                    break;
                 case 1:
-                    levelList.Add(new Level(new BossMap(24, 12), new KillAllEnemies()));
+                    levelList.Add(new Level(new Dungeon(), ExitCondition.getRandomExitCondition()));
                     break;
                 case 2:
-                    levelList.Add(new Level(new Dungeon(), ExitCondition.getRandomExitCondition()));
-                    break;
-                case 3:
                     levelList.Add(new Level(new BossMap(24, 12), new KillAllEnemies()));
                     break;
+                case 3:
+                    levelList.Add(new Level(new Dungeon(), ExitCondition.getRandomExitCondition()));
+                    break;
+                case 4:
+                    levelList.Add(new Level(new Dungeon(), ExitCondition.getRandomExitCondition()));
+                    break;
+                case 5:
+                    levelList.Add(new Level(new BossMap(24, 12), new KillAllEnemies()));
+                    break;
+                case 6:
+                    levelList.Add(new Level(new Dungeon(), ExitCondition.getRandomExitCondition()));
+                    break;
+                case 7:
+                    levelList.Add(new Level(new Dungeon(), ExitCondition.getRandomExitCondition()));
+                    break;
+                case 8:
+                    levelList.Add(new Level(new BossMap(24, 12), new KillAllEnemies()));
+                    break;
+
                 default:
                     // default case is used for gameover!
                     levelList.Add(new Level(new Dungeon(), ExitCondition.getRandomExitCondition()));
@@ -94,24 +109,28 @@ namespace _2DRoguelike.Content.Core.World
 
             // start next Level scene
             CutsceneManager.PlayCutsceneDelayed(new FadeOutCircle());
-            
+
             if (currentmap is BossMap)
             {
                 // queue bosstalk scene
-                CutsceneManager.QueueScene(new NPCTalk(bossStage+1));
+                // CutsceneManager.QueueScene(new NPCTalk(bossStage + 1));
                 bossStage++;
                 UIManager.SwitchBossBarState();
             }
 
             MessageFactory.ClearMessages();
-            MessageFactory.DisplayMessage("Level " + level + " - " + levelNames[level], Color.White, AnimationType.LeftToRightCos);
+
+            // TODO: Anzeigen des "Levels" anpassen
+            if (level % 3 == 0)
+                PrintStageName();
         }
         public static void Update(Player player)
         {
             levelList[level].map.Update(player);
             playerposition = player.HitboxCenter;
 
-            if (levelList[level].exitCondition.Exit()) {
+            if (levelList[level].exitCondition.Exit())
+            {
                 SoundManager.FulfilledExitCondition.Play(Game1.gameSettings.soundeffectsLevel, 0.0f, 0);
                 currentmap.AddKeyToRoom(10);
             }

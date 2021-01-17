@@ -12,7 +12,7 @@ namespace _2DRoguelike.Content.Core.Entities.AI.Actions
 {
     public class Teleport : Ability
     {
-        const float REQUIRED_MANA = Creature.MAX_MANA * 0.66f; // 2 Sekunden
+
         Vector2? newPosition;
 
         const float DEFAULT_TIME_IN_STATE = 30f;
