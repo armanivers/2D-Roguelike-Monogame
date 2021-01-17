@@ -82,6 +82,7 @@ namespace _2DRoguelike.Content.Core
             GameTime = gameTime;
 
             CutsceneManager.Update(gameTime);
+            InputController.Update();
             if (CutsceneManager.activeCutscene)
             {
                 return;
@@ -89,7 +90,6 @@ namespace _2DRoguelike.Content.Core
 
             // Game 
             Camera.Update(Player.Instance);
-            InputController.Update();
             EntityManager.Update(gameTime);
             UIManager.Update(gameTime);
             LevelManager.Update(Player.Instance);
