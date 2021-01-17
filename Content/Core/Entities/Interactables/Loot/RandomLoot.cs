@@ -51,7 +51,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
             {
                 DropType.chestNormal, new List<KeyValuePair<int, Items>>()
                 {
-                    new KeyValuePair<int,Items>(40,Items.DAGGER), // 40% chance to get Dagger (id 0)
+                    new KeyValuePair<int,Items>(40,Items.REGENERATION_POTION), // 40% chance to get Dagger (id 0)
                     new KeyValuePair<int,Items>(30,Items.BOW), // 30% chance to get Bow (id 1)
                     new KeyValuePair<int,Items>(15,Items.BOMB), // 10% chance to get Bomb (id 3
                     new KeyValuePair<int,Items>(10,Items.HEALTH_POTION), // 10% chance to get Healthpotion (id 5)
@@ -87,7 +87,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
             {
                 DropType.lootbagWizard,new List<KeyValuePair<int, Items>>()
                 {
-                    new KeyValuePair<int,Items>(50,Items.DAGGER),
+                    new KeyValuePair<int,Items>(50,Items.REGENERATION_POTION),
                     new KeyValuePair<int,Items>(50,Items.SPEAR)
                 }
             },

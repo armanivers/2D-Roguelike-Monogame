@@ -17,7 +17,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
 
         public override void UseWeapon()
         {
-            new BombProjectile(Owner, 2.5f);
+            new BombProjectile(owner, 2.5f);
         }
 
         public override string GetAnimationType()

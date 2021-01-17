@@ -24,7 +24,7 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects
         public override void OnContact()
         {
             // check if player has obtained the key
-            if(((PlayerInventory)Player.Instance.inventory).HasLevelKey)
+            if(Player.Instance.Inventory.HasLevelKey)
             {
                 // if yes remove player's key item, play fade out scene and load next level (LevelManager.nextlevel())
                 MessageFactory.DisplayMessage("Key Accepted", Color.Green, AnimationType.MiddleFadeInOut);

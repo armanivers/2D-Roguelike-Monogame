@@ -1,15 +1,13 @@
-﻿using System;
+﻿using _2DRoguelike.Content.Core.Items.InventoryItems;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace _2DRoguelike.Content.Core.Entities
 {
-    public abstract class InventoryItem
+    public abstract class InventoryItem : ItemBase
     {
-        public Humanoid Owner { get; set; }
-
-        public InventoryItem(Humanoid Owner) {
-            this.Owner = Owner;
-        }
+        public int INVENTORY_SLOT;
+        public InventoryItem(Humanoid owner) : base(owner){}
     }
 }

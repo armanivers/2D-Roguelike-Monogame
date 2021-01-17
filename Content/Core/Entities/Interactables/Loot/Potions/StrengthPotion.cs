@@ -1,5 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Loot;
+using _2DRoguelike.Content.Core.Items.InventoryItems.UsableItems.UsablePotions;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -10,51 +11,21 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
 {
     public class StrengthPotion : Potion
     {
-        private float strenghtModifier;
-        // how long should the potion heal the player (how long effect lasts)
-        private const float POTION_DURATION = 15;
-        // used to determine end of potion duration
-        private float effectTimer;
-        // whether potion effect activated
-        private bool activated;
         public StrengthPotion(Vector2 pos) : base(pos)
         {
-            strenghtModifier = 1.5f;
             texture = TextureManager.loot.StrengthPotion;
-            effectTimer = 0;
-            activated = false;
         }
 
         public override void ActivateEffect()
         {
             PlaySound();
-            transparency = 0;
-            activated = true;
-        }
-
-        public void BoostPlayerDamage()
-        {
-            // set it every update, incase player levels up, and his damage multiplier increaes as result of level up, potion's multiplier should still be active
-            Player.Instance.temporaryDamageMultiplier = strenghtModifier;
-            //Debug.Print("DamageMul" + Player.Instance.DamageMultiplier);
-            if (effectTimer >= POTION_DURATION)
-            {
-                Player.Instance.DamageMultiplier = Player.Instance.DamageMultiplier;
-                isExpired = true;
-            }
-            
-            effectTimer += 0.1f;
+            Player.Instance.Inventory.AddUsableItemToInventory(new StrengthPotionUsable(Player.Instance));
         }
 
         public override void OnContact()
         {
-            if (!activated) ActivateEffect();
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-            if (activated) BoostPlayerDamage();
+            ActivateEffect();
+            isExpired = true;
         }
 
         public override void PlaySound()

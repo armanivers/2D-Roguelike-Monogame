@@ -61,7 +61,7 @@ namespace _2DRoguelike.Content.Core
 
             if (IsKeyPressed(Keys.O))
             {
-                ((PlayerInventory)Player.Instance.inventory).AddKey(new LevelKey());
+                Player.Instance.Inventory.AddKey(new LevelKey(Player.Instance));
             }
 
             // Instantly Kill All Enemies

@@ -1,29 +1,31 @@
 ﻿using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.AI.Actions;
 using _2DRoguelike.Content.Core.Entities.Inventories;
-using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
 using _2DRoguelike.Content.Core.Entities.Interactables.NPCs;
 using _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects;
-using _2DRoguelike.Content.Core.Entities.Loot;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Weapons;
 using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
-using _2DRoguelike.Content.Core.Items.ObtainableItems;
 using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.World;
-using _2DRoguelike.Content.Core.World.Rooms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using static _2DRoguelike.Content.Core.UI.MessageFactory.Message;
+using _2DRoguelike.Content.Core.Items.InventoryItems.UsableItems.UsablePotions;
+using System.Diagnostics;
 
 namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 {
     public class Player : Humanoid
     {
         private static Player instance;
+
+        public PlayerInventory Inventory { get
+            {
+                return (PlayerInventory)inventory;
+            } 
+        }
 
         public bool canInteract;
         private List<InteractableBase> interactableObjects;
@@ -82,6 +84,14 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             inventory.AddToWeaponInventory(new Fist(this));
             inventory.ChangeCurrentWeaponSlot(0);
 
+            Inventory.AddUsableItemToInventory(new RegenerationPotionUsable(this));
+            Debug.Print("i1");
+            Inventory.AddUsableItemToInventory(new RegenerationPotionUsable(this));
+            Debug.Print("i2");
+            Inventory.AddUsableItemToInventory(new StrengthPotionUsable(this));
+            Debug.Print("i3");
+            Inventory.AddUsableItemToInventory(new StrengthPotionUsable(this));
+            Debug.Print("i4");
             canInteract = false;
             interactableObjects = new List<InteractableBase>();
 
@@ -211,7 +221,6 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
             return CalculateDirection(angle);
         }
-
 
         public override Action DetermineAction(float currentGameTime)
         {
@@ -379,10 +388,13 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 new Explosion();
             }*/
 
+            // switch weapons (mousewheel)
             if (InputController.IsKeyPressed(Keys.PageUp) || InputController.IsMouseScrolledDown())
-                ((PlayerInventory)inventory).SetNextWeapon();
+                Inventory.SetNextWeapon();
             else if (InputController.IsKeyPressed(Keys.PageDown) || InputController.IsMouseScrolledUp())
-                ((PlayerInventory)inventory).SetNextWeapon(true);
+                Inventory.SetNextWeapon(true);
+
+            // switch weapons (keyboard)
             else if (InputController.IsKeyPressed(Keys.NumPad0))
                 inventory.ChangeCurrentWeaponSlot(0);
             else if (InputController.IsKeyPressed(Keys.NumPad1))
@@ -391,6 +403,14 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 inventory.ChangeCurrentWeaponSlot(2);
             else if (InputController.IsKeyPressed(Keys.NumPad3))
                 inventory.ChangeCurrentWeaponSlot(3);
+
+            // Usable Items Slot
+            else if (InputController.IsKeyPressed(Keys.D1))
+                Inventory.UseItem(0);
+            else if (InputController.IsKeyPressed(Keys.D2))
+                Inventory.UseItem(1);
+            else if (InputController.IsKeyPressed(Keys.D3))
+                Inventory.UseItem(2);
         }
     }
 }

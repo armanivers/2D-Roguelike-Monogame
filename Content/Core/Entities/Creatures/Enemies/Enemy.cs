@@ -15,6 +15,13 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 {
     public abstract class Enemy : Humanoid
     {
+        public EnemyInventory Inventory
+        {
+            get
+            {
+                return (EnemyInventory)inventory;
+            }
+        }
 
         public EnemyAI ai;
         // Für ATTACK-Range Debug

@@ -35,21 +35,21 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         {
             Rectangle[] ret = new Rectangle[2];
 
-            int attackHitboxWidth = Owner.Hitbox.Width;
-            int attackHitboxHeight = Owner.Hitbox.Height;
+            int attackHitboxWidth = owner.Hitbox.Width;
+            int attackHitboxHeight = owner.Hitbox.Height;
 
             float tmpRangeMultiplierX = rangeMultiplierX;
             float tmpRangeMultiplierY = rangeMultiplierY;
 
             // horizontal
-            Vector2 attackHitboxRangeUpperLeft = new Vector2(Owner.Hitbox.X - attackHitboxWidth * tmpRangeMultiplierX +
+            Vector2 attackHitboxRangeUpperLeft = new Vector2(owner.Hitbox.X - attackHitboxWidth * tmpRangeMultiplierX +
                   (attackHitboxWidth * (1f - tmpRangeMultiplierX) < 0 ? 0 : (attackHitboxWidth * (1f - tmpRangeMultiplierX) /*dieser Teil für Berücksichtigung der widthReduction*/ )),
-              Owner.Hitbox.Y - attackHitboxHeight * tmpRangeMultiplierY +
+              owner.Hitbox.Y - attackHitboxHeight * tmpRangeMultiplierY +
                (attackHitboxHeight * (1f - tmpRangeMultiplierY) < 0 ? 0 : attackHitboxHeight * (1f - tmpRangeMultiplierY)/*dieser Teil für Berücksichtigung der heightReduction*/ ));
 
-            Vector2 attackHitboxRangeDownRight = new Vector2(Owner.Hitbox.X + Owner.Hitbox.Width -
+            Vector2 attackHitboxRangeDownRight = new Vector2(owner.Hitbox.X + owner.Hitbox.Width -
                    (attackHitboxWidth * (1f - tmpRangeMultiplierX) < 0 ? 0 : (attackHitboxWidth * (1f - tmpRangeMultiplierX) /*dieser Teil für Berücksichtigung der widthReduction*/ )),
-                Owner.Hitbox.Y + Owner.Hitbox.Height -
+                owner.Hitbox.Y + owner.Hitbox.Height -
                                   (attackHitboxHeight * (1f - tmpRangeMultiplierY) < 0 ? 0 : attackHitboxHeight * (1f - tmpRangeMultiplierY)/*dieser Teil für Berücksichtigung der heightReduction*/ ));
 
             attackHitboxRangeDownRight.X += (int)(attackHitboxWidth * tmpRangeMultiplierX);
@@ -72,14 +72,14 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             tmpRangeMultiplierX = rangeMultiplierY;
             tmpRangeMultiplierY = swap2;
 
-            attackHitboxRangeUpperLeft = new Vector2(Owner.Hitbox.X - attackHitboxWidth * tmpRangeMultiplierX +
+            attackHitboxRangeUpperLeft = new Vector2(owner.Hitbox.X - attackHitboxWidth * tmpRangeMultiplierX +
                  (attackHitboxWidth * (1f - tmpRangeMultiplierX) < 0 ? 0 : (attackHitboxWidth * (1f - tmpRangeMultiplierX) /*dieser Teil für Berücksichtigung der widthReduction*/ )),
-             Owner.Hitbox.Y - attackHitboxHeight * tmpRangeMultiplierY +
+             owner.Hitbox.Y - attackHitboxHeight * tmpRangeMultiplierY +
               (attackHitboxHeight * (1f - tmpRangeMultiplierY) < 0 ? 0 : attackHitboxHeight * (1f - tmpRangeMultiplierY)/*dieser Teil für Berücksichtigung der heightReduction*/ ));
 
-            attackHitboxRangeDownRight = new Vector2(Owner.Hitbox.X + Owner.Hitbox.Width -
+            attackHitboxRangeDownRight = new Vector2(owner.Hitbox.X + owner.Hitbox.Width -
                    (attackHitboxWidth * (1f - tmpRangeMultiplierX) < 0 ? 0 : (attackHitboxWidth * (1f - tmpRangeMultiplierX) /*dieser Teil für Berücksichtigung der widthReduction*/ )),
-                Owner.Hitbox.Y + Owner.Hitbox.Height -
+                owner.Hitbox.Y + owner.Hitbox.Height -
                                   (attackHitboxHeight * (1f - tmpRangeMultiplierY) < 0 ? 0 : attackHitboxHeight * (1f - tmpRangeMultiplierY)/*dieser Teil für Berücksichtigung der heightReduction*/ ));
 
             attackHitboxRangeDownRight.X += (int)(attackHitboxWidth * tmpRangeMultiplierX);
@@ -97,14 +97,14 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
         }
         public override void UseWeapon()
         {
-            int attackHitboxWidth = Owner.Hitbox.Width;
-            int attackHitboxHeight = Owner.Hitbox.Height;
+            int attackHitboxWidth = owner.Hitbox.Width;
+            int attackHitboxHeight = owner.Hitbox.Height;
 
             float tmpRangeMultiplierX = rangeMultiplierX;
             float tmpRangeMultiplierY = rangeMultiplierY;
 
             // Spezialfall: nach oben oder unten gucken
-            if (Owner.GetAttackLineOfSight().Y != 0)
+            if (owner.GetAttackLineOfSight().Y != 0)
             {
                 int swap = attackHitboxWidth;
                 attackHitboxWidth = attackHitboxHeight;
@@ -116,22 +116,22 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             }
 
             // Mittelpunkt der Hitbox ist Maus
-            Vector2 attackDirection = new Vector2(Owner.GetAttackDirection().X - attackHitboxWidth / 2 * tmpRangeMultiplierX,
-                Owner.GetAttackDirection().Y - attackHitboxHeight / 2 * tmpRangeMultiplierY);
+            Vector2 attackDirection = new Vector2(owner.GetAttackDirection().X - attackHitboxWidth / 2 * tmpRangeMultiplierX,
+                owner.GetAttackDirection().Y - attackHitboxHeight / 2 * tmpRangeMultiplierY);
 
             /*
                 
             */
 
-            Vector2 attackHitboxRangeUpperLeft = new Vector2(Owner.Hitbox.X - attackHitboxWidth * tmpRangeMultiplierX +
+            Vector2 attackHitboxRangeUpperLeft = new Vector2(owner.Hitbox.X - attackHitboxWidth * tmpRangeMultiplierX +
                    (attackHitboxWidth * (1f - tmpRangeMultiplierX) < 0 ? 0 : (attackHitboxWidth * (1f - tmpRangeMultiplierX) /*dieser Teil für Berücksichtigung der widthReduction*/ )),
-               Owner.Hitbox.Y - attackHitboxHeight * tmpRangeMultiplierY +
+               owner.Hitbox.Y - attackHitboxHeight * tmpRangeMultiplierY +
                 (attackHitboxHeight * (1f - tmpRangeMultiplierY) < 0 ? 0 : attackHitboxHeight * (1f - tmpRangeMultiplierY)/*dieser Teil für Berücksichtigung der heightReduction*/ ));
 
 
-            Vector2 attackHitboxRangeDownRight = new Vector2(Owner.Hitbox.X + Owner.Hitbox.Width -
+            Vector2 attackHitboxRangeDownRight = new Vector2(owner.Hitbox.X + owner.Hitbox.Width -
                    (attackHitboxWidth * (1f - tmpRangeMultiplierX) < 0 ? 0 : (attackHitboxWidth * (1f - tmpRangeMultiplierX) /*dieser Teil für Berücksichtigung der widthReduction*/ )),
-                Owner.Hitbox.Y + Owner.Hitbox.Height -
+                owner.Hitbox.Y + owner.Hitbox.Height -
                                   (attackHitboxHeight * (1f - tmpRangeMultiplierY) < 0 ? 0 : attackHitboxHeight * (1f - tmpRangeMultiplierY)/*dieser Teil für Berücksichtigung der heightReduction*/ ));
 
 
@@ -181,7 +181,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
             // Für Debug
             GameDebug.AddToBoxDebugBuffer(attackHitbox, Color.IndianRed, 10);
 
-            if (Owner is Player)
+            if (owner is Player)
             {
                 if (LevelManager.currentmap.currentroom != null)
                 {
@@ -190,7 +190,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
                     {
                         if (attackHitbox.Intersects(enemy.Hitbox) && !enemy.IsDead())
                         {
-                            ((Enemy)enemy).DeductHealthPoints((int)(weaponDamage * Owner.temporaryDamageMultiplier));
+                            ((Enemy)enemy).DeductHealthPoints((int)(weaponDamage * owner.temporaryDamageMultiplier));
                             if (++enemiesHit == maximumHitsPerAttack)
                                 break;
                         }
@@ -204,11 +204,11 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
                 }
 
             }
-            else if (Owner is Enemy)
+            else if (owner is Enemy)
             {
                 if (attackHitbox.Intersects(Player.Instance.Hitbox))
                 {
-                    Player.Instance.DeductHealthPoints((int)(weaponDamage * Owner.DamageMultiplier));
+                    Player.Instance.DeductHealthPoints((int)(weaponDamage * owner.DamageMultiplier));
                 }
             }
         }

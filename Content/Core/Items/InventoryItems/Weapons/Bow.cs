@@ -16,7 +16,7 @@ namespace _2DRoguelike.Content.Core.Entities.Weapons
 
         public override void UseWeapon()
         {
-           new Arrow(Owner);
+           new Arrow(owner);
         }
 
         public override string GetAnimationType()

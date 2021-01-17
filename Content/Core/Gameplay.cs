@@ -5,6 +5,7 @@ using _2DRoguelike.Content.Core.Entities.Interactables.WorldObjects;
 using _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Loot.WeaponLoots;
+using _2DRoguelike.Content.Core.EntityEffects;
 using _2DRoguelike.Content.Core.GameDebugger;
 using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.World;
@@ -57,17 +58,7 @@ namespace _2DRoguelike.Content.Core
             new Ladder(new Vector2(2 * 32, 6 * 32));
             */
 
-            UIManager.AddUIElementDynamic(new MobHealthBars());
-
-            UIManager.AddUIElementStatic(new Fog());
-            UIManager.AddUIElementStatic(new Skillbar(Player.Instance));
-            UIManager.AddUIElementStatic(new ExperienceBar(Player.Instance));
-            UIManager.AddUIElementStatic(new BossBar());
-            UIManager.AddUIElementStatic(new HealthBar(Player.Instance));
-            UIManager.AddUIElementStatic(new ToolTip(Player.Instance));
-            UIManager.AddUIElementStatic(new Highscore());
-            UIManager.AddUIElementStatic(new KeyStatus(Player.Instance));
-            UIManager.AddUIElementStatic(new ManaBar(Player.Instance));
+            UIManager.Load();
 
             gameOver = false;
         }
@@ -79,10 +70,11 @@ namespace _2DRoguelike.Content.Core
             Camera.Unload();
             LevelManager.UnloadContent();
             StatisticsManager.ClearScore();
-            UIManager.ClearElements();
+            UIManager.Unload();
             //MediaPlayer.Stop();
             CutsceneManager.ClearCutscene();
             GameDebug.UnloadHitboxBuffer();
+            EntityEffectsManager.Unload();
         }
 
         public void Update(GameTime gameTime)
@@ -101,6 +93,7 @@ namespace _2DRoguelike.Content.Core
             EntityManager.Update(gameTime);
             UIManager.Update(gameTime);
             LevelManager.Update(Player.Instance);
+            EntityEffectsManager.Update(gameTime);
 
             if (Player.Instance.GameOver())
             {
