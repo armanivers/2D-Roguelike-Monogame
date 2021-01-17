@@ -17,7 +17,8 @@ namespace _2DRoguelike.Content.Core.EntityEffects.PotionEffects
 
         public HealthRegeneration(Humanoid owner) : base(owner)
         {
-            effectDuration = 8;
+            effectIcon = TextureManager.loot.RegenerationEffectIcon;
+            effectDuration = 15;
         }
 
         public override void UseEffect()

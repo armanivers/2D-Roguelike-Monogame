@@ -82,6 +82,7 @@ namespace _2DRoguelike.Content.Core.UI
             AddUIElementStatic(new KeyStatus(Player.Instance));
             AddUIElementStatic(new ManaBar(Player.Instance));
             AddUIElementStatic(new UsableItemsBar(Player.Instance));
+            AddUIElementStatic(new PlayerEffects(Player.Instance));
             bossbar = new BossBar();
         }
 

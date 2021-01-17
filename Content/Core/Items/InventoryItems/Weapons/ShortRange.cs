@@ -7,8 +7,9 @@ using _2DRoguelike.Content.Core.World;
 using _2DRoguelike.Content.Core.GameDebugger;
 using Microsoft.Xna.Framework;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities;
 
-namespace _2DRoguelike.Content.Core.Entities.Weapons
+namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
 {
     public abstract class ShortRange : Weapon
     {

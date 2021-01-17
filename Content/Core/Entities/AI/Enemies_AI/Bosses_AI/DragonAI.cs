@@ -6,6 +6,7 @@ using _2DRoguelike.Content.Core.Entities.Actions;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.Entities.Weapons;
+using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 

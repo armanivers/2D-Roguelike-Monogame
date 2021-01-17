@@ -13,6 +13,7 @@ namespace _2DRoguelike.Content.Core.EntityEffects.PotionEffects
 
         public StrengthBoost(Humanoid owner) : base(owner)
         {
+            effectIcon = TextureManager.loot.StrengthEffectIcon;
             effectDuration = 20;
         }
 

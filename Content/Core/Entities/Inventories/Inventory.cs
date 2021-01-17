@@ -1,5 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.Entities.Weapons;
+using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

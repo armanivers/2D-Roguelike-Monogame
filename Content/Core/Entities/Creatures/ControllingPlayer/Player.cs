@@ -77,26 +77,21 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
         public Player(Vector2 position, int maxHealthPoints, float movingSpeed, float attackCooldown = 0.2f) : base(position, maxHealthPoints, attackCooldown, movingSpeed)
         {
-
-            //this.position = new Vector2(2*32, 5*32); bei statischer Map
+            instance = this;
 
             inventory = new PlayerInventory(this);
             inventory.AddToWeaponInventory(new Fist(this));
             inventory.ChangeCurrentWeaponSlot(0);
 
             Inventory.AddUsableItemToInventory(new RegenerationPotionUsable(this));
-            Debug.Print("i1");
             Inventory.AddUsableItemToInventory(new RegenerationPotionUsable(this));
-            Debug.Print("i2");
             Inventory.AddUsableItemToInventory(new StrengthPotionUsable(this));
-            Debug.Print("i3");
             Inventory.AddUsableItemToInventory(new StrengthPotionUsable(this));
-            Debug.Print("i4");
+
             canInteract = false;
             interactableObjects = new List<InteractableBase>();
 
             currentXP = currentXPLevel = 0;
-
             // Number of xp caps needs to be same or bigger than MAX_LEVEL
             xpCap = new List<int>()
             {
@@ -106,21 +101,6 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 30, // Level 4
                 40  // Level 5 MAX
             };
-
-
-
-            instance = this;
-
-            // add weapons manually
-
-            inventory.AddToWeaponInventory(new Dagger(this));
-            inventory.AddToWeaponInventory(new Axe(this));
-            inventory.AddToWeaponInventory(new Bow(this));
-            inventory.AddToWeaponInventory(new BombWeapon(this));
-            inventory.AddToWeaponInventory(new Spear(this));
-            
-            //AddToWeaponInventory(new FireballWeapon(this));
-
 
             texture = TextureManager.Player_Idle;
 

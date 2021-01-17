@@ -5,6 +5,7 @@ using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Projectiles;
 using _2DRoguelike.Content.Core.Entities.Weapons;
 using _2DRoguelike.Content.Core.GameDebugger;
+using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
 using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI

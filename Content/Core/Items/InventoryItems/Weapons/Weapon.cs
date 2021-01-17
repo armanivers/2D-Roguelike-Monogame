@@ -1,8 +1,9 @@
-﻿using System;
+﻿using _2DRoguelike.Content.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace _2DRoguelike.Content.Core.Entities.Weapons
+namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
 {
     public abstract class Weapon : InventoryItem
     {

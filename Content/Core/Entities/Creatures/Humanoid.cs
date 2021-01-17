@@ -12,6 +12,7 @@ using _2DRoguelike.Content.Core.Entities.Weapons;
 using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 using Action = _2DRoguelike.Content.Core.Entities.Actions.Action;
+using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
 
 namespace _2DRoguelike.Content.Core.Entities
 {

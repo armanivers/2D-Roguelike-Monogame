@@ -3,6 +3,7 @@ using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.Entities.Inventories;
+using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
 using _2DRoguelike.Content.Core.Items.ObtainableItems;
 using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.World;
@@ -92,6 +93,16 @@ namespace _2DRoguelike.Content.Core
             if (IsKeyDown(Keys.C))
             {
                 CutsceneManager.PlayCutscene(new FadeOutCircle());
+            }
+
+            // Unlock All Weapns
+            if (IsKeyDown(Keys.U))
+            {
+                Player.Instance.Inventory.AddToWeaponInventory(new Dagger(Player.Instance));
+                Player.Instance.Inventory.AddToWeaponInventory(new Axe(Player.Instance));
+                Player.Instance.Inventory.AddToWeaponInventory(new Bow(Player.Instance));
+                Player.Instance.Inventory.AddToWeaponInventory(new BombWeapon(Player.Instance));
+                Player.Instance.Inventory.AddToWeaponInventory(new Spear(Player.Instance));
             }
 
         }
