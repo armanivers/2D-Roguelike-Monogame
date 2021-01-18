@@ -16,6 +16,10 @@ namespace _2DRoguelike.Content.Core.Entities.Special_Interactables.Negative
         public Spikes(Vector2 pos) : base(pos, 1f)
         {
             texture = TextureManager.Spikes01;
+            hitbox.X += 2;
+            hitbox.Y += 9;
+            hitbox.Width = (int)(27 * ScaleFactor);
+            hitbox.Height = (int)(17 * ScaleFactor);
         }
 
         public override void ActivateEffect()
@@ -26,6 +30,11 @@ namespace _2DRoguelike.Content.Core.Entities.Special_Interactables.Negative
                 timer = 0;
             }
 
+        }
+
+        public override bool isDestructable()
+        {
+            return true;
         }
 
         public override void Update(GameTime gameTime)

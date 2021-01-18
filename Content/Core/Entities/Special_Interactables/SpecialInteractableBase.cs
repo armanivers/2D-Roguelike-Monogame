@@ -27,5 +27,10 @@ namespace _2DRoguelike.Content.Core.Entities.Special_Interactables
                 ActivateEffect();
             }
         }
+
+        public virtual bool isDestructable()
+        {
+            return false;
+        }
     }
 }

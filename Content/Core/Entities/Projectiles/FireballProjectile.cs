@@ -118,13 +118,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
                             // Incinerate(shootingEntity);
                         }
                     }
-                    foreach (var projectile in EntityManager.projectiles)
-                    {
-                        if (projectile is Arrow && Hitbox.Intersects(projectile.Hitbox)) { 
-                            Incinerate();
-                            break;
-                        }
-                    }
+                    
                 }
 
 
@@ -137,7 +131,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
         }
 
 
-        private void Incinerate()
+        public void Incinerate()
         {
             Incinerate(null);
         }

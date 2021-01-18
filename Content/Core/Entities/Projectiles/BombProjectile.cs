@@ -65,6 +65,11 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
             return false;
         }
 
+        public void Explode() {
+            new Explosion(Position, 25, explosionSize);
+            this.isExpired = true;
+        }
+
         public override void Update(GameTime gameTime)
         {
             if (SpeedModifier != 0 && checkCollision())
@@ -79,8 +84,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
 
             if (timer > EXPIRATION_TIMER)
             {
-                new Explosion(Position, 25 ,explosionSize);
-                this.isExpired = true;
+                Explode();
             }
             else
             {
