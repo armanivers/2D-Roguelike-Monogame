@@ -17,7 +17,7 @@ namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
             INVENTORY_SLOT = 4;
         }
 
-        public override void UseWeapon()
+        public override void CommenceWeaponLogic()
         {
             new BombProjectile(owner, 2.5f);
         }

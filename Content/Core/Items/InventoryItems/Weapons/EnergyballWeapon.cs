@@ -16,8 +16,8 @@ namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
         INVENTORY_SLOT = 5;
     }
 
-    public override void UseWeapon()
-    {
+        public override void CommenceWeaponLogic()
+        {
         new EnergyballProjectile(owner);
     }
 

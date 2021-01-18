@@ -10,12 +10,12 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         public RangeAttack(Humanoid callInst) : base(callInst, new RangeAttackAnimationIdentifier("ShootRight", "ShootLeft", "ShootDown", "ShootUp"))
         {
         }
+
         public override void CommenceAttack()
         {
             CallingInstance.AttackTimeSpanTimer = 0;
             SoundManager.ShootArrow.Play(Game1.gameSettings.soundeffectsLevel, (float) Game1.rand.NextDouble(), 0);
             CallingInstance.inventory.CurrentWeapon.UseWeapon();
-
 
             /*Arris Notizen:
               // create an explosion

@@ -113,8 +113,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
         {
             if (React())
             {
-
-                usedWeapon.CooldownTimer = 0;
+                
                 agent.inventory.CurrentWeapon = usedWeapon;
                 return true;
             }

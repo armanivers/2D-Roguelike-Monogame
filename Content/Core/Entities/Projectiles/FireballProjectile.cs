@@ -44,7 +44,6 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
         }
 
       
-
         
         public override void Update(GameTime gameTime)
         {

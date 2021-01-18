@@ -208,22 +208,20 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             if (InputController.IsRightMouseButtonPressed() && Teleport.CanSwitchToState(this))
                 return new Teleport(this, currentGameTime);
 
-            //if (InputController.IsRightMouseButtonHeld() && Protect.CanSwitchToState(this) /*&& (Mana >= 100)*/) // statt 100 ggf. Ability.RequiredMana nutzen
+            //if (InputController.IsRightMouseButtonHeld() && Protect.CanSwitchToState(this)) 
             //    return new Protect(this, currentGameTime);
 
+            // if (InputController.IsRightMouseButtonPressed() && ProjectileBarrage.CanSwitchToState(this))
+            //     return new ProjectileBarrage(this, currentGameTime);
 
             if (InputController.IsLeftMouseButtonPressed() && !IsAttacking() && CanAttack())
             {
                 if (inventory.CurrentWeapon is LongRange)
                 {
-                    inventory.CurrentWeapon.CooldownTimer = 0;
                     return new RangeAttack(this);
-
                 }
                 if (inventory.CurrentWeapon is ShortRange)
                 {
-                    inventory.CurrentWeapon.CooldownTimer = 0;
-
                     return new Melee(this);
 
                 }
@@ -374,22 +372,13 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             else if (InputController.IsKeyPressed(Keys.PageDown) || InputController.IsMouseScrolledUp())
                 Inventory.SetNextWeapon(true);
 
-            // switch weapons (keyboard)
-            else if (InputController.IsKeyPressed(Keys.NumPad0))
-                inventory.ChangeCurrentWeaponSlot(0);
-            else if (InputController.IsKeyPressed(Keys.NumPad1))
-                inventory.ChangeCurrentWeaponSlot(1);
-            else if (InputController.IsKeyPressed(Keys.NumPad2))
-                inventory.ChangeCurrentWeaponSlot(2);
-            else if (InputController.IsKeyPressed(Keys.NumPad3))
-                inventory.ChangeCurrentWeaponSlot(3);
 
             // Usable Items Slot
-            else if (InputController.IsKeyPressed(Keys.D1))
+            else if (InputController.IsKeyPressed(Keys.NumPad1))
                 Inventory.UseItem(0);
-            else if (InputController.IsKeyPressed(Keys.D2))
+            else if (InputController.IsKeyPressed(Keys.NumPad2))
                 Inventory.UseItem(1);
-            else if (InputController.IsKeyPressed(Keys.D3))
+            else if (InputController.IsKeyPressed(Keys.NumPad3))
                 Inventory.UseItem(2);
         }
     }
