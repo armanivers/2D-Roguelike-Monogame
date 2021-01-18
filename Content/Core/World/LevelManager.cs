@@ -31,11 +31,9 @@ namespace _2DRoguelike.Content.Core.World
 
         public static List<string> levelNames = new List<string>()
         { "The Forbidden Dugeon",
-            "", "",
             "Dragon's cave",
-            "", "",
             "Last Hope",
-            "","", ""
+            "EndScreen"
         };
 
 
@@ -53,7 +51,7 @@ namespace _2DRoguelike.Content.Core.World
         }
 
         public static void PrintStageName() {
-            MessageFactory.DisplayMessage("Level " + (level / 3 + 1) + " - " + levelNames[level], Color.White, AnimationType.LeftToRightCos);
+            MessageFactory.DisplayMessage("Level " + (level / 3 + 1) + " - " + levelNames[level/3], Color.White, AnimationType.LeftToRightCos);
         }
 
         public static void NextLevel()

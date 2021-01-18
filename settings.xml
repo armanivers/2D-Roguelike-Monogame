@@ -8,7 +8,7 @@
   <prevBackgroundMusicLevel>0.5</prevBackgroundMusicLevel>
   <soundeffectsLevel>0.10000002</soundeffectsLevel>
   <prevSoundeffectsLevel>0.70000005</prevSoundeffectsLevel>
-  <DEBUG>false</DEBUG>
+  <DEBUG>true</DEBUG>
   <godMode>false</godMode>
   <showHitbox>false</showHitbox>
   <showMouse>false</showMouse>
