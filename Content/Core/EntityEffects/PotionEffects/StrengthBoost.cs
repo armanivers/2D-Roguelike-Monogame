@@ -9,7 +9,7 @@ namespace _2DRoguelike.Content.Core.EntityEffects.PotionEffects
 {
     public class StrengthBoost : EntityEffectBase
     {
-        private float strengthAmount = 1.6f;
+        private float strengthAmount = 0.6f;
 
         public StrengthBoost(Humanoid owner) : base(owner)
         {
@@ -19,7 +19,7 @@ namespace _2DRoguelike.Content.Core.EntityEffects.PotionEffects
 
         public override void UseEffect()
         {
-            owner.temporaryDamageMultiplier = strengthAmount;
+            owner.temporaryDamageMultiplier = owner.DamageMultiplier+strengthAmount ;
         }
 
         public override void Update(GameTime gameTime)

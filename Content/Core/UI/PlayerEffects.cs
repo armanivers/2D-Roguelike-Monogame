@@ -14,12 +14,17 @@ namespace _2DRoguelike.Content.Core.UI
     {
         private Vector2 UsableItemsBarPosition;
 
-        public PlayerEffects(Player player)
+        // space from bottom left corner
+        private int xSafezone = 30;
+        private int ySafezone = 150;
+
+        private int effectIconSpace = 15;
+
+        private float iconScaleFactor = 1.5f;
+
+        public PlayerEffects()
         {
-            //skillbarPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - (skillbarTexture.Width * scalingFactor - skillbarWhitespaceWidth) / 2, Game1.gameSettings.screenHeight - (skillbarTexture.Height * scalingFactor - skillbarWhitespaceHeight) - skillbarYOffset);
-
-            UsableItemsBarPosition = new Vector2(220, Game1.gameSettings.screenHeight / 2);
-
+            UsableItemsBarPosition = new Vector2(xSafezone, Game1.gameSettings.screenHeight - ySafezone);
         }
 
         public override void Update(GameTime gameTime) { }
@@ -30,10 +35,10 @@ namespace _2DRoguelike.Content.Core.UI
             foreach (var effect in EntityEffectsManager.activePlayerEffects)
             {
 
-                    spriteBatch.DrawString(TextureManager.FontArial, "" + (int)(effect.effectDuration-effect.effectTimer),
-                        new Vector2(UsableItemsBarPosition.X + i * effect.effectIcon.Width*1.5f + 15, UsableItemsBarPosition.Y + effect.effectIcon.Height * 1.5f), Color.White);
+                    spriteBatch.DrawString(TextureManager.GameFont, "" + (int)(effect.effectDuration-effect.effectTimer),
+                        new Vector2(UsableItemsBarPosition.X + i * effect.effectIcon.Width* iconScaleFactor + effectIconSpace, UsableItemsBarPosition.Y + effect.effectIcon.Height * iconScaleFactor), Color.White);
 
-                    spriteBatch.Draw(effect.effectIcon, new Vector2(UsableItemsBarPosition.X + i * effect.effectIcon.Width * 1.5f + 15, UsableItemsBarPosition.Y),
+                    spriteBatch.Draw(effect.effectIcon, new Vector2(UsableItemsBarPosition.X + i * effect.effectIcon.Width * iconScaleFactor + effectIconSpace, UsableItemsBarPosition.Y),
                         null, Color.White, 0, Vector2.Zero, 1.5f, SpriteEffects.None, 0);
                 i++;
             }
@@ -41,7 +46,7 @@ namespace _2DRoguelike.Content.Core.UI
 
         public override void ForceResolutionUpdate()
         {
-            //skillbarPosition = new Vector2(Game1.gameSettings.screenWidth / 2 - (skillbarTexture.Width * scalingFactor - skillbarWhitespaceWidth) / 2, Game1.gameSettings.screenHeight - (skillbarTexture.Height * scalingFactor - skillbarWhitespaceHeight) - skillbarYOffset);
+            UsableItemsBarPosition = new Vector2(xSafezone, Game1.gameSettings.screenHeight - ySafezone);
         }
 
     }

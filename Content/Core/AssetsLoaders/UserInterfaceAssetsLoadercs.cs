@@ -27,6 +27,8 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
         public Texture2D selectedItemFame { get; private set; }
         public Texture2D redSlotCross { get; private set; }
         public Texture2D LockedWeapon { get; private set; }
+        // Usable Items Bar
+        public Texture2D UsableItemsBar { get; private set; }
         // mobhealth
         public Texture2D EnemyBarContainer { get; private set; }
         public Texture2D EnemyBar { get; private set; }
@@ -64,6 +66,8 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
             selectedItemFame = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Skillbar/selectedItemFrame");
             redSlotCross = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Skillbar/RedSlotCross");
             LockedWeapon = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Skillbar/lockedWeapon");
+            // usable items bar
+            UsableItemsBar = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/UserItemsBar/UsableItemsBar");
             // mob health
             EnemyBarContainer = content.Load<Texture2D>("Assets/Graphics/UI/EnemeyUI/enemyBarContainer");
             EnemyBar = content.Load<Texture2D>("Assets/Graphics/UI/EnemeyUI/enemyBar");
