@@ -9,8 +9,8 @@
   <soundeffectsLevel>0.10000002</soundeffectsLevel>
   <prevSoundeffectsLevel>0.70000005</prevSoundeffectsLevel>
   <DEBUG>true</DEBUG>
-  <godMode>false</godMode>
-  <showHitbox>false</showHitbox>
+  <godMode>true</godMode>
+  <showHitbox>true</showHitbox>
   <showMouse>false</showMouse>
   <playerDebug>true</playerDebug>
   <attackHitbox>true</attackHitbox>

@@ -31,7 +31,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
 
 
 
-        public Projectile(Vector2 pos, int xHitboxOffset, int yHitboxOffset, float speed) : base(pos)
+        public Projectile(Vector2 pos, int xHitboxOffset, int yHitboxOffset, float speed, float scaleFactor = 1f) : base(pos, scaleFactor)
         {
             EntityManager.AddProjectileEntity(this);
             this.xHitboxOffset = xHitboxOffset;
