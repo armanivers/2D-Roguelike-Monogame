@@ -1369,6 +1369,18 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/UI/PlayerUI/Skillbar/slotUsed.png
 
+#begin Assets/Graphics/UI/PlayerUI/UserItemsBar/UsableItemsBar.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/UI/PlayerUI/UserItemsBar/UsableItemsBar.png
+
 #begin Assets/Graphics/WorldElements/Fog.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -25,9 +25,9 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             {0,
                 new List<KeyValuePair<int, EnemyType>>()
                 {
-                    new KeyValuePair<int,EnemyType>(25,EnemyType.ZombieBrown), // 50% chance for a brown zombie
-                    new KeyValuePair<int,EnemyType>(25,EnemyType.ZombieGreen), // 50% chance for a green zombie
-                    new KeyValuePair<int,EnemyType>(45,EnemyType.Skeleton), // 30% chance for a skeleton
+                    new KeyValuePair<int,EnemyType>(40,EnemyType.ZombieBrown), // 50% chance for a brown zombie
+                    new KeyValuePair<int,EnemyType>(30,EnemyType.ZombieGreen), // 50% chance for a green zombie
+                    new KeyValuePair<int,EnemyType>(25,EnemyType.Skeleton), // 30% chance for a skeleton
                     new KeyValuePair<int,EnemyType>(5,EnemyType.Wizard), // 10% chance for a wizard
                 }
             },
@@ -35,9 +35,9 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             {1,
                 new List<KeyValuePair<int, EnemyType>>()
                 {
-                    new KeyValuePair<int,EnemyType>(25,EnemyType.ZombieBrown), // 50% chance for a brown zombie
-                    new KeyValuePair<int,EnemyType>(25,EnemyType.ZombieGreen), // 50% chance for a green zombie
-                    new KeyValuePair<int,EnemyType>(45,EnemyType.Skeleton), // 30% chance for a skeleton
+                    new KeyValuePair<int,EnemyType>(40,EnemyType.ZombieBrown), // 50% chance for a brown zombie
+                    new KeyValuePair<int,EnemyType>(30,EnemyType.ZombieGreen), // 50% chance for a green zombie
+                    new KeyValuePair<int,EnemyType>(25,EnemyType.Skeleton), // 30% chance for a skeleton
                     new KeyValuePair<int,EnemyType>(5,EnemyType.Wizard), // 10% chance for a wizard
                 }
             },
