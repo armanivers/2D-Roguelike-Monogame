@@ -30,7 +30,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         public int Height;
         public int roomvolume { get; set; }
         public Rectangle roomhitbox { get; set; }
-        public Rectangle exithitbox { get; set; }
+        public static Rectangle exithitbox { get; set; }
         public int XPos;
         public void setXPos(int value)
         {

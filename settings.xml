@@ -9,10 +9,10 @@
   <soundeffectsLevel>0.10000002</soundeffectsLevel>
   <prevSoundeffectsLevel>0.70000005</prevSoundeffectsLevel>
   <DEBUG>true</DEBUG>
-  <godMode>true</godMode>
+  <godMode>false</godMode>
   <showHitbox>false</showHitbox>
   <showMouse>false</showMouse>
-  <playerDebug>false</playerDebug>
+  <playerDebug>true</playerDebug>
   <attackHitbox>true</attackHitbox>
-  <noclip>false</noclip>
+  <noclip>true</noclip>
 </GameSettings>

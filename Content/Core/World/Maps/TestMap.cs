@@ -75,7 +75,7 @@ namespace _2DRoguelike.Content.Core.World
 
         public override void Update(Player player)
         {
-            if (player.GetTileCollisionHitbox().Intersects(room.exithitbox))
+            if (player.GetTileCollisionHitbox().Intersects(Room.exithitbox))
             {
                 LevelManager.NextLevel();
             }

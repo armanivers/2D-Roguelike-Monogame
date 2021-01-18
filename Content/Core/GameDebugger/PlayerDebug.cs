@@ -1,5 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.World;
+using _2DRoguelike.Content.Core.World.Rooms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -18,7 +19,8 @@ namespace _2DRoguelike.Content.Core.GameDebugger
             indent = Vector2.Zero;
         }
 
-        private Vector2 MoveIndent() {
+        private Vector2 MoveIndent()
+        {
             Vector2 ret = indent;
             indent += new Vector2(0, 40);
             return ret;
@@ -56,15 +58,38 @@ namespace _2DRoguelike.Content.Core.GameDebugger
                     Player.Instance.inventory.CurrentWeapon?.ToString(), MoveIndent(), Color.White);
                 if (LevelManager.currentmap.currentroom != null)
                 {
-                    spriteBatch.DrawString(TextureManager.FontArial, "Room: " +LevelManager.currentmap.currentroom.Width +" , "+ LevelManager.currentmap.currentroom.Height, MoveIndent(), Color.White);
-                    if(LevelManager.currentmap.currentroom.exitroom)
-                        spriteBatch.DrawString(TextureManager.FontArial, "Exit: " + LevelManager.currentmap.currentroom.exithitbox.X/32+ " , " + LevelManager.currentmap.currentroom.exithitbox.Y/32, MoveIndent(), Color.White);
+                    spriteBatch.DrawString(TextureManager.FontArial, "Room: " + LevelManager.currentmap.currentroom.Width + " , " + LevelManager.currentmap.currentroom.Height, MoveIndent(), Color.White);
                 }
+                spriteBatch.DrawString(TextureManager.FontArial, "Exit: " + Room.exithitbox.X / 32 + " , " + Room.exithitbox.Y / 32, MoveIndent(), Color.White);
 
                 // spriteBatch.DrawString(TextureManager.FontArial, "Exit condition: " + LevelManager.levelList[LevelManager.level].exitCondition.PrintCondition() , MoveIndent(), Color.White);
-                spriteBatch.DrawString(TextureManager.FontArial, "Condition " + (LevelManager.levelList[LevelManager.level].exitCondition.CanExit() ? "is fulfilled!" : "is not fulfilled yet") , MoveIndent(), Color.White);
-                spriteBatch.DrawString(TextureManager.FontArial,"Mana: " + Player.Instance.Mana, MoveIndent(), Color.White);
+                spriteBatch.DrawString(TextureManager.FontArial, "Condition " + (LevelManager.levelList[LevelManager.level].exitCondition.CanExit() ? "is fulfilled!" : "is not fulfilled yet"), MoveIndent(), Color.White);
+                spriteBatch.DrawString(TextureManager.FontArial, "Mana: " + Player.Instance.Mana, MoveIndent(), Color.White);
+
+                DrawCompass(spriteBatch);
+
+                
+
             }
+        }
+
+        public void DrawCompass(SpriteBatch spriteBatch) {
+            const int DISTANCE_FROM_SCREEN = 30;
+
+            var differenz = new Vector2(Room.exithitbox.X + Room.exithitbox.Width / 2, Room.exithitbox.Y + Room.exithitbox.Height / 2) - new Vector2(Player.Instance.HitboxCenter.X, Player.Instance.HitboxCenter.Y);
+
+            spriteBatch.Draw(TextureManager.ui.Compass,
+                new Vector2(TextureManager.ui.Compass.Width / 2 + DISTANCE_FROM_SCREEN, (Game1.gameSettings.screenHeight - TextureManager.ui.Compass.Height / 2) - DISTANCE_FROM_SCREEN),
+                null,
+                Color.White,
+                (float)(Math.Atan2(differenz.Y, differenz.X)
+                + Math.PI / 2),
+                // Vector2.Zero,
+                new Vector2(TextureManager.ui.Compass.Width / 2, TextureManager.ui.Compass.Height / 2),
+                1f,
+                SpriteEffects.None,
+                0f
+            );
         }
 
         public void DrawLine(SpriteBatch spriteBatch, Vector2 from, Vector2 to, Color color, int width = 1)

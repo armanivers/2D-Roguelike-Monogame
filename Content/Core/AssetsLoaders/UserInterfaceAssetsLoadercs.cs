@@ -34,6 +34,9 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
         public Texture2D EnemyBar { get; private set; }
         public Texture2D mouseCursor { get; private set; }
 
+        // Compass
+        public Texture2D Compass { get; private set; }
+
         // Debug Data
         public Texture2D tileHitboxBorder { get; private set; }
 
@@ -72,7 +75,8 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
             EnemyBarContainer = content.Load<Texture2D>("Assets/Graphics/UI/EnemeyUI/enemyBarContainer");
             EnemyBar = content.Load<Texture2D>("Assets/Graphics/UI/EnemeyUI/enemyBar");
 
-
+            // Compass
+            Compass = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/Compass");
 
             // Debug Data
             tileHitboxBorder = content.Load<Texture2D>("Assets/System/Debug/Hitbox/tileHitBox");
