@@ -161,10 +161,11 @@ namespace _2DRoguelike.Content.Core.World.Rooms
                 case 0:
                     return EnemyFactory.CreateOrcBoss(new Vector2(XSPAWN, YSPAWN));
                 case 1:
-                    // return here boss for second boss map
                     return EnemyFactory.CreateDragonBoss(new Vector2(XSPAWN, YSPAWN));
+                case 2:
+                    return EnemyFactory.CreateDarkOverlordBoss(new Vector2(XSPAWN, YSPAWN));
                 default:
-                    return EnemyFactory.CreateDragonBoss(new Vector2(XSPAWN, YSPAWN));
+                    return EnemyFactory.CreateOrcBoss(new Vector2(XSPAWN, YSPAWN));
             }
 
         }

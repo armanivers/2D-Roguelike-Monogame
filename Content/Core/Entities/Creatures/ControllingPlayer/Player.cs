@@ -218,11 +218,9 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
                 if (inventory.CurrentWeapon is ShortRange)
                 {
                     return new Melee(this);
-
                 }
             }
             return new Move(this);
-
         }
 
         public override void Update(GameTime gameTime)
@@ -349,6 +347,12 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         {
             return !IsAttacking() && !inventory.CurrentWeapon.InUsage();
         }
+
+        public override bool IsUsingProtectAbility()
+        {
+            return InputController.IsRightMouseButtonHeld();
+        }
+
         public override bool IsInvincible()
         {
             return base.IsInvincible() || Game1.gameSettings.godMode;

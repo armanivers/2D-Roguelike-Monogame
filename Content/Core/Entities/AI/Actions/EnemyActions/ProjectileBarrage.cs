@@ -11,7 +11,7 @@ namespace _2DRoguelike.Content.Core.Entities.AI.Actions
 {
     class ProjectileBarrage : Attack
     {
-        const float DEFAULT_TIME_IN_STATE = 50;
+        public const float DEFAULT_TIME_IN_STATE = 50;
         float timeToStayInState;
         protected float expiredTimeInState;
 
@@ -66,7 +66,7 @@ namespace _2DRoguelike.Content.Core.Entities.AI.Actions
 
         public static bool CanSwitchToState(Humanoid creat)
         {
-            return creat.Mana == Creature.MAX_MANA && !creat.IsAttacking() && creat.inventory.CurrentWeapon is LongRange && !creat.inventory.CurrentWeapon.InUsage();
+            return creat.Mana == Creature.MAX_MANA && !creat.IsAttacking() && creat.inventory.CurrentWeapon is LongRange /*&& !creat.inventory.CurrentWeapon.InUsage()*/;
             //return timeOfLastUsage == 0f || currentGameTime - timeOfLastUsage >= PROTECT_COOLDOWN;
         }
     }

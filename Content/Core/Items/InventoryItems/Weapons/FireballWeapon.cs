@@ -13,7 +13,7 @@ namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
         const int DAMAGE = 10;
         private float explosionDamageMultiplier;
 
-        public FireballWeapon(Humanoid Owner, float impactDamageMultiplier = 1f, float cooldownMultiplier = 1f, float explosionDamageMultiplier = 1f) : base(Owner, (int)(DAMAGE * impactDamageMultiplier), FIREBALL_COOLDOWN * cooldownMultiplier)
+        public FireballWeapon(Humanoid Owner, float impactDamageMultiplier = 1f, float cooldownMultiplier = 1f, float explosionDamageMultiplier = 7.5f) : base(Owner, (int)(DAMAGE * impactDamageMultiplier), FIREBALL_COOLDOWN * cooldownMultiplier)
         {
             this.explosionDamageMultiplier = explosionDamageMultiplier;
             INVENTORY_SLOT = 5;

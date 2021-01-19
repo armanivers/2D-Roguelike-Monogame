@@ -79,7 +79,7 @@ namespace _2DRoguelike.Content.Core
             }
 
             // Instantly Kill Player
-            if (IsKeyDown(Keys.X))
+            if (IsKeyPressed(Keys.X))
             {
                 Player.Instance.Kill();
             }
@@ -91,13 +91,13 @@ namespace _2DRoguelike.Content.Core
             }
 
             // Cutscene Test
-            if (IsKeyDown(Keys.C))
+            if (IsKeyPressed(Keys.C))
             {
                 CutsceneManager.PlayCutscene(new FadeOutCircle());
             }
 
             // Unlock All Weapns
-            if (IsKeyDown(Keys.U))
+            if (IsKeyPressed(Keys.U))
             {
                 Player.Instance.Inventory.AddToWeaponInventory(new Dagger(Player.Instance));
                 Player.Instance.Inventory.AddToWeaponInventory(new Axe(Player.Instance));
@@ -108,15 +108,15 @@ namespace _2DRoguelike.Content.Core
                 Player.Instance.Inventory.AddToWeaponInventory(new Spear(Player.Instance));
             }
 
-            if(IsKeyDown(Keys.R))
+            if(IsKeyPressed(Keys.R))
             {
                 Player.Instance.Inventory.AddUsableItemToInventory(new RegenerationPotionUsable(Player.Instance));
             }
-            if(IsKeyDown(Keys.T))
+            if(IsKeyPressed(Keys.T))
             {
                 Player.Instance.Inventory.AddUsableItemToInventory(new StrengthPotionUsable(Player.Instance));
             }
-            if(IsKeyDown(Keys.Y))
+            if(IsKeyPressed(Keys.Y))
             {
                 Player.Instance.Inventory.AddUsableItemToInventory(new SpeedPotionUsable(Player.Instance));
             }

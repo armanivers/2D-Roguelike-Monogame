@@ -53,7 +53,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
                 {"SlashRight_Fist", new Animation(TextureManager.enemy.Dragon_Slash_Fist,3,6,tmpFrameSpeed, NO_LOOP, PRIORITIZED, REVERSE)},
 
                 // Magie-Animation
-                 {"SpellcastUp", new Animation(TextureManager.enemy.Dragon_Spellcast,0,7,(tmpFrameSpeed=FRAME_SPEED*0.3f),NO_LOOP, PRIORITIZED)},
+                 {"SpellcastUp", new Animation(TextureManager.enemy.Dragon_Spellcast,0,7,(tmpFrameSpeed=FRAME_SPEED*0.5f),NO_LOOP, PRIORITIZED)},
                 {"SpellcastLeft",new Animation(TextureManager.enemy.Dragon_Spellcast,1,7,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
                 {"SpellcastDown", new Animation(TextureManager.enemy.Dragon_Spellcast,2,7,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},
                 {"SpellcastRight", new Animation(TextureManager.enemy.Dragon_Spellcast,3,7,tmpFrameSpeed, NO_LOOP, PRIORITIZED)},

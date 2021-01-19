@@ -93,7 +93,12 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
                             Incinerate(shootingEntity);
                         }
                     }
-                    
+
+                    foreach(var projectile in EntityManager.projectiles)
+                    {
+                        if (projectile is BombProjectile && Hitbox.Intersects(projectile.Hitbox))
+                            ((BombProjectile)projectile).Explode();
+                    }
                 }
 
 

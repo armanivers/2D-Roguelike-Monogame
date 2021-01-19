@@ -62,6 +62,12 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
         public Texture2D Orc_Walk_Fist { get; private set; }
         public Texture2D Orc_Walk_Spear { get; private set; }
 
+        // DarkOverlord
+        public Texture2D DarkOverlord_Hurt { get; set; }
+        public Texture2D DarkOverlord_Idle { get; private set; }
+        public Texture2D DarkOverlord_Spellcast { get; private set; }
+        public Texture2D DarkOverlord_Walk_Fist { get; private set; }
+
         public void Load(ContentManager content)
         {
             // Enemy Data
@@ -114,6 +120,12 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
             Orc_Thrust_Spear = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Orc/orcSheet_thrust_spear");
             Orc_Walk_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Orc/orcSheet_walk_fist");
             Orc_Walk_Spear = content.Load<Texture2D>("Assets/Graphics/EnemyElements/Orc/orcSheet_walk_spear");
+
+            // DarkOverlord
+            DarkOverlord_Hurt = content.Load<Texture2D>("Assets/Graphics/EnemyElements/DarkOverlord/darkOverlordSheet_hurt");
+            DarkOverlord_Idle = content.Load<Texture2D>("Assets/Graphics/EnemyElements/DarkOverlord/darkOverlordSheet_idle");
+            DarkOverlord_Spellcast = content.Load<Texture2D>("Assets/Graphics/EnemyElements/DarkOverlord/darkOverlordSheet_spellcast");
+            DarkOverlord_Walk_Fist = content.Load<Texture2D>("Assets/Graphics/EnemyElements/DarkOverlord/darkOverlordSheet_walk_fist");
         }
     }
 }

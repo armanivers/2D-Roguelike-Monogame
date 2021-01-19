@@ -20,6 +20,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             // inventory.WeaponInventory[2] = new FireballWeapon(this,0.5f, 1.5f, 1.5f);
             inventory.WeaponInventory[2] = new EnergyballWeapon(this, 0.5f, 1.5f);
 
+
             inventory.CurrentWeapon = inventory.WeaponInventory[0];
 
             texture = TextureManager.enemy.Wizard_Idle;
@@ -89,11 +90,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             base.Update(gameTime);
         }
 
-        public override Vector2 GetDirection()
-        {
-            // TODO: KI nach Angaben fragen
-            return new Vector2(0, 0);
-        }
 
     }
 }

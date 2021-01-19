@@ -78,6 +78,12 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             // return false;
         }
 
+        public virtual bool IsUsingProtectAbility()
+        {
+            // default, muss von verwendenden enemies überschrieben werden
+            return false;
+        }
+
 
         #region Reaction
 

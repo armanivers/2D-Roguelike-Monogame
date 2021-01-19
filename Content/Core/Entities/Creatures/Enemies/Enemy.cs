@@ -75,6 +75,12 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             return ai.DeterminePath();
         }
 
+        public override bool IsUsingProtectAbility()
+        {
+
+            return ai.IsUsingProtectAbility();
+        }
+
         public override Vector2 GetAttackDirection()
         {
             return new Vector2(Player.Instance.HitboxCenter.X, Player.Instance.HitboxCenter.Y);

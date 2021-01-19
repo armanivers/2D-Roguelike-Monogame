@@ -37,25 +37,25 @@ namespace _2DRoguelike.Content.Core.Entities.AI.Enemies_AI.Bosses_AI
 
                     if (!agent.inventory.WeaponInventory[1].InUsage())
                     {
-                        if (ProjectileBarrage.CanSwitchToState(agent))
-                        {
-                            int rand = Game1.rand.Next(0, 2);
-                            if (TryToAttack(agent.inventory.WeaponInventory[1]))
-                            {
-
-                                if (rand == 1)
-                                {
-                                    return new ProjectileBarrage(agent, (float)Gameplay.GameTime.TotalGameTime.TotalSeconds, 4);
-                                }
-                                else
-                                {
-                                    agent.Mana = 0;
-                                }
-                            }
-                        }
-
                         if (SimulateArrowAttack())
                         {
+                            if (ProjectileBarrage.CanSwitchToState(agent))
+                            {
+                                if (TryToAttack(agent.inventory.WeaponInventory[1]))
+                                {
+                                    int rand = Game1.rand.Next(0, 2);
+
+                                    if (rand == 1)
+                                    {
+                                        return new ProjectileBarrage(agent, (float)Gameplay.GameTime.TotalGameTime.TotalSeconds, 4);
+                                    }
+                                    else
+                                    {
+                                        agent.Mana = 0;
+                                    }
+                                }
+                            }
+
                             if (TryToAttack(agent.inventory.WeaponInventory[1]))
                                 return new RangeAttack(agent);
                         }

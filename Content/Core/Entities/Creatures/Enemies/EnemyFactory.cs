@@ -127,6 +127,10 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             return new Orc(spawnpoint * new Vector2(32));
         }
 
+        public static DarkOverlord CreateDarkOverlordBoss(Vector2 spawnpoint) {
+            return new DarkOverlord(spawnpoint * new Vector2(32));
+        }
+
         public static EnemyType ChooseEnemy()
         {
             int randomPercentage = Game1.rand.Next(0, 101);

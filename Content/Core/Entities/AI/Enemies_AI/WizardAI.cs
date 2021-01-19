@@ -70,14 +70,10 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI
             else return new Wait(agent);
         }
 
-        private Action Teleport(Enemy agent)
-        {
-            throw new NotImplementedException();
-        }
 
         public override Vector2 DeterminePath()
         {
-            throw new NotImplementedException();
+            return new Vector2(0, 0);
         }
 
     }

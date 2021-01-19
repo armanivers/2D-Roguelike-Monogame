@@ -37,7 +37,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
 
         public override bool StateFinished(float currentGameTime)
         {
-            if (!InputController.IsRightMouseButtonHeld() || CallingInstance.Mana == Creature.MANA_REGENERATION_SPEED) /*(currentGameTime - timeOfLastUsage) > DEFAULT_TIME_IN_STATE)*/
+            if (!CallingInstance.IsUsingProtectAbility() || CallingInstance.Mana == Creature.MANA_REGENERATION_SPEED) /*(currentGameTime - timeOfLastUsage) > DEFAULT_TIME_IN_STATE)*/
             {
                 CallingInstance.transparency = 1f;
                 CallingInstance.currentColor = CallingInstance.initialColor;
