@@ -16,9 +16,9 @@ namespace _2DRoguelike.Content.Core.Entities.Loot.Potions
         private const float DIAMOND_CHEST_CHANCE = 30;
         Texture2D chestIdleAnimation;
         Texture2D chestOpenAnimation;
-        public Chest(Vector2 pos) : base(pos, TIME_TO_OPEN)
+        public Chest(Vector2 pos, DropType? dropType = null ) : base(pos, TIME_TO_OPEN)
         {
-            type = DetermineChestRarity();
+            type = dropType == null ? DetermineChestRarity() : (DropType)dropType;
             SetTexture();
 
             animations = new Dictionary<string, Animation>()

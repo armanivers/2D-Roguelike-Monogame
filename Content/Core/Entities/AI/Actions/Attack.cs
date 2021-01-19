@@ -9,7 +9,7 @@ namespace _2DRoguelike.Content.Core.Entities.Actions
         public Attack(Humanoid callInst,AttackAnimationIdentifier attackAnimationIdent) : base(callInst, attackAnimationIdent){             
         }
 
-        public override void ExecuteAction()
+        public override sealed void ExecuteAction()
         {
             CommenceAttack();
             SetLineOfSight();

@@ -97,7 +97,7 @@ namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
             return ret;
 
         }
-        public override void UseWeapon()
+        public override void CommenceWeaponLogic()
         {
             int attackHitboxWidth = owner.Hitbox.Width;
             int attackHitboxHeight = owner.Hitbox.Height;

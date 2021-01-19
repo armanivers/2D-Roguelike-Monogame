@@ -103,6 +103,8 @@ namespace _2DRoguelike.Content.Core
                 Player.Instance.Inventory.AddToWeaponInventory(new Axe(Player.Instance));
                 Player.Instance.Inventory.AddToWeaponInventory(new Bow(Player.Instance));
                 Player.Instance.Inventory.AddToWeaponInventory(new BombWeapon(Player.Instance));
+                //Player.Instance.Inventory.AddToWeaponInventory(new FireballWeapon(Player.Instance)); 
+                //Player.Instance.Inventory.AddToWeaponInventory(new EnergyballWeapon(Player.Instance));
                 Player.Instance.Inventory.AddToWeaponInventory(new Spear(Player.Instance));
             }
 

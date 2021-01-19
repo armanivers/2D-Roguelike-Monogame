@@ -19,7 +19,12 @@ namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
             WeaponCooldown = weaponCooldown;
         }
 
-        public abstract void UseWeapon();
+        public void UseWeapon() {
+            CooldownTimer = 0;
+            CommenceWeaponLogic();
+        }
+
+        public abstract void CommenceWeaponLogic();
 
         public abstract string GetAnimationType();
         public bool InUsage() { 

@@ -195,6 +195,17 @@ namespace _2DRoguelike.Content.Core.World.Rooms
             YExit = (YExit + YPos);
             exithitbox = new Rectangle(XExit * PIXELMULTIPLIER, YExit * PIXELMULTIPLIER, PIXELMULTIPLIER, PIXELMULTIPLIER);
             entitylist.Add(new Ladder(new Vector2(XExit * PIXELMULTIPLIER, YExit * PIXELMULTIPLIER)));
+
+            // es wird noch nicht zwischen normalen exitroom und bossexitroom unterschieden: in boss rooms spawnt auch eine truhe
+            Vector2 chestspawnpoint;
+            do
+            {
+                chestspawnpoint = new Vector2(Map.Random.Next(2, Width - 2), Map.Random.Next(2, Height - 2));
+            } while (room[(int)chestspawnpoint.X, (int)chestspawnpoint.Y] != RoomObject.EmptySpace && new Rectangle((int)chestspawnpoint.X, (int)chestspawnpoint.Y, 32, 32).Intersects(exithitbox));
+
+            chestspawnpoint.X += XPos;
+            chestspawnpoint.Y += YPos;
+            entitylist.Add(new Chest(chestspawnpoint * new Vector2(PIXELMULTIPLIER),Entities.Loot.RandomLoot.DropType.chestDiamond));
         }
 
         public void SetTrap()
