@@ -1117,6 +1117,18 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/Projectiles/Bomb.png
 
+#begin Assets/Graphics/Projectiles/darkEnergyBall.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/Projectiles/darkEnergyBall.png
+
 #begin Assets/Graphics/Projectiles/fireball.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1200,6 +1212,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/UI/EnemeyUI/enemyBarContainer.png
+
+#begin Assets/Graphics/UI/PlayerUI/Compass.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/UI/PlayerUI/Compass.png
 
 #begin Assets/Graphics/UI/PlayerUI/Experiencebar/XPBarBar.png
 /importer:TextureImporter
@@ -1297,6 +1321,18 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/UI/PlayerUI/PlayerEffects/EffectRegeneration.png
 
+#begin Assets/Graphics/UI/PlayerUI/PlayerEffects/EffectSpeed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/UI/PlayerUI/PlayerEffects/EffectSpeed.png
+
 #begin Assets/Graphics/UI/PlayerUI/PlayerEffects/EffectStrength.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1368,6 +1404,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/UI/PlayerUI/Skillbar/slotUsed.png
+
+#begin Assets/Graphics/UI/PlayerUI/UserItemsBar/UsableItemsBar.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/UI/PlayerUI/UserItemsBar/UsableItemsBar.png
 
 #begin Assets/Graphics/WorldElements/Fog.png
 /importer:TextureImporter

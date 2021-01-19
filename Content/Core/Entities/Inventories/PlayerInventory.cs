@@ -32,7 +32,6 @@ namespace _2DRoguelike.Content.Core.Entities.Inventories
         #region UsableItems
         public void AddUsableItemToInventory(UsableItem item)
         {
-   
             // inventory isnt empty, so first ry if we can stack the new item
             if (currentUsablesCount > 0 && StackItem(item)) return;
 
@@ -40,7 +39,20 @@ namespace _2DRoguelike.Content.Core.Entities.Inventories
             if (currentUsablesCount >= USABLE_ITEMS_SIZE) return;
 
             // otherwise add the item to a free spot in inventory
-            usableItems[currentUsablesCount++] = item;
+            usableItems[FindNextFreeSpot()] = item;
+        }
+
+        public int FindNextFreeSpot()
+        {
+            for(int i = 0; i < USABLE_ITEMS_SIZE; i++)
+            {
+                if (usableItems[i] == null)
+                {
+                    currentUsablesCount++;
+                    return i;
+                }
+            }
+            return -1;
         }
 
         public bool StackItem(UsableItem stackableItem)
@@ -67,7 +79,6 @@ namespace _2DRoguelike.Content.Core.Entities.Inventories
 
             // activate the item
             usableItems[inventorySlot].ActivateItem();
-            usableItems[inventorySlot].quantity--;
 
             // if quantity == 0, then remove it after use
             if (usableItems[inventorySlot].quantity < 1)

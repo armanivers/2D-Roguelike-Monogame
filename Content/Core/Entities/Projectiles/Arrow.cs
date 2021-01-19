@@ -1,4 +1,5 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
+using _2DRoguelike.Content.Core.Entities.Projectiles;
 using _2DRoguelike.Content.Core.Entities.Weapons;
 using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
 using _2DRoguelike.Content.Core.World;
@@ -81,6 +82,17 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Projectiles
                 {
                     Player.Instance.DeductHealthPoints((int)(DAMAGE * shootingEntity.temporaryDamageMultiplier));
                     isExpired = true;
+                }
+            }
+            foreach (var projectile in EntityManager.projectiles)
+            {
+                if (projectile is FireballProjectile && Hitbox.Intersects(projectile.Hitbox))
+                {
+                    ((FireballProjectile)projectile).Incinerate();
+                    break;
+                }
+                else if (projectile is BombProjectile && Hitbox.Intersects(projectile.Hitbox)) {
+                    ((BombProjectile)projectile).Explode();
                 }
             }
         }

@@ -16,7 +16,7 @@ namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
             INVENTORY_SLOT = 2;
         }
 
-        public override void UseWeapon()
+        public override void CommenceWeaponLogic()
         {
            new Arrow(owner);
         }

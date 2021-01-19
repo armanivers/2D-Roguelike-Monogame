@@ -8,6 +8,7 @@ using _2DRoguelike.Content.Core.GameDebugger;
 using Microsoft.Xna.Framework;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities;
+using _2DRoguelike.Content.Core.Entities.Special_Interactables;
 
 namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
 {
@@ -96,7 +97,7 @@ namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
             return ret;
 
         }
-        public override void UseWeapon()
+        public override void CommenceWeaponLogic()
         {
             int attackHitboxWidth = owner.Hitbox.Width;
             int attackHitboxHeight = owner.Hitbox.Height;
@@ -201,6 +202,12 @@ namespace _2DRoguelike.Content.Core.Items.InventoryItems.Weapons
                     {
                         if (attackHitbox.Intersects(projectile.Hitbox))
                             projectile.isExpired = true;
+                    }
+
+                    foreach (var specialInteractable in EntityManager.specialInteractables)
+                    {
+                        if (((SpecialInteractableBase)specialInteractable).isDestructable() && attackHitbox.Intersects(specialInteractable.Hitbox)) // besser: implementieren von  if(specialInteractable.isDestroyable())
+                            specialInteractable.isExpired = true;
                     }
                 }
 

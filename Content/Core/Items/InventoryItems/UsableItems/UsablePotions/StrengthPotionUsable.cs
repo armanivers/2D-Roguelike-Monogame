@@ -15,6 +15,7 @@ namespace _2DRoguelike.Content.Core.Items.InventoryItems.UsableItems.UsablePotio
         }
         public override void ActivateItem()
         {
+            base.ActivateItem();
             EntityEffectsManager.ActivateEffect(type, owner);
         }
     }

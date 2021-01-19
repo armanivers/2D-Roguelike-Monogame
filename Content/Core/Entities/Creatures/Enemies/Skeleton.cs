@@ -12,7 +12,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 {
     public class Skeleton : Enemy
     {
-        public Skeleton(Vector2 position, int maxHealthPoints = 50, float movingSpeed = 3, float attackTimespan = 0.4f) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
+        public Skeleton(Vector2 position, int maxHealthPoints = 40, float movingSpeed = 3, float attackTimespan = 0.4f) : base(position, maxHealthPoints, attackTimespan, movingSpeed)
         {
             ai = new SkeletonAI(this);
 

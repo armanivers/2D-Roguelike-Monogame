@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using _2DRoguelike.Content.Core.Entities.Special_Interactables;
 
 namespace _2DRoguelike.Content.Core.Entities
 {
@@ -20,6 +21,7 @@ namespace _2DRoguelike.Content.Core.Entities
 
         public Explosion(Vector2 pos, float explosionDamageModifier = 1f, float size = 1f, Humanoid protectedEntity = null) : this(pos, Vector2.Zero, 0f, explosionDamageModifier, size, protectedEntity)
         {
+            Position = Position; // für korrekte Hitbox-Setzung
         }
 
         public Explosion(Vector2 pos, Vector2 direction, float windSpeed, float explosionDamageModifier = 1f, float size = 1f, Humanoid protectedEntity = null) : base(pos, -TextureManager.projectiles.Explosion.Height / 4, -TextureManager.projectiles.Explosion.Height / 4, windSpeed)
@@ -48,8 +50,8 @@ namespace _2DRoguelike.Content.Core.Entities
             Camera.ShakeScreen();
         }
 
+
         private float damageCheckDivisor = 4f;
-        
         public void checkCollision()
         {
             // TODO: Explosionen können Sachen zerstören, wie Spikes und Projectiles
@@ -62,6 +64,7 @@ namespace _2DRoguelike.Content.Core.Entities
                 }
 
             if (timer >= expireTimer / damageCheckDivisor)
+            {
                 foreach (var livingEntity in EntityManager.creatures)
                 {
                     if (livingEntity is Humanoid) //&& livingEntity != Player.Player.Instance
@@ -71,14 +74,31 @@ namespace _2DRoguelike.Content.Core.Entities
                             // TODO: je näher man am Explosionsherd steht,desto höher der Schaden
                             var damage = EXPLOSION_DAMAGE * damageModifier;
                             if (protectedEntity != null) damage *= protectedEntity.temporaryDamageMultiplier;
-                            ((Humanoid)livingEntity).DeductHealthPoints((int)(damage)) ;
+                            ((Humanoid)livingEntity).DeductHealthPoints((int)(damage));
                         }
                     }
                 }
+
+                foreach (var projectile in EntityManager.projectiles)
+                {
+                    if ((Projectile)projectile != this && Hitbox.Intersects(projectile.Hitbox))
+                    {
+                        projectile.isExpired = true;
+                    }
+                }
+
+                foreach (var specialInteractable in EntityManager.specialInteractables)
+                {
+                    if (((SpecialInteractableBase)specialInteractable).isDestructable() && Hitbox.Intersects(specialInteractable.Hitbox)) // besser: implementieren von  if(specialInteractable.isDestroyable())
+                        specialInteractable.isExpired = true;
+                }
+            }
         }
 
         public override void Update(GameTime gameTime)
         {
+
+
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             checkCollision();

@@ -39,22 +39,33 @@ namespace _2DRoguelike.Content.Core
         public GameSettings()
         {
             // Defaults
-            playerName = "User01";
+            playerName = GenerateRandomPUID();
 
             backgroundMusicLevel = 0.2f;
             soundeffectsLevel = 0.2f;
 
-            DEBUG = true;
+            DEBUG = false;
 
-            godMode = true;
-            showHitbox = true;
-            showMouse = true;
-            playerDebug = true;
-            attackHitbox = true;
+            godMode = false;
+            showHitbox = false;
+            showMouse = false;
+            playerDebug = false;
+            attackHitbox = false;
             noclip = false;
 
             SetWindowedMode();
          }
+
+        public string GenerateRandomPUID()
+        {
+            string playerID = "User";
+            for(int i = 0; i < 4; i++)
+            {
+                var randomNumber = Game1.rand.Next(0,10);
+                playerID += randomNumber.ToString();
+            }
+            return playerID;
+        }
 
         public void SwitchGodMode()
         {

@@ -12,20 +12,20 @@ namespace _2DRoguelike.Content.Core.Entities.AI.Actions
 {
     public class Teleport : Ability
     {
-        const float REQUIRED_MANA = Creature.MAX_MANA * 0.66f; // 2 Sekunden
+
         Vector2? newPosition;
 
         const float DEFAULT_TIME_IN_STATE = 30f;
         public float expiredTimeInState;
 
-        private float startingGameTimee = 0f;
+        private float startingGameTime = 0f;
 
 
         public Teleport(Humanoid callInst, float startingTime) : base(callInst, new TeleportAnimationIdentifier("SpellcastRight", "SpellcastLeft", "SpellcastDown", "SpellcastUp"))
         {
             callInst.currentColor = Color.LightGreen;
             CallingInstance.Invincible = true;
-            startingGameTimee = startingTime;
+            startingGameTime = startingTime;
             newPosition = null;
         }
 
@@ -59,7 +59,7 @@ namespace _2DRoguelike.Content.Core.Entities.AI.Actions
 
         public override bool StateFinished(float currentGameTime)
         {
-            expiredTimeInState += (currentGameTime - startingGameTimee);
+            expiredTimeInState += (currentGameTime - startingGameTime);
 
             if (expiredTimeInState >= DEFAULT_TIME_IN_STATE) /*(currentGameTime - timeOfLastUsage) > DEFAULT_TIME_IN_STATE)*/
             {

@@ -97,7 +97,8 @@ namespace _2DRoguelike.Content.Core.Screens
             {
                 if (Accepted != null)
                     Accepted(this, new PlayerIndexEventArgs(playerIndex));
-                Game1.gameSettings.SetName(name);
+                // empty strig isn't allowed as a name
+                if(!name.Equals("")) Game1.gameSettings.SetName(name);
                 ExitScreen();
             }
             // player cancelled name input window

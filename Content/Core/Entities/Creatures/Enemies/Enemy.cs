@@ -27,7 +27,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         // Für ATTACK-Range Debug
         public Rectangle AttackRangeHitbox;
         // 30% to drop an loot bag
-        private const int dropChance = 30;
+        private const int dropChance = 40;
         public Enemy(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed, float scaleFactor = 1f) : base(position, maxHealthPoints, attackTimespan, movingSpeed, scaleFactor)
         {
             inventory = new EnemyInventory(this);

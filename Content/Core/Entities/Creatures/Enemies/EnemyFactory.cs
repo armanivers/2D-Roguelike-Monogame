@@ -25,35 +25,81 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             {0,
                 new List<KeyValuePair<int, EnemyType>>()
                 {
-                    new KeyValuePair<int,EnemyType>(25,EnemyType.ZombieBrown), // 50% chance for a brown zombie
-                    new KeyValuePair<int,EnemyType>(25,EnemyType.ZombieGreen), // 50% chance for a green zombie
-                    new KeyValuePair<int,EnemyType>(45,EnemyType.Skeleton), // 30% chance for a skeleton
+                    new KeyValuePair<int,EnemyType>(40,EnemyType.ZombieBrown), // 50% chance for a brown zombie
+                    new KeyValuePair<int,EnemyType>(40,EnemyType.ZombieGreen), // 50% chance for a green zombie
+                    new KeyValuePair<int,EnemyType>(15,EnemyType.Skeleton), // 30% chance for a skeleton
+                    new KeyValuePair<int,EnemyType>(5,EnemyType.Wizard), // 10% chance for a wizard
+                }
+            },
+
+            {1,
+                new List<KeyValuePair<int, EnemyType>>()
+                {
+                    new KeyValuePair<int,EnemyType>(40,EnemyType.ZombieBrown), // 50% chance for a brown zombie
+                    new KeyValuePair<int,EnemyType>(30,EnemyType.ZombieGreen), // 50% chance for a green zombie
+                    new KeyValuePair<int,EnemyType>(25,EnemyType.Skeleton), // 30% chance for a skeleton
                     new KeyValuePair<int,EnemyType>(5,EnemyType.Wizard), // 10% chance for a wizard
                 }
             },
             //boss level, no enemies
-            {1,
+            {2,
                 new List<KeyValuePair<int, EnemyType>>()
                 {
                     new KeyValuePair<int,EnemyType>(100,EnemyType.ZombieBrown), // 50% chance for a brown zombie
                 }
             },
-            {2,
+            {3,
                 new List<KeyValuePair<int, EnemyType>>()
                 {
-                    new KeyValuePair<int,EnemyType>(10,EnemyType.ZombieBrown), // 50% chance for a brown zombie
-                    new KeyValuePair<int,EnemyType>(20,EnemyType.ZombieGreen), // 50% chance for a green zombie
-                    new KeyValuePair<int,EnemyType>(60,EnemyType.Skeleton), // 30% chance for a skeleton
+                    new KeyValuePair<int,EnemyType>(40,EnemyType.Skeleton), // 30% chance for a skeleton
+                    new KeyValuePair<int,EnemyType>(20,EnemyType.ZombieBrown), // 50% chance for a brown zombie
+                    new KeyValuePair<int,EnemyType>(30,EnemyType.ZombieGreen), // 50% chance for a green zombie
                     new KeyValuePair<int,EnemyType>(10,EnemyType.Wizard), // 10% chance for a wizard
                 }
             },
-            //boss level, no enemies
-            {3,
+             {4,
+                new List<KeyValuePair<int, EnemyType>>()
+                {
+                    new KeyValuePair<int,EnemyType>(50,EnemyType.Skeleton), // 30% chance for a skeleton
+                    new KeyValuePair<int,EnemyType>(20,EnemyType.ZombieBrown), // 50% chance for a brown zombie
+                    new KeyValuePair<int,EnemyType>(20,EnemyType.ZombieGreen), // 50% chance for a green zombie
+                    new KeyValuePair<int,EnemyType>(10,EnemyType.Wizard), // 10% chance for a wizard
+                }
+            },
+
+             {5,
+                new List<KeyValuePair<int, EnemyType>>()
+                {
+                    new KeyValuePair<int,EnemyType>(100,EnemyType.ZombieBrown), // 50% chance for a brown zombie
+                }
+            },
+
+            {6,
+                new List<KeyValuePair<int, EnemyType>>()
+                {
+                    new KeyValuePair<int,EnemyType>(30,EnemyType.Skeleton), // 30% chance for a skeleton
+                    new KeyValuePair<int,EnemyType>(30,EnemyType.ZombieBrown), // 50% chance for a brown zombie
+                    new KeyValuePair<int,EnemyType>(30,EnemyType.ZombieGreen), // 50% chance for a green zombie
+                    new KeyValuePair<int,EnemyType>(10,EnemyType.Wizard), // 10% chance for a wizard
+                }
+            },
+             {7,
+                new List<KeyValuePair<int, EnemyType>>()
+                {
+                    new KeyValuePair<int,EnemyType>(20,EnemyType.ZombieBrown), // 50% chance for a brown zombie
+                    new KeyValuePair<int,EnemyType>(20,EnemyType.ZombieGreen), // 50% chance for a green zombie
+                    new KeyValuePair<int,EnemyType>(50,EnemyType.Skeleton), // 30% chance for a skeleton
+                    new KeyValuePair<int,EnemyType>(10,EnemyType.Wizard), // 10% chance for a wizard
+                }
+            },
+
+             {8,
                 new List<KeyValuePair<int, EnemyType>>()
                 {
                     new KeyValuePair<int,EnemyType>(100,EnemyType.ZombieBrown), // 50% chance for a brown zombie
                 }
             }
+
         };
 
         /*

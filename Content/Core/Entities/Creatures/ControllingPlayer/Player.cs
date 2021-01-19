@@ -83,11 +83,6 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             inventory.AddToWeaponInventory(new Fist(this));
             inventory.ChangeCurrentWeaponSlot(0);
 
-            Inventory.AddUsableItemToInventory(new RegenerationPotionUsable(this));
-            Inventory.AddUsableItemToInventory(new RegenerationPotionUsable(this));
-            Inventory.AddUsableItemToInventory(new StrengthPotionUsable(this));
-            Inventory.AddUsableItemToInventory(new StrengthPotionUsable(this));
-
             canInteract = false;
             interactableObjects = new List<InteractableBase>();
 
@@ -205,25 +200,23 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         public override Action DetermineAction(float currentGameTime)
         {
 
-            if (InputController.IsRightMouseButtonPressed() && Teleport.CanSwitchToState(this))
+            if (InputController.IsKeyDown(Keys.E) && Teleport.CanSwitchToState(this))
                 return new Teleport(this, currentGameTime);
 
-            //if (InputController.IsRightMouseButtonHeld() && Protect.CanSwitchToState(this) /*&& (Mana >= 100)*/) // statt 100 ggf. Ability.RequiredMana nutzen
-            //    return new Protect(this, currentGameTime);
+            if (InputController.IsKeyDown(Keys.Q) && Protect.CanSwitchToState(this)) 
+                return new Protect(this, currentGameTime);
 
+            if (InputController.IsRightMouseButtonPressed() && ProjectileBarrage.CanSwitchToState(this))
+                return new ProjectileBarrage(this, currentGameTime);
 
             if (InputController.IsLeftMouseButtonPressed() && !IsAttacking() && CanAttack())
             {
                 if (inventory.CurrentWeapon is LongRange)
                 {
-                    inventory.CurrentWeapon.CooldownTimer = 0;
                     return new RangeAttack(this);
-
                 }
                 if (inventory.CurrentWeapon is ShortRange)
                 {
-                    inventory.CurrentWeapon.CooldownTimer = 0;
-
                     return new Melee(this);
 
                 }
@@ -374,15 +367,6 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             else if (InputController.IsKeyPressed(Keys.PageDown) || InputController.IsMouseScrolledUp())
                 Inventory.SetNextWeapon(true);
 
-            // switch weapons (keyboard)
-            else if (InputController.IsKeyPressed(Keys.NumPad0))
-                inventory.ChangeCurrentWeaponSlot(0);
-            else if (InputController.IsKeyPressed(Keys.NumPad1))
-                inventory.ChangeCurrentWeaponSlot(1);
-            else if (InputController.IsKeyPressed(Keys.NumPad2))
-                inventory.ChangeCurrentWeaponSlot(2);
-            else if (InputController.IsKeyPressed(Keys.NumPad3))
-                inventory.ChangeCurrentWeaponSlot(3);
 
             // Usable Items Slot
             else if (InputController.IsKeyPressed(Keys.D1))

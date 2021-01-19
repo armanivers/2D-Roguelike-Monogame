@@ -1,5 +1,6 @@
 ﻿using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.World;
+using _2DRoguelike.Content.Core.World.Rooms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,13 +13,13 @@ namespace _2DRoguelike.Content.Core.GameDebugger
     {
         private Vector2 indent;
 
-        const bool DEBUG = true;
         public PlayerDebug()
         {
             indent = Vector2.Zero;
         }
 
-        private Vector2 MoveIndent() {
+        private Vector2 MoveIndent()
+        {
             Vector2 ret = indent;
             indent += new Vector2(0, 40);
             return ret;
@@ -56,14 +57,13 @@ namespace _2DRoguelike.Content.Core.GameDebugger
                     Player.Instance.inventory.CurrentWeapon?.ToString(), MoveIndent(), Color.White);
                 if (LevelManager.currentmap.currentroom != null)
                 {
-                    spriteBatch.DrawString(TextureManager.FontArial, "Room: " +LevelManager.currentmap.currentroom.Width +" , "+ LevelManager.currentmap.currentroom.Height, MoveIndent(), Color.White);
-                    if(LevelManager.currentmap.currentroom.exitroom)
-                        spriteBatch.DrawString(TextureManager.FontArial, "Exit: " + LevelManager.currentmap.currentroom.exithitbox.X/32+ " , " + LevelManager.currentmap.currentroom.exithitbox.Y/32, MoveIndent(), Color.White);
+                    spriteBatch.DrawString(TextureManager.FontArial, "Room: " + LevelManager.currentmap.currentroom.Width + " , " + LevelManager.currentmap.currentroom.Height, MoveIndent(), Color.White);
                 }
+                spriteBatch.DrawString(TextureManager.FontArial, "Exit: " + Room.exithitbox.X / 32 + " , " + Room.exithitbox.Y / 32, MoveIndent(), Color.White);
 
                 // spriteBatch.DrawString(TextureManager.FontArial, "Exit condition: " + LevelManager.levelList[LevelManager.level].exitCondition.PrintCondition() , MoveIndent(), Color.White);
-                spriteBatch.DrawString(TextureManager.FontArial, "Condition " + (LevelManager.levelList[LevelManager.level].exitCondition.CanExit() ? "is fulfilled!" : "is not fulfilled yet") , MoveIndent(), Color.White);
-                spriteBatch.DrawString(TextureManager.FontArial,"Mana: " + Player.Instance.Mana, MoveIndent(), Color.White);
+                spriteBatch.DrawString(TextureManager.FontArial, "Condition " + (LevelManager.levelList[LevelManager.level].exitCondition.CanExit() ? "is fulfilled!" : "is not fulfilled yet"), MoveIndent(), Color.White);
+                spriteBatch.DrawString(TextureManager.FontArial, "Mana: " + Player.Instance.Mana, MoveIndent(), Color.White);
             }
         }
 

@@ -9,33 +9,30 @@ using Microsoft.Xna.Framework;
 
 namespace _2DRoguelike.Content.Core.Entities.Projectiles
 {
-    class FireballProjectile : Projectile
+    class EnergyballProjectile: Projectile
     {
-        // Idee: QUEUE für Positionsbestimmmung des Targets für fließendere Bewegung???
-
         private Humanoid shootingEntity;
 
+        private Queue<Vector2> aimedTargets = new Queue<Vector2>();
         private float timer;
         //private int damage;
         private const float EXPIRATION_TIMER = 3;
-        private const float SPEED = 4f;
-        private int impactDamage;
-        private float explosionDamageMultiplier = 20;
+        private const float SPEED = 3f;
+        private int damage;
 
-        public FireballProjectile(Humanoid shootingCreat, float explosionDamageMultiplier = 20f) : base(new Vector2(shootingCreat.Hitbox.X + 16, shootingCreat.Hitbox.Y + 25), -TextureManager.projectiles.Fireball.Width / 4, -TextureManager.projectiles.Fireball.Height / 4, SPEED)
+        public EnergyballProjectile(Humanoid shootingCreat) : base(new Vector2(shootingCreat.Hitbox.X + 16, shootingCreat.Hitbox.Y + 25), -TextureManager.projectiles.EnergyBall.Width / 2, -TextureManager.projectiles.EnergyBall.Height / 2, SPEED,0.7f)
         {
-            this.ScaleFactor = 0.8f;
 
-            this.texture = TextureManager.projectiles.Fireball;
+
+            this.texture = TextureManager.projectiles.EnergyBall;
             DrawOrigin = TextureSize / 2;
             shootingEntity = shootingCreat;
 
-            impactDamage = ((FireballWeapon)shootingEntity.inventory.CurrentWeapon).weaponDamage;
-            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(20 * ScaleFactor), (int)(20 * ScaleFactor));
+            damage = ((EnergyballWeapon)shootingEntity.inventory.CurrentWeapon).weaponDamage;
+            this.Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(TextureManager.projectiles.EnergyBall.Width * ScaleFactor), (int)(TextureManager.projectiles.EnergyBall.Height * ScaleFactor));
             this.Acceleration = Vector2.Normalize(GetDirection());
             this.rotation = (float)Math.Atan2(Acceleration.Y, Acceleration.X);
             this.timer = 0;
-            this.explosionDamageMultiplier = explosionDamageMultiplier;
         }
 
         public Vector2 GetDirection()
@@ -43,11 +40,36 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
             return shootingEntity.GetAttackDirection() - Position;
         }
 
-      
-        
+        private int positionDelay = 0;
+        public void SelectNextAimedTargets(Vector2 target)
+        {
+            aimedTargets.Enqueue(target);
+            if (positionDelay == 0)
+            {
+                positionDelay = 0;
+                Acceleration = aimedTargets.Dequeue();
+
+            }
+            else
+            {
+                Acceleration = aimedTargets.Peek();
+                positionDelay++;
+            }
+
+        }
+
+        private int skipTargetAquisition = 0;
+        private float turningAngle = 0f;
         public override void Update(GameTime gameTime)
         {
-            
+            if (skipTargetAquisition == 3)
+            {
+                skipTargetAquisition = 0;
+                SelectNextAimedTargets(Vector2.Normalize(GetDirection()));
+            }
+            else skipTargetAquisition++;
+
+            rotation = (float)Math.Atan2(Acceleration.Y, Acceleration.X) + (turningAngle+=0.1f);
             checkCollision();
 
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -55,7 +77,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
 
             if (timer > EXPIRATION_TIMER)
             {
-                Incinerate();
+                isExpired = true;
             }
         }
 
@@ -67,7 +89,7 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
             {
                 if (CollidesWithSolidTile())
                 {
-                    Incinerate();
+                    isExpired = true;
                 }
                 else
                 {
@@ -79,8 +101,8 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
                             {
                                 if (Hitbox.Intersects(enemy.Hitbox) && !((Humanoid)enemy).IsDead())
                                 {
-                                    ((Enemy)enemy).DeductHealthPoints((int)(impactDamage * shootingEntity.temporaryDamageMultiplier));
-                                    Incinerate();
+                                    ((Enemy)enemy).DeductHealthPoints((int)(damage * shootingEntity.temporaryDamageMultiplier));
+                                    isExpired = true;
                                 }
                             }
                         }
@@ -89,11 +111,11 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
                     {
                         if (Hitbox.Intersects(Player.Instance.Hitbox))
                         {
-                            Player.Instance.DeductHealthPoints((int)(impactDamage*shootingEntity.temporaryDamageMultiplier));
-                            Incinerate(shootingEntity);
+                            Player.Instance.DeductHealthPoints((int)(damage * shootingEntity.temporaryDamageMultiplier));
+                            isExpired = true;
                         }
                     }
-                    
+
                 }
 
 
@@ -105,17 +127,5 @@ namespace _2DRoguelike.Content.Core.Entities.Projectiles
             return shootingEntity.Hitbox.Intersects(Hitbox);
         }
 
-
-        public void Incinerate()
-        {
-            Incinerate(null);
-        }
-
-        private void Incinerate(Humanoid protectedEntity)
-        {
-            new Explosion(Position, explosionDamageMultiplier, 1, protectedEntity);
-            //Velocity = Vector2.Zero;
-            isExpired = true;
-        }
     }
 }
