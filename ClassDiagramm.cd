@@ -1,0 +1,1356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="_2DRoguelike.Game1" Collapsed="true">
+    <Position X="70" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYCAIAAAAAEAwAAAAIAAAAACAAAACACQIAgAEAAAgQ=</HashCode>
+      <FileName>Game1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Program" Collapsed="true">
+    <Position X="68.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.AssetsLoaders.EnemyAssetsLoader" Collapsed="true">
+    <Position X="75.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gOCggQEAgEBIAgAhhKgwBQIIAAAABAAAAZEIwFAEgAY=</HashCode>
+      <FileName>Content\Core\AssetsLoaders\EnemyAssetsLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.AssetsLoaders.LootAssetsLoader" Collapsed="true">
+    <Position X="66.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AICJiCAAIABQAAAAEgAAAAAEAAAAABIgAAEEAAQQAEA=</HashCode>
+      <FileName>Content\Core\AssetsLoaders\LootAssetsLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.AssetsLoaders.MenuAssetsLoader" Collapsed="true">
+    <Position X="68.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAoAAAAABAAAAAAAAgAIAAAAEABAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\AssetsLoaders\MenuAssetsLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.AssetsLoaders.ProjectileAssetsLoader" Collapsed="true">
+    <Position X="70" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAIAAAAAAAAAEAAAAAAAACAgQAAAAAAA=</HashCode>
+      <FileName>Content\Core\AssetsLoaders\ProjectileAssetsLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.AssetsLoaders.UserInterfaceAssetsLoadercs" Collapsed="true">
+    <Position X="71.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RAAAiAQBIQAAEIAgAIAAAEAAIQAAEABAAAAgABCIAYA=</HashCode>
+      <FileName>Content\Core\AssetsLoaders\UserInterfaceAssetsLoadercs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.AI.Actions.AnimationIdentifiers.EnemyAnimationIdentifiers.ProjectileBarrageAnimationIdentifier" Collapsed="true">
+    <Position X="24.5" Y="30.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\AnimationIdentifiers\EnemyAnimationIdentifiers\ProjectileBarrageAnimationIdentifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Actions.AbilityAnimationIdentifier" Collapsed="true">
+    <Position X="19" Y="28.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\AnimationIdentifiers\AbilityAnimationIdentifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Actions.AnimationIdentifier" Collapsed="true">
+    <Position X="24.5" Y="27.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAIAAAAAAAAAAAABAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\AnimationIdentifiers\AnimationIdentifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Actions.AttackAnimationIdentifier" Collapsed="true">
+    <Position X="24.5" Y="28.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\AnimationIdentifiers\AttackAnimationIdentifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Actions.MeleeAnimationIdentifier" Collapsed="true">
+    <Position X="26.75" Y="30.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\AnimationIdentifiers\MeleeAnimationIdentifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Actions.MoveAnimationIdentifier" Collapsed="true">
+    <Position X="31.25" Y="28.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\AnimationIdentifiers\MoveAnimationIdentifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Actions.ProtectAnimationIdentifier" Collapsed="true">
+    <Position X="20" Y="30.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\AnimationIdentifiers\ProtectAnimationIdentifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Actions.RangeAttackAnimationIdentifier" Collapsed="true">
+    <Position X="22.25" Y="30.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\AnimationIdentifiers\RangeAttackAnimationIdentifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Actions.Ability" Collapsed="true">
+    <Position X="2" Y="28.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\Ability.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Actions.Action" Collapsed="true">
+    <Position X="7.5" Y="27.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAABAAAAAAAQAAAAEAAAAAAABAAIAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\Action.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Actions.Attack" Collapsed="true">
+    <Position X="7.5" Y="28.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAABAAIAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\Attack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Actions.Melee" Collapsed="true">
+    <Position X="5.25" Y="30.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAgA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\Melee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Actions.Move" Collapsed="true">
+    <Position X="12" Y="28.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAABAAIAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\Move.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Actions.Protect" Collapsed="true">
+    <Position X="0.75" Y="30.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAIAQAAkAAAAAQAACAIAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\Protect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Actions.RangeAttack" Collapsed="true">
+    <Position X="7.5" Y="30.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\RangeAttack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Actions.Wait" Collapsed="true">
+    <Position X="14.25" Y="28.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAIAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\Wait.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.AI.Actions.AnimationIdentifiers.TeleportAnimationIdentifier" Collapsed="true">
+    <Position X="17.75" Y="30.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\AnimationIdentifiers\TeleportAnimationIdentifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Actions.AnimationIdentifiers.WaitAnimationIdentifier" Collapsed="true">
+    <Position X="29" Y="28.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\AnimationIdentifiers\WaitAnimationIdentifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.AI.Actions.ProjectileBarrage" Collapsed="true">
+    <Position X="9.75" Y="30.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAABAAAAAAAAAAQAAkABAAAyAAgAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\EnemyActions\ProjectileBarrage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.AI.Actions.Teleport" Collapsed="true">
+    <Position X="3" Y="30.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAEAAIAQAAkAAAAAQAAAAIAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Actions\Teleport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.AI.Enemies_AI.Bosses_AI.BossAI" Collapsed="true">
+    <Position X="12" Y="24.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Enemies_AI\Bosses_AI\BossAI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.AI.Enemies_AI.Bosses_AI.DarkOverlordAI" Collapsed="true">
+    <Position X="9.75" Y="26.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Enemies_AI\Bosses_AI\DarkOverlordAI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.AI.Enemies_AI.Bosses_AI.DragonAI" Collapsed="true">
+    <Position X="12" Y="26.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Enemies_AI\Bosses_AI\DragonAI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.AI.Enemies_AI.Bosses_AI.OrcAI" Collapsed="true">
+    <Position X="14.25" Y="26.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Enemies_AI\Bosses_AI\OrcAI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI.BrownZombieAI" Collapsed="true">
+    <Position X="0.75" Y="24.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Enemies_AI\BrownZombieAI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI.EnemyAI" Collapsed="true">
+    <Position X="7.5" Y="23.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAoAAIAIQAAAQAAQAIIAAAAEEAAVAAAQAAAQAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Enemies_AI\EnemyAI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI.GreenZombieAI" Collapsed="true">
+    <Position X="3" Y="24.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Enemies_AI\GreenZombieAI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI.SimulatedArrow" Collapsed="true">
+    <Position X="71.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAEAAAgIAAAIIAAEMAAAAAAAAAEEAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Enemies_AI\SimulatedArrow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI.SkeletonAI" Collapsed="true">
+    <Position X="5.25" Y="24.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAACAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAACA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Enemies_AI\SkeletonAI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemies_AI.WizardAI" Collapsed="true">
+    <Position X="7.5" Y="24.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\AI\Enemies_AI\WizardAI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.ControllingPlayer.Camera" Collapsed="true">
+    <Position X="71.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAICAACAAAAKAAAAAABAAAAAUAAAAEAAEAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Creatures\ControllingPlayer\Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.ControllingPlayer.Player" Collapsed="true">
+    <Position X="21.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MCQggAAAAEJIAAggIAAABACIAABAAAGAYAAAggAQAAA=</HashCode>
+      <FileName>Content\Core\Entities\Creatures\ControllingPlayer\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses.Boss" Collapsed="true">
+    <Position X="16.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Creatures\Enemies\Bosses\Boss.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses.DarkOverlord" Collapsed="true">
+    <Position X="16.75" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Creatures\Enemies\Bosses\DarkOverlord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses.Dragon" Collapsed="true">
+    <Position X="19" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Creatures\Enemies\Bosses\Dragon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses.Orc" Collapsed="true">
+    <Position X="14.5" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Creatures\Enemies\Bosses\Orc.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Enemies.BrownZombie" Collapsed="true">
+    <Position X="5.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Creatures\Enemies\BrownZombie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Enemies.Enemy" Collapsed="true">
+    <Position X="12.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAAAQAIJAAAAIAKAAAAIAAAgAAAAAAEAAgCQkAA=</HashCode>
+      <FileName>Content\Core\Entities\Creatures\Enemies\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Enemies.EnemyFactory" Collapsed="true">
+    <Position X="77" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAEAAAEAAIIAAAIBAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Creatures\Enemies\EnemyFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Enemies.GreenZombie" Collapsed="true">
+    <Position X="7.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Creatures\Enemies\GreenZombie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Enemies.Skeleton" Collapsed="true">
+    <Position X="10" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Creatures\Enemies\Skeleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Enemies.Wizard" Collapsed="true">
+    <Position X="12.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Creatures\Enemies\Wizard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creature" Collapsed="true">
+    <Position X="13.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ggQAAgAIQEoAAAAgAKAQOAABMEYgAAIIAAAAJQBwAAA=</HashCode>
+      <FileName>Content\Core\Entities\Creatures\Creature.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Humanoid" Collapsed="true">
+    <Position X="13.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ECQAACAEQAIIABQAYCIIAQAIEAAAAAgCAAAAEAAQIAA=</HashCode>
+      <FileName>Content\Core\Entities\Creatures\Humanoid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.InteractableBase" Collapsed="true">
+    <Position X="38" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\InteractableBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Explosion" Collapsed="true">
+    <Position X="61.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAABAAAAAAAAAAAAAAAAgAAIQAAAAAAAAAAAAEAAI=</HashCode>
+      <FileName>Content\Core\Entities\Projectiles\Explosion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Animation" Collapsed="true">
+    <Position X="66.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAIAAAAAAAAAAABBACAAQAAAAAIKIAAACAA=</HashCode>
+      <FileName>Content\Core\Entities\Animation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.AnimationManager" Collapsed="true">
+    <Position X="68.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIABAAAAAAAgAgAAAAQIAAAAgAAAIAqAACAAAACAA=</HashCode>
+      <FileName>Content\Core\Entities\AnimationManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.EntityBasis" Collapsed="true">
+    <Position X="33.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAQACAAUCgQgACCAIIAAgAIAEgAQCAAUAAAgFAA=</HashCode>
+      <FileName>Content\Core\Entities\EntityBasis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.EntityManager" Collapsed="true">
+    <Position X="68.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BASAQACAAAABAwSACgIAAAAEAAABIAAFgEDAAAEAAII=</HashCode>
+      <FileName>Content\Core\EntityManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.Potions.Chest" Collapsed="true">
+    <Position X="23.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAIAAAAAAAABAAACIAAAgAACAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\ContainerLoots\Chest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.Potions.LootBag" Collapsed="true">
+    <Position X="25.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAgAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\ContainerLoots\LootBag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.Potions.LootContainer" Collapsed="true">
+    <Position X="24.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAgAAgAAAAAAACAAAAgAAEABAAAAAIAAIACAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\ContainerLoots\LootContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.Potions.ExperiencePotion" Collapsed="true">
+    <Position X="39.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgBAMAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\Potions\ExperiencePotion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.Potions.HealthPotion" Collapsed="true">
+    <Position X="41.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAMAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\Potions\HealthPotion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.Potions.HealthRegenerationPotion" Collapsed="true">
+    <Position X="43.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAMAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\Potions\HealthRegenerationPotion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.Potions.Potion" Collapsed="true">
+    <Position X="43.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\Potions\Potion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.Potions.SpeedPotion" Collapsed="true">
+    <Position X="46" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAMAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\Potions\SpeedPotion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.Potions.StrengthPotion" Collapsed="true">
+    <Position X="48.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAMAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\Potions\StrengthPotion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.ObtainableLoots.KeyLoot" Collapsed="true">
+    <Position X="50.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAAAAAAAAAAAAAAAAAgAAFAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\InventoryLoots\ObtainableLoots\KeyLoot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.WeaponLoots.AxeLoot" Collapsed="true">
+    <Position X="32.5" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\InventoryLoots\WeaponLoots\AxeLoot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.WeaponLoots.BowLoot" Collapsed="true">
+    <Position X="34.75" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\InventoryLoots\WeaponLoots\BowLoot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots.BombLoot" Collapsed="true">
+    <Position X="37" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\InventoryLoots\WeaponLoots\BombLoot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots.DaggerLoot" Collapsed="true">
+    <Position X="28" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\InventoryLoots\WeaponLoots\DaggerLoot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots.WeaponLoot" Collapsed="true">
+    <Position X="32.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\InventoryLoots\WeaponLoots\WeaponLoot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.WeaponLoots.SpearLoot" Collapsed="true">
+    <Position X="30.25" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\InventoryLoots\WeaponLoots\SpearLoot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.InventoryLoot" Collapsed="true">
+    <Position X="32.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\InventoryLoots\InventoryLoot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.LootBase" Collapsed="true">
+    <Position X="37" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAIAAAAAAAAAAAAAAAAABACAAAEAAAAAAgAAAgAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\LootBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Loot.RandomLoot" Collapsed="true">
+    <Position X="71.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAABAAAAAAAAAAAgACAABAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\Loot\RandomLoot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Interactables.NPCs.NPCBase" Collapsed="true">
+    <Position X="73.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\NPCs\NPCBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Interactables.WorldObjects.Ladder" Collapsed="true">
+    <Position X="52.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\WorldObjects\Ladder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Interactables.WorldObjects.WorldObject" Collapsed="true">
+    <Position X="52.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Interactables\WorldObjects\WorldObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Inventories.EnemyInventory" Collapsed="true">
+    <Position X="6.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Content\Core\Entities\Inventories\EnemyInventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Inventories.Inventory" Collapsed="true">
+    <Position X="7.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAEAAgAAAgAAAAAAEBAAAAAAAAAAAAAAAAAAAQAQ=</HashCode>
+      <FileName>Content\Core\Entities\Inventories\Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Inventories.PlayerInventory" Collapsed="true">
+    <Position X="8.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAQAAAAIAAAQAAAFAAAAAAgAAAAAgCAAAgAAUAA=</HashCode>
+      <FileName>Content\Core\Entities\Inventories\PlayerInventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Projectiles.Arrow" Collapsed="true">
+    <Position X="64" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAIAAAAAAAAAAAAEIEAEAAAAAAAIIAAAgA=</HashCode>
+      <FileName>Content\Core\Entities\Projectiles\Arrow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Creatures.Projectiles.Projectile" Collapsed="true">
+    <Position X="59.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgIAAAAAAAAMAAAAAAAAAAEAAQAAA=</HashCode>
+      <FileName>Content\Core\Entities\Projectiles\Projectile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Projectiles.BombProjectile" Collapsed="true">
+    <Position X="55" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAAIAAIAAAAAAAgAEIEAEBAAAAAgIAACAgA=</HashCode>
+      <FileName>Content\Core\Entities\Projectiles\BombProjectile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Projectiles.EnergyballProjectile" Collapsed="true">
+    <Position X="57.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAIgABAAAAAAAAAEIEAEAAAKAAgIAAAAEA=</HashCode>
+      <FileName>Content\Core\Entities\Projectiles\EnergyBallProjectile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Projectiles.FireballProjectile" Collapsed="true">
+    <Position X="59.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAAAAAIAIAAAAAAAAAAEIEAEAAAAAAAIAAACAA=</HashCode>
+      <FileName>Content\Core\Entities\Projectiles\FireballProjectile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Special_Interactables.Negative.Spikes" Collapsed="true">
+    <Position X="3.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAACAgAAAAAAAAAAAAIAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Special_Interactables\Negative\Spikes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Special_Interactables.SpecialInteractableBase" Collapsed="true">
+    <Position X="3.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAACAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Entities\Special_Interactables\SpecialInteractableBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.EntityEffects.PotionEffects.HealthRegeneration" Collapsed="true">
+    <Position X="16.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAEAAAAAACAAAAAIA=</HashCode>
+      <FileName>Content\Core\EntityEffects\PotionEffects\HealthRegeneration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.EntityEffects.PotionEffects.SpeedBoost" Collapsed="true">
+    <Position X="18.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAABAAAAAAAAAAAAAAAgAACAAAAAAA=</HashCode>
+      <FileName>Content\Core\EntityEffects\PotionEffects\SpeedBoost.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.EntityEffects.PotionEffects.StrengthBoost" Collapsed="true">
+    <Position X="21" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAEAAAA=</HashCode>
+      <FileName>Content\Core\EntityEffects\PotionEffects\StrengthBoost.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.EntityEffects.EntityEffectBase" Collapsed="true">
+    <Position X="18.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAQAiAAAAAAAAAAAAAgAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Content\Core\EntityEffects\EntityEffectBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.EntityEffects.EntityEffectsManager" Collapsed="true">
+    <Position X="66.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAAAAAAAACAAAAAAAAIAAAAAAAAIAAAAAAEA=</HashCode>
+      <FileName>Content\Core\EntityEffects\EntityEffectsManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.GameDebugger.GameDebug" Collapsed="true">
+    <Position X="71.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAgAAAAAAAASAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\GameDebugger\GameDebug.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.GameDebugger.HitboxDebug" Collapsed="true">
+    <Position X="68.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAgAAAAgBCAAAEAEAAIAAAAAAAAEAAgAAAAAA=</HashCode>
+      <FileName>Content\Core\GameDebugger\HitboxDebug.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.GameDebugger.Box" Collapsed="true">
+    <Position X="70" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAgAAAAAAAACAAAAAAAAAAAI=</HashCode>
+      <FileName>Content\Core\GameDebugger\HitboxDebug.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.GameDebugger.PlayerDebug" Collapsed="true">
+    <Position X="75.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAABAAAAAAAAAAAAAAAIEAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\GameDebugger\PlayerDebug.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.ObtainableItems.LevelKey" Collapsed="true">
+    <Position X="1.5" Y="20.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\NotUsableItems\LevelKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.NotUsableItems.NotUsableItem" Collapsed="true">
+    <Position X="1.5" Y="19.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\NotUsableItems\NotUsableItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.UsableItems.UsablePotions.RegenerationPotionUsable" Collapsed="true">
+    <Position X="21.75" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\UsableItems\UsablePotions\RegenerationPotionUsable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.UsableItems.UsablePotions.SpeedPotionUsable" Collapsed="true">
+    <Position X="24" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\UsableItems\UsablePotions\SpeedPotionUsable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.UsableItems.UsablePotions.StrengthPotionUsable" Collapsed="true">
+    <Position X="26.25" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\UsableItems\UsablePotions\StrengthPotionUsable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.UsableItems.UsablePotions.UsablePotionsBase" Collapsed="true">
+    <Position X="24" Y="20.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\UsableItems\UsablePotions\UsablePotionsBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.UsableItems.UsableItem" Collapsed="true">
+    <Position X="24" Y="19.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAACAAQAAAAgAAAA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\UsableItems\UsableItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.Weapons.Axe" Collapsed="true">
+    <Position X="8.25" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIBQEAAAAAAAAAAAAAAAAAQAAAAAAAgA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\Weapons\Axe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.Weapons.BombWeapon" Collapsed="true">
+    <Position X="12.75" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAIAAEAAAAAAAAAAAAAAAAAAAAAAACAgA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\Weapons\BombWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.Weapons.Bow" Collapsed="true">
+    <Position X="15" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAIAAEAAAAAAAAAAAAAAQAAAAAAAAAAgA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\Weapons\Bow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.Weapons.Dagger" Collapsed="true">
+    <Position X="10.5" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAQEAAAAAAAAAAAAAAAAAQAAAAAEAgA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\Weapons\Dagger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.Weapons.EnergyballWeapon" Collapsed="true">
+    <Position X="17.25" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAIAAEAAAAAAAACAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\Weapons\EnergyballWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.Weapons.FireballWeapon" Collapsed="true">
+    <Position X="19.5" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAIAAEAAAAAAAIAAAAAAAAAAAAAAAACgA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\Weapons\FireballWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.Weapons.LongRange" Collapsed="true">
+    <Position X="16.25" Y="20.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\Weapons\LongRange.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.Weapons.ShortRange" Collapsed="true">
+    <Position X="7.25" Y="20.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABiAAAABAAAAgDAAAAAAAAAAAAAAAAAAIIAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\Weapons\ShortRange.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.Weapons.Spear" Collapsed="true">
+    <Position X="3.75" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAQEAAAAAAAAAAAAAAACAQAAAAAAAgA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\Weapons\Spear.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.Weapons.Weapon" Collapsed="true">
+    <Position X="11.75" Y="19.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAREAACMAAAAAAAAAAAAAAIAAACAAAAAgAQAAA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\Weapons\Weapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Entities.Weapons.Fist" Collapsed="true">
+    <Position X="6" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAQEAAAAAAAAAAAAAAIAAQAAAAAAAgA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\Weapons\Fist.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.InventoryItem" Collapsed="true">
+    <Position X="15" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\InventoryItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.InventoryItems.ItemBase" Collapsed="true">
+    <Position X="15" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Items\InventoryItems\ItemBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Items.QuestItems.QuestItem" Collapsed="true">
+    <Position X="28.5" Y="19.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Items\QuestItems\QuestItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.BackgroundHighscoreScreen" Collapsed="true">
+    <Position X="6.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCEAAAAAAAAgAAAAAAAAAAAAAAABAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Content\Core\Screens\BackgroundHighscoreScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.BackgroundScreen" Collapsed="true">
+    <Position X="8.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCEAAAAAAAAgAAAAAAAAAAAAAAABAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Content\Core\Screens\BackgroundScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.BackgroundsStatisticsScreen" Collapsed="true">
+    <Position X="11" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCEAAAAAAAAgAAAAAAAAAAAAAAABAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Content\Core\Screens\BackgroundStatisticsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.BackgroundsWhiteKnights" Collapsed="true">
+    <Position X="13.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCEAAAAAAAAgAAAAAAAAAAAAAAABAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Content\Core\Screens\BackgroundWhiteKnights.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.DebugmodeOptionsMenusScreen" Collapsed="true">
+    <Position X="29" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAQAAAEAAAAAAAIEAAAQAAIBAEAAKAAIAAAiAA=</HashCode>
+      <FileName>Content\Core\Screens\DebugmodeOptionsMenusScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.GameoverScreen" Collapsed="true">
+    <Position X="31.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAgEAAAEICYAEAAAABAEAAAAAAAAAAADAA=</HashCode>
+      <FileName>Content\Core\Screens\GameoverScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.GameOverSuccScreen" Collapsed="true">
+    <Position X="33.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAgEAAAEICYAEAAAABAEAAAAAAAAAAADAA=</HashCode>
+      <FileName>Content\Core\Screens\GameOverSuccScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.GameplayScreen" Collapsed="true">
+    <Position X="2" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCEACAAAAAAgAAAAAAAAAAAAAAAAAAAAQAAAEAAAY=</HashCode>
+      <FileName>Content\Core\Screens\GameplayScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.GameScreen" Collapsed="true">
+    <Position X="21.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAEBCAAARQAgAEEAIAAAAADAAAAA4AAgAGAkYIDAY=</HashCode>
+      <FileName>Content\Core\Screens\GameScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.GamestatsScreen" Collapsed="true">
+    <Position X="20" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAIAAAgAAAAAEAAAAAAAAAAACBA=</HashCode>
+      <FileName>Content\Core\Screens\GamestatsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.GlobalScoreboardScreen" Collapsed="true">
+    <Position X="22.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAEAAIAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Content\Core\Screens\GlobalScoreboardScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.InputState" Collapsed="true">
+    <Position X="71.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAAUBAAAAAAAAAAAACQAAFYAAAAAEAIAAAEAAAAEA=</HashCode>
+      <FileName>Content\Core\Screens\InputState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.LoadingScreen" Collapsed="true">
+    <Position X="4.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAgAAAAQAAAgAAAAAQAAEAAAAAAAAAEAAAAAQAAAA=</HashCode>
+      <FileName>Content\Core\Screens\LoadingScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.LocalScoreboardScreen" Collapsed="true">
+    <Position X="24.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Screens\LocalScoreboardScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.MainMenuScreen" Collapsed="true">
+    <Position X="26.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAiAAAAAAAAAAAAAAAAAAAAAABAAAACAEIAAAAAA=</HashCode>
+      <FileName>Content\Core\Screens\MainMenuScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.MenuEntry" Collapsed="true">
+    <Position X="70" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAABAAAgAwAAAAJABAAAAAAAAJAAAACEQAAAI=</HashCode>
+      <FileName>Content\Core\Screens\MenuEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.MenuScreen" Collapsed="true">
+    <Position X="25.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQQIACGAAAAAAiAAAABAgAAAAAAAAAAAgBAABAQAAAA=</HashCode>
+      <FileName>Content\Core\Screens\MenuScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.MessageBoxScreen" Collapsed="true">
+    <Position X="38" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQQCAACAAAgAAAAAAAAAAAAAAAABAAAAAIAAAACQ=</HashCode>
+      <FileName>Content\Core\Screens\MessageBoxScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.NameInputScreen" Collapsed="true">
+    <Position X="40.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQQCAAiBAAhAAQAAAAAAAQAAEAABAAEAAICAAACQ=</HashCode>
+      <FileName>Content\Core\Screens\NameInputScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.OptionsMenuScreen" Collapsed="true">
+    <Position X="35.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RBIBAEAgAAAYAggBCQgAAgAAAAgABAAQAAAgEBABCAA=</HashCode>
+      <FileName>Content\Core\Screens\OptionsMenuScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.PauseMenuScreen" Collapsed="true">
+    <Position X="15.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAIAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Screens\PauseMenuScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.PlayerIndexEventArgs" Collapsed="true">
+    <Position X="77" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Content\Core\Screens\PlayerIndexEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.SoundOptionsMenuScreen" Collapsed="true">
+    <Position X="17.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAC4AAAgQAAAAAAAAQAAIAABAACAA=</HashCode>
+      <FileName>Content\Core\Screens\SoundOptionsMenuScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Screens.ScreenManager" Collapsed="true">
+    <Position X="70" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAVEAgAAAgAwAAAAAAAAAAAAAAiBAERAAAgAACCEQ=</HashCode>
+      <FileName>Content\Core\ScreenManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Statistics.GameStatistics" Collapsed="true">
+    <Position X="77" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ARQAABAQCEAkAAAAAAAMAAAAgAAAAQABAGAAQAAACAA=</HashCode>
+      <FileName>Content\Core\Statistics\GameStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Statistics.GlobalHighscoreManager" Collapsed="true">
+    <Position X="66.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAABAAAAAIAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Statistics\GlobalHighscoreManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Statistics.PlayerScore" Collapsed="true">
+    <Position X="66.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAACCEAAgAAIBICgABBAAAIAIBAAACIAAARAA=</HashCode>
+      <FileName>Content\Core\Statistics\PlayerScore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Statistics.Score" Collapsed="true">
+    <Position X="66.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Statistics\Score.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Statistics.ScoreRank" Collapsed="true">
+    <Position X="68.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAIAAAAQAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\Statistics\Score.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Cutscenes.CutsceneBasis" Collapsed="true">
+    <Position X="7.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwQAAAgQAgAQgAIAACAIIADCAAAAACAAAACEAAAYAA=</HashCode>
+      <FileName>Content\Core\UI\Cutscenes\CutsceneBasis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Cutscenes.FadeOutCircle" Collapsed="true">
+    <Position X="6.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAAAAAAAAAAgAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\UI\Cutscenes\FadeOutCircle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Cutscenes.NPCTalk" Collapsed="true">
+    <Position X="8.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAAAAIAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Content\Core\UI\Cutscenes\NPCTalk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.UI.MessageFactory" Collapsed="true">
+    <Position X="71.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAYAAAAAAAAAAgAAAAAAIAAAAAAAAAABAAAAAAACAAA=</HashCode>
+      <FileName>Content\Core\UI\TextUI\MessageFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.UI.ToolTip" Collapsed="true">
+    <Position X="26.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAAAAAAAEgAAJAAAAAAAAIAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Content\Core\UI\TextUI\ToolTip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.UI.BossBar" Collapsed="true">
+    <Position X="1.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAEAAAQQkAgAAJAAAIAAAAAAMAAYAAAQAAABQAAA=</HashCode>
+      <FileName>Content\Core\UI\BossBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.UI.ExperienceBar" Collapsed="true">
+    <Position X="3.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCQAAAAACCwAAgIgIAAAAAAAAAAIAAQAAAQAwAAEAAA=</HashCode>
+      <FileName>Content\Core\UI\ExperienceBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.UI.Fog" Collapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAhAAAAAgAAAAAAAAIAAAAAAgAAAAAQAAgAAAA=</HashCode>
+      <FileName>Content\Core\UI\Fog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.UI.HealthBar" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAAAAAQwAAgAAIAEAAABAAQAMAAQAgAQAAAAQEAA=</HashCode>
+      <FileName>Content\Core\UI\HealthBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.UI.Highscore" Collapsed="true">
+    <Position X="10.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAAAAAEwAAgAABAAIAAAgAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\UI\Highscore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.UI.KeyStatus" Collapsed="true">
+    <Position X="12.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAQwAAgAApAAAAAAAAAACAACAgAAhAAAAAAA=</HashCode>
+      <FileName>Content\Core\UI\KeyStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.UI.ManaBar" Collapsed="true">
+    <Position X="15" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAIAAAAAwAAggAIAIAAAAAAAAIgAQBAAQggAAAAAA=</HashCode>
+      <FileName>Content\Core\UI\ManaBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.UI.MobHealthBars" Collapsed="true">
+    <Position X="17.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAAgAAgAQAAAAAAAAAAAIAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\UI\MobHealthBars.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.UI.PlayerCompass" Collapsed="true">
+    <Position X="19.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAwAAgABBAAAAAAAAAAIAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\UI\PlayerCompass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.UI.PlayerEffects" Collapsed="true">
+    <Position X="21.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQAAAAAwAAgAABAAAAAAAABAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Content\Core\UI\PlayerEffects.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.UI.Skillbar" Collapsed="true">
+    <Position X="24" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAQAAAAAAAAAEoAAJWAAAAAEBAAYIAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\UI\Skillbar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.UI.UIElementBasis" Collapsed="true">
+    <Position X="15" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\UI\UIElementBasis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.UI.UIManager" Collapsed="true">
+    <Position X="70" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAhACAAAAAAAAQBAgAAAAACgAAAAAAAAAEAIBAAAE=</HashCode>
+      <FileName>Content\Core\UI\UIManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.UI.UsableItemsBar" Collapsed="true">
+    <Position X="28.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAAAAAwAAgAAIAIAAQAEAAAIAAAAAQAAIAAIAAA=</HashCode>
+      <FileName>Content\Core\UI\UsableItemsBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.ExitConditions.ExitCondition" Collapsed="true">
+    <Position X="20.75" Y="23.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAgAAAAAAAAgAAAAAAAMAAAACgAAAA=</HashCode>
+      <FileName>Content\Core\World\ExitConditions\ExitCondition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.ExitConditions.FindKey" Collapsed="true">
+    <Position X="17.5" Y="24.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAEAAAACAAAAA=</HashCode>
+      <FileName>Content\Core\World\ExitConditions\FindKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.ExitConditions.KillAllEnemies" Collapsed="true">
+    <Position X="19.75" Y="24.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAEAAAACAAAAA=</HashCode>
+      <FileName>Content\Core\World\ExitConditions\KillAllEnemies.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.ExitConditions.KillAmountOfEnemies" Collapsed="true">
+    <Position X="22" Y="24.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAIAoAAAgAAAAAAAAAAAAAACAEAAAACAgAAA=</HashCode>
+      <FileName>Content\Core\World\ExitConditions\KillAmountOfEnemies.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.ExitConditions.KillRandomEnemy" Collapsed="true">
+    <Position X="24.25" Y="26.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\World\ExitConditions\KillRandomEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.ExitConditions.KillSpecificEnemy" Collapsed="true">
+    <Position X="24.25" Y="24.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAEAAAACAAAAI=</HashCode>
+      <FileName>Content\Core\World\ExitConditions\KillSpecificEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.Maps.BossMap" Collapsed="true">
+    <Position X="0.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQYAAgIAAQAAIAAIACAAABABAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Content\Core\World\Maps\BossMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.Maps.Dungeon" Collapsed="true">
+    <Position X="2.75" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAJgIAASEAAAAIAAAAAAARAQAAAAAAACAIAMAAAAA=</HashCode>
+      <FileName>Content\Core\World\Maps\Dungeon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.Maps.Map" Collapsed="true">
+    <Position X="2.75" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQEAgIAAQACAAQIQBAAAgABAAAABABAAAAIAAAAAAA=</HashCode>
+      <FileName>Content\Core\World\Maps\Map.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.TestMap" Collapsed="true">
+    <Position X="5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAEgIAAQAAAAAsAAAAAAARAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Content\Core\World\Maps\TestMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.RoomObject" Collapsed="true">
+    <Position X="77" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAACAAAEAQAIAAAAAEAAgA=</HashCode>
+      <FileName>Content\Core\World\Rooms\RoomObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.Level" Collapsed="true">
+    <Position X="73.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\World\Level.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.LevelDesigner" Collapsed="true">
+    <Position X="75.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAABAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\World\LevelDesigner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.LevelManager" Collapsed="true">
+    <Position X="77" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABSAEAkEAAAAAgAAgAAgAAQBAAEAAAIAAIAAQAAAIAQ=</HashCode>
+      <FileName>Content\Core\World\LevelManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.Rooms.Room" Collapsed="true">
+    <Position X="73.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AADMgAIADACEABAIEAUAAPAQgEABAQABAAAQgAAEYAA=</HashCode>
+      <FileName>Content\Core\World\Rooms\Room.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.Rooms.RoomFactory" Collapsed="true">
+    <Position X="75.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAEAAAAAQAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\World\Rooms\RoomFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.Tiles.Tile" Collapsed="true">
+    <Position X="66.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAQAQAAAAAAGAAgBAgAAAABgAAAAAAA=</HashCode>
+      <FileName>Content\Core\World\Tiles\Tile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.World.Tiles.TileTextureManager" Collapsed="true">
+    <Position X="68.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AiAAgACAAAAAAAAAEAAAgEgAQAAAAAAAAAAAIAAAAAE=</HashCode>
+      <FileName>Content\Core\World\Tiles\TileTextureManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.CutsceneManager" Collapsed="true">
+    <Position X="73.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAAAEAAAgEAAAAAAAgBAAgAAIgAAACAAAAAAAA=</HashCode>
+      <FileName>Content\Core\CutsceneManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.Gameplay" Collapsed="true">
+    <Position X="73.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAAAAAAAggAAAAIAAAAAAAAAAAAAAAAAAAAAIQ=</HashCode>
+      <FileName>Content\Core\Gameplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.GameSettings" Collapsed="true">
+    <Position X="75.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAoABCAgAJkAYAgiIEaAKAIQBAIBAEQIOAAcBCAgAA=</HashCode>
+      <FileName>Content\Core\GameSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.InputController" Collapsed="true">
+    <Position X="70" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgRAAAJgAAAIBBEAgAQAAYAAAAAAABAAcCAAQAAiAAI=</HashCode>
+      <FileName>Content\Core\InputController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.SoundManager" Collapsed="true">
+    <Position X="73.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAkEQECAKIAQAAAACIRIAEQAAAABAAAAEAAAAMQNA=</HashCode>
+      <FileName>Content\Core\SoundManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.StatisticsManager" Collapsed="true">
+    <Position X="75.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACEAAEAAAAICAABAAAAIAIBAAAAAAAAAAA=</HashCode>
+      <FileName>Content\Core\StasticsManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2DRoguelike.Content.Core.TextureManager" Collapsed="true">
+    <Position X="77" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAgACACAkAQAAAAAgAgQgAABhAACAARBCEAAgAI=</HashCode>
+      <FileName>Content\Core\TextureManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="_2DRoguelike.Content.Core.Screens.ScreenState" Collapsed="true">
+    <Position X="66.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAgAAAIAAAEAAA=</HashCode>
+      <FileName>Content\Core\Screens\GameScreen.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

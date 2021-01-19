@@ -56,7 +56,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
                     new KeyValuePair<int,Items>(25,Items.DAGGER), // 40% chance to get Spear
                     new KeyValuePair<int,Items>(25,Items.REGENERATION_POTION), // 15% chance to get Healthpotion
                     new KeyValuePair<int,Items>(25,Items.BOW), // 30% chance to get Bow
-                    new KeyValuePair<int,Items>(25,Items.BOMB), // 15% chance to get Bomb 
+                    new KeyValuePair<int,Items>(25,Items.BOMB) // 15% chance to get Bomb 
                 }
             },
             {
@@ -65,7 +65,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
                     new KeyValuePair<int,Items>(50,Items.AXE), // 50% chance to get Axe
                     new KeyValuePair<int,Items>(30,Items.SPEAR), // 30% chance to get Bow
                     new KeyValuePair<int,Items>(10,Items.BOW), // 10% chance to get Bomb
-                    new KeyValuePair<int,Items>(10,Items.REGENERATION_POTION), // 10% chance to get Healthpotion
+                    new KeyValuePair<int,Items>(10,Items.REGENERATION_POTION) // 10% chance to get Healthpotion
                 }
             },
             {
@@ -81,7 +81,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
                 DropType.lootbagBrownZombie,new List<KeyValuePair<int, Items>>()
                 {
                     new KeyValuePair<int,Items>(30,Items.HEALTH_POTION),
-                    new KeyValuePair<int,Items>(30,Items.REGENERATION_POTION),
+                    new KeyValuePair<int,Items>(30,Items.STRENGTH_POTION),
                     new KeyValuePair<int,Items>(30,Items.SPEAR),
                     new KeyValuePair<int,Items>(10,Items.BOMB)
                 }
@@ -97,9 +97,10 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
             {
                 DropType.lootbagWizard,new List<KeyValuePair<int, Items>>()
                 {
-                    new KeyValuePair<int,Items>(40,Items.REGENERATION_POTION),
-                    new KeyValuePair<int,Items>(40,Items.SPEAR),
-                    new KeyValuePair<int,Items>(20,Items.SPEED_POTION)
+                    new KeyValuePair<int,Items>(30,Items.REGENERATION_POTION),
+                    new KeyValuePair<int,Items>(30,Items.SPEAR),
+                    new KeyValuePair<int,Items>(20,Items.SPEED_POTION),
+                    new KeyValuePair<int,Items>(20,Items.STRENGTH_POTION)
                 }
             },
             {

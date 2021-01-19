@@ -269,7 +269,7 @@ namespace _2DRoguelike.Content.Core
 
         public void LoadSettings()
         {
-            if(!settingsFileExists())
+            if(!SettingsFileExists())
             {
                 SaveSettings();
                 return;
@@ -285,7 +285,7 @@ namespace _2DRoguelike.Content.Core
 
         }
 
-        public bool settingsFileExists()
+        public bool SettingsFileExists()
         {
             return File.Exists(Game1.projectPath + fileName);
         }
