@@ -200,14 +200,14 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         public override Action DetermineAction(float currentGameTime)
         {
 
-            if (InputController.IsKeyDown(Keys.E) && Teleport.CanSwitchToState(this))
+            if (InputController.IsKeyDown(Keys.Space) && Teleport.CanSwitchToState(this))
                 return new Teleport(this, currentGameTime);
 
-            if (InputController.IsKeyDown(Keys.Q) && Protect.CanSwitchToState(this)) 
+            if (InputController.IsRightMouseButtonPressed() && Protect.CanSwitchToState(this)) 
                 return new Protect(this, currentGameTime);
 
-            if (InputController.IsRightMouseButtonPressed() && ProjectileBarrage.CanSwitchToState(this))
-                return new ProjectileBarrage(this, currentGameTime);
+            //if (InputController.IsRightMouseButtonPressed() && ProjectileBarrage.CanSwitchToState(this))
+            //    return new ProjectileBarrage(this, currentGameTime);
 
             if (InputController.IsLeftMouseButtonPressed() && !IsAttacking() && CanAttack())
             {
