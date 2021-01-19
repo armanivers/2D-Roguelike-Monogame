@@ -18,8 +18,8 @@ namespace _2DRoguelike.Content.Core.Entities.Special_Interactables.Negative
             texture = TextureManager.Spikes01;
             hitbox.X += 2;
             hitbox.Y += 9;
-            hitbox.Width = (int)(27 * ScaleFactor);
-            hitbox.Height = (int)(17 * ScaleFactor);
+            hitbox.Width = (int)(26 * ScaleFactor);
+            hitbox.Height = (int)(16 * ScaleFactor);
         }
 
         public override void ActivateEffect()

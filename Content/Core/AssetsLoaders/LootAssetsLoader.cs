@@ -39,6 +39,7 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
 
         // Key 
         public Texture2D KeyLoot { get; private set; }
+        public Texture2D KeyLootSpecial { get; private set; }
 
         public void Load(ContentManager content)
         {
@@ -76,6 +77,7 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
 
             //Key
             KeyLoot = content.Load<Texture2D>("Assets/Graphics/LootElements/Obtainable/key_animation");
+            KeyLootSpecial = content.Load<Texture2D>("Assets/Graphics/LootElements/Obtainable/Key_CupTexture");
         }
     }
 }

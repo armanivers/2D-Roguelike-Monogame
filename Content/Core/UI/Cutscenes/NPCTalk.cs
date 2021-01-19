@@ -34,6 +34,9 @@ namespace _2DRoguelike.Content.Core.Cutscenes
                 case 2:
                     cutsceneTexture = TextureManager.menu.NPCTalk02;
                     break;
+                case 3:
+                    cutsceneTexture = TextureManager.menu.NPCTalk03;
+                    break;
                 default:
                     cutsceneTexture = TextureManager.menu.NPCTalk00;
                     break;
