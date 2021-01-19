@@ -20,7 +20,7 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
         // Effect Icons
         public Texture2D RegenerationEffectIcon { get; private set; }
         public Texture2D StrengthEffectIcon { get; private set; }
-
+        public Texture2D SpeedEffectIcon { get; private set; }
         // Weapon Loot Data
         public Texture2D LootAxe { get; private set; }
         public Texture2D LootBow { get; private set; }
@@ -62,6 +62,7 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
             // effect icons
             RegenerationEffectIcon = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/PlayerEffects/EffectRegeneration");
             StrengthEffectIcon = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/PlayerEffects/EffectStrength");
+            SpeedEffectIcon = content.Load<Texture2D>("Assets/Graphics/UI/PlayerUI/PlayerEffects/EffectSpeed");
 
             // Loot Container Data
             LootBag = content.Load<Texture2D>("Assets/Graphics/LootElements/Containers/LootBag");

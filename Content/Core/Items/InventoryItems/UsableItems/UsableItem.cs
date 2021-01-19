@@ -14,7 +14,10 @@ namespace _2DRoguelike.Content.Core.Items.InventoryItems.UsableItems
         public int quantity = 1;
         public UsableItem(Humanoid owner) : base(owner){}
 
-        public abstract void ActivateItem();
+        public virtual void ActivateItem()
+        {
+            quantity--;
+        }
 
         public bool Equals(UsableItem other)
         {

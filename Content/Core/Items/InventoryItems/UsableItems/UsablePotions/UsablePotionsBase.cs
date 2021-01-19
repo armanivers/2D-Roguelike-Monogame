@@ -13,5 +13,11 @@ namespace _2DRoguelike.Content.Core.Items.InventoryItems.UsableItems.UsablePotio
         {
             this.type = type;
         }
+
+        public override void ActivateItem()
+        {
+            base.ActivateItem();
+            SoundManager.PotionDrink.Play(Game1.gameSettings.soundeffectsLevel, 0, 0);
+        }
     }
 }

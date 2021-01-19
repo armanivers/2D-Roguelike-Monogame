@@ -3,6 +3,7 @@ using _2DRoguelike.Content.Core.Entities;
 using _2DRoguelike.Content.Core.Entities.ControllingPlayer;
 using _2DRoguelike.Content.Core.Entities.Creatures.Enemies;
 using _2DRoguelike.Content.Core.Entities.Inventories;
+using _2DRoguelike.Content.Core.Items.InventoryItems.UsableItems.UsablePotions;
 using _2DRoguelike.Content.Core.Items.InventoryItems.Weapons;
 using _2DRoguelike.Content.Core.Items.ObtainableItems;
 using _2DRoguelike.Content.Core.UI;
@@ -103,6 +104,19 @@ namespace _2DRoguelike.Content.Core
                 Player.Instance.Inventory.AddToWeaponInventory(new Bow(Player.Instance));
                 Player.Instance.Inventory.AddToWeaponInventory(new BombWeapon(Player.Instance));
                 Player.Instance.Inventory.AddToWeaponInventory(new Spear(Player.Instance));
+            }
+
+            if(IsKeyDown(Keys.R))
+            {
+                Player.Instance.Inventory.AddUsableItemToInventory(new RegenerationPotionUsable(Player.Instance));
+            }
+            if(IsKeyDown(Keys.T))
+            {
+                Player.Instance.Inventory.AddUsableItemToInventory(new StrengthPotionUsable(Player.Instance));
+            }
+            if(IsKeyDown(Keys.Y))
+            {
+                Player.Instance.Inventory.AddUsableItemToInventory(new SpeedPotionUsable(Player.Instance));
             }
 
         }

@@ -18,7 +18,8 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
         {
             chestNormal,
             chestDiamond,
-            lootbagZombie,
+            lootbagGreenZombie,
+            lootbagBrownZombie,
             lootbagSkeleton,
             lootbagWizard,
             lootbagOrc,
@@ -51,29 +52,36 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
             {
                 DropType.chestNormal, new List<KeyValuePair<int, Items>>()
                 {
-                    new KeyValuePair<int,Items>(40,Items.REGENERATION_POTION), // 40% chance to get Dagger (id 0)
-                    new KeyValuePair<int,Items>(30,Items.BOW), // 30% chance to get Bow (id 1)
-                    new KeyValuePair<int,Items>(15,Items.BOMB), // 10% chance to get Bomb (id 3
-                    new KeyValuePair<int,Items>(10,Items.HEALTH_POTION), // 10% chance to get Healthpotion (id 5)
-                    new KeyValuePair<int, Items>(5,Items.SPEAR) // 5% chance to get Spear (id 4)
+                    new KeyValuePair<int,Items>(40,Items.SPEAR), // 40% chance to get Spear
+                    new KeyValuePair<int,Items>(30,Items.BOW), // 30% chance to get Bow
+                    new KeyValuePair<int,Items>(15,Items.BOMB), // 15% chance to get Bomb 
+                    new KeyValuePair<int,Items>(15,Items.REGENERATION_POTION), // 15% chance to get Healthpotion
                 }
             },
             {
                 DropType.chestDiamond,new List<KeyValuePair<int, Items>>()      
                 {
-                    new KeyValuePair<int,Items>(40,Items.DAGGER), // 40% chance to get Dagger (id 0)
-                    new KeyValuePair<int,Items>(30,Items.BOW), // 30% chance to get Bow (id 1)
-                    new KeyValuePair<int,Items>(15,Items.BOMB), // 10% chance to get Bomb (id 3)
-                    new KeyValuePair<int,Items>(10,Items.HEALTH_POTION), // 10% chance to get Healthpotion (id 5)
-                    new KeyValuePair<int, Items>(5,Items.SPEAR) // 5% chance to get Spear (id 4)
+                    new KeyValuePair<int,Items>(50,Items.AXE), // 50% chance to get Axe
+                    new KeyValuePair<int,Items>(30,Items.BOMB), // 30% chance to get Bow
+                    new KeyValuePair<int,Items>(10,Items.BOW), // 10% chance to get Bomb
+                    new KeyValuePair<int,Items>(10,Items.REGENERATION_POTION), // 10% chance to get Healthpotion
                 }
             },
             {
-                DropType.lootbagZombie,new List<KeyValuePair<int, Items>>()
+                DropType.lootbagGreenZombie,new List<KeyValuePair<int, Items>>()
                 {
-                    new KeyValuePair<int,Items>(30,Items.STRENGTH_POTION),
+                    new KeyValuePair<int,Items>(30,Items.DAGGER),
                     new KeyValuePair<int,Items>(30,Items.HEALTH_POTION),
                     new KeyValuePair<int,Items>(30,Items.XP_POTION),
+                    new KeyValuePair<int,Items>(10,Items.BOMB)
+                }
+            },
+            {
+                DropType.lootbagBrownZombie,new List<KeyValuePair<int, Items>>()
+                {
+                    new KeyValuePair<int,Items>(30,Items.HEALTH_POTION),
+                    new KeyValuePair<int,Items>(30,Items.REGENERATION_POTION),
+                    new KeyValuePair<int,Items>(30,Items.SPEAR),
                     new KeyValuePair<int,Items>(10,Items.BOMB)
                 }
             },
@@ -81,26 +89,28 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
                 DropType.lootbagSkeleton,new List<KeyValuePair<int, Items>>()
                 {
                     new KeyValuePair<int,Items>(50,Items.SPEED_POTION),
-                    new KeyValuePair<int,Items>(50,Items.BOW)
+                    new KeyValuePair<int,Items>(30,Items.BOW),
+                    new KeyValuePair<int,Items>(20,Items.AXE)
                 }
             },
             {
                 DropType.lootbagWizard,new List<KeyValuePair<int, Items>>()
                 {
-                    new KeyValuePair<int,Items>(50,Items.REGENERATION_POTION),
-                    new KeyValuePair<int,Items>(50,Items.SPEAR)
+                    new KeyValuePair<int,Items>(40,Items.REGENERATION_POTION),
+                    new KeyValuePair<int,Items>(40,Items.SPEAR),
+                    new KeyValuePair<int,Items>(20,Items.SPEED_POTION)
                 }
             },
             {
                 DropType.lootbagOrc,new List<KeyValuePair<int, Items>>()
                 {
-                    new KeyValuePair<int,Items>(100,Items.HEALTH_POTION)
+                    new KeyValuePair<int,Items>(100,Items.REGENERATION_POTION)
                 }
             },
             {
                 DropType.lootbagDragon,new List<KeyValuePair<int, Items>>()
                 {
-                    new KeyValuePair<int,Items>(100,Items.HEALTH_POTION)
+                    new KeyValuePair<int,Items>(100,Items.REGENERATION_POTION)
                 }
             }
 
@@ -180,9 +190,13 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
         {
             if (enemy == null) return DropType.chestNormal;
 
-            if(enemy is BrownZombie || enemy is GreenZombie)
+            if(enemy is GreenZombie)
             {
-                return DropType.lootbagZombie;
+                return DropType.lootbagGreenZombie;
+            }
+            else if(enemy is BrownZombie)
+            {
+                return DropType.lootbagBrownZombie;
             }
             else if(enemy is Skeleton)
             {

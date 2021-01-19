@@ -7,16 +7,16 @@ using static _2DRoguelike.Content.Core.EntityEffects.EntityEffectsManager;
 
 namespace _2DRoguelike.Content.Core.Items.InventoryItems.UsableItems.UsablePotions
 {
-    public class RegenerationPotionUsable : UsablePotionsBase
+    public class SpeedPotionUsable : UsablePotionsBase
     {
-        public RegenerationPotionUsable(Humanoid owner) : base(owner,EffectType.HealthRegeneration)
+        public SpeedPotionUsable(Humanoid owner) : base(owner, EffectType.Speed)
         {
-            icon = TextureManager.loot.HealthPotion;
+            icon = TextureManager.loot.SpeedPotion;
         }
         public override void ActivateItem()
         {
             base.ActivateItem();
-            EntityEffectsManager.ActivateEffect(type,owner);
+            EntityEffectsManager.ActivateEffect(type, owner);
         }
     }
 }

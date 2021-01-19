@@ -83,11 +83,6 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
             inventory.AddToWeaponInventory(new Fist(this));
             inventory.ChangeCurrentWeaponSlot(0);
 
-            Inventory.AddUsableItemToInventory(new RegenerationPotionUsable(this));
-            Inventory.AddUsableItemToInventory(new RegenerationPotionUsable(this));
-            Inventory.AddUsableItemToInventory(new StrengthPotionUsable(this));
-            Inventory.AddUsableItemToInventory(new StrengthPotionUsable(this));
-
             canInteract = false;
             interactableObjects = new List<InteractableBase>();
 

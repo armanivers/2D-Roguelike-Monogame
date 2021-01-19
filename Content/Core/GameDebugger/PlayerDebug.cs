@@ -13,7 +13,6 @@ namespace _2DRoguelike.Content.Core.GameDebugger
     {
         private Vector2 indent;
 
-        const bool DEBUG = true;
         public PlayerDebug()
         {
             indent = Vector2.Zero;
@@ -65,31 +64,7 @@ namespace _2DRoguelike.Content.Core.GameDebugger
                 // spriteBatch.DrawString(TextureManager.FontArial, "Exit condition: " + LevelManager.levelList[LevelManager.level].exitCondition.PrintCondition() , MoveIndent(), Color.White);
                 spriteBatch.DrawString(TextureManager.FontArial, "Condition " + (LevelManager.levelList[LevelManager.level].exitCondition.CanExit() ? "is fulfilled!" : "is not fulfilled yet"), MoveIndent(), Color.White);
                 spriteBatch.DrawString(TextureManager.FontArial, "Mana: " + Player.Instance.Mana, MoveIndent(), Color.White);
-
-                DrawCompass(spriteBatch);
-
-                
-
             }
-        }
-
-        public void DrawCompass(SpriteBatch spriteBatch) {
-            const int DISTANCE_FROM_SCREEN = 30;
-
-            var differenz = new Vector2(Room.exithitbox.X + Room.exithitbox.Width / 2, Room.exithitbox.Y + Room.exithitbox.Height / 2) - new Vector2(Player.Instance.HitboxCenter.X, Player.Instance.HitboxCenter.Y);
-
-            spriteBatch.Draw(TextureManager.ui.Compass,
-                new Vector2(TextureManager.ui.Compass.Width / 2 + DISTANCE_FROM_SCREEN, (Game1.gameSettings.screenHeight - TextureManager.ui.Compass.Height / 2) - DISTANCE_FROM_SCREEN),
-                null,
-                Color.White,
-                (float)(Math.Atan2(differenz.Y, differenz.X)
-                + Math.PI / 2),
-                // Vector2.Zero,
-                new Vector2(TextureManager.ui.Compass.Width / 2, TextureManager.ui.Compass.Height / 2),
-                1f,
-                SpriteEffects.None,
-                0f
-            );
         }
 
         public void DrawLine(SpriteBatch spriteBatch, Vector2 from, Vector2 to, Color color, int width = 1)

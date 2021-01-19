@@ -18,7 +18,8 @@ namespace _2DRoguelike.Content.Core.EntityEffects
         public enum EffectType
         {
             HealthRegeneration,
-            Strength
+            Strength,
+            Speed
         }
 
         public static void Update(GameTime gameTime)
@@ -46,6 +47,9 @@ namespace _2DRoguelike.Content.Core.EntityEffects
                     break;
                 case EffectType.Strength:
                     AddToBuffer(new StrengthBoost(owner));
+                    break;
+                case EffectType.Speed:
+                    AddToBuffer(new SpeedBoost(owner));
                     break;
                 default:
                     break;
