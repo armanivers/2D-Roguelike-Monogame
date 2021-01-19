@@ -48,7 +48,7 @@ namespace _2DRoguelike.Content.Core.World.Tiles
         private Texture2D DetermineTexture(char roomObject)
         {
             Texture2D returnTexture = null;
-            switch (LevelManager.level)
+            switch (LevelManager.level/3)
             {
                 case 0:
                     returnTexture = LevelDesigner.ForgottenDungeon(roomObject);
