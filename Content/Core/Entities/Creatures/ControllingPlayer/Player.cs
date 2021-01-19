@@ -200,14 +200,14 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
         public override Action DetermineAction(float currentGameTime)
         {
 
-            if (InputController.IsRightMouseButtonPressed() && Teleport.CanSwitchToState(this))
+            if (InputController.IsKeyDown(Keys.E) && Teleport.CanSwitchToState(this))
                 return new Teleport(this, currentGameTime);
 
-            //if (InputController.IsRightMouseButtonHeld() && Protect.CanSwitchToState(this)) 
-            //    return new Protect(this, currentGameTime);
+            if (InputController.IsKeyDown(Keys.Q) && Protect.CanSwitchToState(this)) 
+                return new Protect(this, currentGameTime);
 
-            // if (InputController.IsRightMouseButtonPressed() && ProjectileBarrage.CanSwitchToState(this))
-            //     return new ProjectileBarrage(this, currentGameTime);
+            if (InputController.IsRightMouseButtonPressed() && ProjectileBarrage.CanSwitchToState(this))
+                return new ProjectileBarrage(this, currentGameTime);
 
             if (InputController.IsLeftMouseButtonPressed() && !IsAttacking() && CanAttack())
             {
@@ -369,11 +369,11 @@ namespace _2DRoguelike.Content.Core.Entities.ControllingPlayer
 
 
             // Usable Items Slot
-            else if (InputController.IsKeyPressed(Keys.NumPad1))
+            else if (InputController.IsKeyPressed(Keys.D1))
                 Inventory.UseItem(0);
-            else if (InputController.IsKeyPressed(Keys.NumPad2))
+            else if (InputController.IsKeyPressed(Keys.D2))
                 Inventory.UseItem(1);
-            else if (InputController.IsKeyPressed(Keys.NumPad3))
+            else if (InputController.IsKeyPressed(Keys.D3))
                 Inventory.UseItem(2);
         }
     }
