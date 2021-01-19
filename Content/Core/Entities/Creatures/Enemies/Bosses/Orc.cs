@@ -14,9 +14,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
         const int DEFAULT_HEALTHPOINTS = 200;
         public Orc(Vector2 position, float movingSpeed = 3, float attackTimespan = 0.4f, float scaleFactor = 1.6f) : base(position, DEFAULT_HEALTHPOINTS, attackTimespan, movingSpeed, scaleFactor)
         {
-            
 
-            ai = new OrcAI(this, OrcAI.DEFAULT_REACTION_TIME_MIN*3, OrcAI.DEFAULT_REACTION_TIME_MAX*3);
+            ai = new OrcAI(this, OrcAI.DEFAULT_REACTION_TIME_MIN*2, OrcAI.DEFAULT_REACTION_TIME_MAX*2);
 
             bossName = "The Orc";
 

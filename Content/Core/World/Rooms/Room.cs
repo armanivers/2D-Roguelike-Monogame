@@ -89,6 +89,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
             entitylist = new List<EntityBasis>();
             fillRoom();
         }
+
         public void fillRoom()
         {
             for (int y = 0; y < Height; y++)
@@ -127,7 +128,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
                 } while (room[(int)chestspawnpoint.X, (int)chestspawnpoint.Y] != RoomObject.EmptySpace);
                 chestspawnpoint.X += XPos;
                 chestspawnpoint.Y += YPos;
-                entitylist.Add(new Chest(chestspawnpoint * new Vector2(PIXELMULTIPLIER),Entities.Loot.RandomLoot.DropType.chestNormal));
+                entitylist.Add(new Chest(chestspawnpoint * new Vector2(PIXELMULTIPLIER), Entities.Loot.RandomLoot.DropType.chestNormal));
             }
             else if (roomvolume < 384)
             {
@@ -152,10 +153,10 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         }
         public Boss placeBoss()
         {
-            int XSPAWN = Width-8;
+            int XSPAWN = Width - 8;
             int YSPAWN = Height / 2;
 
-            switch(LevelManager.bossStage)
+            switch (LevelManager.bossStage)
             {
                 case 0:
                     return EnemyFactory.CreateOrcBoss(new Vector2(XSPAWN, YSPAWN));
@@ -189,28 +190,33 @@ namespace _2DRoguelike.Content.Core.World.Rooms
             exitroom = true;
             room[XExit, YExit] = RoomObject.Exit;
 
-           // Debug.WriteLine("Exit is at: {0},{1}" + XExit, YExit);
+            // Debug.WriteLine("Exit is at: {0},{1}" + XExit, YExit);
 
             XExit = (XExit + XPos);
             YExit = (YExit + YPos);
             exithitbox = new Rectangle(XExit * PIXELMULTIPLIER, YExit * PIXELMULTIPLIER, PIXELMULTIPLIER, PIXELMULTIPLIER);
             entitylist.Add(new Ladder(new Vector2(XExit * PIXELMULTIPLIER, YExit * PIXELMULTIPLIER)));
 
-            // es wird noch nicht zwischen normalen exitroom und bossexitroom unterschieden: in boss rooms spawnt auch eine truhe
-            Vector2 chestspawnpoint;
-            do
+            // das funktioniert noch nicht
+            if (!(LevelManager.level % 3 == 2))
             {
-                chestspawnpoint = new Vector2(Map.Random.Next(2, Width - 2), Map.Random.Next(2, Height - 2));
-            } while (room[(int)chestspawnpoint.X, (int)chestspawnpoint.Y] != RoomObject.EmptySpace && new Rectangle((int)chestspawnpoint.X, (int)chestspawnpoint.Y, 32, 32).Intersects(exithitbox));
+                // es wird noch nicht zwischen normalen exitroom und bossexitroom unterschieden: in boss rooms spawnt auch eine truhe
+                Vector2 chestspawnpoint;
+                do
+                {
+                    chestspawnpoint = new Vector2(Map.Random.Next(2, Width - 2), Map.Random.Next(2, Height - 2));
+                } while (room[(int)chestspawnpoint.X, (int)chestspawnpoint.Y] != RoomObject.EmptySpace && new Rectangle((int)chestspawnpoint.X, (int)chestspawnpoint.Y, 32, 32).Intersects(exithitbox));
 
-            chestspawnpoint.X += XPos;
-            chestspawnpoint.Y += YPos;
-            entitylist.Add(new Chest(chestspawnpoint * new Vector2(PIXELMULTIPLIER),Entities.Loot.RandomLoot.DropType.chestDiamond));
+                chestspawnpoint.X += XPos;
+                chestspawnpoint.Y += YPos;
+                entitylist.Add(new Chest(chestspawnpoint * new Vector2(PIXELMULTIPLIER), Entities.Loot.RandomLoot.DropType.chestDiamond));
+            }
+
         }
 
         public void SetTrap()
         {
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 Vector2 trapPos;
                 do
@@ -223,14 +229,14 @@ namespace _2DRoguelike.Content.Core.World.Rooms
 
                 new Spikes(trapPos * PIXELMULTIPLIER);
             }
-            
+
         }
         /// <summary>
         /// Places Key to a Random position in the Room
         /// </summary>
         public void setKey()
         {
-            
+
             entitylist.Add(new KeyLoot(LevelManager.levelList[LevelManager.level].exitCondition.GetKeySpawnPosition(this)));
             //Debug.WriteLine("Key placed!");
         }
@@ -242,11 +248,11 @@ namespace _2DRoguelike.Content.Core.World.Rooms
             Vector2 ret;
             do
             {
-                ret = new Vector2(Map.Random.Next(1, LevelManager.currentmap.currentroom.Width ), Map.Random.Next(1, LevelManager.currentmap.currentroom.Height ));
+                ret = new Vector2(Map.Random.Next(1, LevelManager.currentmap.currentroom.Width), Map.Random.Next(1, LevelManager.currentmap.currentroom.Height));
             } while (WouldBeStuck(creature, ret));
             ret.X += LevelManager.currentmap.currentroom.XPos;
             ret.Y += LevelManager.currentmap.currentroom.YPos;
-            
+
             return ret * new Vector2(32, 32) - new Vector2(17 * creature.ScaleFactor + 5, 14 * creature.ScaleFactor + 25);
         }
 
@@ -259,7 +265,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
             if (creature is Enemy && newTileCollisionHitbox.Intersects(Player.Instance.GetTileCollisionHitbox()))
                 return true;
 
-            
+
             foreach (var enemy in LevelManager.currentmap.currentroom.enemylist)
             {
                 if (!(creature == enemy) && newTileCollisionHitbox.Intersects(enemy.GetTileCollisionHitbox()))
@@ -275,11 +281,12 @@ namespace _2DRoguelike.Content.Core.World.Rooms
 
 
 
-            for (int x = (int)ret.X;    x < (int)ret.X + tilesOnCreatureWidth /*&& (int)ret.X + tilesOnCreatureWidth < LevelManager.currentmap.currentroom.room.GetLength(0)*/; x++)
+            for (int x = (int)ret.X; x < (int)ret.X + tilesOnCreatureWidth /*&& (int)ret.X + tilesOnCreatureWidth < LevelManager.currentmap.currentroom.room.GetLength(0)*/; x++)
             {
                 for (int y = (int)ret.Y; y < (int)ret.Y + tilesOnCreatureHeight/*&& (int)ret.Y + tilesOnCreatureHeight < LevelManager.currentmap.currentroom.room.GetLength(1)*/; y++)
                 {
-                    if (LevelManager.currentmap.currentroom.room[x, y] != RoomObject.EmptySpace) {
+                    if (LevelManager.currentmap.currentroom.room[x, y] != RoomObject.EmptySpace)
+                    {
                         return true;
                     }
                 }

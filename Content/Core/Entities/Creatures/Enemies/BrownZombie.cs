@@ -18,7 +18,6 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
             ai = new BrownZombieAI(this);
             SpeedModifier = 0.8f;
 
-
             inventory.WeaponInventory[0] = new Fist(this, 1.5f, 3.3f, 1f, 1f);
             // WeaponInventory[1] = new Bow(this, 0.7f, 1.5f);
             inventory.CurrentWeapon = inventory.WeaponInventory[0];
