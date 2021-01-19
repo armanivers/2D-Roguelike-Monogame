@@ -35,6 +35,8 @@ namespace _2DRoguelike.Content.Core.World.Maps
                 if (i == 0)
                 {
                     room = RoomFactory.StartingRoom();
+                }else if(i==1){
+                    room = RoomFactory.RoomWithChest();
                 }
                 else
                 {

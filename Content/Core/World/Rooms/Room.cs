@@ -127,7 +127,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
                 } while (room[(int)chestspawnpoint.X, (int)chestspawnpoint.Y] != RoomObject.EmptySpace);
                 chestspawnpoint.X += XPos;
                 chestspawnpoint.Y += YPos;
-                entitylist.Add(new Chest(chestspawnpoint * new Vector2(PIXELMULTIPLIER)));
+                entitylist.Add(new Chest(chestspawnpoint * new Vector2(PIXELMULTIPLIER),Entities.Loot.RandomLoot.DropType.chestNormal));
             }
             else if (roomvolume < 384)
             {
