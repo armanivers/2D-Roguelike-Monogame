@@ -15,7 +15,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         {
             ai = new GreenZombieAI(this);
 
-            inventory.WeaponInventory[0] = new Fist(this, 0.8f, 2.2f, 1f, 1f);
+            inventory.WeaponInventory[0] = new Fist(this, 0.5f, 2.2f, 1f, 1f);
             //WeaponInventory[1] = new Bow(this, 0.7f, 1.5f);
             inventory.CurrentWeapon = inventory.WeaponInventory[0];
 

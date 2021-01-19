@@ -4,6 +4,7 @@ using _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.Weapo
 using _2DRoguelike.Content.Core.Entities.Loot.InventoryLoots.WeaponLoots;
 using _2DRoguelike.Content.Core.Entities.Loot.Potions;
 using _2DRoguelike.Content.Core.Entities.Loot.WeaponLoots;
+using _2DRoguelike.Content.Core.World;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -52,17 +53,17 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
             {
                 DropType.chestNormal, new List<KeyValuePair<int, Items>>()
                 {
-                    new KeyValuePair<int,Items>(40,Items.SPEAR), // 40% chance to get Spear
-                    new KeyValuePair<int,Items>(30,Items.BOW), // 30% chance to get Bow
-                    new KeyValuePair<int,Items>(15,Items.BOMB), // 15% chance to get Bomb 
-                    new KeyValuePair<int,Items>(15,Items.REGENERATION_POTION), // 15% chance to get Healthpotion
+                    new KeyValuePair<int,Items>(25,Items.DAGGER), // 40% chance to get Spear
+                    new KeyValuePair<int,Items>(25,Items.REGENERATION_POTION), // 15% chance to get Healthpotion
+                    new KeyValuePair<int,Items>(25,Items.BOW), // 30% chance to get Bow
+                    new KeyValuePair<int,Items>(25,Items.BOMB), // 15% chance to get Bomb 
                 }
             },
             {
                 DropType.chestDiamond,new List<KeyValuePair<int, Items>>()      
                 {
                     new KeyValuePair<int,Items>(50,Items.AXE), // 50% chance to get Axe
-                    new KeyValuePair<int,Items>(30,Items.BOMB), // 30% chance to get Bow
+                    new KeyValuePair<int,Items>(30,Items.SPEAR), // 30% chance to get Bow
                     new KeyValuePair<int,Items>(10,Items.BOW), // 10% chance to get Bomb
                     new KeyValuePair<int,Items>(10,Items.REGENERATION_POTION), // 10% chance to get Healthpotion
                 }
@@ -89,7 +90,7 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
                 DropType.lootbagSkeleton,new List<KeyValuePair<int, Items>>()
                 {
                     new KeyValuePair<int,Items>(50,Items.SPEED_POTION),
-                    new KeyValuePair<int,Items>(30,Items.BOW),
+                    new KeyValuePair<int,Items>(30,Items.REGENERATION_POTION),
                     new KeyValuePair<int,Items>(20,Items.AXE)
                 }
             },
@@ -124,10 +125,11 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
 
         private static Items DetermineLoot(List<KeyValuePair<int, Items>> dropList)
         {
+            int stagedependency = LevelManager.level / 3 + 1;
             // % between 0 und 100
-            int randomPercentage = Game1.rand.Next(0, 101); // der zweite Wert ist exklusiv (nicht mit einbezogen)
-
-            foreach(var itemPercentage in dropList)
+            int randomPercentage = Game1.rand.Next(20*(stagedependency-1), 33*stagedependency); // der zweite Wert ist exklusiv (nicht mit einbezogen)
+            Debug.Print(" " + (33 * stagedependency)+" Percentage: "+randomPercentage);
+            foreach (var itemPercentage in dropList)
             {
                 if (randomPercentage <= itemPercentage.Key)
                 {
@@ -136,7 +138,6 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
                 }
                 else
                 {
-              
                     //Debug.Print("Next Weapon");
                     randomPercentage -= itemPercentage.Key;
                 }
