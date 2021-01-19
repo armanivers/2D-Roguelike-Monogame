@@ -68,28 +68,19 @@ namespace _2DRoguelike.Content.Core.World.Maps
                         {
                             for (int x = startX; x < endX; x++)
                             {
-
-                                if (chararray[x, previousRoom.CentreY] != RoomObject.EmptySpace)
+                                if (chararray[x, previousRoom.CentreY] != RoomObject.EmptySpace && chararray[x, previousRoom.CentreY] != RoomObject.Exit)
                                 {
                                     chararray[x, previousRoom.CentreY] = RoomObject.EmptySpace;
                                     chararray[x, previousRoom.CentreY + 1] = RoomObject.EmptySpace;
-                                    if (chararray[x, previousRoom.CentreY + 1] != RoomObject.Wall)
-                                    {
-                                        chararray[x, previousRoom.CentreY + 1] = RoomObject.EmptySpace;
-                                    }
                                 }
                             }
                             for (int y = startY; y < endY + 1; y++)
                             {
-
-                                if (chararray[room.CentreX, y] != RoomObject.EmptySpace)
+                                if (chararray[room.CentreX, y] != RoomObject.EmptySpace && chararray[room.CentreX, y] != RoomObject.Exit)
                                 {
                                     chararray[room.CentreX, y] = RoomObject.EmptySpace;
                                     chararray[room.CentreX + 1, y] = RoomObject.EmptySpace;
-                                    if (chararray[room.CentreX + 1, y] != RoomObject.Wall)
-                                    {
-                                        chararray[room.CentreX + 1, y] = RoomObject.EmptySpace;
-                                    }
+
                                 }
                             }
                         }
@@ -97,29 +88,19 @@ namespace _2DRoguelike.Content.Core.World.Maps
                         {
                             for (int y = startY; y < endY + 1; y++)
                             {
-
-                                if (chararray[previousRoom.CentreX, y] != RoomObject.EmptySpace)
+                                if (chararray[previousRoom.CentreX, y] != RoomObject.EmptySpace && chararray[previousRoom.CentreX, y] != RoomObject.Exit)
                                 {
                                     chararray[previousRoom.CentreX, y] = RoomObject.EmptySpace;
                                     chararray[previousRoom.CentreX + 1, y] = RoomObject.EmptySpace;
-                                    if (chararray[previousRoom.CentreX, y] != RoomObject.Wall)
-                                    {
-                                        chararray[previousRoom.CentreX + 1, y] = RoomObject.EmptySpace;
-                                    }
                                 }
                             }
 
                             for (int x = startX; x < endX; x++)
                             {
-
-                                if (chararray[x, room.CentreY] != RoomObject.EmptySpace)
+                                if (chararray[x, room.CentreY] != RoomObject.EmptySpace && chararray[x, room.CentreY] != RoomObject.Exit)
                                 {
                                     chararray[x, room.CentreY] = RoomObject.EmptySpace;
                                     chararray[x, room.CentreY + 1] = RoomObject.EmptySpace;
-                                    if (chararray[x, room.CentreY] != RoomObject.Wall)
-                                    {
-                                        chararray[x, room.CentreY + 1] = RoomObject.EmptySpace;
-                                    }
                                 }
                             }
 
@@ -135,7 +116,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
                     exitroom = previousRoom;
                 }
             }
-            
+
             SpawnEnemies();
             PlaceTraps();
 
@@ -174,7 +155,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
         {
             for (int y = room.YPos; y < room.YPos + room.Height; y++)
             {
-                for (int x = room.XPos; x < room.XPos + room.Width ; x++)
+                for (int x = room.XPos; x < room.XPos + room.Width; x++)
                 {
                     if (chararray[x, y] != 0)
                     {
@@ -199,18 +180,10 @@ namespace _2DRoguelike.Content.Core.World.Maps
                 {
                     currentroom = roomlist[i];
                     break;
-                    /*if (roomlist[i].exitroom)
-                    {
-                        if (player.GetTileCollisionHitbox().Intersects(roomlist[i].exithitbox))
-                        {
-                            LevelManager.NextLevel(player);
-                        }
-                    }*/
                 }
             }
-
             // Check nach Überresten der Toten
-            if(currentroom != null)
+            if (currentroom != null)
                 for (int i = currentroom.enemylist.Count - 1; i >= 0; i--)
                 {
                     if (currentroom.enemylist[i].isExpired)
