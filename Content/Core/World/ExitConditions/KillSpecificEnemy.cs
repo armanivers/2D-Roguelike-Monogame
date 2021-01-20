@@ -19,7 +19,7 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
 
         protected override bool CheckIfConditionMet()
         {
-            return enemy.IsDead();
+            return enemy.IsDead() || enemy.isExpired;
         }
 
         public override string PrintCondition()

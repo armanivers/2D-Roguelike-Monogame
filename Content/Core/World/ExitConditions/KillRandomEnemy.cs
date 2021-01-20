@@ -17,8 +17,17 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
             do
             {
                 chosenEnemy = EntityManager.creatures[Game1.rand.Next(0, EntityManager.creatures.Count)];
-            } while (!(chosenEnemy is Enemy));
+            } while (!(chosenEnemy is Enemy) || EnemyStuck((Enemy)chosenEnemy));
             return (Enemy)chosenEnemy;
+        }
+
+        private static bool EnemyStuck(Enemy chosenEnemy) { 
+            foreach(var creat in EntityManager.creatures)
+            {
+                if (creat != chosenEnemy && creat is Enemy && ((Enemy)creat).GetTileCollisionHitbox().Intersects(chosenEnemy.GetTileCollisionHitbox()))
+                    return true;
+            }
+            return false;
         }
     }
 }

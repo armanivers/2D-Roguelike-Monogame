@@ -10,7 +10,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
 {
     public class Dragon : Boss
     {
-        const int DEFAULT_HEALTHPOINTS = 200;
+        const int DEFAULT_HEALTHPOINTS = 600;
         const int WEAPON_SLOT_CNT = 2; // 0: ShortRange / 1: LongRange
         public Dragon(Vector2 position, float movingSpeed = 3, float attackTimespan = 0.4f, float scaleFactor = 1.6f) : base(position, DEFAULT_HEALTHPOINTS, attackTimespan, movingSpeed, scaleFactor)
         {

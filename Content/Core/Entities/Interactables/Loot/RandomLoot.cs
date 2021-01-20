@@ -53,10 +53,10 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
             {
                 DropType.chestNormal, new List<KeyValuePair<int, Items>>()
                 {
-                    new KeyValuePair<int,Items>(25,Items.DAGGER), // 40% chance to get Spear
-                    new KeyValuePair<int,Items>(25,Items.REGENERATION_POTION), // 15% chance to get Healthpotion
-                    new KeyValuePair<int,Items>(25,Items.BOW), // 30% chance to get Bow
-                    new KeyValuePair<int,Items>(25,Items.BOMB) // 15% chance to get Bomb 
+                    new KeyValuePair<int,Items>(35,Items.HEALTH_POTION), // 40% chance to get Spear
+                    new KeyValuePair<int,Items>(35,Items.REGENERATION_POTION), // 15% chance to get Healthpotion
+                    new KeyValuePair<int,Items>(15,Items.BOW), // 30% chance to get Bow
+                    new KeyValuePair<int,Items>(15,Items.BOMB) // 15% chance to get Bomb 
                 }
             },
             {
@@ -126,10 +126,9 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
 
         private static Items DetermineLoot(List<KeyValuePair<int, Items>> dropList)
         {
-            int stagedependency = LevelManager.level / 3 + 1;
             // % between 0 und 100
-            int randomPercentage = Game1.rand.Next(20*(stagedependency-1), 33*stagedependency); // der zweite Wert ist exklusiv (nicht mit einbezogen)
-            Debug.Print(" " + (33 * stagedependency)+" Percentage: "+randomPercentage);
+            int randomPercentage = Game1.rand.Next(0, 101); // der zweite Wert ist exklusiv (nicht mit einbezogen)
+           
             foreach (var itemPercentage in dropList)
             {
                 if (randomPercentage <= itemPercentage.Key)
