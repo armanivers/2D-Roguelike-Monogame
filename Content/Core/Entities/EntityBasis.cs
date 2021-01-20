@@ -14,7 +14,7 @@ namespace _2DRoguelike.Content.Core.Entities
         public float transparency;
         private float scaleFactor = 1f;
 
-        public float ScaleFactor { get => scaleFactor; set => scaleFactor = value; } // Skalierung der Textur (muss für Hitboxen mitberücksichtigt werden!). 1f = Default für alle, in Unterklassen änderbar
+        public virtual float ScaleFactor { get => scaleFactor; set => scaleFactor = value; } // Skalierung der Textur (muss für Hitboxen mitberücksichtigt werden!). 1f = Default für alle, in Unterklassen änderbar
         private Vector2 drawOrigin = Vector2.Zero; 
         public Vector2 DrawOrigin { get => drawOrigin; set => drawOrigin = value; } // Zentraler Punkt der Textur (Für Rotationen (→Hitbox) hilfreich). Vector2.Zero = Default für alle, in Unterklassen änderbar
 
