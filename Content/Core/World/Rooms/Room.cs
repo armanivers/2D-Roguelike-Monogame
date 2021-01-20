@@ -128,7 +128,15 @@ namespace _2DRoguelike.Content.Core.World.Rooms
                 } while (room[(int)chestspawnpoint.X, (int)chestspawnpoint.Y] != RoomObject.EmptySpace);
                 chestspawnpoint.X += XPos;
                 chestspawnpoint.Y += YPos;
-                entitylist.Add(new Chest(chestspawnpoint * new Vector2(PIXELMULTIPLIER), Entities.Loot.RandomLoot.DropType.chestNormal));
+                if (LevelManager.level == 0)
+                {
+                    entitylist.Add(new DaggerLoot(chestspawnpoint * new Vector2(PIXELMULTIPLIER)));
+                }
+                else
+                {
+                    entitylist.Add(new Chest(chestspawnpoint * new Vector2(PIXELMULTIPLIER), Entities.Loot.RandomLoot.DropType.chestNormal));
+                }
+               
             }
             else if (roomvolume < 384)
             {

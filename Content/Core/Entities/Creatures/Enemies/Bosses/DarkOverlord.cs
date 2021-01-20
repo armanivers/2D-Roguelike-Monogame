@@ -10,7 +10,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
 {
     public class DarkOverlord : Boss
     {
-        const int DEFAULT_HEALTHPOINTS = 200;
+        const int DEFAULT_HEALTHPOINTS = 500;
         const int WEAPON_SLOT_CNT = 2; // 0: ShortRange / 1: LongRange
         public DarkOverlord(Vector2 position, float movingSpeed = 2, float attackTimespan = 0.4f, float scaleFactor = 1.6f) : base(position, DEFAULT_HEALTHPOINTS, attackTimespan, movingSpeed, scaleFactor)
         {

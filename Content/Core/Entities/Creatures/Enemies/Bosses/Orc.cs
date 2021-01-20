@@ -11,7 +11,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies.Bosses
 
     public class Orc : Boss
     {
-        const int DEFAULT_HEALTHPOINTS = 200;
+        const int DEFAULT_HEALTHPOINTS = 400;
         public Orc(Vector2 position, float movingSpeed = 3, float attackTimespan = 0.4f, float scaleFactor = 1.6f) : base(position, DEFAULT_HEALTHPOINTS, attackTimespan, movingSpeed, scaleFactor)
         {
 
