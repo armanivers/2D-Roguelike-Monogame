@@ -24,8 +24,7 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
         }
 
         public EnemyAI ai;
-        // Für ATTACK-Range Debug
-        public Rectangle AttackRangeHitbox;
+
         // 30% to drop an loot bag
         private const int dropChance = 40;
         public Enemy(Vector2 position, int maxHealthPoints, float attackTimespan, float movingSpeed, float scaleFactor = 1f) : base(position, maxHealthPoints, attackTimespan, movingSpeed, scaleFactor)
@@ -142,7 +141,8 @@ namespace _2DRoguelike.Content.Core.Entities.Creatures.Enemies
 
                         if (!((Creature)EntityManager.creatures[i]).IsDead() && GetTileCollisionHitbox().Intersects(((Creature)EntityManager.creatures[i]).GetTileCollisionHitbox()))
                         {
-                            EntityManager.creatures[i].isExpired = this.isExpired = true;
+                            this.isExpired = true;
+                            break;
                         }
                 }
 
