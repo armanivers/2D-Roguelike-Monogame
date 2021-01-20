@@ -136,7 +136,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
                 {
                     entitylist.Add(new Chest(chestspawnpoint * new Vector2(PIXELMULTIPLIER), Entities.Loot.RandomLoot.DropType.chestNormal));
                 }
-               
+
             }
             else if (roomvolume < 384)
             {
@@ -152,7 +152,7 @@ namespace _2DRoguelike.Content.Core.World.Rooms
                 do
                 {
                     enemyspawnpoint = new Vector2(Map.Random.Next(2, Width - 3), Map.Random.Next(2, Height - 3));
-                } while (room[(int)enemyspawnpoint.X, (int)enemyspawnpoint.Y] != RoomObject.EmptySpace && IntersectsTileCollisionHitbox((int)enemyspawnpoint.X, (int)enemyspawnpoint.Y));
+                } while (room[(int)enemyspawnpoint.X, (int)enemyspawnpoint.Y] != RoomObject.EmptySpace || IntersectsTileCollisionHitbox((int)enemyspawnpoint.X, (int)enemyspawnpoint.Y));
 
                 enemyspawnpoint.X += (float)XPos;
                 enemyspawnpoint.Y += (float)YPos;
@@ -206,21 +206,32 @@ namespace _2DRoguelike.Content.Core.World.Rooms
             exithitbox = new Rectangle(XExit * PIXELMULTIPLIER, YExit * PIXELMULTIPLIER, PIXELMULTIPLIER, PIXELMULTIPLIER);
             entitylist.Add(new Ladder(new Vector2(XExit * PIXELMULTIPLIER, YExit * PIXELMULTIPLIER)));
 
-            // das funktioniert noch nicht
+
             if (!(LevelManager.level % 3 == 2))
             {
-                // es wird noch nicht zwischen normalen exitroom und bossexitroom unterschieden: in boss rooms spawnt auch eine truhe
                 Vector2 chestspawnpoint;
                 do
                 {
                     chestspawnpoint = new Vector2(Map.Random.Next(2, Width - 2), Map.Random.Next(2, Height - 2));
-                } while (room[(int)chestspawnpoint.X, (int)chestspawnpoint.Y] != RoomObject.EmptySpace && new Rectangle((int)chestspawnpoint.X, (int)chestspawnpoint.Y, 32, 32).Intersects(exithitbox));
+                } while (room[(int)chestspawnpoint.X, (int)chestspawnpoint.Y] != RoomObject.EmptySpace
+                || new Rectangle((int)chestspawnpoint.X, (int)chestspawnpoint.Y, 32, 32).Intersects(exithitbox)
+                || WithinSecondChest(new Rectangle((int)chestspawnpoint.X, (int)chestspawnpoint.Y, 32, 32)));
 
                 chestspawnpoint.X += XPos;
                 chestspawnpoint.Y += YPos;
                 entitylist.Add(new Chest(chestspawnpoint * new Vector2(PIXELMULTIPLIER), Entities.Loot.RandomLoot.DropType.chestDiamond));
             }
 
+        }
+
+        private bool WithinSecondChest(Rectangle firstChestHitbox)
+        {
+            foreach (var secondChest in entitylist)
+            {
+                if (firstChestHitbox.Intersects(secondChest.Hitbox))
+                    return true;
+            }
+            return false;
         }
 
         public void SetTrap()
@@ -253,16 +264,25 @@ namespace _2DRoguelike.Content.Core.World.Rooms
 
                 new Spikes(trapPos * PIXELMULTIPLIER);
             }
-
         }
         /// <summary>
         /// Places Key to a Random position in the Room
         /// </summary>
         public void setKey()
         {
+            KeyLoot key = new KeyLoot(LevelManager.levelList[LevelManager.level].exitCondition.GetKeySpawnPosition(this));
+            entitylist.Add(key);
 
-            entitylist.Add(new KeyLoot(LevelManager.levelList[LevelManager.level].exitCondition.GetKeySpawnPosition(this)));
-            //Debug.WriteLine("Key placed!");
+            // auskommentieren, wenn Endlosschleife!!!
+            //while (key.InWall())
+            //{
+            //    int xpos;
+            //    int ypos;
+            //    xpos = (Map.Random.Next(1, Width - 1)) + XPos;
+            //    ypos = (Map.Random.Next(1, Height - 1)) + YPos;
+            //    key.Position = new Vector2(xpos * Room.PIXELMULTIPLIER, ypos * Room.PIXELMULTIPLIER);
+            //}
+
         }
 
 

@@ -19,6 +19,17 @@ namespace _2DRoguelike.Content.Core.Entities.Loot
         // should this loot object float or not
         protected bool floatable;
 
+
+        public override float ScaleFactor
+        {
+            get => base.ScaleFactor; set
+            {
+                base.ScaleFactor = value;
+                hitbox.Width = (int)(32 * ScaleFactor);
+                hitbox.Height = (int)(32 * ScaleFactor);
+            }
+        }
+
         public LootBase(Vector2 pos) : base(pos)
         {
             // we are using 32x32px loot items drop texturs 

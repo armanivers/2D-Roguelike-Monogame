@@ -17,7 +17,10 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.O
     // abstrakte klasse ObtainableItemLoot erstellen, falls mehr items
     public class KeyLoot : LootBase
     {
+        
         private bool obtained;
+
+
 
         public KeyLoot(Vector2 pos) : base(pos)
         {
@@ -25,6 +28,7 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.O
 
             if (LevelManager.level == LevelManager.maxLevel - 1)
             {
+                ScaleFactor = 2f; 
                 texture = TextureManager.loot.KeyLootSpecial;
             }
             else
@@ -55,7 +59,6 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.O
             {
                 isExpired = true;
             }
-
         }
         private void NotifyPlayer()
         {
@@ -64,6 +67,29 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.O
         private void PlaySound()
         {
             SoundManager.KeyPickup.Play(Game1.gameSettings.soundeffectsLevel, 0.3f, 0);
+        }
+
+        public bool InWall()
+        {
+            Rectangle hitbox = Hitbox;
+            int levelWidth = LevelManager.currenttilemap.GetLength(0);
+            int levelHeight = LevelManager.currenttilemap.GetLength(1);
+            // Handling von NullPointer-Exception
+            int northWest = hitbox.X < 0 ? 0 : hitbox.X / 32;
+            int northEast = (hitbox.X + hitbox.Width) / 32 >= levelWidth ? levelWidth - 1 : (hitbox.X + hitbox.Width) / 32;
+            int southWest = hitbox.Y < 0 ? 0 : hitbox.Y / 32;
+            int southEast = (hitbox.Y + hitbox.Height) / 32 >= levelHeight ? levelHeight - 1 : (hitbox.Y + hitbox.Height) / 32;
+
+            for (int x = northWest; x <= northEast; x++)
+            {
+                for (int y = southWest; y <= southEast; y++)
+                {
+                    if (!LevelManager.currenttilemap[x, y].IsSolid())
+                        return false;
+                }
+            }
+            return true;
+
         }
 
     }

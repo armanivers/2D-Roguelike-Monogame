@@ -16,17 +16,17 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
         {
             int percentage = Game1.rand.Next(0, 101);
 
-            if (percentage <= 100)
+            if (percentage <= 5)
             {
-                return new KillRandomEnemy();
+                return new KillAllEnemies();
             }
-            else if (percentage <= 30)
+            else if (percentage <= 50)
             {
                 return new KillAmountOfEnemies();
             }
-            else if (percentage <= 5)
+            else if (percentage <= 100)
             {
-                return new KillAllEnemies();
+                return new KillRandomEnemy();
             }
 
             return new KillAmountOfEnemies();
