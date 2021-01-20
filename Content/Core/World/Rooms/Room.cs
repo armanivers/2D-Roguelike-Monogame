@@ -32,6 +32,8 @@ namespace _2DRoguelike.Content.Core.World.Rooms
         public Rectangle roomhitbox { get; set; }
         public static Rectangle exithitbox { get; set; }
         public int XPos;
+        public static bool placedStartLoot = false;
+
         public void setXPos(int value)
         {
             XPos = value;
@@ -126,17 +128,26 @@ namespace _2DRoguelike.Content.Core.World.Rooms
                 {
                     chestspawnpoint = new Vector2(Map.Random.Next(2, Width - 2), Map.Random.Next(2, Height - 2));
                 } while (room[(int)chestspawnpoint.X, (int)chestspawnpoint.Y] != RoomObject.EmptySpace);
+
                 chestspawnpoint.X += XPos;
                 chestspawnpoint.Y += YPos;
-                if (LevelManager.level == 0)
-                {
-                    entitylist.Add(new DaggerLoot(chestspawnpoint * new Vector2(PIXELMULTIPLIER)));
-                }
-                else
-                {
-                    entitylist.Add(new Chest(chestspawnpoint * new Vector2(PIXELMULTIPLIER), Entities.Loot.RandomLoot.DropType.chestNormal));
-                }
 
+                entitylist.Add(new Chest(chestspawnpoint * new Vector2(PIXELMULTIPLIER), Entities.Loot.RandomLoot.DropType.chestNormal));
+
+                Vector2 lootSpawn;
+                do
+                {
+                    lootSpawn = new Vector2(Map.Random.Next(2, Width - 2), Map.Random.Next(2, Height - 2));
+                } while (room[(int)lootSpawn.X, (int)lootSpawn.Y] != RoomObject.EmptySpace && lootSpawn!=chestspawnpoint);
+
+                lootSpawn.X += XPos;
+                lootSpawn.Y += YPos;
+
+                if (LevelManager.level == 0 && !placedStartLoot)
+                {
+                    entitylist.Add(new DaggerLoot(lootSpawn * new Vector2(PIXELMULTIPLIER)));
+                    placedStartLoot = true;
+                }
             }
             else if (roomvolume < 384)
             {
