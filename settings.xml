@@ -4,15 +4,15 @@
   <fullScreen>true</fullScreen>
   <screenWidth>1920</screenWidth>
   <screenHeight>1080</screenHeight>
-  <backgroundMusicLevel>0</backgroundMusicLevel>
+  <backgroundMusicLevel>0.20000002</backgroundMusicLevel>
   <prevBackgroundMusicLevel>0.20000002</prevBackgroundMusicLevel>
-  <soundeffectsLevel>0</soundeffectsLevel>
+  <soundeffectsLevel>0.10000002</soundeffectsLevel>
   <prevSoundeffectsLevel>0.10000002</prevSoundeffectsLevel>
-  <DEBUG>true</DEBUG>
+  <DEBUG>false</DEBUG>
   <godMode>false</godMode>
-  <showHitbox>false</showHitbox>
+  <showHitbox>true</showHitbox>
   <showMouse>false</showMouse>
-  <playerDebug>false</playerDebug>
+  <playerDebug>true</playerDebug>
   <attackHitbox>true</attackHitbox>
   <noclip>false</noclip>
 </GameSettings>
