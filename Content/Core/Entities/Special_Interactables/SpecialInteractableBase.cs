@@ -21,7 +21,7 @@ namespace _2DRoguelike.Content.Core.Entities.Special_Interactables
         public override void Update(GameTime gameTime)
         {
             GameDebug.AddToBoxDebugBuffer(hitbox, Color.Firebrick);
-            // statt hitbox ggf tilehitbox?
+
             if(Hitbox.Intersects(Player.Instance.GetTileCollisionHitbox()))
             {
                 ActivateEffect();

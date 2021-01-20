@@ -111,7 +111,7 @@ namespace _2DRoguelike.Content.Core.World
             if (currentmap is BossMap)
             {
                 // queue bosstalk scene
-                // CutsceneManager.QueueScene(new NPCTalk(bossStage + 1));
+                CutsceneManager.QueueScene(new NPCTalk(bossStage + 1,true));
                 bossStage++;
                 UIManager.SwitchBossBarState();
             }

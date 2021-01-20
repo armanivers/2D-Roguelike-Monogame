@@ -217,7 +217,22 @@ namespace _2DRoguelike.Content.Core.World.Rooms
 
         public void SetTrap()
         {
-            for (int i = 0; i < 5; i++)
+            int spikesAmount = 0;
+
+            if (roomvolume < 100)
+            {
+                spikesAmount = 2;
+            }
+            else if (roomvolume < 384)
+            {
+                spikesAmount = 6;
+            }
+            else
+            {
+                spikesAmount = 10;
+            }
+
+            for (int i = 0; i < spikesAmount; i++)
             {
                 Vector2 trapPos;
                 do

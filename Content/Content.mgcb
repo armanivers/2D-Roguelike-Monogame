@@ -61,6 +61,18 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/Cutscenes/NPCTalk02.png
 
+#begin Assets/Graphics/Cutscenes/NPCTalk03.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/Cutscenes/NPCTalk03.png
+
 #begin Assets/Graphics/EnemyElements/DarkOverlord/darkOverlordSheet_hurt.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -780,6 +792,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Assets/Graphics/LootElements/Obtainable/key_animation.png
+
+#begin Assets/Graphics/LootElements/Obtainable/Key_CupTexture.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Graphics/LootElements/Obtainable/Key_CupTexture.png
 
 #begin Assets/Graphics/LootElements/Potions/ExperiencePotion.png
 /importer:TextureImporter
