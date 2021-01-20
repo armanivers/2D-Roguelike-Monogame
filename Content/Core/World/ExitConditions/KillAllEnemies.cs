@@ -9,7 +9,7 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
 {
     class KillAllEnemies : ExitCondition
     {
-        
+
 
         public KillAllEnemies()
         {
@@ -29,8 +29,9 @@ namespace _2DRoguelike.Content.Core.World.ExitConditions
         {
             int xpos;
             int ypos;
-            xpos = (Map.Random.Next(1, room.Width - 1)) + room.XPos;
-            ypos = (Map.Random.Next(1, room.Height - 1)) + room.YPos;
+            // im letzten Raum ist KeyLoot doppelt so groß
+            xpos = (Map.Random.Next(1, room.Width - (LevelManager.level == LevelManager.maxLevel - 1 ? 2 : 1))) + room.XPos;
+            ypos = (Map.Random.Next(1, room.Height - (LevelManager.level == LevelManager.maxLevel - 1 ? 2 : 1))) + room.YPos;
             return new Vector2(xpos * Room.PIXELMULTIPLIER, ypos * Room.PIXELMULTIPLIER);
         }
     }

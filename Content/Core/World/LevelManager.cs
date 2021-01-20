@@ -43,7 +43,7 @@ namespace _2DRoguelike.Content.Core.World
         {
             gameOverSucc = false;
             levelList = new List<Level>();
-            levelList.Add(new Level(new Dungeon(), new KillAmountOfEnemies()));
+            levelList.Add(new Level(new Dungeon(),ExitCondition.getRandomExitCondition()));
             currentmap = levelList[level].map;
             currenttilemap = currentmap.tilearray;
             playerposition = new Vector2();

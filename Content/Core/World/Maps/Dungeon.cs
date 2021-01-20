@@ -50,7 +50,8 @@ namespace _2DRoguelike.Content.Core.World.Maps
                     room.setXPos(Map.Random.Next(previousRoom.XPos - Room.MAXROOMSIZE - addedvalue < 0 ? 0 : previousRoom.XPos - Room.MAXROOMSIZE - addedvalue, previousRoom.XPos + Room.MAXROOMSIZE + addedvalue > width - room.Width ? width - room.Width : previousRoom.XPos + Room.MAXROOMSIZE + addedvalue));
                     room.setYPos(Map.Random.Next(previousRoom.YPos - Room.MAXROOMSIZE - addedvalue < 0 ? 0 : previousRoom.YPos - Room.MAXROOMSIZE - addedvalue, previousRoom.YPos + Room.MAXROOMSIZE + addedvalue > height - room.Height ? height - room.Height : previousRoom.YPos + Room.MAXROOMSIZE + addedvalue));
                     roomfindingtries++;
-                } while (!avoidRoomCollision(room) && roomfindingtries <= ROOMTRIES);
+                } while (!avoidRoomCollision(room) && roomfindingtries <= ROOMTRIES); // && oder || ?
+
                 if (roomfindingtries != ROOMTRIES)
                 {
                     if (i == NumRooms - 1)
