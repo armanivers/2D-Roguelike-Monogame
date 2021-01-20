@@ -23,20 +23,20 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.O
         {
             obtained = false;
 
-            if(LevelManager.level == LevelManager.maxLevel-1)
+            if (LevelManager.level == LevelManager.maxLevel - 1)
             {
                 texture = TextureManager.loot.KeyLootSpecial;
             }
             else
             {
                 texture = TextureManager.loot.KeyLoot;
-                animations = new Dictionary<string, Animation>()
+            }
+            animations = new Dictionary<string, Animation>()
             {
                 {"KeyLoot_Idle",new Animation(texture,0,4,0.2f,true,false,false,32) }
             };
-                animationManager = new AnimationManager(this, animations["KeyLoot_Idle"]);
-                animationManager.Position = pos;
-            }
+            animationManager = new AnimationManager(this, animations["KeyLoot_Idle"]);
+            animationManager.Position = pos;
             floatable = true;
         }
         public override void OnContact()
@@ -53,13 +53,13 @@ namespace _2DRoguelike.Content.Core.Entities.Interactables.Loot.InventoryLoots.O
             base.Update(gameTime);
             if (obtained)
             {
-              isExpired = true;
+                isExpired = true;
             }
 
         }
         private void NotifyPlayer()
         {
-            MessageFactory.DisplayMessage("Key Obtained!", Color.Green,AnimationType.UpToDown);
+            MessageFactory.DisplayMessage("Key Obtained!", Color.Green, AnimationType.UpToDown);
         }
         private void PlaySound()
         {

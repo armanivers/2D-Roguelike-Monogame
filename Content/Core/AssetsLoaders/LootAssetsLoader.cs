@@ -77,7 +77,7 @@ namespace _2DRoguelike.Content.Core.AssetsLoaders
 
             //Key
             KeyLoot = content.Load<Texture2D>("Assets/Graphics/LootElements/Obtainable/key_animation");
-            KeyLootSpecial = content.Load<Texture2D>("Assets/Graphics/LootElements/Obtainable/Key_CupTexture");
+            KeyLootSpecial = content.Load<Texture2D>("Assets/Graphics/LootElements/Obtainable/coin_animation");
         }
     }
 }
