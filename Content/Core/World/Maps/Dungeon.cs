@@ -123,6 +123,7 @@ namespace _2DRoguelike.Content.Core.World.Maps
             SpawnEnemies();
             PlaceTraps();
 
+            
             // DEBUG-Test:
             foreach (Room room in roomlist)
             {

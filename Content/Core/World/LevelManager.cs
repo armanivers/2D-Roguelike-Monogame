@@ -11,6 +11,7 @@ using _2DRoguelike.Content.Core.UI;
 using _2DRoguelike.Content.Core.Cutscenes;
 using static _2DRoguelike.Content.Core.UI.MessageFactory.Message;
 using _2DRoguelike.Content.Core.Entities.Inventories;
+using _2DRoguelike.Content.Core.World.Rooms;
 
 namespace _2DRoguelike.Content.Core.World
 {
@@ -152,6 +153,7 @@ namespace _2DRoguelike.Content.Core.World
             level = 0;
             bossStage = 0;
             levelList.Clear();
+            Room.placedStartLoot = false;
         }
         public static void Draw(SpriteBatch spriteBatch)
         {
